@@ -67,11 +67,12 @@
             }
         },
         "test": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/projects/demo"],
             "options": {
-                "command": "npx jest --config projects/demo/jest.config.js"
-            },
-            "outputs": ["coverage/demo"]
+                "jestConfig": "projects/demo/jest.config.js",
+                "passWithNoTests": true
+            }
         },
         "server": {
             "executor": "@angular-devkit/build-angular:server",
