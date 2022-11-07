@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app.routes';
-import {StaticModule} from './modules/static/static.module';
+import {SandboxModule} from './modules/sandbox/sandbox.module';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -13,7 +13,7 @@ import {StaticModule} from './modules/static/static.module';
             appId: 'demo',
         }),
         AppRoutingModule,
-        StaticModule,
+        SandboxModule,
     ],
     declarations: [AppComponent],
     providers: [

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {StaticComponent} from './modules/static/static.component';
+import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const appRoutes: Routes = [
     {
         path: '',
-        component: StaticComponent,
+        component: SandboxComponent,
     },
     {
         path: 'lazy',
