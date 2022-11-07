@@ -1,0 +1,21 @@
+name: Lint
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Lint check
+        run: |
+          npm run typecheck
+          npm run format -- --check
+          npm run stylelint
+          npm run lint
+
+concurrency:
+  group: lint-${{ github.head_ref }}
+  cancel-in-progress: true

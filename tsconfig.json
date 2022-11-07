@@ -1,0 +1,6 @@
+// TODO after update all "@nrwl/*"-packages to 13.8.6+:
+// 1. Drop this file
+// 2. Rename "tsconfig.base.json" => "tsconfig.json"
+{
+    "extends": "./tsconfig.base.json"
+}

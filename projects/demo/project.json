@@ -1,0 +1,119 @@
+{
+    "projectType": "application",
+    "generators": {},
+    "root": "projects/demo",
+    "sourceRoot": "projects/demo/src",
+    "prefix": "app",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "options": {
+                "baseHref": "",
+                "deployUrl": "",
+                "outputPath": "dist/demo/browser",
+                "index": "projects/demo/src/index.html",
+                "main": "projects/demo/src/main.browser.ts",
+                "polyfills": "projects/demo/src/polyfills.ts",
+                "tsConfig": "projects/demo/tsconfig.app.json",
+                "aot": false,
+                "assets": ["projects/demo/src/favicon.ico"],
+                "styles": ["projects/demo/src/styles.css"],
+                "scripts": [],
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+            },
+            "configurations": {
+                "production": {
+                    "baseHref": "./",
+                    "deployUrl": "./",
+                    "fileReplacements": [
+                        {
+                            "replace": "projects/demo/src/environments/environment.ts",
+                            "with": "projects/demo/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "buildOptimizer": true,
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "2mb",
+                            "maximumError": "5mb"
+                        }
+                    ]
+                }
+            },
+            "defaultConfiguration": ""
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "browserTarget": "demo:build"
+            },
+            "configurations": {
+                "production": {
+                    "browserTarget": "demo:build:production"
+                }
+            }
+        },
+        "test": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "npx jest --config projects/demo/jest.config.js"
+            },
+            "outputs": ["coverage/demo"]
+        },
+        "server": {
+            "executor": "@angular-devkit/build-angular:server",
+            "options": {
+                "outputPath": "dist/demo/server",
+                "main": "projects/demo/server.ts",
+                "tsConfig": "projects/demo/tsconfig.server.json",
+                "sourceMap": true,
+                "optimization": false
+            },
+            "configurations": {
+                "production": {
+                    "outputHashing": "media",
+                    "sourceMap": false,
+                    "optimization": true
+                }
+            },
+            "defaultConfiguration": ""
+        },
+        "serve-ssr": {
+            "executor": "@nguniversal/builders:ssr-dev-server",
+            "options": {
+                "browserTarget": "demo:build",
+                "serverTarget": "demo:server"
+            },
+            "configurations": {
+                "production": {
+                    "browserTarget": "demo:build:production",
+                    "serverTarget": "demo:server:production"
+                }
+            }
+        },
+        "prerender": {
+            "executor": "@nguniversal/builders:prerender",
+            "options": {
+                "browserTarget": "demo:build:production",
+                "serverTarget": "demo:server:production",
+                "routes": ["/"]
+            },
+            "configurations": {
+                "production": {}
+            }
+        }
+    }
+}

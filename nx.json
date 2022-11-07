@@ -1,0 +1,50 @@
+{
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        ".eslintrc.js": "*",
+        "nx.json": "*",
+        "karma.*.js": "*",
+        "tsconfig.*.json": "*",
+        "tsconfig.json": "*"
+    },
+    "npmScope": "angular-open-source-starter",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/nx-cloud",
+            "options": {
+                "cacheableOperations": ["build", "test", "lint"],
+                "parallel": 1
+            }
+        }
+    },
+    "affected": {
+        "defaultBase": "origin/main"
+    },
+    "workspaceLayout": {
+        "libsDir": "projects",
+        "appsDir": "projects"
+    },
+    "defaultProject": "demo",
+    "generators": {
+        "@nrwl/js:library": {
+            "buildable": true,
+            "strict": true,
+            "linter": "none",
+            "unitTestRunner": "jest",
+            "config": "project"
+        },
+        "@nrwl/angular:library": {
+            "buildable": true,
+            "compilationMode": "partial",
+            "linter": "none",
+            "unitTestRunner": "jest",
+            "strict": true,
+            "skipModule": true,
+            "standaloneConfig": true
+        }
+    }
+}
