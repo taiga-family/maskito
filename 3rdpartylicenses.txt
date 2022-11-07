@@ -10,6 +10,8 @@ MIT
 @angular/router
 MIT
 
+@maskito/core
+
 core-js
 MIT
 Copyright (c) 2014-2020 Denis Pushkarev
