@@ -1,8 +1,9 @@
 import {
-    adjustFixedMaskCharacters,
+    addFixedMaskCharacters,
     EventListener,
     getClipboardDataText,
     isEventProducingCharacter,
+    removeFixedMaskCharacters,
     validateValueWithMask,
 } from './utils';
 import {MaskExpression, MaskOptions} from './types';
@@ -35,8 +36,16 @@ export class Mask {
         return typeof mask === 'function' ? mask() : mask;
     }
 
+    /**
+     * TODO Predictive text from native mobile keyboards dont trigger keydown event!
+     */
     private handleKeydown(event: KeyboardEvent): void {
-        this.fillInputWithFixedValues(event.key === 'Backspace');
+        const isBackspace = event.key === 'Backspace';
+        this.fillInputWithFixedValues(isBackspace);
+
+        if (isBackspace) {
+            return this.handleBackspace(event);
+        }
 
         /**
          * "beforeinput" is more appropriate event for preprocessing of the input masking.
@@ -69,15 +78,49 @@ export class Mask {
     }
 
     private fillInputWithFixedValues(isBackspace: boolean = false): void {
-        const {value} = this.elementRef;
-        const modifiedValue = adjustFixedMaskCharacters(
+        const {value, selectionStart} = this.elementRef;
+        const {formattedValue, newCaretPosition} = addFixedMaskCharacters(
             value,
             this.maskExpression,
             isBackspace,
+            selectionStart ?? 0,
         );
 
-        if (modifiedValue !== value) {
-            this.elementRef.value = modifiedValue;
+        if (formattedValue !== value) {
+            this.elementRef.value = formattedValue;
+            this.elementRef.setSelectionRange(newCaretPosition, newCaretPosition);
         }
+    }
+
+    /**
+     * TODO: user can select many (or all) characters and press Backspace
+     */
+    private handleBackspace(event: KeyboardEvent): void {
+        const {maskExpression} = this;
+
+        if (!Array.isArray(maskExpression)) {
+            return;
+        }
+
+        const {selectionStart, value = ''} = this.elementRef;
+        const deletedCharIndex = selectionStart ? selectionStart - 1 : 0;
+        const {newValue, newCaretPosition: cp} = removeFixedMaskCharacters(
+            value,
+            maskExpression,
+            deletedCharIndex,
+        );
+
+        const {formattedValue, newCaretPosition} = addFixedMaskCharacters(
+            newValue.slice(0, cp) + newValue.slice(cp + 1),
+            maskExpression,
+            true,
+            cp,
+        );
+
+        this.elementRef.value = formattedValue;
+
+        this.elementRef.setSelectionRange(newCaretPosition, newCaretPosition);
+
+        event.preventDefault();
     }
 }
