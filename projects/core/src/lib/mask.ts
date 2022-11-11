@@ -1,12 +1,6 @@
-import {
-    addFixedMaskCharacters,
-    EventListener,
-    getClipboardDataText,
-    isEventProducingCharacter,
-    removeFixedMaskCharacters,
-    validateValueWithMask,
-} from './utils';
+import {EventListener, getClipboardDataText, isEventProducingCharacter} from './utils';
 import {MaskExpression, MaskOptions} from './types';
+import {MaskModel} from './classes';
 
 export class Mask {
     private readonly eventListener = new EventListener(this.elementRef);
@@ -15,15 +9,16 @@ export class Mask {
         private readonly elementRef: HTMLInputElement | HTMLTextAreaElement,
         private readonly options: MaskOptions,
     ) {
-        this.eventListener.listen('focus', () => this.fillInputWithFixedValues());
+        this.fillWithFixedValues();
+
         /**
          * After user press any button, events always happen in the same order as they are listed here.
-         * `Keydown`-event is useful for preprocessing (input is not changed yet, so you can easily prevent any changes).
+         * `Keydown`-event is useful for validation (input is not changed yet, so you can easily prevent any changes).
          * `Input`-event is useful for postprocessing (input was already changed, and you can add some fixed value).
          */
         this.eventListener.listen('keydown', event => this.handleKeydown(event));
         this.eventListener.listen('paste', event => this.handlePaste(event));
-        this.eventListener.listen('input', () => this.fillInputWithFixedValues());
+        this.eventListener.listen('input', () => this.fillWithFixedValues());
     }
 
     destroy(): void {
@@ -37,13 +32,12 @@ export class Mask {
     }
 
     /**
-     * TODO Predictive text from native mobile keyboards dont trigger keydown event!
+     * TODO Predictive text from native mobile keyboards don't trigger keydown event!
      */
     private handleKeydown(event: KeyboardEvent): void {
-        const isBackspace = event.key === 'Backspace';
-        this.fillInputWithFixedValues(isBackspace);
+        const pressedKey = event.key;
 
-        if (isBackspace) {
+        if (pressedKey === 'Backspace') {
             return this.handleBackspace(event);
         }
 
@@ -59,16 +53,51 @@ export class Mask {
             return;
         }
 
-        const currentValue = this.elementRef.value;
-        const caretPosition = this.elementRef.selectionStart || 0;
-        const newPossibleValue =
-            currentValue.slice(0, caretPosition) +
-            event.key +
-            currentValue.slice(caretPosition);
+        const {value, selectionStart, selectionEnd} = this.elementRef;
+        const maskModel = new MaskModel(value, selectionStart || 0, this.maskExpression);
 
-        if (!validateValueWithMask(newPossibleValue, this.maskExpression)) {
+        try {
+            maskModel.addCharacters([selectionStart || 0, selectionEnd || 0], pressedKey);
+        } catch {
             event.preventDefault();
         }
+    }
+
+    private fillWithFixedValues(): void {
+        const {value: initialValue, selectionStart} = this.elementRef;
+        const maskModel = new MaskModel(
+            initialValue,
+            selectionStart || 0,
+            this.maskExpression,
+        );
+        const {value, caretIndex} = maskModel;
+
+        this.updateValue(value);
+        this.updateCaretIndex(caretIndex);
+    }
+
+    private handleBackspace(event: KeyboardEvent): void {
+        const {maskExpression} = this;
+
+        if (!Array.isArray(maskExpression)) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const {selectionStart, selectionEnd, value: initialValue} = this.elementRef;
+        const maskModel = new MaskModel(
+            initialValue,
+            selectionStart ?? 0,
+            maskExpression,
+        );
+
+        maskModel.removeCharacters([selectionStart ?? 0, selectionEnd ?? 0]);
+
+        const {value, caretIndex} = maskModel;
+
+        this.updateValue(value);
+        this.updateCaretIndex(caretIndex);
     }
 
     private handlePaste(event: ClipboardEvent): void {
@@ -77,50 +106,19 @@ export class Mask {
         console.log('===[handlePaste]===', event.cancelable, getClipboardDataText(event));
     }
 
-    private fillInputWithFixedValues(isBackspace: boolean = false): void {
-        const {value, selectionStart} = this.elementRef;
-        const {formattedValue, newCaretPosition} = addFixedMaskCharacters(
-            value,
-            this.maskExpression,
-            isBackspace,
-            selectionStart ?? 0,
-        );
+    private updateValue(newValue: string): void {
+        const {elementRef} = this;
 
-        if (formattedValue !== value) {
-            this.elementRef.value = formattedValue;
-            this.elementRef.setSelectionRange(newCaretPosition, newCaretPosition);
+        if (elementRef.value !== newValue) {
+            elementRef.value = newValue;
         }
     }
 
-    /**
-     * TODO: user can select many (or all) characters and press Backspace
-     */
-    private handleBackspace(event: KeyboardEvent): void {
-        const {maskExpression} = this;
+    private updateCaretIndex(newCaretIndex: number): void {
+        const {elementRef} = this;
 
-        if (!Array.isArray(maskExpression)) {
-            return;
+        if (elementRef.selectionStart !== newCaretIndex) {
+            elementRef.setSelectionRange(newCaretIndex, newCaretIndex);
         }
-
-        const {selectionStart, value = ''} = this.elementRef;
-        const deletedCharIndex = selectionStart ? selectionStart - 1 : 0;
-        const {newValue, newCaretPosition: cp} = removeFixedMaskCharacters(
-            value,
-            maskExpression,
-            deletedCharIndex,
-        );
-
-        const {formattedValue, newCaretPosition} = addFixedMaskCharacters(
-            newValue.slice(0, cp) + newValue.slice(cp + 1),
-            maskExpression,
-            true,
-            cp,
-        );
-
-        this.elementRef.value = formattedValue;
-
-        this.elementRef.setSelectionRange(newCaretPosition, newCaretPosition);
-
-        event.preventDefault();
     }
 }
