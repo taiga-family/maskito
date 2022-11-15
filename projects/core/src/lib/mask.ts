@@ -1,4 +1,4 @@
-import {EventListener, getClipboardDataText, isEventProducingCharacter} from './utils';
+import {EventListener, isEventProducingCharacter} from './utils';
 import {MaskExpression, MaskOptions} from './types';
 import {MaskModel} from './classes';
 
@@ -31,6 +31,14 @@ export class Mask {
         return typeof mask === 'function' ? mask() : mask;
     }
 
+    private get selectionStart(): number {
+        return this.elementRef.selectionStart || 0;
+    }
+
+    private get selectionEnd(): number {
+        return this.elementRef.selectionEnd || 0;
+    }
+
     /**
      * TODO Predictive text from native mobile keyboards don't trigger keydown event!
      */
@@ -38,6 +46,7 @@ export class Mask {
         const pressedKey = event.key;
 
         if (pressedKey === 'Backspace') {
+            // TODO: Windows OS has also wonderful button "Delete" which removes characters to the right of the caret.
             return this.handleBackspace(event);
         }
 
@@ -53,23 +62,19 @@ export class Mask {
             return;
         }
 
-        const {value, selectionStart, selectionEnd} = this.elementRef;
-        const maskModel = new MaskModel(value, selectionStart || 0, this.maskExpression);
+        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
+        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
 
         try {
-            maskModel.addCharacters([selectionStart || 0, selectionEnd || 0], pressedKey);
+            maskModel.addCharacters([selectionStart, selectionEnd], pressedKey);
         } catch {
             event.preventDefault();
         }
     }
 
     private fillWithFixedValues(): void {
-        const {value: initialValue, selectionStart} = this.elementRef;
-        const maskModel = new MaskModel(
-            initialValue,
-            selectionStart || 0,
-            this.maskExpression,
-        );
+        const {elementRef, maskExpression, selectionStart} = this;
+        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
         const {value, caretIndex} = maskModel;
 
         this.updateValue(value);
@@ -77,7 +82,7 @@ export class Mask {
     }
 
     private handleBackspace(event: KeyboardEvent): void {
-        const {maskExpression} = this;
+        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
 
         if (!Array.isArray(maskExpression)) {
             return;
@@ -85,25 +90,27 @@ export class Mask {
 
         event.preventDefault();
 
-        const {selectionStart, selectionEnd, value: initialValue} = this.elementRef;
-        const maskModel = new MaskModel(
-            initialValue,
-            selectionStart ?? 0,
-            maskExpression,
-        );
+        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
 
-        maskModel.removeCharacters([selectionStart ?? 0, selectionEnd ?? 0]);
+        maskModel.removeCharacters([selectionStart, selectionEnd]);
 
-        const {value, caretIndex} = maskModel;
-
-        this.updateValue(value);
-        this.updateCaretIndex(caretIndex);
+        this.updateValue(maskModel.value);
+        this.updateCaretIndex(maskModel.caretIndex);
     }
 
     private handlePaste(event: ClipboardEvent): void {
-        // TODO: finish later
-        // eslint-disable-next-line no-console
-        console.log('===[handlePaste]===', event.cancelable, getClipboardDataText(event));
+        event.preventDefault();
+
+        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
+        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+
+        maskModel.addCharacters(
+            [selectionStart, selectionEnd],
+            event.clipboardData?.getData('text/plain') ?? '',
+        );
+
+        this.updateValue(maskModel.value);
+        this.updateCaretIndex(maskModel.caretIndex);
     }
 
     private updateValue(newValue: string): void {

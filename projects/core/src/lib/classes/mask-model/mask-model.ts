@@ -40,7 +40,7 @@ export class MaskModel {
         const {maskedValue, maskedCaretPosition} = addFixedMaskCharacters(
             newUnmaskedValue,
             this.mask,
-            unmaskedTo,
+            unmaskedTo + newCharacters.length,
         );
 
         if (!validateValueWithMask(maskedValue, this.mask)) {
