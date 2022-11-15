@@ -1,4 +1,5 @@
-import {MaskExpression} from '../../types';
+import {MaskExpression} from '../../../types';
+import {isFixedCharacter} from './is-fixed-character';
 
 export function validateValueWithMask(
     value: string,
@@ -10,7 +11,7 @@ export function validateValueWithMask(
             Array.from(value).every((char, i) => {
                 const charConstraint = maskExpression[i];
 
-                return typeof charConstraint === 'string'
+                return isFixedCharacter(charConstraint)
                     ? char === charConstraint
                     : char.match(charConstraint);
             })
