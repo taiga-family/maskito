@@ -1,0 +1,32 @@
+name: Deploy / preview
+
+on: pull_request
+
+jobs:
+  build_and_preview:
+    if:
+      github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' &&
+      github.actor != 'dependabot-preview[bot]' && !contains(github.head_ref, 'release/')
+    name: Firebase
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - run: npm run build
+
+      - name: Debug output
+        run: tree dist/demo/browser -P '*.html'
+
+      - name: Deploy preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MASKITO }}
+          projectId: maskito
+          expires: 1d
+
+concurrency:
+  group: firebase-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
