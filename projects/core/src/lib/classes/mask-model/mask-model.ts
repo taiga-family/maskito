@@ -40,7 +40,7 @@ export class MaskModel {
         const {maskedValue, maskedCaretPosition} = addFixedMaskCharacters(
             newUnmaskedValue,
             this.mask,
-            unmaskedTo,
+            unmaskedTo + newCharacters.length,
         );
 
         if (!validateValueWithMask(maskedValue, this.mask)) {
@@ -56,18 +56,21 @@ export class MaskModel {
             return;
         }
 
-        const selectedRange: [number, number] = from === to ? [from - 1, to] : [from, to];
+        if (from === to) {
+            throw new Error('MaskModel.removeCharacters() accepts only not-empty range');
+        }
+
         const {unmaskedValue, unmaskedSelection} = removeFixedMaskCharacters(
             this.value,
             this.mask,
-            selectedRange,
+            [from, to],
         );
         const [unmaskedFrom, unmaskedTo] = unmaskedSelection;
         const isOnlyFixedCharsSelected = unmaskedFrom === unmaskedTo;
         const isLastChar = unmaskedTo >= unmaskedValue.length;
 
         if (isOnlyFixedCharsSelected && !isLastChar) {
-            this.caretIndex = selectedRange[0];
+            this.caretIndex = from;
             return;
         }
 

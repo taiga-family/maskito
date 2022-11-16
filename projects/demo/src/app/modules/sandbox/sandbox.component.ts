@@ -6,7 +6,7 @@ import {
     OnDestroy,
     ViewChild,
 } from '@angular/core';
-import {Mask} from '@maskito/core';
+import {Maskito} from '@maskito/core';
 import {INPUT_NUMBER_MASK, INPUT_PHONE_MASK, NO_CYRILLIC_MASK} from './masks';
 
 @Component({
@@ -25,18 +25,18 @@ export class SandboxComponent implements AfterViewInit, OnDestroy {
     @ViewChild('textAreaRef')
     private readonly textAreaRef!: ElementRef<HTMLTextAreaElement>;
 
-    private maskedInputPhone: Mask | null = null;
-    private maskedInputNumber: Mask | null = null;
-    private maskedTextArea: Mask | null = null;
+    private maskedInputPhone?: Maskito;
+    private maskedInputNumber?: Maskito;
+    private maskedTextArea?: Maskito;
 
     ngAfterViewInit() {
-        this.maskedInputPhone = new Mask(this.inputPhoneRef.nativeElement, {
+        this.maskedInputPhone = new Maskito(this.inputPhoneRef.nativeElement, {
             mask: INPUT_PHONE_MASK,
         });
-        this.maskedInputNumber = new Mask(this.inputNumberRef.nativeElement, {
+        this.maskedInputNumber = new Maskito(this.inputNumberRef.nativeElement, {
             mask: INPUT_NUMBER_MASK,
         });
-        this.maskedTextArea = new Mask(this.textAreaRef.nativeElement, {
+        this.maskedTextArea = new Maskito(this.textAreaRef.nativeElement, {
             mask: NO_CYRILLIC_MASK,
         });
     }
