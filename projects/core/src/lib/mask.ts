@@ -3,10 +3,10 @@ import {MaskExpression, MaskitoOptions} from './types';
 import {MaskModel} from './classes';
 
 export class Maskito {
-    private readonly eventListener = new EventListener(this.elementRef);
+    private readonly eventListener = new EventListener(this.element);
 
     constructor(
-        private readonly elementRef: HTMLInputElement | HTMLTextAreaElement,
+        private readonly element: HTMLInputElement | HTMLTextAreaElement,
         private readonly options: MaskitoOptions,
     ) {
         this.fillWithFixedValues();
@@ -32,11 +32,11 @@ export class Maskito {
     }
 
     private get selectionStart(): number {
-        return this.elementRef.selectionStart || 0;
+        return this.element.selectionStart || 0;
     }
 
     private get selectionEnd(): number {
-        return this.elementRef.selectionEnd || 0;
+        return this.element.selectionEnd || 0;
     }
 
     /**
@@ -62,8 +62,8 @@ export class Maskito {
             return;
         }
 
-        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
-        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const {element, maskExpression, selectionStart, selectionEnd} = this;
+        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
 
         try {
             maskModel.addCharacters([selectionStart, selectionEnd], pressedKey);
@@ -73,8 +73,8 @@ export class Maskito {
     }
 
     private fillWithFixedValues(): void {
-        const {elementRef, maskExpression, selectionStart} = this;
-        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const {element, maskExpression, selectionStart} = this;
+        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
         const {value, caretIndex} = maskModel;
 
         this.updateValue(value);
@@ -82,13 +82,13 @@ export class Maskito {
     }
 
     private handleBackspace(event: KeyboardEvent): void {
-        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
+        const {element, maskExpression, selectionStart, selectionEnd} = this;
 
         if (!Array.isArray(maskExpression)) {
             return;
         }
 
-        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
         const [from, to]: [number, number] =
             selectionStart === selectionEnd
                 ? [selectionStart - 1, selectionEnd]
@@ -97,8 +97,7 @@ export class Maskito {
         maskModel.removeCharacters([from, to]);
 
         const {value, caretIndex} = maskModel;
-        const newPossibleValue =
-            elementRef.value.slice(0, from) + elementRef.value.slice(to);
+        const newPossibleValue = element.value.slice(0, from) + element.value.slice(to);
 
         if (newPossibleValue !== value) {
             event.preventDefault();
@@ -109,8 +108,8 @@ export class Maskito {
     }
 
     private handlePaste(event: ClipboardEvent): void {
-        const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
-        const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const {element, maskExpression, selectionStart, selectionEnd} = this;
+        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
         const insertedText = event.clipboardData?.getData('text/plain') ?? '';
 
         try {
@@ -121,9 +120,9 @@ export class Maskito {
 
         const {value, caretIndex} = maskModel;
         const newPossibleValue =
-            elementRef.value.slice(0, selectionStart) +
+            element.value.slice(0, selectionStart) +
             insertedText +
-            elementRef.value.slice(selectionEnd);
+            element.value.slice(selectionEnd);
 
         if (newPossibleValue !== value) {
             event.preventDefault();
@@ -134,18 +133,18 @@ export class Maskito {
     }
 
     private updateValue(newValue: string): void {
-        const {elementRef} = this;
+        const {element} = this;
 
-        if (elementRef.value !== newValue) {
-            elementRef.value = newValue;
+        if (element.value !== newValue) {
+            element.value = newValue;
         }
     }
 
     private updateCaretIndex(newCaretIndex: number): void {
-        const {elementRef} = this;
+        const {element} = this;
 
-        if (elementRef.selectionStart !== newCaretIndex) {
-            elementRef.setSelectionRange(newCaretIndex, newCaretIndex);
+        if (element.selectionStart !== newCaretIndex) {
+            element.setSelectionRange(newCaretIndex, newCaretIndex);
         }
     }
 }
