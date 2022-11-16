@@ -1,2 +1,2 @@
-export {Mask} from './lib/mask';
-export {MaskOptions} from './lib/types';
+export {Maskito} from './lib/mask';
+export {MaskitoOptions} from './lib/types';

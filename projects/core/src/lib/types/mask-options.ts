@@ -1,5 +1,5 @@
 export type MaskExpression = Array<RegExp | string> | RegExp;
 
-export interface MaskOptions {
+export interface MaskitoOptions {
     mask: MaskExpression | (() => MaskExpression);
 }

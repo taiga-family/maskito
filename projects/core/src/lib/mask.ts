@@ -1,13 +1,13 @@
 import {EventListener, isEventProducingCharacter} from './utils';
-import {MaskExpression, MaskOptions} from './types';
+import {MaskExpression, MaskitoOptions} from './types';
 import {MaskModel} from './classes';
 
-export class Mask {
+export class Maskito {
     private readonly eventListener = new EventListener(this.elementRef);
 
     constructor(
         private readonly elementRef: HTMLInputElement | HTMLTextAreaElement,
-        private readonly options: MaskOptions,
+        private readonly options: MaskitoOptions,
     ) {
         this.fillWithFixedValues();
 
