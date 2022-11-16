@@ -88,29 +88,49 @@ export class Maskito {
             return;
         }
 
-        event.preventDefault();
-
         const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const [from, to]: [number, number] =
+            selectionStart === selectionEnd
+                ? [selectionStart - 1, selectionEnd]
+                : [selectionStart, selectionEnd];
 
-        maskModel.removeCharacters([selectionStart, selectionEnd]);
+        maskModel.removeCharacters([from, to]);
 
-        this.updateValue(maskModel.value);
-        this.updateCaretIndex(maskModel.caretIndex);
+        const {value, caretIndex} = maskModel;
+        const newPossibleValue =
+            elementRef.value.slice(0, from) + elementRef.value.slice(to);
+
+        if (newPossibleValue !== value) {
+            event.preventDefault();
+
+            this.updateValue(value);
+            this.updateCaretIndex(caretIndex);
+        }
     }
 
     private handlePaste(event: ClipboardEvent): void {
-        event.preventDefault();
-
         const {elementRef, maskExpression, selectionStart, selectionEnd} = this;
         const maskModel = new MaskModel(elementRef.value, selectionStart, maskExpression);
+        const insertedText = event.clipboardData?.getData('text/plain') ?? '';
 
-        maskModel.addCharacters(
-            [selectionStart, selectionEnd],
-            event.clipboardData?.getData('text/plain') ?? '',
-        );
+        try {
+            maskModel.addCharacters([selectionStart, selectionEnd], insertedText);
+        } catch {
+            return event.preventDefault();
+        }
 
-        this.updateValue(maskModel.value);
-        this.updateCaretIndex(maskModel.caretIndex);
+        const {value, caretIndex} = maskModel;
+        const newPossibleValue =
+            elementRef.value.slice(0, selectionStart) +
+            insertedText +
+            elementRef.value.slice(selectionEnd);
+
+        if (newPossibleValue !== value) {
+            event.preventDefault();
+
+            this.updateValue(value);
+            this.updateCaretIndex(caretIndex);
+        }
     }
 
     private updateValue(newValue: string): void {
