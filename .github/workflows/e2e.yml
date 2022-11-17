@@ -25,7 +25,7 @@ jobs:
           curl -X GET -I -f "${{ env.STATIC_SERVER }}"
 
       - name: Run cypress / ssr / prerender
-        run: npm run cy:run -- --spec "**/ssr/*.cy.ts" --config baseUrl="${{ env.STATIC_SERVER }}"
+        run: npm run cy:run -- --spec "**/*.cy.ts" --config baseUrl="${{ env.STATIC_SERVER }}"
 
       - name: Build ssr server
         run: npm run build:ssr
@@ -36,7 +36,7 @@ jobs:
           curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
 
       - name: Run cypress / ssr / universal
-        run: npm run cy:run -- --spec "**/ssr/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+        run: npm run cy:run -- --spec "**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
 
 concurrency:
   group: integration-e2e-${{ github.head_ref }}
