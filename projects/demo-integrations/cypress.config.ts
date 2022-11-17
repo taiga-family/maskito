@@ -14,7 +14,7 @@ export const CYPRESS_CONFIG: Cypress.ConfigOptions = {
         setupNodeEvents(on, config) {
             return require('./cypress/plugins/index.js')(on, config);
         },
-        baseUrl: 'http://localhost:4200',
+        baseUrl: 'http://localhost:3333',
         specPattern: 'cypress/tests/**/*.cy.ts',
     },
 };
