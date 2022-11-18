@@ -26,7 +26,8 @@ describe('InputPhone', () => {
                 cy.get('@inputPhone')
                     .type(typedValue)
                     .should('have.value', maskedValue)
-                    .should('have.prop', 'selectionStart', maskedValue.length);
+                    .should('have.prop', 'selectionStart', maskedValue.length)
+                    .should('have.prop', 'selectionEnd', maskedValue.length);
             });
         });
     });
@@ -55,7 +56,8 @@ describe('InputPhone', () => {
                 cy.get('@inputPhone')
                     .type('{backspace}'.repeat(n))
                     .should('have.value', maskedValue)
-                    .should('have.prop', 'selectionStart', maskedValue.length);
+                    .should('have.prop', 'selectionStart', maskedValue.length)
+                    .should('have.prop', 'selectionEnd', maskedValue.length);
             });
         });
     });
@@ -72,12 +74,15 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-67-8'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-8'.length)
                 .type('{backspace}')
                 .should('have.value', '+7 (912) 345-67-9')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length)
                 .type('0')
                 .should('have.value', '+7 (912) 345-67-09')
-                .should('have.prop', 'selectionStart', '+7 (912) 345-67-0'.length);
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-0'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-0'.length);
         });
 
         it('+7 (912) 345-67|-89 => Backspace + 0 => +7 (912) 345-60-|89', () => {
@@ -85,12 +90,15 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}{leftArrow}{leftArrow}')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length)
                 .type('{backspace}')
                 .should('have.value', '+7 (912) 345-68-9')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length)
                 .type('0')
                 .should('have.value', '+7 (912) 345-60-89')
-                .should('have.prop', 'selectionStart', '+7 (912) 345-60-'.length);
+                .should('have.prop', 'selectionStart', '+7 (912) 345-60-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-60-'.length);
         });
 
         it('+7 (912) 345-6|7-89 => Backspace + 0 => +7 (912) 345-0|7-89', () => {
@@ -98,12 +106,15 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}'.repeat('7-89'.length))
                 .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length)
                 .type('{backspace}')
                 .should('have.value', '+7 (912) 345-78-9')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length)
                 .type('0')
                 .should('have.value', '+7 (912) 345-07-89')
-                .should('have.prop', 'selectionStart', '+7 (912) 345-0'.length);
+                .should('have.prop', 'selectionStart', '+7 (912) 345-0'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-0'.length);
         });
     });
 
@@ -117,9 +128,11 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}{leftArrow}')
                 .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length)
                 .type('{backspace}')
                 .should('have.value', '+7 (912) 345-67-89')
-                .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length);
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length);
         });
 
         it('+7 (912) 345-|67-89 => Backspace => +7 (912) 345|-67-89', () => {
@@ -127,9 +140,11 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}'.repeat('67-89'.length))
                 .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length)
                 .type('{backspace}')
                 .should('have.value', '+7 (912) 345-67-89')
-                .should('have.prop', 'selectionStart', '+7 (912) 345'.length);
+                .should('have.prop', 'selectionStart', '+7 (912) 345'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345'.length);
         });
 
         it('+7 (912) |345-67-89 => Backspace x2 => +7 (912|) 345-67-89', () => {
@@ -137,9 +152,159 @@ describe('InputPhone', () => {
                 .focus()
                 .type('{leftArrow}'.repeat('345-67-89'.length))
                 .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) '.length)
                 .type('{backspace}{backspace}')
                 .should('have.value', '+7 (912) 345-67-89')
-                .should('have.prop', 'selectionStart', '+7 (912'.length);
+                .should('have.prop', 'selectionStart', '+7 (912'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912'.length);
+        });
+    });
+
+    describe('Text selection', () => {
+        // ab|cd|e – it means that in string "abcde" characters "cd" are selected
+
+        beforeEach(() => {
+            cy.get('@inputPhone').type('9123456789');
+        });
+
+        describe('Select range and press "Backspace"', () => {
+            it('+7 (912) 345-67-|89| => Backspace => +7 (912) 345-67-|', () => {
+                cy.get('@inputPhone').realPress([
+                    'Shift',
+                    'ArrowLeft',
+                    'ArrowLeft',
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-67-')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length);
+            });
+
+            it('+7 (912) 345-6|7-89| => Backspace => +7 (912) 345-6|', () => {
+                cy.get('@inputPhone').realPress([
+                    'Shift',
+                    ...Array('7-89'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-6')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
+            });
+
+            it('+7 (912) 345-6|7-8|9 => Backspace => +7 (912) 345-6|9-', () => {
+                cy.get('@inputPhone').realPress([
+                    'ArrowLeft',
+                    'Shift',
+                    ...Array('7-8'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-69-')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
+            });
+
+            it('+7 (912) 345-|67|-89 => Backspace => +7 (912) 345-|89', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('67'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-89-')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length);
+            });
+
+            it('+7 (912) |345|-67-89 => Backspace => +7 (912) |678-9', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-67-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('345'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 678-9')
+                    .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) '.length);
+            });
+        });
+
+        describe('Select range and press new digit', () => {
+            it('+7 (912) 345-67-|89| => Press 0 => +7 (912) 345-67-0|', () => {
+                cy.get('@inputPhone').realPress(['Shift', 'ArrowLeft', 'ArrowLeft']);
+
+                cy.get('@inputPhone')
+                    .type('0')
+                    .should('have.value', '+7 (912) 345-67-0')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-67-0'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-67-0'.length);
+            });
+
+            it('+7 (912) 345-6|7-89| => Press 0 => +7 (912) 345-60-|', () => {
+                cy.get('@inputPhone').realPress([
+                    'Shift',
+                    ...Array('7-89'.length).fill('ArrowLeft'),
+                ]);
+
+                cy.get('@inputPhone')
+                    .type('0')
+                    .should('have.value', '+7 (912) 345-60-')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-60-'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-60-'.length);
+            });
+
+            it('+7 (912) 345-6|7-8|9 => Press 0 => +7 (912) 345-60-|9', () => {
+                cy.get('@inputPhone').realPress([
+                    'ArrowLeft',
+                    'Shift',
+                    ...Array('7-8'.length).fill('ArrowLeft'),
+                ]);
+
+                cy.get('@inputPhone')
+                    .type('0')
+                    .should('have.value', '+7 (912) 345-60-9')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-60-'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-60-'.length);
+            });
+
+            // TODO: this test correctly fails, it catches a bug
+            it.skip('+7 (912) 345-|67|-89 => Press 0 => +7 (912) 345-0|8-9', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('67'.length).fill('ArrowLeft'),
+                ]);
+
+                cy.get('@inputPhone')
+                    .type('0')
+                    .should('have.value', '+7 (912) 345-08-9')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-0'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-0'.length);
+            });
+
+            // TODO: this test correctly fails, it catches a bug
+            it.skip('+7 (912) |345|-67-89 => Press "0" => +7 (912) 0|67-89-', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-67-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('345'.length).fill('ArrowLeft'),
+                ]);
+
+                cy.get('@inputPhone')
+                    .type('0')
+                    .should('have.value', '+7 (912) 067-89-')
+                    .should('have.prop', 'selectionStart', '+7 (912) 0'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 0'.length);
+            });
         });
     });
 });

@@ -5,8 +5,7 @@ import {addFixedMaskCharacters} from './utils/add-fixed-mask-characters';
 
 export class MaskModel {
     value = '';
-    // TODO: refactor code and replace `caretIndex: number` with `selection: [from: number, to: number]`
-    caretIndex = 0;
+    selection: [from: number, to: number] = [0, 0];
 
     private get maskExpression(): MaskExpression {
         const {mask} = this.maskOptions;
@@ -24,7 +23,7 @@ export class MaskModel {
         );
 
         this.value = value;
-        this.caretIndex = selection[0];
+        this.selection = selection;
     }
 
     addCharacters(selection: [from: number, to: number], newCharacters: string): void {
@@ -52,7 +51,7 @@ export class MaskModel {
         }
 
         this.value = maskedElementState.value;
-        this.caretIndex = maskedElementState.selection[0];
+        this.selection = selection;
     }
 
     removeCharacters([from, to]: [from: number, to: number]): void {
@@ -73,7 +72,7 @@ export class MaskModel {
         const isLastChar = unmaskedTo >= unmaskedElementState.value.length;
 
         if (isOnlyFixedChars && !isLastChar) {
-            this.caretIndex = from;
+            this.selection = [from, from];
             return;
         }
 
@@ -88,6 +87,6 @@ export class MaskModel {
         );
 
         this.value = maskedElementState.value;
-        this.caretIndex = maskedElementState.selection[0];
+        this.selection = maskedElementState.selection;
     }
 }

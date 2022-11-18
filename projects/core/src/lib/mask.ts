@@ -70,7 +70,7 @@ export class Maskito {
         const maskModel = new MaskModel(this.elementState, this.options);
 
         this.updateValue(maskModel.value);
-        this.updateCaretIndex(maskModel.caretIndex);
+        this.updateSelectionRange(maskModel.selection);
     }
 
     private handleBackspace(event: KeyboardEvent): void {
@@ -89,7 +89,7 @@ export class Maskito {
 
         maskModel.removeCharacters([from, to]);
 
-        const {value, caretIndex} = maskModel;
+        const {value, selection} = maskModel;
         const newPossibleValue =
             elementState.value.slice(0, from) + elementState.value.slice(to);
 
@@ -97,7 +97,7 @@ export class Maskito {
             event.preventDefault();
 
             this.updateValue(value);
-            this.updateCaretIndex(caretIndex);
+            this.updateSelectionRange(selection);
         }
     }
 
@@ -117,13 +117,13 @@ export class Maskito {
             elementState.value.slice(0, from) +
             insertedText +
             elementState.value.slice(to);
-        const {value, caretIndex} = maskModel;
+        const {value, selection} = maskModel;
 
         if (newPossibleValue !== value) {
             event.preventDefault();
 
             this.updateValue(value);
-            this.updateCaretIndex(caretIndex);
+            this.updateSelectionRange(selection);
         }
     }
 
@@ -133,10 +133,9 @@ export class Maskito {
         }
     }
 
-    // TODO: refactor and replace `updateCaretIndex` with `updateSelectionRange`
-    private updateCaretIndex(newCaretIndex: number): void {
-        if (this.element.selectionStart !== newCaretIndex) {
-            this.element.setSelectionRange(newCaretIndex, newCaretIndex);
+    private updateSelectionRange([from, to]: [from: number, to: number]): void {
+        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
+            this.element.setSelectionRange(from, to);
         }
     }
 }
