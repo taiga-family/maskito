@@ -30,7 +30,9 @@ export function removeFixedMaskCharacters(
     }, '');
 
     if (unmaskedSelection.length < 2) {
-        unmaskedSelection.push(unmaskedValue.length);
+        unmaskedSelection.push(
+            ...Array(2 - unmaskedSelection.length).fill(unmaskedValue.length),
+        );
     }
 
     return {

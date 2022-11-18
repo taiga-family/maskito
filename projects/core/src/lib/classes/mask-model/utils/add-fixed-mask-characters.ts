@@ -16,34 +16,28 @@ export function addFixedMaskCharacters(
     const maskedValue = [
         ...Array.from(initialElementState.value),
         '', // extra iteration to take all tailed fixed characters
-    ].reduce((acc, char, charIndex) => {
-        let formattedFinalString = acc;
+    ].reduce((validatedCharacters, char, charIndex) => {
+        const leadingCharacters = getLeadingFixedCharacters(
+            mask,
+            validatedCharacters,
+            char,
+        );
+        const newValidatedChars = validatedCharacters + leadingCharacters;
+        const charConstraint = mask[newValidatedChars.length];
 
-        for (let i = formattedFinalString.length; i < mask.length; i++) {
-            const charConstraint = mask[i];
-
-            if (!isFixedCharacter(charConstraint) && !char.match(charConstraint)) {
-                return formattedFinalString;
-            }
-
-            if (!isFixedCharacter(charConstraint) || charConstraint === char) {
-                if (charIndex === selectionStart) {
-                    maskedCaretPosition = formattedFinalString.length;
-                }
-
-                formattedFinalString += char;
-
-                return formattedFinalString;
-            }
-
-            formattedFinalString += charConstraint;
+        if (isFixedCharacter(charConstraint)) {
+            return newValidatedChars + charConstraint;
         }
 
-        if (charIndex === selectionStart) {
-            maskedCaretPosition = formattedFinalString.length;
+        if (!char.match(charConstraint)) {
+            return newValidatedChars;
         }
 
-        return formattedFinalString;
+        if (!maskedCaretPosition && charIndex >= selectionStart) {
+            maskedCaretPosition = newValidatedChars.length;
+        }
+
+        return newValidatedChars + char;
     }, '');
 
     maskedCaretPosition = maskedCaretPosition ?? maskedValue.length;
@@ -52,4 +46,28 @@ export function addFixedMaskCharacters(
         value: maskedValue,
         selection: [maskedCaretPosition, maskedCaretPosition],
     };
+}
+
+function getLeadingFixedCharacters(
+    mask: Array<RegExp | string>,
+    formattedValue: string,
+    typedCharacter: string,
+): string {
+    let leadingFixedCharacters = ``;
+
+    for (let i = formattedValue.length; i < mask.length; i++) {
+        const charConstraint = mask[i];
+
+        if (!isFixedCharacter(charConstraint)) {
+            return leadingFixedCharacters;
+        }
+
+        if (charConstraint === typedCharacter) {
+            return leadingFixedCharacters;
+        }
+
+        leadingFixedCharacters += charConstraint;
+    }
+
+    return leadingFixedCharacters;
 }
