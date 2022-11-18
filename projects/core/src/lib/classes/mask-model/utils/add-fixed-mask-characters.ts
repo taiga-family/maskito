@@ -9,9 +9,10 @@ export function addFixedMaskCharacters(
         return initialElementState;
     }
 
-    let maskedCaretPosition: number | null = null;
-    // TODO handle cases when `selectionStart` !== `selectionEnd`
-    const [selectionStart] = initialElementState.selection;
+    let maskedFrom: number | null = null;
+    let maskedTo: number | null = null;
+
+    const [initialFrom, initialTo] = initialElementState.selection;
 
     const maskedValue = [
         ...Array.from(initialElementState.value),
@@ -33,18 +34,20 @@ export function addFixedMaskCharacters(
             return newValidatedChars;
         }
 
-        if (!maskedCaretPosition && charIndex >= selectionStart) {
-            maskedCaretPosition = newValidatedChars.length;
+        if (maskedFrom === null && charIndex >= initialFrom) {
+            maskedFrom = newValidatedChars.length;
+        }
+
+        if (maskedTo === null && charIndex >= initialTo) {
+            maskedTo = newValidatedChars.length;
         }
 
         return newValidatedChars + char;
     }, '');
 
-    maskedCaretPosition = maskedCaretPosition ?? maskedValue.length;
-
     return {
         value: maskedValue,
-        selection: [maskedCaretPosition, maskedCaretPosition],
+        selection: [maskedFrom ?? maskedValue.length, maskedTo ?? maskedValue.length],
     };
 }
 
