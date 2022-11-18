@@ -1,15 +1,15 @@
-import {MaskExpression} from '../../../types';
+import {ElementState, MaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function removeFixedMaskCharacters(
-    value: string,
+    initialElementState: ElementState,
     mask: MaskExpression,
-    selection: [from: number, to: number],
-): {unmaskedValue: string; unmaskedSelection: [from: number, to: number]} {
+): ElementState {
     if (!Array.isArray(mask)) {
-        return {unmaskedValue: value, unmaskedSelection: selection};
+        return initialElementState;
     }
 
+    const {value, selection} = initialElementState;
     const [from, to] = selection;
     const unmaskedSelection: number[] = [];
 
@@ -34,7 +34,7 @@ export function removeFixedMaskCharacters(
     }
 
     return {
-        unmaskedValue,
-        unmaskedSelection: unmaskedSelection as [number, number],
+        value: unmaskedValue,
+        selection: unmaskedSelection as [number, number],
     };
 }

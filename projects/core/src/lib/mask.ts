@@ -1,5 +1,5 @@
 import {EventListener, isEventProducingCharacter} from './utils';
-import {MaskExpression, MaskitoOptions} from './types';
+import {ElementState, MaskitoOptions} from './types';
 import {MaskModel} from './classes';
 
 export class Maskito {
@@ -25,18 +25,13 @@ export class Maskito {
         this.eventListener.destroy();
     }
 
-    private get maskExpression(): MaskExpression {
-        const {mask} = this.options;
+    private get elementState(): ElementState {
+        const {value, selectionStart, selectionEnd} = this.element;
 
-        return typeof mask === 'function' ? mask() : mask;
-    }
-
-    private get selectionStart(): number {
-        return this.element.selectionStart || 0;
-    }
-
-    private get selectionEnd(): number {
-        return this.element.selectionEnd || 0;
+        return {
+            value,
+            selection: [selectionStart || 0, selectionEnd || 0],
+        };
     }
 
     /**
@@ -62,42 +57,41 @@ export class Maskito {
             return;
         }
 
-        const {element, maskExpression, selectionStart, selectionEnd} = this;
-        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
+        const maskModel = new MaskModel(this.elementState, this.options);
 
         try {
-            maskModel.addCharacters([selectionStart, selectionEnd], pressedKey);
+            maskModel.addCharacters(this.elementState.selection, pressedKey);
         } catch {
             event.preventDefault();
         }
     }
 
     private fillWithFixedValues(): void {
-        const {element, maskExpression, selectionStart} = this;
-        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
-        const {value, caretIndex} = maskModel;
+        const maskModel = new MaskModel(this.elementState, this.options);
 
-        this.updateValue(value);
-        this.updateCaretIndex(caretIndex);
+        this.updateValue(maskModel.value);
+        this.updateCaretIndex(maskModel.caretIndex);
     }
 
     private handleBackspace(event: KeyboardEvent): void {
-        const {element, maskExpression, selectionStart, selectionEnd} = this;
+        const {elementState, options} = this;
 
-        if (!Array.isArray(maskExpression)) {
+        if (!Array.isArray(options.mask)) {
             return;
         }
 
-        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
+        const [selectionStart, selectionEnd] = elementState.selection;
         const [from, to]: [number, number] =
             selectionStart === selectionEnd
                 ? [selectionStart - 1, selectionEnd]
                 : [selectionStart, selectionEnd];
+        const maskModel = new MaskModel(elementState, options);
 
         maskModel.removeCharacters([from, to]);
 
         const {value, caretIndex} = maskModel;
-        const newPossibleValue = element.value.slice(0, from) + element.value.slice(to);
+        const newPossibleValue =
+            elementState.value.slice(0, from) + elementState.value.slice(to);
 
         if (newPossibleValue !== value) {
             event.preventDefault();
@@ -108,21 +102,22 @@ export class Maskito {
     }
 
     private handlePaste(event: ClipboardEvent): void {
-        const {element, maskExpression, selectionStart, selectionEnd} = this;
-        const maskModel = new MaskModel(element.value, selectionStart, maskExpression);
+        const {elementState, options} = this;
+        const maskModel = new MaskModel(elementState, options);
         const insertedText = event.clipboardData?.getData('text/plain') ?? '';
 
         try {
-            maskModel.addCharacters([selectionStart, selectionEnd], insertedText);
+            maskModel.addCharacters(elementState.selection, insertedText);
         } catch {
             return event.preventDefault();
         }
 
-        const {value, caretIndex} = maskModel;
+        const [from, to] = elementState.selection;
         const newPossibleValue =
-            element.value.slice(0, selectionStart) +
+            elementState.value.slice(0, from) +
             insertedText +
-            element.value.slice(selectionEnd);
+            elementState.value.slice(to);
+        const {value, caretIndex} = maskModel;
 
         if (newPossibleValue !== value) {
             event.preventDefault();
@@ -133,18 +128,15 @@ export class Maskito {
     }
 
     private updateValue(newValue: string): void {
-        const {element} = this;
-
-        if (element.value !== newValue) {
-            element.value = newValue;
+        if (this.element.value !== newValue) {
+            this.element.value = newValue;
         }
     }
 
+    // TODO: refactor and replace `updateCaretIndex` with `updateSelectionRange`
     private updateCaretIndex(newCaretIndex: number): void {
-        const {element} = this;
-
-        if (element.selectionStart !== newCaretIndex) {
-            element.setSelectionRange(newCaretIndex, newCaretIndex);
+        if (this.element.selectionStart !== newCaretIndex) {
+            this.element.setSelectionRange(newCaretIndex, newCaretIndex);
         }
     }
 }

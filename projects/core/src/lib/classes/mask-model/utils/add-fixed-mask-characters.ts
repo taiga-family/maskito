@@ -1,19 +1,20 @@
-import {MaskExpression} from '../../../types';
+import {ElementState, MaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function addFixedMaskCharacters(
-    value: string,
+    initialElementState: ElementState,
     mask: MaskExpression,
-    caretPositionBefore: number,
-): {maskedValue: string; maskedCaretPosition: number} {
+): ElementState {
     if (!Array.isArray(mask)) {
-        return {maskedValue: value, maskedCaretPosition: caretPositionBefore};
+        return initialElementState;
     }
 
     let maskedCaretPosition: number | null = null;
+    // TODO handle cases when `selectionStart` !== `selectionEnd`
+    const [selectionStart] = initialElementState.selection;
 
     const maskedValue = [
-        ...Array.from(value),
+        ...Array.from(initialElementState.value),
         '', // extra iteration to take all tailed fixed characters
     ].reduce((acc, char, charIndex) => {
         let formattedFinalString = acc;
@@ -26,7 +27,7 @@ export function addFixedMaskCharacters(
             }
 
             if (!isFixedCharacter(charConstraint) || charConstraint === char) {
-                if (charIndex === caretPositionBefore) {
+                if (charIndex === selectionStart) {
                     maskedCaretPosition = formattedFinalString.length;
                 }
 
@@ -38,12 +39,17 @@ export function addFixedMaskCharacters(
             formattedFinalString += charConstraint;
         }
 
-        if (charIndex === caretPositionBefore) {
+        if (charIndex === selectionStart) {
             maskedCaretPosition = formattedFinalString.length;
         }
 
         return formattedFinalString;
     }, '');
 
-    return {maskedValue, maskedCaretPosition: maskedCaretPosition ?? maskedValue.length};
+    maskedCaretPosition = maskedCaretPosition ?? maskedValue.length;
+
+    return {
+        value: maskedValue,
+        selection: [maskedCaretPosition, maskedCaretPosition],
+    };
 }
