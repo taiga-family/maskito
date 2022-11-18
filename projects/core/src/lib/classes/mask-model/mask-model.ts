@@ -1,54 +1,58 @@
-import {MaskExpression} from '../../types';
+import {ElementState, MaskExpression, MaskitoOptions} from '../../types';
 import {validateValueWithMask} from './utils/validate-value-with-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 import {addFixedMaskCharacters} from './utils/add-fixed-mask-characters';
 
 export class MaskModel {
     value = '';
+    // TODO: refactor code and replace `caretIndex: number` with `selection: [from: number, to: number]`
     caretIndex = 0;
 
-    constructor(
-        readonly initialValue: string,
-        readonly initialCaretIndex: number,
-        private readonly mask: MaskExpression,
-    ) {
-        const {maskedValue, maskedCaretPosition} = addFixedMaskCharacters(
-            initialValue,
-            this.mask,
-            initialCaretIndex,
-        );
+    private get maskExpression(): MaskExpression {
+        const {mask} = this.maskOptions;
 
-        this.value = maskedValue;
-        this.caretIndex = maskedCaretPosition;
+        return typeof mask === 'function' ? mask() : mask;
     }
 
-    addCharacters(
-        selectedRange: [from: number, to: number],
-        newCharacters: string,
-    ): void {
-        const {unmaskedValue, unmaskedSelection} = removeFixedMaskCharacters(
-            this.value,
-            this.mask,
-            selectedRange,
+    constructor(
+        readonly initialElementState: ElementState,
+        private readonly maskOptions: MaskitoOptions,
+    ) {
+        const {value, selection} = addFixedMaskCharacters(
+            initialElementState,
+            this.maskExpression,
         );
-        const [unmaskedFrom, unmaskedTo] = unmaskedSelection;
+
+        this.value = value;
+        this.caretIndex = selection[0];
+    }
+
+    addCharacters(selection: [from: number, to: number], newCharacters: string): void {
+        const unmaskedElementState = removeFixedMaskCharacters(
+            {value: this.value, selection},
+            this.maskExpression,
+        );
+        const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
         const newUnmaskedValue =
-            unmaskedValue.slice(0, unmaskedFrom) +
+            unmaskedElementState.value.slice(0, unmaskedFrom) +
             newCharacters +
-            unmaskedValue.slice(unmaskedTo);
+            unmaskedElementState.value.slice(unmaskedTo);
 
-        const {maskedValue, maskedCaretPosition} = addFixedMaskCharacters(
-            newUnmaskedValue,
-            this.mask,
-            unmaskedTo + newCharacters.length,
+        const newCaretIndex = unmaskedTo + newCharacters.length;
+        const maskedElementState = addFixedMaskCharacters(
+            {
+                value: newUnmaskedValue,
+                selection: [newCaretIndex, newCaretIndex],
+            },
+            this.maskExpression,
         );
 
-        if (!validateValueWithMask(maskedValue, this.mask)) {
+        if (!validateValueWithMask(maskedElementState.value, this.maskExpression)) {
             throw new Error('Invalid mask value');
         }
 
-        this.value = maskedValue;
-        this.caretIndex = maskedCaretPosition;
+        this.value = maskedElementState.value;
+        this.caretIndex = maskedElementState.selection[0];
     }
 
     removeCharacters([from, to]: [from: number, to: number]): void {
@@ -60,32 +64,30 @@ export class MaskModel {
             throw new Error('MaskModel.removeCharacters() accepts only not-empty range');
         }
 
-        const {unmaskedValue, unmaskedSelection} = removeFixedMaskCharacters(
-            this.value,
-            this.mask,
-            [from, to],
+        const unmaskedElementState = removeFixedMaskCharacters(
+            {value: this.value, selection: [from, to]},
+            this.maskExpression,
         );
-        const [unmaskedFrom, unmaskedTo] = unmaskedSelection;
-        const isOnlyFixedCharsSelected = unmaskedFrom === unmaskedTo;
-        const isLastChar = unmaskedTo >= unmaskedValue.length;
+        const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
+        const isOnlyFixedChars = unmaskedFrom === unmaskedTo;
+        const isLastChar = unmaskedTo >= unmaskedElementState.value.length;
 
-        if (isOnlyFixedCharsSelected && !isLastChar) {
+        if (isOnlyFixedChars && !isLastChar) {
             this.caretIndex = from;
             return;
         }
 
+        const newFrom = isOnlyFixedChars && isLastChar ? unmaskedFrom - 1 : unmaskedFrom;
         const newUnmaskedValue =
-            unmaskedValue.slice(
-                0,
-                isOnlyFixedCharsSelected && isLastChar ? unmaskedFrom - 1 : unmaskedFrom,
-            ) + unmaskedValue.slice(unmaskedTo);
-        const {maskedValue, maskedCaretPosition} = addFixedMaskCharacters(
-            newUnmaskedValue,
-            this.mask,
-            unmaskedFrom,
+            unmaskedElementState.value.slice(0, newFrom) +
+            unmaskedElementState.value.slice(unmaskedTo);
+
+        const maskedElementState = addFixedMaskCharacters(
+            {value: newUnmaskedValue, selection: [unmaskedFrom, unmaskedFrom]},
+            this.maskExpression,
         );
 
-        this.value = maskedValue;
-        this.caretIndex = maskedCaretPosition;
+        this.value = maskedElementState.value;
+        this.caretIndex = maskedElementState.selection[0];
     }
 }
