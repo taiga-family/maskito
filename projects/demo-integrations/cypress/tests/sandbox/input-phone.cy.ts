@@ -276,8 +276,7 @@ describe('InputPhone', () => {
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-60-'.length);
             });
 
-            // TODO: this test correctly fails, it catches a bug
-            it.skip('+7 (912) 345-|67|-89 => Press 0 => +7 (912) 345-0|8-9', () => {
+            it('+7 (912) 345-|67|-89 => Press 0 => +7 (912) 345-0|8-9', () => {
                 cy.get('@inputPhone').realPress([
                     ...Array('-89'.length).fill('ArrowLeft'),
                     'Shift',
@@ -291,8 +290,7 @@ describe('InputPhone', () => {
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-0'.length);
             });
 
-            // TODO: this test correctly fails, it catches a bug
-            it.skip('+7 (912) |345|-67-89 => Press "0" => +7 (912) 0|67-89-', () => {
+            it('+7 (912) |345|-67-89 => Press "0" => +7 (912) 0|67-89-', () => {
                 cy.get('@inputPhone').realPress([
                     ...Array('-67-89'.length).fill('ArrowLeft'),
                     'Shift',
