@@ -51,7 +51,7 @@ export class MaskModel {
         }
 
         this.value = maskedElementState.value;
-        this.selection = selection;
+        this.selection = maskedElementState.selection;
     }
 
     removeCharacters([from, to]: [from: number, to: number]): void {
