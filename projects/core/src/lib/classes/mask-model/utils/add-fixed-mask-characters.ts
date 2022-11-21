@@ -14,36 +14,36 @@ export function addFixedMaskCharacters(
 
     const [initialFrom, initialTo] = initialElementState.selection;
 
-    const maskedValue = [
-        ...Array.from(initialElementState.value),
-        '', // extra iteration to take all tailed fixed characters
-    ].reduce((validatedCharacters, char, charIndex) => {
-        const leadingCharacters = getLeadingFixedCharacters(
-            mask,
-            validatedCharacters,
-            char,
-        );
-        const newValidatedChars = validatedCharacters + leadingCharacters;
-        const charConstraint = mask[newValidatedChars.length];
+    const maskedValue = Array.from(initialElementState.value).reduce(
+        (validatedCharacters, char, charIndex) => {
+            const leadingCharacters = getLeadingFixedCharacters(
+                mask,
+                validatedCharacters,
+                char,
+            );
+            const newValidatedChars = validatedCharacters + leadingCharacters;
+            const charConstraint = mask[newValidatedChars.length];
 
-        if (isFixedCharacter(charConstraint)) {
-            return newValidatedChars + charConstraint;
-        }
+            if (isFixedCharacter(charConstraint)) {
+                return newValidatedChars + charConstraint;
+            }
 
-        if (!char.match(charConstraint)) {
-            return newValidatedChars;
-        }
+            if (!char.match(charConstraint)) {
+                return newValidatedChars;
+            }
 
-        if (maskedFrom === null && charIndex >= initialFrom) {
-            maskedFrom = newValidatedChars.length;
-        }
+            if (maskedFrom === null && charIndex >= initialFrom) {
+                maskedFrom = newValidatedChars.length;
+            }
 
-        if (maskedTo === null && charIndex >= initialTo) {
-            maskedTo = newValidatedChars.length;
-        }
+            if (maskedTo === null && charIndex >= initialTo) {
+                maskedTo = newValidatedChars.length;
+            }
 
-        return newValidatedChars + char;
-    }, '');
+            return newValidatedChars + char;
+        },
+        '',
+    );
 
     return {
         value: maskedValue,
