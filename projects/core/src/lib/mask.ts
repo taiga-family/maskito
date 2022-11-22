@@ -41,8 +41,11 @@ export class Maskito {
         const pressedKey = event.key;
 
         if (pressedKey === 'Backspace') {
-            // TODO: Windows OS has also wonderful button "Delete" which removes characters to the right of the caret.
-            return this.handleBackspace(event);
+            return this.handleDelete(event, 'backward');
+        }
+
+        if (pressedKey === 'Delete') {
+            return this.handleDelete(event, 'forward');
         }
 
         /**
@@ -73,32 +76,36 @@ export class Maskito {
         this.updateSelectionRange(maskModel.selection);
     }
 
-    private handleBackspace(event: KeyboardEvent): void {
+    private handleDelete(event: KeyboardEvent, direction: 'forward' | 'backward'): void {
         const {elementState, options} = this;
 
         if (!Array.isArray(options.mask)) {
             return;
         }
 
-        const [selectionStart, selectionEnd] = elementState.selection;
-        const [from, to]: [number, number] =
-            selectionStart === selectionEnd
-                ? [selectionStart - 1, selectionEnd]
-                : [selectionStart, selectionEnd];
+        const [from, to] = extendToNotEmptyRange(elementState.selection, direction);
         const maskModel = new MaskModel(elementState, options);
 
-        maskModel.removeCharacters([from, to]);
+        maskModel.deleteCharacters([from, to]);
 
         const {value, selection} = maskModel;
         const newPossibleValue =
             elementState.value.slice(0, from) + elementState.value.slice(to);
 
-        if (newPossibleValue !== value) {
-            event.preventDefault();
-
-            this.updateValue(value);
-            this.updateSelectionRange(selection);
+        if (newPossibleValue === value) {
+            return;
         }
+
+        event.preventDefault();
+
+        if (value === elementState.value) {
+            return this.updateSelectionRange(
+                direction === 'forward' ? [to, to] : [from, from],
+            );
+        }
+
+        this.updateValue(value);
+        this.updateSelectionRange(selection);
     }
 
     private handlePaste(event: ClipboardEvent): void {
@@ -138,4 +145,19 @@ export class Maskito {
             this.element.setSelectionRange(from, to);
         }
     }
+}
+
+function extendToNotEmptyRange(
+    [from, to]: [number, number],
+    extensionDirection: 'forward' | 'backward',
+): [number, number] {
+    if (from !== to) {
+        return [from, to];
+    }
+
+    if (extensionDirection === 'forward') {
+        return [from, to + 1];
+    }
+
+    return [from - 1, to];
 }

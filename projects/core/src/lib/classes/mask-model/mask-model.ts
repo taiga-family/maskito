@@ -54,7 +54,7 @@ export class MaskModel {
         this.selection = maskedElementState.selection;
     }
 
-    removeCharacters([from, to]: [from: number, to: number]): void {
+    deleteCharacters([from, to]: [from: number, to: number]): void {
         if (from === 0 && to === 0) {
             return;
         }
@@ -68,17 +68,8 @@ export class MaskModel {
             this.maskExpression,
         );
         const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
-        const isOnlyFixedChars = unmaskedFrom === unmaskedTo;
-        const isLastChar = unmaskedTo >= unmaskedElementState.value.length;
-
-        if (isOnlyFixedChars && !isLastChar) {
-            this.selection = [from, from];
-            return;
-        }
-
-        const newFrom = isOnlyFixedChars && isLastChar ? unmaskedFrom - 1 : unmaskedFrom;
         const newUnmaskedValue =
-            unmaskedElementState.value.slice(0, newFrom) +
+            unmaskedElementState.value.slice(0, unmaskedFrom) +
             unmaskedElementState.value.slice(unmaskedTo);
 
         const maskedElementState = addFixedMaskCharacters(
