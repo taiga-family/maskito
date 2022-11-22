@@ -1,11 +1,11 @@
-import {ElementState, MaskExpression, MaskitoOptions} from '../../types';
+import {ElementState, MaskExpression, MaskitoOptions, Range} from '../../types';
 import {validateValueWithMask} from './utils/validate-value-with-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 import {addFixedMaskCharacters} from './utils/add-fixed-mask-characters';
 
 export class MaskModel {
     value = '';
-    selection: [from: number, to: number] = [0, 0];
+    selection: Range = [0, 0];
 
     private get maskExpression(): MaskExpression {
         const {mask} = this.maskOptions;
@@ -26,7 +26,7 @@ export class MaskModel {
         this.selection = selection;
     }
 
-    addCharacters(selection: [from: number, to: number], newCharacters: string): void {
+    addCharacters(selection: Range, newCharacters: string): void {
         const unmaskedElementState = removeFixedMaskCharacters(
             {value: this.value, selection},
             this.maskExpression,
@@ -54,7 +54,7 @@ export class MaskModel {
         this.selection = maskedElementState.selection;
     }
 
-    deleteCharacters([from, to]: [from: number, to: number]): void {
+    deleteCharacters([from, to]: Range): void {
         if (from === 0 && to === 0) {
             return;
         }

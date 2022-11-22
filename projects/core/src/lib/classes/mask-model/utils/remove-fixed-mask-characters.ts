@@ -1,4 +1,4 @@
-import {ElementState, MaskExpression} from '../../../types';
+import {ElementState, MaskExpression, Range} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function removeFixedMaskCharacters(
@@ -37,6 +37,6 @@ export function removeFixedMaskCharacters(
 
     return {
         value: unmaskedValue,
-        selection: selection as [number, number],
+        selection: selection as Range,
     };
 }
