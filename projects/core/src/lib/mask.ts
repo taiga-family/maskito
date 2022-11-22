@@ -40,12 +40,8 @@ export class Maskito {
     private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
 
-        if (pressedKey === 'Backspace') {
-            return this.handleDelete(event, 'backward');
-        }
-
-        if (pressedKey === 'Delete') {
-            return this.handleDelete(event, 'forward');
+        if (pressedKey === 'Backspace' || pressedKey === 'Delete') {
+            return this.handleDelete(event, pressedKey === 'Delete');
         }
 
         /**
@@ -76,14 +72,14 @@ export class Maskito {
         this.updateSelectionRange(maskModel.selection);
     }
 
-    private handleDelete(event: KeyboardEvent, direction: 'forward' | 'backward'): void {
+    private handleDelete(event: KeyboardEvent, isForward: boolean): void {
         const {elementState, options} = this;
 
         if (!Array.isArray(options.mask)) {
             return;
         }
 
-        const [from, to] = extendToNotEmptyRange(elementState.selection, direction);
+        const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, options);
 
         maskModel.deleteCharacters([from, to]);
@@ -99,9 +95,7 @@ export class Maskito {
         event.preventDefault();
 
         if (value === elementState.value) {
-            return this.updateSelectionRange(
-                direction === 'forward' ? [to, to] : [from, from],
-            );
+            return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
         }
 
         this.updateValue(value);
@@ -147,15 +141,12 @@ export class Maskito {
     }
 }
 
-function extendToNotEmptyRange(
-    [from, to]: Range,
-    extensionDirection: 'forward' | 'backward',
-): Range {
+function extendToNotEmptyRange([from, to]: Range, isForward: boolean): Range {
     if (from !== to) {
         return [from, to];
     }
 
-    if (extensionDirection === 'forward') {
+    if (isForward) {
         return [from, to + 1];
     }
 
