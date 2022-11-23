@@ -1,4 +1,14 @@
-:host {
+.autofill(@ruleset) {
+    &:autofill {
+        @ruleset();
+    }
+
+    &:-webkit-autofill {
+        @ruleset();
+    }
+}
+
+form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -19,6 +29,10 @@ textarea {
 textarea {
     resize: vertical;
     min-height: 15rem;
+
+    @media screen and (max-width: 47.9625em) {
+        min-height: 10rem;
+    }
 }
 
 .prettify {
@@ -34,4 +48,8 @@ textarea {
     &:focus {
         border: 2px solid #7b439e;
     }
+
+    .autofill({
+        box-shadow: 0 0 0 100rem rgba(218, 179, 249, 0.34) inset !important;
+    });
 }
