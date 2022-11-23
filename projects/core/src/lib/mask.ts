@@ -1,5 +1,5 @@
 import {EventListener, isEventProducingCharacter} from './utils';
-import {ElementState, MaskitoOptions, Range} from './types';
+import {ElementState, MaskitoOptions, SelectionRange} from './types';
 import {MaskModel} from './classes';
 
 export class Maskito {
@@ -134,14 +134,17 @@ export class Maskito {
         }
     }
 
-    private updateSelectionRange([from, to]: Range): void {
+    private updateSelectionRange([from, to]: SelectionRange): void {
         if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
             this.element.setSelectionRange(from, to);
         }
     }
 }
 
-function extendToNotEmptyRange([from, to]: Range, isForward: boolean): Range {
+function extendToNotEmptyRange(
+    [from, to]: SelectionRange,
+    isForward: boolean,
+): SelectionRange {
     if (from !== to) {
         return [from, to];
     }
