@@ -1,19 +1,47 @@
-<input
-    #inputNumber
-    placeholder="InputNumber"
-    class="prettify"
-/>
+<form>
+    <!-- TODO: autocorrection for typing Russian chars into "international passport name"  -->
+    <!--   https://github.com/Tinkoff/maskito/issues/14 -->
+    <input
+        id="name"
+        name="name"
+        placeholder="Full name"
+        autocomplete="name"
+        class="prettify"
+    />
 
-<input
-    #inputPhone
-    id="phone"
-    placeholder="InputPhone"
-    value="+7 (900) 123-45-67"
-    class="prettify"
-/>
+    <input
+        #inputPhone
+        id="phone"
+        name="phone"
+        autocomplete="tel"
+        placeholder="InputPhone"
+        value=""
+        class="prettify"
+    />
 
-<textarea
-    #textAreaRef
-    placeholder="Cyrillic symbols are not allowed"
-    class="prettify"
-></textarea>
+    <input
+        id="email"
+        name="email"
+        autocomplete="email"
+        placeholder="Email"
+        class="prettify"
+    />
+
+    <textarea
+        #textAreaRef
+        name="address"
+        autocomplete="street-address"
+        placeholder="Cyrillic symbols are not allowed"
+        class="prettify"
+    ></textarea>
+
+    <!--  TODO: seamlessly replace decimal point from , to . -->
+    <!--   https://github.com/Tinkoff/maskito/issues/14 -->
+    <input
+        #inputNumber
+        id="number"
+        name="balance"
+        placeholder="Balance"
+        class="prettify"
+    />
+</form>

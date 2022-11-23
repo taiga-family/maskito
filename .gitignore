@@ -45,3 +45,5 @@ Thumbs.db
 
 # cypress
 **/cypress/**/screenshots/**
+
+.ssl
