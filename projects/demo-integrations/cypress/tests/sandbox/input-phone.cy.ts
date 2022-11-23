@@ -32,7 +32,7 @@ describe('InputPhone', () => {
         });
     });
 
-    describe('basic erasing (pressing backspace for the last value)', () => {
+    describe('basic erasing (caret is placed after the last value)', () => {
         beforeEach(() => {
             cy.get('@inputPhone').type('9123456789');
         });
@@ -59,6 +59,14 @@ describe('InputPhone', () => {
                     .should('have.prop', 'selectionStart', maskedValue.length)
                     .should('have.prop', 'selectionEnd', maskedValue.length);
             });
+        });
+
+        it('Delete => no value change && no caret index change', () => {
+            cy.get('@inputPhone')
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-89'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-89'.length);
         });
     });
 
@@ -116,6 +124,54 @@ describe('InputPhone', () => {
                 .should('have.prop', 'selectionStart', '+7 (912) 345-0'.length)
                 .should('have.prop', 'selectionEnd', '+7 (912) 345-0'.length);
         });
+
+        it('+7 (912) 345-67-|89 => Delete + 0 => +7 (912) 345-67-0|9', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat('89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length)
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-67-9')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length)
+                .type('0')
+                .should('have.value', '+7 (912) 345-67-09')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-0'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-0'.length);
+        });
+
+        it('+7 (912) 345-6|7-89 => Delete + 0 => +7 (912) 345-60-|89', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat('7-89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length)
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-68-9')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length)
+                .type('0')
+                .should('have.value', '+7 (912) 345-60-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-60-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-60-'.length);
+        });
+
+        it('+7 (912) 345-|67-89 => Delete + 0 => +7 (912) 345-0|7-89', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat('67-89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length)
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-78-9')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length)
+                .type('0')
+                .should('have.value', '+7 (912) 345-07-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-0'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-0'.length);
+        });
     });
 
     describe('Press Backspace after fixed value => no value change => move caret to the left', () => {
@@ -157,6 +213,48 @@ describe('InputPhone', () => {
                 .should('have.value', '+7 (912) 345-67-89')
                 .should('have.prop', 'selectionStart', '+7 (912'.length)
                 .should('have.prop', 'selectionEnd', '+7 (912'.length);
+        });
+    });
+
+    describe('Press Delete before fixed value => no value change => move caret to the right', () => {
+        beforeEach(() => {
+            cy.get('@inputPhone').type('9123456789');
+        });
+
+        it('+7 (912) 345-67|-89 => Delete => +7 (912) 345-67-|89', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat('-89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length)
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67-'.length);
+        });
+
+        it('+7 (912) 345|-67-89 => Delete => +7 (912) 345-|67-89', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat('-67-89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912) 345'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345'.length)
+                .type('{del}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length);
+        });
+
+        it('+7 (912|) 345-67-89 => Backspace x2 => +7 (912) |345-67-89', () => {
+            cy.get('@inputPhone')
+                .focus()
+                .type('{leftArrow}'.repeat(') 345-67-89'.length))
+                .should('have.prop', 'selectionStart', '+7 (912'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912'.length)
+                .type('{del}{del}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) '.length);
         });
     });
 
@@ -238,6 +336,77 @@ describe('InputPhone', () => {
             });
         });
 
+        describe('Select range and press "Delete"', () => {
+            it('+7 (912) 345-67-|89| => Delete => +7 (912) 345-67|', () => {
+                cy.get('@inputPhone').realPress([
+                    'Shift',
+                    'ArrowLeft',
+                    'ArrowLeft',
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-67')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length);
+            });
+
+            it('+7 (912) 345-6|7-89| => Delete => +7 (912) 345-6|', () => {
+                cy.get('@inputPhone').realPress([
+                    'Shift',
+                    ...Array('7-89'.length).fill('ArrowLeft'),
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-6')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
+            });
+
+            it('+7 (912) 345-6|7-8|9 => Delete => +7 (912) 345-6|9', () => {
+                cy.get('@inputPhone').realPress([
+                    'ArrowLeft',
+                    'Shift',
+                    ...Array('7-8'.length).fill('ArrowLeft'),
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-69')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
+            });
+
+            it('+7 (912) 345-|67|-89 => Delete => +7 (912) 345-|89', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('67'.length).fill('ArrowLeft'),
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-89')
+                    .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length);
+            });
+
+            it('+7 (912) |345|-67-89 => Delete => +7 (912) |678-9', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('-67-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('345'.length).fill('ArrowLeft'),
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 678-9')
+                    .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) '.length);
+            });
+        });
+
         describe('Select range and press new digit', () => {
             it('+7 (912) 345-67-|89| => Press 0 => +7 (912) 345-67-0|', () => {
                 cy.get('@inputPhone').realPress(['Shift', 'ArrowLeft', 'ArrowLeft']);
@@ -302,6 +471,36 @@ describe('InputPhone', () => {
                     .should('have.value', '+7 (912) 067-89')
                     .should('have.prop', 'selectionStart', '+7 (912) 0'.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) 0'.length);
+            });
+        });
+
+        describe('Select fixed characters only', () => {
+            it('and press Backspace => no changes => move caret to the left side', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('345-67-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array(') '.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-67-89')
+                    .should('have.prop', 'selectionStart', '+7 (912'.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912'.length);
+            });
+
+            it('and press Delete => no changes => move caret to the right side', () => {
+                cy.get('@inputPhone').realPress([
+                    ...Array('345-67-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array(') '.length).fill('ArrowLeft'),
+                    'Delete',
+                ]);
+
+                cy.get('@inputPhone')
+                    .should('have.value', '+7 (912) 345-67-89')
+                    .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                    .should('have.prop', 'selectionEnd', '+7 (912) '.length);
             });
         });
     });

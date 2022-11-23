@@ -1,5 +1,5 @@
 import {EventListener, isEventProducingCharacter} from './utils';
-import {ElementState, MaskitoOptions} from './types';
+import {ElementState, MaskitoOptions, SelectionRange} from './types';
 import {MaskModel} from './classes';
 
 export class Maskito {
@@ -40,9 +40,8 @@ export class Maskito {
     private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
 
-        if (pressedKey === 'Backspace') {
-            // TODO: Windows OS has also wonderful button "Delete" which removes characters to the right of the caret.
-            return this.handleBackspace(event);
+        if (pressedKey === 'Backspace' || pressedKey === 'Delete') {
+            return this.handleDelete(event, pressedKey === 'Delete');
         }
 
         /**
@@ -73,32 +72,34 @@ export class Maskito {
         this.updateSelectionRange(maskModel.selection);
     }
 
-    private handleBackspace(event: KeyboardEvent): void {
+    private handleDelete(event: KeyboardEvent, isForward: boolean): void {
         const {elementState, options} = this;
 
         if (!Array.isArray(options.mask)) {
             return;
         }
 
-        const [selectionStart, selectionEnd] = elementState.selection;
-        const [from, to]: [number, number] =
-            selectionStart === selectionEnd
-                ? [selectionStart - 1, selectionEnd]
-                : [selectionStart, selectionEnd];
+        const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, options);
 
-        maskModel.removeCharacters([from, to]);
+        maskModel.deleteCharacters([from, to]);
 
         const {value, selection} = maskModel;
         const newPossibleValue =
             elementState.value.slice(0, from) + elementState.value.slice(to);
 
-        if (newPossibleValue !== value) {
-            event.preventDefault();
-
-            this.updateValue(value);
-            this.updateSelectionRange(selection);
+        if (newPossibleValue === value) {
+            return;
         }
+
+        event.preventDefault();
+
+        if (value === elementState.value) {
+            return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
+        }
+
+        this.updateValue(value);
+        this.updateSelectionRange(selection);
     }
 
     private handlePaste(event: ClipboardEvent): void {
@@ -133,9 +134,24 @@ export class Maskito {
         }
     }
 
-    private updateSelectionRange([from, to]: [from: number, to: number]): void {
+    private updateSelectionRange([from, to]: SelectionRange): void {
         if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
             this.element.setSelectionRange(from, to);
         }
     }
+}
+
+function extendToNotEmptyRange(
+    [from, to]: SelectionRange,
+    isForward: boolean,
+): SelectionRange {
+    if (from !== to) {
+        return [from, to];
+    }
+
+    if (isForward) {
+        return [from, to + 1];
+    }
+
+    return [from - 1, to];
 }
