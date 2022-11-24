@@ -15,8 +15,35 @@ export class Maskito {
     ) {
         this.conformValueToMask();
 
-        if (!isBeforeInputEventSupported(element)) {
-            // as an alternative to `beforeinput`-event for legacy browsers
+        if (isBeforeInputEventSupported(element)) {
+            this.eventListener.listen('beforeinput', event => {
+                switch (event.inputType) {
+                    case 'deleteContentBackward':
+                    case 'deleteWordBackward': // TODO
+                    case 'deleteByCut':
+                        return this.handleDelete(event, false);
+                    case 'deleteContentForward':
+                    case 'deleteWordForward': // TODO
+                        return this.handleDelete(event, true);
+                    case 'insertFromDrop':
+                        // We don't know caret position at this moment
+                        // (inserted content will be handled later in "input"-event)
+                        return;
+                    case 'insertFromPaste':
+                        return this.handlePaste(event, event.data || '');
+                    case 'insertText':
+                    default:
+                        try {
+                            new MaskModel(this.elementState, this.options).addCharacters(
+                                this.elementState.selection,
+                                event.data || '',
+                            );
+                        } catch {
+                            event.preventDefault();
+                        }
+                }
+            });
+        } else {
             // TODO: drop it after browser support bump
             this.eventListener.listen('keydown', event => this.handleKeydown(event));
             this.eventListener.listen('paste', event =>
@@ -24,37 +51,6 @@ export class Maskito {
             );
         }
 
-        /**
-         * `beforeinput`-event is useful for validation (input is not changed yet, so you can easily prevent any changes).
-         * `input`-event is useful for postprocessing (input was already changed, and you can add some fixed value).
-         */
-        this.eventListener.listen('beforeinput', event => {
-            switch (event.inputType) {
-                case 'deleteContentBackward':
-                case 'deleteWordBackward': // TODO
-                case 'deleteByCut':
-                    return this.handleDelete(event, false);
-                case 'deleteContentForward':
-                case 'deleteWordForward': // TODO
-                    return this.handleDelete(event, true);
-                case 'insertFromDrop':
-                    // We don't know caret position at this moment
-                    // (inserted content will be handled later in "input"-event)
-                    return;
-                case 'insertFromPaste':
-                    return this.handlePaste(event, event.data || '');
-                case 'insertText':
-                default:
-                    try {
-                        new MaskModel(this.elementState, this.options).addCharacters(
-                            this.elementState.selection,
-                            event.data || '',
-                        );
-                    } catch {
-                        event.preventDefault();
-                    }
-            }
-        });
         this.eventListener.listen('input', () => this.conformValueToMask());
     }
 
