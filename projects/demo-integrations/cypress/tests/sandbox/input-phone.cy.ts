@@ -338,14 +338,10 @@ describe('InputPhone', () => {
 
         describe('Select range and press "Delete"', () => {
             it('+7 (912) 345-67-|89| => Delete => +7 (912) 345-67|', () => {
-                cy.get('@inputPhone').realPress([
-                    'Shift',
-                    'ArrowLeft',
-                    'ArrowLeft',
-                    'Delete',
-                ]);
+                cy.get('@inputPhone').realPress(['Shift', 'ArrowLeft', 'ArrowLeft']);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 345-67')
                     .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length);
@@ -355,10 +351,10 @@ describe('InputPhone', () => {
                 cy.get('@inputPhone').realPress([
                     'Shift',
                     ...Array('7-89'.length).fill('ArrowLeft'),
-                    'Delete',
                 ]);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 345-6')
                     .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
@@ -369,10 +365,10 @@ describe('InputPhone', () => {
                     'ArrowLeft',
                     'Shift',
                     ...Array('7-8'.length).fill('ArrowLeft'),
-                    'Delete',
                 ]);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 345-69')
                     .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length);
@@ -383,10 +379,10 @@ describe('InputPhone', () => {
                     ...Array('-89'.length).fill('ArrowLeft'),
                     'Shift',
                     ...Array('67'.length).fill('ArrowLeft'),
-                    'Delete',
                 ]);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 345-89')
                     .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length);
@@ -397,10 +393,10 @@ describe('InputPhone', () => {
                     ...Array('-67-89'.length).fill('ArrowLeft'),
                     'Shift',
                     ...Array('345'.length).fill('ArrowLeft'),
-                    'Delete',
                 ]);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 678-9')
                     .should('have.prop', 'selectionStart', '+7 (912) '.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) '.length);
@@ -494,10 +490,10 @@ describe('InputPhone', () => {
                     ...Array('345-67-89'.length).fill('ArrowLeft'),
                     'Shift',
                     ...Array(') '.length).fill('ArrowLeft'),
-                    'Delete',
                 ]);
 
                 cy.get('@inputPhone')
+                    .type('{del}')
                     .should('have.value', '+7 (912) 345-67-89')
                     .should('have.prop', 'selectionStart', '+7 (912) '.length)
                     .should('have.prop', 'selectionEnd', '+7 (912) '.length);
