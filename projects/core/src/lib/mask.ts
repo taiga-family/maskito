@@ -1,5 +1,6 @@
 import {
     EventListener,
+    extendToNotEmptyRange,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
 } from './utils';
@@ -160,19 +161,4 @@ export class Maskito {
             this.element.setSelectionRange(from, to);
         }
     }
-}
-
-function extendToNotEmptyRange(
-    [from, to]: SelectionRange,
-    isForward: boolean,
-): SelectionRange {
-    if (from !== to) {
-        return [from, to];
-    }
-
-    if (isForward) {
-        return [from, to + 1];
-    }
-
-    return [from - 1, to];
 }

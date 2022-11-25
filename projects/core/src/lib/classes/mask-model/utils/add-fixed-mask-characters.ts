@@ -1,5 +1,6 @@
 import {ElementState, MaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
+import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
 
 export function addFixedMaskCharacters(
     initialElementState: ElementState,
@@ -49,28 +50,4 @@ export function addFixedMaskCharacters(
         value: maskedValue,
         selection: [maskedFrom ?? maskedValue.length, maskedTo ?? maskedValue.length],
     };
-}
-
-function getLeadingFixedCharacters(
-    mask: Array<RegExp | string>,
-    formattedValue: string,
-    typedCharacter: string,
-): string {
-    let leadingFixedCharacters = ``;
-
-    for (let i = formattedValue.length; i < mask.length; i++) {
-        const charConstraint = mask[i];
-
-        if (!isFixedCharacter(charConstraint)) {
-            return leadingFixedCharacters;
-        }
-
-        if (charConstraint === typedCharacter) {
-            return leadingFixedCharacters;
-        }
-
-        leadingFixedCharacters += charConstraint;
-    }
-
-    return leadingFixedCharacters;
 }
