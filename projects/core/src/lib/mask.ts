@@ -1,4 +1,8 @@
-import {EventListener, isEventProducingCharacter} from './utils';
+import {
+    EventListener,
+    isBeforeInputEventSupported,
+    isEventProducingCharacter,
+} from './utils';
 import {ElementState, MaskitoOptions, SelectionRange} from './types';
 import {MaskModel} from './classes';
 
@@ -9,16 +13,45 @@ export class Maskito {
         private readonly element: HTMLInputElement | HTMLTextAreaElement,
         private readonly options: MaskitoOptions,
     ) {
-        this.fillWithFixedValues();
+        this.conformValueToMask();
 
-        /**
-         * After user press any button, events always happen in the same order as they are listed here.
-         * `Keydown`-event is useful for validation (input is not changed yet, so you can easily prevent any changes).
-         * `Input`-event is useful for postprocessing (input was already changed, and you can add some fixed value).
-         */
-        this.eventListener.listen('keydown', event => this.handleKeydown(event));
-        this.eventListener.listen('paste', event => this.handlePaste(event));
-        this.eventListener.listen('input', () => this.fillWithFixedValues());
+        if (isBeforeInputEventSupported(element)) {
+            this.eventListener.listen('beforeinput', event => {
+                switch (event.inputType) {
+                    case 'deleteContentBackward':
+                    case 'deleteWordBackward': // TODO
+                    case 'deleteByCut':
+                        return this.handleDelete(event, false);
+                    case 'deleteContentForward':
+                    case 'deleteWordForward': // TODO
+                        return this.handleDelete(event, true);
+                    case 'insertFromDrop':
+                        // We don't know caret position at this moment
+                        // (inserted content will be handled later in "input"-event)
+                        return;
+                    case 'insertFromPaste':
+                        return this.handlePaste(event, event.data || '');
+                    case 'insertText':
+                    default:
+                        try {
+                            new MaskModel(this.elementState, this.options).addCharacters(
+                                this.elementState.selection,
+                                event.data || '',
+                            );
+                        } catch {
+                            event.preventDefault();
+                        }
+                }
+            });
+        } else {
+            // TODO: drop it after browser support bump
+            this.eventListener.listen('keydown', event => this.handleKeydown(event));
+            this.eventListener.listen('paste', event =>
+                this.handlePaste(event, event.clipboardData?.getData('text/plain') || ''),
+            );
+        }
+
+        this.eventListener.listen('input', () => this.conformValueToMask());
     }
 
     destroy(): void {
@@ -34,9 +67,6 @@ export class Maskito {
         };
     }
 
-    /**
-     * TODO Predictive text from native mobile keyboards don't trigger keydown event!
-     */
     private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
 
@@ -44,14 +74,6 @@ export class Maskito {
             return this.handleDelete(event, pressedKey === 'Delete');
         }
 
-        /**
-         * "beforeinput" is more appropriate event for preprocessing of the input masking.
-         * But it is not supported by Chrome 49+ (only from 60+) and by Firefox 52+ (only from 87+).
-         * TODO: refactor with using "beforeinput" after browser support bump
-         *
-         * @see https://caniuse.com/?search=beforeinput
-         * @see https://taiga-ui.dev/browser-support
-         */
         if (!isEventProducingCharacter(event)) {
             return;
         }
@@ -65,14 +87,14 @@ export class Maskito {
         }
     }
 
-    private fillWithFixedValues(): void {
+    private conformValueToMask(): void {
         const maskModel = new MaskModel(this.elementState, this.options);
 
         this.updateValue(maskModel.value);
         this.updateSelectionRange(maskModel.selection);
     }
 
-    private handleDelete(event: KeyboardEvent, isForward: boolean): void {
+    private handleDelete(event: Event, isForward: boolean): void {
         const {elementState, options} = this;
 
         if (!Array.isArray(options.mask)) {
@@ -102,10 +124,9 @@ export class Maskito {
         this.updateSelectionRange(selection);
     }
 
-    private handlePaste(event: ClipboardEvent): void {
+    private handlePaste(event: Event, insertedText: string): void {
         const {elementState, options} = this;
         const maskModel = new MaskModel(elementState, options);
-        const insertedText = event.clipboardData?.getData('text/plain') ?? '';
 
         try {
             maskModel.addCharacters(elementState.selection, insertedText);

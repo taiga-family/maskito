@@ -1,3 +1,5 @@
+import {TypedInputEvent} from '../../types';
+
 export class EventListener {
     private readonly listeners: Array<() => void> = [];
 
@@ -5,12 +7,15 @@ export class EventListener {
 
     listen<E extends keyof HTMLElementEventMap>(
         eventType: E,
-        fn: (event: HTMLElementEventMap[E]) => unknown,
+        fn: (
+            event: E extends 'beforeinput' ? TypedInputEvent : HTMLElementEventMap[E],
+        ) => unknown,
         options?: AddEventListenerOptions,
     ): void {
-        this.element.addEventListener<E>(eventType, fn, options);
+        const untypedFn = fn as (event: HTMLElementEventMap[E]) => unknown;
 
-        this.listeners.push(() => this.element.removeEventListener(eventType, fn));
+        this.element.addEventListener<E>(eventType, untypedFn, options);
+        this.listeners.push(() => this.element.removeEventListener(eventType, untypedFn));
     }
 
     destroy(): void {

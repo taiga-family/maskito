@@ -27,9 +27,10 @@ export class MaskModel {
     }
 
     addCharacters(selection: SelectionRange, newCharacters: string): void {
+        const {maskExpression, value} = this;
         const unmaskedElementState = removeFixedMaskCharacters(
-            {value: this.value, selection},
-            this.maskExpression,
+            {value, selection},
+            maskExpression,
         );
         const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
         const newUnmaskedValue =
@@ -43,10 +44,10 @@ export class MaskModel {
                 value: newUnmaskedValue,
                 selection: [newCaretIndex, newCaretIndex],
             },
-            this.maskExpression,
+            maskExpression,
         );
 
-        if (!validateValueWithMask(maskedElementState.value, this.maskExpression)) {
+        if (!validateValueWithMask(maskedElementState.value, maskExpression)) {
             throw new Error('Invalid mask value');
         }
 
@@ -63,9 +64,10 @@ export class MaskModel {
             throw new Error('MaskModel.removeCharacters() accepts only not-empty range');
         }
 
+        const {maskExpression, value} = this;
         const unmaskedElementState = removeFixedMaskCharacters(
-            {value: this.value, selection: [from, to]},
-            this.maskExpression,
+            {value, selection: [from, to]},
+            maskExpression,
         );
         const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
         const newUnmaskedValue =
@@ -74,7 +76,7 @@ export class MaskModel {
 
         const maskedElementState = addFixedMaskCharacters(
             {value: newUnmaskedValue, selection: [unmaskedFrom, unmaskedFrom]},
-            this.maskExpression,
+            maskExpression,
         );
 
         this.value = maskedElementState.value;
