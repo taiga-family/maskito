@@ -1,5 +1,3 @@
-const {readdirSync, statSync} = require('fs');
-
 module.exports = {
     extends: ['@commitlint/config-conventional'],
     rules: {

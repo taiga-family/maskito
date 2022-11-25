@@ -1,15 +1,11 @@
-import {ElementState, MaskExpression} from '../../../types';
+import {ElementState} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
 
-export function addFixedMaskCharacters(
+export function guessValidValueByPattern(
     initialElementState: ElementState,
-    mask: MaskExpression,
+    mask: Array<RegExp | string>,
 ): ElementState {
-    if (!Array.isArray(mask)) {
-        return initialElementState;
-    }
-
     let maskedFrom: number | null = null;
     let maskedTo: number | null = null;
 

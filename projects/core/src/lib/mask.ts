@@ -31,24 +31,19 @@ export class Maskito {
                         // (inserted content will be handled later in "input"-event)
                         return;
                     case 'insertFromPaste':
-                        return this.handlePaste(event, event.data || '');
                     case 'insertText':
                     default:
-                        try {
-                            new MaskModel(this.elementState, this.options).addCharacters(
-                                this.elementState.selection,
-                                event.data || '',
-                            );
-                        } catch {
-                            event.preventDefault();
-                        }
+                        return this.handleInsert(event, event.data || '');
                 }
             });
         } else {
             // TODO: drop it after browser support bump
             this.eventListener.listen('keydown', event => this.handleKeydown(event));
             this.eventListener.listen('paste', event =>
-                this.handlePaste(event, event.clipboardData?.getData('text/plain') || ''),
+                this.handleInsert(
+                    event,
+                    event.clipboardData?.getData('text/plain') || '',
+                ),
             );
         }
 
@@ -79,13 +74,7 @@ export class Maskito {
             return;
         }
 
-        const maskModel = new MaskModel(this.elementState, this.options);
-
-        try {
-            maskModel.addCharacters(this.elementState.selection, pressedKey);
-        } catch {
-            event.preventDefault();
-        }
+        return this.handleInsert(event, pressedKey);
     }
 
     private conformValueToMask(): void {
@@ -97,10 +86,6 @@ export class Maskito {
 
     private handleDelete(event: Event, isForward: boolean): void {
         const {elementState, options} = this;
-
-        if (!Array.isArray(options.mask)) {
-            return;
-        }
 
         const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, options);
@@ -125,7 +110,7 @@ export class Maskito {
         this.updateSelectionRange(selection);
     }
 
-    private handlePaste(event: Event, insertedText: string): void {
+    private handleInsert(event: Event, insertedText: string): void {
         const {elementState, options} = this;
         const maskModel = new MaskModel(elementState, options);
 

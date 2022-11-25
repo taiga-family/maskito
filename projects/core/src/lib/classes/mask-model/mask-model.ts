@@ -1,7 +1,6 @@
 import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../../types';
-import {validateValueWithMask} from './utils/validate-value-with-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
-import {addFixedMaskCharacters} from './utils/add-fixed-mask-characters';
+import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 
 export class MaskModel {
     value = '';
@@ -17,7 +16,7 @@ export class MaskModel {
         readonly initialElementState: ElementState,
         private readonly maskOptions: MaskitoOptions,
     ) {
-        const {value, selection} = addFixedMaskCharacters(
+        const {value, selection} = calibrateValueByMask(
             initialElementState,
             this.maskExpression,
         );
@@ -38,8 +37,8 @@ export class MaskModel {
             newCharacters +
             unmaskedElementState.value.slice(unmaskedTo);
 
-        const newCaretIndex = unmaskedTo + newCharacters.length;
-        const maskedElementState = addFixedMaskCharacters(
+        const newCaretIndex = unmaskedFrom + newCharacters.length;
+        const maskedElementState = calibrateValueByMask(
             {
                 value: newUnmaskedValue,
                 selection: [newCaretIndex, newCaretIndex],
@@ -47,7 +46,8 @@ export class MaskModel {
             maskExpression,
         );
 
-        if (!validateValueWithMask(maskedElementState.value, maskExpression)) {
+        if (maskedElementState.value === value) {
+            // If typing new characters does not change value
             throw new Error('Invalid mask value');
         }
 
@@ -74,7 +74,7 @@ export class MaskModel {
             unmaskedElementState.value.slice(0, unmaskedFrom) +
             unmaskedElementState.value.slice(unmaskedTo);
 
-        const maskedElementState = addFixedMaskCharacters(
+        const maskedElementState = calibrateValueByMask(
             {value: newUnmaskedValue, selection: [unmaskedFrom, unmaskedFrom]},
             maskExpression,
         );
