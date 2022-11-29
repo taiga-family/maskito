@@ -5,20 +5,45 @@ import {
     isEventProducingCharacter,
 } from './utils';
 import {ElementState, MaskitoOptions, SelectionRange} from './types';
-import {MaskModel} from './classes';
+import {MaskHistory, MaskModel} from './classes';
 
-export class Maskito {
+export class Maskito extends MaskHistory {
     private readonly eventListener = new EventListener(this.element);
 
     constructor(
         private readonly element: HTMLInputElement | HTMLTextAreaElement,
         private readonly options: MaskitoOptions,
     ) {
+        super();
         this.conformValueToMask();
+        this.updateHistory(this.elementState);
+
+        this.eventListener.listen('keydown', event => {
+            const {ctrlKey, key, metaKey, shiftKey} = event;
+
+            if ((metaKey && shiftKey && key === 'z') || (ctrlKey && key === 'y')) {
+                event.preventDefault();
+                return this.redo();
+            }
+
+            if ((ctrlKey || metaKey) && key === 'z') {
+                event.preventDefault();
+                return this.undo();
+            }
+        });
 
         if (isBeforeInputEventSupported(element)) {
             this.eventListener.listen('beforeinput', event => {
+                this.updateHistory(this.elementState);
+
                 switch (event.inputType) {
+                    // historyUndo/historyRedo will not be triggered if value was modified programmatically
+                    case 'historyUndo':
+                        event.preventDefault();
+                        return this.undo();
+                    case 'historyRedo':
+                        event.preventDefault();
+                        return this.redo();
                     case 'deleteContentBackward':
                     case 'deleteWordBackward': // TODO
                     case 'deleteByCut':
@@ -47,7 +72,10 @@ export class Maskito {
             );
         }
 
-        this.eventListener.listen('input', () => this.conformValueToMask());
+        this.eventListener.listen('input', () => {
+            this.conformValueToMask();
+            this.updateHistory(this.elementState);
+        });
     }
 
     destroy(): void {
@@ -108,6 +136,7 @@ export class Maskito {
 
         this.updateValue(value);
         this.updateSelectionRange(selection);
+        this.updateHistory({value, selection});
     }
 
     private handleInsert(event: Event, insertedText: string): void {
@@ -132,16 +161,17 @@ export class Maskito {
 
             this.updateValue(value);
             this.updateSelectionRange(selection);
+            this.updateHistory({value, selection});
         }
     }
 
-    private updateValue(newValue: string): void {
+    protected updateValue(newValue: string): void {
         if (this.element.value !== newValue) {
             this.element.value = newValue;
         }
     }
 
-    private updateSelectionRange([from, to]: SelectionRange): void {
+    protected updateSelectionRange([from, to]: SelectionRange): void {
         if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
             this.element.setSelectionRange(from, to);
         }

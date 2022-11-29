@@ -500,4 +500,96 @@ describe('InputPhone', () => {
             });
         });
     });
+
+    describe('Undo', () => {
+        it('Select all + Delete => Ctrl + Z', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .type('{selectall}{del}')
+                .should('have.value', '')
+                .type('{ctrl+z}')
+                .should('have.value', '+7 (912) 345-67-89');
+        });
+
+        it('+7 (912) 345-67|-89 => Backspace (x2) => Ctrl + Z (x2)', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .type('{leftArrow}'.repeat('-89'.length))
+                .type('{backspace}{backspace}')
+                .should('have.value', '+7 (912) 345-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length)
+                .type('{ctrl+z}')
+                .should('have.value', '+7 (912) 345-68-9')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-6'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-6'.length)
+                .type('{ctrl+z}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-67'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length);
+        });
+
+        it('+7 (912) |345-67|-89 => Delete => Cmd + Z', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .realPress([
+                    ...Array('-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('345-67'.length).fill('ArrowLeft'),
+                ]);
+
+            cy.get('@inputPhone')
+                .type('{del}')
+                .should('have.value', '+7 (912) 89')
+                .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) '.length)
+                .type('{cmd+z}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-67'.length);
+        });
+    });
+
+    describe('Redo', () => {
+        it('Select all + Delete => Cmd + Z => Cmd + Shift + Z', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .type('{selectall}{del}')
+                .should('have.value', '')
+                .type('{cmd+z}')
+                .should('have.value', '+7 (912) 345-67-89')
+                .type('{cmd+shift+z}')
+                .should('have.value', '');
+        });
+
+        it('+7 (912) 345-67|-89 => Backspace (x2) => Ctrl + Z (x2) => Ctrl + Y (x2)', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .type('{leftArrow}'.repeat('-89'.length))
+                .type('{backspace}{backspace}')
+                .type('{ctrl+z}{ctrl+z}')
+                .type('{ctrl+y}{ctrl+y}')
+                .should('have.value', '+7 (912) 345-89')
+                .should('have.prop', 'selectionStart', '+7 (912) 345-'.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) 345-'.length);
+        });
+
+        it('+7 (912) |345-67|-89 => Delete => Cmd + Z => Cmd + Shift + Z', () => {
+            cy.get('@inputPhone')
+                .type('9123456789')
+                .realPress([
+                    ...Array('-89'.length).fill('ArrowLeft'),
+                    'Shift',
+                    ...Array('345-67'.length).fill('ArrowLeft'),
+                ]);
+
+            cy.get('@inputPhone')
+                .type('{del}')
+                .type('{cmd+z}')
+                .type('{cmd+shift+z}')
+                .should('have.value', '+7 (912) 89')
+                .should('have.prop', 'selectionStart', '+7 (912) '.length)
+                .should('have.prop', 'selectionEnd', '+7 (912) '.length);
+        });
+    });
 });
