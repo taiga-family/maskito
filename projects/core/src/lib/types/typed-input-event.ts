@@ -3,6 +3,7 @@ export interface TypedInputEvent extends InputEvent {
         | 'insertText'
         | 'insertReplacementText'
         | 'insertCompositionText'
+        | 'insertLineBreak'
         | 'deleteContentBackward' // Backspace
         | 'deleteContentForward' // Delete (Fn + Backspace)
         | 'deleteWordBackward' // Alt (Option) + Backspace

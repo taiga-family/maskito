@@ -19,4 +19,4 @@ export const INPUT_PHONE_MASK = [
     /\d/,
     /\d/,
 ];
-export const NO_CYRILLIC_MASK = /^[^а-я]+$/i;
+export const NO_CYRILLIC_MASK = /^[^а-яё]+$/i;
