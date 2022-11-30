@@ -56,7 +56,7 @@ export class Maskito extends MaskHistory {
                         // (inserted content will be handled later in "input"-event)
                         return;
                     case 'insertLineBreak':
-                        return this.isTextArea && this.handleInsert(event, '\n');
+                        return this.handleEnter(event);
                     case 'insertFromPaste':
                     case 'insertText':
                     default:
@@ -97,7 +97,7 @@ export class Maskito extends MaskHistory {
         return this.element.nodeName === 'TEXTAREA';
     }
 
-    private handleKeydown(event: KeyboardEvent): unknown {
+    private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
 
         switch (pressedKey) {
@@ -105,7 +105,7 @@ export class Maskito extends MaskHistory {
             case 'Delete':
                 return this.handleDelete(event, pressedKey === 'Delete');
             case 'Enter':
-                return this.isTextArea && this.handleInsert(event, '\n');
+                return this.handleEnter(event);
         }
 
         if (!isEventProducingCharacter(event)) {
@@ -173,6 +173,14 @@ export class Maskito extends MaskHistory {
             this.updateSelectionRange(selection);
             this.updateHistory({value, selection});
         }
+    }
+
+    private handleEnter(event: Event): void {
+        if (!this.isTextArea) {
+            return;
+        }
+
+        return this.handleInsert(event, '\n');
     }
 
     protected updateValue(newValue: string): void {
