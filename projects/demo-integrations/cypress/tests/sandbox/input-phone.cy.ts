@@ -48,7 +48,7 @@ describe('InputPhone', () => {
             [7, '+7 (912'],
             [8, '+7 (91'],
             [9, '+7 (9'],
-            [10, ''],
+            [10, '+7 '],
         ] as const;
 
         tests.forEach(([n, maskedValue]) => {
@@ -506,7 +506,7 @@ describe('InputPhone', () => {
             cy.get('@inputPhone')
                 .type('9123456789')
                 .type('{selectall}{del}')
-                .should('have.value', '')
+                .should('have.value', '+7 ')
                 .type('{ctrl+z}')
                 .should('have.value', '+7 (912) 345-67-89');
         });
@@ -555,11 +555,11 @@ describe('InputPhone', () => {
             cy.get('@inputPhone')
                 .type('9123456789')
                 .type('{selectall}{del}')
-                .should('have.value', '')
+                .should('have.value', '+7 ')
                 .type('{cmd+z}')
                 .should('have.value', '+7 (912) 345-67-89')
                 .type('{cmd+shift+z}')
-                .should('have.value', '');
+                .should('have.value', '+7 ');
         });
 
         it('+7 (912) 345-67|-89 => Backspace (x2) => Ctrl + Z (x2) => Ctrl + Y (x2)', () => {
@@ -590,6 +590,45 @@ describe('InputPhone', () => {
                 .should('have.value', '+7 (912) 89')
                 .should('have.prop', 'selectionStart', '+7 (912) '.length)
                 .should('have.prop', 'selectionEnd', '+7 (912) '.length);
+        });
+    });
+
+    describe('Non-removable country prefix', () => {
+        beforeEach(() => {
+            cy.get('@inputPhone').type('9123456789');
+        });
+
+        it('cannot be removed via selectAll + Backspace', () => {
+            cy.get('@inputPhone')
+                .type('{selectall}{backspace}')
+                .should('have.value', '+7 ')
+                .should('have.prop', 'selectionStart', '+7 '.length)
+                .should('have.prop', 'selectionEnd', '+7 '.length);
+        });
+
+        it('cannot be removed via selectAll + Delete', () => {
+            cy.get('@inputPhone')
+                .type('{selectall}{del}')
+                .should('have.value', '+7 ')
+                .should('have.prop', 'selectionStart', '+7 '.length)
+                .should('have.prop', 'selectionEnd', '+7 '.length);
+        });
+
+        it('cannot be removed via Backspace', () => {
+            cy.get('@inputPhone')
+                .type('{backspace}'.repeat('+7 (912) 345-89'.length))
+                .should('have.value', '+7 ')
+                .should('have.prop', 'selectionStart', '+7 '.length)
+                .should('have.prop', 'selectionEnd', '+7 '.length);
+        });
+
+        it('cannot be removed via Delete', () => {
+            cy.get('@inputPhone')
+                .type('{moveToStart}')
+                .type('{del}'.repeat('+7 (912) 345-89'.length))
+                .should('have.value', '+7 ')
+                .should('have.prop', 'selectionStart', '+7 '.length)
+                .should('have.prop', 'selectionEnd', '+7 '.length);
         });
     });
 });

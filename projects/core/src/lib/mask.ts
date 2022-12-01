@@ -1,14 +1,26 @@
 import {
+    areElementValuesEqual,
     EventListener,
     extendToNotEmptyRange,
+    identity,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
 } from './utils';
-import {ElementState, MaskitoOptions, SelectionRange} from './types';
+import {
+    ElementState,
+    MaskitoOptions,
+    MaskPostprocessor,
+    MaskPreprocessor,
+    SelectionRange,
+} from './types';
 import {MaskHistory, MaskModel} from './classes';
 
 export class Maskito extends MaskHistory {
     private readonly eventListener = new EventListener(this.element);
+    private readonly preprocessor: MaskPreprocessor =
+        this.options.preprocessor || identity;
+    private readonly postprocessor: MaskPostprocessor =
+        this.options.postprocessor || identity;
 
     constructor(
         private readonly element: HTMLInputElement | HTMLTextAreaElement,
@@ -116,42 +128,47 @@ export class Maskito extends MaskHistory {
     }
 
     private conformValueToMask(): void {
-        const maskModel = new MaskModel(this.elementState, this.options);
+        const {elementState} = this.preprocessor({elementState: this.elementState});
+        const maskModel = new MaskModel(elementState, this.options);
+        const {value, selection} = this.postprocessor(maskModel);
 
-        this.updateValue(maskModel.value);
-        this.updateSelectionRange(maskModel.selection);
+        this.updateValue(value);
+        this.updateSelectionRange(selection);
     }
 
     private handleDelete(event: Event, isForward: boolean): void {
-        const {elementState, options} = this;
-
+        const {elementState} = this.preprocessor({elementState: this.elementState});
         const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
-        const maskModel = new MaskModel(elementState, options);
+        const maskModel = new MaskModel(elementState, this.options);
 
         maskModel.deleteCharacters([from, to]);
 
-        const {value, selection} = maskModel;
+        const newElementState = this.postprocessor(maskModel);
         const newPossibleValue =
             elementState.value.slice(0, from) + elementState.value.slice(to);
 
-        if (newPossibleValue === value) {
+        if (newPossibleValue === newElementState.value) {
             return;
         }
 
         event.preventDefault();
 
-        if (value === elementState.value) {
+        if (areElementValuesEqual(elementState, maskModel, newElementState)) {
+            // User presses Backspace/Delete for the fixed value
             return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
         }
 
-        this.updateValue(value);
-        this.updateSelectionRange(selection);
-        this.updateHistory({value, selection});
+        this.updateValue(newElementState.value);
+        this.updateSelectionRange(newElementState.selection);
+        this.updateHistory(newElementState);
     }
 
-    private handleInsert(event: Event, insertedText: string): void {
-        const {elementState, options} = this;
-        const maskModel = new MaskModel(elementState, options);
+    private handleInsert(event: Event, data: string): void {
+        const {elementState, data: insertedText = data} = this.preprocessor({
+            data,
+            elementState: this.elementState,
+        });
+        const maskModel = new MaskModel(elementState, this.options);
 
         try {
             maskModel.addCharacters(elementState.selection, insertedText);
@@ -164,7 +181,7 @@ export class Maskito extends MaskHistory {
             elementState.value.slice(0, from) +
             insertedText +
             elementState.value.slice(to);
-        const {value, selection} = maskModel;
+        const {value, selection} = this.postprocessor(maskModel);
 
         if (newPossibleValue !== value) {
             event.preventDefault();
@@ -176,11 +193,9 @@ export class Maskito extends MaskHistory {
     }
 
     private handleEnter(event: Event): void {
-        if (!this.isTextArea) {
-            return;
+        if (this.isTextArea) {
+            return this.handleInsert(event, '\n');
         }
-
-        return this.handleInsert(event, '\n');
     }
 
     protected updateValue(newValue: string): void {
