@@ -55,6 +55,8 @@ export class Maskito extends MaskHistory {
                         // We don't know caret position at this moment
                         // (inserted content will be handled later in "input"-event)
                         return;
+                    case 'insertLineBreak':
+                        return this.handleEnter(event);
                     case 'insertFromPaste':
                     case 'insertText':
                     default:
@@ -91,11 +93,19 @@ export class Maskito extends MaskHistory {
         };
     }
 
+    private get isTextArea(): boolean {
+        return this.element.nodeName === 'TEXTAREA';
+    }
+
     private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
 
-        if (pressedKey === 'Backspace' || pressedKey === 'Delete') {
-            return this.handleDelete(event, pressedKey === 'Delete');
+        switch (pressedKey) {
+            case 'Backspace':
+            case 'Delete':
+                return this.handleDelete(event, pressedKey === 'Delete');
+            case 'Enter':
+                return this.handleEnter(event);
         }
 
         if (!isEventProducingCharacter(event)) {
@@ -163,6 +173,14 @@ export class Maskito extends MaskHistory {
             this.updateSelectionRange(selection);
             this.updateHistory({value, selection});
         }
+    }
+
+    private handleEnter(event: Event): void {
+        if (!this.isTextArea) {
+            return;
+        }
+
+        return this.handleInsert(event, '\n');
     }
 
     protected updateValue(newValue: string): void {
