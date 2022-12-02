@@ -3,6 +3,7 @@
     "version": 2,
     "projects": {
         "core": "projects/core",
-        "demo": "projects/demo"
+        "demo": "projects/demo",
+        "kit": "projects/kit"
     }
 }

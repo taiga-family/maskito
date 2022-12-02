@@ -1,0 +1,26 @@
+{
+    "root": "projects/kit",
+    "sourceRoot": "projects/kit/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/projects/kit",
+                "main": "projects/kit/src/index.ts",
+                "tsConfig": "projects/kit/tsconfig.lib.json",
+                "assets": ["projects/kit/*.md"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/projects/kit"],
+            "options": {
+                "jestConfig": "projects/kit/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
