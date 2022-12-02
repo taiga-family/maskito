@@ -7,7 +7,11 @@ import {
     ViewChild,
 } from '@angular/core';
 import {Maskito} from '@maskito/core';
-import {INPUT_NUMBER_MASK, INPUT_PHONE_MASK, NO_CYRILLIC_MASK} from './masks';
+import {
+    maskitoNumberOptionsGenerator,
+    maskitoPhoneOptionsGenerator,
+    NO_CYRILLIC_MASK,
+} from './masks';
 
 @Component({
     selector: 'sandbox',
@@ -30,12 +34,17 @@ export class SandboxComponent implements AfterViewInit, OnDestroy {
     private maskedTextArea?: Maskito;
 
     ngAfterViewInit() {
-        this.maskedInputPhone = new Maskito(this.inputPhoneRef.nativeElement, {
-            mask: INPUT_PHONE_MASK,
-        });
-        this.maskedInputNumber = new Maskito(this.inputNumberRef.nativeElement, {
-            mask: INPUT_NUMBER_MASK,
-        });
+        this.maskedInputPhone = new Maskito(
+            this.inputPhoneRef.nativeElement,
+            maskitoPhoneOptionsGenerator('RU'),
+        );
+        this.maskedInputNumber = new Maskito(
+            this.inputNumberRef.nativeElement,
+            maskitoNumberOptionsGenerator({
+                separator: ',',
+                pseudoSeparators: ['.', 'б', 'ю'],
+            }),
+        );
         this.maskedTextArea = new Maskito(this.textAreaRef.nativeElement, {
             mask: NO_CYRILLIC_MASK,
         });

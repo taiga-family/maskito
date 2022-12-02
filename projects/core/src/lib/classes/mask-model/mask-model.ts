@@ -2,7 +2,7 @@ import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../.
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 
-export class MaskModel {
+export class MaskModel implements ElementState {
     value = '';
     selection: SelectionRange = [0, 0];
 
