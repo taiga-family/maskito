@@ -1,3 +1,11 @@
+import {MaskHistory, MaskModel} from './classes';
+import {
+    ElementState,
+    MaskitoOptions,
+    MaskPostprocessor,
+    MaskPreprocessor,
+    SelectionRange,
+} from './types';
 import {
     areElementValuesEqual,
     EventListener,
@@ -6,14 +14,6 @@ import {
     isBeforeInputEventSupported,
     isEventProducingCharacter,
 } from './utils';
-import {
-    ElementState,
-    MaskitoOptions,
-    MaskPostprocessor,
-    MaskPreprocessor,
-    SelectionRange,
-} from './types';
-import {MaskHistory, MaskModel} from './classes';
 
 export class Maskito extends MaskHistory {
     private readonly eventListener = new EventListener(this.element);
@@ -206,7 +206,7 @@ export class Maskito extends MaskHistory {
 
     protected updateSelectionRange([from, to]: SelectionRange): void {
         if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
-            this.element.setSelectionRange(from, to);
+            this.element.setSelectionRange?.(from, to);
         }
     }
 }
