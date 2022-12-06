@@ -1,0 +1,29 @@
+:host {
+    display: flex;
+    align-items: center;
+
+    :host-context(tui-root._mobile) {
+        font-size: 0;
+    }
+}
+
+.logo-link {
+    display: flex;
+}
+
+.logo-name {
+    display: flex;
+    color: var(--tui-text-01);
+}
+
+.logo {
+    margin-right: 0.625rem;
+}
+
+.by {
+    margin-left: 0.875rem;
+
+    :host-context(tui-root._mobile) & {
+        display: none;
+    }
+}

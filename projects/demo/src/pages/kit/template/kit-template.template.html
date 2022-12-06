@@ -1,0 +1,35 @@
+<tui-doc-page
+    header="<MASK OPTIONS GENERATOR>"
+    package="KIT"
+>
+    <ng-template pageTab>
+        This would be the content of a first tab
+
+        <tui-doc-example
+            id="basic"
+            heading="Basic usage"
+        >
+            TODO
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo>
+            <tui-input ngModel="">
+                Try it
+                <!-- Put your mask here -->
+                <input tuiTextfield />
+            </tui-input>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="<your-generator-option>"
+                documentationPropertyMode="input"
+                documentationPropertyType="boolean"
+                [(documentationPropertyValue)]="generatorOption"
+            >
+                Your generator option description
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>
