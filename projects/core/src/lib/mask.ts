@@ -115,7 +115,7 @@ export class Maskito extends MaskHistory {
             return;
         }
 
-        return this.handleInsert(event, pressedKey);
+        this.handleInsert(event, pressedKey);
     }
 
     private conformValueToMask(): void {
@@ -189,7 +189,7 @@ export class Maskito extends MaskHistory {
 
     private handleEnter(event: Event): void {
         if (this.isTextArea) {
-            return this.handleInsert(event, '\n');
+            this.handleInsert(event, '\n');
         }
     }
 
