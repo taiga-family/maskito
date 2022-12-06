@@ -1,0 +1,12 @@
+{
+    "name": "@maskito/angular",
+    "version": "0.0.1",
+    "dependencies": {
+        "tslib": "^2.3.0"
+    },
+    "peerDependencies": {
+        "@angular/common": ">=12.0.0",
+        "@angular/core": ">=12.0.0",
+        "@maskito/core": "^0.0.1"
+    }
+}

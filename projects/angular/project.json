@@ -1,0 +1,33 @@
+{
+    "projectType": "library",
+    "root": "projects/angular",
+    "sourceRoot": "projects/angular/src",
+    "prefix": "maskito",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:ng-packagr-lite",
+            "outputs": ["dist/projects/angular"],
+            "options": {
+                "project": "projects/angular/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "projects/angular/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "projects/angular/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/projects/angular"],
+            "options": {
+                "jestConfig": "projects/angular/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

@@ -1,30 +1,21 @@
 import {MaskHistory, MaskModel} from './classes';
-import {
-    ElementState,
-    MaskitoOptions,
-    MaskPostprocessor,
-    MaskPreprocessor,
-    SelectionRange,
-} from './types';
+import {MASKITO_DEFAULT_OPTIONS} from './constants';
+import {ElementState, MaskitoOptions, SelectionRange} from './types';
 import {
     areElementValuesEqual,
     EventListener,
     extendToNotEmptyRange,
-    identity,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
 } from './utils';
 
 export class Maskito extends MaskHistory {
     private readonly eventListener = new EventListener(this.element);
-    private readonly preprocessor: MaskPreprocessor =
-        this.options.preprocessor || identity;
-    private readonly postprocessor: MaskPostprocessor =
-        this.options.postprocessor || identity;
+    private readonly options = {...MASKITO_DEFAULT_OPTIONS, ...this.maskitoOptions};
 
     constructor(
         private readonly element: HTMLInputElement | HTMLTextAreaElement,
-        private readonly options: MaskitoOptions,
+        private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
         this.conformValueToMask();
@@ -128,22 +119,26 @@ export class Maskito extends MaskHistory {
     }
 
     private conformValueToMask(): void {
-        const {elementState} = this.preprocessor({elementState: this.elementState});
+        const {elementState} = this.options.preprocessor({
+            elementState: this.elementState,
+        });
         const maskModel = new MaskModel(elementState, this.options);
-        const {value, selection} = this.postprocessor(maskModel);
+        const {value, selection} = this.options.postprocessor(maskModel);
 
         this.updateValue(value);
         this.updateSelectionRange(selection);
     }
 
     private handleDelete(event: Event, isForward: boolean): void {
-        const {elementState} = this.preprocessor({elementState: this.elementState});
+        const {elementState} = this.options.preprocessor({
+            elementState: this.elementState,
+        });
         const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, this.options);
 
         maskModel.deleteCharacters([from, to]);
 
-        const newElementState = this.postprocessor(maskModel);
+        const newElementState = this.options.postprocessor(maskModel);
         const newPossibleValue =
             elementState.value.slice(0, from) + elementState.value.slice(to);
 
@@ -164,7 +159,7 @@ export class Maskito extends MaskHistory {
     }
 
     private handleInsert(event: Event, data: string): void {
-        const {elementState, data: insertedText = data} = this.preprocessor({
+        const {elementState, data: insertedText = data} = this.options.preprocessor({
             data,
             elementState: this.elementState,
         });
@@ -181,7 +176,7 @@ export class Maskito extends MaskHistory {
             elementState.value.slice(0, from) +
             insertedText +
             elementState.value.slice(to);
-        const {value, selection} = this.postprocessor(maskModel);
+        const {value, selection} = this.options.postprocessor(maskModel);
 
         if (newPossibleValue !== value) {
             event.preventDefault();

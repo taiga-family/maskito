@@ -10,17 +10,18 @@
     />
 
     <input
-        #inputPhone
         id="phone"
         name="phone"
         autocomplete="tel"
         placeholder="InputPhone"
         value=""
         class="prettify"
+        [maskito]="phoneMaskOptions"
     />
 
     <input
         id="email"
+        maskito
         name="email"
         autocomplete="email"
         placeholder="Email"
@@ -28,21 +29,19 @@
     />
 
     <textarea
-        #textAreaRef
         id="text-area"
         name="address"
         autocomplete="street-address"
         placeholder="Cyrillic symbols are not allowed"
         class="prettify"
+        [maskito]="noCyrillicMaskOptions"
     ></textarea>
 
-    <!--  TODO: seamlessly replace decimal point from , to . -->
-    <!--   https://github.com/Tinkoff/maskito/issues/14 -->
     <input
-        #inputNumber
         id="number"
         name="balance"
         placeholder="Balance"
         class="prettify"
+        [maskito]="numberMaskOptions"
     />
 </form>
