@@ -33,7 +33,7 @@ jobs:
 
       - name: Serving ssr server
         run: |
-          npm run serve:ssr & sleep 5
+          npm run serve:ssr -- --ci & sleep 5
           curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
 
       - name: Run cypress / ssr / universal
