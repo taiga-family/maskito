@@ -41,6 +41,8 @@ MIT
 @angular/router
 MIT
 
+@maskito/angular
+
 @maskito/core
 
 @ng-web-apis/common
