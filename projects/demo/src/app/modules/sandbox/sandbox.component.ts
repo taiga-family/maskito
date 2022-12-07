@@ -1,12 +1,5 @@
-import {
-    AfterViewInit,
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    OnDestroy,
-    ViewChild,
-} from '@angular/core';
-import {Maskito} from '@maskito/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MASKITO_OPTIONS} from '@maskito/angular';
 import {
     maskitoNumberOptionsGenerator,
     maskitoPhoneOptionsGenerator,
@@ -17,42 +10,16 @@ import {
     selector: 'sandbox',
     templateUrl: './sandbox.template.html',
     styleUrls: ['./sandbox.style.less'],
+    providers: [{provide: MASKITO_OPTIONS, useValue: {mask: /^@+$/}}],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SandboxComponent implements AfterViewInit, OnDestroy {
-    @ViewChild('inputNumber')
-    private readonly inputNumberRef!: ElementRef<HTMLInputElement>;
-
-    @ViewChild('inputPhone')
-    private readonly inputPhoneRef!: ElementRef<HTMLInputElement>;
-
-    @ViewChild('textAreaRef')
-    private readonly textAreaRef!: ElementRef<HTMLTextAreaElement>;
-
-    private maskedInputPhone?: Maskito;
-    private maskedInputNumber?: Maskito;
-    private maskedTextArea?: Maskito;
-
-    ngAfterViewInit() {
-        this.maskedInputPhone = new Maskito(
-            this.inputPhoneRef.nativeElement,
-            maskitoPhoneOptionsGenerator('RU'),
-        );
-        this.maskedInputNumber = new Maskito(
-            this.inputNumberRef.nativeElement,
-            maskitoNumberOptionsGenerator({
-                separator: ',',
-                pseudoSeparators: ['.', 'б', 'ю'],
-            }),
-        );
-        this.maskedTextArea = new Maskito(this.textAreaRef.nativeElement, {
-            mask: NO_CYRILLIC_MASK,
-        });
-    }
-
-    ngOnDestroy() {
-        this.maskedInputPhone?.destroy();
-        this.maskedInputNumber?.destroy();
-        this.maskedTextArea?.destroy();
-    }
+export class SandboxComponent {
+    phoneMaskOptions = maskitoPhoneOptionsGenerator('RU');
+    numberMaskOptions = maskitoNumberOptionsGenerator({
+        separator: ',',
+        pseudoSeparators: ['.', 'б', 'ю'],
+    });
+    noCyrillicMaskOptions = {
+        mask: NO_CYRILLIC_MASK,
+    };
 }

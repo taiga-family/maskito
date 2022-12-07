@@ -2,6 +2,7 @@
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 2,
     "projects": {
+        "angular": "projects/angular",
         "core": "projects/core",
         "demo": "projects/demo",
         "kit": "projects/kit"

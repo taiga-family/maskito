@@ -38,13 +38,25 @@
             "config": "project"
         },
         "@nrwl/angular:library": {
-            "buildable": true,
-            "compilationMode": "partial",
+            "style": "less",
             "linter": "none",
             "unitTestRunner": "jest",
+            "buildable": true,
+            "compilationMode": "partial",
             "strict": true,
             "skipModule": true,
             "standaloneConfig": true
+        },
+        "@nrwl/angular:application": {
+            "style": "less",
+            "linter": "none",
+            "unitTestRunner": "jest"
+        },
+        "@nrwl/angular:component": {
+            "style": "less"
         }
+    },
+    "cli": {
+        "defaultCollection": "@nrwl/js"
     }
 }

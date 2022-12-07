@@ -29,6 +29,7 @@ export abstract class MaskHistory {
     protected updateHistory(state: ElementState): void {
         if (!this.now) {
             this.now = state;
+
             return;
         }
 
