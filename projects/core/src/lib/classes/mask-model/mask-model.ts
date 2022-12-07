@@ -1,6 +1,7 @@
 import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../../types';
-import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
+import {applyOverwriteMode} from './utils/apply-overwrite-mode';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
+import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 
 export class MaskModel implements ElementState {
     value = '';
@@ -31,7 +32,11 @@ export class MaskModel implements ElementState {
             {value, selection},
             maskExpression,
         );
-        const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
+        const [unmaskedFrom, unmaskedTo] =
+            newCharacters.length <= 1
+                ? applyOverwriteMode(unmaskedElementState, this.maskOptions.overwriteMode)
+                      .selection
+                : unmaskedElementState.selection;
         const newUnmaskedValue =
             unmaskedElementState.value.slice(0, unmaskedFrom) +
             newCharacters +

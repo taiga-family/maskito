@@ -3,6 +3,10 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
+export const enum DemoPath {
+    Time = 'kit/time',
+}
+
 export const appRoutes: Routes = [
     {
         path: '',
@@ -16,13 +20,13 @@ export const appRoutes: Routes = [
         loadChildren: () => import(`./modules/lazy/lazy.module`).then(m => m.LazyModule),
     },
     {
-        path: `kit/template`,
+        path: DemoPath.Time,
         loadChildren: () =>
-            import(`../pages/kit/template/kit-template.module`).then(
-                m => m.KitTemplateModule,
+            import(`../pages/kit/time/time-mask-doc.module`).then(
+                m => m.TimeMaskDocModule,
             ),
         data: {
-            title: `KIT template`,
+            title: `Time`,
         },
     },
     {

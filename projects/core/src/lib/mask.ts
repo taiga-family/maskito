@@ -121,6 +121,7 @@ export class Maskito extends MaskHistory {
     private conformValueToMask(): void {
         const {elementState} = this.options.preprocessor({
             elementState: this.elementState,
+            data: '',
         });
         const maskModel = new MaskModel(elementState, this.options);
         const {value, selection} = this.options.postprocessor(maskModel);
@@ -132,6 +133,7 @@ export class Maskito extends MaskHistory {
     private handleDelete(event: Event, isForward: boolean): void {
         const {elementState} = this.options.preprocessor({
             elementState: this.elementState,
+            data: '',
         });
         const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, this.options);
@@ -173,9 +175,7 @@ export class Maskito extends MaskHistory {
 
         const [from, to] = elementState.selection;
         const newPossibleValue =
-            elementState.value.slice(0, from) +
-            insertedText +
-            elementState.value.slice(to);
+            elementState.value.slice(0, from) + data + elementState.value.slice(to);
         const {value, selection} = this.options.postprocessor(maskModel);
 
         if (newPossibleValue !== value) {

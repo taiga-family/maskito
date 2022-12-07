@@ -1,0 +1,15 @@
+import {MaskitoTimeSegments} from '../types';
+
+/**
+ * @param timeString can be with/without fixed characters
+ */
+export function parseTimeString(timeString: string): MaskitoTimeSegments {
+    const onlyDigits = timeString.replace(/\D+/g, '');
+
+    return {
+        hours: onlyDigits.slice(0, 2),
+        minutes: onlyDigits.slice(2, 4),
+        seconds: onlyDigits.slice(4, 6),
+        milliseconds: onlyDigits.slice(6, 9),
+    };
+}

@@ -8,6 +8,7 @@
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "options": {
+                "baseHref": "/",
                 "outputPath": "dist/demo/browser",
                 "index": "projects/demo/src/index.html",
                 "main": "projects/demo/src/main.browser.ts",
@@ -30,6 +31,7 @@
                 "styles": [
                     "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
                     "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+                    "node_modules/@taiga-ui/styles/taiga-ui-global.less",
                     "projects/demo/src/styles.css"
                 ],
                 "scripts": [],
@@ -42,8 +44,6 @@
             },
             "configurations": {
                 "production": {
-                    "baseHref": "./",
-                    "deployUrl": "./",
                     "fileReplacements": [
                         {
                             "replace": "projects/demo/src/environments/environment.ts",
@@ -66,9 +66,7 @@
                         }
                     ]
                 },
-                "development": {
-                    "baseHref": "/"
-                }
+                "development": {}
             },
             "defaultConfiguration": "production"
         },

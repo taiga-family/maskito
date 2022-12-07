@@ -6,4 +6,5 @@ export interface MaskitoOptions {
     mask: MaskExpression | (() => MaskExpression);
     preprocessor?: MaskPreprocessor;
     postprocessor?: MaskPostprocessor;
+    overwriteMode?: 'shift' | 'replace';
 }
