@@ -136,6 +136,7 @@ export class Maskito extends MaskHistory {
             value: this.elementState.value,
             selection: extendToNotEmptyRange(this.elementState.selection, isForward),
         };
+        const [initialFrom, initialTo] = initialState.selection;
         const {elementState} = this.options.preprocessor({
             elementState: initialState,
             data: '',
@@ -148,8 +149,8 @@ export class Maskito extends MaskHistory {
 
         const newElementState = this.options.postprocessor(maskModel);
         const newPossibleValue =
-            initialState.value.slice(0, initialState.selection[0]) +
-            initialState.value.slice(initialState.selection[1]);
+            initialState.value.slice(0, initialFrom) +
+            initialState.value.slice(initialTo);
 
         if (newPossibleValue === newElementState.value) {
             return;

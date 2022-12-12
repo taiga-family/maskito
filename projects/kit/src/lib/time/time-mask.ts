@@ -24,7 +24,7 @@ export function maskitoTimeOptionsGenerator({
             TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
         ),
         /**
-         * TODO: create new exported utility
+         * TODO: create new utility
          * ```ts
          * preprocessor: MaskitoPipe(
          *     zeroPlaceholdersPreprocessor,

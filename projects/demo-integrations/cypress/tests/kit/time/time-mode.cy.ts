@@ -1,4 +1,4 @@
-import {DemoPath} from '../../../../../demo/src/app/app.routes';
+import {DemoPath} from 'projects/demo/src/app/app.routes';
 
 describe('Time', () => {
     describe('Mode', () => {

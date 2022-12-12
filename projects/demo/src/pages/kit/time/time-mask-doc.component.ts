@@ -6,7 +6,7 @@ import {
     MaskitoTimeSegments,
 } from '@maskito/kit';
 
-type GeneratorOptions = Parameters<typeof maskitoTimeOptionsGenerator>[0];
+type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
 @Component({
     selector: 'time-mask-doc',
@@ -25,7 +25,6 @@ export class TimeMaskDocComponent implements GeneratorOptions {
         }),
     };
 
-    readonly maskOptionsGenerator = maskitoTimeOptionsGenerator;
     readonly modeOptions: MaskitoTimeMode[] = [`HH:MM`, `HH:MM:SS`, `HH:MM:SS.MSS`];
     readonly timeSegmentMaxValuesOptions: Array<Partial<MaskitoTimeSegments<number>>> = [
         {hours: 23, minutes: 59, seconds: 59, milliseconds: 999},
