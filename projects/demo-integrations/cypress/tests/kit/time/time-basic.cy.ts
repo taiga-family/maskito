@@ -64,8 +64,7 @@ describe('Time', () => {
                 cy.get('@input').type('1234');
             });
 
-            // TODO BUG!
-            it.skip('12:3|4 => Backspace => 12:|04 => Type "5" => 12:5|4', () => {
+            it('12:3|4 => Backspace => 12:|04 => Type "5" => 12:5|4', () => {
                 cy.get('@input')
                     .focus()
                     .type('{leftArrow}')
@@ -81,8 +80,7 @@ describe('Time', () => {
                     .should('have.prop', 'selectionEnd', '12:5'.length);
             });
 
-            // TODO: BUG!
-            it.skip('12|:34 => Backspace => 1|0:34 => Type "1" => 11:|34', () => {
+            it('12|:34 => Backspace => 1|0:34 => Type "1" => 11:|34', () => {
                 cy.get('@input')
                     .focus()
                     .type('{leftArrow}'.repeat(':34'.length))
@@ -98,8 +96,7 @@ describe('Time', () => {
                     .should('have.prop', 'selectionEnd', '11:'.length);
             });
 
-            // TODO: BUG!
-            it.skip('1|2:34 => Backspace => |02:34 => Type "2" => 2|2:34', () => {
+            it('1|2:34 => Backspace => |02:34 => Type "2" => 2|2:34', () => {
                 cy.get('@input')
                     .focus()
                     .type('{leftArrow}'.repeat('2:34'.length))
@@ -159,7 +156,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '12'.length);
                 });
 
-                it('1|2:3|4 => Backspace => 1|4', () => {
+                it('1|2:3|4 => Backspace => 1|0:04', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -170,13 +167,12 @@ describe('Time', () => {
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '14')
+                        .should('have.value', '10:04')
                         .should('have.prop', 'selectionStart', '1'.length)
                         .should('have.prop', 'selectionEnd', '1'.length);
                 });
 
-                // TODO: investigate if it is correct behaviour
-                it('|12|:34 => Backspace => Empty string (34 is invalid for hours)', () => {
+                it('|12|:34 => Backspace => |00:34', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -187,7 +183,7 @@ describe('Time', () => {
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '')
+                        .should('have.value', '00:34')
                         .should('have.prop', 'selectionStart', 0)
                         .should('have.prop', 'selectionEnd', 0);
                 });
@@ -197,50 +193,45 @@ describe('Time', () => {
                 it('23:|59| => Delete => 23|', () => {
                     cy.get('@input')
                         .type('2359')
-                        .realPress([
-                            'Shift',
-                            ...Array('59'.length).fill('ArrowLeft'),
-                            'Delete',
-                        ]);
+                        .realPress(['Shift', ...Array('59'.length).fill('ArrowLeft')]);
 
                     cy.get('@input')
+                        .type('{del}')
                         .should('have.value', '23')
                         .should('have.prop', 'selectionStart', '23'.length)
                         .should('have.prop', 'selectionEnd', '23'.length);
                 });
 
-                // TODO: BUG!
-                it.skip('2|3:5|9 => Delete => 2|', () => {
+                it('2|3:5|9 => Delete => 20:0|9', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
                             'ArrowLeft',
                             'Shift',
                             ...Array('3:5'.length).fill('ArrowLeft'),
-                            'Delete',
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '2')
-                        .should('have.prop', 'selectionStart', '2'.length)
-                        .should('have.prop', 'selectionEnd', '2'.length);
+                        .type('{del}')
+                        .should('have.value', '20:09')
+                        .should('have.prop', 'selectionStart', '20:0'.length)
+                        .should('have.prop', 'selectionEnd', '20:0'.length);
                 });
 
-                // TODO: investigate if it is correct behaviour
-                it('|23|:59 => Delete => Empty string (59 is invalid for hours)', () => {
+                it('|23|:59 => Delete => 00:|59', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
                             ...Array(':59'.length).fill('ArrowLeft'),
                             'Shift',
                             ...Array('23'.length).fill('ArrowLeft'),
-                            'Delete',
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '')
-                        .should('have.prop', 'selectionStart', 0)
-                        .should('have.prop', 'selectionEnd', 0);
+                        .type('{del}')
+                        .should('have.value', '00:59')
+                        .should('have.prop', 'selectionStart', '00'.length)
+                        .should('have.prop', 'selectionEnd', '00'.length);
                 });
             });
 
@@ -306,11 +297,11 @@ describe('Time', () => {
                     .type('1122')
                     .type('{leftArrow}'.repeat(':22'.length))
                     .type('{backspace}{backspace}')
-                    .should('have.value', '22')
+                    .should('have.value', '00:22')
                     .should('have.prop', 'selectionStart', 0)
                     .should('have.prop', 'selectionEnd', 0)
                     .type('{ctrl+z}')
-                    .should('have.value', '12:2')
+                    .should('have.value', '10:22')
                     .should('have.prop', 'selectionStart', '1'.length)
                     .should('have.prop', 'selectionEnd', '1'.length)
                     .type('{ctrl+z}')
@@ -324,9 +315,9 @@ describe('Time', () => {
                     .type('1234')
                     .type('{leftArrow}{leftArrow}')
                     .type('{del}')
-                    .should('have.value', '12:4')
-                    .should('have.prop', 'selectionStart', '12:'.length)
-                    .should('have.prop', 'selectionEnd', '12:'.length)
+                    .should('have.value', '12:04')
+                    .should('have.prop', 'selectionStart', '12:0'.length)
+                    .should('have.prop', 'selectionEnd', '12:0'.length)
                     .type('{cmd+z}')
                     .should('have.value', '12:34')
                     .should('have.prop', 'selectionStart', '12:'.length)
@@ -355,9 +346,9 @@ describe('Time', () => {
                     .type('{ctrl+z}')
                     .type('{ctrl+y}')
                     .type('{ctrl+y}')
-                    .should('have.value', '22')
-                    .should('have.prop', 'selectionStart', ''.length)
-                    .should('have.prop', 'selectionEnd', ''.length);
+                    .should('have.value', '00:22')
+                    .should('have.prop', 'selectionStart', 0)
+                    .should('have.prop', 'selectionEnd', 0);
             });
 
             it('12:|34 => Delete => Cmd + Z => Ctrl + Y', () => {
@@ -367,9 +358,9 @@ describe('Time', () => {
                     .type('{del}')
                     .type('{cmd+z}')
                     .type('{cmd+shift+z}')
-                    .should('have.value', '12:4')
-                    .should('have.prop', 'selectionStart', '12:'.length)
-                    .should('have.prop', 'selectionEnd', '12:'.length);
+                    .should('have.value', '12:04')
+                    .should('have.prop', 'selectionStart', '12:0'.length)
+                    .should('have.prop', 'selectionEnd', '12:0'.length);
             });
         });
     });

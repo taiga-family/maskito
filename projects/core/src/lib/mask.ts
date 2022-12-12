@@ -122,6 +122,7 @@ export class Maskito extends MaskHistory {
         const {elementState} = this.options.preprocessor({
             elementState: this.elementState,
             data: '',
+            actionType: 'validation',
         });
         const maskModel = new MaskModel(elementState, this.options);
         const {value, selection} = this.options.postprocessor(maskModel);
@@ -131,18 +132,24 @@ export class Maskito extends MaskHistory {
     }
 
     private handleDelete(event: Event, isForward: boolean): void {
+        const initialState: ElementState = {
+            value: this.elementState.value,
+            selection: extendToNotEmptyRange(this.elementState.selection, isForward),
+        };
         const {elementState} = this.options.preprocessor({
-            elementState: this.elementState,
+            elementState: initialState,
             data: '',
+            actionType: isForward ? 'deleteForward' : 'deleteBackward',
         });
-        const [from, to] = extendToNotEmptyRange(elementState.selection, isForward);
         const maskModel = new MaskModel(elementState, this.options);
+        const [from, to] = elementState.selection;
 
         maskModel.deleteCharacters([from, to]);
 
         const newElementState = this.options.postprocessor(maskModel);
         const newPossibleValue =
-            elementState.value.slice(0, from) + elementState.value.slice(to);
+            initialState.value.slice(0, initialState.selection[0]) +
+            initialState.value.slice(initialState.selection[1]);
 
         if (newPossibleValue === newElementState.value) {
             return;
@@ -150,7 +157,9 @@ export class Maskito extends MaskHistory {
 
         event.preventDefault();
 
-        if (areElementValuesEqual(elementState, maskModel, newElementState)) {
+        if (
+            areElementValuesEqual(initialState, elementState, maskModel, newElementState)
+        ) {
             // User presses Backspace/Delete for the fixed value
             return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
         }
@@ -164,6 +173,7 @@ export class Maskito extends MaskHistory {
         const {elementState, data: insertedText = data} = this.options.preprocessor({
             data,
             elementState: this.elementState,
+            actionType: 'insert',
         });
         const maskModel = new MaskModel(elementState, this.options);
 

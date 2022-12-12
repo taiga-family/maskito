@@ -4,7 +4,7 @@ import {parseTimeString, toTimeString} from '../utils';
 
 export function createZeroPaddingPostprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
-): MaskitoOptions['postprocessor'] {
+): NonNullable<MaskitoOptions['postprocessor']> {
     return elementState => {
         const {value, selection} = elementState;
         const {hours, minutes, seconds, milliseconds} = parseTimeString(value);

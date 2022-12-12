@@ -66,7 +66,7 @@ export class MaskModel implements ElementState {
         }
 
         if (from === to) {
-            throw new Error('MaskModel.removeCharacters() accepts only not-empty range');
+            return;
         }
 
         const {maskExpression, value} = this;

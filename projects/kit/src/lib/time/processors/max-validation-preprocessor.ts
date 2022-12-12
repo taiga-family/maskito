@@ -4,14 +4,15 @@ import {parseTimeString} from '../utils';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
-): MaskitoOptions['preprocessor'] {
+): NonNullable<MaskitoOptions['preprocessor']> {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
         const newPossibleValue =
             value.slice(0, from) +
             data +
-            value.slice(to === from && to < value.length ? to + 1 : to);
+            // to be conformed with `overwriteMode: replace`
+            value.slice(data && to === from && to < value.length ? to + 1 : to);
         const timeParts = parseTimeString(newPossibleValue);
 
         let validatedStringPart = '';
