@@ -1,4 +1,5 @@
 import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../../types';
+import {areElementStatesEqual} from '../../utils';
 import {applyOverwriteMode} from './utils/apply-overwrite-mode';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
@@ -51,7 +52,7 @@ export class MaskModel implements ElementState {
             maskExpression,
         );
 
-        if (maskedElementState.value === value) {
+        if (areElementStatesEqual(this, maskedElementState)) {
             // If typing new characters does not change value
             throw new Error('Invalid mask value');
         }

@@ -248,7 +248,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '11:3'.length);
                 });
 
-                it('1|1:2|2 => Press 3 => 13:|2', () => {
+                it('1|1:2|2 => Press 3 => 13:|02', () => {
                     cy.get('@input')
                         .type('1122')
                         .realPress([
@@ -259,23 +259,23 @@ describe('Time', () => {
 
                     cy.get('@input')
                         .type('3')
-                        .should('have.value', '13:2')
+                        .should('have.value', '13:02')
                         .should('have.prop', 'selectionStart', '13:'.length)
                         .should('have.prop', 'selectionEnd', '13:'.length);
                 });
 
-                it('|11|:22 => Press 2 => 2|2:2', () => {
+                it('|11|:33 => Press 2 => 2|0:33', () => {
                     cy.get('@input')
-                        .type('1122')
+                        .type('1133')
                         .realPress([
-                            ...Array(':22'.length).fill('ArrowLeft'),
+                            ...Array(':33'.length).fill('ArrowLeft'),
                             'Shift',
                             ...Array('11'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
                         .type('2')
-                        .should('have.value', '22:2')
+                        .should('have.value', '20:33')
                         .should('have.prop', 'selectionStart', '2'.length)
                         .should('have.prop', 'selectionEnd', '2'.length);
                 });
