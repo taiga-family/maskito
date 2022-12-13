@@ -4,25 +4,25 @@ describe('Time', () => {
     describe('Basic', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.Time}/API?mode=HH:MM`);
-            cy.get('#demoContent input').should('be.visible').first().as('input');
+            cy.get('#demoContent input').should('be.visible').first().focus().as('input');
         });
 
         describe('basic typing (1 character per keydown)', () => {
             const tests = [
-                // [Typed value, Masked value]
-                ['1', '1'],
-                ['12', '12'],
-                ['123', '12:3'],
-                ['1234', '12:34'],
+                // [Typed value, Masked value, caretIndex]
+                ['1', '10:00', 1],
+                ['12', '12:00', '12:'.length],
+                ['123', '12:30', '12:3'.length],
+                ['1234', '12:34', '12:34'.length],
             ] as const;
 
-            tests.forEach(([typedValue, maskedValue]) => {
+            tests.forEach(([typedValue, maskedValue, caretIndex]) => {
                 it(`Type "${typedValue}" => "${maskedValue}"`, () => {
                     cy.get('@input')
                         .type(typedValue)
                         .should('have.value', maskedValue)
-                        .should('have.prop', 'selectionStart', maskedValue.length)
-                        .should('have.prop', 'selectionEnd', maskedValue.length);
+                        .should('have.prop', 'selectionStart', caretIndex)
+                        .should('have.prop', 'selectionEnd', caretIndex);
                 });
             });
         });
@@ -33,20 +33,21 @@ describe('Time', () => {
             });
 
             const tests = [
-                // [How many times "Backspace"-key was pressed, Masked value]
-                [1, '12:3'],
-                [2, '12'],
-                [3, '1'],
-                [4, ''],
+                // [How many times "Backspace"-key was pressed, caretPosition, Masked value]
+                [1, '12:3'.length, '12:30'],
+                [2, '12:'.length, '12:00'],
+                [3, '12'.length, '12:00'],
+                [4, '1'.length, '10:00'],
+                [5, 0, '00:00'],
             ] as const;
 
-            tests.forEach(([n, maskedValue]) => {
+            tests.forEach(([n, caretIndex, maskedValue]) => {
                 it(`Backspace x${n} => "${maskedValue}"`, () => {
                     cy.get('@input')
                         .type('{backspace}'.repeat(n))
                         .should('have.value', maskedValue)
-                        .should('have.prop', 'selectionStart', maskedValue.length)
-                        .should('have.prop', 'selectionEnd', maskedValue.length);
+                        .should('have.prop', 'selectionStart', caretIndex)
+                        .should('have.prop', 'selectionEnd', caretIndex);
                 });
             });
 
@@ -141,7 +142,7 @@ describe('Time', () => {
 
         describe('Text selection', () => {
             describe('Select range and press Backspace', () => {
-                it('12:|34| => Backspace => 12|', () => {
+                it('12:|34| => Backspace => 12:|00', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -151,9 +152,9 @@ describe('Time', () => {
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '12')
-                        .should('have.prop', 'selectionStart', '12'.length)
-                        .should('have.prop', 'selectionEnd', '12'.length);
+                        .should('have.value', '12:00')
+                        .should('have.prop', 'selectionStart', '12:'.length)
+                        .should('have.prop', 'selectionEnd', '12:'.length);
                 });
 
                 it('1|2:3|4 => Backspace => 1|0:04', () => {
@@ -190,16 +191,16 @@ describe('Time', () => {
             });
 
             describe('Select range and press "Delete"', () => {
-                it('23:|59| => Delete => 23|', () => {
+                it('23:|59| => Delete => 23:|00', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress(['Shift', ...Array('59'.length).fill('ArrowLeft')]);
 
                     cy.get('@input')
                         .type('{del}')
-                        .should('have.value', '23')
-                        .should('have.prop', 'selectionStart', '23'.length)
-                        .should('have.prop', 'selectionEnd', '23'.length);
+                        .should('have.value', '23:00')
+                        .should('have.prop', 'selectionStart', '23:00'.length)
+                        .should('have.prop', 'selectionEnd', '23:00'.length);
                 });
 
                 it('2|3:5|9 => Delete => 20:0|9', () => {
@@ -236,14 +237,14 @@ describe('Time', () => {
             });
 
             describe('Select range and press new digit', () => {
-                it('11:|22| => Press 3 => 11:3|', () => {
+                it('11:|22| => Press 3 => 11:3|0', () => {
                     cy.get('@input')
                         .type('1122')
                         .realPress(['Shift', ...Array('22'.length).fill('ArrowLeft')]);
 
                     cy.get('@input')
                         .type('3')
-                        .should('have.value', '11:3')
+                        .should('have.value', '11:30')
                         .should('have.prop', 'selectionStart', '11:3'.length)
                         .should('have.prop', 'selectionEnd', '11:3'.length);
                 });
@@ -287,7 +288,7 @@ describe('Time', () => {
                 cy.get('@input')
                     .type('1743')
                     .type('{selectall}{del}')
-                    .should('have.value', '')
+                    .should('have.value', '00:00')
                     .type('{ctrl+z}')
                     .should('have.value', '17:43');
             });
@@ -330,11 +331,11 @@ describe('Time', () => {
                 cy.get('@input')
                     .type('1743')
                     .type('{selectall}{del}')
-                    .should('have.value', '')
+                    .should('have.value', '00:00')
                     .type('{cmd+z}')
                     .should('have.value', '17:43')
                     .type('{cmd+shift+z}')
-                    .should('have.value', '');
+                    .should('have.value', '00:00');
             });
 
             it('11|:22 => Backspace (x2) => Ctrl + Z (x2) => Ctrl + Y (x2)', () => {

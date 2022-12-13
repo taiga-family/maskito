@@ -5,11 +5,15 @@ describe('Time', () => {
         describe('HH:MM', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM`);
-                cy.get('#demoContent input').should('be.visible').first().as('input');
+                cy.get('#demoContent input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
             });
 
             describe('Typing new character overwrite character after cursor', () => {
-                it('new character is different from next one', () => {
+                it('new character is different from the next one', () => {
                     cy.get('@input')
                         .type('2359')
                         .type('{moveToStart}')
@@ -74,11 +78,15 @@ describe('Time', () => {
         describe('HH:MM:SS', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM:SS`);
-                cy.get('#demoContent input').should('be.visible').first().as('input');
+                cy.get('#demoContent input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
             });
 
             describe('Typing new character overwrite character after cursor', () => {
-                it('new character is different from next one', () => {
+                it('new character is different from the next one', () => {
                     cy.get('@input')
                         .type('235959')
                         .type('{moveToStart}')
@@ -148,11 +156,15 @@ describe('Time', () => {
         describe('HH:MM:SS.MSS', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM:SS.MSS`);
-                cy.get('#demoContent input').should('be.visible').first().as('input');
+                cy.get('#demoContent input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
             });
 
             describe('Typing new character overwrite character after cursor', () => {
-                it('new character is different from next one', () => {
+                it('new character is different from the next one', () => {
                     cy.get('@input')
                         .type('235959999')
                         .type('{moveToStart}')

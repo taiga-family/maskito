@@ -3,7 +3,7 @@ import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from './constant
 import {
     createMaxValidationPreprocessor,
     createZeroPaddingPostprocessor,
-    zeroPlaceholdersPreprocessor,
+    createZeroPlaceholdersPreprocessor,
 } from './processors';
 import {MaskitoTimeMode, MaskitoTimeSegments} from './types';
 
@@ -27,17 +27,17 @@ export function maskitoTimeOptionsGenerator({
          * TODO: create new utility
          * ```ts
          * preprocessor: MaskitoPipe(
-         *     zeroPlaceholdersPreprocessor,
+         *     createZeroPlaceholdersPreprocessor(mode),
          *     createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues),
          * )
          * ```
          */
         preprocessor: data => {
-            const {elementState} = zeroPlaceholdersPreprocessor(data);
+            const newData = createZeroPlaceholdersPreprocessor(mode)(data);
 
             return createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues)({
                 ...data,
-                elementState,
+                ...newData,
             });
         },
         postprocessor: createZeroPaddingPostprocessor(enrichedTimeSegmentMaxValues),
