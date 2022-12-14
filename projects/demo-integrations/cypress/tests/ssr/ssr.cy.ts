@@ -1,3 +1,5 @@
+import {DemoPath} from 'projects/demo/src/app/app.routes';
+
 describe('Server side rendering', () => {
     const baseUrl: string = Cypress.config('baseUrl') ?? '/';
 
@@ -6,8 +8,8 @@ describe('Server side rendering', () => {
     });
 
     it('should successfully render lazy url', () => {
-        cy.request(`${baseUrl}/lazy`)
+        cy.request(`${baseUrl}/${DemoPath.Time}`)
             .its('body')
-            .should('include', 'This is a lazy route');
+            .should('include.match', /<h1.*>\s+Time/);
     });
 });

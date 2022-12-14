@@ -153,7 +153,8 @@
             "executor": "@nguniversal/builders:ssr-dev-server",
             "options": {
                 "browserTarget": "demo:build",
-                "serverTarget": "demo:server"
+                "serverTarget": "demo:server",
+                "port": 3333
             },
             "configurations": {
                 "production": {

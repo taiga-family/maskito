@@ -16,10 +16,6 @@ export const appRoutes: Routes = [
         },
     },
     {
-        path: 'lazy',
-        loadChildren: () => import(`./modules/lazy/lazy.module`).then(m => m.LazyModule),
-    },
-    {
         path: DemoPath.Time,
         loadChildren: () =>
             import(`../pages/kit/time/time-mask-doc.module`).then(
