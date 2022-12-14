@@ -710,6 +710,8 @@ Apache-2.0
 @taiga-ui/kit
 Apache-2.0
 
+@taiga-ui/styles
+
 @tinkoff/ng-event-plugins
 Apache-2.0
                                  Apache License
