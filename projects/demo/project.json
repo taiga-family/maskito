@@ -70,6 +70,19 @@
             },
             "defaultConfiguration": "production"
         },
+        "build-gh-pages": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "parallel": false,
+                "commands": [
+                    "echo 'Github pages require special baseHref + 404.html'",
+                    "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
+                    "echo ------",
+                    "nx build --base-href='./'",
+                    "cp dist/demo/browser/index.html dist/demo/browser/404.html"
+                ]
+            }
+        },
         "serve": {
             "executor": "@angular-devkit/build-angular:dev-server",
             "options": {
