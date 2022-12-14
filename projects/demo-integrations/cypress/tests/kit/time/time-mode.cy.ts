@@ -73,6 +73,19 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', 1);
                 });
             });
+
+            // TODO: BUG!
+            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+                cy.get('@input')
+                    .type('9')
+                    .should('have.value', '09')
+                    .should('have.prop', 'selectionStart', '09'.length)
+                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .type('9')
+                    .should('have.value', '09:09')
+                    .should('have.prop', 'selectionStart', '09:09'.length)
+                    .should('have.prop', 'selectionEnd', '09:09'.length);
+            });
         });
 
         describe('HH:MM:SS', () => {
@@ -150,6 +163,23 @@ describe('Time', () => {
                         .should('have.prop', 'selectionStart', '23:0'.length)
                         .should('have.prop', 'selectionEnd', '23:0'.length);
                 });
+            });
+
+            // TODO: BUG!
+            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+                cy.get('@input')
+                    .type('9')
+                    .should('have.value', '09')
+                    .should('have.prop', 'selectionStart', '09'.length)
+                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .type('9')
+                    .should('have.value', '09:09')
+                    .should('have.prop', 'selectionStart', '09:09'.length)
+                    .should('have.prop', 'selectionEnd', '09:09'.length)
+                    .type('9')
+                    .should('have.value', '09:09:09')
+                    .should('have.prop', 'selectionStart', '09:09:09'.length)
+                    .should('have.prop', 'selectionEnd', '09:09:09'.length);
             });
         });
 
@@ -232,6 +262,23 @@ describe('Time', () => {
                         .should('have.prop', 'selectionStart', '23:0'.length)
                         .should('have.prop', 'selectionEnd', '23:0'.length);
                 });
+            });
+
+            // TODO: BUG!
+            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+                cy.get('@input')
+                    .type('9')
+                    .should('have.value', '09')
+                    .should('have.prop', 'selectionStart', '09'.length)
+                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .type('9')
+                    .should('have.value', '09:09')
+                    .should('have.prop', 'selectionStart', '09:09'.length)
+                    .should('have.prop', 'selectionEnd', '09:09'.length)
+                    .type('9')
+                    .should('have.value', '09:09:09')
+                    .should('have.prop', 'selectionStart', '09:09:09'.length)
+                    .should('have.prop', 'selectionEnd', '09:09:09'.length);
             });
         });
     });
