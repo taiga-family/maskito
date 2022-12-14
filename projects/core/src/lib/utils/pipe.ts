@@ -8,9 +8,6 @@ export function maskitoPipe(
 
 export function maskitoPipe(...processors: readonly Function[]): Function {
     return (initialData: object) => {
-        return processors.reduce(
-            (data, fn) => fn({...initialData, ...data}),
-            initialData,
-        );
+        return processors.reduce((data, fn) => ({...data, ...fn(data)}), initialData);
     };
 }
