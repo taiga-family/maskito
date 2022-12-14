@@ -1,0 +1,138 @@
+<tui-doc-page
+    header="Time"
+    package="KIT"
+>
+    <ng-template pageTab>
+        Use
+        <code>maskitoTimeOptionsGenerator</code>
+        to create mask for time input.
+
+        <section>
+            <p>This generator has the following configurations:</p>
+            <ul class="tui-list tui-list_small">
+                <li class="tui-list__item">
+                    <code>mode</code>
+                    – time format mode.
+                    <p>
+                        <strong>Available options</strong>
+                        :
+                        <code>HH:MM</code>
+                        ,
+                        <code>HH:MM:SS</code>
+                        or
+                        <code>HH:MM:SS.MSS</code>
+                        .
+                    </p>
+                </li>
+                <li class="tui-list__item">
+                    <code>timeSegmentMaxValues</code>
+                    – max value for every time segment.
+
+                    <p>
+                        <strong>Time segments</strong>
+                        are units of the time which form time string. For
+                        example,
+                        <code>HH:MM</code>
+                        consists of two time segments: hours and minutes.
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <tui-doc-example
+            id="modes"
+            heading="modes"
+        >
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconTimeLarge"
+                ngModel="23:59"
+                class="input-time"
+            >
+                HH:MM
+                <input
+                    tuiTextfield
+                    [maskito]="preparedMasks['HH:MM']"
+                />
+            </tui-input>
+
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconTimeLarge"
+                ngModel="23:59:59"
+                class="input-time"
+            >
+                HH:MM:SS
+                <input
+                    tuiTextfield
+                    [maskito]="preparedMasks['HH:MM:SS']"
+                />
+            </tui-input>
+
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconTimeLarge"
+                ngModel="23:59:59.999"
+                class="input-time"
+            >
+                HH:MM:SS.MSS
+                <input
+                    tuiTextfield
+                    [maskito]="preparedMasks['HH:MM:SS.MSS']"
+                />
+            </tui-input>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="twelve-hours"
+            heading="12-hours format"
+        >
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconTimeLarge"
+                ngModel="11:59"
+                class="input-time"
+                [tuiTextfieldLabelOutside]="true"
+            >
+                <input
+                    tuiTextfield
+                    [maskito]="preparedMasks['HH:MM 12-hours']"
+                />
+            </tui-input>
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo>
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconTimeLarge"
+                ngModel=""
+                class="input-time"
+            >
+                Input time
+                <input
+                    tuiTextfield
+                    [maskito]="maskitoOptions"
+                />
+            </tui-input>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="mode"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoTimeMode"
+                [documentationPropertyValues]="modeOptions"
+                [(documentationPropertyValue)]="mode"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Time format mode
+            </ng-template>
+            <ng-template
+                documentationPropertyName="timeSegmentMaxValues"
+                documentationPropertyMode="input"
+                documentationPropertyType="Partial<MaskitoTimeSegments<number>>"
+                [documentationPropertyValues]="timeSegmentMaxValuesOptions"
+                [(documentationPropertyValue)]="timeSegmentMaxValues"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Max value for every time segment
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>

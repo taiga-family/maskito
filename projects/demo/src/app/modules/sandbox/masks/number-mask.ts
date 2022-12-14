@@ -20,7 +20,7 @@ export function maskitoNumberOptionsGenerator({
                     selection,
                     value: value.replace(PSEUDO_COMMA_REG_EXP, separator),
                 },
-                data: data?.replace(PSEUDO_COMMA_REG_EXP, separator),
+                data: data.replace(PSEUDO_COMMA_REG_EXP, separator),
             };
         },
     };

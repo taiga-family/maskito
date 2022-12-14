@@ -1,1 +1,1 @@
-export * from './lib/kit';
+export * from './lib/time';

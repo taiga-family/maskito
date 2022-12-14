@@ -5,4 +5,5 @@ export const MASKITO_DEFAULT_OPTIONS: Required<MaskitoOptions> = {
     mask: /^.*$/,
     preprocessor: identity,
     postprocessor: identity,
+    overwriteMode: 'shift',
 };
