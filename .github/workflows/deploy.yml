@@ -13,7 +13,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Build demo
-        run: nx build-gh-pages
+        run: npx nx build-gh-pages
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
