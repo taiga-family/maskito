@@ -1,0 +1,26 @@
+name: '🚀 - Feature Request'
+title: '🚀 - '
+description: Suggest a feature for Maskito
+labels: ['feature']
+
+body:
+  - type: dropdown
+    id: affected-packages
+    attributes:
+      label: Which package(s) are relevant/related to the feature request?
+      options:
+        - '@maskito/core'
+        - '@maskito/kit'
+        - '@maskito/angular'
+        - Don't known / other
+      multiple: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: |
+        Proposed solution.
+        Alternatives considered.
+    validations:
+      required: true

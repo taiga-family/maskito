@@ -33,11 +33,11 @@ export class MaskModel implements ElementState {
             {value, selection},
             maskExpression,
         );
-        const [unmaskedFrom, unmaskedTo] =
-            newCharacters.length <= 1
-                ? applyOverwriteMode(unmaskedElementState, this.maskOptions.overwriteMode)
-                      .selection
-                : unmaskedElementState.selection;
+        const [unmaskedFrom, unmaskedTo] = applyOverwriteMode(
+            unmaskedElementState,
+            newCharacters,
+            this.maskOptions.overwriteMode,
+        ).selection;
         const newUnmaskedValue =
             unmaskedElementState.value.slice(0, unmaskedFrom) +
             newCharacters +

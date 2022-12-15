@@ -99,18 +99,20 @@
     </ng-template>
 
     <ng-template pageTab>
-        <tui-doc-demo>
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconTimeLarge"
-                ngModel=""
-                class="input-time"
-            >
-                Input time
-                <input
-                    tuiTextfield
-                    [maskito]="maskitoOptions"
-                />
-            </tui-input>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiTextfieldCustomContent="tuiIconTimeLarge"
+                    class="input-time"
+                    [formControl]="apiPageControl"
+                >
+                    Input time
+                    <input
+                        tuiTextfield
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template

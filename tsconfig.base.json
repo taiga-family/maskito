@@ -28,7 +28,7 @@
         "noUnusedLocals": true,
         "target": "es2015",
         "typeRoots": ["node_modules/@types"],
-        "lib": ["es2018", "dom"],
+        "lib": ["esnext", "dom"],
         "paths": {
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
