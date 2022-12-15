@@ -7,7 +7,6 @@ export function maskitoPipe(
 ): MaskPostprocessor;
 
 export function maskitoPipe(...processors: readonly Function[]): Function {
-    return (initialData: object) => {
-        return processors.reduce((data, fn) => ({...data, ...fn(data)}), initialData);
-    };
+    return (initialData: object) =>
+        processors.reduce((data, fn) => ({...data, ...fn(data)}), initialData);
 }
