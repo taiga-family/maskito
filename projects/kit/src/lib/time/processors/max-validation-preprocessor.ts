@@ -42,52 +42,61 @@ export function createMaxValidationPreprocessor(
                 isLastSegmentDigitAdded &&
                 Number(segmentValue) > Number(maxSegmentValue)
             ) {
-                return {elementState, data: ''}; // prevent
+                // 2|0:00 => Type 9 => 2|0:00
+                return {elementState, data: ''}; // prevent changes
             }
 
-            const {validatedTimeSegmentValue, prefixedZeroesCount} = padZeroesUntilValid(
-                segmentValue,
-                maxSegmentValue,
-            );
+            const {validatedTimeSegmentValue, prefixedZeroesCount} =
+                padWithZeroesUntilValid(segmentValue, maxSegmentValue);
 
             to += prefixedZeroesCount;
 
             validatedTimeSegments[segmentName] = validatedTimeSegmentValue;
         }
 
-        const final = toTimeString(validatedTimeSegments);
-        const newData = final.slice(from, to);
-        const newValue =
-            final.slice(0, from) + '0'.repeat(newData.length) + final.slice(to);
+        const finalTimeString = toTimeString(validatedTimeSegments);
+
+        to = finalTimeString.length - value.slice(to).length;
+
+        const newData = finalTimeString.slice(from, to);
 
         return {
             elementState: {
                 selection,
-                value: newValue,
+                value:
+                    finalTimeString.slice(0, from) +
+                    '0'.repeat(newData.length) +
+                    finalTimeString.slice(to),
             },
             data: newData,
         };
     };
 }
 
-function padZeroesUntilValid(
-    value: string,
+function padWithZeroesUntilValid(
+    segmentValue: string,
     paddedMaxValue: string,
     prefixedZeroesCount = 0,
 ): {validatedTimeSegmentValue: string; prefixedZeroesCount: number} {
-    const paddedValue = value.padEnd(paddedMaxValue.length, '0');
-
-    if (Number(paddedValue) <= Number(paddedMaxValue)) {
-        return {validatedTimeSegmentValue: value, prefixedZeroesCount};
+    if (
+        Number(segmentValue.padEnd(paddedMaxValue.length, '0')) <= Number(paddedMaxValue)
+    ) {
+        return {validatedTimeSegmentValue: segmentValue, prefixedZeroesCount};
     }
 
-    const canAddZeroPrefix = value.endsWith('0');
+    if (segmentValue.endsWith('0')) {
+        // 00:|00 => Type 9 => 00:09|
+        return padWithZeroesUntilValid(
+            '0' + segmentValue.slice(0, paddedMaxValue.length - 1),
+            paddedMaxValue,
+            prefixedZeroesCount + 1,
+        );
+    }
 
-    return padZeroesUntilValid(
-        canAddZeroPrefix
-            ? '0' + value.slice(0, paddedMaxValue.length - 1)
-            : value.slice(0, paddedMaxValue.length - 1) + '0',
+    // |19:00 => Type 2 => 2|0:00
+    return padWithZeroesUntilValid(
+        segmentValue.slice(0, paddedMaxValue.length - 1) + '0',
         paddedMaxValue,
-        canAddZeroPrefix ? prefixedZeroesCount + 1 : prefixedZeroesCount,
+        prefixedZeroesCount,
     );
 }
