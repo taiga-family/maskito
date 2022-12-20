@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {
     MaskitoTimeMode,
@@ -15,6 +16,8 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeMaskDocComponent implements GeneratorOptions {
+    apiPageControl = new FormControl('');
+
     readonly preparedMasks = {
         'HH:MM': maskitoTimeOptionsGenerator({mode: 'HH:MM'}),
         'HH:MM:SS': maskitoTimeOptionsGenerator({mode: 'HH:MM:SS'}),

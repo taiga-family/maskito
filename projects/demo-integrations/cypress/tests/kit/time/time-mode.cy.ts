@@ -9,6 +9,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -74,17 +76,26 @@ describe('Time', () => {
                 });
             });
 
-            // TODO: BUG!
-            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+            it('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
                 cy.get('@input')
                     .type('9')
-                    .should('have.value', '09')
-                    .should('have.prop', 'selectionStart', '09'.length)
-                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .should('have.value', '09:00')
+                    .should('have.prop', 'selectionStart', '09:'.length)
+                    .should('have.prop', 'selectionEnd', '09:'.length)
                     .type('9')
                     .should('have.value', '09:09')
                     .should('have.prop', 'selectionStart', '09:09'.length)
                     .should('have.prop', 'selectionEnd', '09:09'.length);
+            });
+
+            it('cannot insert >23 hours', () => {
+                cy.get('@input')
+                    .type('2')
+                    .should('have.value', '20:00')
+                    .type('7')
+                    .should('have.value', '20:00')
+                    .should('have.prop', 'selectionStart', '2'.length)
+                    .should('have.prop', 'selectionEnd', '2'.length);
             });
         });
 
@@ -95,6 +106,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -120,6 +133,7 @@ describe('Time', () => {
                 it('moves cursor behind next character if new character is the same with the next one', () => {
                     cy.get('@input')
                         .type('02:59:59')
+                        .should('have.value', '02:59:59')
                         .type('{moveToStart}')
                         .type('{rightArrow}'.repeat('02:'.length))
                         .type('5')
@@ -165,17 +179,16 @@ describe('Time', () => {
                 });
             });
 
-            // TODO: BUG!
-            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+            it('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
                 cy.get('@input')
                     .type('9')
-                    .should('have.value', '09')
-                    .should('have.prop', 'selectionStart', '09'.length)
-                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .should('have.value', '09:00:00')
+                    .should('have.prop', 'selectionStart', '09:'.length)
+                    .should('have.prop', 'selectionEnd', '09:'.length)
                     .type('9')
-                    .should('have.value', '09:09')
-                    .should('have.prop', 'selectionStart', '09:09'.length)
-                    .should('have.prop', 'selectionEnd', '09:09'.length)
+                    .should('have.value', '09:09:00')
+                    .should('have.prop', 'selectionStart', '09:09:'.length)
+                    .should('have.prop', 'selectionEnd', '09:09:'.length)
                     .type('9')
                     .should('have.value', '09:09:09')
                     .should('have.prop', 'selectionStart', '09:09:09'.length)
@@ -190,6 +203,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -220,7 +235,7 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('02:59:59.999')
                         .type('{moveToStart}')
-                        .type('{rightArrow}'.repeat('02:59:59'.length))
+                        .type('{rightArrow}'.repeat('02:59:59.'.length))
                         .type('9')
                         .should('have.value', '02:59:59.999')
                         .should('have.prop', 'selectionStart', '02:59:59.9'.length)
@@ -264,21 +279,20 @@ describe('Time', () => {
                 });
             });
 
-            // TODO: BUG!
-            it.skip('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
+            it('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
                 cy.get('@input')
                     .type('9')
-                    .should('have.value', '09')
-                    .should('have.prop', 'selectionStart', '09'.length)
-                    .should('have.prop', 'selectionEnd', '09'.length)
+                    .should('have.value', '09:00:00.000')
+                    .should('have.prop', 'selectionStart', '09:'.length)
+                    .should('have.prop', 'selectionEnd', '09:'.length)
                     .type('9')
-                    .should('have.value', '09:09')
-                    .should('have.prop', 'selectionStart', '09:09'.length)
-                    .should('have.prop', 'selectionEnd', '09:09'.length)
+                    .should('have.value', '09:09:00.000')
+                    .should('have.prop', 'selectionStart', '09:09:'.length)
+                    .should('have.prop', 'selectionEnd', '09:09:'.length)
                     .type('9')
-                    .should('have.value', '09:09:09')
-                    .should('have.prop', 'selectionStart', '09:09:09'.length)
-                    .should('have.prop', 'selectionEnd', '09:09:09'.length);
+                    .should('have.value', '09:09:09.000')
+                    .should('have.prop', 'selectionStart', '09:09:09.'.length)
+                    .should('have.prop', 'selectionEnd', '09:09:09.'.length);
             });
         });
     });

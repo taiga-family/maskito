@@ -2,13 +2,13 @@ import {ElementState, MaskitoOptions} from '../../../types';
 
 export function applyOverwriteMode(
     {value, selection}: ElementState,
+    newCharacters: string,
     mode: MaskitoOptions['overwriteMode'],
 ): ElementState {
     const [from, to] = selection;
 
-    if (from !== to || to >= value.length) {
-        return {value, selection};
-    }
-
-    return {value, selection: mode === 'replace' ? [from, to + 1] : [from, to]};
+    return {
+        value,
+        selection: mode === 'replace' ? [from, from + newCharacters.length] : [from, to],
+    };
 }

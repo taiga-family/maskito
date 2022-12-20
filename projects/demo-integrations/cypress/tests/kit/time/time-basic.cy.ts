@@ -61,13 +61,9 @@ describe('Time', () => {
         });
 
         describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
-            beforeEach(() => {
-                cy.get('@input').type('1234');
-            });
-
             it('12:3|4 => Backspace => 12:|04 => Type "5" => 12:5|4', () => {
                 cy.get('@input')
-                    .focus()
+                    .type('1234')
                     .type('{leftArrow}')
                     .should('have.prop', 'selectionStart', '12:3'.length)
                     .should('have.prop', 'selectionEnd', '12:3'.length)
@@ -83,7 +79,7 @@ describe('Time', () => {
 
             it('12|:34 => Backspace => 1|0:34 => Type "1" => 11:|34', () => {
                 cy.get('@input')
-                    .focus()
+                    .type('1234')
                     .type('{leftArrow}'.repeat(':34'.length))
                     .should('have.prop', 'selectionStart', '12'.length)
                     .should('have.prop', 'selectionEnd', '12'.length)
@@ -99,7 +95,7 @@ describe('Time', () => {
 
             it('1|2:34 => Backspace => |02:34 => Type "2" => 2|2:34', () => {
                 cy.get('@input')
-                    .focus()
+                    .type('1234')
                     .type('{leftArrow}'.repeat('2:34'.length))
                     .should('have.prop', 'selectionStart', '1'.length)
                     .should('have.prop', 'selectionEnd', '1'.length)
@@ -111,6 +107,30 @@ describe('Time', () => {
                     .should('have.value', '22:34')
                     .should('have.prop', 'selectionStart', 1)
                     .should('have.prop', 'selectionEnd', 1);
+            });
+
+            it('12:|34 => Type "9" => 12:09|', () => {
+                cy.get('@input')
+                    .type('1234')
+                    .type('{leftArrow}'.repeat('34'.length))
+                    .should('have.prop', 'selectionStart', '12:'.length)
+                    .should('have.prop', 'selectionEnd', '12:'.length)
+                    .type('9')
+                    .should('have.value', '12:09')
+                    .should('have.prop', 'selectionStart', '12:09'.length)
+                    .should('have.prop', 'selectionEnd', '12:09'.length);
+            });
+
+            it('|19:45 => Type "2" => 2|0:45', () => {
+                cy.get('@input')
+                    .type('1945')
+                    .type('{moveToStart}')
+                    .should('have.prop', 'selectionStart', 0)
+                    .should('have.prop', 'selectionEnd', 0)
+                    .type('2')
+                    .should('have.value', '20:45')
+                    .should('have.prop', 'selectionStart', '2'.length)
+                    .should('have.prop', 'selectionEnd', '2'.length);
             });
         });
 
