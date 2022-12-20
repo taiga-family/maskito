@@ -36,8 +36,15 @@ jobs:
           npm run serve:ssr -- --ci & sleep 5
           curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
 
-      - name: Run cypress / ssr / universal
-        run: npm run cy:run -- --spec "**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+      - name: Run cypress / ssr / Electron
+        run:
+          npm run cy:run -- --browser electron --config-file cypress-electron.config.ts --config baseUrl="${{
+          env.UNIVERSAL_SERVER }}"
+
+      - name: Run cypress / ssr / Chrome
+        run:
+          npm run cy:run -- --browser chrome --config-file cypress-chrome.config.ts --config baseUrl="${{
+          env.UNIVERSAL_SERVER }}"
 
 concurrency:
   group: integration-e2e-${{ github.head_ref }}
