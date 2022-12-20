@@ -10,13 +10,13 @@ export function createZeroPlaceholdersPreprocessor(
 
         if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
             return {
-                elementState: {selection, value: value.padEnd(mode.length, '0')},
+                elementState: {selection, value: padZeroes(value, mode)},
             };
         }
 
         const zeroes = value.slice(from, to).replace(/\d/g, '0');
         const newValue = value.slice(0, from) + zeroes + value.slice(to);
-        const newValueWithZeroPlaceholders = newValue.padEnd(mode.length, '0');
+        const newValueWithZeroPlaceholders = padZeroes(newValue, mode);
 
         return {
             elementState: {
@@ -28,4 +28,16 @@ export function createZeroPlaceholdersPreprocessor(
             },
         };
     };
+}
+
+function padZeroes(value: string, timeMode: MaskitoTimeMode): string {
+    let paddiedValue = value;
+
+    while (paddiedValue.length < timeMode.length) {
+        const char = timeMode[paddiedValue.length];
+
+        paddiedValue += char.match(/\w/) ? '0' : char;
+    }
+
+    return paddiedValue;
 }

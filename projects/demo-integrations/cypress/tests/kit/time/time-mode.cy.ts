@@ -9,6 +9,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -104,6 +106,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -129,6 +133,7 @@ describe('Time', () => {
                 it('moves cursor behind next character if new character is the same with the next one', () => {
                     cy.get('@input')
                         .type('02:59:59')
+                        .should('have.value', '02:59:59')
                         .type('{moveToStart}')
                         .type('{rightArrow}'.repeat('02:'.length))
                         .type('5')
@@ -198,6 +203,8 @@ describe('Time', () => {
                     .should('be.visible')
                     .first()
                     .focus()
+                    .clear()
+                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -228,7 +235,7 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('02:59:59.999')
                         .type('{moveToStart}')
-                        .type('{rightArrow}'.repeat('02:59:59'.length))
+                        .type('{rightArrow}'.repeat('02:59:59.'.length))
                         .type('9')
                         .should('have.value', '02:59:59.999')
                         .should('have.prop', 'selectionStart', '02:59:59.9'.length)

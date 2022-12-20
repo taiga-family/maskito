@@ -1,7 +1,7 @@
 import {MaskitoTimeSegments} from '../types';
 
 export function toTimeString({
-    hours,
+    hours = '',
     minutes = '',
     seconds = '',
     milliseconds = '',

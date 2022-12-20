@@ -9,38 +9,37 @@ export function createMaxValidationPreprocessor(
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
 
     return ({elementState, data}) => {
-        if (!data) {
-            return {elementState, data};
+        const newCharacters = data.replace(/\D+/g, '');
+
+        if (!newCharacters) {
+            return {elementState, data: ''};
         }
 
         const {value, selection} = elementState;
-        const [from, to] = selection;
-        const newPossibleValue =
-            value.slice(0, from) +
-            data +
-            // to be conformed with `overwriteMode: replace`
-            value.slice(to + data.length);
-        const possibleTimeSegments = parseTimeString(newPossibleValue);
+        const [from, rawTo] = selection;
+        let to = rawTo + newCharacters.length; // to be conformed with `overwriteMode: replace`
+        const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
+        const possibleTimeSegments = Object.entries(
+            parseTimeString(newPossibleValue),
+        ) as Array<[keyof MaskitoTimeSegments, string]>;
 
-        let validatedLeadingPart = value.slice(0, from);
-        let newData = '';
+        const validatedTimeSegments: Partial<MaskitoTimeSegments> = {};
 
-        for (const typedCharacter of data) {
-            const newValidatedLeadingPart = validatedLeadingPart + typedCharacter;
-            const timeSegments = Object.entries(
-                parseTimeString(newValidatedLeadingPart),
-            ) as Array<[keyof MaskitoTimeSegments, string]>;
-            const lastSegmentIndex = timeSegments.length - 1;
-
-            const [segmentName, typedSegmentValue] = timeSegments[lastSegmentIndex];
-            const isLastTimeSegmentDigit =
-                typedSegmentValue.length >= TIME_SEGMENT_VALUE_LENGTHS[segmentName];
-
-            const segmentValue = possibleTimeSegments[segmentName] || '';
+        for (const [segmentName, segmentValue] of possibleTimeSegments) {
+            const validatedTime = toTimeString(validatedTimeSegments);
             const maxSegmentValue = paddedMaxValues[segmentName];
 
+            const fantomSeparator = validatedTime.length && 1;
+
+            const lastSegmentDigitIndex =
+                validatedTime.length +
+                fantomSeparator +
+                TIME_SEGMENT_VALUE_LENGTHS[segmentName];
+            const isLastSegmentDigitAdded =
+                lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
+
             if (
-                isLastTimeSegmentDigit &&
+                isLastSegmentDigitAdded &&
                 Number(segmentValue) > Number(maxSegmentValue)
             ) {
                 return {elementState, data: ''}; // prevent
@@ -51,22 +50,20 @@ export function createMaxValidationPreprocessor(
                 maxSegmentValue,
             );
 
-            newData += typedCharacter.padStart(prefixedZeroesCount + 1, '0');
+            to += prefixedZeroesCount;
 
-            validatedLeadingPart = toTimeString(
-                Object.fromEntries([
-                    ...timeSegments.slice(0, lastSegmentIndex),
-                    [segmentName, validatedTimeSegmentValue],
-                ]),
-            );
+            validatedTimeSegments[segmentName] = validatedTimeSegmentValue;
         }
+
+        const final = toTimeString(validatedTimeSegments);
+        const newData = final.slice(from, to);
+        const newValue =
+            final.slice(0, from) + '0'.repeat(newData.length) + final.slice(to);
 
         return {
             elementState: {
                 selection,
-                value:
-                    validatedLeadingPart +
-                    newPossibleValue.slice(validatedLeadingPart.length),
+                value: newValue,
             },
             data: newData,
         };
