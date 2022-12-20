@@ -27,14 +27,15 @@ export function createMaxValidationPreprocessor(
 
         for (const typedCharacter of data) {
             const newValidatedLeadingPart = validatedLeadingPart + typedCharacter;
-            const isLastTimeSegmentDigit = isAllTimeSegmentFinished(
-                newValidatedLeadingPart,
-            );
             const timeSegments = Object.entries(
                 parseTimeString(newValidatedLeadingPart),
             ) as Array<[keyof MaskitoTimeSegments, string]>;
             const lastSegmentIndex = timeSegments.length - 1;
-            const [segmentName] = timeSegments[lastSegmentIndex];
+
+            const [segmentName, typedSegmentValue] = timeSegments[lastSegmentIndex];
+            const isLastTimeSegmentDigit =
+                typedSegmentValue.length >= TIME_SEGMENT_VALUE_LENGTHS[segmentName];
+
             const segmentValue = possibleTimeSegments[segmentName] || '';
             const maxSegmentValue = paddedMaxValues[segmentName];
 
@@ -45,12 +46,12 @@ export function createMaxValidationPreprocessor(
                 return {elementState, data: ''}; // prevent
             }
 
-            const {validatedTimeSegmentValue, prefixedZeroes} = padZeroesUntilValid(
+            const {validatedTimeSegmentValue, prefixedZeroesCount} = padZeroesUntilValid(
                 segmentValue,
                 maxSegmentValue,
             );
 
-            newData += typedCharacter.padStart(prefixedZeroes + 1, '0');
+            newData += typedCharacter.padStart(prefixedZeroesCount + 1, '0');
 
             validatedLeadingPart = toTimeString(
                 Object.fromEntries([
@@ -72,26 +73,15 @@ export function createMaxValidationPreprocessor(
     };
 }
 
-function isAllTimeSegmentFinished(value: string): boolean {
-    const timeSegments = Object.entries(parseTimeString(value)) as Array<
-        [keyof MaskitoTimeSegments, string]
-    >;
-
-    return timeSegments.every(
-        ([segmentName, segmentValue]) =>
-            segmentValue.length >= TIME_SEGMENT_VALUE_LENGTHS[segmentName],
-    );
-}
-
 function padZeroesUntilValid(
     value: string,
     paddedMaxValue: string,
-    prefixedZeroes = 0,
-): {validatedTimeSegmentValue: string; prefixedZeroes: number} {
+    prefixedZeroesCount = 0,
+): {validatedTimeSegmentValue: string; prefixedZeroesCount: number} {
     const paddedValue = value.padEnd(paddedMaxValue.length, '0');
 
     if (Number(paddedValue) <= Number(paddedMaxValue)) {
-        return {validatedTimeSegmentValue: value, prefixedZeroes};
+        return {validatedTimeSegmentValue: value, prefixedZeroesCount};
     }
 
     const canAddZeroPrefix = value.endsWith('0');
@@ -101,6 +91,6 @@ function padZeroesUntilValid(
             ? '0' + value.slice(0, paddedMaxValue.length - 1)
             : value.slice(0, paddedMaxValue.length - 1) + '0',
         paddedMaxValue,
-        canAddZeroPrefix ? prefixedZeroes + 1 : prefixedZeroes,
+        canAddZeroPrefix ? prefixedZeroesCount + 1 : prefixedZeroesCount,
     );
 }
