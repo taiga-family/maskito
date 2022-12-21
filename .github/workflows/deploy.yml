@@ -2,7 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - fix-gh-pages
 
 jobs:
   deploy:
