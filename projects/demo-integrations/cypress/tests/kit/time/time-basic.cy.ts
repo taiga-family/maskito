@@ -4,7 +4,11 @@ describe('Time', () => {
     describe('Basic', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.Time}/API?mode=HH:MM`);
-            cy.get('#demoContent input').should('be.visible').first().focus().as('input');
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
         });
 
         describe('basic typing (1 character per keydown)', () => {
