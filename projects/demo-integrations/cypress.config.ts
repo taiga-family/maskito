@@ -3,7 +3,7 @@ import {defineConfig} from 'cypress';
 export const CYPRESS_CONFIG: Cypress.ConfigOptions = {
     video: false,
     fixturesFolder: 'cypress/fixtures',
-    viewportWidth: 1440,
+    viewportWidth: 500,
     viewportHeight: 900,
     responseTimeout: 60000,
     pageLoadTimeout: 120000,
