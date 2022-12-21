@@ -5,7 +5,7 @@ describe('Time', () => {
         describe('HH:MM', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM`);
-                cy.get('#demoContent input')
+                cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
                     .focus()
@@ -102,7 +102,7 @@ describe('Time', () => {
         describe('HH:MM:SS', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM:SS`);
-                cy.get('#demoContent input')
+                cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
                     .focus()
@@ -199,7 +199,7 @@ describe('Time', () => {
         describe('HH:MM:SS.MSS', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.Time}/API?mode=HH:MM:SS.MSS`);
-                cy.get('#demoContent input')
+                cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
                     .focus()
