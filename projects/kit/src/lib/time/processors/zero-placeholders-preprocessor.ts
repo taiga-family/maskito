@@ -4,7 +4,7 @@ import {MaskitoTimeMode} from '../types';
 export function createZeroPlaceholdersPreprocessor(
     mode: MaskitoTimeMode,
 ): NonNullable<MaskitoOptions['preprocessor']> {
-    return ({elementState, actionType}) => {
+    return ({elementState}, actionType) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
 

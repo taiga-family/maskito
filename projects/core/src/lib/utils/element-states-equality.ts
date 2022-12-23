@@ -4,7 +4,7 @@ export function areElementValuesEqual(
     sampleState: ElementState,
     ...states: ElementState[]
 ): boolean {
-    return states.every(state => state.value === sampleState.value);
+    return states.every(({value}) => value === sampleState.value);
 }
 
 export function areElementStatesEqual(
@@ -12,9 +12,9 @@ export function areElementStatesEqual(
     ...states: ElementState[]
 ): boolean {
     return states.every(
-        state =>
-            state.value === sampleState.value &&
-            state.selection[0] === sampleState.selection[0] &&
-            state.selection[1] === sampleState.selection[1],
+        ({value, selection}) =>
+            value === sampleState.value &&
+            selection[0] === sampleState.selection[0] &&
+            selection[1] === sampleState.selection[1],
     );
 }
