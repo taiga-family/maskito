@@ -1,6 +1,6 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
-import {ElementState, MaskitoOptions, SelectionRange} from './types';
+import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './types';
 import {
     areElementValuesEqual,
     EventListener,
@@ -70,7 +70,11 @@ export class Maskito extends MaskHistory {
                 }
             });
         } else {
-            // TODO: drop it after browser support bump
+            /** TODO: drop it after browser support bump
+             * Also, replace union types `Event | TypedInputEvent` with `TypedInputEvent` inside:
+             *** {@link handleDelete}
+             *** {@link handleInsert}
+             */
             this.eventListener.listen('keydown', event => this.handleKeydown(event));
             this.eventListener.listen('paste', event =>
                 this.handleInsert(
@@ -140,7 +144,7 @@ export class Maskito extends MaskHistory {
         this.updateSelectionRange(selection);
     }
 
-    private handleDelete(event: Event, isForward: boolean): void {
+    private handleDelete(event: Event | TypedInputEvent, isForward: boolean): void {
         const initialState: ElementState = {
             value: this.elementState.value,
             selection: extendToNotEmptyRange(this.elementState.selection, isForward),
@@ -176,12 +180,20 @@ export class Maskito extends MaskHistory {
             return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
         }
 
-        this.updateValue(newElementState.value);
+        // TODO: drop it when `event: Event | TypedInputEvent` => `event: TypedInputEvent`
+        const inputTypeFallback = isForward
+            ? 'deleteContentForward'
+            : 'deleteContentBackward';
+
+        this.updateValue(newElementState.value, {
+            inputType: 'inputType' in event ? event.inputType : inputTypeFallback,
+            data: null,
+        });
         this.updateSelectionRange(newElementState.selection);
         this.updateHistory(newElementState);
     }
 
-    private handleInsert(event: Event, data: string): void {
+    private handleInsert(event: Event | TypedInputEvent, data: string): void {
         const initialElementState = this.elementState;
         const {elementState, data: insertedText = data} = this.options.preprocessor(
             {
@@ -209,7 +221,10 @@ export class Maskito extends MaskHistory {
         if (newPossibleValue !== value) {
             event.preventDefault();
 
-            this.updateValue(value);
+            this.updateValue(value, {
+                data,
+                inputType: 'inputType' in event ? event.inputType : 'insertText',
+            });
             this.updateSelectionRange(selection);
             this.updateHistory({value, selection});
         }
@@ -221,9 +236,22 @@ export class Maskito extends MaskHistory {
         }
     }
 
-    protected updateValue(newValue: string): void {
+    protected updateValue(
+        newValue: string,
+        eventInit: Pick<TypedInputEvent, 'inputType' | 'data'> = {
+            inputType: 'insertText',
+            data: null,
+        },
+    ): void {
         if (this.element.value !== newValue) {
             this.element.value = newValue;
+            this.element.dispatchEvent(
+                new InputEvent('input', {
+                    ...eventInit,
+                    bubbles: true,
+                    cancelable: true,
+                }),
+            );
         }
     }
 
