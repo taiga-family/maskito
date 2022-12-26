@@ -1,7 +1,11 @@
-import {ElementState, SelectionRange} from '../types';
+import type {ElementState, SelectionRange, TypedInputEvent} from '../types';
 
 export abstract class MaskHistory {
-    protected abstract updateValue(value: string): void;
+    protected abstract updateValue(
+        value: string,
+        eventInit: Pick<TypedInputEvent, 'inputType' | 'data'>,
+    ): void;
+
     protected abstract updateSelectionRange(selection: SelectionRange): void;
 
     private now: ElementState | null = null;
@@ -13,7 +17,7 @@ export abstract class MaskHistory {
 
         if (state && this.now) {
             this.future.push(this.now);
-            this.updateElement(state);
+            this.updateElement(state, 'historyUndo');
         }
     }
 
@@ -22,7 +26,7 @@ export abstract class MaskHistory {
 
         if (state && this.now) {
             this.past.push(this.now);
-            this.updateElement(state);
+            this.updateElement(state, 'historyRedo');
         }
     }
 
@@ -50,9 +54,12 @@ export abstract class MaskHistory {
         this.now = state;
     }
 
-    private updateElement(state: ElementState): void {
+    private updateElement(
+        state: ElementState,
+        inputType: TypedInputEvent['inputType'],
+    ): void {
         this.now = state;
-        this.updateValue(state.value);
+        this.updateValue(state.value, {inputType, data: null});
         this.updateSelectionRange(state.selection);
     }
 }

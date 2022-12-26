@@ -1,11 +1,11 @@
-import {Directive, ElementRef, Inject, Input, OnChanges, OnDestroy} from '@angular/core';
+import {Directive, ElementRef, Inject, Input, OnDestroy} from '@angular/core';
 import {Maskito, MaskitoOptions} from '@maskito/core';
 import {MASKITO_OPTIONS} from './maskito-options';
 
 @Directive({
     selector: 'input[maskito], textarea[maskito]',
 })
-export class MaskitoDirective implements OnChanges, OnDestroy {
+export class MaskitoDirective implements OnDestroy {
     private maskedElement: Maskito | null = null;
 
     /**
@@ -29,7 +29,14 @@ export class MaskitoDirective implements OnChanges, OnDestroy {
      * WARNING! This approach is acceptable only for the static mask (no mask option changes).
      */
     @Input('maskito')
-    options: MaskitoOptions | '' = this.defaultOptions;
+    set options(options: MaskitoOptions | '') {
+        this.maskedElement?.destroy();
+
+        this.maskedElement = new Maskito(
+            this.elementRef.nativeElement,
+            options || this.defaultOptions,
+        );
+    }
 
     constructor(
         @Inject(ElementRef)
@@ -37,15 +44,6 @@ export class MaskitoDirective implements OnChanges, OnDestroy {
         @Inject(MASKITO_OPTIONS)
         private readonly defaultOptions: MaskitoOptions,
     ) {}
-
-    ngOnChanges() {
-        this.maskedElement?.destroy();
-
-        this.maskedElement = new Maskito(
-            this.elementRef.nativeElement,
-            this.options || this.defaultOptions,
-        );
-    }
 
     ngOnDestroy() {
         this.maskedElement?.destroy();
