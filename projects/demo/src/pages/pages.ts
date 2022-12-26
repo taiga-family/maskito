@@ -3,6 +3,12 @@ import {DemoPath} from '../app/app.routes';
 
 export const DEMO_PAGES: TuiDocPages = [
     {
+        section: 'Documentation',
+        title: 'Browser support',
+        route: DemoPath.BrowserSupport,
+        keywords: `chrome, safari, ie, edge, firefox`,
+    },
+    {
         section: 'Kit',
         title: 'Time',
         route: DemoPath.Time,

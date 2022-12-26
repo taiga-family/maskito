@@ -5,6 +5,7 @@ import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const enum DemoPath {
     Time = 'kit/time',
+    BrowserSupport = 'documentation/browser-support',
 }
 
 export const appRoutes: Routes = [
@@ -13,6 +14,16 @@ export const appRoutes: Routes = [
         component: SandboxComponent,
         data: {
             title: `Sandbox`,
+        },
+    },
+    {
+        path: DemoPath.BrowserSupport,
+        loadChildren: () =>
+            import(`../pages/documentation/browser-support/browser-support.module`).then(
+                m => m.BrowserSupportModule,
+            ),
+        data: {
+            title: `Browser support`,
         },
     },
     {

@@ -70,7 +70,7 @@ export class Maskito extends MaskHistory {
                 }
             });
         } else {
-            /** TODO: drop it after browser support bump
+            /** TODO: drop it after browser support bump (Firefox 87+)
              * Also, replace union types `Event | TypedInputEvent` with `TypedInputEvent` inside:
              *** {@link handleDelete}
              *** {@link handleInsert}
@@ -244,9 +244,13 @@ export class Maskito extends MaskHistory {
         },
     ): void {
         if (this.element.value !== newValue) {
+            const globalObject = typeof window !== 'undefined' ? window : globalThis;
+
             this.element.value = newValue;
 
-            if (globalThis.InputEvent) {
+            // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
+            // @see https://caniuse.com/?search=globalThis
+            if (globalObject?.InputEvent) {
                 this.element.dispatchEvent(
                     new InputEvent('input', {
                         ...eventInit,
