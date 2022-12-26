@@ -245,13 +245,16 @@ export class Maskito extends MaskHistory {
     ): void {
         if (this.element.value !== newValue) {
             this.element.value = newValue;
-            this.element.dispatchEvent(
-                new InputEvent('input', {
-                    ...eventInit,
-                    bubbles: true,
-                    cancelable: true,
-                }),
-            );
+
+            if (globalThis.InputEvent) {
+                this.element.dispatchEvent(
+                    new InputEvent('input', {
+                        ...eventInit,
+                        bubbles: true,
+                        cancelable: true,
+                    }),
+                );
+            }
         }
     }
 
