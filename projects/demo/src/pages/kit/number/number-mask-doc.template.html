@@ -33,6 +33,36 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
+                documentationPropertyName="isNegativeAllowed"
+                documentationPropertyMode="input"
+                documentationPropertyType="boolean"
+                [(documentationPropertyValue)]="isNegativeAllowed"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Allows to input negative sign (minus).
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>true</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="max"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                The greatest permitted value.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>Number.MAX_SAFE_INTEGER</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
                 documentationPropertyName="precision"
                 documentationPropertyMode="input"
                 documentationPropertyType="number"
@@ -64,6 +94,24 @@
                 </p>
             </ng-template>
             <ng-template
+                documentationPropertyName="decimalPseudoSeparators"
+                documentationPropertyMode="input"
+                documentationPropertyType="string[]"
+                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
+                [(documentationPropertyValue)]="decimalPseudoSeparators"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Symbols to be replaced with
+                <code>decimalSeparator</code>
+                .
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['.', 'ю', 'б']</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
                 documentationPropertyName="decimalZeroPadding"
                 documentationPropertyMode="input"
                 documentationPropertyType="boolean"
@@ -82,24 +130,6 @@
                     <strong>Default:</strong>
                     <code>false</code>
                     (number of digits can be less than precision) .
-                </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyName="decimalPseudoSeparators"
-                documentationPropertyMode="input"
-                documentationPropertyType="string[]"
-                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
-                [(documentationPropertyValue)]="decimalPseudoSeparators"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                Symbols to be replaced with
-                <code>decimalSeparator</code>
-                .
-
-                <p>
-                    <strong>Default:</strong>
-                    <code>['.', 'ю', 'б']</code>
-                    .
                 </p>
             </ng-template>
             <ng-template

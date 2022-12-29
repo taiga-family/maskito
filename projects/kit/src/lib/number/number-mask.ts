@@ -2,6 +2,7 @@ import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
+    createMaxValidationPostprocessor,
     createNotEmptyIntegerPartPreprocessor,
     createPseudoSeparatorsPreprocessor,
     createSeparatorDeletionPreprocessor,
@@ -10,15 +11,16 @@ import {
 import {generateMaskExpression} from './utils';
 
 export function maskitoNumberOptionsGenerator({
-    min = Number.MIN_SAFE_INTEGER,
+    max = Number.MAX_SAFE_INTEGER,
+    isNegativeAllowed = true,
     precision = 0,
     decimalSeparator = ',',
     decimalPseudoSeparators = ['.', 'б', 'ю'],
     decimalZeroPadding = false,
     thousandSeparator = '\u00A0',
 }: {
-    min?: number; // TODO it will be finished in next PR
-    max?: number; // TODO it will be finished in next PR
+    max?: number;
+    isNegativeAllowed?: boolean;
     precision?: number;
     decimalSeparator?: string;
     decimalPseudoSeparators?: string[];
@@ -30,7 +32,7 @@ export function maskitoNumberOptionsGenerator({
             decimalSeparator,
             precision,
             thousandSeparator,
-            isNegativeAllowed: min < 0,
+            isNegativeAllowed,
         }),
         preprocessor: maskitoPipe(
             createPseudoSeparatorsPreprocessor(decimalSeparator, decimalPseudoSeparators),
@@ -43,6 +45,7 @@ export function maskitoNumberOptionsGenerator({
         ),
         postprocessor: maskitoPipe(
             createLeadingZeroesValidationPostprocessor(decimalSeparator),
+            createMaxValidationPostprocessor({decimalSeparator, max, thousandSeparator}),
             createThousandSeparatorPostprocessor({decimalSeparator, thousandSeparator}),
             createDecimalZeroPaddingPostprocessor({
                 decimalSeparator,

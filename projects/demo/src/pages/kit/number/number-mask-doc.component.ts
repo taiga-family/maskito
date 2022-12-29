@@ -22,7 +22,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     readonly decimalPseudoSeparatorsOptions = [['.', 'б', 'ю'], ['.']];
 
     precision = 0;
-    min = Number.MIN_SAFE_INTEGER;
+    isNegativeAllowed = true;
     max = Number.MAX_SAFE_INTEGER;
     decimalSeparator = ',';
     decimalZeroPadding = false;
