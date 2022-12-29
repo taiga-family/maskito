@@ -6,8 +6,11 @@
     "prefix": "app",
     "targets": {
         "build": {
-            "executor": "@angular-devkit/build-angular:browser",
+            "executor": "@angular-builders/custom-webpack:browser",
             "options": {
+                "customWebpackConfig": {
+                    "path": "projects/demo/webpack.config.ts"
+                },
                 "baseHref": "/",
                 "outputPath": "dist/demo/browser",
                 "index": "projects/demo/src/index.html",
@@ -84,7 +87,7 @@
             }
         },
         "serve": {
-            "executor": "@angular-devkit/build-angular:dev-server",
+            "executor": "@angular-builders/custom-webpack:dev-server",
             "options": {
                 "browserTarget": "demo:build",
                 "port": 3333,
@@ -131,8 +134,11 @@
             }
         },
         "server": {
-            "executor": "@angular-devkit/build-angular:server",
+            "executor": "@angular-builders/custom-webpack:server",
             "options": {
+                "customWebpackConfig": {
+                    "path": "projects/demo/webpack.config.ts"
+                },
                 "outputPath": "dist/demo/server",
                 "main": "projects/demo/server.ts",
                 "tsConfig": "projects/demo/tsconfig.server.json",
