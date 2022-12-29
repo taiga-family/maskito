@@ -6,9 +6,11 @@ export function applyOverwriteMode(
     mode: MaskitoOptions['overwriteMode'],
 ): ElementState {
     const [from, to] = selection;
+    const computedMode = typeof mode === 'function' ? mode({value, selection}) : mode;
 
     return {
         value,
-        selection: mode === 'replace' ? [from, from + newCharacters.length] : [from, to],
+        selection:
+            computedMode === 'replace' ? [from, from + newCharacters.length] : [from, to],
     };
 }

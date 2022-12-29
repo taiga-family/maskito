@@ -1,22 +1,25 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
+import {TuiHintModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
-import {KitTemplateComponent} from './kit-template.component';
+import {NumberMaskDocComponent} from './number-mask-doc.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         MaskitoModule,
         TuiAddonDocModule,
+        TuiHintModule,
         TuiInputModule,
-        RouterModule.forChild(tuiGenerateRoutes(KitTemplateComponent)),
+        RouterModule.forChild(tuiGenerateRoutes(NumberMaskDocComponent)),
     ],
-    declarations: [KitTemplateComponent],
-    exports: [KitTemplateComponent],
+    declarations: [NumberMaskDocComponent],
+    exports: [NumberMaskDocComponent],
 })
-export class KitTemplateModule {}
+export class NumberMaskDocModule {}

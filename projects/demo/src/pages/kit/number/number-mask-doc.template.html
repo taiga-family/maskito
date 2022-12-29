@@ -1,0 +1,121 @@
+<tui-doc-page
+    header="Number"
+    package="KIT"
+>
+    <ng-template pageTab>
+        This would be the content of a first tab
+
+        <tui-doc-example
+            id="basic"
+            heading="Basic usage"
+        >
+            TODO
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiHintContent="Only digits (+ decimal separator) are allowed"
+                    [formControl]="apiPageControl"
+                >
+                    <strong>&pi;</strong>
+                    -value
+                    <input
+                        tuiTextfield
+                        placeholder="3,141..."
+                        inputmode="decimal"
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="precision"
+                documentationPropertyMode="input"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="precision"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A number of digits after
+                <code>decimalSeparator</code>
+                .
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (decimal part is forbidden).
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="decimalSeparator"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="decimalSeparator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Symbol for separating fraction.
+
+                <p>
+                    <strong>Default:</strong>
+                    comma.
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="decimalZeroPadding"
+                documentationPropertyMode="input"
+                documentationPropertyType="boolean"
+                [(documentationPropertyValue)]="decimalZeroPadding"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                If number of digits after
+                <code>decimalSeparator</code>
+                is
+                <strong>always equal</strong>
+                to the
+                <code>precision</code>
+                .
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>false</code>
+                    (number of digits can be less than precision) .
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="decimalPseudoSeparators"
+                documentationPropertyMode="input"
+                documentationPropertyType="string[]"
+                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
+                [(documentationPropertyValue)]="decimalPseudoSeparators"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Symbols to be replaced with
+                <code>decimalSeparator</code>
+                .
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['.', 'ю', 'б']</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="thousandSeparator"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="thousandSeparator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Symbol for separating thousands.
+
+                <p>
+                    <strong>Default:</strong>
+                    non-breaking space.
+                </p>
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>

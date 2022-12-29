@@ -14,15 +14,17 @@
     </ng-template>
 
     <ng-template pageTab>
-        <tui-doc-demo>
-            <tui-input ngModel="">
-                Try it
-                <!-- Put your mask here -->
-                <input
-                    tuiTextfield
-                    [maskito]="maskitoOptions"
-                />
-            </tui-input>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input [formControl]="apiPageControl">
+                    Try it
+                    <!-- Put your mask here -->
+                    <input
+                        tuiTextfield
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template

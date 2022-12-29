@@ -10,8 +10,14 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Kit',
+        title: 'Number',
+        route: DemoPath.Number,
+        keywords: `digit, number, money, mask, kit, generator`,
+    },
+    {
+        section: 'Kit',
         title: 'Time',
         route: DemoPath.Time,
-        keywords: `time, hour, minute, second, mask, kit`,
+        keywords: `time, hour, minute, second, mask, kit, generator`,
     },
 ];

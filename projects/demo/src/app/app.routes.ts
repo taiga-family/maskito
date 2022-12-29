@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const enum DemoPath {
+    Number = 'kit/number',
     Time = 'kit/time',
     BrowserSupport = 'documentation/browser-support',
 }
@@ -16,6 +17,7 @@ export const appRoutes: Routes = [
             title: `Sandbox`,
         },
     },
+    // Documentation
     {
         path: DemoPath.BrowserSupport,
         loadChildren: () =>
@@ -24,6 +26,17 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `Browser support`,
+        },
+    },
+    // Kit
+    {
+        path: DemoPath.Number,
+        loadChildren: () =>
+            import(`../pages/kit/number/number-mask-doc.module`).then(
+                m => m.NumberMaskDocModule,
+            ),
+        data: {
+            title: `Number`,
         },
     },
     {
