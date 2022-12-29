@@ -16,18 +16,6 @@ jobs:
       - name: Build demo
         run: npm run build
 
-      # TODO: investigate NullInjectorError: No provider for InjectionToken User Agent string passed from server side!
-      #      - name: Prerender demo
-      #        run: npm run build:prerender
-      #
-      #      - name: Serving static files
-      #        run: |
-      #          npm run serve:prerender & sleep 5
-      #          curl -X GET -I -f "${{ env.STATIC_SERVER }}"
-      #
-      #      - name: Run cypress / ssr / prerender
-      #        run: npm run cy:run -- --spec "**/*.cy.ts" --config baseUrl="${{ env.STATIC_SERVER }}"
-
       - name: Build ssr server
         run: npm run build:ssr
 
