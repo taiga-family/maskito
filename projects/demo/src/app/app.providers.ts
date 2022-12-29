@@ -8,6 +8,7 @@ import {
     TUI_DOC_TITLE,
     TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
+import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 import {DEMO_PAGES} from '../pages/pages';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 
@@ -48,6 +49,18 @@ export const APP_PROVIDERS: Provider[] = [
             return `${link}/${context.package.toLowerCase()}/src/lib/${(
                 context.header[0].toLowerCase() + context.header.slice(1)
             ).replace(/[A-Z]/g, m => `-${m.toLowerCase()}`)}`;
+        },
+    },
+    {
+        provide: HIGHLIGHT_OPTIONS,
+        useValue: {
+            coreLibraryLoader: async () => import(`highlight.js/lib/core`),
+            lineNumbersLoader: () => import('highlightjs-line-numbers.js' as string),
+            languages: {
+                typescript: async () => import(`highlight.js/lib/languages/typescript`),
+                less: async () => import(`highlight.js/lib/languages/less`),
+                xml: async () => import(`highlight.js/lib/languages/xml`),
+            },
         },
     },
 ];
