@@ -8,16 +8,19 @@ import {
     createSeparatorDeletionPreprocessor,
     createThousandSeparatorPostprocessor,
 } from './processors';
-import {generateMaskExpression} from './utils';
+import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
     isNegativeAllowed = true,
     precision = 0,
-    decimalSeparator = ',',
-    decimalPseudoSeparators = ['.', 'б', 'ю'],
-    decimalZeroPadding = false,
     thousandSeparator = '\u00A0',
+    decimalSeparator = ',',
+    decimalPseudoSeparators = getDefaultPseudoSeparators({
+        decimalSeparator,
+        thousandSeparator,
+    }),
+    decimalZeroPadding = false,
 }: {
     max?: number;
     isNegativeAllowed?: boolean;
