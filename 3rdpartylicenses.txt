@@ -45,6 +45,8 @@ MIT
 
 @maskito/core
 
+@maskito/kit
+
 @ng-web-apis/common
 MIT
 MIT License
