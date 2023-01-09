@@ -1,6 +1,6 @@
 import {openNumberPage} from './utils';
 
-describe('InputNumber | Basic', () => {
+describe('Number | Basic', () => {
     beforeEach(() => {
         openNumberPage('thousandSeparator=_&precision=2');
     });
