@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
+import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
@@ -15,6 +16,18 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
+    readonly highPrecisionExample1: TuiDocExample = {
+        MaskitoOptions: import('./examples/1-high-precision/mask.ts?raw'),
+    };
+
+    readonly separatorsExample2: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-separators/mask.ts?raw'),
+    };
+
+    readonly decimalZeroPaddingExample3: TuiDocExample = {
+        MaskitoOptions: import('./examples/3-decimal-zero-padding/mask.ts?raw'),
+    };
+
     apiPageControl = new FormControl('');
 
     maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
@@ -22,7 +35,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     readonly decimalPseudoSeparatorsOptions = [['.', 'б', 'ю'], ['.']];
 
     precision = 0;
-    min = Number.MIN_SAFE_INTEGER;
+    isNegativeAllowed = true;
     max = Number.MAX_SAFE_INTEGER;
     decimalSeparator = ',';
     decimalZeroPadding = false;

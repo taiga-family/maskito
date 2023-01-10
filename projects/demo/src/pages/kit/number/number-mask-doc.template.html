@@ -3,13 +3,60 @@
     package="KIT"
 >
     <ng-template pageTab>
-        This would be the content of a first tab
+        Use
+        <code>maskitoNumberOptionsGenerator</code>
+        to create mask to input number.
 
         <tui-doc-example
-            id="basic"
-            heading="Basic usage"
+            id="high-precision"
+            heading="High precision"
+            [content]="highPrecisionExample1"
+            [description]="precisionDescription"
         >
-            TODO
+            <ng-template #precisionDescription>
+                Use
+                <code>precision</code>
+                -parameter to configure number of digits after decimal
+                separator.
+            </ng-template>
+            <number-mask-doc-example-1></number-mask-doc-example-1>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="separators"
+            heading="Separators"
+            [content]="separatorsExample2"
+            [description]="separatorsDescription"
+        >
+            <ng-template #separatorsDescription>
+                Use
+                <code>decimalSeparator</code>
+                and
+                <code>thousandSeparator</code>
+                to get mask with a language‑sensitive representation of this
+                number.
+            </ng-template>
+            <tui-notification
+                class="tui-space_bottom-4"
+                [style.max-width.rem]="30"
+            >
+                German uses comma as decimal separator and dot for thousands
+            </tui-notification>
+            <number-mask-doc-example-2></number-mask-doc-example-2>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="decimal-zero-padding"
+            heading="Decimal zero padding"
+            [content]="decimalZeroPaddingExample3"
+            [description]="decimalZeroPaddingDescription"
+        >
+            <ng-template #decimalZeroPaddingDescription>
+                Set
+                <code>decimalZeroPadding: true</code>
+                to always show trailing zeroes.
+            </ng-template>
+            <number-mask-doc-example-3></number-mask-doc-example-3>
         </tui-doc-example>
     </ng-template>
 
@@ -20,11 +67,9 @@
                     tuiHintContent="Only digits (+ decimal separator) are allowed"
                     [formControl]="apiPageControl"
                 >
-                    <strong>&pi;</strong>
-                    -value
+                    Enter a number
                     <input
                         tuiTextfield
-                        placeholder="3,141..."
                         inputmode="decimal"
                         [maskito]="maskitoOptions"
                     />
@@ -32,6 +77,36 @@
             </ng-template>
         </tui-doc-demo>
         <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="isNegativeAllowed"
+                documentationPropertyMode="input"
+                documentationPropertyType="boolean"
+                [(documentationPropertyValue)]="isNegativeAllowed"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Allows to input negative sign (minus).
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>true</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="max"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                The greatest permitted value.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>Number.MAX_SAFE_INTEGER</code>
+                    .
+                </p>
+            </ng-template>
             <ng-template
                 documentationPropertyName="precision"
                 documentationPropertyMode="input"
@@ -64,6 +139,24 @@
                 </p>
             </ng-template>
             <ng-template
+                documentationPropertyName="decimalPseudoSeparators"
+                documentationPropertyMode="input"
+                documentationPropertyType="string[]"
+                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
+                [(documentationPropertyValue)]="decimalPseudoSeparators"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Symbols to be replaced with
+                <code>decimalSeparator</code>
+                .
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['.', 'ю', 'б']</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
                 documentationPropertyName="decimalZeroPadding"
                 documentationPropertyMode="input"
                 documentationPropertyType="boolean"
@@ -82,24 +175,6 @@
                     <strong>Default:</strong>
                     <code>false</code>
                     (number of digits can be less than precision) .
-                </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyName="decimalPseudoSeparators"
-                documentationPropertyMode="input"
-                documentationPropertyType="string[]"
-                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
-                [(documentationPropertyValue)]="decimalPseudoSeparators"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                Symbols to be replaced with
-                <code>decimalSeparator</code>
-                .
-
-                <p>
-                    <strong>Default:</strong>
-                    <code>['.', 'ю', 'б']</code>
-                    .
                 </p>
             </ng-template>
             <ng-template
