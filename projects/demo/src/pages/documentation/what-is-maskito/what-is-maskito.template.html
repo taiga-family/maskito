@@ -1,0 +1,110 @@
+<tui-doc-page header="What is Maskito?">
+    <p class="tui-space_top-0">
+        Maskito is a collection of libraries, built on Typescript. It helps to
+        create an input mask which ensures that user types value according to
+        predefined format.
+    </p>
+
+    <p>
+        Core concepts of the libraries are simple but they provide flexible API
+        to predefine any format you wish: numbers, phone, date, bank card number
+        etc.
+    </p>
+
+    <section class="tui-space_top-8">
+        <h2>Why Maskito?</h2>
+
+        <ul class="tui-list">
+            <li class="tui-list__item">
+                Maskito supports all user’s interactions with textfield: basic
+                typing and deleting via keyboard, pasting, dropping text inside
+                textfield, browser autofill, predictive text from mobile native
+                keyboard.
+            </li>
+            <li class="tui-list__item">
+                Maskito is robust. The whole project is developed with
+                <code>strict</code>
+                TypeScript mode. Our code is covered by hundreds of
+                <a
+                    href="https://www.cypress.io"
+                    target="_blank"
+                    tuiLink
+                >
+                    Cypress
+                </a>
+                tests.
+            </li>
+            <li class="tui-list__item">Server Side Rendering support.</li>
+
+            <li class="tui-list__item">
+                You can use it with
+                <code>HTMLInputElement</code>
+                and
+                <code>HTMLTextAreaElement</code>
+                .
+            </li>
+
+            <li class="tui-list__item">
+                Maskito's core is zero-dependency package. You can mask input in
+                your Vanilla Javascript project. However, we have a separate
+                package for Angular as well.
+            </li>
+        </ul>
+    </section>
+
+    <p>
+        No textfield with invalid value! Use Maskito.
+        <strong>Mask it!</strong>
+    </p>
+
+    <section class="tui-space_top-8">
+        <h2>Learn about Maskito</h2>
+
+        <div class="islands-wrapper">
+            <a
+                tuiIsland
+                class="island"
+                [hoverable]="true"
+                [routerLink]="maskitoLibrariesDocPage"
+            >
+                <div class="tui-island__content">
+                    <tui-marker-icon
+                        mode="link"
+                        size="s"
+                        src="tuiIconStructureLarge"
+                        class="tui-island__figure"
+                    ></tui-marker-icon>
+                    <div>
+                        <h3 class="tui-island__title">Explore libraries</h3>
+                        <p class="tui-island__paragraph">
+                            Maskito consists of several libraries. Explore them
+                            and learn how to install them.
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <a
+                tuiIsland
+                class="island"
+                [hoverable]="true"
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                <div class="tui-island__content">
+                    <tui-marker-icon
+                        mode="link"
+                        size="s"
+                        src="tuiIconSettingsLarge"
+                        class="tui-island__figure"
+                    ></tui-marker-icon>
+                    <div>
+                        <h3 class="tui-island__title">Core concepts</h3>
+                        <p class="tui-island__paragraph">
+                            Learn about mask expression, preprocessors and
+                            postprocessors, overwrite mode etc.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+</tui-doc-page>

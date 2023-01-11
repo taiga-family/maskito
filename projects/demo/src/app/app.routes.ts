@@ -7,17 +7,43 @@ export const enum DemoPath {
     Number = 'kit/number',
     Time = 'kit/time',
     BrowserSupport = 'documentation/browser-support',
+    WhatIsMaskito = 'getting-started/what-is-maskito',
+    MaskitoLibraries = 'getting-started/maskito-libraries',
+    CoreConceptsOverview = 'core-concepts/overview',
 }
 
 export const appRoutes: Routes = [
+    // Documentation
     {
-        path: '',
-        component: SandboxComponent,
+        path: DemoPath.WhatIsMaskito,
+        loadChildren: () =>
+            import(`../pages/documentation/what-is-maskito/what-is-maskito.module`).then(
+                m => m.WhatIsMaskitoDocPageModule,
+            ),
         data: {
-            title: `Sandbox`,
+            title: `What is Maskito?`,
         },
     },
-    // Documentation
+    {
+        path: DemoPath.MaskitoLibraries,
+        loadChildren: () =>
+            import(
+                `../pages/documentation/maskito-libraries/maskito-libraries.module`
+            ).then(m => m.MaskitoLibrariesDocPageModule),
+        data: {
+            title: `Maskito libraries`,
+        },
+    },
+    {
+        path: DemoPath.CoreConceptsOverview,
+        loadChildren: () =>
+            import(
+                `../pages/documentation/core-concepts-overview/core-concepts-overview.module`
+            ).then(m => m.CoreConceptsOverviewDocPageModule),
+        data: {
+            title: `Core concepts`,
+        },
+    },
     {
         path: DemoPath.BrowserSupport,
         loadChildren: () =>
@@ -50,8 +76,15 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: 'sandbox',
+        component: SandboxComponent,
+        data: {
+            title: `Sandbox`,
+        },
+    },
+    {
         path: '**',
-        redirectTo: '',
+        redirectTo: DemoPath.WhatIsMaskito,
     },
 ];
 
