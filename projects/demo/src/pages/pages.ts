@@ -1,5 +1,5 @@
 import {TuiDocPages} from '@taiga-ui/addon-doc';
-import {DemoPath} from '../app/app.routes';
+import {DemoPath} from '@demo/routes';
 
 export const DEMO_PAGES: TuiDocPages = [
     {
@@ -19,6 +19,12 @@ export const DEMO_PAGES: TuiDocPages = [
         title: 'Overview',
         route: DemoPath.CoreConceptsOverview,
         keywords: 'core, concepts, overview',
+    },
+    {
+        section: 'Core concepts',
+        title: 'Mask expression',
+        route: DemoPath.MaskExpression,
+        keywords: 'core, concepts, mask, expression, reg, exp, fixed',
     },
     {
         section: 'Kit',
