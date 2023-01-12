@@ -10,6 +10,7 @@ export const enum DemoPath {
     WhatIsMaskito = 'getting-started/what-is-maskito',
     MaskitoLibraries = 'getting-started/maskito-libraries',
     CoreConceptsOverview = 'core-concepts/overview',
+    Sandbox = 'sandbox',
 }
 
 export const appRoutes: Routes = [
@@ -76,7 +77,7 @@ export const appRoutes: Routes = [
         },
     },
     {
-        path: 'sandbox',
+        path: DemoPath.Sandbox,
         component: SandboxComponent,
         data: {
             title: `Sandbox`,
