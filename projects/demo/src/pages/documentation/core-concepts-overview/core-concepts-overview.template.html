@@ -1,0 +1,59 @@
+<tui-doc-page header="Core concepts">
+    <p class="tui-space_top-0">Maskito has the following public API:</p>
+
+    <tui-doc-code [code]="maskitoPublicApiDemo"></tui-doc-code>
+
+    <section>
+        <p>
+            To understand the capabilities of the Maskito library, you need to
+            learn about the following features and concepts:
+        </p>
+
+        <div class="islands-wrapper">
+            <a
+                routerLink="#todo"
+                tuiIsland
+                class="island"
+                [hoverable]="true"
+            >
+                <h3 class="tui-island__title">Mask expression</h3>
+                <p class="tui-island__paragraph">
+                    Learn how to predefine your mask format via mask expression.
+                    This section describes different types of mask expression
+                    and explains meaning of "fixed character"-term.
+                </p>
+            </a>
+
+            <a
+                routerLink="#todo"
+                tuiIsland
+                class="island"
+                [hoverable]="true"
+            >
+                <h3 class="tui-island__title">Processors</h3>
+                <p class="tui-island__paragraph">
+                    Learn about preprocessors and postprocessors, and how to
+                    stack them via
+                    <code>maskitoPipe</code>
+                    .
+                </p>
+            </a>
+
+            <a
+                routerLink="#todo"
+                tuiIsland
+                class="island"
+                [hoverable]="true"
+            >
+                <h3 class="tui-island__title">Overwrite mode</h3>
+                <p class="tui-island__paragraph">
+                    Maskito can behave differently when user inserts new
+                    character in the middle of textfield's value. Learn how to
+                    control this behaviour via
+                    <code>overwriteMode</code>
+                    -parameter.
+                </p>
+            </a>
+        </div>
+    </section>
+</tui-doc-page>

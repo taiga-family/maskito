@@ -1,6 +1,8 @@
+import {DemoPath} from 'projects/demo/src/app/app.routes';
+
 describe('TextArea (mask with no cyrillic symbols)', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit(`/${DemoPath.Sandbox}`);
         cy.get('textarea#text-area').clear().as('textArea');
     });
 

@@ -1,6 +1,8 @@
+import {DemoPath} from 'projects/demo/src/app/app.routes';
+
 describe('InputPhone', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit(`/${DemoPath.Sandbox}`);
         cy.get('input#phone').clear().as('inputPhone');
     });
 
