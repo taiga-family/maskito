@@ -35,6 +35,6 @@ export const DEMO_PAGES: TuiDocPages = [
     {
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
-        keywords: `chrome, safari, ie, edge, firefox`,
+        keywords: `chrome, safari, ie, edge, firefox, browser, support`,
     },
 ];
