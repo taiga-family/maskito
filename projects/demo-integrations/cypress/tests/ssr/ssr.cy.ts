@@ -1,4 +1,4 @@
-import {DemoPath} from 'projects/demo/src/app/app.routes';
+import {DemoPath} from '@demo/routes';
 
 describe('Server side rendering', () => {
     const baseUrl: string = Cypress.config('baseUrl') ?? '/';
