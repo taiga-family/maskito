@@ -1,2 +1,2 @@
-export * from './lib/number';
-export * from './lib/time';
+export * from './lib/masks/number';
+export * from './lib/masks/time';

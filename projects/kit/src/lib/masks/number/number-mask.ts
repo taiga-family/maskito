@@ -9,12 +9,13 @@ import {
     createThousandSeparatorPostprocessor,
 } from './processors';
 import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
+import {CHAR_NO_BREAK_SPACE} from '../../constants';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
     isNegativeAllowed = true,
     precision = 0,
-    thousandSeparator = '\u00A0',
+    thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = ',',
     decimalPseudoSeparators = getDefaultPseudoSeparators({
         decimalSeparator,
