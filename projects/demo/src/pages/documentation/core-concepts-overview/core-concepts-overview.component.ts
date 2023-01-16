@@ -10,4 +10,5 @@ import {DemoPath} from '@demo/routes';
 export class CoreConceptsOverviewDocPageComponent {
     readonly maskitoPublicApiDemo = import('./examples/maskito-public-api-demo.md?raw');
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    readonly processorsDocPage = `/${DemoPath.Processors}`;
 }

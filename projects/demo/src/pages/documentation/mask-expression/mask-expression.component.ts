@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {DemoPath} from '@demo/routes';
 
 @Component({
     selector: 'mask-expression-doc-page',
@@ -11,4 +12,6 @@ export class MaskExpressionDocPageComponent {
     readonly dynamicMaskExpDemo = import(
         './examples/dynamic-mask-expression-demo.md?raw'
     );
+
+    readonly processorsDocPage = `/${DemoPath.Processors}`;
 }
