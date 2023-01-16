@@ -1,5 +1,30 @@
 <tui-doc-page header="Core concepts">
-    <p class="tui-space_top-0">Maskito has the following public API:</p>
+    <section class="tui-space_bottom-4">
+        <p class="tui-space_top-0">
+            The main entity of Maskito's core library is
+            <code>Maskito</code>
+            ‑class which accepts 2 arguments:
+        </p>
+
+        <ol class="tui-list tui-list_ordered">
+            <li class="tui-list__item">
+                reference to native
+                <code>HTMLInputElement</code>
+                or
+                <code>HTMLTextAreaElement</code>
+            </li>
+            <li class="tui-list__item">
+                set of configurable options
+                <a
+                    href="https://github.com/Tinkoff/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
+                    target="_blank"
+                    tuiLink
+                >
+                    <code>MaskitoOptions</code>
+                </a>
+            </li>
+        </ol>
+    </section>
 
     <tui-doc-code [code]="maskitoPublicApiDemo"></tui-doc-code>
 
@@ -11,10 +36,10 @@
 
         <div class="islands-wrapper">
             <a
-                routerLink="#todo"
                 tuiIsland
                 class="island"
                 [hoverable]="true"
+                [routerLink]="maskExpressionDocPage"
             >
                 <h3 class="tui-island__title">Mask expression</h3>
                 <p class="tui-island__paragraph">

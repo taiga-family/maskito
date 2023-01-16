@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {DemoPath} from '@demo/routes';
 
 @Component({
     selector: 'core-concepts-overview-doc-page',
@@ -8,4 +9,5 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class CoreConceptsOverviewDocPageComponent {
     readonly maskitoPublicApiDemo = import('./examples/maskito-public-api-demo.md?raw');
+    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
 }

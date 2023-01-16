@@ -32,7 +32,8 @@
         "paths": {
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
-            "@maskito/kit": ["projects/kit/src/index.ts"]
+            "@maskito/kit": ["projects/kit/src/index.ts"],
+            "@demo/routes": ["projects/demo/src/app/app.routes"]
         }
     }
 }

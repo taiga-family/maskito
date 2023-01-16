@@ -1,0 +1,179 @@
+<tui-doc-page header="Mask expression">
+    <p class="tui-space_top-0">
+        <strong>Mask expression</strong>
+        is the the main concept of Maskito's core library. It provides the
+        developer with opportunity to predefine format of user's input. For
+        example, you can set mask expression to accept only digits, only latin
+        letters or even you can configure more complex patterns like date
+        string.
+    </p>
+
+    <p>
+        Developer can set mask expression using
+        <code>mask</code>
+        -parameter of
+        <a
+            href="https://github.com/Tinkoff/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
+            target="_blank"
+            tuiLink
+        >
+            <code>MaskitoOptions</code>
+        </a>
+        .
+    </p>
+
+    <section class="tui-space_top-12">
+        <h2>Types of mask expression</h2>
+        <ul class="tui-list">
+            <li class="tui-list__item">
+                <strong>RegExp mask expression</strong>
+                <p class="tui-space_top-0">
+                    The most basic and comprehensible type. The only required
+                    knowledge is understanding of native Javascript
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions"
+                        target="_blank"
+                        tuiLink
+                    >
+                        Regular expression
+                    </a>
+                    .
+                </p>
+                <p>
+                    See the following example:
+                    <tui-doc-code [code]="regExpMaskExpDemo"></tui-doc-code>
+                </p>
+
+                <tui-notification status="warning">
+                    Make sure that mask expression works with any of
+                    intermediate states, not just final value.
+
+                    <p class="tui-space_bottom-0">
+                        For example, imagine that you have to create mask for
+                        4-digits PIN code.
+                    </p>
+                    <p class="tui-space_top-1 tui-space_bottom-0">
+                        <code>{{ '/^\d{4}$/' }}</code>
+                        is an inappropriate mask expression. It does not match
+                        intermediate states (you cannot complete 4-digit string
+                        without possibility to type 1-, 2- or 3-digit string).
+                    </p>
+
+                    <p class="tui-space_top-1">
+                        <code>{{ '/^\d{0,4}$/' }}</code>
+                        is the best solution for our example.
+                    </p>
+                </tui-notification>
+            </li>
+            <li class="tui-list__item">
+                <strong>Pattern mask expression</strong>
+
+                <p class="tui-space_top-0">
+                    It is a good choice for more complex fixed in size masks.
+                    This type of mask expression is presented as array. Each
+                    element in the array has to be either a string or a regular
+                    expression. Each string is a fixed character and each
+                    regular expression is validator of character at the same
+                    index.
+                </p>
+
+                <tui-notification status="info">
+                    <strong>Fixed character</strong>
+                    - already predefined character at the certain position (the
+                    same as its index inside mask expression array). It is
+                    automatically added when user forgets to type it. It cannot
+                    be erased or replaced with another character.
+                </tui-notification>
+
+                <p>
+                    For example, imagine that you have to create mask for
+                    time-string with
+                    <code>HH:MM</code>
+                    -format. It consists of 4 digits and 1 fixed-character
+                    separator
+                    <code>:</code>
+                    .
+                </p>
+
+                <tui-doc-code [code]="basicTimeDemo"></tui-doc-code>
+
+                <p>
+                    This mask expression forbids something excepts digits or
+                    input more than four digits.
+                </p>
+                <p class="tui-space_bottom-0">
+                    Also, it manages user's interactions with fixed character.
+                </p>
+                <p class="tui-space_top-0 tui-space_bottom-0">
+                    For example, user can press just four digits
+                    <code>1159</code>
+                    and the input's value becomes
+                    <code>11:59</code>
+                </p>
+                <p class="tui-space_top-0">
+                    Another example, if caret position is after colon and user
+                    presses
+                    <kbd>Backspace</kbd>
+                    , the input's value will not change but caret will be moved
+                    to the left from colon.
+                </p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="tui-space_top-12">
+        <h2>Dynamic mask expression</h2>
+
+        <p>
+            <code>mask</code>
+            -parameter of Maskito's options can also accepts function which
+            generates mask expression. This function will be called
+            <strong>every time before</strong>
+            any input's changes to generate new version of mask expression.
+        </p>
+
+        <tui-doc-code [code]="dynamicMaskExpDemo"></tui-doc-code>
+
+        <tui-notification
+            status="warning"
+            class="tui-space_top-6"
+        >
+            <p class="tui-space_top-0">
+                Be careful! It can be not performance-friendly to generate new
+                mask expression on every input's change.
+            </p>
+
+            <p class="tui-space_bottom-0">
+                Think about optimization and memoization of the such function.
+            </p>
+        </tui-notification>
+    </section>
+
+    <section class="tui-space_top-12">
+        <h2>Next steps</h2>
+
+        <p>
+            The following sections are recommended to explore core concepts
+            further:
+        </p>
+
+        <ul class="tui-list">
+            <li class="tui-list__item">
+                <a
+                    routerLink="#todo"
+                    tuiLink
+                >
+                    Processors
+                </a>
+            </li>
+            <li class="tui-list__item">
+                <a
+                    routerLink="#todo"
+                    tuiLink
+                >
+                    Overwrite mode
+                </a>
+            </li>
+        </ul>
+    </section>
+</tui-doc-page>

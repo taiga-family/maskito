@@ -10,6 +10,7 @@ export const enum DemoPath {
     WhatIsMaskito = 'getting-started/what-is-maskito',
     MaskitoLibraries = 'getting-started/maskito-libraries',
     CoreConceptsOverview = 'core-concepts/overview',
+    MaskExpression = 'core-concepts/mask-expression',
     Sandbox = 'sandbox',
 }
 
@@ -43,6 +44,16 @@ export const appRoutes: Routes = [
             ).then(m => m.CoreConceptsOverviewDocPageModule),
         data: {
             title: `Core concepts`,
+        },
+    },
+    {
+        path: DemoPath.MaskExpression,
+        loadChildren: () =>
+            import(`../pages/documentation/mask-expression/mask-expression.module`).then(
+                m => m.MaskExpressionDocPageModule,
+            ),
+        data: {
+            title: `Mask expression`,
         },
     },
     {
