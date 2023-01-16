@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[539],{5539:n=>{n.exports="```ts\nimport {Maskito} from '@maskito/core';\n\nlet howManyWordsAllowed = 5;\n\nconst maxWordInput = new Maskito(element, {\n  mask: () => new RegExp('^(\\\\w+\\\\s?){0,' + howManyWordsAllowed + '}$'),\n});\n```\n"}}]);
