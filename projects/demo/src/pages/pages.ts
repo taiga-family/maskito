@@ -27,6 +27,13 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: 'core, concepts, mask, expression, reg, exp, fixed',
     },
     {
+        section: 'Core concepts',
+        title: 'Processors',
+        route: DemoPath.Processors,
+        keywords:
+            'core, concepts, preprocessor, postprocessor, processor, pipe, maskitoPipe',
+    },
+    {
         section: 'Kit',
         title: 'Number',
         route: DemoPath.Number,

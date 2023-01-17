@@ -3,16 +3,16 @@
     <!--   https://github.com/Tinkoff/maskito/issues/14 -->
     <input
         id="name"
+        autocomplete="name"
         name="name"
         placeholder="Full name"
-        autocomplete="name"
         class="prettify"
     />
 
     <input
         id="phone"
-        name="phone"
         autocomplete="tel"
+        name="phone"
         placeholder="InputPhone"
         value=""
         class="prettify"
@@ -21,27 +21,19 @@
 
     <input
         id="email"
+        autocomplete="email"
         maskito
         name="email"
-        autocomplete="email"
         placeholder="Email"
         class="prettify"
     />
 
     <textarea
         id="text-area"
-        name="address"
         autocomplete="street-address"
+        name="address"
         placeholder="Cyrillic symbols are not allowed"
         class="prettify"
         [maskito]="noCyrillicMaskOptions"
     ></textarea>
-
-    <input
-        id="number"
-        name="balance"
-        placeholder="Balance"
-        class="prettify"
-        [maskito]="numberMaskOptions"
-    />
 </form>

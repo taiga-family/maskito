@@ -11,6 +11,7 @@ export const enum DemoPath {
     MaskitoLibraries = 'getting-started/maskito-libraries',
     CoreConceptsOverview = 'core-concepts/overview',
     MaskExpression = 'core-concepts/mask-expression',
+    Processors = 'core-concepts/processors',
     Sandbox = 'sandbox',
 }
 
@@ -54,6 +55,16 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `Mask expression`,
+        },
+    },
+    {
+        path: DemoPath.Processors,
+        loadChildren: () =>
+            import(`../pages/documentation/processors/processors.module`).then(
+                m => m.ProcessorsDocPageModule,
+            ),
+        data: {
+            title: `Processors`,
         },
     },
     {
