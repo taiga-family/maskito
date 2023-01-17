@@ -6,6 +6,7 @@ export function maskitoPipe(
     ...processors: readonly MaskPostprocessor[]
 ): MaskPostprocessor;
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function maskitoPipe(...processors: readonly Function[]): Function {
     return (initialData: object, ...readonlyArgs: unknown[]) =>
         processors.reduce(

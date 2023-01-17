@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
 import {TuiIslandModule, TuiMarkerIconModule} from '@taiga-ui/kit';
+
 import {CoreConceptsOverviewDocPageComponent} from './core-concepts-overview.component';
 
 @NgModule({

@@ -17,8 +17,8 @@ describe('Test dummy', () => {
         component = TestBed.createComponent(AppComponent);
     });
 
-    it('AppComponent compiles properly', () => {
-        TestBed.inject(Router).navigate(['/lazy']);
+    it('AppComponent compiles properly', async () => {
+        await TestBed.inject(Router).navigate(['/lazy']);
 
         expect(component).toBeTruthy();
     });

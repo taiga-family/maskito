@@ -7,7 +7,7 @@ import {getAllVersions} from './helpers/get-all-versions';
 import {getLastMajorVersion} from './helpers/get-last-major-version';
 
 const isDryRun =
-    getValueByFlag<'true' | 'false' | 'undefined'>(`--dry-run`, `false`) === `true`;
+    getValueByFlag<'false' | 'true' | 'undefined'>(`--dry-run`, `false`) === `true`;
 const path = getValueByFlag<string>(`--path`, ``);
 
 (async function main(): Promise<void> {

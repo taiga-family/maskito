@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
-import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>

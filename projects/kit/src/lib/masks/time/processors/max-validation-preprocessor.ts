@@ -1,4 +1,5 @@
 import {MaskitoOptions} from '@maskito/core';
+
 import {TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
 import {MaskitoTimeSegments} from '../types';
 import {padTimeSegments, parseTimeString, toTimeString} from '../utils';
@@ -87,7 +88,7 @@ function padWithZeroesUntilValid(
     if (segmentValue.endsWith('0')) {
         // 00:|00 => Type 9 => 00:09|
         return padWithZeroesUntilValid(
-            '0' + segmentValue.slice(0, paddedMaxValue.length - 1),
+            `0${segmentValue.slice(0, paddedMaxValue.length - 1)}`,
             paddedMaxValue,
             prefixedZeroesCount + 1,
         );
@@ -95,7 +96,7 @@ function padWithZeroesUntilValid(
 
     // |19:00 => Type 2 => 2|0:00
     return padWithZeroesUntilValid(
-        segmentValue.slice(0, paddedMaxValue.length - 1) + '0',
+        `${segmentValue.slice(0, paddedMaxValue.length - 1)}0`,
         paddedMaxValue,
         prefixedZeroesCount,
     );

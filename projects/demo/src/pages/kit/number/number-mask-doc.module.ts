@@ -10,10 +10,11 @@ import {
     TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
-import {NumberMaskDocComponent} from './number-mask-doc.component';
+
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-decimal-zero-padding/component';
+import {NumberMaskDocComponent} from './number-mask-doc.component';
 
 @NgModule({
     imports: [

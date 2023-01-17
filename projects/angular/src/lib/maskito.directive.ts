@@ -1,5 +1,6 @@
 import {Directive, ElementRef, Inject, Input, OnDestroy} from '@angular/core';
 import {Maskito, MaskitoOptions} from '@maskito/core';
+
 import {MASKITO_OPTIONS} from './maskito-options';
 
 @Directive({
@@ -7,6 +8,13 @@ import {MASKITO_OPTIONS} from './maskito-options';
 })
 export class MaskitoDirective implements OnDestroy {
     private maskedElement: Maskito | null = null;
+
+    constructor(
+        @Inject(ElementRef)
+        private readonly elementRef: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
+        @Inject(MASKITO_OPTIONS)
+        private readonly defaultOptions: MaskitoOptions,
+    ) {}
 
     /**
      * When developer has direct access to native input element:
@@ -38,14 +46,7 @@ export class MaskitoDirective implements OnDestroy {
         );
     }
 
-    constructor(
-        @Inject(ElementRef)
-        private readonly elementRef: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
-        @Inject(MASKITO_OPTIONS)
-        private readonly defaultOptions: MaskitoOptions,
-    ) {}
-
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.maskedElement?.destroy();
     }
 }

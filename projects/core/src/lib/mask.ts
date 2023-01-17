@@ -29,11 +29,13 @@ export class Maskito extends MaskHistory {
 
             if ((metaKey && shiftKey && key === 'z') || (ctrlKey && key === 'y')) {
                 event.preventDefault();
+
                 return this.redo();
             }
 
             if ((ctrlKey || metaKey) && key === 'z') {
                 event.preventDefault();
+
                 return this.undo();
             }
         });
@@ -46,9 +48,11 @@ export class Maskito extends MaskHistory {
                     // historyUndo/historyRedo will not be triggered if value was modified programmatically
                     case 'historyUndo':
                         event.preventDefault();
+
                         return this.undo();
                     case 'historyRedo':
                         event.preventDefault();
+
                         return this.redo();
                     case 'deleteContentBackward':
                     case 'deleteWordBackward': // TODO
@@ -90,10 +94,6 @@ export class Maskito extends MaskHistory {
         });
     }
 
-    destroy(): void {
-        this.eventListener.destroy();
-    }
-
     private get elementState(): ElementState {
         const {value, selectionStart, selectionEnd} = this.element;
 
@@ -105,6 +105,42 @@ export class Maskito extends MaskHistory {
 
     private get isTextArea(): boolean {
         return this.element.nodeName === 'TEXTAREA';
+    }
+
+    destroy(): void {
+        this.eventListener.destroy();
+    }
+
+    protected updateSelectionRange([from, to]: SelectionRange): void {
+        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
+            this.element.setSelectionRange?.(from, to);
+        }
+    }
+
+    protected updateValue(
+        newValue: string,
+        eventInit: Pick<TypedInputEvent, 'data' | 'inputType'> = {
+            inputType: 'insertText',
+            data: null,
+        },
+    ): void {
+        if (this.element.value !== newValue) {
+            const globalObject = typeof window !== 'undefined' ? window : globalThis;
+
+            this.element.value = newValue;
+
+            // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
+            // @see https://caniuse.com/?search=globalThis
+            if (globalObject?.InputEvent) {
+                this.element.dispatchEvent(
+                    new InputEvent('input', {
+                        ...eventInit,
+                        bubbles: true,
+                        cancelable: true,
+                    }),
+                );
+            }
+        }
     }
 
     private handleKeydown(event: KeyboardEvent): void {
@@ -233,38 +269,6 @@ export class Maskito extends MaskHistory {
     private handleEnter(event: Event): void {
         if (this.isTextArea) {
             this.handleInsert(event, '\n');
-        }
-    }
-
-    protected updateValue(
-        newValue: string,
-        eventInit: Pick<TypedInputEvent, 'inputType' | 'data'> = {
-            inputType: 'insertText',
-            data: null,
-        },
-    ): void {
-        if (this.element.value !== newValue) {
-            const globalObject = typeof window !== 'undefined' ? window : globalThis;
-
-            this.element.value = newValue;
-
-            // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
-            // @see https://caniuse.com/?search=globalThis
-            if (globalObject?.InputEvent) {
-                this.element.dispatchEvent(
-                    new InputEvent('input', {
-                        ...eventInit,
-                        bubbles: true,
-                        cancelable: true,
-                    }),
-                );
-            }
-        }
-    }
-
-    protected updateSelectionRange([from, to]: SelectionRange): void {
-        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
-            this.element.setSelectionRange?.(from, to);
         }
     }
 }

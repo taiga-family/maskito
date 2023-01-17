@@ -5,7 +5,7 @@ export type MaskPreprocessor = (
         elementState: ElementState;
         data: string;
     },
-    actionType: 'insert' | 'deleteForward' | 'deleteBackward' | 'validation',
+    actionType: 'deleteBackward' | 'deleteForward' | 'insert' | 'validation',
 ) => {
     elementState: ElementState;
     data?: string;

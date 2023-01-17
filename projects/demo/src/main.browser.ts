@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const windowRef: any = window;
 
             // Ensure Angular destroys itself on hot reloads for Stackblitz
-            if (windowRef['ngRef']) {
-                windowRef['ngRef'].destroy();
+            if (windowRef.ngRef) {
+                windowRef.ngRef.destroy();
             }
 
-            windowRef['ngRef'] = ref;
+            windowRef.ngRef = ref;
         })
         .catch(console.error);
 });

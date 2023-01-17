@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
     // Documentation
     {
         path: DemoPath.WhatIsMaskito,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/documentation/what-is-maskito/what-is-maskito.module`).then(
                 m => m.WhatIsMaskitoDocPageModule,
             ),
@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.MaskitoLibraries,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(
                 `../pages/documentation/maskito-libraries/maskito-libraries.module`
             ).then(m => m.MaskitoLibrariesDocPageModule),
@@ -39,7 +39,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.CoreConceptsOverview,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(
                 `../pages/documentation/core-concepts-overview/core-concepts-overview.module`
             ).then(m => m.CoreConceptsOverviewDocPageModule),
@@ -49,7 +49,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.MaskExpression,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/documentation/mask-expression/mask-expression.module`).then(
                 m => m.MaskExpressionDocPageModule,
             ),
@@ -59,7 +59,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Processors,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/documentation/processors/processors.module`).then(
                 m => m.ProcessorsDocPageModule,
             ),
@@ -69,7 +69,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.BrowserSupport,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/documentation/browser-support/browser-support.module`).then(
                 m => m.BrowserSupportModule,
             ),
@@ -80,7 +80,7 @@ export const appRoutes: Routes = [
     // Kit
     {
         path: DemoPath.Number,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/kit/number/number-mask-doc.module`).then(
                 m => m.NumberMaskDocModule,
             ),
@@ -90,7 +90,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Time,
-        loadChildren: () =>
+        loadChildren: async () =>
             import(`../pages/kit/time/time-mask-doc.module`).then(
                 m => m.TimeMaskDocModule,
             ),

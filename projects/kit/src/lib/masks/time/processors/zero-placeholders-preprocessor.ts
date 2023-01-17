@@ -1,4 +1,5 @@
 import {MaskitoOptions} from '@maskito/core';
+
 import {MaskitoTimeMode} from '../types';
 
 export function createZeroPlaceholdersPreprocessor(
