@@ -11,22 +11,22 @@ describe('maskitoPipe', () => {
         const add0ToValue: MaskPreprocessor = ({elementState}) => ({
             elementState: {
                 ...elementState,
-                value: elementState.value + '0',
+                value: `${elementState.value}0`,
             },
         });
         const add1ToValue: MaskPreprocessor = ({elementState}) => ({
             elementState: {
                 ...elementState,
-                value: elementState.value + '1',
+                value: `${elementState.value}1`,
             },
         });
         const add5ToData: MaskPreprocessor = ({elementState, data}) => ({
             elementState,
-            data: data + '5',
+            data: `${data}5`,
         });
         const add3ToData: MaskPreprocessor = ({elementState, data}) => ({
             elementState,
-            data: data + '3',
+            data: `${data}3`,
         });
 
         it('take the last valid `data` if the previous processor did not modify it', () => {
@@ -103,11 +103,11 @@ describe('maskitoPipe', () => {
 
         const add3: MaskPostprocessor = ({value, selection}) => ({
             selection,
-            value: value + '3',
+            value: `${value}3`,
         });
         const add5: MaskPostprocessor = ({value, selection}) => ({
             selection,
-            value: value + '5',
+            value: `${value}5`,
         });
         const doubleCaretIndex: MaskPostprocessor = ({value, selection}) => ({
             value,

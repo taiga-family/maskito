@@ -8,7 +8,7 @@ const KNOWN_ISSUES = [
 
 @Injectable()
 export class ServerErrorHandler implements ErrorHandler {
-    handleError(error: Error) {
+    handleError(error: Error): void {
         if (KNOWN_ISSUES.includes(error.message)) {
             return;
         }

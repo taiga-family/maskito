@@ -1,7 +1,7 @@
 import {ElementState, MaskExpression} from '../../../types';
-import {validateValueWithMask} from './validate-value-with-mask';
 import {guessValidValueByPattern} from './guess-valid-value-by-pattern';
 import {guessValidValueByRegExp} from './guess-valid-value-by-reg-exp';
+import {validateValueWithMask} from './validate-value-with-mask';
 
 export function calibrateValueByMask(
     elementState: ElementState,

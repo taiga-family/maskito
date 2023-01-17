@@ -8,7 +8,7 @@ export interface MaskitoOptions {
     preprocessor?: MaskPreprocessor;
     postprocessor?: MaskPostprocessor;
     overwriteMode?:
-        | 'shift'
         | 'replace'
-        | ((elementState: ElementState) => 'shift' | 'replace');
+        | 'shift'
+        | ((elementState: ElementState) => 'replace' | 'shift');
 }

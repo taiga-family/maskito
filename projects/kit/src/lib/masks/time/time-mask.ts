@@ -1,4 +1,5 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from './constants';
 import {
     createMaxValidationPreprocessor,

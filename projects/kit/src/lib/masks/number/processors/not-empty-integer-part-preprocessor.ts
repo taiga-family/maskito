@@ -25,7 +25,7 @@ export function createNotEmptyIntegerPartPreprocessor({
 
         return {
             elementState,
-            data: value.slice(0, from) ? data : '0' + data,
+            data: value.slice(0, from) ? data : `0${data}`,
         };
     };
 }

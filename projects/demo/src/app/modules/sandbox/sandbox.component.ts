@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {MASKITO_OPTIONS} from '@maskito/angular';
+
 import {maskitoPhoneOptionsGenerator, NO_CYRILLIC_MASK} from './masks';
 
 @Component({

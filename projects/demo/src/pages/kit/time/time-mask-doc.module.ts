@@ -6,6 +6,7 @@ import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
+
 import {TimeMaskDocComponent} from './time-mask-doc.component';
 
 @NgModule({

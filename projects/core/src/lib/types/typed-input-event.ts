@@ -1,16 +1,16 @@
 export interface TypedInputEvent extends InputEvent {
     inputType:
-        | 'insertText'
-        | 'insertReplacementText'
-        | 'insertCompositionText'
-        | 'insertLineBreak'
+        | 'deleteByCut' // Ctrl (Command) + X
         | 'deleteContentBackward' // Backspace
         | 'deleteContentForward' // Delete (Fn + Backspace)
         | 'deleteWordBackward' // Alt (Option) + Backspace
         | 'deleteWordForward' // Alt (Option) + Delete (Fn + Backspace)
-        | 'deleteByCut' // Ctrl (Command) + X
-        | 'insertFromPaste' // Ctrl (Command) + V
-        | 'insertFromDrop'
+        | 'historyRedo' // Ctrl (Command) + Shift + Z
         | 'historyUndo' // Ctrl (Command) + Z
-        | 'historyRedo'; // Ctrl (Command) + Shift + Z
+        | 'insertCompositionText'
+        | 'insertFromDrop'
+        | 'insertFromPaste' // Ctrl (Command) + V
+        | 'insertLineBreak'
+        | 'insertReplacementText'
+        | 'insertText';
 }

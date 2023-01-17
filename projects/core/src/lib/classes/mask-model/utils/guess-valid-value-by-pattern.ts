@@ -1,6 +1,6 @@
 import {ElementState} from '../../../types';
-import {isFixedCharacter} from './is-fixed-character';
 import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
+import {isFixedCharacter} from './is-fixed-character';
 
 export function guessValidValueByPattern(
     initialElementState: ElementState,

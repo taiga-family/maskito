@@ -1,5 +1,5 @@
-import {TuiDocPages} from '@taiga-ui/addon-doc';
 import {DemoPath} from '@demo/routes';
+import {TuiDocPages} from '@taiga-ui/addon-doc';
 
 export const DEMO_PAGES: TuiDocPages = [
     {

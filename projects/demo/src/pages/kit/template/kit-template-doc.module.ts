@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiInputModule} from '@taiga-ui/kit';
+
 import {KitTemplateDocComponent} from './kit-template-doc.component';
 
 @NgModule({

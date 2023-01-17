@@ -1,16 +1,16 @@
 import type {ElementState, SelectionRange, TypedInputEvent} from '../types';
 
 export abstract class MaskHistory {
-    protected abstract updateValue(
-        value: string,
-        eventInit: Pick<TypedInputEvent, 'inputType' | 'data'>,
-    ): void;
-
-    protected abstract updateSelectionRange(selection: SelectionRange): void;
-
     private now: ElementState | null = null;
     private readonly past: ElementState[] = [];
     private future: ElementState[] = [];
+
+    protected abstract updateValue(
+        value: string,
+        eventInit: Pick<TypedInputEvent, 'data' | 'inputType'>,
+    ): void;
+
+    protected abstract updateSelectionRange(selection: SelectionRange): void;
 
     protected undo(): void {
         const state = this.past.pop();

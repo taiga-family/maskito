@@ -1,4 +1,6 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+
+import {CHAR_NO_BREAK_SPACE} from '../../constants';
 import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
@@ -9,7 +11,6 @@ import {
     createThousandSeparatorPostprocessor,
 } from './processors';
 import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
-import {CHAR_NO_BREAK_SPACE} from '../../constants';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
