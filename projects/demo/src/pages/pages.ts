@@ -31,7 +31,7 @@ export const DEMO_PAGES: TuiDocPages = [
         title: 'Processors',
         route: DemoPath.Processors,
         keywords:
-            'core, concepts, preprocessor, postprocessor, processor, pipe, maskitoPipe',
+            'core, concepts, preprocessor, postprocessor, processor, pipe, maskitoPipe, element, state, elementState',
     },
     {
         section: 'Kit',
