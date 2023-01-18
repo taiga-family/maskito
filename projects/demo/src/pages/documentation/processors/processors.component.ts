@@ -24,5 +24,7 @@ export class ProcessorsDocPageComponent {
         './examples/postprocessor-in-action.md?raw'
     );
 
+    readonly maskitoPipeDemo = import('./examples/maskito-pipe-demo.md?raw');
+
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
 }
