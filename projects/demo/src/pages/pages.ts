@@ -46,6 +46,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `time, hour, minute, second, mask, kit, generator`,
     },
     {
+        section: 'Kit',
+        title: 'Date',
+        route: DemoPath.Date,
+        keywords: `date, day, month, year, mask, kit, generator`,
+    },
+    {
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
         keywords: `chrome, safari, ie, edge, firefox, browser, support`,

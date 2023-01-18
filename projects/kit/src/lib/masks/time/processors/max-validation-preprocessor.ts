@@ -1,5 +1,6 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {padWithZeroesUntilValid} from '../../../utils';
 import {TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
 import {MaskitoTimeSegments} from '../types';
 import {padTimeSegments, parseTimeString, toTimeString} from '../utils';
@@ -47,12 +48,14 @@ export function createMaxValidationPreprocessor(
                 return {elementState, data: ''}; // prevent changes
             }
 
-            const {validatedTimeSegmentValue, prefixedZeroesCount} =
-                padWithZeroesUntilValid(segmentValue, maxSegmentValue);
+            const {validatedSegmentValue, prefixedZeroesCount} = padWithZeroesUntilValid(
+                segmentValue,
+                maxSegmentValue,
+            );
 
             to += prefixedZeroesCount;
 
-            validatedTimeSegments[segmentName] = validatedTimeSegmentValue;
+            validatedTimeSegments[segmentName] = validatedSegmentValue;
         }
 
         const finalTimeString = toTimeString(validatedTimeSegments);
@@ -72,32 +75,4 @@ export function createMaxValidationPreprocessor(
             data: newData,
         };
     };
-}
-
-function padWithZeroesUntilValid(
-    segmentValue: string,
-    paddedMaxValue: string,
-    prefixedZeroesCount = 0,
-): {validatedTimeSegmentValue: string; prefixedZeroesCount: number} {
-    if (
-        Number(segmentValue.padEnd(paddedMaxValue.length, '0')) <= Number(paddedMaxValue)
-    ) {
-        return {validatedTimeSegmentValue: segmentValue, prefixedZeroesCount};
-    }
-
-    if (segmentValue.endsWith('0')) {
-        // 00:|00 => Type 9 => 00:09|
-        return padWithZeroesUntilValid(
-            `0${segmentValue.slice(0, paddedMaxValue.length - 1)}`,
-            paddedMaxValue,
-            prefixedZeroesCount + 1,
-        );
-    }
-
-    // |19:00 => Type 2 => 2|0:00
-    return padWithZeroesUntilValid(
-        `${segmentValue.slice(0, paddedMaxValue.length - 1)}0`,
-        paddedMaxValue,
-        prefixedZeroesCount,
-    );
 }

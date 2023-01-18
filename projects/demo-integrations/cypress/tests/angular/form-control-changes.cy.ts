@@ -14,13 +14,13 @@ describe('Angular FormControl and native input have the same values', () => {
     });
 
     it('on initialization', () => {
-        cy.get('@input').should('have.value', '00:00');
-        cy.get('@controlValue').should('contain', '00:00');
+        cy.get('@input').should('have.value', '');
+        cy.get('@controlValue').should('contain', '');
     });
 
     it('after input a new character', () => {
-        cy.get('@input').type('{moveToStart}').type('2').should('have.value', '20:00');
-        cy.get('@controlValue').should('contain', '20:00');
+        cy.get('@input').type('{moveToStart}').type('2').should('have.value', '2');
+        cy.get('@controlValue').should('contain', '2');
     });
 
     it('after input many new characters', () => {
@@ -33,9 +33,9 @@ describe('Angular FormControl and native input have the same values', () => {
             .type('{moveToStart}')
             .type('2359')
             .type('{backspace}')
-            .should('have.value', '23:50');
+            .should('have.value', '23:5');
 
-        cy.get('@controlValue').should('contain', '23:50');
+        cy.get('@controlValue').should('contain', '23:5');
     });
 
     it('after delete via "Delete"-button', () => {
@@ -54,9 +54,9 @@ describe('Angular FormControl and native input have the same values', () => {
             .type('{moveToStart}')
             .type('2359')
             .type('{selectall}{backspace}')
-            .should('have.value', '00:00');
+            .should('have.value', '');
 
-        cy.get('@controlValue').should('contain', '00:00');
+        cy.get('@controlValue').should('contain', '');
     });
 
     it('after select all + "Delete"-button', () => {
@@ -64,8 +64,8 @@ describe('Angular FormControl and native input have the same values', () => {
             .type('{moveToStart}')
             .type('2359')
             .type('{selectall}{del}')
-            .should('have.value', '00:00');
+            .should('have.value', '');
 
-        cy.get('@controlValue').should('contain', '00:00');
+        cy.get('@controlValue').should('contain', '');
     });
 });
