@@ -4,91 +4,89 @@
         install them.
     </p>
 
-    <section class="tui-space_top-6 tui-space_bottom-6">
-        <h2>@maskito/core</h2>
+    <ul class="tui-list">
+        <li class="tui-list__item tui-space_bottom-8">
+            <strong>@maskito/core</strong>
 
-        <p class="tui-space_top-0">
-            It is the main zero-dependency and framework-agnostic package. It
-            can be used alone in Vanilla Javascript project. It listens
-            <code>beforeinput</code>
-            and
-            <code>input</code>
-            events to validate and calibrate textfield's value.
-        </p>
-        <tui-doc-code
-            code="npm install @maskito/core"
-            filename="/your/project/path>"
-        ></tui-doc-code>
+            <p class="tui-space_top-0">
+                It is the main zero-dependency and framework-agnostic package.
+                It can be used alone in Vanilla Javascript project. It listens
+                <code>beforeinput</code>
+                and
+                <code>input</code>
+                events to validate and calibrate textfield's value.
+            </p>
+            <tui-doc-code
+                code="npm install @maskito/core"
+                filename="/your/project/path>"
+            ></tui-doc-code>
 
-        <p>
-            Learn more about this library in
-            <a
-                tuiLink
-                [routerLink]="coreConceptsOverviewDocPage"
-            >
-                "Core Concepts"
-            </a>
-            section.
-        </p>
-    </section>
+            <p>
+                Learn more about this library in
+                <a
+                    tuiLink
+                    [routerLink]="coreConceptsOverviewDocPage"
+                >
+                    "Core Concepts"
+                </a>
+                section.
+            </p>
+        </li>
 
-    <hr />
+        <li class="tui-list__item tui-space_bottom-8">
+            <strong>@maskito/kit</strong>
 
-    <section class="tui-space_top-6 tui-space_bottom-6">
-        <h2>@maskito/kit</h2>
+            <p class="tui-space_top-0">
+                The optional framework-agnostic package. It contains
+                ready-to-use masks with configurable parameters.
+            </p>
+            <tui-notification status="warning">
+                This package requires
+                <code>@maskito/core</code>
+                as peer-dependency.
+            </tui-notification>
+            <tui-doc-code
+                code="npm install @maskito/kit"
+                filename="/your/project/path>"
+            ></tui-doc-code>
+            <p>
+                See examples:
+                <a
+                    tuiLink
+                    [routerLink]="numberMaskDocPage"
+                >
+                    Number
+                </a>
+                or
+                <a
+                    tuiLink
+                    [routerLink]="timeMaskDocPage"
+                >
+                    Time
+                </a>
+                .
+            </p>
+        </li>
 
-        <p class="tui-space_top-0">
-            The optional framework-agnostic package. It contains ready-to-use
-            masks with configurable parameters.
-        </p>
-        <tui-notification status="warning">
-            This package requires
-            <code>@maskito/core</code>
-            as peer-dependency.
-        </tui-notification>
-        <tui-doc-code
-            code="npm install @maskito/kit"
-            filename="/your/project/path>"
-        ></tui-doc-code>
-        <p>
-            See examples:
-            <a
-                tuiLink
-                [routerLink]="numberMaskDocPage"
-            >
-                Number
-            </a>
-            or
-            <a
-                tuiLink
-                [routerLink]="timeMaskDocPage"
-            >
-                Time
-            </a>
-            .
-        </p>
-    </section>
+        <li class="tui-list__item">
+            <strong>@maskito/angular</strong>
 
-    <hr />
-
-    <section class="tui-space_top-6">
-        <h2>@maskito/angular</h2>
-
-        <p class="tui-space_top-0">
-            The Angular-specific library. It provides two convenient ways of
-            using Maskito: basic directive approach (when developer has direct
-            access to native input element) and Dependency Injection approach
-            (when native input element is hidden somewhere deep inside another
-            component).
-        </p>
-        <tui-notification status="warning">
-            This package requires
-            <code>@maskito/core</code>
-            as peer-dependency.
-        </tui-notification>
-        <tui-doc-code
-            code="npm install @maskito/angular"
-            filename="/your/project/path>"
-        ></tui-doc-code>
-    </section>
+            <p class="tui-space_top-0">
+                The Angular-specific library. It provides two convenient ways of
+                using Maskito: basic directive approach (when developer has
+                direct access to native input element) and Dependency Injection
+                approach (when native input element is hidden somewhere deep
+                inside another component).
+            </p>
+            <tui-notification status="warning">
+                This package requires
+                <code>@maskito/core</code>
+                as peer-dependency.
+            </tui-notification>
+            <tui-doc-code
+                code="npm install @maskito/angular"
+                filename="/your/project/path>"
+            ></tui-doc-code>
+        </li>
+    </ul>
 </tui-doc-page>
