@@ -14,4 +14,5 @@ export class MaskExpressionDocPageComponent {
     );
 
     readonly processorsDocPage = `/${DemoPath.Processors}`;
+    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
 }

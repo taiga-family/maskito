@@ -27,4 +27,5 @@ export class ProcessorsDocPageComponent {
     readonly maskitoPipeDemo = import('./examples/maskito-pipe-demo.md?raw');
 
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
 }
