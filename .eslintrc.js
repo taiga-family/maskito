@@ -5,6 +5,7 @@ module.exports = {
     root: true,
     extends: [
         '@tinkoff/eslint-config-angular',
+        '@tinkoff/eslint-config-angular/html',
         '@tinkoff/eslint-config-angular/rxjs',
         '@tinkoff/eslint-config-angular/imports',
         '@tinkoff/eslint-config-angular/promise',
