@@ -3,8 +3,7 @@ import {MaskitoOptions} from '@maskito/core';
 import {padWithZeroesUntilValid} from '../../../utils';
 import {DATE_SEGMENT_VALUE_LENGTH} from '../constants';
 import {MaskitoDateSegments} from '../types';
-import {parseDateString} from '../utils';
-import {toDateString} from '../utils/to-date-string';
+import {parseDateString, toDateString} from '../utils';
 
 const dateMaxValues: MaskitoDateSegments<number> = {
     day: 31,

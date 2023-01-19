@@ -1,9 +1,9 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
-import {MaskitoDateMode} from '@maskito/kit';
 
 import {createZeroPlaceholdersPreprocessor} from '../../processors';
 import {DATE_SEGMENT_VALUE_LENGTH} from './constants';
 import {createMaxValidationPreprocessor} from './processors';
+import {MaskitoDateMode} from './types';
 
 const RepeatDataChars: Record<string, number> = {
     D: DATE_SEGMENT_VALUE_LENGTH.day,

@@ -214,7 +214,7 @@ describe('Time', () => {
             });
 
             describe('Select range and press "Delete"', () => {
-                it('23:|59| => Delete => 23:|00', () => {
+                it('23:|59| => Delete => 23', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress(['Shift', ...Array('59'.length).fill('ArrowLeft')]);

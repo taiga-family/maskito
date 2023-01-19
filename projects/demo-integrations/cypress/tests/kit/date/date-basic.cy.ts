@@ -1,4 +1,4 @@
-import {DemoPath} from 'projects/demo/src/app/app.routes';
+import {DemoPath} from '@demo/routes';
 
 describe('Date', () => {
     describe('Basic', () => {
@@ -28,6 +28,38 @@ describe('Date', () => {
                         .should('have.prop', 'selectionStart', caretIndex)
                         .should('have.prop', 'selectionEnd', caretIndex);
                 });
+            });
+
+            it('Type "9" => "09|"', () => {
+                cy.get('@input')
+                    .type('9')
+                    .should('have.value', '09')
+                    .should('have.prop', 'selectionStart', '09'.length)
+                    .should('have.prop', 'selectionEnd', '09'.length);
+            });
+
+            it('27| => type 9 => 27.09|', () => {
+                cy.get('@input')
+                    .type('27')
+                    .should('have.value', '27')
+                    .should('have.prop', 'selectionStart', '27'.length)
+                    .should('have.prop', 'selectionEnd', '27'.length)
+                    .type('9')
+                    .should('have.value', '27.09')
+                    .should('have.prop', 'selectionStart', '27.09'.length)
+                    .should('have.prop', 'selectionEnd', '27.09'.length);
+            });
+
+            it('3| => Type 7 => no value changes', () => {
+                cy.get('@input')
+                    .type('3')
+                    .should('have.value', '3')
+                    .should('have.prop', 'selectionStart', '3'.length)
+                    .should('have.prop', 'selectionEnd', '3'.length)
+                    .type('7')
+                    .should('have.value', '3')
+                    .should('have.prop', 'selectionStart', '3'.length)
+                    .should('have.prop', 'selectionEnd', '3'.length);
             });
         });
 
