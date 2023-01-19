@@ -5,7 +5,6 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 @Component({
     selector: 'overwrite-mode-doc-page',
     templateUrl: './overwrite-mode.template.html',
-    styleUrls: ['./overwrite-mode.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverwriteModeDocPageComponent {
