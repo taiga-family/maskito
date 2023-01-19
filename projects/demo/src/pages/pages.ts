@@ -34,6 +34,12 @@ export const DEMO_PAGES: TuiDocPages = [
             'core, concepts, preprocessor, postprocessor, processor, pipe, maskitoPipe, element, state, elementState',
     },
     {
+        section: 'Core concepts',
+        title: 'Overwrite mode',
+        route: DemoPath.OverwriteMode,
+        keywords: 'core, concepts, overwrite, mode, shift, replace',
+    },
+    {
         section: 'Kit',
         title: 'Number',
         route: DemoPath.Number,

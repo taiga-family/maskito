@@ -9,4 +9,7 @@ const maskedInput = new Maskito(element, {
   },
   overwriteMode: 'shift',
 });
+
+// Call it when the element is destroyed
+maskedInput.destroy();
 ```

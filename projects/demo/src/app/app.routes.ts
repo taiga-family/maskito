@@ -12,6 +12,7 @@ export const enum DemoPath {
     CoreConceptsOverview = 'core-concepts/overview',
     MaskExpression = 'core-concepts/mask-expression',
     Processors = 'core-concepts/processors',
+    OverwriteMode = 'core-concepts/overwrite-mode',
     Sandbox = 'sandbox',
 }
 
@@ -65,6 +66,16 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `Processors`,
+        },
+    },
+    {
+        path: DemoPath.OverwriteMode,
+        loadChildren: async () =>
+            import(`../pages/documentation/overwrite-mode/overwrite-mode.module`).then(
+                m => m.OverwriteModeDocPageModule,
+            ),
+        data: {
+            title: `Overwrite mode`,
         },
     },
     {
