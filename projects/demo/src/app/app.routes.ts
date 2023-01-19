@@ -6,6 +6,7 @@ import {SandboxComponent} from './modules/sandbox/sandbox.component';
 export const enum DemoPath {
     Number = 'kit/number',
     Time = 'kit/time',
+    Date = 'kit/date',
     BrowserSupport = 'documentation/browser-support',
     WhatIsMaskito = 'getting-started/what-is-maskito',
     MaskitoLibraries = 'getting-started/maskito-libraries',
@@ -114,6 +115,16 @@ export const appRoutes: Routes = [
         component: SandboxComponent,
         data: {
             title: `Sandbox`,
+        },
+    },
+    {
+        path: DemoPath.Date,
+        loadChildren: async () =>
+            import(`../pages/kit/date/date-mask-doc.module`).then(
+                m => m.DateMaskDocModule,
+            ),
+        data: {
+            title: `Date`,
         },
     },
     {

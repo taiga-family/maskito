@@ -1,10 +1,8 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 
+import {createZeroPlaceholdersPreprocessor} from '../../processors';
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from './constants';
-import {
-    createMaxValidationPreprocessor,
-    createZeroPlaceholdersPreprocessor,
-} from './processors';
+import {createMaxValidationPreprocessor} from './processors';
 import {MaskitoTimeMode, MaskitoTimeSegments} from './types';
 
 export function maskitoTimeOptionsGenerator({
@@ -24,7 +22,7 @@ export function maskitoTimeOptionsGenerator({
             TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
         ),
         preprocessor: maskitoPipe(
-            createZeroPlaceholdersPreprocessor(mode),
+            createZeroPlaceholdersPreprocessor(),
             createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues),
         ),
         overwriteMode: 'replace',

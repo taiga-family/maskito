@@ -1,0 +1,146 @@
+<tui-doc-page
+    header="Date"
+    package="KIT"
+>
+    <ng-template pageTab>
+        Use
+        <code>maskitoDateOptionsGenerator</code>
+        to create mask for date input.
+
+        <section>
+            <p>This generator has the following configurations:</p>
+            <ul class="tui-list tui-list_small">
+                <li class="tui-list__item">
+                    <code>mode</code>
+                    – date format mode.
+                    <p>
+                        <strong>Available options</strong>
+                        :
+                        <code>DMY</code>
+                        ,
+                        <code>MDY</code>
+                        or
+                        <code>YMD</code>
+                        .
+                    </p>
+                </li>
+                <li class="tui-list__item">
+                    <code>max</code>
+                    – max value. Accepts native
+                    <code>Date</code>
+
+                    <p>
+                        Default value is
+                        <code>null</code>
+                    </p>
+                </li>
+                <li class="tui-list__item">
+                    <code>min</code>
+                    – min value. Accepts native
+                    <code>Date</code>
+
+                    <p>
+                        Default value is
+                        <code>null</code>
+                    </p>
+                </li>
+                <li class="tui-list__item">
+                    <code>separator</code>
+                    – Symbol for separating date-segments (days, months, years).
+
+                    <p>
+                        Default value is
+                        <code>.</code>
+                        (Dot)
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <tui-doc-example
+            id="modes"
+            heading="modes"
+        >
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                ngModel="02.06.2018"
+                tuiTextfieldFiller="dd.mm.yyyy"
+                class="input-date"
+            >
+                DMY
+                <input
+                    tuiTextfield
+                    inputmode="decimal"
+                    [maskito]="preparedMasks['DMY']"
+                />
+            </tui-input>
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                ngModel="12-23-2023"
+                tuiTextfieldFiller="mm-dd-yyyy"
+                class="input-date"
+            >
+                MDY
+                <input
+                    tuiTextfield
+                    inputmode="decimal"
+                    [maskito]="preparedMasks['MDY']"
+                />
+            </tui-input>
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                ngModel="2005/10/21"
+                tuiTextfieldFiller="yyyy/mm/dd"
+                class="input-date"
+            >
+                YMD
+                <input
+                    tuiTextfield
+                    inputmode="decimal"
+                    [maskito]="preparedMasks['YMD']"
+                />
+            </tui-input>
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                    class="input-date"
+                    [formControl]="apiPageControl"
+                >
+                    Input date
+                    <input
+                        tuiTextfield
+                        inputmode="decimal"
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="mode"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateMode"
+                [documentationPropertyValues]="modeOptions"
+                [(documentationPropertyValue)]="mode"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Date format mode
+            </ng-template>
+            <ng-template
+                documentationPropertyName="separator"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [documentationPropertyValues]="separatorOptions"
+                [(documentationPropertyValue)]="separator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separator
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>
