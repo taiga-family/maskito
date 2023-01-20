@@ -31,24 +31,24 @@ describe('Date', () => {
                 .should('have.prop', 'selectionEnd', '05.05.2020'.length);
         });
 
-        it('0|3.06.2020 => type 7 => 05|.05.2020 (max value)', () => {
+        it('0|3.05.2020 => type 7 => 05|.05.2020 (max value)', () => {
             cy.get('@input')
-                .type('03062020')
-                .type('{leftArrow}'.repeat('3.06.2020'.length))
+                .type('03052020')
+                .type('{moveToStart}{rightArrow}')
                 .type('7')
                 .should('have.value', '05.05.2020')
                 .should('have.prop', 'selectionStart', '05.'.length)
                 .should('have.prop', 'selectionEnd', '05.'.length);
         });
 
-        it('03.0|6.2020 => type 7 => 05.05|.2020 (max value)', () => {
+        it('03.0|5.2020 => type 7 => 05.05|.2020 (max value)', () => {
             cy.get('@input')
-                .type('03072020')
-                .type('{leftArrow}'.repeat('6.2020'.length))
+                .type('03052020')
+                .type('{leftArrow}'.repeat('5.2020'.length))
                 .type('7')
                 .should('have.value', '05.05.2020')
-                .should('have.prop', 'selectionStart', '05.06.'.length)
-                .should('have.prop', 'selectionEnd', '05.06.'.length);
+                .should('have.prop', 'selectionStart', '05.05.'.length)
+                .should('have.prop', 'selectionEnd', '05.05.'.length);
         });
     });
 
@@ -85,7 +85,7 @@ describe('Date', () => {
         it('0|7.05.2020 => type 2 => 05|.05.2020 (min value)', () => {
             cy.get('@input')
                 .type('07052020')
-                .type('{leftArrow}'.repeat('7.05.2020'.length))
+                .type('{moveToStart}{rightArrow}')
                 .type('2')
                 .should('have.value', '05.05.2020')
                 .should('have.prop', 'selectionStart', '05.'.length)
@@ -97,7 +97,9 @@ describe('Date', () => {
                 .type('03062020')
                 .type('{leftArrow}'.repeat('6.2020'.length))
                 .type('2')
-                .should('have.value', '05.05.2020');
+                .should('have.value', '05.05.2020')
+                .should('have.prop', 'selectionStart', '05.05.'.length)
+                .should('have.prop', 'selectionEnd', '05.05.'.length);
         });
     });
 });
