@@ -21,7 +21,7 @@ export function createDecimalZeroPaddingPostprocessor({
     return ({value, selection}) => {
         const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
 
-        if (!integerPart) {
+        if (!value.includes(decimalSeparator) && !integerPart) {
             return {value, selection};
         }
 
