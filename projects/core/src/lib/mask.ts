@@ -4,7 +4,7 @@ import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './t
 import {
     areElementValuesEqual,
     EventListener,
-    extendToNotEmptyRange,
+    getNotEmptySelection,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
 } from './utils';
@@ -183,7 +183,7 @@ export class Maskito extends MaskHistory {
     private handleDelete(event: Event | TypedInputEvent, isForward: boolean): void {
         const initialState: ElementState = {
             value: this.elementState.value,
-            selection: extendToNotEmptyRange(this.elementState.selection, isForward),
+            selection: getNotEmptySelection(this.elementState, isForward),
         };
         const [initialFrom, initialTo] = initialState.selection;
         const {elementState} = this.options.preprocessor(
