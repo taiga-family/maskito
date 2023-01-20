@@ -6,7 +6,9 @@ export function getDefaultPseudoSeparators({
     thousandSeparator: string;
 }): string[] {
     if (decimalSeparator === ',' || decimalSeparator === '.') {
-        return ['.', 'б', 'ю'].filter(char => char !== thousandSeparator);
+        return ['.', ',', 'б', 'ю'].filter(
+            char => char !== thousandSeparator && char !== decimalSeparator,
+        );
     }
 
     return [];
