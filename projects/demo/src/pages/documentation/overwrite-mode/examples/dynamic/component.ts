@@ -13,7 +13,6 @@ import mask from './mask';
         >
             <textarea
                 tuiTextfield
-                inputmode="decimal"
                 [maskito]="maskitoOptions"
             ></textarea>
         </tui-text-area>

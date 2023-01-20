@@ -162,4 +162,32 @@ describe('Number | Basic', () => {
                 .should('have.prop', 'selectionEnd', '-123,45'.length);
         });
     });
+
+    it('"Backspace"-key does nothing when cursor at the START of element', () => {
+        cy.get('@input')
+            .type('111')
+            .type('{moveToStart}')
+            .type('{backspace}')
+            .should('have.value', '111')
+            .should('have.prop', 'selectionStart', 0)
+            .should('have.prop', 'selectionEnd', 0)
+            .type('{backspace}'.repeat(4))
+            .should('have.value', '111')
+            .should('have.prop', 'selectionStart', 0)
+            .should('have.prop', 'selectionEnd', 0);
+    });
+
+    it('"Delete"-key does nothing when cursor at the END of element', () => {
+        cy.get('@input')
+            .type('111')
+            .type('{moveToEnd}')
+            .type('{del}')
+            .should('have.value', '111')
+            .should('have.prop', 'selectionStart', '111'.length)
+            .should('have.prop', 'selectionEnd', '111'.length)
+            .type('{del}'.repeat(4))
+            .should('have.value', '111')
+            .should('have.prop', 'selectionStart', '111'.length)
+            .should('have.prop', 'selectionEnd', '111'.length);
+    });
 });
