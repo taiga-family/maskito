@@ -13,8 +13,8 @@ export function generateMaskExpression({
 }): MaskitoOptions['mask'] {
     const digit = '\\d';
     const optionalMinus = isNegativeAllowed ? '-?' : '';
-    const integerPart = `[${digit}${thousandSeparator}]*`;
-    const decimalPart = `(${decimalSeparator}${digit}{0,${precision}})?`;
+    const integerPart = `[${digit}\\${thousandSeparator}]*`;
+    const decimalPart = `(\\${decimalSeparator}${digit}{0,${precision}})?`;
 
     return precision > 0
         ? new RegExp(`^${optionalMinus}${integerPart}${decimalPart}$`)
