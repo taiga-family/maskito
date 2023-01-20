@@ -20,13 +20,32 @@ export class DateMaskDocComponent implements GeneratorOptions {
         YMD: maskitoDateOptionsGenerator({mode: 'YMD', separator: '/'}),
     };
 
+    minMask = maskitoDateOptionsGenerator({mode: 'DMY', min: new Date(2010, 5, 1)});
+    minMaxMask = maskitoDateOptionsGenerator({
+        mode: 'DMY',
+        min: new Date(2000, 0, 1),
+        max: new Date(2025, 4, 10),
+    });
+
     readonly modeOptions: MaskitoDateMode[] = [`DMY`, `MDY`, `YMD`];
     readonly separatorOptions: string[] = [`.`, `/`, `-`];
+    readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
+    minStr = this.minMaxOptions[0];
+    maxStr = this.minMaxOptions[1];
 
     mode: MaskitoDateMode = this.modeOptions[0];
     separator = this.separatorOptions[0];
 
+    min = new Date(this.minStr);
+    max = new Date(this.maxStr);
+
     maskitoOptions: MaskitoOptions = maskitoDateOptionsGenerator(this);
+
+    updateDate(): void {
+        this.min = new Date(this.minStr);
+        this.max = new Date(this.maxStr);
+        this.updateOptions();
+    }
 
     updateOptions(): void {
         this.maskitoOptions = maskitoDateOptionsGenerator(this);

@@ -2,7 +2,10 @@ import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 
 import {createZeroPlaceholdersPreprocessor} from '../../processors';
 import {DATE_SEGMENT_VALUE_LENGTH} from './constants';
-import {createMaxValidationPreprocessor} from './processors';
+import {
+    createMaxValidationPreprocessor,
+    createMinMaxValuePostprocessor,
+} from './processors';
 import {MaskitoDateMode} from './types';
 
 const RepeatDataChars: Record<string, number> = {
@@ -14,9 +17,13 @@ const RepeatDataChars: Record<string, number> = {
 export function maskitoDateOptionsGenerator({
     mode,
     separator = '.',
+    max,
+    min,
 }: {
     mode: MaskitoDateMode;
     separator?: string;
+    max?: Date;
+    min?: Date;
 }): MaskitoOptions {
     const fullDateMode = Array.from(mode)
         .join(separator)
@@ -30,6 +37,9 @@ export function maskitoDateOptionsGenerator({
         preprocessor: maskitoPipe(
             createZeroPlaceholdersPreprocessor(),
             createMaxValidationPreprocessor(fullDateMode, separator),
+        ),
+        postprocessor: maskitoPipe(
+            createMinMaxValuePostprocessor({min, max}, fullDateMode),
         ),
     };
 }
