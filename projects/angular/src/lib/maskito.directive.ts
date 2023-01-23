@@ -1,19 +1,23 @@
-import {Directive, ElementRef, Inject, Input, OnDestroy} from '@angular/core';
+import {Directive, ElementRef, Inject, Input, OnDestroy, Optional} from '@angular/core';
 import {Maskito, MaskitoOptions} from '@maskito/core';
+import {Observable, Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import {MASKITO_OPTIONS} from './maskito-options';
+import {MaskitoOptionsDirective} from './maskito-options.directive';
 
 @Directive({
     selector: 'input[maskito], textarea[maskito]',
 })
 export class MaskitoDirective implements OnDestroy {
+    private readonly destroy$ = new Subject();
     private maskedElement: Maskito | null = null;
 
     constructor(
         @Inject(ElementRef)
         private readonly elementRef: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
-        @Inject(MASKITO_OPTIONS)
-        private readonly defaultOptions: MaskitoOptions,
+        @Optional()
+        @Inject(MaskitoOptionsDirective)
+        private readonly externalOptions$: Observable<MaskitoOptions> | null,
     ) {}
 
     /**
@@ -21,32 +25,27 @@ export class MaskitoDirective implements OnDestroy {
      * ```
      * <input [maskito]="options" />
      * ```
-     * ___
-     * When native input element is hidden somewhere deep inside another component:
-     * ```
-     * @Component({
-     *     template: `
-     *         <your-custom-input>
-     *             <!-- <input maskito /> is somewhere inside -->
-     *         </your-custom-input>
-     *     `,
-     *     providers: [{provide: MASKITO_OPTIONS, useValue: {mask: /^\d+$/}}],
-     * })
-     * export class YourComponent {}
-     * ```
-     * WARNING! This approach is acceptable only for the static mask (no mask option changes).
      */
     @Input('maskito')
     set options(options: MaskitoOptions | '') {
-        this.maskedElement?.destroy();
+        this.destroy$.next();
 
-        this.maskedElement = new Maskito(
-            this.elementRef.nativeElement,
-            options || this.defaultOptions,
-        );
+        if (options) {
+            this.setup(options);
+        } else {
+            this.externalOptions$
+                ?.pipe(takeUntil(this.destroy$))
+                .subscribe(options => this.setup(options));
+        }
     }
 
     ngOnDestroy(): void {
+        this.destroy$.next();
         this.maskedElement?.destroy();
+    }
+
+    private setup(options: MaskitoOptions): void {
+        this.maskedElement?.destroy();
+        this.maskedElement = new Maskito(this.elementRef.nativeElement, options);
     }
 }

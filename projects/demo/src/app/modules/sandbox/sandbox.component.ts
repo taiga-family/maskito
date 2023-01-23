@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MASKITO_OPTIONS} from '@maskito/angular';
+import {MaskitoOptions} from '@maskito/core';
 
 import {maskitoPhoneOptionsGenerator, NO_CYRILLIC_MASK} from './masks';
 
@@ -7,10 +7,11 @@ import {maskitoPhoneOptionsGenerator, NO_CYRILLIC_MASK} from './masks';
     selector: 'sandbox',
     templateUrl: './sandbox.template.html',
     styleUrls: ['./sandbox.style.less'],
-    providers: [{provide: MASKITO_OPTIONS, useValue: {mask: /^@+$/}}],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SandboxComponent {
+    dummyMask: MaskitoOptions = {mask: /^@+$/};
+
     phoneMaskOptions = maskitoPhoneOptionsGenerator('RU');
     noCyrillicMaskOptions = {
         mask: NO_CYRILLIC_MASK,
