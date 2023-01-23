@@ -101,6 +101,41 @@
                 />
             </tui-input>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="min-max"
+            heading="Min/Max"
+        >
+            <span>Min 01.06.2010</span>
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                ngModel="02.06.2018"
+                tuiTextfieldFiller="dd.mm.yyyy"
+                class="input-date"
+            >
+                Date
+                <input
+                    tuiTextfield
+                    inputmode="decimal"
+                    [maskito]="minMask"
+                />
+            </tui-input>
+
+            <span>Min 01.01.2000, Max 10.05.2025</span>
+            <tui-input
+                tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                ngModel="20.01.2023"
+                tuiTextfieldFiller="dd.mm.yyyy"
+                class="input-date"
+            >
+                Date
+                <input
+                    tuiTextfield
+                    inputmode="decimal"
+                    [maskito]="minMaxMask"
+                />
+            </tui-input>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -140,6 +175,26 @@
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 Separator
+            </ng-template>
+            <ng-template
+                documentationPropertyName="min"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="minStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Minimum date
+            </ng-template>
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="maxStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Maximum date
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
