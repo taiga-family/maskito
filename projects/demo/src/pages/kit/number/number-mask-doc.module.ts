@@ -6,6 +6,7 @@ import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {
     TuiHintModule,
+    TuiLabelModule,
     TuiNotificationModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -14,6 +15,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-decimal-zero-padding/component';
+import {NumberMaskDocExample4} from './examples/4-dynamic-decimal-zero-padding/component';
 import {NumberMaskDocComponent} from './number-mask-doc.component';
 
 @NgModule({
@@ -25,6 +27,7 @@ import {NumberMaskDocComponent} from './number-mask-doc.component';
         TuiAddonDocModule,
         TuiHintModule,
         TuiInputModule,
+        TuiLabelModule,
         TuiNotificationModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(NumberMaskDocComponent)),
@@ -34,6 +37,7 @@ import {NumberMaskDocComponent} from './number-mask-doc.component';
         NumberMaskDocExample1,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
+        NumberMaskDocExample4,
     ],
     exports: [NumberMaskDocComponent],
 })
