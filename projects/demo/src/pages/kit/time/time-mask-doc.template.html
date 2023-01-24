@@ -113,12 +113,13 @@
                     tuiTextfieldCustomContent="tuiIconTimeLarge"
                     class="input-time"
                     [formControl]="apiPageControl"
+                    [maskito]="maskitoOptions"
                 >
                     Input time
                     <input
                         tuiTextfield
+                        maskito
                         inputmode="decimal"
-                        [maskito]="maskitoOptions"
                     />
                 </tui-input>
             </ng-template>

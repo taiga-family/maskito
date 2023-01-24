@@ -7,6 +7,7 @@
     "peerDependencies": {
         "@angular/common": ">=12.0.0",
         "@angular/core": ">=12.0.0",
-        "@maskito/core": "^0.0.1"
+        "@maskito/core": "^0.0.1",
+        "rxjs": ">=6.0.0"
     }
 }
