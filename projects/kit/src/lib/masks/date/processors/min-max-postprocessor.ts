@@ -1,6 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {dateToSegments, parseDateString, segmentsToDate, toDateString} from '../utils';
+import {parseDateString, toDateString} from '../../../utils';
+import {dateToSegments, segmentsToDate} from '../utils';
 
 export function createMinMaxValuePostprocessor(
     {
