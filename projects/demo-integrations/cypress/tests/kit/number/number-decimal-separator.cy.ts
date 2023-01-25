@@ -91,7 +91,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                 .clear()
                 .as('input');
 
-            // TODO taiga 3.16 fix (https://github.com/Tinkoff/taiga-ui/pull/3439)
+            // TODO https://github.com/Tinkoff/taiga-ui/issues/3474
             // openNumberPage('decimalSeparator=.&precision=2');
         });
 
