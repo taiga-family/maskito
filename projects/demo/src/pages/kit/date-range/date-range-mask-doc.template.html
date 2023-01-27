@@ -1,0 +1,55 @@
+<tui-doc-page
+    header="DateRange"
+    package="KIT"
+>
+    <ng-template pageTab>
+        This would be the content of a first tab
+
+        <tui-doc-example
+            id="basic"
+            heading="Basic usage"
+        >
+            TODO
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                    [tuiTextfieldFiller]="getPlaceholder(mode, separator)"
+                    [formControl]="apiPageControl"
+                >
+                    Enter dates
+                    <input
+                        tuiTextfield
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="mode"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateMode"
+                [documentationPropertyValues]="modeOptions"
+                [(documentationPropertyValue)]="mode"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Date format mode
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="separator"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="separator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separator
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>

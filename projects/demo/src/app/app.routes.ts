@@ -4,9 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const enum DemoPath {
-    Number = 'kit/number',
-    Time = 'kit/time',
-    Date = 'kit/date',
     BrowserSupport = 'documentation/browser-support',
     WhatIsMaskito = 'getting-started/what-is-maskito',
     MaskitoLibraries = 'getting-started/maskito-libraries',
@@ -14,6 +11,10 @@ export const enum DemoPath {
     MaskExpression = 'core-concepts/mask-expression',
     Processors = 'core-concepts/processors',
     OverwriteMode = 'core-concepts/overwrite-mode',
+    Number = 'kit/number',
+    Time = 'kit/time',
+    Date = 'kit/date',
+    DateRange = 'kit/date-range',
     Sandbox = 'sandbox',
 }
 
@@ -125,6 +126,16 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `Date`,
+        },
+    },
+    {
+        path: DemoPath.DateRange,
+        loadChildren: async () =>
+            import(`../pages/kit/date-range/date-range-mask-doc.module`).then(
+                m => m.DateRangeMaskDocModule,
+            ),
+        data: {
+            title: `DateRange`,
         },
     },
     {
