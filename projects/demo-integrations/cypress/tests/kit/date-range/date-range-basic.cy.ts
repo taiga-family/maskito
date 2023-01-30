@@ -87,8 +87,7 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionEnd', '3'.length);
         });
 
-        // TODO BUG!
-        it.skip('12.12.2020 - 3| => Type 7 => no value changes', () => {
+        it('12.12.2020 - 3| => Type 7 => no value changes', () => {
             cy.get('@input')
                 .type('121220203')
                 .should('have.value', '12.12.2020 – 3')
