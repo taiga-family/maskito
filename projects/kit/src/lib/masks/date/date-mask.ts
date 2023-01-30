@@ -1,11 +1,11 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 
 import {
+    createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
 import {MaskitoDateMode} from '../../types';
-import {createMinMaxValuePostprocessor} from './processors';
 
 export function maskitoDateOptionsGenerator({
     mode,
@@ -27,8 +27,11 @@ export function maskitoDateOptionsGenerator({
         overwriteMode: 'replace',
         preprocessor: maskitoPipe(
             createZeroPlaceholdersPreprocessor(),
-            createValidDatePreprocessor(dateModeTemplate, separator),
+            createValidDatePreprocessor({
+                dateModeTemplate,
+                dateSegmentsSeparator: separator,
+            }),
         ),
-        postprocessor: createMinMaxValuePostprocessor({min, max}, dateModeTemplate),
+        postprocessor: createMinMaxDatePostprocessor({min, max, dateModeTemplate}),
     };
 }

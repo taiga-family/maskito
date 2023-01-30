@@ -50,6 +50,26 @@
             >
                 Separator
             </ng-template>
+            <ng-template
+                documentationPropertyName="min"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="minStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Minimum date
+            </ng-template>
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="maxStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Maximum date
+            </ng-template>
         </tui-doc-documentation>
     </ng-template>
 </tui-doc-page>

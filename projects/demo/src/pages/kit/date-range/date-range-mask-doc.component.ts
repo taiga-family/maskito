@@ -17,8 +17,13 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
     readonly modeOptions: MaskitoDateMode[] = [`dd/mm/yyyy`, `mm/dd/yyyy`, `yyyy/mm/dd`];
+    readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
     mode: MaskitoDateMode = this.modeOptions[0];
     separator = '.';
+    minStr = this.minMaxOptions[0];
+    maxStr = this.minMaxOptions[1];
+    min = new Date(this.minStr);
+    max = new Date(this.maxStr);
 
     maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 
@@ -34,5 +39,11 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
 
     updateOptions(): void {
         this.maskitoOptions = maskitoDateRangeOptionsGenerator(this);
+    }
+
+    updateDate(): void {
+        this.min = new Date(this.minStr);
+        this.max = new Date(this.maxStr);
+        this.updateOptions();
     }
 }
