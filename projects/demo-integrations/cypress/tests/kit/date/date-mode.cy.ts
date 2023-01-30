@@ -2,9 +2,9 @@ import {DemoPath} from '@demo/routes';
 
 describe('Date', () => {
     describe('Mode', () => {
-        describe('YMD', () => {
+        describe('yyyy/mm/dd', () => {
             beforeEach(() => {
-                cy.visit(`/${DemoPath.Date}/API?mode=YMD`);
+                cy.visit(`/${DemoPath.Date}/API?mode=yyyy%2Fmm%2Fdd`);
                 cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
@@ -12,7 +12,7 @@ describe('Date', () => {
                     .as('input');
             });
 
-            it(' "YMD" => 2019.12.31', () => {
+            it(' "yyyy/mm/dd" => 2019.12.31', () => {
                 cy.get('@input')
                     .type('20193')
                     .should('have.value', '2019.03')
@@ -25,9 +25,9 @@ describe('Date', () => {
             });
         });
 
-        describe('MDY', () => {
+        describe('mm/dd/yyyy', () => {
             beforeEach(() => {
-                cy.visit(`/${DemoPath.Date}/API?mode=MDY`);
+                cy.visit(`/${DemoPath.Date}/API?mode=mm%2Fdd%2Fyyyy`);
                 cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
@@ -35,7 +35,7 @@ describe('Date', () => {
                     .as('input');
             });
 
-            it(' "MDY" => 03.12.2020', () => {
+            it(' "mm/dd/yyyy" => 03.12.2020', () => {
                 cy.get('@input')
                     .type('312')
                     .should('have.value', '03.12')
@@ -45,6 +45,29 @@ describe('Date', () => {
                     .should('have.value', '03.12.2022')
                     .should('have.prop', 'selectionStart', '03.12.2022'.length)
                     .should('have.prop', 'selectionEnd', '03.12.2022'.length);
+            });
+        });
+
+        describe('mm/yy', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.Date}/API?mode=mm%2Fyy`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it(' "mm/yy" => 03.20', () => {
+                cy.get('@input')
+                    .type('3')
+                    .should('have.value', '03')
+                    .should('have.prop', 'selectionStart', '03'.length)
+                    .should('have.prop', 'selectionEnd', '03'.length)
+                    .type('20')
+                    .should('have.value', '03.20')
+                    .should('have.prop', 'selectionStart', '03.20'.length)
+                    .should('have.prop', 'selectionEnd', '03.20'.length);
             });
         });
     });

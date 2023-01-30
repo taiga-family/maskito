@@ -1,5 +1,5 @@
-import {DATE_SEGMENT_VALUE_LENGTH} from '../constants';
 import {MaskitoDateSegments} from '../types';
+import {getDateSegmentValueLength} from './date-segment-value-length';
 import {padWithZeroesUntilValid} from './pad-with-zeroes-until-valid';
 import {parseDateString} from './parse-date-string';
 import {toDateString} from './to-date-string';
@@ -37,7 +37,7 @@ export function validateDateString({
             offset +
             validatedDate.length +
             fantomSeparator +
-            DATE_SEGMENT_VALUE_LENGTH[segmentName];
+            getDateSegmentValueLength(dateString)[segmentName];
         const isLastSegmentDigitAdded =
             lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
 

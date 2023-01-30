@@ -64,6 +64,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `date, day, month, year, mask, range, kit, generator`,
     },
     {
+        section: 'Recipes',
+        title: 'Card',
+        route: DemoPath.Card,
+        keywords: `card, credit, cvv, debit, mask, recipe`,
+    },
+    {
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
         keywords: `chrome, safari, ie, edge, firefox, browser, support`,

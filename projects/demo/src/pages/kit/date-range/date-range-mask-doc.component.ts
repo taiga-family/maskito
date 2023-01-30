@@ -16,7 +16,7 @@ type GeneratorOptions = Required<
 export class DateRangeMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
-    readonly modeOptions: MaskitoDateMode[] = [`DMY`, `MDY`, `YMD`];
+    readonly modeOptions: MaskitoDateMode[] = [`dd/mm/yyyy`, `mm/dd/yyyy`, `yyyy/mm/dd`];
     mode: MaskitoDateMode = this.modeOptions[0];
     separator = '.';
 
@@ -26,14 +26,10 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     getPlaceholder(mode: MaskitoDateMode, separator: string): string {
         const datesSep = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
 
-        switch (mode) {
-            case 'DMY':
-                return `dd${separator}mm${separator}yyyy${datesSep}dd${separator}mm${separator}yyyy`;
-            case 'MDY':
-                return `mm${separator}dd${separator}yyyy${datesSep}mm${separator}dd${separator}yyyy`;
-            case 'YMD':
-                return `yyyy${separator}mm${separator}dd${datesSep}yyyy${separator}mm${separator}dd`;
-        }
+        return `${mode.replace(/\//g, separator)}${datesSep}${mode.replace(
+            /\//g,
+            separator,
+        )}`;
     }
 
     updateOptions(): void {

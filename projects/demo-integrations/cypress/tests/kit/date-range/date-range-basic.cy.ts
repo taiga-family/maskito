@@ -2,7 +2,7 @@ import {DemoPath} from '@demo/routes';
 
 describe('DateRange | Basic', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.DateRange}/API?mode=DMY`);
+        cy.visit(`/${DemoPath.DateRange}/API?mode=dd%2Fmm%2Fyyyy`);
         cy.get('#demo-content input').should('be.visible').first().focus().as('input');
     });
 

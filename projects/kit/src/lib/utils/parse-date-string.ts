@@ -4,17 +4,17 @@ export function parseDateString(
     dateString: string,
     fullMode: string,
 ): Partial<MaskitoDateSegments> {
-    const cleanMode = fullMode.replace(/[^DMY]/g, '');
+    const cleanMode = fullMode.replace(/[^dmy]/g, '');
     const onlyDigitsDate = dateString.replace(/\D+/g, '');
 
-    const dayIndex = cleanMode.indexOf('D');
-    const monthIndex = cleanMode.indexOf('M');
-    const yearIndex = cleanMode.indexOf('Y');
+    const dayIndex = cleanMode.indexOf('d');
+    const monthIndex = cleanMode.indexOf('m');
+    const yearIndex = cleanMode.indexOf('y');
 
     const dateSegments: MaskitoDateSegments = {
         day: onlyDigitsDate.slice(dayIndex, dayIndex + 2),
         month: onlyDigitsDate.slice(monthIndex, monthIndex + 2),
-        year: onlyDigitsDate.slice(yearIndex, yearIndex + 4),
+        year: onlyDigitsDate.slice(yearIndex, cleanMode.lastIndexOf('y') + 1),
     };
 
     return Object.fromEntries(

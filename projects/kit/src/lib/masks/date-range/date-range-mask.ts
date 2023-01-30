@@ -6,7 +6,6 @@ import {
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
 import {MaskitoDateMode} from '../../types';
-import {getDateModeTemplate} from '../../utils';
 
 export function maskitoDateRangeOptionsGenerator({
     mode,
@@ -15,7 +14,7 @@ export function maskitoDateRangeOptionsGenerator({
     mode: MaskitoDateMode;
     separator?: string;
 }): MaskitoOptions {
-    const dateModeTemplate = getDateModeTemplate(mode, separator);
+    const dateModeTemplate = mode.split('/').join(separator);
     const dateMask = Array.from(dateModeTemplate).map(char =>
         char === separator ? char : /\d/,
     );
