@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/routes';
 describe('DateRange | Mode', () => {
     describe('mm.dd.yyyy', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?mode=MDY`);
+            cy.visit(`/${DemoPath.DateRange}/API?mode=mm%2Fdd%2Fyyyy`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -46,7 +46,7 @@ describe('DateRange | Mode', () => {
 
     describe('yyyy.mm.dd', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?mode=YMD`);
+            cy.visit(`/${DemoPath.DateRange}/API?mode=yyyy%2Fmm%2Fdd`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
