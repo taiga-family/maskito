@@ -1,23 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
+import {DemoPath} from './demo-path';
 import {SandboxComponent} from './modules/sandbox/sandbox.component';
-
-export const enum DemoPath {
-    BrowserSupport = 'documentation/browser-support',
-    WhatIsMaskito = 'getting-started/what-is-maskito',
-    MaskitoLibraries = 'getting-started/maskito-libraries',
-    CoreConceptsOverview = 'core-concepts/overview',
-    MaskExpression = 'core-concepts/mask-expression',
-    Processors = 'core-concepts/processors',
-    OverwriteMode = 'core-concepts/overwrite-mode',
-    Number = 'kit/number',
-    Time = 'kit/time',
-    Date = 'kit/date',
-    DateRange = 'kit/date-range',
-    Card = 'recipes/card',
-    Sandbox = 'sandbox',
-}
 
 export const appRoutes: Routes = [
     // Documentation
