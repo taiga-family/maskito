@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DemoPath} from '@demo/routes';
+import {DemoPath} from '@demo/path';
 
 @Component({
     selector: 'what-is-maskito-doc-page',

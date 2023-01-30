@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/routes';
+import {DemoPath} from '@demo/path';
 
 export function openNumberPage(queryParams: string): void {
     cy.visit(`/${DemoPath.Number}/API?${queryParams}`);

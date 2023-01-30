@@ -9,5 +9,6 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 export class CardDocComponent {
     readonly cardExample1: TuiDocExample = {
         TypeScript: import('./examples/1-basic/component.ts?raw'),
+        HTML: import('./examples/1-basic/template.html?raw'),
     };
 }
