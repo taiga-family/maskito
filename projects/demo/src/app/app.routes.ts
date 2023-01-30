@@ -15,6 +15,7 @@ export const enum DemoPath {
     Time = 'kit/time',
     Date = 'kit/date',
     DateRange = 'kit/date-range',
+    Card = 'recipes/card',
     Sandbox = 'sandbox',
 }
 
@@ -136,6 +137,14 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `DateRange`,
+        },
+    },
+    {
+        path: DemoPath.Card,
+        loadChildren: async () =>
+            import(`../pages/recipes/card/card-doc.module`).then(m => m.CardDocModule),
+        data: {
+            title: `Card`,
         },
     },
     {

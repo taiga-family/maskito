@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/routes';
 describe('Date', () => {
     describe('Basic', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.Date}/API?mode=DMY`);
+            cy.visit(`/${DemoPath.Date}/API?mode=dd%2Fmm%2Fyyyy`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()

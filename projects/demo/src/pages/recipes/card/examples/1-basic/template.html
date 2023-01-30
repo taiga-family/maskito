@@ -1,0 +1,35 @@
+<div tuiGroup>
+    <tui-input ngModel="">
+        Card
+        <input
+            tuiTextfield
+            inputmode="numeric"
+            placeholder="0000 0000 0000 0000"
+            [maskito]="cardMask"
+        />
+    </tui-input>
+    <tui-input
+        ngModel=""
+        class="expired"
+    >
+        Expired
+        <input
+            tuiTextfield
+            inputmode="numeric"
+            placeholder="mm/yy"
+            [maskito]="expiredMask"
+        />
+    </tui-input>
+    <tui-input
+        ngModel=""
+        class="cvv"
+    >
+        CVV
+        <input
+            tuiTextfield
+            inputmode="numeric"
+            placeholder="000"
+            [maskito]="cvvMask"
+        />
+    </tui-input>
+</div>
