@@ -1,4 +1,4 @@
-export * from './get-date-mode-template';
+export * from './date-segment-value-length';
 export * from './pad-with-zeroes-until-valid';
 export * from './parse-date-string';
 export * from './to-date-string';

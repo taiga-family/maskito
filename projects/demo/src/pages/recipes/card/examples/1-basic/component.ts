@@ -4,8 +4,8 @@ import {maskitoDateOptionsGenerator} from '@maskito/kit';
 
 @Component({
     selector: 'card-doc-example-1',
-    templateUrl: 'template.html',
-    styleUrls: ['style.less'],
+    templateUrl: './template.html',
+    styleUrls: ['./style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardDocExample1 {

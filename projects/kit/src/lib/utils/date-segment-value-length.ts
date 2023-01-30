@@ -1,4 +1,4 @@
-import {MaskitoDateSegments} from '../../../types';
+import {MaskitoDateSegments} from '../types';
 
 export const getDateSegmentValueLength: (
     dateString: string,

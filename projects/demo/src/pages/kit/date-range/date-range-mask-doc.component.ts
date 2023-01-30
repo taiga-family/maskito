@@ -26,16 +26,10 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     getPlaceholder(mode: MaskitoDateMode, separator: string): string {
         const datesSep = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
 
-        switch (mode) {
-            case 'dd/mm/yyyy':
-                return `dd${separator}mm${separator}yyyy${datesSep}dd${separator}mm${separator}yyyy`;
-            case 'mm/dd/yyyy':
-                return `mm${separator}dd${separator}yyyy${datesSep}mm${separator}dd${separator}yyyy`;
-            case 'yyyy/mm/dd':
-                return `yyyy${separator}mm${separator}dd${datesSep}yyyy${separator}mm${separator}dd`;
-            case 'mm/yy':
-                return `mm${separator}yy${datesSep}mm${separator}yy`;
-        }
+        return `${mode.replace(/\//g, separator)}${datesSep}${mode.replace(
+            /\//g,
+            separator,
+        )}`;
     }
 
     updateOptions(): void {
