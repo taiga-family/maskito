@@ -39,7 +39,7 @@ export const APP_PROVIDERS: Provider[] = [
         useValue: (context: TuiDocSourceCodePathOptions) => {
             const link = `https://github.com/tinkoff/maskito/tree/main/projects`;
 
-            if (!context.package) {
+            if (!context.package || context.package.toLowerCase() !== 'kit') {
                 return null;
             }
 
