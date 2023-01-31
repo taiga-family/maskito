@@ -11,7 +11,14 @@
                 "main": "projects/kit/src/index.ts",
                 "tsConfig": "projects/kit/tsconfig.lib.json",
                 "assets": ["projects/kit/*.md"]
-            }
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
         },
         "test": {
             "executor": "@nrwl/jest:jest",

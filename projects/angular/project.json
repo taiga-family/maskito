@@ -18,7 +18,14 @@
                     "tsConfig": "projects/angular/tsconfig.lib.json"
                 }
             },
-            "defaultConfiguration": "production"
+            "defaultConfiguration": "production",
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
         },
         "test": {
             "executor": "@nrwl/jest:jest",
