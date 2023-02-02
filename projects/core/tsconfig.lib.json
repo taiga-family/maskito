@@ -1,10 +1,13 @@
+/*
+TODO after update "@nrwl/js"-package to 14.7.6+:
+1. Drop this file
+2. "projects/core/project.json" => `targets.build.options.tsConfig` => replace value with `../../tsconfig.build.json`
+3. "projects/core/project.json" => `targets.build.options => Add "rootDir"
+Read more: https://github.com/nrwl/nx/pull/11678
+*/
 {
-    "extends": "./tsconfig.json",
+    "extends": "../../tsconfig.build.json",
     "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "declaration": true,
-        "types": []
-    },
-    "include": ["**/*.ts"],
-    "exclude": ["**/*.spec.ts"]
+        "rootDir": "."
+    }
 }

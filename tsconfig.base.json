@@ -9,11 +9,14 @@
         "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true,
         "enableResourceInlining": true,
+        "strictTemplates": true,
         "strictLiteralTypes": true,
-        "strictInputTypes": true
+        "strictInputTypes": true,
+        "strictInputAccessModifiers": true
     },
     "compilerOptions": {
         "baseUrl": "./",
+        "forceConsistentCasingInFileNames": true,
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
