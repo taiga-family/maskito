@@ -63,7 +63,7 @@ export function createValidDatePreprocessor(
                         .join(separator) +
                     validatedValue.slice(to),
             },
-            data: newData.replace(new RegExp(separator, 'g'), ''),
+            data: newData.replace(new RegExp(`\\${separator}`, 'g'), ''),
         };
     };
 }
