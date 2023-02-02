@@ -7,7 +7,7 @@
         "types": [],
         "inlineSources": true,
         "paths": {
-            "@maskito/core": ["./dist/projects/core/src/index"]
+            "@maskito/core": ["./dist/core/src/index"]
         }
     },
     "angularCompilerOptions": {

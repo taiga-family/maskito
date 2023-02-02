@@ -6,7 +6,7 @@
     "targets": {
         "build": {
             "executor": "@nrwl/angular:ng-packagr-lite",
-            "outputs": ["dist/projects/angular"],
+            "outputs": ["dist/angular"],
             "options": {
                 "project": "projects/angular/ng-package.json"
             },

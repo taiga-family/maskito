@@ -3,14 +3,15 @@ on: [pull_request]
 
 jobs:
   build:
+    name: Packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Build demo
-        run: npm run build
+      - name: Build packages
+        run: npx nx run-many --target build --all --exclude=demo
 
 concurrency:
   group: build-${{ github.head_ref }}
