@@ -1,4 +1,5 @@
 import {MaskitoDateSegments} from '../types';
+import {getObjectFromEntries} from './get-object-from-entries';
 
 export function parseDateString(
     dateString: string,
@@ -17,7 +18,7 @@ export function parseDateString(
         year: onlyDigitsDate.slice(yearIndex, cleanMode.lastIndexOf('y') + 1),
     };
 
-    return Object.fromEntries(
+    return getObjectFromEntries(
         Object.entries(dateSegments)
             .filter(([_, value]) => Boolean(value))
             .sort(([a], [b]) =>

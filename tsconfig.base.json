@@ -31,7 +31,7 @@
         "noUnusedLocals": true,
         "target": "es2015",
         "typeRoots": ["node_modules/@types"],
-        "lib": ["esnext", "dom"],
+        "lib": ["es2017", "es2018.asynciterable", "dom"],
         "paths": {
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
