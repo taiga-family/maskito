@@ -1,3 +1,4 @@
+import {getObjectFromEntries} from '../../../utils';
 import {TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
 import {MaskitoTimeSegments} from '../types';
 
@@ -12,7 +13,7 @@ export function padTimeSegments(
 export function padTimeSegments(
     timeSegments: Partial<MaskitoTimeSegments<number | string>>,
 ): Partial<MaskitoTimeSegments> {
-    return Object.fromEntries(
+    return getObjectFromEntries(
         Object.entries(timeSegments).map(([segmentName, segmentValue]) => [
             segmentName,
             `${segmentValue}`.padEnd(
