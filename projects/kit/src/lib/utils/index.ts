@@ -2,6 +2,7 @@ export * from './clamp';
 export * from './date-segment-value-length';
 export * from './date-to-segments';
 export * from './get-object-from-entries';
+export * from './is-date-string-completed';
 export * from './pad-with-zeroes-until-valid';
 export * from './parse-date-string';
 export * from './segments-to-date';
