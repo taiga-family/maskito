@@ -70,6 +70,26 @@
             >
                 Maximum date
             </ng-template>
+            <ng-template
+                documentationPropertyName="minLength"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateSegments<number>"
+                [documentationPropertyValues]="minLengthOptions"
+                [(documentationPropertyValue)]="minLength"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Minimal length of range
+            </ng-template>
+            <ng-template
+                documentationPropertyName="maxLength"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateSegments<number>"
+                [documentationPropertyValues]="maxLengthOptions"
+                [(documentationPropertyValue)]="maxLength"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Maximal length of range
+            </ng-template>
         </tui-doc-documentation>
     </ng-template>
 </tui-doc-page>
