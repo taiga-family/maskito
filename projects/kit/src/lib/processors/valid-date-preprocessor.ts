@@ -1,14 +1,16 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE} from '../constants';
-import {validateDateString} from '../utils';
+import {splitIntoChunks, validateDateString} from '../utils';
 
-const DATE_RANGE_SEPARATOR = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
-
-export function createValidDatePreprocessor(
-    dateModeTemplate: string,
-    separator: string,
-): NonNullable<MaskitoOptions['preprocessor']> {
+export function createValidDatePreprocessor({
+    dateModeTemplate,
+    dateSegmentsSeparator,
+    datesSeparator = '',
+}: {
+    dateModeTemplate: string;
+    dateSegmentsSeparator: string;
+    datesSeparator?: string;
+}): NonNullable<MaskitoOptions['preprocessor']> {
     return ({elementState, data}) => {
         const newCharacters = data.replace(/\D+/g, '');
 
@@ -20,20 +22,21 @@ export function createValidDatePreprocessor(
         const [from, rawTo] = selection;
         let to = rawTo + data.length;
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
-        const dateStrings =
-            newPossibleValue
-                .replace(DATE_RANGE_SEPARATOR, '')
-                .match(new RegExp(`.{1,${dateModeTemplate.length}}`, 'g')) || [];
+        const dateStrings = splitIntoChunks(
+            newPossibleValue.replace(datesSeparator, ''),
+            dateModeTemplate.length,
+        );
 
         let validatedValue = '';
-        const hasRangeSeparator = newPossibleValue.includes(DATE_RANGE_SEPARATOR);
+        const hasRangeSeparator =
+            Boolean(datesSeparator) && newPossibleValue.includes(datesSeparator);
 
         for (const dateString of dateStrings) {
             const {validatedDateString, updatedSelection} = validateDateString({
                 dateString,
                 dateModeTemplate,
                 offset: validatedValue
-                    ? validatedValue.length + DATE_RANGE_SEPARATOR.length
+                    ? validatedValue.length + datesSeparator.length
                     : 0,
                 selection: [from, to],
             });
@@ -46,7 +49,7 @@ export function createValidDatePreprocessor(
 
             validatedValue +=
                 hasRangeSeparator && validatedValue
-                    ? DATE_RANGE_SEPARATOR + validatedDateString
+                    ? datesSeparator + validatedDateString
                     : validatedDateString;
         }
 
@@ -58,12 +61,12 @@ export function createValidDatePreprocessor(
                 value:
                     validatedValue.slice(0, from) +
                     newData
-                        .split(separator)
+                        .split(dateSegmentsSeparator)
                         .map(segment => '0'.repeat(segment.length))
-                        .join(separator) +
+                        .join(dateSegmentsSeparator) +
                     validatedValue.slice(to),
             },
-            data: newData.replace(new RegExp(`\\${separator}`, 'g'), ''),
+            data: newData.replace(new RegExp(`\\${dateSegmentsSeparator}`, 'g'), ''),
         };
     };
 }
