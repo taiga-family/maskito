@@ -1,5 +1,5 @@
-import {MaskitoDateSegments} from '../types';
-import {getObjectFromEntries} from './get-object-from-entries';
+import {MaskitoDateSegments} from '../../types';
+import {getObjectFromEntries} from '../get-object-from-entries';
 
 export function parseDateString(
     dateString: string,

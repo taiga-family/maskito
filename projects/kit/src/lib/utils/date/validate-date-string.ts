@@ -1,6 +1,6 @@
-import {MaskitoDateSegments} from '../types';
+import {MaskitoDateSegments} from '../../types';
+import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
 import {getDateSegmentValueLength} from './date-segment-value-length';
-import {padWithZeroesUntilValid} from './pad-with-zeroes-until-valid';
 import {parseDateString} from './parse-date-string';
 import {toDateString} from './to-date-string';
 

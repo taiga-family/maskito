@@ -3,6 +3,7 @@ import {MaskitoOptions} from '@maskito/core';
 import {
     clamp,
     dateToSegments,
+    isDateStringCompleted,
     parseDateString,
     segmentsToDate,
     splitIntoChunks,
@@ -20,9 +21,7 @@ export function createMinMaxDatePostprocessor({
     max?: Date;
     datesSeparator?: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
-    return elementState => {
-        const {value, selection} = elementState;
-
+    return ({value, selection}) => {
         const dateStrings = splitIntoChunks(
             value.replace(datesSeparator, ''),
             dateModeTemplate.length,
@@ -33,18 +32,12 @@ export function createMinMaxDatePostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? datesSeparator : '';
 
-            if (dateString.length < dateModeTemplate.length) {
+            if (!isDateStringCompleted(dateString, dateModeTemplate)) {
                 validatedValue += dateString;
                 continue;
             }
 
             const parsedDate = parseDateString(dateString, dateModeTemplate);
-
-            if (parsedDate.day === '00' || parsedDate.month === '00') {
-                validatedValue += dateString;
-                continue;
-            }
-
             const date = segmentsToDate(parsedDate);
             const clampedDate = clamp(date, min, max);
 

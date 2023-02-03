@@ -1,4 +1,4 @@
-import {MaskitoDateSegments} from '../types';
+import {MaskitoDateSegments} from '../../types';
 
 export function toDateString(
     {day, month, year}: Partial<MaskitoDateSegments<string>>,
