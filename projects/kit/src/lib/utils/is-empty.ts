@@ -1,5 +1,3 @@
-export function isEmpty(
-    entity: boolean | number | object | string | null | undefined,
-): boolean {
+export function isEmpty(entity: object | null | undefined): boolean {
     return !entity || (typeof entity === 'object' && Object.keys(entity).length === 0);
 }
