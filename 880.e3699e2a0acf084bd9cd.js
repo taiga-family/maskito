@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[880],{6880:t=>{t.exports="import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';\n\nexport default maskitoDateRangeOptionsGenerator({\n    mode: 'dd/mm/yyyy',\n    minLength: {day: 3},\n    maxLength: {month: 1},\n});\n"}}]);
