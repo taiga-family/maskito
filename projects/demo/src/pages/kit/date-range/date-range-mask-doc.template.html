@@ -3,13 +3,67 @@
     package="KIT"
 >
     <ng-template pageTab>
-        This would be the content of a first tab
+        Use
+        <code>maskitoDateRangeOptionsGenerator</code>
+        to create mask to input a range of dates.
 
         <tui-doc-example
-            id="basic"
-            heading="Basic usage"
+            id="date-localization"
+            heading="Date localization"
+            [content]="dateLocalizationExample1"
+            [description]="dateLocalizationDescription"
         >
-            TODO
+            <ng-template #dateLocalizationDescription>
+                Use
+                <code>mode</code>
+                and
+                <code>separator</code>
+                parameters to get mask with a language‑sensitive representation
+                of dates.
+            </ng-template>
+            <date-range-mask-doc-example-1></date-range-mask-doc-example-1>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="min-max"
+            heading="Min and max dates"
+            [description]="minMaxDescription"
+            [content]="minMaxExample2"
+        >
+            <ng-template #minMaxDescription>
+                Parameters
+                <code>min</code>
+                and
+                <code>max</code>
+                allow to set the least and the greatest available dates. They
+                accept native
+                <a
+                    tuiLink
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+                    target="_blank"
+                >
+                    Date
+                </a>
+                .
+            </ng-template>
+            <date-range-mask-doc-example-2></date-range-mask-doc-example-2>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="min-max-length"
+            heading="Min and max length of range"
+            [description]="minMaxLengthDescription"
+            [content]="minMaxLengthExample3"
+        >
+            <ng-template #minMaxLengthDescription>
+                Use
+                <code>minLength</code>
+                and
+                <code>maxLength</code>
+                parameters to set minimal and maximal length of the dates'
+                range.
+            </ng-template>
+            <date-range-mask-doc-example-3></date-range-mask-doc-example-3>
         </tui-doc-example>
     </ng-template>
 
@@ -49,6 +103,12 @@
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 Separator
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>.</code>
+                    (dot).
+                </p>
             </ng-template>
             <ng-template
                 documentationPropertyName="min"

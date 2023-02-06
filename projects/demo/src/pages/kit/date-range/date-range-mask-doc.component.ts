@@ -6,6 +6,7 @@ import {
     maskitoDateRangeOptionsGenerator,
     MaskitoDateSegments,
 } from '@maskito/kit';
+import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
 
 type GeneratorOptions = Required<
@@ -18,6 +19,18 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangeMaskDocComponent implements GeneratorOptions {
+    readonly dateLocalizationExample1: TuiDocExample = {
+        MaskitoOptions: import('./examples/1-date-localization/mask.ts?raw'),
+    };
+
+    readonly minMaxExample2: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-min-max/mask.ts?raw'),
+    };
+
+    readonly minMaxLengthExample3: TuiDocExample = {
+        MaskitoOptions: import('./examples/3-min-max-length/mask.ts?raw'),
+    };
+
     apiPageControl = new FormControl('');
 
     readonly modeOptions: MaskitoDateMode[] = [`dd/mm/yyyy`, `mm/dd/yyyy`, `yyyy/mm/dd`];
