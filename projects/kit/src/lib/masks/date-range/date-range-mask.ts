@@ -6,7 +6,8 @@ import {
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
-import {MaskitoDateMode} from '../../types';
+import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
+import {createMinMaxRangeLengthPostprocessor} from './min-max-range-length-postprocessor';
 
 const DATE_RANGE_SEPARATOR = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
 
@@ -15,11 +16,15 @@ export function maskitoDateRangeOptionsGenerator({
     separator = '.',
     min,
     max,
+    minLength,
+    maxLength,
 }: {
     mode: MaskitoDateMode;
     separator?: string;
     min?: Date;
     max?: Date;
+    minLength?: Partial<MaskitoDateSegments<number>>;
+    maxLength?: Partial<MaskitoDateSegments<number>>;
 }): MaskitoOptions {
     const dateModeTemplate = mode.split('/').join(separator);
     const dateMask = Array.from(dateModeTemplate).map(char =>
@@ -37,11 +42,20 @@ export function maskitoDateRangeOptionsGenerator({
                 datesSeparator: DATE_RANGE_SEPARATOR,
             }),
         ),
-        postprocessor: createMinMaxDatePostprocessor({
-            min,
-            max,
-            dateModeTemplate,
-            datesSeparator: DATE_RANGE_SEPARATOR,
-        }),
+        postprocessor: maskitoPipe(
+            createMinMaxDatePostprocessor({
+                min,
+                max,
+                dateModeTemplate,
+                datesSeparator: DATE_RANGE_SEPARATOR,
+            }),
+            createMinMaxRangeLengthPostprocessor({
+                dateModeTemplate,
+                minLength,
+                maxLength,
+                max,
+                datesSeparator: DATE_RANGE_SEPARATOR,
+            }),
+        ),
     };
 }

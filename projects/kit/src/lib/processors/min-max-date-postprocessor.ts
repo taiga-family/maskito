@@ -1,5 +1,6 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {
     clamp,
     dateToSegments,
@@ -12,8 +13,8 @@ import {
 
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
-    min = new Date('0001-01-01'),
-    max = new Date('9999-12-31'),
+    min = DEFAULT_MIN_DATE,
+    max = DEFAULT_MAX_DATE,
     datesSeparator = '',
 }: {
     dateModeTemplate: string;
