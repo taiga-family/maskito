@@ -1,6 +1,6 @@
 import {DemoPath} from '@demo/path';
 
-describe('DateRange | Min & Max', () => {
+describe('DateRange | Min & Max dates', () => {
     describe('Max', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.DateRange}/API?max=2020-05-05`);
