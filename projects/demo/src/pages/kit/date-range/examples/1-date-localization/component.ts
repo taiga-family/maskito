@@ -30,7 +30,7 @@ export class DateRangeMaskDocExample1 {
     });
 
     value = '09/20/2020 – 02/06/2023';
-    readonly filler = 'yyyy/mm/dd – yyyy/mm/dd';
+    readonly filler = 'mm/dd/yyyy – mm/dd/yyyy';
     readonly mask = mask;
 
     get hint(): string {
