@@ -4,7 +4,7 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
         'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.spec.json',
+            tsconfig: 'tsconfig.spec.json',
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
