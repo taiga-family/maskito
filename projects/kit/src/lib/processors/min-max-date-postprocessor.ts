@@ -23,6 +23,13 @@ export function createMinMaxDatePostprocessor({
     datesSeparator?: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
     return ({value, selection}) => {
+        if (datesSeparator && value.endsWith(datesSeparator)) {
+            return {
+                selection,
+                value,
+            };
+        }
+
         const dateStrings = splitIntoChunks(
             value.replace(datesSeparator, ''),
             dateModeTemplate.length,
