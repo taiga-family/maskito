@@ -127,7 +127,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/projects/demo"],
+            "outputs": ["coverage/demo"],
             "options": {
                 "jestConfig": "projects/demo/jest.config.js",
                 "passWithNoTests": true
