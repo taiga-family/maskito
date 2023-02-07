@@ -9,7 +9,7 @@
             "options": {
                 "outputPath": "dist/kit",
                 "main": "projects/kit/src/index.ts",
-                "tsConfig": "projects/kit/tsconfig.lib.json",
+                "tsConfig": "projects/kit/tsconfig.workaround.json",
                 "assets": ["projects/kit/*.md"]
             },
             "dependsOn": [
