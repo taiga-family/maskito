@@ -133,6 +133,14 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.Phone,
+        loadChildren: async () =>
+            import(`../pages/recipes/phone/phone-doc.module`).then(m => m.PhoneDocModule),
+        data: {
+            title: `Phone`,
+        },
+    },
+    {
         path: '**',
         redirectTo: DemoPath.WhatIsMaskito,
     },

@@ -1,0 +1,15 @@
+<tui-input
+    tuiTextfieldCustomContent="tuiIconCallLarge"
+    [style.max-width.rem]="20"
+    [formControl]="control"
+>
+    Enter a phone number
+    <input
+        tuiTextfield
+        autocomplete="tel"
+        inputmode="tel"
+        [maskito]="maskitoOptions"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+    />
+</tui-input>

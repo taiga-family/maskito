@@ -11,5 +11,6 @@ export const enum DemoPath {
     Date = 'kit/date',
     DateRange = 'kit/date-range',
     Card = 'recipes/card',
+    Phone = 'recipes/phone',
     Sandbox = 'sandbox',
 }

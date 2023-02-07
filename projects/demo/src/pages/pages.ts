@@ -70,6 +70,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `card, credit, cvv, debit, mask, recipe`,
     },
     {
+        section: 'Recipes',
+        title: 'Phone',
+        route: DemoPath.Phone,
+        keywords: `phone, mobile, tel, telephone, mask, recipe`,
+    },
+    {
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
         keywords: `chrome, safari, ie, edge, firefox, browser, support`,
