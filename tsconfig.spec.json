@@ -3,7 +3,9 @@
     "compilerOptions": {
         "outDir": "./out-tsc/spec",
         "module": "esnext",
-        "types": ["jest", "node"]
+        "types": ["jest", "node"],
+        "esModuleInterop": true
     },
-    "exclude": ["**/schematics/**/*", "projects/demo-integrations"]
+    "exclude": ["**/schematics/**/*", "projects/demo-integrations"],
+    "include": ["**/*.spec.ts", "**/*.d.ts"]
 }
