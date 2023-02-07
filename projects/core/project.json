@@ -15,7 +15,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/projects/core"],
+            "outputs": ["coverage/core"],
             "options": {
                 "jestConfig": "projects/core/jest.config.js",
                 "passWithNoTests": true

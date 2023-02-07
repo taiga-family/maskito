@@ -29,7 +29,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/projects/angular"],
+            "outputs": ["coverage/angular"],
             "options": {
                 "jestConfig": "projects/angular/jest.config.js",
                 "passWithNoTests": true

@@ -8,7 +8,7 @@ module.exports = {
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
-    coverageDirectory: '../../coverage/projects/angular',
+    coverageDirectory: '../../coverage/angular',
     transform: {
         '^.+\\.(ts|js|html)$': 'jest-preset-angular',
     },
