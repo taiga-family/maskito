@@ -34,9 +34,11 @@ export class DateRangeMaskDocExample1 {
     readonly mask = mask;
 
     get hint(): string {
-        return this.value
-            .split(' – ')
-            .map(date => this.usDateFormatter.format(new Date(date)))
-            .join(' – ');
+        return this.value.length < this.filler.length
+            ? 'Complete the date range!'
+            : this.value
+                  .split(' – ')
+                  .map(date => this.usDateFormatter.format(new Date(date)))
+                  .join(' – ');
     }
 }
