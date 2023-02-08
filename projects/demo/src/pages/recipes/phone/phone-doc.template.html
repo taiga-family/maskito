@@ -1,0 +1,55 @@
+<tui-doc-page
+    header="Phone"
+    package="Recipes"
+>
+    <p class="tui-space_top-0">
+        The creation of a mask for phone number is simple. The only required
+        knowledge is the
+        <strong>pattern mask expression</strong>
+        with
+        <strong>fixed characters</strong>
+        . Read more about it in section
+        <a
+            tuiLink
+            [routerLink]="maskExpressionDocPage"
+        >
+            "Mask expression"
+        </a>
+        .
+    </p>
+
+    <p class="tui-space_bottom-0">
+        This page demonstrates some examples how to create phone number mask for
+        different countries.
+    </p>
+
+    <tui-doc-example
+        id="us"
+        heading="United States"
+        [content]="usPhoneExample1"
+    >
+        <phone-doc-example-1></phone-doc-example-1>
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="ru"
+        heading="Russian"
+        [content]="ruPhoneExample2"
+        [description]="ruMaskDescription"
+    >
+        <ng-template #ruMaskDescription>
+            The following example demonstrates more complex mask. It shows how
+            to make a country-prefix not-removable. It is achieved by
+            <strong>postprocessor</strong>
+            . Read more about it in section
+            <a
+                tuiLink
+                [routerLink]="processorsDocPage"
+            >
+                "Processors"
+            </a>
+            .
+        </ng-template>
+        <phone-doc-example-2></phone-doc-example-2>
+    </tui-doc-example>
+</tui-doc-page>
