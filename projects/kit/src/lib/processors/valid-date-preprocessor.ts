@@ -1,5 +1,6 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {POSSIBLE_DATES_SEPARATOR} from '../constants';
 import {splitIntoChunks, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
@@ -12,13 +13,25 @@ export function createValidDatePreprocessor({
     datesSeparator?: string;
 }): NonNullable<MaskitoOptions['preprocessor']> {
     return ({elementState, data}) => {
+        const {value, selection} = elementState;
+
+        if (data === dateSegmentsSeparator && value.length === selection[0]) {
+            return {
+                elementState,
+                data,
+            };
+        }
+
+        if (POSSIBLE_DATES_SEPARATOR.includes(data)) {
+            return {elementState, data: datesSeparator};
+        }
+
         const newCharacters = data.replace(/\D+/g, '');
 
         if (!newCharacters) {
             return {elementState, data: ''};
         }
 
-        const {value, selection} = elementState;
         const [from, rawTo] = selection;
         let to = rawTo + data.length;
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);

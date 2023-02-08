@@ -23,6 +23,30 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '31/12/2019'.length)
                     .should('have.prop', 'selectionEnd', '31/12/2019'.length);
             });
+
+            it('input "/" separator"', () => {
+                cy.get('@input')
+                    .type('31/')
+                    .should('have.value', '31/')
+                    .should('have.prop', 'selectionStart', '31/'.length)
+                    .should('have.prop', 'selectionEnd', '31/'.length);
+            });
+
+            it('input separator "/" is not allowed', () => {
+                cy.get('@input')
+                    .type('3/')
+                    .should('have.value', '3')
+                    .should('have.prop', 'selectionStart', '3'.length)
+                    .should('have.prop', 'selectionEnd', '3'.length);
+            });
+
+            it('Input separator "-" in separator mode "/" is not allowed', () => {
+                cy.get('@input')
+                    .type('31-')
+                    .should('have.value', '31')
+                    .should('have.prop', 'selectionStart', '31'.length)
+                    .should('have.prop', 'selectionEnd', '31'.length);
+            });
         });
 
         describe('-', () => {
