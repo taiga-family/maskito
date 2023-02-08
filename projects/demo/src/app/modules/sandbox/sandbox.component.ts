@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {MaskitoOptions} from '@maskito/core';
 
-import {maskitoPhoneOptionsGenerator, NO_CYRILLIC_MASK} from './masks';
+import {NO_CYRILLIC_MASK} from './masks';
 
 @Component({
     selector: 'sandbox',
@@ -11,8 +11,6 @@ import {maskitoPhoneOptionsGenerator, NO_CYRILLIC_MASK} from './masks';
 })
 export class SandboxComponent {
     dummyMask: MaskitoOptions = {mask: /^@+$/};
-
-    phoneMaskOptions = maskitoPhoneOptionsGenerator('RU');
     noCyrillicMaskOptions = {
         mask: NO_CYRILLIC_MASK,
     };

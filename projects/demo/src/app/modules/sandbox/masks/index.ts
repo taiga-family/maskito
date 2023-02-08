@@ -3,4 +3,3 @@
  * For now, it exists here for debug.
  */
 export {NO_CYRILLIC_MASK} from './no-cyrillic-mask';
-export {maskitoPhoneOptionsGenerator} from './phone-mask';
