@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
-import {TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateMaskDocComponent} from './date-mask-doc.component';
@@ -17,6 +17,7 @@ import {DateMaskDocComponent} from './date-mask-doc.component';
         MaskitoModule,
         TuiAddonDocModule,
         TuiInputModule,
+        TuiLinkModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(DateMaskDocComponent)),
     ],

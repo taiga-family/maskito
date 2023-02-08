@@ -7,60 +7,20 @@
         <code>maskitoDateOptionsGenerator</code>
         to create mask for date input.
 
-        <section>
-            <p>This generator has the following configurations:</p>
-            <ul class="tui-list tui-list_small">
-                <li class="tui-list__item">
-                    <code>mode</code>
-                    – date format mode.
-                    <p>
-                        <strong>Available options</strong>
-                        :
-                        <code>DMY</code>
-                        ,
-                        <code>MDY</code>
-                        or
-                        <code>YMD</code>
-                        .
-                    </p>
-                </li>
-                <li class="tui-list__item">
-                    <code>max</code>
-                    – max value. Accepts native
-                    <code>Date</code>
-
-                    <p>
-                        Default value is
-                        <code>null</code>
-                    </p>
-                </li>
-                <li class="tui-list__item">
-                    <code>min</code>
-                    – min value. Accepts native
-                    <code>Date</code>
-
-                    <p>
-                        Default value is
-                        <code>null</code>
-                    </p>
-                </li>
-                <li class="tui-list__item">
-                    <code>separator</code>
-                    – Symbol for separating date-segments (days, months, years).
-
-                    <p>
-                        Default value is
-                        <code>.</code>
-                        (Dot)
-                    </p>
-                </li>
-            </ul>
-        </section>
-
         <tui-doc-example
-            id="modes"
-            heading="modes"
+            id="date-localization"
+            heading="Date localization"
+            [description]="dateLocalizationDescription"
         >
+            <ng-template #dateLocalizationDescription>
+                Use
+                <code>mode</code>
+                and
+                <code>separator</code>
+                properties to get mask with a language‑sensitive representation
+                of dates.
+            </ng-template>
+
             <tui-input
                 tuiTextfieldCustomContent="tuiIconCalendarLarge"
                 ngModel="02.06.2018"
@@ -105,7 +65,25 @@
         <tui-doc-example
             id="min-max"
             heading="Min/Max"
+            [description]="minMaxDescription"
         >
+            <ng-template #minMaxDescription>
+                Properties
+                <code>min</code>
+                and
+                <code>max</code>
+                allow to set the least and the greatest available dates. They
+                accept native
+                <a
+                    tuiLink
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+                    target="_blank"
+                >
+                    Date
+                </a>
+                .
+            </ng-template>
+
             <span>Min 01.06.2010</span>
             <tui-input
                 tuiTextfieldCustomContent="tuiIconCalendarLarge"
@@ -174,7 +152,13 @@
                 [(documentationPropertyValue)]="separator"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Separator
+                Symbol for separating date-segments (days, months, years)
+
+                <p class="tui-space_bottom-0">
+                    <strong>Default:</strong>
+                    <code>.</code>
+                    (dot)
+                </p>
             </ng-template>
             <ng-template
                 documentationPropertyName="min"
@@ -185,6 +169,11 @@
                 (documentationPropertyValueChange)="updateDate()"
             >
                 Minimum date
+
+                <p class="tui-space_bottom-0">
+                    <strong>Default:</strong>
+                    <code>new Date('0001-01-01')</code>
+                </p>
             </ng-template>
             <ng-template
                 documentationPropertyName="max"
@@ -195,6 +184,11 @@
                 (documentationPropertyValueChange)="updateDate()"
             >
                 Maximum date
+
+                <p class="tui-space_bottom-0">
+                    <strong>Default:</strong>
+                    <code>new Date('9999-12-31')</code>
+                </p>
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
