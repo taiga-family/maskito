@@ -2,12 +2,6 @@ module.exports = {
     displayName: 'angular',
     preset: '../../jest.preset.js',
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-    globals: {
-        'ts-jest': {
-            tsconfig: 'tsconfig.spec.json',
-            stringifyContentPathRegex: '\\.(html|svg)$',
-        },
-    },
     coverageDirectory: '../../coverage/angular',
     transform: {
         '^.+\\.(ts|js|html)$': 'jest-preset-angular',
