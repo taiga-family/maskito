@@ -1,5 +1,6 @@
 {
     "compileOnSave": false,
+    "exclude": ["projects/demo-integrations"],
     "angularCompilerOptions": {
         "enableIvy": true,
         "preserveWhitespaces": false,
