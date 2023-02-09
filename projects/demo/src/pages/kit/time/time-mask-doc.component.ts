@@ -6,6 +6,7 @@ import {
     maskitoTimeOptionsGenerator,
     MaskitoTimeSegments,
 } from '@maskito/kit';
+import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
@@ -16,17 +17,15 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeMaskDocComponent implements GeneratorOptions {
-    apiPageControl = new FormControl('');
-
-    readonly preparedMasks = {
-        'HH:MM': maskitoTimeOptionsGenerator({mode: 'HH:MM'}),
-        'HH:MM:SS': maskitoTimeOptionsGenerator({mode: 'HH:MM:SS'}),
-        'HH:MM:SS.MSS': maskitoTimeOptionsGenerator({mode: 'HH:MM:SS.MSS'}),
-        'HH:MM 12-hours': maskitoTimeOptionsGenerator({
-            mode: 'HH:MM',
-            timeSegmentMaxValues: {hours: 12},
-        }),
+    readonly modeExample1: TuiDocExample = {
+        MaskitoOptions: import('./examples/1-modes/mask.ts?raw'),
     };
+
+    readonly modeExample2: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-twelve-hour-format/mask.ts?raw'),
+    };
+
+    apiPageControl = new FormControl('');
 
     readonly modeOptions: MaskitoTimeMode[] = [`HH:MM`, `HH:MM:SS`, `HH:MM:SS.MSS`];
     readonly timeSegmentMaxValuesOptions: Array<Partial<MaskitoTimeSegments<number>>> = [
