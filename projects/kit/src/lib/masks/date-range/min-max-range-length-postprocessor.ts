@@ -8,9 +8,9 @@ import {
     dateToSegments,
     isDateStringCompleted,
     isEmpty,
+    parseDateRangeString,
     parseDateString,
     segmentsToDate,
-    splitIntoChunks,
     toDateString,
 } from '../../utils';
 
@@ -32,10 +32,7 @@ export function createMinMaxRangeLengthPostprocessor({
     }
 
     return ({value, selection}) => {
-        const dateStrings = splitIntoChunks(
-            value.replace(datesSeparator, ''),
-            dateModeTemplate.length,
-        );
+        const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);
 
         if (
             dateStrings.length !== 2 ||
