@@ -656,4 +656,22 @@ describe('Phone', () => {
                 .should('have.value', '');
         });
     });
+
+    describe('New typed character is equal to the previous (already existing) fixed character', () => {
+        it('+7 | => Type 7 => +7 (7', () => {
+            cy.get('@input')
+                .type('7')
+                .should('have.value', '+7 (7')
+                .should('have.prop', 'selectionStart', '+7 (7'.length)
+                .should('have.prop', 'selectionEnd', '+7 (7'.length);
+        });
+
+        it('+7 (7| => Type 7 => +7 (77', () => {
+            cy.get('@input')
+                .type('77')
+                .should('have.value', '+7 (77')
+                .should('have.prop', 'selectionStart', '+7 (77'.length)
+                .should('have.prop', 'selectionEnd', '+7 (77'.length);
+        });
+    });
 });

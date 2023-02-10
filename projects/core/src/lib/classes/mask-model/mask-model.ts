@@ -29,8 +29,9 @@ export class MaskModel implements ElementState {
 
     addCharacters(selection: SelectionRange, newCharacters: string): void {
         const {maskExpression, value} = this;
+        const initialElementState = {value, selection};
         const unmaskedElementState = removeFixedMaskCharacters(
-            {value, selection},
+            initialElementState,
             maskExpression,
         );
         const [unmaskedFrom, unmaskedTo] = applyOverwriteMode(
@@ -50,6 +51,7 @@ export class MaskModel implements ElementState {
                 selection: [newCaretIndex, newCaretIndex],
             },
             maskExpression,
+            initialElementState,
         );
 
         if (areElementStatesEqual(this, maskedElementState)) {
@@ -71,8 +73,9 @@ export class MaskModel implements ElementState {
         }
 
         const {maskExpression, value} = this;
+        const initialElementState: ElementState = {value, selection: [from, to]};
         const unmaskedElementState = removeFixedMaskCharacters(
-            {value, selection: [from, to]},
+            initialElementState,
             maskExpression,
         );
         const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
@@ -83,6 +86,7 @@ export class MaskModel implements ElementState {
         const maskedElementState = calibrateValueByMask(
             {value: newUnmaskedValue, selection: [unmaskedFrom, unmaskedFrom]},
             maskExpression,
+            initialElementState,
         );
 
         this.value = maskedElementState.value;

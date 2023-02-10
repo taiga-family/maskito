@@ -6,13 +6,14 @@ import {validateValueWithMask} from './validate-value-with-mask';
 export function calibrateValueByMask(
     elementState: ElementState,
     mask: MaskExpression,
+    initialElementState: ElementState = elementState,
 ): ElementState {
     if (validateValueWithMask(elementState.value, mask)) {
         return elementState;
     }
 
     const {value, selection} = Array.isArray(mask)
-        ? guessValidValueByPattern(elementState, mask)
+        ? guessValidValueByPattern(elementState, mask, initialElementState)
         : guessValidValueByRegExp(elementState, mask);
 
     return {

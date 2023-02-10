@@ -3,20 +3,20 @@ import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function guessValidValueByPattern(
-    initialElementState: ElementState,
+    elementState: ElementState,
     mask: Array<RegExp | string>,
+    initialElementState: ElementState,
 ): ElementState {
     let maskedFrom: number | null = null;
     let maskedTo: number | null = null;
 
-    const [initialFrom, initialTo] = initialElementState.selection;
-
-    const maskedValue = Array.from(initialElementState.value).reduce(
+    const maskedValue = Array.from(elementState.value).reduce(
         (validatedCharacters, char, charIndex) => {
             const leadingCharacters = getLeadingFixedCharacters(
                 mask,
                 validatedCharacters,
                 char,
+                initialElementState,
             );
             const newValidatedChars = validatedCharacters + leadingCharacters;
             const charConstraint = mask[newValidatedChars.length];
@@ -29,11 +29,11 @@ export function guessValidValueByPattern(
                 return newValidatedChars;
             }
 
-            if (maskedFrom === null && charIndex >= initialFrom) {
+            if (maskedFrom === null && charIndex >= elementState.selection[0]) {
                 maskedFrom = newValidatedChars.length;
             }
 
-            if (maskedTo === null && charIndex >= initialTo) {
+            if (maskedTo === null && charIndex >= elementState.selection[1]) {
                 maskedTo = newValidatedChars.length;
             }
 
