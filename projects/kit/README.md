@@ -1,11 +1,15 @@
-# kit
+# @maskito/kit
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@maskito/kit.svg)](https://npmjs.com/package/@maskito/kit)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@maskito/kit)](https://bundlephobia.com/result?p=@maskito/kit)
 
-## Building
+[Documentation](https://tinkoff.github.io/maskito) •
+[Submit an Issue](https://github.com/Tinkoff/maskito/issues/new/choose) • [Contact Us](https://t.me/taiga_ui)
 
-Run `nx build kit` to build the library.
+> The optional framework-agnostic Maskito's package. It contains ready-to-use masks with configurable parameters.
 
-## Running unit tests
+## How to install
 
-Run `nx test kit` to execute the unit tests via [Jest](https://jestjs.io).
+```
+npm i @maskito/{core,kit}
+```

@@ -1,11 +1,16 @@
-# core
+# @maskito/core
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@maskito/core.svg)](https://npmjs.com/package/@maskito/core)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@maskito/core)](https://bundlephobia.com/result?p=@maskito/core)
 
-## Building
+[Documentation](https://tinkoff.github.io/maskito) •
+[Submit an Issue](https://github.com/Tinkoff/maskito/issues/new/choose) • [Contact Us](https://t.me/taiga_ui)
 
-Run `nx build core` to build the library.
+> It is the main zero-dependency and framework-agnostic Maskito's package. It can be used alone in Vanilla Javascript
+> project.
 
-## Running unit tests
+## How to install
 
-Run `nx test core` to execute the unit tests via [Jest](https://jestjs.io).
+```
+npm i @maskito/core
+```
