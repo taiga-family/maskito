@@ -1,7 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {POSSIBLE_DATES_SEPARATOR} from '../constants';
-import {splitIntoChunks, validateDateString} from '../utils';
+import {parseDateRangeString, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
     dateModeTemplate,
@@ -26,7 +26,10 @@ export function createValidDatePreprocessor({
             return {elementState, data: datesSeparator};
         }
 
-        const newCharacters = data.replace(/\D+/g, '');
+        const newCharacters = data.replace(
+            new RegExp(`[^\\d\\${dateSegmentsSeparator}${datesSeparator}]`, 'g'),
+            '',
+        );
 
         if (!newCharacters) {
             return {elementState, data: ''};
@@ -35,9 +38,10 @@ export function createValidDatePreprocessor({
         const [from, rawTo] = selection;
         let to = rawTo + data.length;
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
-        const dateStrings = splitIntoChunks(
-            newPossibleValue.replace(datesSeparator, ''),
-            dateModeTemplate.length,
+        const dateStrings = parseDateRangeString(
+            newPossibleValue,
+            dateModeTemplate,
+            datesSeparator,
         );
 
         let validatedValue = '';
@@ -58,7 +62,7 @@ export function createValidDatePreprocessor({
                 return {elementState, data: ''}; // prevent changes
             }
 
-            to = updatedSelection[1] + validatedDateString.length - dateString.length;
+            to = updatedSelection[1];
 
             validatedValue +=
                 hasRangeSeparator && validatedValue
@@ -79,7 +83,7 @@ export function createValidDatePreprocessor({
                         .join(dateSegmentsSeparator) +
                     validatedValue.slice(to),
             },
-            data: newData.replace(new RegExp(`\\${dateSegmentsSeparator}`, 'g'), ''),
+            data: newData,
         };
     };
 }

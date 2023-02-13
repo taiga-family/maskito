@@ -5,9 +5,9 @@ import {
     clamp,
     dateToSegments,
     isDateStringCompleted,
+    parseDateRangeString,
     parseDateString,
     segmentsToDate,
-    splitIntoChunks,
     toDateString,
 } from '../utils';
 
@@ -24,11 +24,7 @@ export function createMinMaxDatePostprocessor({
 }): NonNullable<MaskitoOptions['postprocessor']> {
     return ({value, selection}) => {
         const endsWithDatesSeparator = datesSeparator && value.endsWith(datesSeparator);
-
-        const dateStrings = splitIntoChunks(
-            value.replace(datesSeparator, ''),
-            dateModeTemplate.length,
-        );
+        const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);
 
         let validatedValue = '';
 
