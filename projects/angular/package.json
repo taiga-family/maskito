@@ -1,6 +1,33 @@
 {
     "name": "@maskito/angular",
     "version": "0.0.1",
+    "description": "The Angular-specific Maskito's library",
+    "keywords": [
+        "mask",
+        "inputmask",
+        "input-mask",
+        "text-mask",
+        "input-formatting",
+        "angular"
+    ],
+    "homepage": "https://tinkoff.github.io/maskito",
+    "bugs": "https://github.com/tinkoff/maskito/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tinkoff/maskito.git"
+    },
+    "license": "Apache-2.0",
+    "author": {
+        "name": "Nikita Barsukov",
+        "email": "nikita.s.barsukov@gmail.com",
+        "url": "https://github.com/nsbarsukov"
+    },
+    "contributors": [
+        "Alex Inkin <alexander@inkin.ru>",
+        "Maksim Ivanov <splincodewd@yandex.ru>",
+        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
+        "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
+    ],
     "dependencies": {
         "tslib": "^2.3.0"
     },

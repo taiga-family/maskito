@@ -1,27 +1,34 @@
 {
     "name": "maskito",
-    "version": "0.0.0",
-    "description": "This is a template project to develop, create and open-source Angular libraries with demos",
+    "version": "0.0.1",
+    "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
     "keywords": [
-        "angular",
-        "ng",
-        "workspace",
-        "library",
-        "starter",
-        "tinkoff"
+        "mask",
+        "inputmask",
+        "input-mask",
+        "text-mask",
+        "input-formatting",
+        "javascript",
+        "typescript",
+        "angular"
     ],
-    "homepage": "https://github.com/tinkoff/angular-open-source-starter#README",
-    "bugs": "https://github.com/tinkoff/angular-open-source-starter/issues",
-    "repository": "https://github.com/tinkoff/angular-open-source-starter",
+    "homepage": "https://tinkoff.github.io/maskito",
+    "bugs": "https://github.com/tinkoff/maskito/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tinkoff/maskito.git"
+    },
     "license": "Apache-2.0",
     "author": {
-        "name": "Roman Sedov",
-        "email": "79601794011@ya.ru",
-        "url": "http://marsibarsi.me/"
+        "name": "Nikita Barsukov",
+        "email": "nikita.s.barsukov@gmail.com",
+        "url": "https://github.com/nsbarsukov"
     },
     "contributors": [
         "Alex Inkin <alexander@inkin.ru>",
-        "Maksim Ivanov <splincodewd@yandex.ru>"
+        "Maksim Ivanov <splincodewd@yandex.ru>",
+        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
+        "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "scripts": {
         "postinstall": "husky install && ngcc --async",
@@ -138,8 +145,8 @@
         "typescript": "~4.3.5"
     },
     "engines": {
-        "node": ">= 14",
-        "npm": ">= 7",
+        "node": ">= 16.14",
+        "npm": ">= 8.3",
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "standard-version": {
