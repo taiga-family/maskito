@@ -4,6 +4,9 @@ on:
   push:
     branches: ['release/*']
 
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
