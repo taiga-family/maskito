@@ -151,6 +151,7 @@
     },
     "standard-version": {
         "scripts": {
+            "postchangelog": "ts-node ./scripts/postchangelog.ts",
             "postbump": "node scripts/syncVersions.js && git add **/package.json"
         }
     }

@@ -39,5 +39,13 @@
             "@maskito/kit": ["projects/kit/src/index.ts"],
             "@demo/path": ["projects/demo/src/app/demo-path.ts"]
         }
+    },
+    "ts-node": {
+        "files": true,
+        "transpileOnly": true,
+        "compilerOptions": {
+            "types": ["node"],
+            "module": "commonjs"
+        }
     }
 }
