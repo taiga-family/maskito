@@ -51,7 +51,7 @@
         "cy:open": "cypress open --project ./projects/demo-integrations/",
         "cy:run": "cypress run --project ./projects/demo-integrations/ --browser chrome",
         "*** Release ***": "",
-        "release": "standard-version",
+        "release": "standard-version -a --no-verify",
         "release:patch": "npm run release -- --release-as patch",
         "release:minor": "npm run release -- --release-as minor",
         "release:major": "npm run release -- --release-as major",
@@ -151,6 +151,7 @@
     },
     "standard-version": {
         "scripts": {
+            "postchangelog": "ts-node ./scripts/postchangelog.ts",
             "postbump": "node scripts/syncVersions.js && git add **/package.json"
         }
     }
