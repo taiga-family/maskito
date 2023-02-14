@@ -1,6 +1,6 @@
 {
     "name": "@maskito/angular",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "The Angular-specific Maskito's library",
     "keywords": [
         "mask",
