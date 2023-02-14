@@ -20,6 +20,12 @@
                 "jestConfig": "projects/core/jest.config.js",
                 "passWithNoTests": true
             }
+        },
+        "publish": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
+            }
         }
     },
     "tags": []
