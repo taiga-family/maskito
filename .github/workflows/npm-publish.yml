@@ -1,0 +1,26 @@
+name: Publish Maskito packages
+
+on:
+  push:
+    branches: ['release/*']
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Build publishable libraries
+        run: npx nx run-many --target build --all --exclude=demo
+
+      - name: Publish libraries
+        run: npx nx run-many --target publish --all --exclude=demo
+
+concurrency:
+  group: release-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
