@@ -47,3 +47,4 @@ Thumbs.db
 **/cypress/**/screenshots/**
 
 .ssl
+RELEASE_BODY.md
