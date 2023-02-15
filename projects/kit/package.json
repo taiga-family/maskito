@@ -29,7 +29,6 @@
         "Vladimir Potekhin <vladimir.potekh@gmail.com>",
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
-    "type": "commonjs",
     "peerDependencies": {
         "@maskito/core": "^0.0.1"
     }
