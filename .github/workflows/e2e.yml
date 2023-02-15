@@ -1,12 +1,9 @@
 name: E2E
-
-on:
-  pull_request:
-    branches-ignore:
-      - 'release/*'
+on: [pull_request]
 
 jobs:
   e2e:
+    if: ${{ !contains(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
     env:
       CYPRESS_CACHE_FOLDER: ./node_modules/cache-cypress
