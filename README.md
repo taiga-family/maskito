@@ -1,5 +1,7 @@
 # Maskito
 
+123
+
 [![npm version](https://img.shields.io/npm/v/@maskito/core.svg)](https://npmjs.com/package/@maskito/core)
 [![All packages CI](https://github.com/tinkoff/maskito/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/tinkoff/maskito/actions/workflows/build.yml)
 
