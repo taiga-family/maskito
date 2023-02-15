@@ -1,15 +1,12 @@
 name: Deploy / preview
 
-on:
-  pull_request:
-    branches-ignore:
-      - 'release/*'
+on: pull_request
 
 jobs:
   build_and_preview:
     if:
       github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' &&
-      github.actor != 'dependabot-preview[bot]'
+      github.actor != 'dependabot-preview[bot]' && !contains(github.head_ref, 'release/')
     name: Firebase
     runs-on: ubuntu-latest
     steps:
