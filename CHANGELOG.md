@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/tinkoff/maskito/compare/v0.1.0...v0.1.1) (2023-02-15)
+
+### Bug Fixes
+
+- **core:** `Module parse failed: 'import' and 'export' may appear only with 'sourceType: module'`
+  ([#131](https://github.com/tinkoff/maskito/issues/131))
+  ([41e05c0](https://github.com/tinkoff/maskito/commit/41e05c09e41ed611e0c2b9aa07a953dfbe049da7))
+
 ## 0.1.0 (2023-02-14)
 
 This release introduces the first publishing of the following packages:
