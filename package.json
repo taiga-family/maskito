@@ -92,6 +92,7 @@
         "@taiga-ui/testing": "^3.16.0",
         "core-js": "^2.6.12",
         "express": "^4.17.3",
+        "ngx-markdown": "^10.1.1",
         "rxjs": "~6.6.7",
         "tslib": "^2.0.0",
         "zone.js": "~0.11.5"

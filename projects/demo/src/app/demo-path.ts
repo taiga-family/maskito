@@ -1,5 +1,4 @@
 export const enum DemoPath {
-    BrowserSupport = 'documentation/browser-support',
     WhatIsMaskito = 'getting-started/what-is-maskito',
     MaskitoLibraries = 'getting-started/maskito-libraries',
     CoreConceptsOverview = 'core-concepts/overview',
@@ -12,5 +11,7 @@ export const enum DemoPath {
     DateRange = 'kit/date-range',
     Card = 'recipes/card',
     Phone = 'recipes/phone',
+    BrowserSupport = 'browser-support',
+    Changelog = 'changelog',
     Sandbox = 'sandbox',
 }

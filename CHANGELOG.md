@@ -24,6 +24,6 @@ This release introduces the first publishing of the following packages:
   - [Time](https://tinkoff.github.io/maskito/kit/time)
   - [Date](https://tinkoff.github.io/maskito/kit/date)
   - [DateRange](https://tinkoff.github.io/maskito/kit/date-range)
-- `@maskito/angular` The Angular-specific library. It provides two convenient ways of using Maskito: - Basic directive
-  approach (when developer has direct access to native input element). - Dependency Injection approach (when native
-  input element is hidden somewhere deep inside another component).
+- `@maskito/angular`<br /> The Angular-specific library. It provides two convenient ways of using Maskito:
+  - Basic directive approach (when developer has direct access to native input element).
+  - Dependency Injection approach (when native input element is hidden somewhere deep inside another component).
