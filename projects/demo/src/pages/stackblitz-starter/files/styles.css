@@ -1,0 +1,7 @@
+/* TODO: make better basic customization */
+input {
+    width: 100%;
+    max-width: 25rem;
+    height: 2rem;
+    box-sizing: border-box;
+}

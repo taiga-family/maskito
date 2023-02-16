@@ -13,5 +13,6 @@ export const enum DemoPath {
     Phone = 'recipes/phone',
     BrowserSupport = 'browser-support',
     Changelog = 'changelog',
+    Stackblitz = 'stackblitz',
     Sandbox = 'sandbox',
 }
