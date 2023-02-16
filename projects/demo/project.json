@@ -35,7 +35,7 @@
                     "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
                     "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
                     "node_modules/@taiga-ui/styles/taiga-ui-global.less",
-                    "projects/demo/src/styles.css"
+                    "projects/demo/src/styles.less"
                 ],
                 "scripts": [],
                 "vendorChunk": true,

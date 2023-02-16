@@ -76,8 +76,15 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `phone, mobile, tel, telephone, mask, recipe`,
     },
     {
+        section: 'Other',
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
         keywords: `chrome, safari, ie, edge, firefox, browser, support`,
+    },
+    {
+        section: 'Other',
+        title: 'Changelog',
+        route: DemoPath.Changelog,
+        keywords: `changelog, release, version, history`,
     },
 ];

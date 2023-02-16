@@ -5,7 +5,7 @@ import {DemoPath} from './demo-path';
 import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const appRoutes: Routes = [
-    // Documentation
+    // Getting started
     {
         path: DemoPath.WhatIsMaskito,
         loadChildren: async () =>
@@ -26,6 +26,7 @@ export const appRoutes: Routes = [
             title: `Maskito libraries`,
         },
     },
+    // Core concepts
     {
         path: DemoPath.CoreConceptsOverview,
         loadChildren: async () =>
@@ -64,16 +65,6 @@ export const appRoutes: Routes = [
             ),
         data: {
             title: `Overwrite mode`,
-        },
-    },
-    {
-        path: DemoPath.BrowserSupport,
-        loadChildren: async () =>
-            import(`../pages/documentation/browser-support/browser-support.module`).then(
-                m => m.BrowserSupportModule,
-            ),
-        data: {
-            title: `Browser support`,
         },
     },
     // Kit
@@ -124,6 +115,7 @@ export const appRoutes: Routes = [
             title: `DateRange`,
         },
     },
+    // Recipes
     {
         path: DemoPath.Card,
         loadChildren: async () =>
@@ -138,6 +130,27 @@ export const appRoutes: Routes = [
             import(`../pages/recipes/phone/phone-doc.module`).then(m => m.PhoneDocModule),
         data: {
             title: `Phone`,
+        },
+    },
+    // Other
+    {
+        path: DemoPath.BrowserSupport,
+        loadChildren: async () =>
+            import(`../pages/documentation/browser-support/browser-support.module`).then(
+                m => m.BrowserSupportModule,
+            ),
+        data: {
+            title: `Browser support`,
+        },
+    },
+    {
+        path: DemoPath.Changelog,
+        loadChildren: async () =>
+            import(`../pages/documentation/changelog/changelog.module`).then(
+                m => m.ChangelogModule,
+            ),
+        data: {
+            title: `Changelog`,
         },
     },
     {
