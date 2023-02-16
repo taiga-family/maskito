@@ -1,16 +1,28 @@
 <tui-doc-main>
-    <a
-        tuiLink
-        tuiMode="onLight"
-        href="https://github.com/tinkoff/maskito"
-        ngProjectAs="tuiDocHeader"
-        target="_blank"
-    >
-        <img
-            src="assets/icons/github.svg"
-            alt="GitHub logo"
-            class="github-icon"
-        />
-        GitHub
-    </a>
+    <ng-container ngProjectAs="tuiDocHeader">
+        <a
+            tuiLink
+            tuiMode="onLight"
+            title="Maskito StackBlitz Starter"
+            iconAlign="left"
+            icon="assets/icons/stackblitz.svg"
+            class="link"
+            [routerLink]="stackblitzStarterPath"
+        >
+            StackBlitz
+        </a>
+        <a
+            tuiLink
+            tuiMode="onLight"
+            href="https://github.com/tinkoff/maskito"
+            title="Maskito source code on GitHub"
+            rel="noreferrer"
+            iconAlign="left"
+            icon="assets/icons/github.svg"
+            target="_blank"
+            class="link"
+        >
+            GitHub
+        </a>
+    </ng-container>
 </tui-doc-main>

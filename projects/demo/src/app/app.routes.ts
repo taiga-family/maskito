@@ -154,6 +154,16 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.Stackblitz,
+        loadChildren: async () =>
+            import(`../pages/stackblitz-starter/stackblitz-starter.module`).then(
+                m => m.StackblitzStarterModule,
+            ),
+        data: {
+            title: `Stackblitz Starter`,
+        },
+    },
+    {
         path: '**',
         redirectTo: DemoPath.WhatIsMaskito,
     },
