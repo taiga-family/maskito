@@ -134,6 +134,16 @@ export const appRoutes: Routes = [
     },
     // Other
     {
+        path: DemoPath.Angular,
+        loadChildren: async () =>
+            import(`../pages/documentation/angular/angular.module`).then(
+                m => m.AngularDocPageModule,
+            ),
+        data: {
+            title: `Angular`,
+        },
+    },
+    {
         path: DemoPath.BrowserSupport,
         loadChildren: async () =>
             import(`../pages/documentation/browser-support/browser-support.module`).then(

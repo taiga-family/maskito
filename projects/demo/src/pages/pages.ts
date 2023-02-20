@@ -77,6 +77,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Other',
+        title: 'Angular',
+        route: DemoPath.Angular,
+        keywords: `ng, angular, framework, addon`,
+    },
+    {
+        section: 'Other',
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
         keywords: `chrome, safari, ie, edge, firefox, browser, support`,
