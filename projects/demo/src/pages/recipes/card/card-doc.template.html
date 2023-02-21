@@ -2,9 +2,39 @@
     header="Card"
     package="Recipes"
 >
+    <section>
+        <p class="tui-space_top-0">
+            Creation of the mask for credit card input requires a basic
+            understanding of the following topics:
+        </p>
+
+        <ul class="tui-list">
+            <li class="tui-list__item">
+                <a
+                    tuiLink
+                    [routerLink]="maskExpressionDocPage"
+                >
+                    Pattern mask expression
+                </a>
+            </li>
+            <li class="tui-list__item">
+                How to use
+                <a
+                    tuiLink
+                    [routerLink]="dateMaskDocPage"
+                >
+                    Date
+                </a>
+                -mask from
+                <code>@maskito/kit</code>
+            </li>
+        </ul>
+    </section>
+
     <tui-doc-example
         id="Card"
         [content]="cardExample1"
+        [style.padding.px]="0"
     >
         <card-doc-example-1></card-doc-example-1>
     </tui-doc-example>

@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/path';
 describe('Phone', () => {
     beforeEach(() => {
         cy.visit(`/${DemoPath.Phone}`);
-        cy.get('#ru input')
+        cy.get('#kz input')
             .should('be.visible')
             .first()
             .should('have.value', '')

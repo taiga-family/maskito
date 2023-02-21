@@ -7,7 +7,7 @@ import mask from './mask';
     template: `
         <tui-input
             ngModel="+1 (212) 555-2368"
-            tuiTextfieldCustomContent="tuiIconPhoneLarge"
+            [tuiTextfieldCustomContent]="usFlag"
             [style.max-width.rem]="20"
         >
             Enter a phone number
@@ -16,6 +16,14 @@ import mask from './mask';
                 inputmode="tel"
                 [maskito]="maskitoOptions"
             />
+
+            <ng-template #usFlag>
+                <img
+                    width="28"
+                    alt="Flag of the United States"
+                    [src]="'US' | tuiFlag"
+                />
+            </ng-template>
         </tui-input>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
