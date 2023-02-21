@@ -6,7 +6,7 @@ import mask from './mask';
     selector: 'time-mask-doc-example-1',
     template: `
         <tui-input
-            tuiTextfieldCustomContent="tuiIconTimeLarge"
+            tuiTextfieldCustomContent="tuiIconClockLarge"
             tuiTextfieldFiller="hh:mm:ss"
             ngModel="23:59:59"
             [style.max-width.rem]="20"

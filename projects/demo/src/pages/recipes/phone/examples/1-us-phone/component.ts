@@ -7,7 +7,7 @@ import mask from './mask';
     template: `
         <tui-input
             ngModel="+1 (212) 555-2368"
-            tuiTextfieldCustomContent="tuiIconCallLarge"
+            tuiTextfieldCustomContent="tuiIconPhoneLarge"
             [style.max-width.rem]="20"
         >
             Enter a phone number
