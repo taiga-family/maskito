@@ -6,8 +6,8 @@
 [Documentation](https://tinkoff.github.io/maskito) •
 [Submit an Issue](https://github.com/Tinkoff/maskito/issues/new/choose) • [Contact Us](https://t.me/taiga_ui)
 
-> It is the main zero-dependency and framework-agnostic Maskito's package. It can be used alone in Vanilla Javascript
-> project.
+> It is the main zero-dependency and framework-agnostic Maskito's package.<br />It can be used alone in
+> Vanilla Javascript project.
 
 ## How to install
 

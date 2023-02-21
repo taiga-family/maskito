@@ -6,7 +6,7 @@
 [Documentation](https://tinkoff.github.io/maskito) •
 [Submit an Issue](https://github.com/Tinkoff/maskito/issues/new/choose) • [Contact Us](https://t.me/taiga_ui)
 
-> The optional framework-agnostic Maskito's package. It contains ready-to-use masks with configurable parameters.
+> The optional framework-agnostic Maskito's package.<br />It contains ready-to-use masks with configurable parameters.
 
 ## How to install
 

@@ -1,0 +1,124 @@
+<tui-doc-page header="Angular">
+    <ng-template pageTab="Overview">
+        <code>@maskito/angular</code>
+        is a light-weighted library to use Maskito in an Angular-way.
+
+        <tui-notification
+            status="warning"
+            class="tui-space_top-6"
+        >
+            <h3 class="tui-space_top-0">Prerequisites</h3>
+            To get the most out of this guide, you should review the topic
+            <a
+                tuiLink
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                "Core Concepts"
+            </a>
+            .
+        </tui-notification>
+
+        <section class="tui-space_top-12">
+            <h2>Write less code</h2>
+
+            <ul class="tui-list">
+                <li class="tui-list__item">
+                    <u>No need to query element from DOM.</u>
+                    Just pass all required options to
+                    <code>[maskito]</code>
+                    -directive.
+                </li>
+                <li class="tui-list__item">
+                    <u>No need to worry about clean-ups.</u>
+                    All created event listeners are automatically removed after
+                    element is detached from DOM.
+                </li>
+            </ul>
+        </section>
+
+        <section class="tui-space_top-12">
+            <h2>Basic directive approach</h2>
+
+            <p>
+                It is the most classic approach that every Angular-developer is
+                used to. Use it when you have direct access to native input
+                element.
+            </p>
+
+            <tui-doc-code
+                filename="your.component.ts"
+                [code]="basicDirectiveApproach"
+            ></tui-doc-code>
+        </section>
+
+        <section class="tui-space_top-12">
+            <h2>Dependency Injection approach</h2>
+
+            <p>
+                It is a more advanced approach that can be useful for UI Kit
+                developers.
+            </p>
+
+            <p>
+                Let's imagine that you have a fancy-looking input component that
+                satisfies your design system:
+            </p>
+
+            <tui-doc-code
+                filename="custom-input.component.ts"
+                [code]="customInputExample"
+            ></tui-doc-code>
+
+            <p>
+                This solution causes props drilling. You should pass
+                <code>maskitoOptions</code>
+                through all components (which don't even requires these options)
+                until we reached native input. This example is very simple, but
+                in real life you can have a lot of nested components inside
+                custom input.
+            </p>
+
+            <p>
+                Use Dependency Injection approach for the such case. Just put
+                empty
+                <code>maskito</code>
+                -attribute on native input inside your custom input component.
+            </p>
+
+            <tui-doc-code
+                filename="custom-input.component.ts"
+                [code]="customInputDiApproachExample"
+            ></tui-doc-code>
+
+            <p>
+                And now users of your UI Kit can put any options they want to
+                your custom input:
+                <tui-doc-code [code]="diApproachInAction"></tui-doc-code>
+            </p>
+        </section>
+    </ng-template>
+
+    <ng-template pageTab="Setup">
+        <section>
+            <ol class="tui-list tui-list_ordered">
+                <li class="tui-list__item">
+                    Install libraries
+                    <tui-doc-code
+                        code="npm install @maskito/{core,angular}"
+                        filename="/your/project/path>"
+                    ></tui-doc-code>
+                </li>
+                <li class="tui-list__item tui-space_top-8">
+                    Import
+                    <code>MaskitoModule</code>
+                    to your module
+
+                    <tui-doc-code
+                        filename="your.module.ts"
+                        [code]="importMaskitoModuleExample"
+                    ></tui-doc-code>
+                </li>
+            </ol>
+        </section>
+    </ng-template>
+</tui-doc-page>

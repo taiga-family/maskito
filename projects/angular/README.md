@@ -6,7 +6,7 @@
 [Documentation](https://tinkoff.github.io/maskito) •
 [Submit an Issue](https://github.com/Tinkoff/maskito/issues/new/choose) • [Contact Us](https://t.me/taiga_ui)
 
-> The Angular-specific library. It provides with two convenient ways of using Maskito: basic directive approach and
+> The Angular-specific library.<br />It provides with two convenient ways of using Maskito: basic directive approach and
 > Dependency Injection approach.
 
 ## How to install
