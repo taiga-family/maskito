@@ -12,7 +12,7 @@ import {
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {PhoneUSDocExample1} from './examples/1-us-phone/component';
-import {PhoneRUDocExample2} from './examples/2-ru-phone/component';
+import {PhoneKZDocExample2} from './examples/2-kz-phone/component';
 import {PhoneDocComponent} from './phone-doc.component';
 
 @NgModule({
@@ -28,7 +28,7 @@ import {PhoneDocComponent} from './phone-doc.component';
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PhoneDocComponent)),
     ],
-    declarations: [PhoneDocComponent, PhoneUSDocExample1, PhoneRUDocExample2],
+    declarations: [PhoneDocComponent, PhoneUSDocExample1, PhoneKZDocExample2],
     exports: [PhoneDocComponent],
 })
 export class PhoneDocModule {}

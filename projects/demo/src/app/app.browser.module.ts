@@ -10,7 +10,6 @@ import {AppComponent} from './app.component';
 import {APP_PROVIDERS} from './app.providers';
 import {AppRoutingModule} from './app.routes';
 import {LogoModule} from './modules/logo/logo.module';
-import {SandboxModule} from './modules/sandbox/sandbox.module';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -19,7 +18,6 @@ import {SandboxModule} from './modules/sandbox/sandbox.module';
             appId: 'demo',
         }),
         AppRoutingModule,
-        SandboxModule,
         BrowserAnimationsModule,
         HttpClientModule,
         LogoModule,

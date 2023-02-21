@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {DemoPath} from './demo-path';
-import {SandboxComponent} from './modules/sandbox/sandbox.component';
 
 export const appRoutes: Routes = [
     // Getting started
@@ -89,13 +88,6 @@ export const appRoutes: Routes = [
         },
     },
     {
-        path: DemoPath.Sandbox,
-        component: SandboxComponent,
-        data: {
-            title: `Sandbox`,
-        },
-    },
-    {
         path: DemoPath.Date,
         loadChildren: async () =>
             import(`../pages/kit/date/date-mask-doc.module`).then(
@@ -130,6 +122,16 @@ export const appRoutes: Routes = [
             import(`../pages/recipes/phone/phone-doc.module`).then(m => m.PhoneDocModule),
         data: {
             title: `Phone`,
+        },
+    },
+    {
+        path: DemoPath.Textarea,
+        loadChildren: async () =>
+            import(`../pages/recipes/textarea/textarea-doc.module`).then(
+                m => m.TextareaDocModule,
+            ),
+        data: {
+            title: `Textarea`,
         },
     },
     // Other

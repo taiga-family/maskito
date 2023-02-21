@@ -8,7 +8,7 @@ import mask from './mask';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneRUDocExample2 {
+export class PhoneKZDocExample2 {
     readonly maskitoOptions = mask;
 
     readonly control = new FormControl('');

@@ -15,7 +15,7 @@ export class PhoneDocComponent {
         MaskitoOptions: import('./examples/1-us-phone/mask.ts?raw'),
     };
 
-    readonly ruPhoneExample2: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-ru-phone/mask.ts?raw'),
+    readonly kzPhoneExample2: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-kz-phone/mask.ts?raw'),
     };
 }
