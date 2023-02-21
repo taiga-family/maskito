@@ -19,13 +19,11 @@ export class CardDocExample1 {
             ' ',
             ...Array(4).fill(/\d/),
         ],
-        overwriteMode: 'replace',
     };
 
     expiredMask = maskitoDateOptionsGenerator({mode: 'mm/yy', separator: '/'});
 
     cvvMask: MaskitoOptions = {
         mask: [...Array(3).fill(/\d/)],
-        overwriteMode: 'replace',
     };
 }

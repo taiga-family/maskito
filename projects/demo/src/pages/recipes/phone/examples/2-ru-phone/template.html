@@ -1,5 +1,5 @@
 <tui-input
-    tuiTextfieldCustomContent="tuiIconPhoneLarge"
+    [tuiTextfieldCustomContent]="kzFlag"
     [style.max-width.rem]="20"
     [formControl]="control"
 >
@@ -13,3 +13,11 @@
         (blur)="onBlur()"
     />
 </tui-input>
+
+<ng-template #kzFlag>
+    <img
+        width="28"
+        alt="Flag of Kazakhstan"
+        [src]="'KZ' | tuiFlag"
+    />
+</ng-template>

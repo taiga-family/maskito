@@ -4,7 +4,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {
+    TuiFlagPipeModule,
+    TuiLinkModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {PhoneUSDocExample1} from './examples/1-us-phone/component';
@@ -18,6 +22,7 @@ import {PhoneDocComponent} from './phone-doc.component';
         ReactiveFormsModule,
         MaskitoModule,
         TuiAddonDocModule,
+        TuiFlagPipeModule,
         TuiInputModule,
         TuiLinkModule,
         TuiTextfieldControllerModule,
