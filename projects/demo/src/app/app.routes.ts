@@ -109,6 +109,16 @@ export const appRoutes: Routes = [
     },
     // Recipes
     {
+        path: DemoPath.DateTime,
+        loadChildren: async () =>
+            import(`../pages/kit/date-time/date-time-mask-doc.module`).then(
+                m => m.DateTimeMaskDocModule,
+            ),
+        data: {
+            title: `DateTime`,
+        },
+    },
+    {
         path: DemoPath.Card,
         loadChildren: async () =>
             import(`../pages/recipes/card/card-doc.module`).then(m => m.CardDocModule),

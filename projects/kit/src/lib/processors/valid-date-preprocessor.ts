@@ -15,10 +15,10 @@ export function createValidDatePreprocessor({
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 
-        if (data === dateSegmentsSeparator && value.length === selection[0]) {
+        if (data === dateSegmentsSeparator) {
             return {
                 elementState,
-                data,
+                data: selection[0] === value.length ? data : '',
             };
         }
 

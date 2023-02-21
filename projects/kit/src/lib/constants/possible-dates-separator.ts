@@ -6,3 +6,5 @@ export const POSSIBLE_DATES_SEPARATOR = [
     CHAR_EM_DASH,
     CHAR_MINUS,
 ];
+
+export const POSSIBLE_DATE_TIME_SEPARATOR = [',', ' '];

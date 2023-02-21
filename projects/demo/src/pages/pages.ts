@@ -64,6 +64,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `date, day, month, year, mask, range, kit, generator`,
     },
     {
+        section: 'Kit',
+        title: 'DateTime',
+        route: DemoPath.DateTime,
+        keywords: `date, day, month, year, mask, time, date-time, hour, minute, second, kit, generator`,
+    },
+    {
         section: 'Recipes',
         title: 'Card',
         route: DemoPath.Card,

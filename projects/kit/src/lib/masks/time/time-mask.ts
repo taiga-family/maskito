@@ -1,9 +1,9 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
 import {createZeroPlaceholdersPreprocessor} from '../../processors';
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from './constants';
+import {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 import {createMaxValidationPreprocessor} from './processors';
-import {MaskitoTimeMode, MaskitoTimeSegments} from './types';
 
 export function maskitoTimeOptionsGenerator({
     mode,

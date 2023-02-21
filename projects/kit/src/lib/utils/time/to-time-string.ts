@@ -1,4 +1,4 @@
-import {MaskitoTimeSegments} from '../types';
+import {MaskitoTimeSegments} from '../../types';
 
 export function toTimeString({
     hours = '',
