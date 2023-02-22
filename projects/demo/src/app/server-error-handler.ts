@@ -3,8 +3,7 @@ import {hasFlag} from 'scripts/helpers/argv';
 
 // TODO
 const KNOWN_ISSUES: string[] = [
-    '[HLJS]  ReferenceError: window is not defined',
-    'ReferenceError: requestAnimationFrame is not defined', // hljs
+    'requestAnimationFrame is not defined', // hljs
 ];
 
 @Injectable()
