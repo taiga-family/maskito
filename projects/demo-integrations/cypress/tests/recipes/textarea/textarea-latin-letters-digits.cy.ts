@@ -1,9 +1,13 @@
 import {DemoPath} from '@demo/path';
 
-describe('TextArea (mask with no cyrillic symbols)', () => {
+describe('Textarea (mask latin letters + digits)', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.Sandbox}`);
-        cy.get('textarea#text-area').clear().as('textArea');
+        cy.visit(`/${DemoPath.Textarea}`);
+        cy.get('#latin textarea[autocomplete="street-address"]')
+            .should('be.visible')
+            .should('have.value', '')
+            .focus()
+            .as('textArea');
     });
 
     describe('Line break (Enter)', () => {

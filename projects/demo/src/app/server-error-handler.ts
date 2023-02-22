@@ -1,7 +1,10 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {hasFlag} from 'scripts/helpers/argv';
 
-const KNOWN_ISSUES: string[] = [];
+// TODO
+const KNOWN_ISSUES: string[] = [
+    'requestAnimationFrame is not defined', // hljs
+];
 
 @Injectable()
 export class ServerErrorHandler implements ErrorHandler {

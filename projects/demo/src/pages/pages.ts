@@ -76,6 +76,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `phone, mobile, tel, telephone, mask, recipe`,
     },
     {
+        section: 'Recipes',
+        title: 'Textarea',
+        route: DemoPath.Textarea,
+        keywords: `textarea, latin, mask, recipe`,
+    },
+    {
         section: 'Other',
         title: 'Angular',
         route: DemoPath.Angular,
