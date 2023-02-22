@@ -1,5 +1,5 @@
-import {LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {Provider} from '@angular/core';
+import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {inject, PLATFORM_ID, Provider} from '@angular/core';
 import {
     TUI_DOC_DEFAULT_TABS,
     TUI_DOC_LOGO,
@@ -54,15 +54,23 @@ export const APP_PROVIDERS: Provider[] = [
     },
     {
         provide: HIGHLIGHT_OPTIONS,
-        useValue: {
-            coreLibraryLoader: async () => import(`highlight.js/lib/core`),
-            lineNumbersLoader: async () =>
-                import('highlightjs-line-numbers.js' as string),
-            languages: {
-                typescript: async () => import(`highlight.js/lib/languages/typescript`),
-                less: async () => import(`highlight.js/lib/languages/less`),
-                xml: async () => import(`highlight.js/lib/languages/xml`),
-            },
+        useFactory: () => {
+            const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+            return {
+                coreLibraryLoader: async () => import(`highlight.js/lib/core`),
+                lineNumbersLoader: async () =>
+                    // SSR ReferenceError: window is not defined
+                    isBrowser
+                        ? import(`highlightjs-line-numbers.js` as string)
+                        : Promise.resolve(),
+                languages: {
+                    typescript: async () =>
+                        import(`highlight.js/lib/languages/typescript`),
+                    less: async () => import(`highlight.js/lib/languages/less`),
+                    xml: async () => import(`highlight.js/lib/languages/xml`),
+                },
+            };
         },
     },
 ];
