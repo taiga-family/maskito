@@ -260,7 +260,7 @@ describe('DateTime | Basic', () => {
                     .type('111120111230')
                     .should('have.value', '11.11.2011, 12:30')
                     .type('{leftArrow}'.repeat('0'.length))
-                    .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+                    .realPress(['Shift', ...Array('2.3'.length).fill('ArrowLeft')]);
 
                 cy.get('@input')
                     .type('{del}')

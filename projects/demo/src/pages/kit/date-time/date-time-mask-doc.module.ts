@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
-import {TuiHintModule, TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateTimeMaskDocComponent} from './date-time-mask-doc.component';
@@ -18,7 +18,6 @@ import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
         ReactiveFormsModule,
         MaskitoModule,
         TuiAddonDocModule,
-        TuiHintModule,
         TuiInputModule,
         TuiLinkModule,
         TuiTextfieldControllerModule,

@@ -1,9 +1,9 @@
-/**
- * @param timeString can be with/without fixed characters
- */
 import {MaskitoTimeSegments} from '../../types';
 import {getObjectFromEntries} from '../get-object-from-entries';
 
+/**
+ * @param timeString can be with/without fixed characters
+ */
 export function parseTimeString(timeString: string): Partial<MaskitoTimeSegments> {
     const onlyDigits = timeString.replace(/\D+/g, '');
 

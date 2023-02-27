@@ -8,7 +8,7 @@
         to create mask to input a date and time.
 
         <tui-doc-example
-            id="Localization"
+            id="localization"
             heading="Localization"
             [content]="dateTimeLocalization"
             [description]="localizationDescription"
@@ -19,7 +19,7 @@
                 ,
                 <code>timeMode</code>
                 and
-                <code>separator</code>
+                <code>dateSeparator</code>
                 parameters to get mask with a language‑sensitive representation
                 of dates.
             </ng-template>
@@ -27,7 +27,7 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="MinMax"
+            id="min-max"
             heading="Min and max"
             [content]="dateTimeMinMax"
             [description]="minMaxDescription"
@@ -62,7 +62,7 @@
                     "
                     [formControl]="apiPageControl"
                 >
-                    Enter dates
+                    Enter date and time
                     <input
                         tuiTextfield
                         [maskito]="maskitoOptions"
@@ -94,7 +94,7 @@
             </ng-template>
 
             <ng-template
-                documentationPropertyName="separator"
+                documentationPropertyName="dateSeparator"
                 documentationPropertyMode="input"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="dateSeparator"
