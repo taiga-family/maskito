@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/path';
 describe('DateTime | Separator', () => {
     describe('/', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateTime}/API?separator=/`);
+            cy.visit(`/${DemoPath.DateTime}/API?dateSeparator=/`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -26,7 +26,7 @@ describe('DateTime | Separator', () => {
 
     describe('-', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?separator=-`);
+            cy.visit(`/${DemoPath.DateTime}/API?dateSeparator=-`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()

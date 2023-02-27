@@ -22,7 +22,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocExample1 {
-    value = '09/20/2020, 15:30';
-    readonly filler = 'mm/dd/yyyy, hh:mm';
+    value = '09/20/2020, 15:30';
+    readonly filler = 'mm/dd/yyyy, hh:mm';
     readonly mask = mask;
 }

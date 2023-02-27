@@ -10,13 +10,13 @@ import {
     toDateString,
 } from '../../../utils';
 import {parseTimeString} from '../../../utils/time';
-import {isDateTimeStringCompleted, parseDateTimeString} from '../utils';
+import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
 export function createMinMaxDateTimePostprocessor({
     dateModeTemplate,
+    timeMode,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
-    timeMode,
 }: {
     dateModeTemplate: string;
     timeMode: MaskitoTimeMode;
@@ -26,7 +26,7 @@ export function createMinMaxDateTimePostprocessor({
     return ({value, selection}) => {
         const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
 
-        if (!isDateTimeStringCompleted(value, dateModeTemplate, timeMode)) {
+        if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
             return {
                 selection,
                 value: value,

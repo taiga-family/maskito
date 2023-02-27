@@ -6,7 +6,7 @@ import {
     appendDate,
     clamp,
     dateToSegments,
-    isDateStringCompleted,
+    isDateStringComplete,
     isEmpty,
     parseDateRangeString,
     parseDateString,
@@ -36,7 +36,7 @@ export function createMinMaxRangeLengthPostprocessor({
 
         if (
             dateStrings.length !== 2 ||
-            dateStrings.some(date => !isDateStringCompleted(date, dateModeTemplate))
+            dateStrings.some(date => !isDateStringComplete(date, dateModeTemplate))
         ) {
             return {value, selection};
         }

@@ -61,6 +61,14 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '3'.length)
                     .should('have.prop', 'selectionEnd', '3'.length);
             });
+
+            it('year less than 100', () => {
+                cy.get('@input')
+                    .type('10100012')
+                    .should('have.value', '10.10.0012')
+                    .should('have.prop', 'selectionStart', '10.10.0012'.length)
+                    .should('have.prop', 'selectionEnd', '10.10.0012'.length);
+            });
         });
 
         describe('basic erasing (value = "10.11.2002" & caret is placed after the last value)', () => {
