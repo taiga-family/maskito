@@ -18,8 +18,8 @@
                 <code>mode</code>
                 and
                 <code>separator</code>
-                parameters to get mask with a locale specific representation of
-                dates.
+                parameters to get a mask with a locale specific representation
+                of dates.
             </ng-template>
             <date-range-mask-doc-example-1></date-range-mask-doc-example-1>
         </tui-doc-example>
@@ -117,7 +117,7 @@
                 [(documentationPropertyValue)]="minStr"
                 (documentationPropertyValueChange)="updateDate()"
             >
-                Minimum date
+                Earliest date
             </ng-template>
             <ng-template
                 documentationPropertyName="max"
@@ -127,7 +127,7 @@
                 [(documentationPropertyValue)]="maxStr"
                 (documentationPropertyValueChange)="updateDate()"
             >
-                Maximum date
+                Latest date
             </ng-template>
             <ng-template
                 documentationPropertyName="minLength"

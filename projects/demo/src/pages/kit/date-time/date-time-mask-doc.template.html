@@ -5,7 +5,7 @@
     <ng-template pageTab>
         Use
         <code>maskitoDateTimeOptionsGenerator</code>
-        to create mask to input a date and time.
+        to create a mask to input both date and time.
 
         <tui-doc-example
             id="localization"
@@ -20,7 +20,7 @@
                 <code>timeMode</code>
                 and
                 <code>dateSeparator</code>
-                parameters to get mask with a language‑sensitive representation
+                parameters to get a mask with a locale specific representation
                 of dates.
             </ng-template>
             <date-time-mask-doc-example-1></date-time-mask-doc-example-1>
@@ -37,7 +37,7 @@
                 <code>min</code>
                 and
                 <code>max</code>
-                allow to set the least and the greatest available dates. They
+                allow to set the earliest and the latest available dates. They
                 accept native
                 <a
                     tuiLink
@@ -117,7 +117,7 @@
                 [(documentationPropertyValue)]="minStr"
                 (documentationPropertyValueChange)="updateDate()"
             >
-                Minimum date
+                Earliest date
             </ng-template>
             <ng-template
                 documentationPropertyName="max"
@@ -127,7 +127,7 @@
                 [(documentationPropertyValue)]="maxStr"
                 (documentationPropertyValueChange)="updateDate()"
             >
-                Maximum date
+                Latest date
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
