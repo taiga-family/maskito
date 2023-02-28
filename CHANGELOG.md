@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/tinkoff/maskito/compare/v0.1.1...v0.2.0) (2023-02-28)
+
+### Features
+
+- **kit:** new `DateTime` mask ([#146](https://github.com/tinkoff/maskito/issues/146))
+  ([6d6b2c1](https://github.com/tinkoff/maskito/commit/6d6b2c17b5c0f62bc804451524cd4b2ce3e50660))
+
+### Bug Fixes
+
+- **kit:** `Number` is now replacing hyphen, en-dash and em-dash with minus sign
+  ([#153](https://github.com/tinkoff/maskito/issues/153))
+  ([1f21f11](https://github.com/tinkoff/maskito/commit/1f21f1159baadcef65e49bacaec77eba3b6f36d8))
+
 ### [0.1.1](https://github.com/tinkoff/maskito/compare/v0.1.0...v0.1.1) (2023-02-15)
 
 ### Bug Fixes
