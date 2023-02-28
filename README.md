@@ -13,32 +13,33 @@
     <a href="https://t.me/taiga_ui">Contact Us</a>
 </p>
 
-**Maskito** is a collection of libraries, built on Typescript. It helps to create an input mask which ensures that user
-types value according to predefined format.
+**Maskito** is a collection of libraries, built with TypeScript. It helps you to create an input mask which ensures that
+users type values according to predefined format.
 
 ## Why Maskito
 
-- Maskito supports all user’s interactions with textfield: basic typing and deleting via keyboard, pasting, dropping
-  text inside textfield, browser autofill, predictive text from mobile native keyboard.
+- **Maskito** supports all user’s interactions with text fields: basic typing and deleting via keyboard, pasting,
+  dropping text inside with a pointer, browser autofill, predictive text from mobile native keyboard.
 
-- Maskito is robust. The whole project is developed with strict TypeScript mode. Our code is covered by hundreds of
+- **Maskito** is robust. The whole project is developed with strict TypeScript mode. Our code is covered by hundreds of
   [Cypress](https://www.cypress.io) tests.
 
-- Server Side Rendering support.
+- Server Side Rendering and Shadow DOM support.
 
 - You can use it with `HTMLInputElement` and `HTMLTextAreaElement`.
 
-- Maskito's core is zero-dependency package. You can mask input in your Vanilla Javascript project. However, we have a
-  separate package for Angular as well.
+- **Maskito** core is zero-dependency package. You can mask input in your vanilla JavaScript project. However, we have a
+  separate package for Angular as well and React is coming soon.
 
-- Maskito includes optional framework-agnostic package with configurable ready-to-use masks.
+- **Maskito** includes optional framework-agnostic package with configurable ready-to-use masks.
 
-No textfield with invalid value! Use Maskito. **Mask it!**
+No text field with invalid value! Use Maskito. **Mask it!** Learn more about the library in our
+[documentation](https://tinkoff.github.io/maskito).
 
 ## Contributing
 
-If you have suggestions for how Maskito could be improved, or want to report a bug, open an issue! We'd love all and any
-contributions.
+If you have suggestions for how **Maskito** could be improved, or want to report a bug, open an issue! We'd love all and
+any contributions.
 
 For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
@@ -46,6 +47,6 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 🆓 Feel free to use our library in your commercial and private applications
 
-All Maskito packages are covered by [Apache 2.0](/LICENSE)
+All **Maskito** packages are covered by [Apache 2.0](/LICENSE)
 
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)

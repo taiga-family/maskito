@@ -8,28 +8,26 @@ export class MaskModel implements ElementState {
     value = '';
     selection: SelectionRange = [0, 0];
 
-    private get maskExpression(): MaskExpression {
-        const {mask} = this.maskOptions;
-
-        return typeof mask === 'function' ? mask() : mask;
-    }
-
     constructor(
         readonly initialElementState: ElementState,
         private readonly maskOptions: MaskitoOptions,
     ) {
         const {value, selection} = calibrateValueByMask(
             initialElementState,
-            this.maskExpression,
+            this.getMaskExpression(initialElementState),
         );
 
         this.value = value;
         this.selection = selection;
     }
 
-    addCharacters(selection: SelectionRange, newCharacters: string): void {
-        const {maskExpression, value} = this;
-        const initialElementState = {value, selection};
+    addCharacters([from, to]: SelectionRange, newCharacters: string): void {
+        const {value} = this;
+        const maskExpression = this.getMaskExpression({
+            value: value.slice(0, from) + newCharacters + value.slice(to),
+            selection: [from + newCharacters.length, from + newCharacters.length],
+        });
+        const initialElementState = {value, selection: [from, to]} as const;
         const unmaskedElementState = removeFixedMaskCharacters(
             initialElementState,
             maskExpression,
@@ -64,16 +62,16 @@ export class MaskModel implements ElementState {
     }
 
     deleteCharacters([from, to]: SelectionRange): void {
-        if (from === 0 && to === 0) {
+        if (from === to || !to) {
             return;
         }
 
-        if (from === to) {
-            return;
-        }
-
-        const {maskExpression, value} = this;
-        const initialElementState: ElementState = {value, selection: [from, to]};
+        const {value} = this;
+        const maskExpression = this.getMaskExpression({
+            value: value.slice(0, from) + value.slice(to),
+            selection: [from, from],
+        });
+        const initialElementState = {value, selection: [from, to]} as const;
         const unmaskedElementState = removeFixedMaskCharacters(
             initialElementState,
             maskExpression,
@@ -91,5 +89,11 @@ export class MaskModel implements ElementState {
 
         this.value = maskedElementState.value;
         this.selection = maskedElementState.selection;
+    }
+
+    private getMaskExpression(elementState: ElementState): MaskExpression {
+        const {mask} = this.maskOptions;
+
+        return typeof mask === 'function' ? mask(elementState) : mask;
     }
 }

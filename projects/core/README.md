@@ -14,7 +14,7 @@
 </p>
 
 > It is the main zero-dependency and framework-agnostic Maskito's package.<br />It can be used alone in
-> Vanilla Javascript project.
+> vanilla JavaScript project.
 
 ## How to install
 

@@ -33,6 +33,6 @@ export function createZeroPlaceholdersPreprocessor(): NonNullable<
     };
 }
 
-function isLastChar(value: string, [_, to]: [number, number]): boolean {
+function isLastChar(value: string, [_, to]: readonly [number, number]): boolean {
     return to === value.length;
 }

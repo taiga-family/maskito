@@ -1,1 +1,1 @@
-export type SelectionRange = [from: number, to: number];
+export type SelectionRange = readonly [from: number, to: number];

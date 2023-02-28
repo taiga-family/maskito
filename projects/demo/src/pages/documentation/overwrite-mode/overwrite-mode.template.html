@@ -1,16 +1,15 @@
 <tui-doc-page header="Overwrite mode">
     <p class="tui-space_top-0">
         <strong>Overwrite mode</strong>
-        regulates behaviour of the mask when user inserts new character
-        somewhere in the middle of textfield's value (overwriting the current
-        index's value).
+        regulates behaviour of the mask when user inserts a new character
+        somewhere in the middle of text field, overwriting the character at the
+        current index.
     </p>
 
     <section>
         <p>
-            Maskito's options
             <code>overwriteMode</code>
-            can be 3 different types:
+            can be of a following type:
         </p>
 
         <ul class="tui-list">
@@ -20,8 +19,9 @@
             </li>
 
             <li class="tui-list__item"><code>replace</code></li>
+
             <li class="tui-list__item">
-                function that returns
+                function that receives element state as an argument and returns
                 <code>shift</code>
                 or
                 <code>replace</code>
@@ -36,10 +36,10 @@
         [content]="shiftExample"
     >
         <ng-template #shiftModeDescription>
-            The most classic mode that everyone is used to. Inserting of a new
-            character in the middle of the textfield's value
+            The classic mode that everyone is used to. Inserting a new character
+            in the middle of the text field value
             <strong>shifts</strong>
-            all right characters at consecutive indexes up.
+            all following characters to the right.
         </ng-template>
         <overwrite-mode-shift-doc-example-1></overwrite-mode-shift-doc-example-1>
     </tui-doc-example>
@@ -54,8 +54,8 @@
             All new inserted characters
             <strong>replace</strong>
             the old characters at the same position. No character shifts. The
-            length of textfield's value remains the same after inserting new
-            character somewhere in middle of the textfield's value.
+            length of the value remains the same after inserting new character
+            somewhere in middle of the text field.
         </ng-template>
         <overwrite-mode-replace-doc-example-2></overwrite-mode-replace-doc-example-2>
     </tui-doc-example>
@@ -70,15 +70,16 @@
             Parameter
             <code>overwriteMode</code>
             also accepts function that will called before each insertion of new
-            characters. This function has one argument – current element state
-            (read more about it in the section
+            characters. This function has one argument — current element state
+            (read more about it in the
             <a
                 tuiLink
                 [routerLink]="processorsDocPage"
             >
                 "Processors"
             </a>
-            ). And this function should return one of two possible values:
+            section). And this function should return one of two possible
+            values:
             <code>shift</code>
             or
             <code>replace</code>
