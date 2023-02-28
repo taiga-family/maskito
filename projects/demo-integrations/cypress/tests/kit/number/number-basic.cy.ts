@@ -58,34 +58,66 @@ describe('Number | Basic', () => {
     describe('minus sign', () => {
         it('can type minus sign', () => {
             cy.get('@input')
-                .type('-')
-                .should('have.value', '-')
-                .should('have.prop', 'selectionStart', '-'.length)
-                .should('have.prop', 'selectionEnd', '-'.length);
+                .type('−')
+                .should('have.value', '−')
+                .should('have.prop', 'selectionStart', '−'.length)
+                .should('have.prop', 'selectionEnd', '−'.length);
         });
 
-        it('can type "-111"', () => {
+        it('replaces hyphen with minus sign', () => {
             cy.get('@input')
-                .type('-111')
-                .should('have.value', '-111')
-                .should('have.prop', 'selectionStart', '-111'.length)
-                .should('have.prop', 'selectionEnd', '-111'.length);
+                .type('-')
+                .should('have.value', '−')
+                .should('have.prop', 'selectionStart', '−'.length)
+                .should('have.prop', 'selectionEnd', '−'.length);
         });
 
-        it('can type "-3333"', () => {
+        it('replaces en-dash with minus sign', () => {
+            cy.get('@input')
+                .type('–')
+                .should('have.value', '−')
+                .should('have.prop', 'selectionStart', '−'.length)
+                .should('have.prop', 'selectionEnd', '−'.length);
+        });
+
+        it('replaces em-dash with minus sign', () => {
+            cy.get('@input')
+                .type('—')
+                .should('have.value', '−')
+                .should('have.prop', 'selectionStart', '−'.length)
+                .should('have.prop', 'selectionEnd', '−'.length);
+        });
+
+        it('can type "−111" (minus)', () => {
+            cy.get('@input')
+                .type('−111')
+                .should('have.value', '−111')
+                .should('have.prop', 'selectionStart', '−111'.length)
+                .should('have.prop', 'selectionEnd', '−111'.length);
+        });
+
+        it('can type "-3333" (hyphen)', () => {
             cy.get('@input')
                 .type('-3333')
-                .should('have.value', '-3_333')
-                .should('have.prop', 'selectionStart', '-3_333'.length)
-                .should('have.prop', 'selectionEnd', '-3_333'.length);
+                .should('have.value', '−3_333')
+                .should('have.prop', 'selectionStart', '−3_333'.length)
+                .should('have.prop', 'selectionEnd', '−3_333'.length);
         });
 
-        it('can type "-123.45"', () => {
+        it('can type "–123.45" (en-dash)', () => {
             cy.get('@input')
-                .type('-123.45')
-                .should('have.value', '-123,45')
-                .should('have.prop', 'selectionStart', '-123,45'.length)
-                .should('have.prop', 'selectionEnd', '-123,45'.length);
+                .type('–123.45')
+                .should('have.value', '−123,45')
+                .should('have.prop', 'selectionStart', '−123,45'.length)
+                .should('have.prop', 'selectionEnd', '−123,45'.length);
+        });
+
+        it('can type "—0,12" (em-dash)', () => {
+            cy.get('@input')
+                .type('—0,12')
+                .should('have.value', '−0,12')
+                .should('have.prop', 'selectionStart', '−0,12'.length)
+                .should('have.prop', 'selectionEnd', '−0,12'.length);
         });
     });
 

@@ -1,12 +1,18 @@
 import {MaskitoOptions, maskitoPipe} from '@maskito/core';
 
-import {CHAR_NO_BREAK_SPACE} from '../../constants';
+import {
+    CHAR_EM_DASH,
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_MINUS,
+    CHAR_NO_BREAK_SPACE,
+} from '../../constants';
 import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
     createMaxValidationPostprocessor,
     createNotEmptyIntegerPartPreprocessor,
-    createPseudoSeparatorsPreprocessor,
+    createPseudoCharactersPreprocessor,
     createSeparatorDeletionPreprocessor,
     createThousandSeparatorPostprocessor,
 } from './processors';
@@ -32,6 +38,10 @@ export function maskitoNumberOptionsGenerator({
     decimalZeroPadding?: boolean;
     thousandSeparator?: string;
 } = {}): MaskitoOptions {
+    const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
+        char => char !== thousandSeparator && char !== decimalSeparator,
+    );
+
     return {
         mask: generateMaskExpression({
             decimalSeparator,
@@ -40,7 +50,8 @@ export function maskitoNumberOptionsGenerator({
             isNegativeAllowed,
         }),
         preprocessor: maskitoPipe(
-            createPseudoSeparatorsPreprocessor(decimalSeparator, decimalPseudoSeparators),
+            createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
+            createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
             createSeparatorDeletionPreprocessor({
                 decimalSeparator,
