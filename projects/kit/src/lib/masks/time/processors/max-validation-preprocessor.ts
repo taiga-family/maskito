@@ -1,9 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {padWithZeroesUntilValid} from '../../../utils';
-import {TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
-import {MaskitoTimeSegments} from '../types';
-import {padTimeSegments, parseTimeString, toTimeString} from '../utils';
+import {MaskitoTimeSegments} from '../../../types';
+import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
@@ -21,56 +19,29 @@ export function createMaxValidationPreprocessor(
         const [from, rawTo] = selection;
         let to = rawTo + newCharacters.length; // to be conformed with `overwriteMode: replace`
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
-        const possibleTimeSegments = Object.entries(
-            parseTimeString(newPossibleValue),
-        ) as Array<[keyof MaskitoTimeSegments, string]>;
 
-        const validatedTimeSegments: Partial<MaskitoTimeSegments> = {};
+        const {validatedTimeString, updatedTimeSelection} = validateTimeString({
+            timeString: newPossibleValue,
+            paddedMaxValues,
+            offset: 0,
+            selection: [from, to],
+        });
 
-        for (const [segmentName, segmentValue] of possibleTimeSegments) {
-            const validatedTime = toTimeString(validatedTimeSegments);
-            const maxSegmentValue = paddedMaxValues[segmentName];
-
-            const fantomSeparator = validatedTime.length && 1;
-
-            const lastSegmentDigitIndex =
-                validatedTime.length +
-                fantomSeparator +
-                TIME_SEGMENT_VALUE_LENGTHS[segmentName];
-            const isLastSegmentDigitAdded =
-                lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
-
-            if (
-                isLastSegmentDigitAdded &&
-                Number(segmentValue) > Number(maxSegmentValue)
-            ) {
-                // 2|0:00 => Type 9 => 2|0:00
-                return {elementState, data: ''}; // prevent changes
-            }
-
-            const {validatedSegmentValue, prefixedZeroesCount} = padWithZeroesUntilValid(
-                segmentValue,
-                maxSegmentValue,
-            );
-
-            to += prefixedZeroesCount;
-
-            validatedTimeSegments[segmentName] = validatedSegmentValue;
+        if (newPossibleValue && !validatedTimeString) {
+            return {elementState, data: ''}; // prevent changes
         }
 
-        const finalTimeString = toTimeString(validatedTimeSegments);
+        to = updatedTimeSelection[1];
 
-        to = finalTimeString.length - value.slice(to).length;
-
-        const newData = finalTimeString.slice(from, to);
+        const newData = validatedTimeString.slice(from, to);
 
         return {
             elementState: {
                 selection,
                 value:
-                    finalTimeString.slice(0, from) +
+                    validatedTimeString.slice(0, from) +
                     '0'.repeat(newData.length) +
-                    finalTimeString.slice(to),
+                    validatedTimeString.slice(to),
             },
             data: newData,
         };

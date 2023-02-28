@@ -1,5 +1,5 @@
-import {getObjectFromEntries} from '../../../utils';
-import {MaskitoTimeSegments} from '../types';
+import {MaskitoTimeSegments} from '../../types';
+import {getObjectFromEntries} from '../get-object-from-entries';
 
 /**
  * @param timeString can be with/without fixed characters

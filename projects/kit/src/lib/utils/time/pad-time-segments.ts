@@ -1,6 +1,6 @@
-import {getObjectFromEntries} from '../../../utils';
-import {TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
-import {MaskitoTimeSegments} from '../types';
+import {TIME_SEGMENT_VALUE_LENGTHS} from '../../constants';
+import {MaskitoTimeSegments} from '.././../types';
+import {getObjectFromEntries} from '../get-object-from-entries';
 
 export function padTimeSegments(
     timeSegments: MaskitoTimeSegments<number | string>,

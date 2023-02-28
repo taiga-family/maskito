@@ -1,4 +1,4 @@
-export function isDateStringCompleted(
+export function isDateStringComplete(
     dateString: string,
     dateModeTemplate: string,
 ): boolean {

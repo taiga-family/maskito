@@ -9,6 +9,7 @@ export const enum DemoPath {
     Time = 'kit/time',
     Date = 'kit/date',
     DateRange = 'kit/date-range',
+    DateTime = 'kit/date-time',
     Card = 'recipes/card',
     Phone = 'recipes/phone',
     Textarea = 'recipes/textarea',

@@ -4,7 +4,7 @@ import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {
     clamp,
     dateToSegments,
-    isDateStringCompleted,
+    isDateStringComplete,
     parseDateRangeString,
     parseDateString,
     segmentsToDate,
@@ -31,7 +31,7 @@ export function createMinMaxDatePostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? datesSeparator : '';
 
-            if (!isDateStringCompleted(dateString, dateModeTemplate)) {
+            if (!isDateStringComplete(dateString, dateModeTemplate)) {
                 validatedValue += dateString;
                 continue;
             }

@@ -2,7 +2,7 @@ export * from './clamp';
 export * from './date/append-date';
 export * from './date/date-segment-value-length';
 export * from './date/date-to-segments';
-export * from './date/is-date-string-completed';
+export * from './date/is-date-string-complete';
 export * from './date/parse-date-range-string';
 export * from './date/parse-date-string';
 export * from './date/segments-to-date';
