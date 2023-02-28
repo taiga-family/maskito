@@ -1,5 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {CHAR_MINUS} from '../../../constants';
+
 /**
  * It adds symbol for separating thousands.
  * @example 1000000 => (thousandSeparator is equal to space) => 1 000 000.
@@ -17,7 +19,7 @@ export function createThousandSeparatorPostprocessor({
         let [from, to] = selection;
 
         const processedIntegerPart = Array.from(
-            integerPart.replace(/^-/, ''),
+            integerPart.replace(new RegExp(`^\\${CHAR_MINUS}`), ''),
         ).reduceRight((formattedValuePart, char, i) => {
             const isPositionForSeparator =
                 formattedValuePart.length && (formattedValuePart.length + 1) % 4 === 0;
@@ -55,7 +57,7 @@ export function createThousandSeparatorPostprocessor({
 
         return {
             value:
-                (value.startsWith('-') ? '-' : '') +
+                (value.startsWith(CHAR_MINUS) ? CHAR_MINUS : '') +
                 processedIntegerPart +
                 (value.includes(decimalSeparator) ? decimalSeparator : '') +
                 decimalPart,
