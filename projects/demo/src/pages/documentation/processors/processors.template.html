@@ -12,7 +12,7 @@
             <code>preprocessors</code>
             and
             <code>postprocessors</code>
-            . They are functions triggered on every user's input (
+            . These are functions triggered on every user's input (
             <a
                 href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event"
                 target="_blank"
@@ -28,74 +28,63 @@
             >
                 input
             </a>
-            events). They provide with an opportunity to modify value
-            before / after mask's operations.
+            events). They provide an opportunity to modify value before / after
+            the mask is applied.
         </p>
 
         <section>
-            <p class="tui-space_bottom-1">
+            <p>
                 Preprocessors and postprocessors accept different types of
                 arguments but they have two important similarities:
             </p>
             <ul class="tui-list">
                 <li class="tui-list__item">
-                    The first argument always contains object with all mutable
-                    information. Object with the same properties (but not
-                    compulsory with the same values!) can be returned from the
-                    processor. It means that you can keep all properties
-                    untouched (and make function just to return the same object)
-                    or you can change any of these properties (or even change
-                    everything!). The returned value will be passed into the
-                    mask.
+                    The first argument always contains object with information
+                    that you can change. Object with the same properties and
+                    updated values can be returned from the processor. It means
+                    that you can keep all properties untouched or you can change
+                    any or all of these properties. The returned value will be
+                    passed into the mask.
                 </li>
                 <li class="tui-list__item">
-                    The further arguments contain immutable information that can
-                    be useful to build some complex logic, but you cannot change
-                    it.
+                    The rest arguments contain information that can be useful to
+                    build some complex logic, but you cannot change it.
                 </li>
             </ul>
         </section>
     </section>
 
     <section class="tui-space_bottom-12">
-        <h2>What is element state?</h2>
+        <h2>What is the element state?</h2>
 
         <p>
             Before you learn more about processors, you should learn a single
-            prerequisite – meaning of term
+            prerequisite — meaning of the term
             <strong>"element state"</strong>
-            . It describes objects which implements
-            <a
-                href="https://github.com/Tinkoff/maskito/blob/main/projects/core/src/lib/types/element-state.ts"
-                target="_blank"
-                tuiLink
-            >
-                <code>ElementState</code>
-            </a>
-            -interface:
-            <tui-doc-code
-                class="tui-space_top-1 tui-space_bottom-1"
-                [code]="elementStateDemo"
-            ></tui-doc-code>
+            . It describes objects which the following interface:
+        </p>
+        <tui-doc-code [code]="elementStateDemo"></tui-doc-code>
+        <p>
             Processors actively use this concept. Developer who writes new
             processor has direct access to element state of the masked input or
-            textarea. Element state can be read and even changed via processors.
+            textarea. Element state can be read and changed via processors.
         </p>
     </section>
 
     <section class="tui-space_bottom-12">
         <h2>Preprocessor</h2>
 
-        <p class="tui-space_bottom-0">
+        <p>
             It is a function that is called
             <strong>before</strong>
-            each mask's operation.
+            mask is applied.
         </p>
-        <p class="tui-space_top-0 tui-space_bottom-0">
-            For example, if user types new character, then the processor will be
-            called first, and only then returned value (from the processor) will
-            be passed into the mask, and finally the mask will accept or reject
-            new typed character and insert it to the element.
+
+        <p>
+            For example, if user types a new character, preprocessor will be
+            called first, and only then value that it returned will be passed
+            into the mask, and finally the mask will accept or reject new typed
+            character and update actual value of the text field.
         </p>
 
         <section class="tui-space_bottom-6">
@@ -109,8 +98,8 @@
                         <code>data</code>
                         .
                     </strong>
-                    Object with the same properties (but not compulsory with the
-                    same values!) can returned from the preprocessor.
+                    Object of the same interface with updated or unchanged
+                    properties can be returned from the preprocessor.
 
                     <tui-doc-code
                         class="tui-space_top-1"
@@ -118,8 +107,8 @@
                     ></tui-doc-code>
                 </li>
                 <li class="tui-list__item">
-                    Name of action which triggers current execution. It can with
-                    the following possible values:
+                    Name of the action which triggers current execution. It can
+                    be one of the following possible values:
                     <tui-doc-code
                         [code]="preprocessorsSecondArgDemo"
                     ></tui-doc-code>
@@ -128,8 +117,8 @@
         </section>
 
         <p>
-            Preprocessor returns the same objects as the first argument (it can
-            contain other values, but it must implement the same interface).
+            Preprocessor returns an objects of the same interface as the first
+            argument.
         </p>
 
         <tui-doc-code [code]="preprocessorInActionDemo"></tui-doc-code>
@@ -141,33 +130,32 @@
         <p class="tui-space_bottom-0">
             It is a function that is called
             <strong>after</strong>
-            each mask's operation. When the preprocessor are already called, all
+            the mask is applied. When the preprocessor is already called, all
             mask operations happened and the input's value is about to be
-            updated. You can change everything manually!
+            updated. You can change everything manually inside a postprocessor.
         </p>
 
         <section class="tui-space_bottom-6">
             <p>Postprocessor accepts two arguments:</p>
             <ol class="tui-list tui-list_ordered">
                 <li class="tui-list__item">
-                    <strong>Element state after all mask's operations.</strong>
-                    Object with the same properties (but not compulsory with the
-                    same values!) can returned from the preprocessor.
+                    <strong>Element state after mask had been applied.</strong>
+                    Postprocessor can return updated element state which would
+                    then be reflected by the actual text field.
                 </li>
                 <li class="tui-list__item">
                     <strong>
-                        Initial element state before preprocessor's executiton
-                        and all mask's operations.
+                        Initial element state before preprocessors and mask
+                        execution.
                     </strong>
-                    It is a readonly argument (of course, you can't change the
-                    past!).
+                    It is a readonly argument, the past cannot be changed...
                 </li>
             </ol>
         </section>
 
         <p>
-            Postprocessor returns the same objects as the first argument (it can
-            contain other values, but it must implement the same interface).
+            Postprocessor returns an objects of the same interface as the first
+            argument.
         </p>
 
         <tui-notification
@@ -181,7 +169,7 @@
             <p class="tui-space_bottom-0">
                 Postprocessor is the final step before input's value update
                 which gives a lot of flexibility. Use postprocessor wisely and
-                return valid value!
+                return a valid value!
             </p>
         </tui-notification>
 
@@ -192,10 +180,12 @@
         <h2>maskitoPipe</h2>
 
         <p>
-            The Maskito team likes code decomposition and promotes it! Don't put
-            all complex logic inside the single processor. Break it into the
-            several processors so that each processor implements only a single
-            task.
+            The
+            <strong>Maskito</strong>
+            team likes code decomposition and promotes it! Don't put all complex
+            logic inside a single processor. Break it into the several
+            independent processors so that each processor implements only a
+            single task.
         </p>
 
         <p>

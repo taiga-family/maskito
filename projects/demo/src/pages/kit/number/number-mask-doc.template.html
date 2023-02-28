@@ -5,7 +5,7 @@
     <ng-template pageTab>
         Use
         <code>maskitoNumberOptionsGenerator</code>
-        to create mask to input number.
+        to create a mask for entering a formatted number.
 
         <tui-doc-example
             id="high-precision"
@@ -16,7 +16,7 @@
             <ng-template #precisionDescription>
                 Use
                 <code>precision</code>
-                -parameter to configure number of digits after decimal
+                parameter to configure the number of digits after decimal
                 separator.
             </ng-template>
             <number-mask-doc-example-1></number-mask-doc-example-1>
@@ -33,14 +33,14 @@
                 <code>decimalSeparator</code>
                 and
                 <code>thousandSeparator</code>
-                to get mask with a language‑sensitive representation of this
-                number.
+                to get mask with locale specific representation of numbers.
             </ng-template>
             <tui-notification
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="30"
             >
-                German uses comma as decimal separator and dot for thousands
+                In Germany people use comma as decimal separator and dot for
+                thousands
             </tui-notification>
             <number-mask-doc-example-2></number-mask-doc-example-2>
         </tui-doc-example>
@@ -66,15 +66,14 @@
             [description]="dynamicDecimalZeroPaddingDescription"
         >
             <ng-template #dynamicDecimalZeroPaddingDescription>
-                <p class="tui-space_top-0 tui-space_bottom-0">
-                    The possibility of changing maskito's options on-fly allows
-                    to build complex logic.
-                </p>
-                <p class="tui-space_top-0">
+                <div>
+                    You can change options on the fly to build complex logic.
+                </div>
+                <div>
                     This example shows how to initially disable
                     <code>decimalZeroPadding</code>
                     and enable it only after user inserts decimal separator.
-                </p>
+                </div>
             </ng-template>
             <number-mask-doc-example-4></number-mask-doc-example-4>
         </tui-doc-example>

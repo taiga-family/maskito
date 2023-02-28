@@ -5,7 +5,7 @@
     <ng-template pageTab>
         Use
         <code>maskitoDateRangeOptionsGenerator</code>
-        to create mask to input a range of dates.
+        to create a mask to input a range of dates.
 
         <tui-doc-example
             id="date-localization"
@@ -18,8 +18,8 @@
                 <code>mode</code>
                 and
                 <code>separator</code>
-                parameters to get mask with a language‑sensitive representation
-                of dates.
+                parameters to get mask with a locale specific representation of
+                dates.
             </ng-template>
             <date-range-mask-doc-example-1></date-range-mask-doc-example-1>
         </tui-doc-example>
@@ -35,8 +35,8 @@
                 <code>min</code>
                 and
                 <code>max</code>
-                allow to set the least and the greatest available dates. They
-                accept native
+                allow you to set the earliest and the latest available dates.
+                They accept native
                 <a
                     tuiLink
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
@@ -60,8 +60,7 @@
                 <code>minLength</code>
                 and
                 <code>maxLength</code>
-                parameters to set minimal and maximal length of the dates'
-                range.
+                parameters to set minimal and maximal length of the date range.
             </ng-template>
             <date-range-mask-doc-example-3></date-range-mask-doc-example-3>
         </tui-doc-example>
@@ -138,7 +137,7 @@
                 [(documentationPropertyValue)]="minLength"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Minimal length of range
+                Minimal length of the range
             </ng-template>
             <ng-template
                 documentationPropertyName="maxLength"
@@ -148,7 +147,7 @@
                 [(documentationPropertyValue)]="maxLength"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Maximal length of range
+                Maximal length of the range
             </ng-template>
         </tui-doc-documentation>
     </ng-template>

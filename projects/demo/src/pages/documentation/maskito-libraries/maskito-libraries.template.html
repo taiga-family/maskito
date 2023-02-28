@@ -1,7 +1,8 @@
 <tui-doc-page header="Maskito libraries">
     <p class="tui-space_top-0">
-        Maskito is a collection of libraries. Explore them and learn how to
-        install them.
+        <strong>Maskito</strong>
+        is a collection of libraries. Explore them and learn how to install and
+        use them.
     </p>
 
     <ul class="tui-list">
@@ -10,12 +11,14 @@
 
             <p class="tui-space_top-0">
                 It is the main zero-dependency and framework-agnostic package.
-                It can be used alone in Vanilla Javascript project. It listens
+                It can be used alone in vanilla JavaScript project. It listens
+                to
                 <code>beforeinput</code>
                 and
                 <code>input</code>
-                events to validate and calibrate textfield's value.
+                events to validate and calibrate text field value.
             </p>
+
             <tui-doc-code
                 code="npm install @maskito/core"
                 filename="/your/project/path>"
@@ -40,15 +43,18 @@
                 The optional framework-agnostic package. It contains
                 ready-to-use masks with configurable parameters.
             </p>
+
             <tui-notification status="warning">
                 This package requires
                 <code>@maskito/core</code>
                 as peer-dependency.
             </tui-notification>
+
             <tui-doc-code
                 code="npm install @maskito/kit"
                 filename="/your/project/path>"
             ></tui-doc-code>
+
             <p>
                 See examples:
                 <a
@@ -72,17 +78,16 @@
             <strong>@maskito/angular</strong>
 
             <p class="tui-space_top-0">
-                The Angular-specific library. It provides two convenient ways of
-                using Maskito: basic directive approach (when developer has
-                direct access to native input element) and Dependency Injection
-                approach (when native input element is hidden somewhere deep
-                inside another component).
+                The Angular-specific library. It provides a convenient way to
+                use Maskito as a directive.
             </p>
+
             <tui-notification status="warning">
                 This package requires
                 <code>@maskito/core</code>
                 as peer-dependency.
             </tui-notification>
+
             <tui-doc-code
                 code="npm install @maskito/angular"
                 filename="/your/project/path>"

@@ -3,24 +3,23 @@
     package="Recipes"
 >
     <p class="tui-space_top-0">
-        The creation of a mask for phone number is simple. The only required
-        knowledge is the
+        Creating mask for a phone number is simple. The only required knowledge
+        is the
         <strong>pattern mask expression</strong>
         with
         <strong>fixed characters</strong>
-        . Read more about it in section
+        . Read more about it in
         <a
             tuiLink
             [routerLink]="maskExpressionDocPage"
         >
             "Mask expression"
         </a>
-        .
+        section.
     </p>
 
     <p class="tui-space_bottom-0">
-        This page demonstrates some examples how to create phone number mask for
-        different countries.
+        This page demonstrates some examples for different countries.
     </p>
 
     <tui-doc-example
@@ -38,17 +37,17 @@
         [description]="kzMaskDescription"
     >
         <ng-template #kzMaskDescription>
-            The following example demonstrates more complex mask. It shows how
-            to make a country-prefix not-removable. It is achieved by
+            The following example demonstrates a more complex mask. It shows how
+            to make the country prefix non-removable. It is achieved by
             <strong>postprocessor</strong>
-            . Read more about it in section
+            . Read more about it in
             <a
                 tuiLink
                 [routerLink]="processorsDocPage"
             >
                 "Processors"
             </a>
-            .
+            section.
         </ng-template>
         <phone-doc-example-2></phone-doc-example-2>
     </tui-doc-example>

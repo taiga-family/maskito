@@ -1,6 +1,6 @@
 /**
  * This example demonstrates Angular way.
- * But this behaviour can be achieved via vanilla Javascript too
+ * But this behaviour can be achieved via vanilla JavaScript too
  * (it just requires more code).
  */
 

@@ -1,6 +1,6 @@
 import {SelectionRange} from './selection-range';
 
 export interface ElementState {
-    value: string;
-    selection: SelectionRange;
+    readonly value: string;
+    readonly selection: SelectionRange;
 }

@@ -1,20 +1,20 @@
 <tui-doc-page header="Core concepts">
     <section class="tui-space_bottom-4">
         <p class="tui-space_top-0">
-            The main entity of Maskito's core library is
+            The main entity of Maskito core library is
             <code>Maskito</code>
-            ‑class which accepts 2 arguments:
+            class which accepts 2 arguments in constructor:
         </p>
 
         <ol class="tui-list tui-list_ordered">
             <li class="tui-list__item">
-                reference to native
+                native
                 <code>HTMLInputElement</code>
                 or
                 <code>HTMLTextAreaElement</code>
             </li>
             <li class="tui-list__item">
-                set of configurable options
+                set of configurable
                 <a
                     href="https://github.com/Tinkoff/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
                     target="_blank"
@@ -32,17 +32,17 @@
     ></tui-doc-code>
 
     <tui-notification status="warning">
-        <p class="tui-space_top-0">
+        <div>
             <strong>
                 Avoid wasting computation power or memory resources!
             </strong>
-        </p>
+        </div>
 
         <p class="tui-space_bottom-0">
             The only available public method
             <code>destroy</code>
-            removes all created event listeners. Call it after element is
-            detached from DOM.
+            removes all created event listeners. Call it to clean everything up
+            when the work is finished.
         </p>
     </tui-notification>
 
@@ -63,7 +63,7 @@
                 <p class="tui-island__paragraph">
                     Learn how to predefine your mask format via mask expression.
                     This section describes different types of mask expression
-                    and explains meaning of "fixed character"-term.
+                    and explains meaning of "fixed character" term.
                 </p>
             </a>
 
@@ -91,10 +91,10 @@
                 <h3 class="tui-island__title">Overwrite mode</h3>
                 <p class="tui-island__paragraph">
                     Maskito can behave differently when user inserts new
-                    character in the middle of textfield's value. Learn how to
+                    character in the middle of text field value. Learn how to
                     control this behaviour via
                     <code>overwriteMode</code>
-                    -parameter.
+                    parameter.
                 </p>
             </a>
         </div>
