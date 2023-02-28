@@ -19,7 +19,6 @@
                 "tsConfig": "projects/demo/tsconfig.app.json",
                 "aot": false,
                 "assets": [
-                    "projects/demo/src/favicon.ico",
                     {
                         "glob": "**/*",
                         "input": "projects/demo/src/assets/",
