@@ -1,6 +1,6 @@
 {
     "name": "@maskito/angular",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "The Angular-specific Maskito's library",
     "keywords": [
         "mask",
@@ -34,7 +34,7 @@
     "peerDependencies": {
         "@angular/common": ">=12.0.0",
         "@angular/core": ">=12.0.0",
-        "@maskito/core": "^0.2.0",
+        "@maskito/core": "^0.3.0",
         "rxjs": ">=6.0.0"
     },
     "ng-update": {

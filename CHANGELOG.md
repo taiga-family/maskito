@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/tinkoff/maskito/compare/v0.2.0...v0.3.0) (2023-03-01)
+
+### Features
+
+- **angular:** add other maskito packages to `ng-update.packageGroup` of `package.json`
+  ([#161](https://github.com/tinkoff/maskito/issues/161))
+  ([bdecdaa](https://github.com/tinkoff/maskito/commit/bdecdaa9cac2681e35191cabd2d5d853eb97a09d))
+
+### Bug Fixes
+
+- **kit:** `Date`-mask fix wrong year that appears using the min property
+  ([#157](https://github.com/tinkoff/maskito/issues/157))
+  ([544e891](https://github.com/tinkoff/maskito/commit/544e8912d2752e0fc8f77757e935070b94823f65))
+
 ## [0.2.0](https://github.com/tinkoff/maskito/compare/v0.1.1...v0.2.0) (2023-02-28)
 
 ### Features
