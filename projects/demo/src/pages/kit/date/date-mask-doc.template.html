@@ -10,6 +10,7 @@
         <tui-doc-example
             id="date-localization"
             heading="Date localization"
+            [content]="dateLocalization"
             [description]="dateLocalizationDescription"
         >
             <ng-template #dateLocalizationDescription>
@@ -21,50 +22,13 @@
                 of dates.
             </ng-template>
 
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                ngModel="02.06.2018"
-                tuiTextfieldFiller="dd.mm.yyyy"
-                class="input-date"
-            >
-                DMY
-                <input
-                    tuiTextfield
-                    inputmode="decimal"
-                    [maskito]="preparedMasks['DMY']"
-                />
-            </tui-input>
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                ngModel="12-23-2023"
-                tuiTextfieldFiller="mm-dd-yyyy"
-                class="input-date"
-            >
-                MDY
-                <input
-                    tuiTextfield
-                    inputmode="decimal"
-                    [maskito]="preparedMasks['MDY']"
-                />
-            </tui-input>
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                ngModel="2005/10/21"
-                tuiTextfieldFiller="yyyy/mm/dd"
-                class="input-date"
-            >
-                YMD
-                <input
-                    tuiTextfield
-                    inputmode="decimal"
-                    [maskito]="preparedMasks['YMD']"
-                />
-            </tui-input>
+            <date-mask-doc-example-1></date-mask-doc-example-1>
         </tui-doc-example>
 
         <tui-doc-example
             id="min-max"
             heading="Min/Max"
+            [content]="dateMinMax"
             [description]="minMaxDescription"
         >
             <ng-template #minMaxDescription>
@@ -84,35 +48,7 @@
                 .
             </ng-template>
 
-            <span>Min 01.06.2010</span>
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                ngModel="02.06.2018"
-                tuiTextfieldFiller="dd.mm.yyyy"
-                class="input-date"
-            >
-                Date
-                <input
-                    tuiTextfield
-                    inputmode="decimal"
-                    [maskito]="minMask"
-                />
-            </tui-input>
-
-            <span>Min 01.01.2000, Max 10.05.2025</span>
-            <tui-input
-                tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                ngModel="20.01.2023"
-                tuiTextfieldFiller="dd.mm.yyyy"
-                class="input-date"
-            >
-                Date
-                <input
-                    tuiTextfield
-                    inputmode="decimal"
-                    [maskito]="minMaxMask"
-                />
-            </tui-input>
+            <date-mask-doc-example-2></date-mask-doc-example-2>
         </tui-doc-example>
     </ng-template>
 

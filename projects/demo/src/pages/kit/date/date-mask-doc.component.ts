@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {MaskitoDateMode, maskitoDateOptionsGenerator} from '@maskito/kit';
+import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 
@@ -14,22 +15,13 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
 export class DateMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
-    readonly preparedMasks = {
-        DMY: maskitoDateOptionsGenerator({mode: 'dd/mm/yyyy'}),
-        MDY: maskitoDateOptionsGenerator({mode: 'mm/dd/yyyy', separator: '-'}),
-        YMD: maskitoDateOptionsGenerator({mode: 'yyyy/mm/dd', separator: '/'}),
+    readonly dateLocalization: TuiDocExample = {
+        MaskitoOptions: import('./examples/1-localization/mask.ts?raw'),
     };
 
-    minMask = maskitoDateOptionsGenerator({
-        mode: 'dd/mm/yyyy',
-        min: new Date(2010, 5, 1),
-    });
-
-    minMaxMask = maskitoDateOptionsGenerator({
-        mode: 'dd/mm/yyyy',
-        min: new Date(2000, 0, 1),
-        max: new Date(2025, 4, 10),
-    });
+    readonly dateMinMax: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-min-max/mask.ts?raw'),
+    };
 
     readonly modeOptions: MaskitoDateMode[] = [
         `dd/mm/yyyy`,
