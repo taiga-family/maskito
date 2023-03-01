@@ -25,12 +25,10 @@ export class StackblitzStarterComponent implements OnInit {
     }
 
     async openStackblitz(): Promise<void> {
-        const [html, ts, css] = await Promise.all(
-            [
-                import('./files/index.html?raw'),
-                import('./files/index.ts?raw'),
-                import('./files/styles.css?raw'),
-            ].map(tuiRawLoad),
+        const [ts, css] = await Promise.all(
+            [import('./files/starter.ts?raw'), import('./files/styles.css?raw')].map(
+                tuiRawLoad,
+            ),
         );
 
         return this.stackblitz.openStarter(
@@ -39,7 +37,7 @@ export class StackblitzStarterComponent implements OnInit {
                 description:
                     'A starter with Maskito library\nDocumentation: https://tinkoff.github.io/maskito',
                 files: {
-                    'index.html': html,
+                    'index.html': `<input />`,
                     'index.ts': ts,
                     'styles.css': css,
                 },
