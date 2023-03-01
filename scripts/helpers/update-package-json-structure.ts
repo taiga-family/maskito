@@ -1,8 +1,12 @@
-import {tuiIsObject, tuiIsString} from '@taiga-ui/cdk/utils';
-
 import {bumpMaskitoDeps} from './bump-maskito-deps';
 import {bumpMaskitoVersionInPackageJson} from './bump-maskito-version-in-package-json';
 import {isMaskitoPackageName} from './is-maskito-package-name';
+
+function isObject<T extends Record<string, any>>(
+    value: unknown,
+): value is NonNullable<T> {
+    return typeof value === `object` && !!value;
+}
 
 interface UpdatePackageJsonOptions {
     packageJson: Record<string, Record<string, any> | string>;
@@ -21,15 +25,15 @@ export function updatePackageJsonStructure({
 }: UpdatePackageJsonOptions): void {
     const {name, dependencies, peerDependencies, devDependencies, packages} = packageJson;
 
-    if (tuiIsString(name) && isMaskitoPackageName(name, ignores)) {
+    if (typeof name === 'string' && isMaskitoPackageName(name, ignores)) {
         bumpMaskitoVersionInPackageJson(packageJson, newVersion);
     }
 
-    if (tuiIsObject(dependencies)) {
+    if (isObject(dependencies)) {
         bumpMaskitoDeps({deps: dependencies, prevVersion, newVersion, ignores});
     }
 
-    if (tuiIsObject(peerDependencies)) {
+    if (isObject(peerDependencies)) {
         bumpMaskitoDeps({
             deps: peerDependencies,
             prevVersion,
@@ -39,11 +43,11 @@ export function updatePackageJsonStructure({
         });
     }
 
-    if (tuiIsObject(devDependencies)) {
+    if (isObject(devDependencies)) {
         bumpMaskitoDeps({deps: devDependencies, prevVersion, newVersion, ignores});
     }
 
-    if (isPackageLockFile && tuiIsObject(packages)) {
+    if (isPackageLockFile && isObject(packages)) {
         for (const packageLockJson of Object.values(packages)) {
             if (!isMaskitoPackageName(packageLockJson?.name, ignores)) {
                 continue;

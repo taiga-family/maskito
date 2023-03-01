@@ -1,10 +1,8 @@
-import {tuiIsString} from '@taiga-ui/cdk/utils';
-
 export function bumpMaskitoVersionInPackageJson(
     packageJson: Record<string, unknown>,
     version: string,
 ): void {
-    if (`version` in packageJson && tuiIsString(packageJson[`version`])) {
+    if (`version` in packageJson && typeof packageJson[`version`] === 'string') {
         packageJson[`version`] = version;
     }
 }

@@ -1,5 +1,3 @@
-import {tuiIsString} from '@taiga-ui/cdk/utils';
-
 import {isMaskitoPackageName} from './is-maskito-package-name';
 
 export function bumpMaskitoDeps({
@@ -18,7 +16,7 @@ export function bumpMaskitoDeps({
     const keys = Object.keys(deps).filter(key => isMaskitoPackageName(key, ignores));
 
     for (const key of keys) {
-        if (tuiIsString(deps[key])) {
+        if (typeof deps[key] === 'string') {
             deps[key] = isPeerDependency
                 ? (deps[key] as string)?.replace(prevVersion, newVersion)
                 : `^${newVersion}`;
