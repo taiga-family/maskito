@@ -30,6 +30,6 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "peerDependencies": {
-        "@maskito/core": "^0.0.1"
+        "@maskito/core": "^0.2.0"
     }
 }
