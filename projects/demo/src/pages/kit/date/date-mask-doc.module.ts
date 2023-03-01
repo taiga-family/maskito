@@ -8,6 +8,8 @@ import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateMaskDocComponent} from './date-mask-doc.component';
+import {DateMaskDocExample1} from './examples/1-localization/component';
+import {DateMaskDocExample2} from './examples/2-min-max/component';
 
 @NgModule({
     imports: [
@@ -21,7 +23,7 @@ import {DateMaskDocComponent} from './date-mask-doc.component';
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(DateMaskDocComponent)),
     ],
-    declarations: [DateMaskDocComponent],
+    declarations: [DateMaskDocComponent, DateMaskDocExample1, DateMaskDocExample2],
     exports: [DateMaskDocComponent],
 })
 export class DateMaskDocModule {}

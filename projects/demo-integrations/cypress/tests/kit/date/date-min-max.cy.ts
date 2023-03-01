@@ -103,6 +103,25 @@ describe('Date', () => {
         });
     });
 
+    describe('Min date 2000', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?min=2000-01-01`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than min value', () => {
+            cy.get('@input')
+                .type('10101997')
+                .should('have.value', '01.01.2000')
+                .should('have.prop', 'selectionStart', '01.01.2000'.length)
+                .should('have.prop', 'selectionEnd', '01.01.2000'.length);
+        });
+    });
+
     describe('Max date, shortened year', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.Date}/API?max=2020-05-05&mode=mm%2Fyy&separator=%2F`);

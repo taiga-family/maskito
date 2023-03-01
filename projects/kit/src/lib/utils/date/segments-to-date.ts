@@ -17,7 +17,7 @@ export function segmentsToDate(
     );
 
     // needed for years less than 1900
-    date.setUTCFullYear(Number(year ?? '0'));
+    date.setFullYear(Number(year ?? '0'));
 
     return date;
 }
