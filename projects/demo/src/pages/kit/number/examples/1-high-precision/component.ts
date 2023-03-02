@@ -7,7 +7,7 @@ import mask from './mask';
     template: `
         <tui-input
             [style.max-width.rem]="30"
-            [ngModel]=""
+            [(ngModel)]="value"
         >
             <strong>&pi;</strong>
             -value
@@ -16,11 +16,17 @@ import mask from './mask';
                 placeholder="3,141..."
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
+                (blur)="onBlur()"
             />
         </tui-input>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample1 {
+    value = '';
     maskitoOptions = mask;
+
+    onBlur(): void {
+        this.value = this.value.startsWith(',') ? `0${this.value}` : this.value;
+    }
 }

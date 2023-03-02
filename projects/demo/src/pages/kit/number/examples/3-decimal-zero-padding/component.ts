@@ -8,13 +8,14 @@ import mask from './mask';
         <tui-input
             tuiTextfieldPrefix="$"
             [style.max-width.rem]="30"
-            [ngModel]="value"
+            [(ngModel)]="value"
         >
             Cost
             <input
                 tuiTextfield
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
+                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -23,4 +24,8 @@ import mask from './mask';
 export class NumberMaskDocExample3 {
     value = '100.00';
     maskitoOptions = mask;
+
+    onBlur(): void {
+        this.value = this.value.startsWith('.') ? `0${this.value}` : this.value;
+    }
 }
