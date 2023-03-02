@@ -17,6 +17,12 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: reproduction-url
+    attributes:
+      label: Please provide a link to a minimal reproduction of the bug
+      value: https://tinkoff.github.io/maskito/stackblitz
+
   - type: textarea
     id: description
     attributes:
