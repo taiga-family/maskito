@@ -7,7 +7,7 @@ import mask from './mask';
     template: `
         <tui-input
             [style.max-width.rem]="30"
-            [ngModel]=""
+            [(ngModel)]="value"
         >
             Type number like a German
             <input
@@ -15,6 +15,7 @@ import mask from './mask';
                 placeholder="1.000,42"
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
+                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -22,4 +23,9 @@ import mask from './mask';
 })
 export class NumberMaskDocExample2 {
     maskitoOptions = mask;
+    value = '';
+
+    onBlur(): void {
+        this.value = this.value.startsWith(',') ? `0${this.value}` : this.value;
+    }
 }
