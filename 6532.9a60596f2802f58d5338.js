@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[6532],{6532:t=>{t.exports='```html\n<tui-input [maskito]="maskOptions"></tui-input>\n```\n'}}]);

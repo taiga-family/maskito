@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[1999],{1999:n=>{n.exports='```html\n<div class="wrapper">\n  \x3c!--addional elements--\x3e\n\n  <input maskito />\n\n  \x3c!--addional elements--\x3e\n</div>\n```\n'}}]);

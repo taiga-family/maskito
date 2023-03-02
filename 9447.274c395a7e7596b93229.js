@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[9447],{9447:n=>{n.exports='<tui-input\n    [maskito]="nameMask"\n    [(ngModel)]="value"\n>\n    Name on the card\n</tui-input>\n'}}]);
