@@ -22,7 +22,8 @@ import {getMaskitoOptions} from './mask';
                 <input
                     tuiTextfield
                     inputmode="decimal"
-                    [maskito]="getMaskOptions(value.includes('.'))"
+                    [maskito]="getMaskOptions(decimalZeroPadding)"
+                    (beforeinput.capture)="handleBeforeInput($event)"
                 />
             </tui-input>
         </label>
@@ -31,9 +32,38 @@ import {getMaskitoOptions} from './mask';
 })
 export class NumberMaskDocExample4 {
     value = '42';
+    decimalZeroPadding = this.value.includes('.');
 
     @tuiPure // Decorator for memoization
     getMaskOptions(decimalZeroPadding: boolean): MaskitoOptions {
         return getMaskitoOptions(decimalZeroPadding);
+    }
+
+    handleBeforeInput({inputType, target, data}: InputEvent): void {
+        if (inputType.includes('delete')) {
+            const element = target as HTMLInputElement;
+            const [from, to] = this.getNotEmptySelection(
+                [element.selectionStart || 0, element.selectionEnd || 0],
+                inputType.includes('Forward'),
+            );
+            const dotWasRemoved = this.value.slice(from, to).includes('.');
+
+            this.decimalZeroPadding = this.decimalZeroPadding && !dotWasRemoved;
+        } else {
+            this.decimalZeroPadding = ['.', ','].some(
+                sep => data?.includes(sep) || this.value.includes(sep),
+            );
+        }
+    }
+
+    private getNotEmptySelection(
+        [from, to]: [number, number],
+        isForward: boolean,
+    ): [number, number] {
+        if (from !== to) {
+            return [from, to];
+        }
+
+        return isForward ? [from, to + 1] : [Math.max(from - 1, 0), to];
     }
 }
