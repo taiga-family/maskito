@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/tinkoff/maskito/compare/v0.3.0...v0.4.0) (2023-03-02)
+
+### Features
+
+- **angular:** `maskitoElement` add new input ([#164](https://github.com/tinkoff/maskito/issues/164))
+  ([407c131](https://github.com/tinkoff/maskito/commit/407c131d2d8f8514173ad7a5e248759e2d4f8abc))
+
+### Bug Fixes
+
+- **kit:** `Number` pads empty integer part when paste from clipboard
+  ([#168](https://github.com/tinkoff/maskito/issues/168))
+  ([d043a82](https://github.com/tinkoff/maskito/commit/d043a82561cbed94b19d59d174fa6da7f08d49d4))
+
 ## [0.3.0](https://github.com/tinkoff/maskito/compare/v0.2.0...v0.3.0) (2023-03-01)
 
 ### Features
