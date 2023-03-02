@@ -1,0 +1,13 @@
+<div
+    tuiGroup
+    [maskito]="card.focused ? cardMask : nameMask"
+    [maskitoElement]="card.focused ? cardPredicate : namePredicate"
+>
+    <tui-input
+        #card
+        [(ngModel)]="value.number"
+    >
+        Card number
+    </tui-input>
+    <tui-input [(ngModel)]="value.name">Name</tui-input>
+</div>

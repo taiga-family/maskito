@@ -65,13 +65,12 @@
                     class="input-time"
                     [tuiTextfieldFiller]="mode.toLowerCase()"
                     [formControl]="apiPageControl"
-                    [maskito]="maskitoOptions"
                 >
                     Input time
                     <input
                         tuiTextfield
-                        maskito
-                        inputmode="decimal"
+                        inputmode="numeric"
+                        [maskito]="maskitoOptions"
                     />
                 </tui-input>
             </ng-template>

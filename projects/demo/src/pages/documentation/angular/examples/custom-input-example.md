@@ -1,21 +1,24 @@
 ```ts
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
+import {MaskitoPredicate} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 
 @Component({
-  selector: 'tui-input',
+  selector: 'your-component',
   template: `
-    <div class="wrapper">
-      <!--addional elements-->
-
-      <input [maskito]="maskOptions" />
-
-      <!--addional elements-->
-    </div>
+    <custom-input-wrapper
+      [maskito]="maskitoOptions"
+      [maskitoElement]="predicate"
+    >
+      Using maskito with another library
+    </custom-input-wrapper>
   `,
 })
-export class CustomInputComponent {
-  @Input()
-  maskOptions: MaskitoOptions;
+export class YourComponent {
+  readonly maskitoOptions: MaskitoOptions = {
+    mask: /^\d+$/,
+  };
+
+  readonly predicate: MaskitoPredicate = element => element.querySelector('input[id="my-input"]')!;
 }
 ```

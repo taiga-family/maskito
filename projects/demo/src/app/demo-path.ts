@@ -17,4 +17,5 @@ export const enum DemoPath {
     BrowserSupport = 'browser-support',
     Changelog = 'changelog',
     Stackblitz = 'stackblitz',
+    Cypress = 'cypress',
 }

@@ -186,6 +186,14 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.Cypress,
+        loadChildren: async () =>
+            import(`../pages/cypress/cypress.module`).then(m => m.CypressDocPageModule),
+        data: {
+            title: `Cypress tests 🤫`,
+        },
+    },
+    {
         path: '**',
         redirectTo: DemoPath.WhatIsMaskito,
     },

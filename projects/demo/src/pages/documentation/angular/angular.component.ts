@@ -1,9 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DemoPath} from '@demo/path';
+import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 @Component({
     selector: 'angular-doc-page',
     templateUrl: './angular.template.html',
+    styleUrls: ['./angular.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularDocPageComponent {
@@ -18,9 +20,10 @@ export class AngularDocPageComponent {
     );
 
     readonly customInputExample = import('./examples/custom-input-example.md?raw');
-    readonly customInputDiApproachExample = import(
-        './examples/custom-input-di-approach-inside.md?raw'
-    );
 
-    readonly diApproachInAction = import('./examples/di-approach-usage.md?raw');
+    readonly nestedInputExample: TuiDocExample = {
+        TypeScript: import('./examples/1-nested/component.ts?raw'),
+        Default: import('./examples/1-nested/template.html?raw'),
+        Custom: import('./examples/2-nested/template.html?raw'),
+    };
 }
