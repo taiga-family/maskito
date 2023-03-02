@@ -11,6 +11,8 @@ export function createNotEmptyIntegerPartPreprocessor({
     decimalSeparator: string;
     precision: number;
 }): NonNullable<MaskitoOptions['preprocessor']> {
+    const startWithDecimalSepRegExp = new RegExp(`^\\D*\\${decimalSeparator}`);
+
     return ({elementState, data}) => {
         const {value, selection} = elementState;
         const [from] = selection;
@@ -18,7 +20,7 @@ export function createNotEmptyIntegerPartPreprocessor({
         if (
             precision <= 0 ||
             value.includes(decimalSeparator) ||
-            !data.startsWith(decimalSeparator)
+            !data.match(startWithDecimalSepRegExp)
         ) {
             return {elementState, data};
         }
