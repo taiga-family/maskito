@@ -1,5 +1,5 @@
 import {Directive, ElementRef, Inject, Input, OnChanges, OnDestroy} from '@angular/core';
-import {Maskito, MaskitoOptions} from '@maskito/core';
+import {Maskito, MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 export type MaskitoPredicate = (
     element: HTMLElement,
@@ -12,7 +12,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     private maskedElement: Maskito | null = null;
 
     @Input()
-    maskito: MaskitoOptions = {mask: []};
+    maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
     constructor(
         @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLElement>,

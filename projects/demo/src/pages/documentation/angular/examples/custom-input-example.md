@@ -14,11 +14,11 @@ import {MaskitoOptions} from '@maskito/core';
     </custom-input-wrapper>
   `,
 })
-export class CustomInputComponent {
+export class YourComponent {
   readonly maskitoOptions: MaskitoOptions = {
     mask: /^\d+$/,
   };
 
-  readonly predicate: MaskitoPredicate = element => element.querySelector('input')!;
+  readonly predicate: MaskitoPredicate = element => element.querySelector('input[id="my-input"]')!;
 }
 ```
