@@ -39,7 +39,9 @@ export class NumberMaskDocExample4 {
         return getMaskitoOptions(decimalZeroPadding);
     }
 
-    handleBeforeInput({inputType, target, data}: InputEvent): void {
+    handleBeforeInput(event: Event): void {
+        const {inputType, target, data} = event as InputEvent;
+
         if (inputType.includes('delete')) {
             const element = target as HTMLInputElement;
             const [from, to] = this.getNotEmptySelection(
