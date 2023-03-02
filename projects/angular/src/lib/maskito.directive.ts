@@ -19,7 +19,9 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     ) {}
 
     @Input()
-    maskitoElement: MaskitoPredicate = e => e as HTMLInputElement | HTMLTextAreaElement;
+    maskitoElement: MaskitoPredicate = e =>
+        e.querySelector('input,textarea') ||
+        (e as HTMLInputElement | HTMLTextAreaElement);
 
     ngOnChanges(): void {
         this.maskedElement?.destroy();

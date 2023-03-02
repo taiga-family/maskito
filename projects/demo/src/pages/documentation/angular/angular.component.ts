@@ -5,6 +5,7 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 @Component({
     selector: 'angular-doc-page',
     templateUrl: './angular.template.html',
+    styleUrls: ['./angular.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularDocPageComponent {
@@ -22,6 +23,7 @@ export class AngularDocPageComponent {
 
     readonly nestedInputExample: TuiDocExample = {
         TypeScript: import('./examples/1-nested/component.ts?raw'),
-        HTML: import('./examples/1-nested/template.html?raw'),
+        Default: import('./examples/1-nested/template.html?raw'),
+        Custom: import('./examples/2-nested/template.html?raw'),
     };
 }

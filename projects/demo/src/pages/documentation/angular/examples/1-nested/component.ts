@@ -15,5 +15,6 @@ export class NestedDocExample1 {
         postprocessor: ({value, selection}) => ({value: value.toUpperCase(), selection}),
     };
 
-    readonly predicate: MaskitoPredicate = element => element.querySelector('input')!;
+    readonly predicate: MaskitoPredicate = element =>
+        element.querySelector('tui-input input')!;
 }

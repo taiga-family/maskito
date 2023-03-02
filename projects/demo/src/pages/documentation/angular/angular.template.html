@@ -61,6 +61,15 @@
                 access to it.
             </p>
 
+            <tui-notification>
+                By default
+                <strong>maskito</strong>
+                will try to find input/textarea by querying its host:
+                <code>host.querySelector('input,textarea')</code>
+                so that might be sufficient. Use custom predicate if you need
+                custom logic.
+            </tui-notification>
+
             <tui-doc-code
                 filename="custom-input.component.ts"
                 [code]="customInputExample"
@@ -72,7 +81,32 @@
             description="See querying nested input in action"
             [content]="nestedInputExample"
         >
-            <nested-doc-example-1></nested-doc-example-1>
+            <tui-notification class="example tui-space_bottom-3">
+                Default behavior is enough for
+                <a
+                    tuiLink
+                    href="https://github.com/Tinkoff/taiga-ui"
+                >
+                    Taiga UI
+                </a>
+                inputs
+            </tui-notification>
+
+            <nested-doc-example-1
+                #example
+                class="example"
+            ></nested-doc-example-1>
+
+            <tui-notification class="example tui-space_vertical-3">
+                Custom predicate is required if target input is not the first on
+                in the DOM
+            </tui-notification>
+
+            <nested-doc-example-2
+                class="example"
+                [maskito]="example.nameMask"
+                [maskitoElement]="example.predicate"
+            ></nested-doc-example-2>
         </tui-doc-example>
     </ng-template>
 

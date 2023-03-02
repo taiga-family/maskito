@@ -6,12 +6,12 @@ import {MaskitoOptions} from '@maskito/core';
 @Component({
   selector: 'your-component',
   template: `
-    <tui-input
+    <custom-input-wrapper
       [maskito]="maskitoOptions"
       [maskitoElement]="predicate"
     >
       Using maskito with another library
-    </tui-input>
+    </custom-input-wrapper>
   `,
 })
 export class CustomInputComponent {

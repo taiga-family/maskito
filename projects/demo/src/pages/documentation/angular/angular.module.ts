@@ -5,10 +5,11 @@ import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiCheckboxLabeledModule, TuiInputModule} from '@taiga-ui/kit';
 
 import {AngularDocPageComponent} from './angular.component';
 import {NestedDocExample1} from './examples/1-nested/component';
+import {NestedDocExample2} from './examples/2-nested/component';
 
 @NgModule({
     imports: [
@@ -20,8 +21,9 @@ import {NestedDocExample1} from './examples/1-nested/component';
         TuiNotificationModule,
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(AngularDocPageComponent)),
+        TuiCheckboxLabeledModule,
     ],
-    declarations: [AngularDocPageComponent, NestedDocExample1],
+    declarations: [AngularDocPageComponent, NestedDocExample1, NestedDocExample2],
     exports: [AngularDocPageComponent],
 })
 export class AngularDocPageModule {}
