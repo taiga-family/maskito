@@ -15,7 +15,9 @@ export function generateMaskExpression({
 }): MaskitoOptions['mask'] {
     const digit = '\\d';
     const optionalMinus = isNegativeAllowed ? `\\${CHAR_MINUS}?` : '';
-    const integerPart = `[${digit}\\${thousandSeparator}]*`;
+    const integerPart = thousandSeparator
+        ? `[${digit}\\${thousandSeparator}]*`
+        : `[${digit}]*`;
     const decimalPart = `(\\${decimalSeparator}${digit}{0,${precision}})?`;
 
     return precision > 0

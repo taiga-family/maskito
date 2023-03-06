@@ -123,4 +123,18 @@ describe('Number | thousandSeparator', () => {
                 .should('have.prop', 'selectionEnd', '100'.length);
         });
     });
+
+    it('allows to set empty string as thousand separator', () => {
+        cy.get('tr')
+            .contains('[thousandSeparator]')
+            .parents('tr')
+            .find('tui-primitive-textfield')
+            .clear();
+
+        cy.get('@input')
+            .type('1000000')
+            .should('have.value', '1000000')
+            .should('have.prop', 'selectionStart', '1000000'.length)
+            .should('have.prop', 'selectionEnd', '1000000'.length);
+    });
 });

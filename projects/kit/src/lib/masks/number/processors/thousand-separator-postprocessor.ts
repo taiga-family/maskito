@@ -13,6 +13,10 @@ export function createThousandSeparatorPostprocessor({
     thousandSeparator: string;
     decimalSeparator: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
+    if (!thousandSeparator) {
+        return elementState => elementState;
+    }
+
     return ({value, selection}) => {
         const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
         const [initialFrom, initialTo] = selection;

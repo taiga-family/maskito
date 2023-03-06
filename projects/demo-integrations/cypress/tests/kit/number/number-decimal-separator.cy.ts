@@ -1,5 +1,3 @@
-import {DemoPath} from '@demo/path';
-
 import {openNumberPage} from './utils';
 
 describe('Number | Decimal separator (symbol used to separate the integer part from the fractional part)', () => {
@@ -83,16 +81,9 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
 
     describe('Decimal separator is a dot', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.Number}`);
-            cy.get('#decimal-zero-padding input')
-                .should('be.visible')
-                .first()
-                .focus()
-                .clear()
-                .as('input');
-
-            // TODO https://github.com/Tinkoff/taiga-ui/issues/3474
-            // openNumberPage('decimalSeparator=.&precision=2');
+            openNumberPage(
+                'decimalSeparator=.&precision=2&decimalZeroPadding=true&decimalPseudoSeparators$=2',
+            );
         });
 
         it('accepts dot (as the last character)', () => {
