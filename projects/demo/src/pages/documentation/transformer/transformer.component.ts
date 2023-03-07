@@ -2,15 +2,14 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DemoPath} from '@demo/path';
 
 @Component({
-    selector: 'core-concepts-overview-doc-page',
-    templateUrl: './core-concepts-overview.template.html',
-    styleUrls: ['./core-concepts-overview.styles.less'],
+    selector: 'transformer-doc-page',
+    templateUrl: './transformer.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoreConceptsOverviewDocPageComponent {
-    readonly maskitoPublicApiDemo = import('./examples/maskito-public-api-demo.md?raw');
+export class TransformerDocPageComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
     readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
-    readonly transformerDocPage = `/${DemoPath.Transformer}`;
+
+    readonly utilityInActionDemo = import('./examples/utility-in-action-demo.md?raw');
 }

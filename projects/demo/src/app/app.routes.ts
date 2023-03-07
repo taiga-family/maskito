@@ -66,6 +66,16 @@ export const appRoutes: Routes = [
             title: `Overwrite mode`,
         },
     },
+    {
+        path: DemoPath.Transformer,
+        loadChildren: async () =>
+            import(`../pages/documentation/transformer/transformer.module`).then(
+                m => m.TransformerDocPageModule,
+            ),
+        data: {
+            title: `Transformer`,
+        },
+    },
     // Kit
     {
         path: DemoPath.Number,

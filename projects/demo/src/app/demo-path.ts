@@ -5,6 +5,7 @@ export const enum DemoPath {
     MaskExpression = 'core-concepts/mask-expression',
     Processors = 'core-concepts/processors',
     OverwriteMode = 'core-concepts/overwrite-mode',
+    Transformer = 'core-concepts/transformer',
     Number = 'kit/number',
     Time = 'kit/time',
     Date = 'kit/date',

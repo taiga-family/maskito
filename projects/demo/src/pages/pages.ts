@@ -40,6 +40,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: 'core, concepts, overwrite, mode, shift, replace',
     },
     {
+        section: 'Core concepts',
+        title: 'Transformer',
+        route: DemoPath.Transformer,
+        keywords: 'core, concepts, programmatic, patch, set, update, value',
+    },
+    {
         section: 'Kit',
         title: 'Number',
         route: DemoPath.Number,
