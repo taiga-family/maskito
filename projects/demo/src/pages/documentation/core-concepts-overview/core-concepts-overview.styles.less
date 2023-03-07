@@ -3,7 +3,7 @@
 .islands-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
 
     @media @tui-mobile {
@@ -13,5 +13,9 @@
 
 .island {
     flex: 1;
-    min-width: 10rem;
+    min-width: 14rem;
+
+    @media @tui-desktop-min {
+        max-width: 40%;
+    }
 }
