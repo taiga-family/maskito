@@ -1,13 +1,28 @@
-import {maskitoTransform} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {MaskitoOptions} from '../../types';
+import {maskitoTransform} from '../transform';
 
 describe('maskitoTransform', () => {
-    const maskitoOptions = maskitoNumberOptionsGenerator({
-        thousandSeparator: ' ',
-        precision: 2,
-        decimalSeparator: ',',
-        decimalPseudoSeparators: ['.'],
-    });
+    const maskitoOptions: MaskitoOptions = {
+        mask: /^\d+(,\d*)?$/,
+        preprocessor: ({elementState, data}) => {
+            const {value, selection} = elementState;
+
+            return {
+                elementState: {
+                    selection,
+                    value: value.replace('.', ','),
+                },
+                data: data.replace('.', ','),
+            };
+        },
+        postprocessor: ({value, selection}) => {
+            const newValue = value.replace(/^0+/, '0');
+            const deletedChars = value.length - newValue.length;
+            const [from, to] = selection;
+
+            return {value: newValue, selection: [from - deletedChars, to - deletedChars]};
+        },
+    };
 
     it('returns string if the first argument is a string', () => {
         expect(typeof maskitoTransform('100', maskitoOptions)).toBe('string');
@@ -34,20 +49,20 @@ describe('maskitoTransform', () => {
     });
 
     it('formats value using postprocessor', () => {
-        expect(maskitoTransform('1000000', maskitoOptions)).toBe('1 000 000');
+        expect(maskitoTransform('0000,1234', maskitoOptions)).toBe('0,1234');
         expect(
             maskitoTransform(
                 {
-                    value: '1000000',
-                    selection: [4, 4],
+                    value: '0000,1234',
+                    selection: [6, 6],
                 },
                 maskitoOptions,
             ),
-        ).toEqual({value: '1 000 000', selection: [6, 6]});
+        ).toEqual({value: '0,1234', selection: [3, 3]});
     });
 
     it('drops invalid characters (mask expression works)', () => {
-        expect(maskitoTransform('42Taiga UI42', maskitoOptions)).toBe('4 242');
+        expect(maskitoTransform('42Taiga UI42', maskitoOptions)).toBe('4242');
         expect(
             maskitoTransform(
                 {
@@ -56,6 +71,6 @@ describe('maskitoTransform', () => {
                 },
                 maskitoOptions,
             ),
-        ).toEqual({value: '4 242', selection: [4, 4]});
+        ).toEqual({value: '4242', selection: [3, 3]});
     });
 });
