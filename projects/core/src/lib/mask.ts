@@ -7,6 +7,7 @@ import {
     getNotEmptySelection,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
+    maskitoTransform,
 } from './utils';
 
 export class Maskito extends MaskHistory {
@@ -162,19 +163,7 @@ export class Maskito extends MaskHistory {
     }
 
     private conformValueToMask(): void {
-        const initialElementState = this.elementState;
-        const {elementState} = this.options.preprocessor(
-            {
-                elementState: initialElementState,
-                data: '',
-            },
-            'validation',
-        );
-        const maskModel = new MaskModel(elementState, this.options);
-        const {value, selection} = this.options.postprocessor(
-            maskModel,
-            initialElementState,
-        );
+        const {value, selection} = maskitoTransform(this.elementState, this.options);
 
         this.updateValue(value);
         this.updateSelectionRange(selection);
