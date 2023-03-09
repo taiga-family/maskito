@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/tinkoff/maskito/compare/v0.4.0...v0.5.0) (2023-03-09)
+
+### Features
+
+- **core:** new utility `maskitoTransform(value, maskitoOptions)`
+  ([#177](https://github.com/tinkoff/maskito/issues/177))
+  ([20316f1](https://github.com/tinkoff/maskito/commit/20316f15e153bfeeb45eda6406b8792e00f3238f))
+- **kit:** new utility `maskitoParseNumber` ([#178](https://github.com/tinkoff/maskito/issues/178))
+  ([fc58141](https://github.com/tinkoff/maskito/commit/fc58141625ecbdc7d804aa382a69b38bf7146fc4))
+
+### Bug Fixes
+
+- **kit:** `Number` mask throws an error on empty string in `thousandSeparator`
+  ([#176](https://github.com/tinkoff/maskito/issues/176))
+  ([cd52fad](https://github.com/tinkoff/maskito/commit/cd52fad80bc278f171dafa1709c54cba3f8fbc81))
+
 ## [0.4.0](https://github.com/tinkoff/maskito/compare/v0.3.0...v0.4.0) (2023-03-02)
 
 ### Features
