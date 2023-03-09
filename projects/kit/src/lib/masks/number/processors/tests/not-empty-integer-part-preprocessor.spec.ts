@@ -1,4 +1,4 @@
-import {MaskPreprocessorAction} from '@maskito/core';
+import {MaskitoPreprocessorAction} from '@maskito/core';
 
 import {createNotEmptyIntegerPartPreprocessor} from '../not-empty-integer-part-preprocessor';
 
@@ -21,7 +21,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'a,',
                     },
-                    MaskPreprocessorAction.Insert,
+                    MaskitoPreprocessorAction.Insert,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -36,7 +36,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'aaa1aaa,',
                     },
-                    MaskPreprocessorAction.Insert,
+                    MaskitoPreprocessorAction.Insert,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -51,7 +51,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: ',3123',
                     },
-                    MaskPreprocessorAction.Insert,
+                    MaskitoPreprocessorAction.Insert,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -66,7 +66,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'aaa0aaa,3123',
                     },
-                    MaskPreprocessorAction.Insert,
+                    MaskitoPreprocessorAction.Insert,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,

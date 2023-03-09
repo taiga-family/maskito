@@ -2,8 +2,9 @@ import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
 import {
     ElementState,
+    KeyboardKeys,
     MaskitoOptions,
-    MaskPreprocessorAction,
+    MaskitoPreprocessorAction,
     SelectionRange,
     TypedInputEvent,
 } from './types';
@@ -34,13 +35,16 @@ export class Maskito extends MaskHistory {
         this.eventListener.listen('keydown', event => {
             const {ctrlKey, key, metaKey, shiftKey} = event;
 
-            if ((metaKey && shiftKey && key === 'z') || (ctrlKey && key === 'y')) {
+            if (
+                (metaKey && shiftKey && key === KeyboardKeys.Z) ||
+                (ctrlKey && key === KeyboardKeys.Y)
+            ) {
                 event.preventDefault();
 
                 return this.redo();
             }
 
-            if ((ctrlKey || metaKey) && key === 'z') {
+            if ((ctrlKey || metaKey) && key === KeyboardKeys.Z) {
                 event.preventDefault();
 
                 return this.undo();
@@ -154,10 +158,10 @@ export class Maskito extends MaskHistory {
         const pressedKey = event.key;
 
         switch (pressedKey) {
-            case 'Backspace':
-            case 'Delete':
-                return this.handleDelete(event, pressedKey === 'Delete');
-            case 'Enter':
+            case KeyboardKeys.Backspace:
+            case KeyboardKeys.Delete:
+                return this.handleDelete(event, pressedKey === KeyboardKeys.Delete);
+            case KeyboardKeys.Enter:
                 return this.handleEnter(event);
         }
 
@@ -187,8 +191,8 @@ export class Maskito extends MaskHistory {
                 data: '',
             },
             isForward
-                ? MaskPreprocessorAction.DeleteForward
-                : MaskPreprocessorAction.DeleteBackward,
+                ? MaskitoPreprocessorAction.DeleteForward
+                : MaskitoPreprocessorAction.DeleteBackward,
         );
         const maskModel = new MaskModel(elementState, this.options);
         const [from, to] = elementState.selection;
@@ -233,7 +237,7 @@ export class Maskito extends MaskHistory {
                 data,
                 elementState: initialElementState,
             },
-            MaskPreprocessorAction.Insert,
+            MaskitoPreprocessorAction.Insert,
         );
         const maskModel = new MaskModel(elementState, this.options);
 

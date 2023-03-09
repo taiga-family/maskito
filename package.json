@@ -38,6 +38,8 @@
         "test": "nx test",
         "*** Format ***": "",
         "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "pre-contribute-check": "npm run lint && npm run build && npm run test",
         "format": "prettier '**/*.{svg,yml,js,ts,html,md,less,json}'",
         "stylelint": "stylelint '**/*.{less,css}'",
         "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",

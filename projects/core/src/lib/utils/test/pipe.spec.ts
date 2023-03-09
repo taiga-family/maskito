@@ -1,8 +1,8 @@
 import {
     ElementState,
+    MaskitoPreprocessorAction,
     MaskPostprocessor,
     MaskPreprocessor,
-    MaskPreprocessorAction,
 } from '../../types';
 import {maskitoPipe} from '../pipe';
 
@@ -40,7 +40,7 @@ describe('maskitoPipe', () => {
                     add3ToData,
                     add0ToValue,
                     add5ToData,
-                )(preprocessorData, MaskPreprocessorAction.Insert),
+                )(preprocessorData, MaskitoPreprocessorAction.Insert),
             ).toEqual({
                 elementState: {value: '20', selection: [2, 2]},
                 data: '035',
@@ -52,7 +52,7 @@ describe('maskitoPipe', () => {
                 expect(
                     maskitoPipe(add0ToValue, add1ToValue)(
                         preprocessorData,
-                        MaskPreprocessorAction.Insert,
+                        MaskitoPreprocessorAction.Insert,
                     ),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
@@ -62,7 +62,7 @@ describe('maskitoPipe', () => {
                 expect(
                     maskitoPipe(add1ToValue, add0ToValue)(
                         preprocessorData,
-                        MaskPreprocessorAction.Insert,
+                        MaskitoPreprocessorAction.Insert,
                     ),
                 ).toEqual({
                     elementState: {value: '210', selection: [2, 2]},
@@ -74,7 +74,7 @@ describe('maskitoPipe', () => {
                 expect(
                     maskitoPipe(add3ToData, add5ToData)(
                         preprocessorData,
-                        MaskPreprocessorAction.Insert,
+                        MaskitoPreprocessorAction.Insert,
                     ),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
@@ -84,7 +84,7 @@ describe('maskitoPipe', () => {
                 expect(
                     maskitoPipe(add5ToData, add3ToData)(
                         preprocessorData,
-                        MaskPreprocessorAction.Insert,
+                        MaskitoPreprocessorAction.Insert,
                     ),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
@@ -99,7 +99,7 @@ describe('maskitoPipe', () => {
                         add0ToValue,
                         add3ToData,
                         add1ToValue,
-                    )(preprocessorData, MaskPreprocessorAction.Insert),
+                    )(preprocessorData, MaskitoPreprocessorAction.Insert),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
                     data: '053',
@@ -195,7 +195,7 @@ describe('maskitoPipe', () => {
 
         it('Preprocessor', () => {
             const checkActionType: MaskPreprocessor = (data, actionType) => {
-                expect(actionType).toBe(MaskPreprocessorAction.DeleteBackward);
+                expect(actionType).toBe(MaskitoPreprocessorAction.DeleteBackward);
 
                 return data;
             };
@@ -204,7 +204,7 @@ describe('maskitoPipe', () => {
                 checkActionType,
                 checkActionType,
                 checkActionType,
-            )({elementState, data: ''}, MaskPreprocessorAction.DeleteBackward);
+            )({elementState, data: ''}, MaskitoPreprocessorAction.DeleteBackward);
         });
 
         it('Postprocessor', () => {

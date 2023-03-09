@@ -1,4 +1,4 @@
-export enum KeyboardKeys {
+export const enum KeyboardKeys {
     Backspace = 'Backspace',
     Delete = 'Delete',
     Enter = 'Enter',
