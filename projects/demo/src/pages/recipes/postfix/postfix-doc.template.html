@@ -1,0 +1,52 @@
+<tui-doc-page
+    header="With postfix"
+    package="Recipes"
+>
+    <tui-notification status="warning">
+        The recipe requires basic understanding of
+        <strong>pattern mask expression</strong>
+        with
+        <strong>fixed characters</strong>
+        .
+        <br />
+        Read more about it in
+        <a
+            tuiLink
+            [routerLink]="maskExpressionDocPage"
+        >
+            "Mask expression"
+        </a>
+        topic.
+    </tui-notification>
+
+    <tui-doc-example
+        id="percentage"
+        heading="Percentage"
+        [content]="percentageExample1"
+    >
+        <postfix-doc-example-1></postfix-doc-example-1>
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="time"
+        heading="Time"
+        [content]="timeExample2"
+        [description]="timeExampleDescription"
+    >
+        <ng-template #timeExampleDescription>
+            This example is just demonstration how
+            <strong>Maskito</strong>
+            manages trailing fixed characters.
+            <br />
+            Use ready-to-use
+            <a
+                tuiLink
+                [routerLink]="timeMaskDocPage"
+            >
+                Time
+            </a>
+            mask for more comprehensive UX.
+        </ng-template>
+        <postfix-doc-example-2></postfix-doc-example-2>
+    </tui-doc-example>
+</tui-doc-page>

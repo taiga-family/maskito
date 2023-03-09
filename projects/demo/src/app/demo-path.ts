@@ -13,6 +13,7 @@ export const enum DemoPath {
     DateTime = 'kit/date-time',
     Card = 'recipes/card',
     Phone = 'recipes/phone',
+    Postfix = 'recipes/postfix',
     Textarea = 'recipes/textarea',
     Angular = 'angular',
     BrowserSupport = 'browser-support',

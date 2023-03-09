@@ -154,6 +154,16 @@ export const appRoutes: Routes = [
             title: `Textarea`,
         },
     },
+    {
+        path: DemoPath.Postfix,
+        loadChildren: async () =>
+            import(`../pages/recipes/postfix/postfix-doc.module`).then(
+                m => m.PostfixDocModule,
+            ),
+        data: {
+            title: `With postfix`,
+        },
+    },
     // Other
     {
         path: DemoPath.Angular,

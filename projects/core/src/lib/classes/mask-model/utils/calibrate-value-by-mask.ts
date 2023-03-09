@@ -6,7 +6,7 @@ import {validateValueWithMask} from './validate-value-with-mask';
 export function calibrateValueByMask(
     elementState: ElementState,
     mask: MaskExpression,
-    initialElementState: ElementState = elementState,
+    initialElementState: ElementState | null = null,
 ): ElementState {
     if (validateValueWithMask(elementState.value, mask)) {
         return elementState;

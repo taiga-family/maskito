@@ -5,13 +5,13 @@ export function getLeadingFixedCharacters(
     mask: Array<RegExp | string>,
     validatedValuePart: string,
     newCharacter: string,
-    initialElementState: ElementState,
+    initialElementState: ElementState | null,
 ): string {
     let leadingFixedCharacters = ``;
 
     for (let i = validatedValuePart.length; i < mask.length; i++) {
         const charConstraint = mask[i];
-        const isInitiallyExisted = initialElementState.value[i] === charConstraint;
+        const isInitiallyExisted = initialElementState?.value[i] === charConstraint;
 
         if (
             !isFixedCharacter(charConstraint) ||
