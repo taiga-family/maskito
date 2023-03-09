@@ -61,7 +61,7 @@ export function maskitoNumberOptionsGenerator({
         ),
         postprocessor: maskitoPipe(
             createLeadingZeroesValidationPostprocessor(decimalSeparator),
-            createMaxValidationPostprocessor({decimalSeparator, max, thousandSeparator}),
+            createMaxValidationPostprocessor({decimalSeparator, max}),
             createThousandSeparatorPostprocessor({decimalSeparator, thousandSeparator}),
             createDecimalZeroPaddingPostprocessor({
                 decimalSeparator,

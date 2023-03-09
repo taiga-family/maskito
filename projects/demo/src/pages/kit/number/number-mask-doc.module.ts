@@ -4,12 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
-import {
-    TuiHintModule,
-    TuiLabelModule,
-    TuiNotificationModule,
-    TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
+import {TuiNotificationModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
@@ -25,9 +20,7 @@ import {NumberMaskDocComponent} from './number-mask-doc.component';
         ReactiveFormsModule,
         MaskitoModule,
         TuiAddonDocModule,
-        TuiHintModule,
         TuiInputModule,
-        TuiLabelModule,
         TuiNotificationModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(NumberMaskDocComponent)),

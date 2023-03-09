@@ -16,6 +16,10 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
+    readonly maskitoParseNumberDemo = import(
+        './examples/maskito-parse-number-demo.md?raw'
+    );
+
     readonly highPrecisionExample1: TuiDocExample = {
         MaskitoOptions: import('./examples/1-high-precision/mask.ts?raw'),
     };

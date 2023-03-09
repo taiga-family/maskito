@@ -7,6 +7,18 @@
         <code>maskitoNumberOptionsGenerator</code>
         to create a mask for entering a formatted number.
 
+        <tui-notification class="tui-space_top-4">
+            Despite the name of the mask, element's raw value is still string.
+
+            <p>
+                Use
+                <code>maskitoParseNumber</code>
+                to get number-type value.
+            </p>
+
+            <tui-doc-code [code]="maskitoParseNumberDemo"></tui-doc-code>
+        </tui-notification>
+
         <tui-doc-example
             id="high-precision"
             heading="High precision"
