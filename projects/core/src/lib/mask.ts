@@ -1,6 +1,12 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
-import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './types';
+import {
+    ElementState,
+    MaskitoOptions,
+    MaskPreprocessorAction,
+    SelectionRange,
+    TypedInputEvent,
+} from './types';
 import {
     areElementValuesEqual,
     EventListener,
@@ -180,7 +186,9 @@ export class Maskito extends MaskHistory {
                 elementState: initialState,
                 data: '',
             },
-            isForward ? 'deleteForward' : 'deleteBackward',
+            isForward
+                ? MaskPreprocessorAction.DeleteForward
+                : MaskPreprocessorAction.DeleteBackward,
         );
         const maskModel = new MaskModel(elementState, this.options);
         const [from, to] = elementState.selection;
@@ -225,7 +233,7 @@ export class Maskito extends MaskHistory {
                 data,
                 elementState: initialElementState,
             },
-            'insert',
+            MaskPreprocessorAction.Insert,
         );
         const maskModel = new MaskModel(elementState, this.options);
 

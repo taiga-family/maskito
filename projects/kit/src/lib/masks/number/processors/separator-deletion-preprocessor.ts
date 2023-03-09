@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoOptions, MaskPreprocessorAction} from '@maskito/core';
 
 /**
  * Manage caret-navigation when user "deletes" non-removable separators
@@ -24,7 +24,8 @@ export function createSeparatorDeletionPreprocessor({
             : [thousandSeparator];
 
         if (
-            (actionType !== 'deleteBackward' && actionType !== 'deleteForward') ||
+            (actionType !== MaskPreprocessorAction.DeleteBackward &&
+                actionType !== MaskPreprocessorAction.DeleteForward) ||
             !nonRemovableSeparators.includes(selectedCharacters)
         ) {
             return {
@@ -36,7 +37,10 @@ export function createSeparatorDeletionPreprocessor({
         return {
             elementState: {
                 value,
-                selection: actionType === 'deleteForward' ? [to, to] : [from, from],
+                selection:
+                    actionType === MaskPreprocessorAction.DeleteForward
+                        ? [to, to]
+                        : [from, from],
             },
             data,
         };

@@ -5,7 +5,7 @@ export type MaskPreprocessor = (
         elementState: ElementState;
         data: string;
     },
-    actionType: 'deleteBackward' | 'deleteForward' | 'insert' | 'validation',
+    actionType: MaskPreprocessorAction,
 ) => {
     elementState: ElementState;
     data?: string;
@@ -15,3 +15,10 @@ export type MaskPostprocessor = (
     elementState: ElementState,
     initialElementState: ElementState,
 ) => ElementState;
+
+export enum MaskPreprocessorAction {
+    DeleteBackward = 'deleteBackward',
+    DeleteForward = 'deleteForward',
+    Insert = 'insert',
+    Validation = 'validation',
+}

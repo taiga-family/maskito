@@ -1,6 +1,6 @@
 import {MaskModel} from '../classes';
 import {MASKITO_DEFAULT_OPTIONS} from '../constants';
-import {ElementState, MaskitoOptions} from '../types';
+import {ElementState, MaskitoOptions, MaskPreprocessorAction} from '../types';
 
 export function maskitoTransform(value: string, maskitoOptions: MaskitoOptions): string;
 export function maskitoTransform(
@@ -23,7 +23,7 @@ export function maskitoTransform(
 
     const {elementState} = options.preprocessor(
         {elementState: initialElementState, data: ''},
-        'validation',
+        MaskPreprocessorAction.Validation,
     );
     const maskModel = new MaskModel(elementState, options);
     const {value, selection} = options.postprocessor(maskModel, initialElementState);
