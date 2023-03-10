@@ -7,7 +7,6 @@ import {DemoPath} from '@demo/path';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProcessorsDocPageComponent {
-    readonly elementStateDemo = import('./examples/element-state-demo.md?raw');
     readonly preprocessorFirstArgDemo = import(
         './examples/preprocessor-first-arg-demo.md?raw'
     );
@@ -28,4 +27,5 @@ export class ProcessorsDocPageComponent {
 
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
+    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
 }

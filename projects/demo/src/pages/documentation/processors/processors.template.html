@@ -1,5 +1,5 @@
 <tui-doc-page header="Processors">
-    <section class="tui-space_bottom-12">
+    <section class="tui-space_bottom-6">
         <p class="tui-space_top-0">
             <a
                 href="https://github.com/Tinkoff/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
@@ -54,22 +54,17 @@
         </section>
     </section>
 
-    <section class="tui-space_bottom-12">
-        <h2>What is the element state?</h2>
-
-        <p>
-            Before you learn more about processors, you should learn a single
-            prerequisite — meaning of the term
-            <strong>"element state"</strong>
-            . It describes objects which the following interface:
-        </p>
-        <tui-doc-code [code]="elementStateDemo"></tui-doc-code>
-        <p>
-            Processors actively use this concept. Developer who writes new
-            processor has direct access to element state of the masked input or
-            textarea. Element state can be read and changed via processors.
-        </p>
-    </section>
+    <tui-notification class="tui-space_bottom-12">
+        Before you learn more about processors, you should learn a single
+        prerequisite — meaning of the term
+        <a
+            tuiLink
+            [routerLink]="elementStateDocPage"
+        >
+            "Element state"
+        </a>
+        .
+    </tui-notification>
 
     <section class="tui-space_bottom-12">
         <h2>Preprocessor</h2>

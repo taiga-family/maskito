@@ -47,6 +47,16 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.ElementState,
+        loadChildren: async () =>
+            import(`../pages/documentation/element-state/element-state.module`).then(
+                m => m.ElementStateDocPageModule,
+            ),
+        data: {
+            title: `Element state`,
+        },
+    },
+    {
         path: DemoPath.Processors,
         loadChildren: async () =>
             import(`../pages/documentation/processors/processors.module`).then(
