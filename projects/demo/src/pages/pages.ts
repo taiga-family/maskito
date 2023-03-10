@@ -94,6 +94,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `textarea, latin, mask, recipe`,
     },
     {
+        section: 'Recipes',
+        title: 'With postfix',
+        route: DemoPath.Postfix,
+        keywords: `postfix, after, percent, am, pm, recipe`,
+    },
+    {
         section: 'Other',
         title: 'Angular',
         route: DemoPath.Angular,
