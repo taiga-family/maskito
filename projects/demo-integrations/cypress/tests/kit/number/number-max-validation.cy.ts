@@ -30,17 +30,17 @@ describe('Number | Max validation', () => {
             it('0,9999', () => {
                 cy.get('@input')
                     .type(',9999')
-                    .should('have.value', '0,9999')
-                    .should('have.prop', 'selectionStart', '0,9999'.length)
-                    .should('have.prop', 'selectionEnd', '0,9999'.length);
+                    .should('have.value', '0.9999')
+                    .should('have.prop', 'selectionStart', '0.9999'.length)
+                    .should('have.prop', 'selectionEnd', '0.9999'.length);
             });
 
             it('2,777', () => {
                 cy.get('@input')
                     .type('2,777')
-                    .should('have.value', '2,777')
-                    .should('have.prop', 'selectionStart', '2,777'.length)
-                    .should('have.prop', 'selectionEnd', '2,777'.length);
+                    .should('have.value', '2.777')
+                    .should('have.prop', 'selectionStart', '2.777'.length)
+                    .should('have.prop', 'selectionEnd', '2.777'.length);
             });
         });
 
