@@ -21,5 +21,6 @@ export class OverwriteModeDocPageComponent {
     };
 
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
 }

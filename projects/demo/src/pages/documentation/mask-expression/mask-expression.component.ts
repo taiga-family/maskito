@@ -13,6 +13,7 @@ export class MaskExpressionDocPageComponent {
         './examples/dynamic-mask-expression-demo.md?raw'
     );
 
+    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
     readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
 }

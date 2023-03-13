@@ -3,6 +3,7 @@ export const enum DemoPath {
     MaskitoLibraries = 'getting-started/maskito-libraries',
     CoreConceptsOverview = 'core-concepts/overview',
     MaskExpression = 'core-concepts/mask-expression',
+    ElementState = 'core-concepts/element-state',
     Processors = 'core-concepts/processors',
     OverwriteMode = 'core-concepts/overwrite-mode',
     Transformer = 'core-concepts/transformer',

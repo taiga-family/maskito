@@ -28,6 +28,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Core concepts',
+        title: 'Element state',
+        route: DemoPath.ElementState,
+        keywords: 'core, concepts, element, state',
+    },
+    {
+        section: 'Core concepts',
         title: 'Processors',
         route: DemoPath.Processors,
         keywords:
