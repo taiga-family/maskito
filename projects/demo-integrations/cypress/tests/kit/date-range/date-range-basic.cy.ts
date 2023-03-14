@@ -134,6 +134,22 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionStart', '20.01.1990 – 31.12.2022'.length)
                 .should('have.prop', 'selectionEnd', '20.01.1990 – 31.12.2022'.length);
         });
+
+        it('Type `deleteWordBackward` of `InputEvent` works', () => {
+            cy.get('@input').realPress(['Alt', 'Backspace']);
+
+            cy.get('@input')
+                .should('have.value', '20.01.1990')
+                .should('have.prop', 'selectionStart', '20.01.1990'.length)
+                .should('have.prop', 'selectionEnd', '20.01.1990'.length);
+
+            cy.get('@input').realPress(['Alt', 'Backspace']);
+
+            cy.get('@input')
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
     });
 
     describe('Editing somewhere in the middle of a value (NOT the last character)', () => {

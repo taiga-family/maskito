@@ -163,6 +163,12 @@ describe('getWordSelection', () => {
             ).toEqual([2, 4]);
         });
 
+        it('"1| 23 456" => select " 23" => [1,4]', () => {
+            expect(
+                getWordSelection({value: '1 23 456', selection: [1, 1]}, true),
+            ).toEqual([1, 4]);
+        });
+
         it('"1 2|  3" (two spaces after 2) => select "  3" => [3,6]', () => {
             expect(
                 getWordSelection(

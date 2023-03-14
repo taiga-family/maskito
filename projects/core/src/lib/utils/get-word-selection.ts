@@ -15,14 +15,19 @@ export function getWordSelection(
     }
 
     if (isForward) {
-        const nearestWordEndIndex = value
-            .slice(from)
+        const valueAfterSelectionStart = value.slice(from);
+        const [leadingSpaces] = valueAfterSelectionStart.match(LEADING_SPACES_REG) || [
+            '',
+        ];
+        const nearestWordEndIndex = valueAfterSelectionStart
             .replace(LEADING_SPACES_REG, '') // TODO replace with `String.trimStart` after bumping Firefox to 61+
             .search(SPACE_REG);
 
         return [
             from,
-            nearestWordEndIndex !== -1 ? from + nearestWordEndIndex : value.length,
+            nearestWordEndIndex !== -1
+                ? from + leadingSpaces.length + nearestWordEndIndex
+                : value.length,
         ];
     }
 
