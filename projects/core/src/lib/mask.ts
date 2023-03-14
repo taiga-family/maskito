@@ -44,7 +44,7 @@ export class Maskito extends MaskHistory {
 
         if (isBeforeInputEventSupported(element)) {
             this.eventListener.listen('beforeinput', event => {
-                const isForwardDirection = event.inputType.includes('Forward');
+                const isForward = event.inputType.includes('Forward');
 
                 this.updateHistory(this.elementState);
 
@@ -61,19 +61,19 @@ export class Maskito extends MaskHistory {
                     case 'deleteByCut':
                     case 'deleteContentBackward':
                     case 'deleteContentForward':
-                        return this.handleDelete(
+                        return this.handleDelete({
                             event,
-                            getNotEmptySelection(this.elementState, isForwardDirection),
-                            isForwardDirection,
-                        );
+                            isForward,
+                            selection: getNotEmptySelection(this.elementState, isForward),
+                        });
                     case 'deleteWordForward':
                     case 'deleteWordBackward':
-                        return this.handleDelete(
+                        return this.handleDelete({
                             event,
-                            getWordSelection(this.elementState, isForwardDirection),
-                            isForwardDirection,
-                            true,
-                        );
+                            isForward,
+                            selection: getWordSelection(this.elementState, isForward),
+                            force: true,
+                        });
                     case 'insertFromDrop':
                         // We don't know caret position at this moment
                         // (inserted content will be handled later in "input"-event)
@@ -158,16 +158,16 @@ export class Maskito extends MaskHistory {
 
     private handleKeydown(event: KeyboardEvent): void {
         const pressedKey = event.key;
-        const isForwardDirection = pressedKey === 'Delete';
+        const isForward = pressedKey === 'Delete';
 
         switch (pressedKey) {
             case 'Backspace':
             case 'Delete':
-                return this.handleDelete(
+                return this.handleDelete({
                     event,
-                    getNotEmptySelection(this.elementState, isForwardDirection),
-                    isForwardDirection,
-                );
+                    isForward,
+                    selection: getNotEmptySelection(this.elementState, isForward),
+                });
             case 'Enter':
                 return this.handleEnter(event);
         }
@@ -186,12 +186,17 @@ export class Maskito extends MaskHistory {
         this.updateSelectionRange(selection);
     }
 
-    private handleDelete(
-        event: Event | TypedInputEvent,
-        selection: SelectionRange,
-        isForward: boolean,
+    private handleDelete({
+        event,
+        selection,
+        isForward,
         force = false,
-    ): void {
+    }: {
+        event: Event | TypedInputEvent;
+        selection: SelectionRange;
+        isForward: boolean;
+        force?: boolean;
+    }): void {
         const initialState: ElementState = {
             value: this.elementState.value,
             selection,
