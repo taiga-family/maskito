@@ -17,7 +17,7 @@ describe(`Maskito Angular package`, () => {
     })
     class TestComponent {
         readonly control = new FormControl();
-        readonly options = maskitoNumberOptionsGenerator();
+        readonly options = maskitoNumberOptionsGenerator({precision: 2});
     }
 
     let fixture: ComponentFixture<TestComponent>;
