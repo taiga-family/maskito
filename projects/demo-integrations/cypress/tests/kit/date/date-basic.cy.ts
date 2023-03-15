@@ -18,6 +18,11 @@ describe('Date', () => {
                 ['12', '12', '12'.length],
                 ['121', '12.1', '12.1'.length],
                 ['1211', '12.11', '12.11'.length],
+                ['0', '0', 1],
+                ['00', '01', '01'.length],
+                ['000', '01.0', '01.0'.length],
+                ['0000', '01.01', '01.01'.length],
+                ['00000000', '01.01.0001', '01.01.0001'.length],
             ] as const;
 
             tests.forEach(([typedValue, maskedValue, caretIndex]) => {
@@ -176,6 +181,22 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '3'.length)
                     .should('have.prop', 'selectionEnd', '3'.length);
             });
+
+            it('02|.01.2008 => Backspace => 0|1.01.2008 => Type "5" => 05|.01.2008', () => {
+                cy.get('@input')
+                    .type('02012008')
+                    .type('{leftArrow}'.repeat('.01.2008'.length))
+                    .should('have.prop', 'selectionStart', '02'.length)
+                    .should('have.prop', 'selectionEnd', '02'.length)
+                    .type('{backspace}')
+                    .should('have.value', '01.01.2008')
+                    .should('have.prop', 'selectionStart', '0'.length)
+                    .should('have.prop', 'selectionEnd', '0'.length)
+                    .type('5')
+                    .should('have.value', '05.01.2008')
+                    .should('have.prop', 'selectionStart', '05.'.length)
+                    .should('have.prop', 'selectionEnd', '05.'.length);
+            });
         });
 
         describe('Fixed values', () => {
@@ -206,7 +227,7 @@ describe('Date', () => {
 
         describe('Text selection', () => {
             describe('Select range and press Backspace', () => {
-                it('10.|12|.2022 => Backspace => 10.|00.2022', () => {
+                it('10.|12|.2022 => Backspace => 10.|01.2022', () => {
                     cy.get('@input')
                         .type('10122022')
                         .type('{leftArrow}'.repeat('.2022'.length))
@@ -217,7 +238,7 @@ describe('Date', () => {
                         ]);
 
                     cy.get('@input')
-                        .should('have.value', '10.00.2022')
+                        .should('have.value', '10.01.2022')
                         .should('have.prop', 'selectionStart', '10.'.length)
                         .should('have.prop', 'selectionEnd', '10.'.length);
                 });

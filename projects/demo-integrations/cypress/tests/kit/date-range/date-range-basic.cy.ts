@@ -166,7 +166,7 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionEnd', '25.02.18'.length);
         });
 
-        it('13.06.1736 - 14.09|.1821 => Backspace => 13.06.1736 - 14.0|0.1821 => Type "3" => 13.06.1736 - 14.03|.1821', () => {
+        it('13.06.1736 - 14.09|.1821 => Backspace => 13.06.1736 - 14.0|1.1821 => Type "3" => 13.06.1736 - 14.03|.1821', () => {
             cy.get('@input')
                 .type('13.06.1736-14.09.1821')
                 .should('have.value', '13.06.1736 – 14.09.1821')
@@ -174,7 +174,7 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionStart', '13.06.1736 - 14.09'.length)
                 .should('have.prop', 'selectionEnd', '13.06.1736 - 14.09'.length)
                 .type('{backspace}')
-                .should('have.value', '13.06.1736 – 14.00.1821')
+                .should('have.value', '13.06.1736 – 14.01.1821')
                 .should('have.prop', 'selectionStart', '13.06.1736 - 14.0'.length)
                 .should('have.prop', 'selectionEnd', '13.06.1736 - 14.0'.length)
                 .type('3')
@@ -300,7 +300,7 @@ describe('DateRange | Basic', () => {
 
     describe('Text selection', () => {
         describe('Select range and press Backspace / Delete', () => {
-            it('10.|12|.2005 - 16.12.2007 => Backspace => 10.|00.2005 - 16.12.2007', () => {
+            it('10.|12|.2005 - 16.12.2007 => Backspace => 10.|01.2005 - 16.12.2007', () => {
                 cy.get('@input')
                     .type('10122005-16122007')
                     .should('have.value', '10.12.2005 – 16.12.2007')
@@ -312,12 +312,12 @@ describe('DateRange | Basic', () => {
                     ]);
 
                 cy.get('@input')
-                    .should('have.value', '10.00.2005 – 16.12.2007')
+                    .should('have.value', '10.01.2005 – 16.12.2007')
                     .should('have.prop', 'selectionStart', '10.'.length)
                     .should('have.prop', 'selectionEnd', '10.'.length);
             });
 
-            it('10.12.2005 - |16|.12.2007 => Backspace => 10.12.2005 - |00.12.2007', () => {
+            it('10.12.2005 - |16|.12.2007 => Backspace => 10.12.2005 - |01.12.2007', () => {
                 cy.get('@input')
                     .type('10122005-16122007')
                     .should('have.value', '10.12.2005 – 16.12.2007')
@@ -329,7 +329,7 @@ describe('DateRange | Basic', () => {
                     ]);
 
                 cy.get('@input')
-                    .should('have.value', '10.12.2005 – 00.12.2007')
+                    .should('have.value', '10.12.2005 – 01.12.2007')
                     .should('have.prop', 'selectionStart', '10.12.2005 - '.length)
                     .should('have.prop', 'selectionEnd', '10.12.2005 - '.length);
             });

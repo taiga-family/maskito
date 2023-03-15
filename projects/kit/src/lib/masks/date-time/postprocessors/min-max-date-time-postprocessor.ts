@@ -27,9 +27,18 @@ export function createMinMaxDateTimePostprocessor({
         const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
 
         if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
+            const parsedDate = parseDateString(dateString, dateModeTemplate);
+            const parsedTime = parseTimeString(timeString);
+            const fixedValue = toDateString(
+                {...parsedDate, ...parsedTime},
+                dateModeTemplate,
+                timeMode,
+            );
+            const tail = value.slice(fixedValue.length);
+
             return {
                 selection,
-                value: value,
+                value: fixedValue + tail,
             };
         }
 

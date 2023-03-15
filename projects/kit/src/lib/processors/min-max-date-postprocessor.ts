@@ -16,11 +16,13 @@ export function createMinMaxDatePostprocessor({
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     datesSeparator = '',
+    separator = '.',
 }: {
     dateModeTemplate: string;
     min?: Date;
     max?: Date;
     datesSeparator?: string;
+    separator?: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
     return ({value, selection}) => {
         const endsWithDatesSeparator = datesSeparator && value.endsWith(datesSeparator);
@@ -32,7 +34,11 @@ export function createMinMaxDatePostprocessor({
             validatedValue += validatedValue ? datesSeparator : '';
 
             if (!isDateStringComplete(dateString, dateModeTemplate)) {
-                validatedValue += dateString;
+                const parsedDate = parseDateString(dateString, dateModeTemplate);
+                const fixedValue = toDateString(parsedDate, dateModeTemplate);
+                const tail = dateString.endsWith(separator) ? separator : '';
+
+                validatedValue += fixedValue + tail;
                 continue;
             }
 

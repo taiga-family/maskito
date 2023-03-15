@@ -24,6 +24,7 @@ describe('DateTime | Basic', () => {
             ['1811201623152', '18.11.2016, 23:15:2'],
             ['18112016231522', '18.11.2016, 23:15:22'],
             ['18112016231522123', '18.11.2016, 23:15:22.123'],
+            ['00000000000000000', '01.01.0001, 00:00:00.000'],
         ] as const;
 
         tests.forEach(([typedValue, maskedValue]) => {
@@ -219,7 +220,7 @@ describe('DateTime | Basic', () => {
 
     describe('Text selection', () => {
         describe('Select range and press Backspace / Delete', () => {
-            it('10.|12|.2005, 12:30 => Backspace => 10.|00.2005, 12:30', () => {
+            it('10.|12|.2005, 12:30 => Backspace => 10.|01.2005, 12:30', () => {
                 cy.get('@input')
                     .type('101220051230')
                     .should('have.value', '10.12.2005, 12:30')
@@ -231,7 +232,7 @@ describe('DateTime | Basic', () => {
                     ]);
 
                 cy.get('@input')
-                    .should('have.value', '10.00.2005, 12:30')
+                    .should('have.value', '10.01.2005, 12:30')
                     .should('have.prop', 'selectionStart', '10.'.length)
                     .should('have.prop', 'selectionEnd', '10.'.length);
             });
