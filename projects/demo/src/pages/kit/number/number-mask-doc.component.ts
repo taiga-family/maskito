@@ -46,7 +46,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     precision = 0;
     isNegativeAllowed = true;
     max = Number.MAX_SAFE_INTEGER;
-    decimalSeparator = ',';
+    decimalSeparator = '.';
     decimalZeroPadding = false;
     decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
     thousandSeparator = ' ';

@@ -23,11 +23,11 @@ export function maskitoNumberOptionsGenerator({
     isNegativeAllowed = true,
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
-    decimalSeparator = ',',
-    decimalPseudoSeparators = getDefaultPseudoSeparators({
+    decimalSeparator = '.',
+    decimalPseudoSeparators = getDefaultPseudoSeparators(
         decimalSeparator,
         thousandSeparator,
-    }),
+    ),
     decimalZeroPadding = false,
 }: {
     max?: number;

@@ -26,4 +26,14 @@ export class AngularDocPageComponent {
         Default: import('./examples/1-nested/template.html?raw'),
         Custom: import('./examples/2-nested/template.html?raw'),
     };
+
+    readonly cvaExample: TuiDocExample = {
+        TypeScript: import('./examples/3-cva/component.ts?raw'),
+        HTML: import('./examples/3-cva/template.html?raw'),
+    };
+
+    readonly pipeExample: TuiDocExample = {
+        TypeScript: import('./examples/4-pipe/component.ts?raw'),
+        HTML: import('./examples/4-pipe/template.html?raw'),
+    };
 }
