@@ -10,7 +10,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 export class CvaDocExample3 {
     readonly control = new FormControl();
 
-    readonly maskito = maskitoNumberOptionsGenerator();
+    readonly maskito = maskitoNumberOptionsGenerator({precision: 2});
 
     setValue(): void {
         this.control.setValue(12345.67);

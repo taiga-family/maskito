@@ -41,8 +41,8 @@ describe(`Maskito Angular package`, () => {
         fixture.componentInstance.control.setValue(12345.67);
         fixture.detectChanges();
 
-        expect(getText()).toBe(`12 345.67`);
-        expect(getValue()).toBe(`12 345.67`);
+        expect(getText()).toBe(`12\u00A0345.67`);
+        expect(getValue()).toBe(`12\u00A0345.67`);
     });
 
     function getText(): string {

@@ -9,5 +9,5 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 export class PipeDocExample4 {
     value = 12345.67;
 
-    readonly options = maskitoNumberOptionsGenerator();
+    readonly options = maskitoNumberOptionsGenerator({precision: 2});
 }
