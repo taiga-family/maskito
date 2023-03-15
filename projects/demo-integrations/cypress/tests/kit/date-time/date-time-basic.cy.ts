@@ -141,6 +141,18 @@ describe('DateTime | Basic', () => {
                 .should('have.prop', 'selectionStart', '20.01.1990, 15:40:20'.length)
                 .should('have.prop', 'selectionEnd', '20.01.1990, 15:40:20'.length);
         });
+
+        it('Type `deleteWordBackward` of `InputEvent` works', () => {
+            cy.get('@input')
+                .type('{ctrl+backspace}')
+                .should('have.value', '20.01.1990')
+                .should('have.prop', 'selectionStart', '20.01.1990'.length)
+                .should('have.prop', 'selectionEnd', '20.01.1990'.length)
+                .type('{ctrl+backspace}')
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
     });
 
     describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
