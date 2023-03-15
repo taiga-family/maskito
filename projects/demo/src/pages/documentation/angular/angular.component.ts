@@ -34,6 +34,6 @@ export class AngularDocPageComponent {
 
     readonly pipeExample: TuiDocExample = {
         TypeScript: import('./examples/4-pipe/component.ts?raw'),
-        TypeScript: import('./examples/4-pipe/template.html?raw'),
+        HTML: import('./examples/4-pipe/template.html?raw'),
     };
 }
