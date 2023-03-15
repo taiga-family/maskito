@@ -33,7 +33,7 @@ export class AngularDocPageComponent {
     };
 
     readonly pipeExample: TuiDocExample = {
-        HTML: import('./examples/4-pipe/component.ts?raw'),
+        TypeScript: import('./examples/4-pipe/component.ts?raw'),
         TypeScript: import('./examples/4-pipe/template.html?raw'),
     };
 }
