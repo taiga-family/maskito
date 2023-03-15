@@ -15,6 +15,7 @@ import {
     createPseudoCharactersPreprocessor,
     createSeparatorDeletionPreprocessor,
     createThousandSeparatorPostprocessor,
+    createZeroPrecisionPreprocessor,
 } from './processors';
 import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
 
@@ -58,6 +59,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalZeroPadding,
                 thousandSeparator,
             }),
+            createZeroPrecisionPreprocessor(precision, decimalSeparator),
         ),
         postprocessor: maskitoPipe(
             createLeadingZeroesValidationPostprocessor(decimalSeparator),
