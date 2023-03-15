@@ -103,18 +103,17 @@ describe('Date', () => {
             });
 
             it('Type `deleteWordBackward` of `InputEvent` works', () => {
-                cy.get('@input').realPress(['Alt', 'Backspace']);
-
                 cy.get('@input')
+                    .type('{ctrl+backspace}')
                     .should('have.value', '')
                     .should('have.prop', 'selectionStart', ''.length)
                     .should('have.prop', 'selectionEnd', ''.length);
             });
 
             it('Type `deleteWordForward` of `InputEvent` works', () => {
-                cy.get('@input').type('{moveToStart}').realPress(['Alt', 'Delete']);
-
                 cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{ctrl+del}')
                     .should('have.value', '')
                     .should('have.prop', 'selectionStart', ''.length)
                     .should('have.prop', 'selectionEnd', ''.length);

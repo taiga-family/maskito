@@ -65,10 +65,10 @@ describe('Textarea (mask latin letters + digits)', () => {
         ] as const;
 
         for (const {initialValue, newValue} of tests) {
-            it(`"${initialValue}|" => Alt + Backspace => "${newValue}|"`, () => {
-                cy.get('@textArea').type(initialValue).realPress(['Alt', 'Backspace']);
-
+            it(`"${initialValue}|" => Ctrl + Backspace => "${newValue}|"`, () => {
                 cy.get('@textArea')
+                    .type(initialValue)
+                    .type('{ctrl+backspace}')
                     .should('have.value', newValue)
                     .should('have.prop', 'selectionStart', newValue.length)
                     .should('have.prop', 'selectionEnd', newValue.length);
@@ -80,23 +80,15 @@ describe('Textarea (mask latin letters + digits)', () => {
         cy.get('@textArea')
             .type('1 34 678')
             .type('{moveToStart}')
-            .realPress(['Alt', 'Delete']);
-
-        cy.get('@textArea')
+            .type('{ctrl+del}')
             .should('have.value', ' 34 678')
             .should('have.prop', 'selectionStart', 0)
-            .should('have.prop', 'selectionEnd', 0);
-
-        cy.get('@textArea').realPress(['Alt', 'Delete']);
-
-        cy.get('@textArea')
+            .should('have.prop', 'selectionEnd', 0)
+            .type('{ctrl+del}')
             .should('have.value', ' 678')
             .should('have.prop', 'selectionStart', 0)
-            .should('have.prop', 'selectionEnd', 0);
-
-        cy.get('@textArea').realPress(['Alt', 'Delete']);
-
-        cy.get('@textArea')
+            .should('have.prop', 'selectionEnd', 0)
+            .type('{ctrl+del}')
             .should('have.value', '')
             .should('have.prop', 'selectionStart', 0)
             .should('have.prop', 'selectionEnd', 0);
