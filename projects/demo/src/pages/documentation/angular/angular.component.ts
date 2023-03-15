@@ -29,7 +29,7 @@ export class AngularDocPageComponent {
 
     readonly cvaExample: TuiDocExample = {
         TypeScript: import('./examples/3-cva/component.ts?raw'),
-        TypeScript: import('./examples/3-cva/template.html?raw'),
+        HTML: import('./examples/3-cva/template.html?raw'),
     };
 
     readonly pipeExample: TuiDocExample = {
