@@ -28,7 +28,7 @@ export class AngularDocPageComponent {
     };
 
     readonly cvaExample: TuiDocExample = {
-        HTML: import('./examples/3-cva/component.ts?raw'),
+        TypeScript: import('./examples/3-cva/component.ts?raw'),
         TypeScript: import('./examples/3-cva/template.html?raw'),
     };
 
