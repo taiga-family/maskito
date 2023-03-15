@@ -24,10 +24,10 @@ export function maskitoNumberOptionsGenerator({
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
-    decimalPseudoSeparators = getDefaultPseudoSeparators({
+    decimalPseudoSeparators = getDefaultPseudoSeparators(
         decimalSeparator,
         thousandSeparator,
-    }),
+    ),
     decimalZeroPadding = false,
 }: {
     max?: number;
