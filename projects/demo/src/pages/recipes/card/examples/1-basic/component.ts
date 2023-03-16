@@ -18,6 +18,8 @@ export class CardDocExample1 {
             ...Array(4).fill(/\d/),
             ' ',
             ...Array(4).fill(/\d/),
+            ' ',
+            ...Array(3).fill(/\d/),
         ],
     };
 
