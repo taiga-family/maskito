@@ -32,6 +32,11 @@ export function maskitoDateOptionsGenerator({
                 dateSegmentsSeparator: separator,
             }),
         ),
-        postprocessor: createMinMaxDatePostprocessor({min, max, dateModeTemplate}),
+        postprocessor: createMinMaxDatePostprocessor({
+            min,
+            max,
+            dateModeTemplate,
+            dateSegmentSeparator: separator,
+        }),
     };
 }
