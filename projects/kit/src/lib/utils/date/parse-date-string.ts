@@ -1,6 +1,5 @@
 import {MaskitoDateSegments} from '../../types';
 import {getObjectFromEntries} from '../get-object-from-entries';
-import {getDateSegmentValueLength} from './date-segment-value-length';
 
 export function parseDateString(
     dateString: string,
@@ -29,30 +28,4 @@ export function parseDateString(
                     : -1,
             ),
     );
-}
-
-export function normalizeDateSegments(
-    {day, month, year}: MaskitoDateSegments,
-    fullMode: string,
-): MaskitoDateSegments {
-    const {
-        day: dayLength,
-        month: monthLength,
-        year: yearLength,
-    } = getDateSegmentValueLength(fullMode);
-
-    return {
-        day:
-            day.length === dayLength && day.match(/^0+$/)
-                ? '1'.padStart(dayLength, '0')
-                : day,
-        month:
-            month.length === monthLength && month.match(/^0+$/)
-                ? '1'.padStart(monthLength, '0')
-                : month,
-        year:
-            year.length === yearLength && year.match(/^0+$/)
-                ? '1'.padStart(yearLength, '0')
-                : year,
-    };
 }

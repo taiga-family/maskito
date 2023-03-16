@@ -26,15 +26,13 @@ export function createMinMaxDateTimePostprocessor({
 }): NonNullable<MaskitoOptions['postprocessor']> {
     return ({value, selection}) => {
         const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
+        const parsedDate = parseDateString(dateString, dateModeTemplate);
+        const parsedTime = parseTimeString(timeString);
 
         if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
-            const parsedDate = raiseSegmentValueToMin(
-                parseDateString(dateString, dateModeTemplate),
-                dateModeTemplate,
-            );
-            const parsedTime = parseTimeString(timeString);
+            const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
             const fixedValue = toDateString(
-                {...parsedDate, ...parsedTime},
+                {...fixedDate, ...parsedTime},
                 dateModeTemplate,
                 timeMode,
             );
@@ -46,8 +44,6 @@ export function createMinMaxDateTimePostprocessor({
             };
         }
 
-        const parsedDate = parseDateString(dateString, dateModeTemplate);
-        const parsedTime = parseTimeString(timeString);
         const date = segmentsToDate(parsedDate, parsedTime);
         const clampedDate = clamp(date, min, max);
 

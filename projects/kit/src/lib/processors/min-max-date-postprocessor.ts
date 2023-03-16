@@ -34,13 +34,12 @@ export function createMinMaxDatePostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? datesSeparator : '';
 
-            if (!isDateStringComplete(dateString, dateModeTemplate)) {
-                const parsedDate = raiseSegmentValueToMin(
-                    parseDateString(dateString, dateModeTemplate),
-                    dateModeTemplate,
-                );
+            const parsedDate = parseDateString(dateString, dateModeTemplate);
 
-                const fixedValue = toDateString(parsedDate, dateModeTemplate);
+            if (!isDateStringComplete(dateString, dateModeTemplate)) {
+                const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
+
+                const fixedValue = toDateString(fixedDate, dateModeTemplate);
                 const tail = dateString.endsWith(dateSegmentSeparator)
                     ? dateSegmentSeparator
                     : '';
@@ -49,7 +48,6 @@ export function createMinMaxDatePostprocessor({
                 continue;
             }
 
-            const parsedDate = parseDateString(dateString, dateModeTemplate);
             const date = segmentsToDate(parsedDate);
             const clampedDate = clamp(date, min, max);
 
