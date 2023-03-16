@@ -39,7 +39,7 @@ export function validateDateString({
             offset +
             validatedDate.length +
             fantomSeparator +
-            getDateSegmentValueLength(dateString)[segmentName];
+            getDateSegmentValueLength(dateModeTemplate)[segmentName];
         const isLastSegmentDigitAdded =
             lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
 
