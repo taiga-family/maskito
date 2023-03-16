@@ -20,7 +20,7 @@ export function parseDateString(
     };
 
     return getObjectFromEntries(
-        Object.entries(normalizeDateSegments(dateSegments, fullMode))
+        Object.entries(dateSegments)
             .filter(([_, value]) => Boolean(value))
             .sort(([a], [b]) =>
                 fullMode.toLowerCase().indexOf(a[0]) >
@@ -31,7 +31,7 @@ export function parseDateString(
     );
 }
 
-function normalizeDateSegments(
+export function normalizeDateSegments(
     {day, month, year}: MaskitoDateSegments,
     fullMode: string,
 ): MaskitoDateSegments {

@@ -48,6 +48,11 @@ export function validateDateString({
             return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
         }
 
+        if (isLastSegmentDigitAdded && Number(segmentValue) < 1) {
+            // 31.0|1.2010 => Type 0 => 31.0|1.2010
+            return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
+        }
+
         const {validatedSegmentValue, prefixedZeroesCount} = padWithZeroesUntilValid(
             segmentValue,
             `${maxSegmentValue}`,

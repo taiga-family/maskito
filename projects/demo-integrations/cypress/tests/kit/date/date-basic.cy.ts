@@ -19,10 +19,7 @@ describe('Date', () => {
                 ['121', '12.1', '12.1'.length],
                 ['1211', '12.11', '12.11'.length],
                 ['0', '0', 1],
-                ['00', '01', '01'.length],
-                ['000', '01.0', '01.0'.length],
-                ['0000', '01.01', '01.01'.length],
-                ['00000000', '01.01.0001', '01.01.0001'.length],
+                ['00', '0', '0'.length],
             ] as const;
 
             tests.forEach(([typedValue, maskedValue, caretIndex]) => {

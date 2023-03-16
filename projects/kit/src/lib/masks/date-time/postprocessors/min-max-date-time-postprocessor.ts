@@ -9,6 +9,7 @@ import {
     segmentsToDate,
     toDateString,
 } from '../../../utils';
+import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
 import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
@@ -27,7 +28,10 @@ export function createMinMaxDateTimePostprocessor({
         const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
 
         if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
-            const parsedDate = parseDateString(dateString, dateModeTemplate);
+            const parsedDate = raiseSegmentValueToMin(
+                parseDateString(dateString, dateModeTemplate),
+                dateModeTemplate,
+            );
             const parsedTime = parseTimeString(timeString);
             const fixedValue = toDateString(
                 {...parsedDate, ...parsedTime},

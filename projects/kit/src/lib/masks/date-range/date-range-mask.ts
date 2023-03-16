@@ -48,7 +48,7 @@ export function maskitoDateRangeOptionsGenerator({
                 max,
                 dateModeTemplate,
                 datesSeparator: DATE_RANGE_SEPARATOR,
-                separator,
+                dateSegmentSeparator: separator,
             }),
             createMinMaxRangeLengthPostprocessor({
                 dateModeTemplate,
