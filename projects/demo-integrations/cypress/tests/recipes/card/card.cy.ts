@@ -1,18 +1,34 @@
 import {DemoPath} from '@demo/path';
 
 describe('Card', () => {
-    describe('Input-card', () => {
+    describe('Card number input', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.Card}`);
             cy.get('#Card input').should('be.visible').first().focus().as('input');
         });
 
-        it('Card number input', () => {
+        it('accepts 16-digits card number', () => {
             cy.get('@input')
                 .type('1234567890123456')
-                .should('have.value', '1234 5678 9012 3456')
-                .type('9')
                 .should('have.value', '1234 5678 9012 3456');
+        });
+
+        it('accepts 18-digits card number', () => {
+            cy.get('@input')
+                .type('123456789012345678')
+                .should('have.value', '1234 5678 9012 3456 78');
+        });
+
+        it('accepts 19-digits card number', () => {
+            cy.get('@input')
+                .type('1234567890123456789')
+                .should('have.value', '1234 5678 9012 3456 789');
+        });
+
+        it('does not accept more than 19-digits', () => {
+            cy.get('@input')
+                .type('0'.repeat(25))
+                .should('have.value', '0000 0000 0000 0000 000');
         });
     });
 

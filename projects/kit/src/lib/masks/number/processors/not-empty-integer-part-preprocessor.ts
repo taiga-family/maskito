@@ -1,5 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {CHAR_MINUS} from '../../../constants';
+
 /**
  * It pads integer part with zero if user types decimal separator (for empty input).
  * @example Empty input => User types "," (decimal separator) => 0,|
@@ -25,9 +27,12 @@ export function createNotEmptyIntegerPartPreprocessor({
             return {elementState, data};
         }
 
+        const valueBeforeCursor = value.slice(0, from);
+
         return {
             elementState,
-            data: value.slice(0, from) ? data : `0${data}`,
+            data:
+                valueBeforeCursor && valueBeforeCursor !== CHAR_MINUS ? data : `0${data}`,
         };
     };
 }
