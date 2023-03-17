@@ -1,9 +1,11 @@
-<div
+<form
     tuiGroup
+    autocomplete="on"
     class="wrapper"
+    [formGroup]="form"
 >
     <tui-input
-        ngModel=""
+        formControlName="cardNumber"
         class="number"
     >
         Card number
@@ -11,11 +13,12 @@
             tuiTextfield
             inputmode="numeric"
             placeholder="0000 0000 0000 0000"
+            autocomplete="cc-number"
             [maskito]="cardMask"
         />
     </tui-input>
     <tui-input
-        ngModel=""
+        formControlName="expire"
         class="expired"
     >
         EXP
@@ -23,11 +26,12 @@
             tuiTextfield
             inputmode="numeric"
             placeholder="mm/yy"
+            autocomplete="cc-exp"
             [maskito]="expiredMask"
         />
     </tui-input>
     <tui-input
-        ngModel=""
+        formControlName="cvv"
         class="cvv"
     >
         CVV
@@ -35,7 +39,8 @@
             tuiTextfield
             inputmode="numeric"
             placeholder="000"
+            autocomplete="cc-csc"
             [maskito]="cvvMask"
         />
     </tui-input>
-</div>
+</form>
