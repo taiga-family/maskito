@@ -4,6 +4,7 @@ import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './t
 import {
     areElementValuesEqual,
     EventListener,
+    getLineSelection,
     getNotEmptySelection,
     getWordSelection,
     isBeforeInputEventSupported,
@@ -72,6 +73,16 @@ export class Maskito extends MaskHistory {
                             event,
                             isForward,
                             selection: getWordSelection(this.elementState, isForward),
+                            force: true,
+                        });
+                    case 'deleteSoftLineBackward':
+                    case 'deleteSoftLineForward':
+                    case 'deleteHardLineBackward':
+                    case 'deleteHardLineForward':
+                        return this.handleDelete({
+                            event,
+                            isForward,
+                            selection: getLineSelection(this.elementState, isForward),
                             force: true,
                         });
                     case 'insertFromDrop':

@@ -120,6 +120,23 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', ''.length)
                     .should('have.prop', 'selectionEnd', ''.length);
             });
+
+            it('Type `deleteSoftLineForward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
+
+            it('Type `deleteSoftLineBackward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
         });
 
         describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
