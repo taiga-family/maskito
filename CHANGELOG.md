@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/tinkoff/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
+
+### Features
+
+- **core:** add `deleteSoftLineBackward` & `deleteSoftLineForward` support
+  ([#207](https://github.com/tinkoff/maskito/issues/207))
+  ([cbd5479](https://github.com/tinkoff/maskito/commit/cbd5479c04c07113804eee6ea6c9838ee8681597))
+- **kit:** use 1 as min segment value in `Date`-related masks ([#197](https://github.com/tinkoff/maskito/issues/197))
+  ([c85ca23](https://github.com/tinkoff/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c))
+
+### Bug Fixes
+
+- **core:** `Maskito` losses valid characters on invalid insertion (`overwriteMode: replace`)
+  ([#208](https://github.com/tinkoff/maskito/issues/208))
+  ([ef183b4](https://github.com/tinkoff/maskito/commit/ef183b454e4a7db5b2cb48cbe26129bf303f676a))
+- **kit:** `Number` should drop leading zeroes for negative numbers
+  ([#204](https://github.com/tinkoff/maskito/issues/204))
+  ([6e9adf7](https://github.com/tinkoff/maskito/commit/6e9adf758aa585944ee08f2e2aff81a5664adefd))
+
 ## [0.6.0](https://github.com/tinkoff/maskito/compare/v0.5.0...v0.6.0) (2023-03-15)
 
 ### Features
