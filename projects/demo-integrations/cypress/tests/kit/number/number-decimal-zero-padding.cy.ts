@@ -87,4 +87,58 @@ describe('Number | decimalZeroPadding', () => {
             .should('have.prop', 'selectionStart', ','.length)
             .should('have.prop', 'selectionEnd', ','.length);
     });
+
+    describe('Extra decimal separator insertion', () => {
+        it('42,|2700 => Type , => 42,|2700', () => {
+            cy.get('@input')
+                .type('42,27')
+                .type('{leftArrow}'.repeat('27'.length))
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42,'.length)
+                .should('have.prop', 'selectionEnd', '42,'.length)
+                .type(',')
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42,'.length)
+                .should('have.prop', 'selectionEnd', '42,'.length);
+        });
+
+        it('42|,2700 => Type , => 42,|2700', () => {
+            cy.get('@input')
+                .type('42,27')
+                .type('{leftArrow}'.repeat(',27'.length))
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42'.length)
+                .should('have.prop', 'selectionEnd', '42'.length)
+                .type(',')
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42,'.length)
+                .should('have.prop', 'selectionEnd', '42,'.length);
+        });
+
+        it('42,2|700 => Type , => 42,2|700', () => {
+            cy.get('@input')
+                .type('42,27')
+                .type('{leftArrow}')
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42,2'.length)
+                .should('have.prop', 'selectionEnd', '42,2'.length)
+                .type(',')
+                .should('have.value', '42,2700')
+                .should('have.prop', 'selectionStart', '42,2'.length)
+                .should('have.prop', 'selectionEnd', '42,2'.length);
+        });
+
+        it('9|9,1234 => Type , => 9,|9123', () => {
+            cy.get('@input')
+                .type('99,1234')
+                .type('{moveToStart}{rightArrow}')
+                .should('have.value', '99,1234')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1)
+                .type(',')
+                .should('have.value', '9,9123')
+                .should('have.prop', 'selectionStart', 2)
+                .should('have.prop', 'selectionEnd', 2);
+        });
+    });
 });
