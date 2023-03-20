@@ -146,6 +146,41 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionStart', 0)
                 .should('have.prop', 'selectionEnd', 0);
         });
+
+        it('Type `deleteSoftLineBackward` of `InputEvent` works', () => {
+            cy.get('@input')
+                .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', ''.length)
+                .should('have.prop', 'selectionEnd', ''.length);
+        });
+
+        it('Type `deleteSoftLineForward` of `InputEvent` works', () => {
+            cy.get('@input')
+                .type('{moveToStart}')
+                .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', ''.length)
+                .should('have.prop', 'selectionEnd', ''.length);
+        });
+
+        it('Type `deleteSoftLineBackward` in the middle works', () => {
+            cy.get('@input')
+                .type('{leftArrow}'.repeat(' 31.12.2022'.length))
+                .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .should('have.value', '01.01.0001 – 31.12.2022')
+                .should('have.prop', 'selectionStart', ''.length)
+                .should('have.prop', 'selectionEnd', ''.length);
+        });
+
+        it('Type `deleteSoftLineForward` in the middle works', () => {
+            cy.get('@input')
+                .type('{leftArrow}'.repeat(' 31.12.2022'.length))
+                .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .should('have.value', '20.01.1990')
+                .should('have.prop', 'selectionStart', '20.01.1990'.length)
+                .should('have.prop', 'selectionEnd', '20.01.1990'.length);
+        });
     });
 
     describe('Editing somewhere in the middle of a value (NOT the last character)', () => {

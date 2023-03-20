@@ -41,6 +41,25 @@ describe('Textarea (mask latin letters + digits)', () => {
                 .type('UI')
                 .should('have.value', 'Taiga\n\n\nUI');
         });
+
+        it('`deleteSoftLineBackward` works', () => {
+            cy.get('@textArea')
+                .type('Taiga')
+                .type('{enter}')
+                .type('UI and Maskito')
+                .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .should('have.value', 'Taiga\n');
+        });
+
+        it('`deleteSoftLineForward` works', () => {
+            cy.get('@textArea')
+                .type('Taiga')
+                .type('{enter}')
+                .type('UI and Maskito')
+                .type('{moveToStart}')
+                .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .should('have.value', 'UI and Maskito');
+        });
     });
 
     it('accepts spaces', () => {
