@@ -1,7 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {DEFAULT_MAX_DATE} from '../../constants';
-import {MaskitoDateSegments} from '../../types';
+import {DEFAULT_MAX_DATE} from '../../../constants';
+import {MaskitoDateSegments} from '../../../types';
 import {
     appendDate,
     clamp,
@@ -12,7 +12,7 @@ import {
     parseDateString,
     segmentsToDate,
     toDateString,
-} from '../../utils';
+} from '../../../utils';
 
 export function createMinMaxRangeLengthPostprocessor({
     dateModeTemplate,
