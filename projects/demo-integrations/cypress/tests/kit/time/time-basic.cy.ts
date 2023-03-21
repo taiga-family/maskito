@@ -1,5 +1,7 @@
 import {DemoPath} from '@demo/path';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+
 describe('Time', () => {
     describe('Basic', () => {
         beforeEach(() => {
@@ -165,7 +167,7 @@ describe('Time', () => {
 
         describe('Text selection', () => {
             describe('Select range and press Backspace', () => {
-                it('12:|34| => Backspace => 12', () => {
+                it('12:|34| => Backspace => 12', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -180,7 +182,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '12'.length);
                 });
 
-                it('1|2:3|4 => Backspace => 1|0:04', () => {
+                it('1|2:3|4 => Backspace => 1|0:04', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -196,7 +198,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '1'.length);
                 });
 
-                it('|12|:34 => Backspace => |00:34', () => {
+                it('|12|:34 => Backspace => |00:34', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
@@ -214,7 +216,7 @@ describe('Time', () => {
             });
 
             describe('Select range and press "Delete"', () => {
-                it('23:|59| => Delete => 23', () => {
+                it('23:|59| => Delete => 23', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress(['Shift', ...Array('59'.length).fill('ArrowLeft')]);
@@ -226,7 +228,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '23'.length);
                 });
 
-                it('2|3:5|9 => Delete => 20:0|9', () => {
+                it('2|3:5|9 => Delete => 20:0|9', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
@@ -242,7 +244,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '20:0'.length);
                 });
 
-                it('|23|:59 => Delete => 00:|59', () => {
+                it('|23|:59 => Delete => 00:|59', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
@@ -260,7 +262,7 @@ describe('Time', () => {
             });
 
             describe('Select range and press new digit', () => {
-                it('11:|22| => Press 3 => 11:3|', () => {
+                it('11:|22| => Press 3 => 11:3|', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1122')
                         .realPress(['Shift', ...Array('22'.length).fill('ArrowLeft')]);
@@ -272,7 +274,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '11:3'.length);
                 });
 
-                it('1|1:2|2 => Press 3 => 13:|02', () => {
+                it('1|1:2|2 => Press 3 => 13:|02', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1122')
                         .realPress([
@@ -288,7 +290,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '13:'.length);
                 });
 
-                it('|11|:33 => Press 2 => 2|0:33', () => {
+                it('|11|:33 => Press 2 => 2|0:33', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1133')
                         .realPress([
