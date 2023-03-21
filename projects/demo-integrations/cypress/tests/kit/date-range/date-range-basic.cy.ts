@@ -1,5 +1,7 @@
 import {DemoPath} from '@demo/path';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+
 describe('DateRange | Basic', () => {
     beforeEach(() => {
         cy.visit(`/${DemoPath.DateRange}/API?mode=dd%2Fmm%2Fyyyy`);
@@ -335,95 +337,119 @@ describe('DateRange | Basic', () => {
 
     describe('Text selection', () => {
         describe('Select range and press Backspace / Delete', () => {
-            it('10.|12|.2005 - 16.12.2007 => Backspace => 10.|01.2005 - 16.12.2007', () => {
-                cy.get('@input')
-                    .type('10122005-16122007')
-                    .should('have.value', '10.12.2005 – 16.12.2007')
-                    .type('{leftArrow}'.repeat('.2005 - 16.12.2007'.length))
-                    .realPress([
-                        'Shift',
-                        ...Array('12'.length).fill('ArrowLeft'),
-                        'Backspace',
-                    ]);
+            it(
+                '10.|12|.2005 - 16.12.2007 => Backspace => 10.|01.2005 - 16.12.2007',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('10122005-16122007')
+                        .should('have.value', '10.12.2005 – 16.12.2007')
+                        .type('{leftArrow}'.repeat('.2005 - 16.12.2007'.length))
+                        .realPress([
+                            'Shift',
+                            ...Array('12'.length).fill('ArrowLeft'),
+                            'Backspace',
+                        ]);
 
-                cy.get('@input')
-                    .should('have.value', '10.01.2005 – 16.12.2007')
-                    .should('have.prop', 'selectionStart', '10.'.length)
-                    .should('have.prop', 'selectionEnd', '10.'.length);
-            });
+                    cy.get('@input')
+                        .should('have.value', '10.01.2005 – 16.12.2007')
+                        .should('have.prop', 'selectionStart', '10.'.length)
+                        .should('have.prop', 'selectionEnd', '10.'.length);
+                },
+            );
 
-            it('10.12.2005 - |16|.12.2007 => Backspace => 10.12.2005 - |01.12.2007', () => {
-                cy.get('@input')
-                    .type('10122005-16122007')
-                    .should('have.value', '10.12.2005 – 16.12.2007')
-                    .type('{leftArrow}'.repeat('.12.2007'.length))
-                    .realPress([
-                        'Shift',
-                        ...Array('16'.length).fill('ArrowLeft'),
-                        'Backspace',
-                    ]);
+            it(
+                '10.12.2005 - |16|.12.2007 => Backspace => 10.12.2005 - |01.12.2007',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('10122005-16122007')
+                        .should('have.value', '10.12.2005 – 16.12.2007')
+                        .type('{leftArrow}'.repeat('.12.2007'.length))
+                        .realPress([
+                            'Shift',
+                            ...Array('16'.length).fill('ArrowLeft'),
+                            'Backspace',
+                        ]);
 
-                cy.get('@input')
-                    .should('have.value', '10.12.2005 – 01.12.2007')
-                    .should('have.prop', 'selectionStart', '10.12.2005 - '.length)
-                    .should('have.prop', 'selectionEnd', '10.12.2005 - '.length);
-            });
+                    cy.get('@input')
+                        .should('have.value', '10.12.2005 – 01.12.2007')
+                        .should('have.prop', 'selectionStart', '10.12.2005 - '.length)
+                        .should('have.prop', 'selectionEnd', '10.12.2005 - '.length);
+                },
+            );
 
-            it('1|1.1|1.2011 - 11.11.2025 => Delete => 10.0|1.2011 - 11.11.2025', () => {
-                cy.get('@input')
-                    .type('11112011-11112025')
-                    .should('have.value', '11.11.2011 – 11.11.2025')
-                    .type('{leftArrow}'.repeat('1.2011 – 11.11.2025'.length))
-                    .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+            it(
+                '1|1.1|1.2011 - 11.11.2025 => Delete => 10.0|1.2011 - 11.11.2025',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('11112011-11112025')
+                        .should('have.value', '11.11.2011 – 11.11.2025')
+                        .type('{leftArrow}'.repeat('1.2011 – 11.11.2025'.length))
+                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
 
-                cy.get('@input')
-                    .type('{del}')
-                    .should('have.value', '10.01.2011 – 11.11.2025')
-                    .should('have.prop', 'selectionStart', '10.0'.length)
-                    .should('have.prop', 'selectionEnd', '10.0'.length);
-            });
+                    cy.get('@input')
+                        .type('{del}')
+                        .should('have.value', '10.01.2011 – 11.11.2025')
+                        .should('have.prop', 'selectionStart', '10.0'.length)
+                        .should('have.prop', 'selectionEnd', '10.0'.length);
+                },
+            );
 
-            it('11.11.2011 - 1|1.1|1.2025 => Delete => 11.11.2011 - 10.0|1.2025', () => {
-                cy.get('@input')
-                    .type('11112011-11112025')
-                    .should('have.value', '11.11.2011 – 11.11.2025')
-                    .type('{leftArrow}'.repeat('1.2025'.length))
-                    .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+            it(
+                '11.11.2011 - 1|1.1|1.2025 => Delete => 11.11.2011 - 10.0|1.2025',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('11112011-11112025')
+                        .should('have.value', '11.11.2011 – 11.11.2025')
+                        .type('{leftArrow}'.repeat('1.2025'.length))
+                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
 
-                cy.get('@input')
-                    .type('{del}')
-                    .should('have.value', '11.11.2011 – 10.01.2025')
-                    .should('have.prop', 'selectionStart', '11.11.2011 - 10.0'.length)
-                    .should('have.prop', 'selectionEnd', '11.11.2011 - 10.0'.length);
-            });
+                    cy.get('@input')
+                        .type('{del}')
+                        .should('have.value', '11.11.2011 – 10.01.2025')
+                        .should('have.prop', 'selectionStart', '11.11.2011 - 10.0'.length)
+                        .should('have.prop', 'selectionEnd', '11.11.2011 - 10.0'.length);
+                },
+            );
         });
 
         describe('Select range and press new digit', () => {
-            it('|12|.11.2022 (specifically do not completes value) => Press 3 => 3|0.11.2022', () => {
-                cy.get('@input')
-                    .type('12112022')
-                    .type('{leftArrow}'.repeat('.11.2022'.length))
-                    .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+            it(
+                '|12|.11.2022 (specifically do not completes value) => Press 3 => 3|0.11.2022',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('12112022')
+                        .type('{leftArrow}'.repeat('.11.2022'.length))
+                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
 
-                cy.get('@input')
-                    .type('3')
-                    .should('have.value', '30.11.2022')
-                    .should('have.prop', 'selectionStart', '3'.length)
-                    .should('have.prop', 'selectionEnd', '3'.length);
-            });
+                    cy.get('@input')
+                        .type('3')
+                        .should('have.value', '30.11.2022')
+                        .should('have.prop', 'selectionStart', '3'.length)
+                        .should('have.prop', 'selectionEnd', '3'.length);
+                },
+            );
 
-            it('01.01.2000 - |12|.11.2022 => Press 3 => 01.01.2000 - 3|0.11.2022', () => {
-                cy.get('@input')
-                    .type('01012000-12112022')
-                    .type('{leftArrow}'.repeat('.11.2022'.length))
-                    .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+            it(
+                '01.01.2000 - |12|.11.2022 => Press 3 => 01.01.2000 - 3|0.11.2022',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('01012000-12112022')
+                        .type('{leftArrow}'.repeat('.11.2022'.length))
+                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
 
-                cy.get('@input')
-                    .type('3')
-                    .should('have.value', '01.01.2000 – 30.11.2022')
-                    .should('have.prop', 'selectionStart', '01.01.2000 - 3'.length)
-                    .should('have.prop', 'selectionEnd', '01.01.2000 - 3'.length);
-            });
+                    cy.get('@input')
+                        .type('3')
+                        .should('have.value', '01.01.2000 – 30.11.2022')
+                        .should('have.prop', 'selectionStart', '01.01.2000 - 3'.length)
+                        .should('have.prop', 'selectionEnd', '01.01.2000 - 3'.length);
+                },
+            );
         });
     });
 });

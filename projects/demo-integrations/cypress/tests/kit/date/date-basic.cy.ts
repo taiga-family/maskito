@@ -1,5 +1,7 @@
 import {DemoPath} from '@demo/path';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+
 describe('Date', () => {
     describe('Basic', () => {
         beforeEach(() => {
@@ -241,52 +243,67 @@ describe('Date', () => {
 
         describe('Text selection', () => {
             describe('Select range and press Backspace', () => {
-                it('10.|12|.2022 => Backspace => 10.|01.2022', () => {
-                    cy.get('@input')
-                        .type('10122022')
-                        .type('{leftArrow}'.repeat('.2022'.length))
-                        .realPress([
-                            'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
-                            'Backspace',
-                        ]);
+                it(
+                    '10.|12|.2022 => Backspace => 10.|01.2022',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('10122022')
+                            .type('{leftArrow}'.repeat('.2022'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('12'.length).fill('ArrowLeft'),
+                                'Backspace',
+                            ]);
 
-                    cy.get('@input')
-                        .should('have.value', '10.01.2022')
-                        .should('have.prop', 'selectionStart', '10.'.length)
-                        .should('have.prop', 'selectionEnd', '10.'.length);
-                });
+                        cy.get('@input')
+                            .should('have.value', '10.01.2022')
+                            .should('have.prop', 'selectionStart', '10.'.length)
+                            .should('have.prop', 'selectionEnd', '10.'.length);
+                    },
+                );
 
-                it('1|1.1|1.2011 => Backspace => 1|0.01.2011', () => {
-                    cy.get('@input')
-                        .type('11112011')
-                        .type('{leftArrow}'.repeat('1.2011'.length))
-                        .realPress([
-                            'Shift',
-                            ...Array('1.1'.length).fill('ArrowLeft'),
-                            'Backspace',
-                        ]);
+                it(
+                    '1|1.1|1.2011 => Backspace => 1|0.01.2011',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('11112011')
+                            .type('{leftArrow}'.repeat('1.2011'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('1.1'.length).fill('ArrowLeft'),
+                                'Backspace',
+                            ]);
 
-                    cy.get('@input')
-                        .should('have.value', '10.01.2011')
-                        .should('have.prop', 'selectionStart', '1'.length)
-                        .should('have.prop', 'selectionEnd', '1'.length);
-                });
+                        cy.get('@input')
+                            .should('have.value', '10.01.2011')
+                            .should('have.prop', 'selectionStart', '1'.length)
+                            .should('have.prop', 'selectionEnd', '1'.length);
+                    },
+                );
             });
 
             describe('Select range and press new digit', () => {
-                it('|12|.11.2022 => Press 3 => 3|0.11.2022', () => {
-                    cy.get('@input')
-                        .type('12112022')
-                        .type('{leftArrow}'.repeat('.11.2022'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                it(
+                    '|12|.11.2022 => Press 3 => 3|0.11.2022',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('12112022')
+                            .type('{leftArrow}'.repeat('.11.2022'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('12'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('3')
-                        .should('have.value', '30.11.2022')
-                        .should('have.prop', 'selectionStart', '3'.length)
-                        .should('have.prop', 'selectionEnd', '3'.length);
-                });
+                        cy.get('@input')
+                            .type('3')
+                            .should('have.value', '30.11.2022')
+                            .should('have.prop', 'selectionStart', '3'.length)
+                            .should('have.prop', 'selectionEnd', '3'.length);
+                    },
+                );
             });
         });
     });
