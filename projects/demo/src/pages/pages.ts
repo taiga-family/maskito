@@ -28,6 +28,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Core concepts',
+        title: 'Element state',
+        route: DemoPath.ElementState,
+        keywords: 'core, concepts, element, state',
+    },
+    {
+        section: 'Core concepts',
         title: 'Processors',
         route: DemoPath.Processors,
         keywords:
@@ -92,6 +98,12 @@ export const DEMO_PAGES: TuiDocPages = [
         title: 'Textarea',
         route: DemoPath.Textarea,
         keywords: `textarea, latin, mask, recipe`,
+    },
+    {
+        section: 'Recipes',
+        title: 'With postfix',
+        route: DemoPath.Postfix,
+        keywords: `postfix, after, percent, am, pm, recipe`,
     },
     {
         section: 'Other',

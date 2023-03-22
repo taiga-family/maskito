@@ -1,11 +1,12 @@
 import {ElementState} from '../../../types';
 import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
 import {isFixedCharacter} from './is-fixed-character';
+import {validateValueWithMask} from './validate-value-with-mask';
 
 export function guessValidValueByPattern(
     elementState: ElementState,
     mask: Array<RegExp | string>,
-    initialElementState: ElementState,
+    initialElementState: ElementState | null,
 ): ElementState {
     let maskedFrom: number | null = null;
     let maskedTo: number | null = null;
@@ -42,8 +43,17 @@ export function guessValidValueByPattern(
         '',
     );
 
+    const trailingFixedCharacters = getLeadingFixedCharacters(
+        mask,
+        maskedValue,
+        '',
+        initialElementState,
+    );
+
     return {
-        value: maskedValue,
+        value: validateValueWithMask(maskedValue + trailingFixedCharacters, mask)
+            ? maskedValue + trailingFixedCharacters
+            : maskedValue,
         selection: [maskedFrom ?? maskedValue.length, maskedTo ?? maskedValue.length],
     };
 }

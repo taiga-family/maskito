@@ -7,7 +7,7 @@ export function validateValueWithMask(
 ): boolean {
     if (Array.isArray(maskExpression)) {
         return (
-            value.length <= maskExpression.length &&
+            value.length === maskExpression.length &&
             Array.from(value).every((char, i) => {
                 const charConstraint = maskExpression[i];
 

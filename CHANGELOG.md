@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/tinkoff/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
+
+### Features
+
+- **core:** add `deleteSoftLineBackward` & `deleteSoftLineForward` support
+  ([#207](https://github.com/tinkoff/maskito/issues/207))
+  ([cbd5479](https://github.com/tinkoff/maskito/commit/cbd5479c04c07113804eee6ea6c9838ee8681597))
+- **kit:** use 1 as min segment value in `Date`-related masks ([#197](https://github.com/tinkoff/maskito/issues/197))
+  ([c85ca23](https://github.com/tinkoff/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c))
+
+### Bug Fixes
+
+- **core:** `Maskito` losses valid characters on invalid insertion (`overwriteMode: replace`)
+  ([#208](https://github.com/tinkoff/maskito/issues/208))
+  ([ef183b4](https://github.com/tinkoff/maskito/commit/ef183b454e4a7db5b2cb48cbe26129bf303f676a))
+- **kit:** `Number` should drop leading zeroes for negative numbers
+  ([#204](https://github.com/tinkoff/maskito/issues/204))
+  ([6e9adf7](https://github.com/tinkoff/maskito/commit/6e9adf758aa585944ee08f2e2aff81a5664adefd))
+
+## [0.6.0](https://github.com/tinkoff/maskito/compare/v0.5.0...v0.6.0) (2023-03-15)
+
+### Features
+
+- **angular:** add CVA and pipe ([#187](https://github.com/tinkoff/maskito/issues/187))
+  ([a099257](https://github.com/tinkoff/maskito/commit/a099257a16b569444cdae9276ce66e9a806f531e))
+- **core:** add `deleteWordBackward` & `deleteWordForward` support
+  ([#193](https://github.com/tinkoff/maskito/issues/193))
+  ([24b761c](https://github.com/tinkoff/maskito/commit/24b761c84d0947df5e4c78a2114f1de8f6ca20f4))
+
+### Bug Fixes
+
+- **core:** show trailing fixed characters + duplicated fixed character on `Drop`
+  ([#185](https://github.com/tinkoff/maskito/issues/185))
+  ([c7f6a1b](https://github.com/tinkoff/maskito/commit/c7f6a1bb8098b5641ed8c6921c2ebc86c6135b58))
+- **kit:** `maskitoParseNumber` incorrectly parses negative numbers
+  ([#190](https://github.com/tinkoff/maskito/issues/190))
+  ([d713bd1](https://github.com/tinkoff/maskito/commit/d713bd143e5090870a406ea14498cb99843bb9d0))
+- **kit:** `Number` should drop decimal part on paste from clipboard if `precision=0`
+  ([#195](https://github.com/tinkoff/maskito/issues/195))
+  ([ba85c38](https://github.com/tinkoff/maskito/commit/ba85c38ec0c81a22ff758f4ba386d045ac49ffd5))
+
 ## [0.5.0](https://github.com/tinkoff/maskito/compare/v0.4.0...v0.5.0) (2023-03-09)
 
 ### Features

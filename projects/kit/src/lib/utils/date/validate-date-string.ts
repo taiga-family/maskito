@@ -39,12 +39,17 @@ export function validateDateString({
             offset +
             validatedDate.length +
             fantomSeparator +
-            getDateSegmentValueLength(dateString)[segmentName];
+            getDateSegmentValueLength(dateModeTemplate)[segmentName];
         const isLastSegmentDigitAdded =
             lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
 
         if (isLastSegmentDigitAdded && Number(segmentValue) > Number(maxSegmentValue)) {
             // 3|1.10.2010 => Type 9 => 3|1.10.2010
+            return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
+        }
+
+        if (isLastSegmentDigitAdded && Number(segmentValue) < 1) {
+            // 31.0|1.2010 => Type 0 => 31.0|1.2010
             return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
         }
 

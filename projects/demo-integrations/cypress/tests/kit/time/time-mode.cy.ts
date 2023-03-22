@@ -1,5 +1,7 @@
 import {DemoPath} from '@demo/path';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+
 describe('Time', () => {
     describe('Mode', () => {
         describe('HH:MM', () => {
@@ -41,7 +43,7 @@ describe('Time', () => {
             });
 
             describe('Select range and press new digit', () => {
-                it('|23|:59 => Type 1 => 1|0:59', () => {
+                it('|23|:59 => Type 1 => 1|0:59', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('235959')
                         .should('have.value', '23:59')
@@ -58,7 +60,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', 1);
                 });
 
-                it('|23|:59 => Type 0 => 0|0:59', () => {
+                it('|23|:59 => Type 0 => 0|0:59', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('235959')
                         .should('have.value', '23:59')
@@ -144,39 +146,47 @@ describe('Time', () => {
             });
 
             describe('Select range and press new digit', () => {
-                it('23:|59|:59 => Type 2 => 23:2|0:59', () => {
-                    cy.get('@input')
-                        .type('235959')
-                        .should('have.value', '23:59:59')
-                        .realPress([
-                            ...Array(':59'.length).fill('ArrowLeft'),
-                            'Shift',
-                            ...Array('59'.length).fill('ArrowLeft'),
-                        ]);
+                it(
+                    '23:|59|:59 => Type 2 => 23:2|0:59',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('235959')
+                            .should('have.value', '23:59:59')
+                            .realPress([
+                                ...Array(':59'.length).fill('ArrowLeft'),
+                                'Shift',
+                                ...Array('59'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('2')
-                        .should('have.value', '23:20:59')
-                        .should('have.prop', 'selectionStart', '23:2'.length)
-                        .should('have.prop', 'selectionEnd', '23:2'.length);
-                });
+                        cy.get('@input')
+                            .type('2')
+                            .should('have.value', '23:20:59')
+                            .should('have.prop', 'selectionStart', '23:2'.length)
+                            .should('have.prop', 'selectionEnd', '23:2'.length);
+                    },
+                );
 
-                it('23:|59|:59 => Type 0 => 23:0|0:59', () => {
-                    cy.get('@input')
-                        .type('235959')
-                        .should('have.value', '23:59:59')
-                        .realPress([
-                            ...Array(':59'.length).fill('ArrowLeft'),
-                            'Shift',
-                            ...Array('59'.length).fill('ArrowLeft'),
-                        ]);
+                it(
+                    '23:|59|:59 => Type 0 => 23:0|0:59',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('235959')
+                            .should('have.value', '23:59:59')
+                            .realPress([
+                                ...Array(':59'.length).fill('ArrowLeft'),
+                                'Shift',
+                                ...Array('59'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('0')
-                        .should('have.value', '23:00:59')
-                        .should('have.prop', 'selectionStart', '23:0'.length)
-                        .should('have.prop', 'selectionEnd', '23:0'.length);
-                });
+                        cy.get('@input')
+                            .type('0')
+                            .should('have.value', '23:00:59')
+                            .should('have.prop', 'selectionStart', '23:0'.length)
+                            .should('have.prop', 'selectionEnd', '23:0'.length);
+                    },
+                );
             });
 
             it('Pad typed value with zero if digit exceeds the first digit of time segment', () => {
@@ -244,39 +254,47 @@ describe('Time', () => {
             });
 
             describe('Select range and press new digit', () => {
-                it('23:|59|:59.999 => Type 2 => 23:2|0:59.999', () => {
-                    cy.get('@input')
-                        .type('235959999')
-                        .should('have.value', '23:59:59.999')
-                        .realPress([
-                            ...Array(':59.999'.length).fill('ArrowLeft'),
-                            'Shift',
-                            ...Array('59'.length).fill('ArrowLeft'),
-                        ]);
+                it(
+                    '23:|59|:59.999 => Type 2 => 23:2|0:59.999',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('235959999')
+                            .should('have.value', '23:59:59.999')
+                            .realPress([
+                                ...Array(':59.999'.length).fill('ArrowLeft'),
+                                'Shift',
+                                ...Array('59'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('2')
-                        .should('have.value', '23:20:59.999')
-                        .should('have.prop', 'selectionStart', '23:2'.length)
-                        .should('have.prop', 'selectionEnd', '23:2'.length);
-                });
+                        cy.get('@input')
+                            .type('2')
+                            .should('have.value', '23:20:59.999')
+                            .should('have.prop', 'selectionStart', '23:2'.length)
+                            .should('have.prop', 'selectionEnd', '23:2'.length);
+                    },
+                );
 
-                it('23:|59|:59.999 => Type 0 => 23:0|0:59.999', () => {
-                    cy.get('@input')
-                        .type('235959999')
-                        .should('have.value', '23:59:59.999')
-                        .realPress([
-                            ...Array(':59.999'.length).fill('ArrowLeft'),
-                            'Shift',
-                            ...Array('59'.length).fill('ArrowLeft'),
-                        ]);
+                it(
+                    '23:|59|:59.999 => Type 0 => 23:0|0:59.999',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('235959999')
+                            .should('have.value', '23:59:59.999')
+                            .realPress([
+                                ...Array(':59.999'.length).fill('ArrowLeft'),
+                                'Shift',
+                                ...Array('59'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('0')
-                        .should('have.value', '23:00:59.999')
-                        .should('have.prop', 'selectionStart', '23:0'.length)
-                        .should('have.prop', 'selectionEnd', '23:0'.length);
-                });
+                        cy.get('@input')
+                            .type('0')
+                            .should('have.value', '23:00:59.999')
+                            .should('have.prop', 'selectionStart', '23:0'.length)
+                            .should('have.prop', 'selectionEnd', '23:0'.length);
+                    },
+                );
             });
 
             it('Pad typed value with zero if digit exceeds the first digit of time segment', () => {

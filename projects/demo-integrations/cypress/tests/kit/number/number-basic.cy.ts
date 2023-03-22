@@ -107,17 +107,17 @@ describe('Number | Basic', () => {
         it('can type "–123.45" (en-dash)', () => {
             cy.get('@input')
                 .type('–123.45')
-                .should('have.value', '−123,45')
-                .should('have.prop', 'selectionStart', '−123,45'.length)
-                .should('have.prop', 'selectionEnd', '−123,45'.length);
+                .should('have.value', '−123.45')
+                .should('have.prop', 'selectionStart', '−123.45'.length)
+                .should('have.prop', 'selectionEnd', '−123.45'.length);
         });
 
         it('can type "—0,12" (em-dash)', () => {
             cy.get('@input')
                 .type('—0,12')
-                .should('have.value', '−0,12')
-                .should('have.prop', 'selectionStart', '−0,12'.length)
-                .should('have.prop', 'selectionEnd', '−0,12'.length);
+                .should('have.value', '−0.12')
+                .should('have.prop', 'selectionStart', '−0.12'.length)
+                .should('have.prop', 'selectionEnd', '−0.12'.length);
         });
     });
 

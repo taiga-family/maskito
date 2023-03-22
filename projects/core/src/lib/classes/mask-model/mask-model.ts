@@ -10,7 +10,7 @@ export class MaskModel implements ElementState {
 
     constructor(
         readonly initialElementState: ElementState,
-        private readonly maskOptions: MaskitoOptions,
+        private readonly maskOptions: Required<MaskitoOptions>,
     ) {
         const {value, selection} = calibrateValueByMask(
             initialElementState,
@@ -37,23 +37,34 @@ export class MaskModel implements ElementState {
             newCharacters,
             this.maskOptions.overwriteMode,
         ).selection;
-        const newUnmaskedValue =
-            unmaskedElementState.value.slice(0, unmaskedFrom) +
-            newCharacters +
-            unmaskedElementState.value.slice(unmaskedTo);
-
-        const newCaretIndex = unmaskedFrom + newCharacters.length;
+        const newUnmaskedLeadingValuePart =
+            unmaskedElementState.value.slice(0, unmaskedFrom) + newCharacters;
+        const newCaretIndex = newUnmaskedLeadingValuePart.length;
         const maskedElementState = calibrateValueByMask(
             {
-                value: newUnmaskedValue,
+                value:
+                    newUnmaskedLeadingValuePart +
+                    unmaskedElementState.value.slice(unmaskedTo),
                 selection: [newCaretIndex, newCaretIndex],
             },
             maskExpression,
             initialElementState,
         );
+        const isInvalidCharsInsertion =
+            value.slice(0, unmaskedFrom) ===
+            calibrateValueByMask(
+                {
+                    value: newUnmaskedLeadingValuePart,
+                    selection: [newCaretIndex, newCaretIndex],
+                },
+                maskExpression,
+                initialElementState,
+            ).value;
 
-        if (areElementStatesEqual(this, maskedElementState)) {
-            // If typing new characters does not change value
+        if (
+            isInvalidCharsInsertion ||
+            areElementStatesEqual(this, maskedElementState) // If typing new characters does not change value
+        ) {
             throw new Error('Invalid mask value');
         }
 

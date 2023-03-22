@@ -1,5 +1,7 @@
 import {DemoPath} from '@demo/path';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+
 describe('Date', () => {
     describe('Basic', () => {
         beforeEach(() => {
@@ -18,6 +20,8 @@ describe('Date', () => {
                 ['12', '12', '12'.length],
                 ['121', '12.1', '12.1'.length],
                 ['1211', '12.11', '12.11'.length],
+                ['0', '0', 1],
+                ['00', '0', '0'.length],
             ] as const;
 
             tests.forEach(([typedValue, maskedValue, caretIndex]) => {
@@ -101,6 +105,40 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '10.11.2002'.length)
                     .should('have.prop', 'selectionEnd', '10.11.2002'.length);
             });
+
+            it('Type `deleteWordBackward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .type('{ctrl+backspace}')
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
+
+            it('Type `deleteWordForward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{ctrl+del}')
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
+
+            it('Type `deleteSoftLineForward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
+
+            it('Type `deleteSoftLineBackward` of `InputEvent` works', () => {
+                cy.get('@input')
+                    .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                    .should('have.value', '')
+                    .should('have.prop', 'selectionStart', ''.length)
+                    .should('have.prop', 'selectionEnd', ''.length);
+            });
         });
 
         describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
@@ -159,6 +197,22 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '3'.length)
                     .should('have.prop', 'selectionEnd', '3'.length);
             });
+
+            it('02|.01.2008 => Backspace => 0|1.01.2008 => Type "5" => 05|.01.2008', () => {
+                cy.get('@input')
+                    .type('02012008')
+                    .type('{leftArrow}'.repeat('.01.2008'.length))
+                    .should('have.prop', 'selectionStart', '02'.length)
+                    .should('have.prop', 'selectionEnd', '02'.length)
+                    .type('{backspace}')
+                    .should('have.value', '01.01.2008')
+                    .should('have.prop', 'selectionStart', '0'.length)
+                    .should('have.prop', 'selectionEnd', '0'.length)
+                    .type('5')
+                    .should('have.value', '05.01.2008')
+                    .should('have.prop', 'selectionStart', '05.'.length)
+                    .should('have.prop', 'selectionEnd', '05.'.length);
+            });
         });
 
         describe('Fixed values', () => {
@@ -189,52 +243,67 @@ describe('Date', () => {
 
         describe('Text selection', () => {
             describe('Select range and press Backspace', () => {
-                it('10.|12|.2022 => Backspace => 10.|00.2022', () => {
-                    cy.get('@input')
-                        .type('10122022')
-                        .type('{leftArrow}'.repeat('.2022'.length))
-                        .realPress([
-                            'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
-                            'Backspace',
-                        ]);
+                it(
+                    '10.|12|.2022 => Backspace => 10.|01.2022',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('10122022')
+                            .type('{leftArrow}'.repeat('.2022'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('12'.length).fill('ArrowLeft'),
+                                'Backspace',
+                            ]);
 
-                    cy.get('@input')
-                        .should('have.value', '10.00.2022')
-                        .should('have.prop', 'selectionStart', '10.'.length)
-                        .should('have.prop', 'selectionEnd', '10.'.length);
-                });
+                        cy.get('@input')
+                            .should('have.value', '10.01.2022')
+                            .should('have.prop', 'selectionStart', '10.'.length)
+                            .should('have.prop', 'selectionEnd', '10.'.length);
+                    },
+                );
 
-                it('1|1.1|1.2011 => Backspace => 1|0.01.2011', () => {
-                    cy.get('@input')
-                        .type('11112011')
-                        .type('{leftArrow}'.repeat('1.2011'.length))
-                        .realPress([
-                            'Shift',
-                            ...Array('1.1'.length).fill('ArrowLeft'),
-                            'Backspace',
-                        ]);
+                it(
+                    '1|1.1|1.2011 => Backspace => 1|0.01.2011',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('11112011')
+                            .type('{leftArrow}'.repeat('1.2011'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('1.1'.length).fill('ArrowLeft'),
+                                'Backspace',
+                            ]);
 
-                    cy.get('@input')
-                        .should('have.value', '10.01.2011')
-                        .should('have.prop', 'selectionStart', '1'.length)
-                        .should('have.prop', 'selectionEnd', '1'.length);
-                });
+                        cy.get('@input')
+                            .should('have.value', '10.01.2011')
+                            .should('have.prop', 'selectionStart', '1'.length)
+                            .should('have.prop', 'selectionEnd', '1'.length);
+                    },
+                );
             });
 
             describe('Select range and press new digit', () => {
-                it('|12|.11.2022 => Press 3 => 3|0.11.2022', () => {
-                    cy.get('@input')
-                        .type('12112022')
-                        .type('{leftArrow}'.repeat('.11.2022'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                it(
+                    '|12|.11.2022 => Press 3 => 3|0.11.2022',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('12112022')
+                            .type('{leftArrow}'.repeat('.11.2022'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('12'.length).fill('ArrowLeft'),
+                            ]);
 
-                    cy.get('@input')
-                        .type('3')
-                        .should('have.value', '30.11.2022')
-                        .should('have.prop', 'selectionStart', '3'.length)
-                        .should('have.prop', 'selectionEnd', '3'.length);
-                });
+                        cy.get('@input')
+                            .type('3')
+                            .should('have.value', '30.11.2022')
+                            .should('have.prop', 'selectionStart', '3'.length)
+                            .should('have.prop', 'selectionEnd', '3'.length);
+                    },
+                );
             });
         });
     });

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
 
@@ -9,7 +10,7 @@ import {maskitoDateOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardDocExample1 {
-    cardMask: MaskitoOptions = {
+    readonly cardMask: MaskitoOptions = {
         mask: [
             ...Array(4).fill(/\d/),
             ' ',
@@ -18,12 +19,20 @@ export class CardDocExample1 {
             ...Array(4).fill(/\d/),
             ' ',
             ...Array(4).fill(/\d/),
+            ' ',
+            ...Array(3).fill(/\d/),
         ],
     };
 
-    expiredMask = maskitoDateOptionsGenerator({mode: 'mm/yy', separator: '/'});
+    readonly expiredMask = maskitoDateOptionsGenerator({mode: 'mm/yy', separator: '/'});
 
-    cvvMask: MaskitoOptions = {
+    readonly cvvMask: MaskitoOptions = {
         mask: [...Array(3).fill(/\d/)],
     };
+
+    readonly form = new FormGroup({
+        cardNumber: new FormControl(''),
+        expire: new FormControl(''),
+        cvv: new FormControl(''),
+    });
 }

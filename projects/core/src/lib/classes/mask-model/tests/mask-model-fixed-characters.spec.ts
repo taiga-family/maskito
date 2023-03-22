@@ -1,9 +1,11 @@
+import {MASKITO_DEFAULT_OPTIONS} from '../../../constants';
 import {MaskitoOptions} from '../../../types';
 import {MaskModel} from '../mask-model';
 
 describe('MaskModel | Fixed characters', () => {
     describe('New typed character is equal to the previous (already existing) fixed character', () => {
-        const phoneMaskitoOptions: MaskitoOptions = {
+        const phoneMaskitoOptions: Required<MaskitoOptions> = {
+            ...MASKITO_DEFAULT_OPTIONS,
             mask: [
                 '+',
                 '7',

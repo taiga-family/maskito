@@ -10,17 +10,20 @@ import {
     segmentsToDate,
     toDateString,
 } from '../utils';
+import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
 
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     datesSeparator = '',
+    dateSegmentSeparator = '.',
 }: {
     dateModeTemplate: string;
     min?: Date;
     max?: Date;
     datesSeparator?: string;
+    dateSegmentSeparator?: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
     return ({value, selection}) => {
         const endsWithDatesSeparator = datesSeparator && value.endsWith(datesSeparator);
@@ -31,12 +34,20 @@ export function createMinMaxDatePostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? datesSeparator : '';
 
+            const parsedDate = parseDateString(dateString, dateModeTemplate);
+
             if (!isDateStringComplete(dateString, dateModeTemplate)) {
-                validatedValue += dateString;
+                const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
+
+                const fixedValue = toDateString(fixedDate, dateModeTemplate);
+                const tail = dateString.endsWith(dateSegmentSeparator)
+                    ? dateSegmentSeparator
+                    : '';
+
+                validatedValue += fixedValue + tail;
                 continue;
             }
 
-            const parsedDate = parseDateString(dateString, dateModeTemplate);
             const date = segmentsToDate(parsedDate);
             const clampedDate = clamp(date, min, max);
 

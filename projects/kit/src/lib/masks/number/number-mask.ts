@@ -11,10 +11,11 @@ import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
     createMaxValidationPostprocessor,
+    createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
     createPseudoCharactersPreprocessor,
-    createSeparatorDeletionPreprocessor,
     createThousandSeparatorPostprocessor,
+    createZeroPrecisionPreprocessor,
 } from './processors';
 import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
 
@@ -23,11 +24,11 @@ export function maskitoNumberOptionsGenerator({
     isNegativeAllowed = true,
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
-    decimalSeparator = ',',
-    decimalPseudoSeparators = getDefaultPseudoSeparators({
+    decimalSeparator = '.',
+    decimalPseudoSeparators = getDefaultPseudoSeparators(
         decimalSeparator,
         thousandSeparator,
-    }),
+    ),
     decimalZeroPadding = false,
 }: {
     max?: number;
@@ -53,11 +54,12 @@ export function maskitoNumberOptionsGenerator({
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
-            createSeparatorDeletionPreprocessor({
+            createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
                 decimalZeroPadding,
                 thousandSeparator,
             }),
+            createZeroPrecisionPreprocessor(precision, decimalSeparator),
         ),
         postprocessor: maskitoPipe(
             createLeadingZeroesValidationPostprocessor(decimalSeparator),
