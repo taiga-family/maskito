@@ -5,7 +5,7 @@
     "prefix": "maskito",
     "targets": {
         "build": {
-            "executor": "@nrwl/angular:ng-packagr-lite",
+            "executor": "@nrwl/angular:package",
             "outputs": ["dist/angular"],
             "options": {
                 "project": "projects/angular/ng-package.json"
