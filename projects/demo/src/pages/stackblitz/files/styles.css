@@ -1,7 +1,43 @@
-/* TODO: make better basic customization */
+* {
+    --tui-text-01: rgba(27, 31, 59, 1);
+    --tui-text-03: rgba(27, 31, 59, 0.4);
+
+    --tui-radius-m: 0.75rem;
+
+    --tui-base-01: #fff;
+    --tui-base-03: #ededed;
+    --tui-primary: #526ed3;
+}
+
 input {
+    display: block;
     width: 100%;
     max-width: 25rem;
-    height: 2rem;
+    min-height: 2.75rem;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: var(--tui-radius-m);
     box-sizing: border-box;
+    padding: 0px 1rem 0 1rem;
+    border: 1px solid var(--tui-base-03);
+    color: var(--tui-text-01);
+    background: var(--tui-base-01);
+    outline: none;
+    transition: box-shadow, background, 0.2s ease-in-out;
+    box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1)
+}
+
+
+input:focus::placeholder {
+    color: var(--tui-text-03);
+}
+
+input:hover {
+    box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,.16)
+}
+
+input:focus {
+    box-shadow: none;
+    border-color: var(--tui-primary);
+    border-width: 2px;
 }
