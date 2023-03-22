@@ -141,4 +141,90 @@ describe('Number | decimalZeroPadding', () => {
                 .should('have.prop', 'selectionEnd', 2);
         });
     });
+
+    describe('Move caret when user tries to delete non-removable zeroes in decimal part', () => {
+        beforeEach(() => {
+            cy.get('@input').type(',').should('have.value', '0,0000');
+        });
+
+        describe('Via `Backspace` button', () => {
+            it('0,0000| => Backspace => 0,000|0', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}{backspace}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,000'.length)
+                    .should('have.prop', 'selectionEnd', '0,000'.length);
+            });
+
+            it('0,000|0 => Backspace => 0,00|00', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}{leftArrow}{backspace}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,00'.length)
+                    .should('have.prop', 'selectionEnd', '0,00'.length);
+            });
+
+            it('0,00|00 => Backspace => 0,0|000', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(2))
+                    .type('{backspace}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,0'.length)
+                    .should('have.prop', 'selectionEnd', '0,0'.length);
+            });
+
+            it('0,0|000 => Backspace => 0,|0000', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(3))
+                    .type('{backspace}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
+        });
+
+        describe('Via `Delete` button', () => {
+            it('0,|0000 => Delete => 0,0|000', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('0,'.length))
+                    .type('{del}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,0'.length)
+                    .should('have.prop', 'selectionEnd', '0,0'.length);
+            });
+
+            it('0,0|000 => Delete => 0,00|00', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('0,0'.length))
+                    .type('{del}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,00'.length)
+                    .should('have.prop', 'selectionEnd', '0,00'.length);
+            });
+
+            it('0,00|00 => Delete => 0,000|0', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('0,00'.length))
+                    .type('{del}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,000'.length)
+                    .should('have.prop', 'selectionEnd', '0,000'.length);
+            });
+
+            it('0,000|0 => Delete => 0,0000|', () => {
+                cy.get('@input')
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('0,000'.length))
+                    .type('{del}')
+                    .should('have.value', '0,0000')
+                    .should('have.prop', 'selectionStart', '0,0000'.length)
+                    .should('have.prop', 'selectionEnd', '0,0000'.length);
+            });
+        });
+    });
 });

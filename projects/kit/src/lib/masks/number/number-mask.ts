@@ -11,9 +11,9 @@ import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
     createMaxValidationPostprocessor,
+    createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
     createPseudoCharactersPreprocessor,
-    createSeparatorDeletionPreprocessor,
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
@@ -54,7 +54,7 @@ export function maskitoNumberOptionsGenerator({
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
-            createSeparatorDeletionPreprocessor({
+            createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
                 decimalZeroPadding,
                 thousandSeparator,
