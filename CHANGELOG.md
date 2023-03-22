@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/tinkoff/maskito/compare/v0.7.0...v0.7.1) (2023-03-22)
+
+### Bug Fixes
+
+- **angular:** use `@nrwl/angular:package` executor instead of `@nrwl/angular:ng-packagr-lite`
+  ([#216](https://github.com/tinkoff/maskito/issues/216))
+  ([164d015](https://github.com/tinkoff/maskito/commit/164d015c2f18a279e195b45329e84c0d023c9483))
+- **kit:** `Number` broken `Delete`-button navigation if `decimalZeroPadding=true`
+  ([#211](https://github.com/tinkoff/maskito/issues/211))
+  ([1b750d1](https://github.com/tinkoff/maskito/commit/1b750d135ebd53bfeda2ca734425de08a808b1af))
+
 ## [0.7.0](https://github.com/tinkoff/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
 
 ### Features
