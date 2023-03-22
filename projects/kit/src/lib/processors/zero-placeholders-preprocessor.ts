@@ -1,4 +1,4 @@
-import {MaskitoOptions, MaskitoPreprocessorAction} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 
 export function createZeroPlaceholdersPreprocessor(): NonNullable<
     MaskitoOptions['preprocessor']
@@ -15,10 +15,7 @@ export function createZeroPlaceholdersPreprocessor(): NonNullable<
         const zeroes = value.slice(from, to).replace(/\d/g, '0');
         const newValue = value.slice(0, from) + zeroes + value.slice(to);
 
-        if (
-            actionType === MaskitoPreprocessorAction.Validation ||
-            (actionType === MaskitoPreprocessorAction.Insert && from === to)
-        ) {
+        if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
             return {
                 elementState: {selection, value: newValue},
             };
@@ -27,8 +24,7 @@ export function createZeroPlaceholdersPreprocessor(): NonNullable<
         return {
             elementState: {
                 selection:
-                    actionType === MaskitoPreprocessorAction.DeleteBackward ||
-                    actionType === MaskitoPreprocessorAction.Insert
+                    actionType === 'deleteBackward' || actionType === 'insert'
                         ? [from, from]
                         : [to, to],
                 value: newValue,

@@ -1,5 +1,3 @@
-import {MaskitoPreprocessorAction} from '@maskito/core';
-
 import {createValidDatePreprocessor} from '../valid-date-preprocessor';
 
 describe('createValidDatePreprocessor', () => {
@@ -14,7 +12,7 @@ describe('createValidDatePreprocessor', () => {
         const check = (insertedCharacters: string, expectedValue: string): void => {
             const {data} = preprocessor(
                 {elementState: EMPTY_INPUT, data: insertedCharacters},
-                MaskitoPreprocessorAction.Insert,
+                'insert',
             );
 
             expect(data).toEqual(expectedValue);

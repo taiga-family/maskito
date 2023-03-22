@@ -1,4 +1,4 @@
-import {MaskitoOptions, MaskitoPreprocessorAction} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 
 /**
  * Manage caret-navigation when user "deletes" non-removable digits or separators
@@ -42,10 +42,7 @@ export function createNonRemovableCharsDeletionPreprocessor({
         return {
             elementState: {
                 value,
-                selection:
-                    actionType === MaskitoPreprocessorAction.DeleteForward
-                        ? [to, to]
-                        : [from, from],
+                selection: actionType === 'deleteForward' ? [to, to] : [from, from],
             },
             data,
         };

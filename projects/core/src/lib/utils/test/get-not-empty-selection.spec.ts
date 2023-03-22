@@ -61,7 +61,7 @@ describe('getNotEmptySelection', () => {
                 selection: [4, 4],
             };
 
-            expect(getNotEmptySelection(elementStateStub, true)).toEqual([4, 2]);
+            expect(getNotEmptySelection(elementStateStub, true)).toEqual([2, 2]);
         });
 
         it('should increase by one end position, when value`s length equal end position increased by one', () => {

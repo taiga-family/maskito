@@ -1,12 +1,11 @@
 import {ElementState} from './element-state';
-import {MaskitoPreprocessorAction} from './maskito-preprocessor-action';
 
 export type MaskPreprocessor = (
     _: {
         elementState: ElementState;
         data: string;
     },
-    actionType: MaskitoPreprocessorAction,
+    actionType: 'deleteBackward' | 'deleteForward' | 'insert' | 'validation',
 ) => {
     elementState: ElementState;
     data?: string;

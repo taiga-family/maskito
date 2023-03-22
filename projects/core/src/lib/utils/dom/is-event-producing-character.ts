@@ -1,5 +1,3 @@
-import {KeyboardKeys} from '../../types';
-
 export function isEventProducingCharacter({
     key,
     ctrlKey,
@@ -9,5 +7,5 @@ export function isEventProducingCharacter({
     const isSystemKeyCombinations = ctrlKey || metaKey || altKey;
     const isSingleUnicodeChar = /^.$/u.test(key); // 4-byte characters case (e.g. smile)
 
-    return !isSystemKeyCombinations && key !== KeyboardKeys.Backspace && isSingleUnicodeChar;
+    return !isSystemKeyCombinations && key !== 'Backspace' && isSingleUnicodeChar;
 }
