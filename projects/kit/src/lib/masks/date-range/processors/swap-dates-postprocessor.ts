@@ -19,8 +19,10 @@ export function createSwapDatesPostprocessor({
         const isDateRangeComplete =
             dateStrings.length === 2 &&
             dateStrings.every(date => isDateStringComplete(date, dateModeTemplate));
+        const [from] = selection;
+        const caretAtTheEnd = from >= value.length;
 
-        if (!isDateRangeComplete) {
+        if (!caretAtTheEnd || !isDateRangeComplete) {
             return {value, selection};
         }
 

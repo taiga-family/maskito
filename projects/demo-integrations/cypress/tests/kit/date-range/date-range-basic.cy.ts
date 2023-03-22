@@ -454,7 +454,7 @@ describe('DateRange | Basic', () => {
     });
 
     describe('The 2nd date is less than the 1st one', () => {
-        it('31.12.2023 – 01.01.202| => Type 0 => 01.01.2020 – 31.12.2023|', () => {
+        it('If caret is at the end, swap dates: 31.12.2023 – 01.01.202| => Type 0 => 01.01.2020 – 31.12.2023|', () => {
             cy.get('@input')
                 .type('31.12.2023-01.01.202')
                 .should('have.value', '31.12.2023 – 01.01.202')
@@ -466,7 +466,7 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionEnd', '01.01.2020 – 31.12.2023'.length);
         });
 
-        it('11.11.201|1 – 12.12.2012 => Type 5 => 12.12.2012| – 11.11.2015', () => {
+        it('If caret is NOT at the end, do NOT swap dates: 11.11.201|1 – 12.12.2012 => Type 5 => 12.12.2012| – 11.11.2015', () => {
             cy.get('@input')
                 .type('11112011-12122012')
                 .should('have.value', '11.11.2011 – 12.12.2012')
@@ -474,9 +474,9 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionEnd', '11.11.2011 – 12.12.2012'.length)
                 .type('{leftArrow}'.repeat('1 – 12.12.2012'.length))
                 .type('5')
-                .should('have.value', '12.12.2012 – 11.11.2015')
-                .should('have.prop', 'selectionStart', '12.12.2012 – '.length)
-                .should('have.prop', 'selectionEnd', '12.12.2012 – '.length);
+                .should('have.value', '11.11.2015 – 12.12.2012')
+                .should('have.prop', 'selectionStart', '11.11.2015 – '.length)
+                .should('have.prop', 'selectionEnd', '11.11.2015 – '.length);
         });
     });
 });

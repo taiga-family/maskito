@@ -82,24 +82,24 @@ describe('DateRange | Min & Max dates', () => {
                 .should('have.prop', 'selectionEnd', '14.10.1995 – 15.11.1997'.length);
         });
 
-        it('1|5.10.1995 - 17.10.1995 => Type 2 => 14|.10.1995 - 17.10.1995', () => {
+        it('15.10.1995 - 1|7.10.1995 => Type 2 => 15.10.1995 - 14.|10.1995 (min)', () => {
             cy.get('@input')
                 .type('15.10.1995-17.10.1995')
-                .type('{moveToStart}{rightArrow}')
+                .type('{leftArrow}'.repeat('7.10.1995'.length))
                 .type('2')
-                .should('have.value', '14.10.1995 – 17.10.1995')
-                .should('have.prop', 'selectionStart', '14.'.length)
-                .should('have.prop', 'selectionEnd', '14.'.length);
+                .should('have.value', '15.10.1995 – 14.10.1995')
+                .should('have.prop', 'selectionStart', '15.10.1995 – 14.'.length)
+                .should('have.prop', 'selectionEnd', '15.10.1995 – 14.'.length);
         });
 
-        it('15.10.1995 - 17.|10.1995 => Type 9 => (min date validation + dates swap) => 14.10.1995 - 15.10|.1995', () => {
+        it('15.10.1995 - 17.|10.1995 => Type 9 => 15.10.1995 - 14.10|.1995 (min)', () => {
             cy.get('@input')
                 .type('15.10.1995-17.10.1995')
                 .type('{leftArrow}'.repeat('10.1995'.length))
                 .type('9')
-                .should('have.value', '14.10.1995 – 15.10.1995')
-                .should('have.prop', 'selectionStart', '14.10.1995 – 15.10.'.length)
-                .should('have.prop', 'selectionEnd', '14.10.1995 – 15.10.'.length);
+                .should('have.value', '15.10.1995 – 14.10.1995')
+                .should('have.prop', 'selectionStart', '15.10.1995 – 14.10.'.length)
+                .should('have.prop', 'selectionEnd', '15.10.1995 – 14.10.'.length);
         });
     });
 });
