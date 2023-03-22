@@ -1,33 +1,117 @@
 name: E2E
 on: [pull_request]
 
+env:
+  CACHE_DIST_KEY: dist-${{ github.head_ref }}-${{ github.ref }}-${{ github.sha }}
+  CYPRESS_CACHE_FOLDER: ./node_modules/cache-cypress
+  UNIVERSAL_SERVER: http://localhost:4000
+  STATIC_SERVER: http://localhost:8080
+
 jobs:
-  e2e:
+  build-demo:
     if: ${{ !contains(github.head_ref, 'release/') }}
+    name: Build demo
     runs-on: ubuntu-latest
-    env:
-      CYPRESS_CACHE_FOLDER: ./node_modules/cache-cypress
-      UNIVERSAL_SERVER: http://localhost:4000
-      STATIC_SERVER: http://localhost:8080
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 10
+
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
+
+      - name: Mark demo-app directory for persist in cache
+        uses: actions/cache@v3
+        with:
+          path: dist/demo
+          key: ${{ env.CACHE_DIST_KEY }}
 
       - name: Build demo
         run: npm run build
 
-      - name: Build ssr server
+      - name: Build SSR server
         run: npm run build:ssr
 
-      - name: Serving ssr server
+  e2e-kit:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    needs: [build-demo]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [date, date-range, date-time, number, time]
+    name: Kit / ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Download demo build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist/demo
+          key: ${{ env.CACHE_DIST_KEY }}
+
+      - name: Serving SSR server
         run: |
           npm run serve:ssr -- --ci & sleep 5
           curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
 
-      - name: Run cypress / ssr / universal
-        run: npm run cy:run -- --spec "**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+      - name: Run Cypress tests
+        run:
+          npm run cy:run -- --spec "**/kit/${{ matrix.project }}/**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER
+          }}"
+
+  e2e-recipes:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    needs: [build-demo]
+    runs-on: ubuntu-latest
+    name: Recipes
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Download demo build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist/demo
+          key: ${{ env.CACHE_DIST_KEY }}
+
+      - name: Serving SSR server
+        run: |
+          npm run serve:ssr -- --ci & sleep 5
+          curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
+
+      - name: Run Cypress tests
+        run: npm run cy:run -- --spec "**/recipes/**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+
+  e2e-others:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    needs: [build-demo]
+    runs-on: ubuntu-latest
+    name: Others
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Download demo build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist/demo
+          key: ${{ env.CACHE_DIST_KEY }}
+
+      - name: Serving SSR server
+        run: |
+          npm run serve:ssr -- --ci & sleep 5
+          curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
+
+      - name: Run Cypress tests
+        # Replace with npm run cy:run -- --spec "**/!(kit|recipes)/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+        # After this issue fix: https://github.com/cypress-io/cypress/issues/22407
+        run: npm run cy:run -- --spec "**/(angular|ssr)/**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
 
 concurrency:
-  group: integration-e2e-${{ github.head_ref }}
+  group: e2e-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
