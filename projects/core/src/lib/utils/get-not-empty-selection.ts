@@ -10,7 +10,10 @@ export function getNotEmptySelection(
         return [from, to];
     }
 
-    return isForward
-        ? [from, Math.min(to + 1, value.length)]
-        : [Math.max(from - 1, 0), to];
+    const notEmptySelection = isForward ? [from, to + 1] : [from - 1, to];
+
+    return notEmptySelection.map(x => Math.min(Math.max(x, 0), value.length)) as [
+        number,
+        number,
+    ];
 }
