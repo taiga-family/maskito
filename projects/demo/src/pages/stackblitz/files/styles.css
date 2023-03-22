@@ -1,4 +1,4 @@
-* {
+:root {
     --tui-text-01: rgba(27, 31, 59, 1);
     --tui-text-03: rgba(27, 31, 59, 0.4);
 
@@ -9,16 +9,14 @@
     --tui-primary: #526ed3;
 }
 
-input {
+input, textarea {
     display: block;
     width: 100%;
     max-width: 25rem;
-    min-height: 2.75rem;
     font-size: 15px;
     font-family: 'Roboto', sans-serif;
     border-radius: var(--tui-radius-m);
     box-sizing: border-box;
-    padding: 0px 1rem 0 1rem;
     border: 1px solid var(--tui-base-03);
     color: var(--tui-text-01);
     background: var(--tui-base-01);
@@ -27,16 +25,26 @@ input {
     box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1)
 }
 
+input {
+    min-height: 2.75rem;
+    padding: 0px 1rem 0 1rem;
+}
 
-input:focus::placeholder {
+textarea {
+    min-height: 10rem;
+    padding: 0.5rem;
+}
+
+
+input:focus::placeholder, textarea:focus::placeholder {
     color: var(--tui-text-03);
 }
 
-input:hover {
+input:hover, textarea:hover {
     box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,.16)
 }
 
-input:focus {
+input:focus, textarea:focus {
     box-shadow: none;
     border-color: var(--tui-primary);
     border-width: 2px;
