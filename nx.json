@@ -32,6 +32,7 @@
     "generators": {
         "@nrwl/js:library": {
             "buildable": true,
+            "publishable": true,
             "strict": true,
             "linter": "none",
             "unitTestRunner": "jest",
@@ -42,6 +43,7 @@
             "linter": "none",
             "unitTestRunner": "jest",
             "buildable": true,
+            "publishable": true,
             "compilationMode": "partial",
             "strict": true,
             "skipModule": true,
