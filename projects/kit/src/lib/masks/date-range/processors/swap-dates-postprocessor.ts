@@ -19,10 +19,11 @@ export function createSwapDatesPostprocessor({
         const isDateRangeComplete =
             dateStrings.length === 2 &&
             dateStrings.every(date => isDateStringComplete(date, dateModeTemplate));
-        const [from] = selection;
+        const [from, to] = selection;
         const caretAtTheEnd = from >= value.length;
+        const allValueSelected = from === 0 && to >= value.length; // dropping text inside with a pointer
 
-        if (!caretAtTheEnd || !isDateRangeComplete) {
+        if (!(caretAtTheEnd || allValueSelected) || !isDateRangeComplete) {
             return {value, selection};
         }
 
