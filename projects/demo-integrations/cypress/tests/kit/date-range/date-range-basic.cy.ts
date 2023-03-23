@@ -466,7 +466,7 @@ describe('DateRange | Basic', () => {
                 .should('have.prop', 'selectionEnd', '01.01.2020 – 31.12.2023'.length);
         });
 
-        it('If caret is NOT at the end, do NOT swap dates: 11.11.201|1 – 12.12.2012 => Type 5 => 12.12.2012| – 11.11.2015', () => {
+        it('If caret is NOT at the end, do NOT swap dates: 11.11.201|1 – 12.12.2012 => Type 5 => 11.11.2015 – |12.12.2012', () => {
             cy.get('@input')
                 .type('11112011-12122012')
                 .should('have.value', '11.11.2011 – 12.12.2012')
