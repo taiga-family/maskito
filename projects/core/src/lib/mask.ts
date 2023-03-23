@@ -24,7 +24,7 @@ export class Maskito extends MaskHistory {
         private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
-        this.conformValueToMask();
+        this.ensureValueFitsMask();
         this.updateHistory(this.elementState);
 
         this.eventListener.listen('keydown', event => {
@@ -113,7 +113,7 @@ export class Maskito extends MaskHistory {
         }
 
         this.eventListener.listen('input', () => {
-            this.conformValueToMask();
+            this.ensureValueFitsMask();
             this.updateHistory(this.elementState);
         });
     }
@@ -135,35 +135,20 @@ export class Maskito extends MaskHistory {
         this.eventListener.destroy();
     }
 
-    protected updateSelectionRange([from, to]: SelectionRange): void {
-        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
-            this.element.setSelectionRange?.(from, to);
-        }
-    }
-
-    protected updateValue(
-        newValue: string,
+    protected updateElementState(
+        {value, selection}: ElementState,
         eventInit: Pick<TypedInputEvent, 'data' | 'inputType'> = {
             inputType: 'insertText',
             data: null,
         },
     ): void {
-        if (this.element.value !== newValue) {
-            const globalObject = typeof window !== 'undefined' ? window : globalThis;
+        const initialValue = this.elementState.value;
 
-            this.element.value = newValue;
+        this.updateValue(value);
+        this.updateSelectionRange(selection);
 
-            // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
-            // @see https://caniuse.com/?search=globalThis
-            if (globalObject?.InputEvent) {
-                this.element.dispatchEvent(
-                    new InputEvent('input', {
-                        ...eventInit,
-                        bubbles: true,
-                        cancelable: true,
-                    }),
-                );
-            }
+        if (initialValue !== value) {
+            this.dispatchInputEvent(eventInit);
         }
     }
 
@@ -190,11 +175,8 @@ export class Maskito extends MaskHistory {
         this.handleInsert(event, pressedKey);
     }
 
-    private conformValueToMask(): void {
-        const {value, selection} = maskitoTransform(this.elementState, this.options);
-
-        this.updateValue(value);
-        this.updateSelectionRange(selection);
+    private ensureValueFitsMask(): void {
+        this.updateElementState(maskitoTransform(this.elementState, this.options));
     }
 
     private handleDelete({
@@ -248,11 +230,10 @@ export class Maskito extends MaskHistory {
             ? 'deleteContentForward'
             : 'deleteContentBackward';
 
-        this.updateValue(newElementState.value, {
+        this.updateElementState(newElementState, {
             inputType: 'inputType' in event ? event.inputType : inputTypeFallback,
             data: null,
         });
-        this.updateSelectionRange(newElementState.selection);
         this.updateHistory(newElementState);
     }
 
@@ -276,26 +257,58 @@ export class Maskito extends MaskHistory {
         const [from, to] = elementState.selection;
         const newPossibleValue =
             elementState.value.slice(0, from) + data + elementState.value.slice(to);
-        const {value, selection} = this.options.postprocessor(
+        const newElementState = this.options.postprocessor(
             maskModel,
             initialElementState,
         );
 
-        if (newPossibleValue !== value) {
+        if (newPossibleValue !== newElementState.value) {
             event.preventDefault();
 
-            this.updateValue(value, {
+            this.updateElementState(newElementState, {
                 data,
                 inputType: 'inputType' in event ? event.inputType : 'insertText',
             });
-            this.updateSelectionRange(selection);
-            this.updateHistory({value, selection});
+            this.updateHistory(newElementState);
         }
     }
 
     private handleEnter(event: Event): void {
         if (this.isTextArea) {
             this.handleInsert(event, '\n');
+        }
+    }
+
+    private updateSelectionRange([from, to]: SelectionRange): void {
+        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
+            this.element.setSelectionRange?.(from, to);
+        }
+    }
+
+    private updateValue(newValue: string): void {
+        if (this.element.value !== newValue) {
+            this.element.value = newValue;
+        }
+    }
+
+    private dispatchInputEvent(
+        eventInit: Pick<TypedInputEvent, 'data' | 'inputType'> = {
+            inputType: 'insertText',
+            data: null,
+        },
+    ): void {
+        const globalObject = typeof window !== 'undefined' ? window : globalThis;
+
+        // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
+        // @see https://caniuse.com/?search=globalThis
+        if (globalObject?.InputEvent) {
+            this.element.dispatchEvent(
+                new InputEvent('input', {
+                    ...eventInit,
+                    bubbles: true,
+                    cancelable: false,
+                }),
+            );
         }
     }
 }
