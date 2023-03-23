@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/tinkoff/maskito/compare/v0.7.2...v0.8.0) (2023-03-23)
+
+### Features
+
+- **kit:** `DateRange` swaps dates if the 2nd date is less than the 1st one
+  ([#212](https://github.com/tinkoff/maskito/issues/212))
+  ([3efbb42](https://github.com/tinkoff/maskito/commit/3efbb42f2dd5c4e43ff514da7a82abfc7c4b3a38))
+
+### Bug Fixes
+
+- **core:** incorrect order of actions during update of native element
+  ([#225](https://github.com/tinkoff/maskito/issues/225))
+  ([394d5d9](https://github.com/tinkoff/maskito/commit/394d5d996bdb9d21229ea0301eb3f776bee05d30))
+
 ### [0.7.2](https://github.com/tinkoff/maskito/compare/v0.7.1...v0.7.2) (2023-03-23)
 
 ### Bug Fixes
