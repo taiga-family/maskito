@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/tinkoff/maskito/compare/v0.7.1...v0.7.2) (2023-03-23)
+
+### Bug Fixes
+
+- **angular:** `@maskito/angular` should not depend on `@maskito/kit`
+  ([#221](https://github.com/tinkoff/maskito/issues/221))
+  ([0ae7b20](https://github.com/tinkoff/maskito/commit/0ae7b2089ec0436caa8dbb14d5c696ae93e9e7ed))
+- **angular:** `npm i @maskito/angular` throws `ERESOLVE unable to resolve dependency tree`
+  ([#220](https://github.com/tinkoff/maskito/issues/220))
+  ([8b4d6e6](https://github.com/tinkoff/maskito/commit/8b4d6e6186db47f97d328186b7afd9af75a3889b))
+
 ### [0.7.1](https://github.com/tinkoff/maskito/compare/v0.7.0...v0.7.1) (2023-03-22)
 
 ### Bug Fixes
