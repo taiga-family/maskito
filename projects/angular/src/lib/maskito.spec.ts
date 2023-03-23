@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoModule} from '@maskito/angular';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {MaskitoOptions} from '@maskito/core';
 
 describe(`Maskito Angular package`, () => {
     @Component({
@@ -17,7 +17,20 @@ describe(`Maskito Angular package`, () => {
     })
     class TestComponent {
         readonly control = new FormControl();
-        readonly options = maskitoNumberOptionsGenerator({precision: 2});
+        readonly options: MaskitoOptions = {
+            mask: /^\d+(,\d{0,2})?$/,
+            preprocessor: ({elementState, data}) => {
+                const {value, selection} = elementState;
+
+                return {
+                    elementState: {
+                        selection,
+                        value: value.replace('.', ','),
+                    },
+                    data: data.replace('.', ','),
+                };
+            },
+        };
     }
 
     let fixture: ComponentFixture<TestComponent>;
@@ -38,11 +51,11 @@ describe(`Maskito Angular package`, () => {
     });
 
     it(`Formats new control value`, () => {
-        fixture.componentInstance.control.setValue(12345.67);
+        fixture.componentInstance.control.setValue(12345.6789);
         fixture.detectChanges();
 
-        expect(getText()).toBe(`12\u00A0345.67`);
-        expect(getValue()).toBe(`12\u00A0345.67`);
+        expect(getText()).toBe(`12345,67`);
+        expect(getValue()).toBe(`12345,67`);
     });
 
     function getText(): string {
