@@ -4,13 +4,15 @@
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/js:tsc",
+            "executor": "@nrwl/web:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
+                "project": "projects/kit/package.json",
                 "outputPath": "dist/kit",
-                "main": "projects/kit/src/index.ts",
+                "entryFile": "projects/kit/src/index.ts",
                 "tsConfig": "projects/kit/tsconfig.workaround.json",
-                "assets": ["projects/kit/*.md"]
+                "format": ["esm", "umd"],
+                "assets": ["projects/kit/src/README.md"]
             },
             "dependsOn": [
                 {
