@@ -1,5 +1,5 @@
 import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../../types';
-import {areElementStatesEqual} from '../../utils';
+import {areElementStatesEqual} from '../../utils/element-states-equality';
 import {applyOverwriteMode} from './utils/apply-overwrite-mode';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';

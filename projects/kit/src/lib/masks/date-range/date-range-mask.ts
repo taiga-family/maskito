@@ -33,7 +33,7 @@ export function maskitoDateRangeOptionsGenerator({
     );
 
     return {
-        mask: [...dateMask, ...DATE_RANGE_SEPARATOR, ...dateMask],
+        mask: [...dateMask, ...Array.from(DATE_RANGE_SEPARATOR), ...dateMask],
         overwriteMode: 'replace',
         preprocessor: maskitoPipe(
             createZeroPlaceholdersPreprocessor(),
