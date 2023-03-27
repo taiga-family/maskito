@@ -39,7 +39,14 @@
             "executor": "@nrwl/workspace:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/angular --dry-run {args.dry-run}"
-            }
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "self",
+                    "params": "ignore"
+                }
+            ]
         }
     },
     "tags": []

@@ -11,8 +11,7 @@
                 "outputPath": "dist/core",
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
-                "format": ["esm", "umd"],
-                "assets": ["projects/core/src/README.md"]
+                "format": ["esm", "umd"]
             }
         },
         "test": {
@@ -26,8 +25,19 @@
         "publish": {
             "executor": "@nrwl/workspace:run-commands",
             "options": {
-                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
-            }
+                "parallel": false,
+                "commands": [
+                    "cp projects/core/README.md dist/core/README.md",
+                    "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
+                ]
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "self",
+                    "params": "ignore"
+                }
+            ]
         }
     },
     "tags": []
