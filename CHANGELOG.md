@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/tinkoff/maskito/compare/v0.8.0...v0.8.1) (2023-03-27)
+
+### Bug Fixes
+
+- `@maskito/core` & `@maskito/kit` now include both `UMD` and `ESM` module formats
+  ([#227](https://github.com/tinkoff/maskito/issues/227))
+  ([fa1c514](https://github.com/tinkoff/maskito/commit/fa1c514a5753e3bca20e8b0994e4bf9f1c0ab6a4))
+
 ## [0.8.0](https://github.com/tinkoff/maskito/compare/v0.7.2...v0.8.0) (2023-03-23)
 
 ### Features
