@@ -9,7 +9,7 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 })
 export class PhoneDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
+    readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
     readonly usPhoneExample1: TuiDocExample = {
         MaskitoOptions: import('./examples/1-us-phone/mask.ts?raw'),

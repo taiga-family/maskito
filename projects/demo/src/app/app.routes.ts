@@ -165,6 +165,16 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.Prefix,
+        loadChildren: async () =>
+            import(`../pages/recipes/prefix/prefix-doc.module`).then(
+                m => m.PrefixDocModule,
+            ),
+        data: {
+            title: `With prefix`,
+        },
+    },
+    {
         path: DemoPath.Postfix,
         loadChildren: async () =>
             import(`../pages/recipes/postfix/postfix-doc.module`).then(

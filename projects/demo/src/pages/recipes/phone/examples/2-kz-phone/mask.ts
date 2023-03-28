@@ -1,4 +1,5 @@
 import {MaskitoOptions} from '@maskito/core';
+import {maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
 
 export default {
     mask: [
@@ -22,12 +23,5 @@ export default {
         /\d/,
     ],
     // non-removable country prefix
-    postprocessor: ({value, selection}, initialElementState) => {
-        const countryPrefix = '+7 ';
-        const minCaretIndex = countryPrefix.length;
-
-        return value.length < minCaretIndex && initialElementState.value
-            ? {selection: [minCaretIndex, minCaretIndex], value: countryPrefix}
-            : {selection, value};
-    },
+    postprocessor: maskitoPrefixPostprocessorGenerator('+7 '),
 } as MaskitoOptions;
