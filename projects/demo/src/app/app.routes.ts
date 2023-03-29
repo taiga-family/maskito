@@ -208,9 +208,7 @@ export const appRoutes: Routes = [
     {
         path: DemoPath.Stackblitz,
         loadChildren: async () =>
-            import(`../pages/stackblitz/stackblitz-starter.module`).then(
-                m => m.StackblitzStarterModule,
-            ),
+            import(`../pages/stackblitz`).then(m => m.StackblitzStarterModule),
         data: {
             title: `Stackblitz Starter`,
         },
