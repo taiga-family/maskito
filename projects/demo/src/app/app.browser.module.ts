@@ -6,6 +6,7 @@ import {TuiDocMainModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiModeModule} from '@taiga-ui/core';
 import {MarkdownModule} from 'ngx-markdown';
 
+import {StackblitzEditButtonModule} from '../pages/stackblitz';
 import {AppComponent} from './app.component';
 import {APP_PROVIDERS} from './app.providers';
 import {AppRoutingModule} from './app.routes';
@@ -28,6 +29,7 @@ import {LogoModule} from './modules/logo/logo.module';
         TuiDocMainModule,
         TuiLinkModule,
         TuiModeModule,
+        StackblitzEditButtonModule,
     ],
     declarations: [AppComponent],
     providers: APP_PROVIDERS,

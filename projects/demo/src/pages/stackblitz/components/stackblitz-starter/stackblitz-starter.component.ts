@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {tuiRawLoad} from '@taiga-ui/addon-doc';
 
-import {StackblitzService} from './stackblitz.service';
+import {StackblitzService} from '../../stackblitz.service';
 
 @Component({
     selector: 'stackblitz-starter',
@@ -26,9 +26,10 @@ export class StackblitzStarterComponent implements OnInit {
 
     async openStackblitz(): Promise<void> {
         const [ts, css] = await Promise.all(
-            [import('./files/starter.ts?raw'), import('./files/styles.css?raw')].map(
-                tuiRawLoad,
-            ),
+            [
+                import('../../files/starter.ts?raw'),
+                import('../../files/styles.css?raw'),
+            ].map(tuiRawLoad),
         );
 
         return this.stackblitz.openStarter(
