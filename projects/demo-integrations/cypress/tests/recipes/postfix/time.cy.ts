@@ -2,7 +2,7 @@ import {DemoPath} from '@demo/path';
 
 describe('Postfix | Time', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.Postfix}`);
+        cy.visit(DemoPath.Postfix);
         cy.get('#time input')
             .should('be.visible')
             .first()

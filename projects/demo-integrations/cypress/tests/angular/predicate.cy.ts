@@ -2,7 +2,7 @@ import {DemoPath} from '@demo/path';
 
 describe('@maskito/angular | Predicate', () => {
     it('can detect run-time changes', () => {
-        cy.visit(`/${DemoPath.Cypress}`);
+        cy.visit(DemoPath.Cypress);
         cy.get('#predicate input').should('be.visible').first().as('card');
         cy.get('#predicate input').should('be.visible').last().as('name');
 

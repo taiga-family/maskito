@@ -4,7 +4,7 @@ import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 
 describe('Phone', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.Phone}`);
+        cy.visit(DemoPath.Phone);
         cy.get('#kz input')
             .should('be.visible')
             .first()
