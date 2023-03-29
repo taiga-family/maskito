@@ -11,8 +11,7 @@
                 "outputPath": "dist/kit",
                 "entryFile": "projects/kit/src/index.ts",
                 "tsConfig": "projects/kit/tsconfig.workaround.json",
-                "format": ["esm", "umd"],
-                "assets": ["projects/kit/src/README.md"]
+                "format": ["esm", "umd"]
             },
             "dependsOn": [
                 {
@@ -33,8 +32,19 @@
         "publish": {
             "executor": "@nrwl/workspace:run-commands",
             "options": {
-                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/kit --dry-run {args.dry-run}"
-            }
+                "parallel": false,
+                "command": [
+                    "cp projects/kit/README.md dist/kit/README.md",
+                    "ts-node ./scripts/npm-publish.ts --path ./dist/kit --dry-run {args.dry-run}"
+                ]
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "self",
+                    "params": "ignore"
+                }
+            ]
         }
     },
     "tags": []
