@@ -4,7 +4,7 @@ describe('Server side rendering', () => {
     beforeEach(() => {
         // Just a workaround for correct work of global run-time error handler
         // See projects/demo-integrations/cypress/support/e2e.ts
-        cy.visit(`/${DemoPath.WhatIsMaskito}`);
+        cy.visit(DemoPath.WhatIsMaskito);
     });
 
     const baseUrl: string = Cypress.config('baseUrl') ?? '/';
