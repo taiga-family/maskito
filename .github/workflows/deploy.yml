@@ -1,8 +1,8 @@
 name: Deploy
-on:
-  push:
-    branches:
-      - main
+
+# TODO revert this file before merging
+# JUST FOR DEBUGGING!
+on: [pull_request]
 
 jobs:
   deploy:
