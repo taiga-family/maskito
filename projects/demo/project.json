@@ -106,7 +106,7 @@
                     "echo ------",
                     "nx build -c github",
                     "cp dist/demo/browser/index.html dist/demo/browser/404.html",
-                    "npm run build:prerender"
+                    "nx run demo:prerender -c github"
                 ]
             }
         },
@@ -206,7 +206,10 @@
                 "routesFile": "./projects/demo/routesFile.txt"
             },
             "configurations": {
-                "production": {}
+                "production": {},
+                "github": {
+                    "browserTarget": "demo:build:github"
+                }
             }
         }
     }
