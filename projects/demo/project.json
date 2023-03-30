@@ -11,7 +11,7 @@
                 "customWebpackConfig": {
                     "path": "projects/demo/webpack.config.ts"
                 },
-                "baseHref": "/maskito/",
+                "baseHref": "/",
                 "outputPath": "dist/demo/browser",
                 "index": "projects/demo/src/index.html",
                 "main": "projects/demo/src/main.browser.ts",
@@ -68,6 +68,30 @@
                         }
                     ]
                 },
+                "github": {
+                    "baseHref": "/maskito/",
+                    "fileReplacements": [
+                        {
+                            "replace": "projects/demo/src/environments/environment.ts",
+                            "with": "projects/demo/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "aot": true,
+                    "extractLicenses": true,
+                    "vendorChunk": false,
+                    "buildOptimizer": true,
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "2mb",
+                            "maximumError": "5mb"
+                        }
+                    ]
+                },
                 "development": {}
             },
             "defaultConfiguration": "production"
@@ -80,7 +104,7 @@
                     "echo 'Github pages require special baseHref + 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
-                    "nx build",
+                    "nx build -c github",
                     "cp dist/demo/browser/index.html dist/demo/browser/404.html",
                     "npm run build:prerender"
                 ]
