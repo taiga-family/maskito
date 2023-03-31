@@ -16,7 +16,7 @@ jobs:
         uses: ./.github/actions/nodejs
 
       - name: Run tests
-        run: npx nx run-many --target test --all
+        run: npx nx run-many --target test --all --coverage
 
       - uses: codecov/codecov-action@v2
         with:
