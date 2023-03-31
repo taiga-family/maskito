@@ -5,24 +5,29 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
 @Directive({
     selector: 'input[maskito], textarea[maskito]',
     providers: [
+        DefaultValueAccessor,
         {
             provide: NG_VALUE_ACCESSOR,
             multi: true,
-            useExisting: MaskitoCva,
+            useExisting: DefaultValueAccessor,
         },
     ],
     host: {
-        '(input)': '$any(this)._handleInput($event.target.value)',
-        '(blur)': 'onTouched()',
-        '(compositionstart)': '$any(this)._compositionStart()',
-        '(compositionend)': '$any(this)._compositionEnd($event.target.value)',
+        '(input)': '$any(this.accessor)._handleInput($event.target.value)',
+        '(blur)': 'accessor.onTouched()',
+        '(compositionstart)': '$any(this.accessor)._compositionStart()',
+        '(compositionend)': '$any(this.accessor)._compositionEnd($event.target.value)',
     },
 })
-export class MaskitoCva extends DefaultValueAccessor {
+export class MaskitoCva {
     @Input()
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
-    override writeValue(value: unknown): void {
-        super.writeValue(maskitoTransform(String(value ?? ''), this.maskito));
+    constructor(readonly accessor: DefaultValueAccessor) {
+        const original = accessor.writeValue.bind(accessor);
+
+        accessor.writeValue = (value: unknown) => {
+            original(maskitoTransform(String(value ?? ''), this.maskito));
+        };
     }
 }
