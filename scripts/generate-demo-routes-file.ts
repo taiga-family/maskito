@@ -30,7 +30,7 @@ const EXCEPTIONS = ['/', 'angular/Setup'];
     routes.push(...EXCEPTIONS);
 
     titleLog('Generated routes:');
-    infoLog(`${SMALL_TAB_SYMBOL}* ${routes?.join(`\n${SMALL_TAB_SYMBOL}* `)}`);
+    routes.forEach(route => infoLog(`${SMALL_TAB_SYMBOL}* ${route}`));
 
     writeFileSync(
         join(process.cwd(), `projects`, `demo`, `routesFile.txt`),

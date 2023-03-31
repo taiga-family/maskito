@@ -8,13 +8,12 @@
 </p>
 
 <p align="center">
-    <a href="https://tinkoff.github.io/maskito">Documentation</a> •
+    <a href="https://tinkoff.github.io/maskito/angular">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
     <a href="https://t.me/taiga_ui">Contact Us</a>
 </p>
 
-> The Angular-specific library.<br />It provides with two convenient ways of using Maskito: basic directive approach and
-> Dependency Injection approach.
+> The Angular-specific library.<br /> It provides a convenient way to use Maskito as a directive.
 
 ## How to install
 

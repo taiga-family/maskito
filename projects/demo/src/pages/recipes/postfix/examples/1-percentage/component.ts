@@ -6,8 +6,8 @@ import mask from './mask';
     selector: 'postfix-doc-example-1',
     template: `
         <tui-input
-            ngModel=""
             [style.max-width.rem]="20"
+            [(ngModel)]="value"
         >
             Enter percentage amount
             <input
@@ -21,4 +21,5 @@ import mask from './mask';
 })
 export class PostfixDocExample1 {
     readonly maskitoOptions = mask;
+    value = '';
 }
