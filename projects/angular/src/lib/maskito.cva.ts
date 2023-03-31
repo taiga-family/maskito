@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Inject, Input, Renderer2} from '@angular/core';
+import {Directive, ElementRef, Inject, Input, Optional, Renderer2} from '@angular/core';
 import {
     COMPOSITION_BUFFER_MODE,
     DefaultValueAccessor,
@@ -29,7 +29,7 @@ export class MaskitoCva extends DefaultValueAccessor {
     constructor(
         renderer: Renderer2,
         elementRef: ElementRef,
-        @Inject(COMPOSITION_BUFFER_MODE) _compositionMode: boolean,
+        @Optional() @Inject(COMPOSITION_BUFFER_MODE) _compositionMode: boolean,
     ) {
         super(renderer, elementRef, _compositionMode);
     }
