@@ -202,7 +202,11 @@
             "executor": "@nrwl/workspace:run-commands",
             "options": {
                 "command": "ts-node ./scripts/generate-demo-routes-file.ts"
-            }
+            },
+            "configurations": {
+                "github": {}
+            },
+            "defaultConfiguration": "github"
         },
         "prerender": {
             "executor": "@nguniversal/builders:prerender",
