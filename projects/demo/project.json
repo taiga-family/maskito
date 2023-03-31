@@ -198,6 +198,12 @@
             },
             "defaultConfiguration": "development"
         },
+        "generate-routes-file": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/generate-demo-routes-file.ts"
+            }
+        },
         "prerender": {
             "executor": "@nguniversal/builders:prerender",
             "options": {
@@ -210,7 +216,14 @@
                 "github": {
                     "browserTarget": "demo:build:github"
                 }
-            }
+            },
+            "dependsOn": [
+                {
+                    "target": "generate-routes-file",
+                    "projects": "self",
+                    "params": "ignore"
+                }
+            ]
         }
     }
 }

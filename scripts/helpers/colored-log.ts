@@ -17,3 +17,5 @@ export function infoLog(message: string): void {
 export function titleLog(message: string): void {
     console.info('\x1b[35m', message);
 }
+
+export const SMALL_TAB_SYMBOL = `  `; // @note: if you use \t then we have big gaps
