@@ -33,7 +33,7 @@
             "executor": "@nrwl/workspace:run-commands",
             "options": {
                 "parallel": false,
-                "command": [
+                "commands": [
                     "cp projects/kit/README.md dist/kit/README.md",
                     "ts-node ./scripts/npm-publish.ts --path ./dist/kit --dry-run {args.dry-run}"
                 ]
