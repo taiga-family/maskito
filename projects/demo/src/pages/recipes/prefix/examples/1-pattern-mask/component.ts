@@ -6,8 +6,8 @@ import mask from './mask';
     selector: 'prefix-doc-example-1',
     template: `
         <tui-input
-            ngModel=""
             [style.max-width.rem]="20"
+            [(ngModel)]="value"
         >
             Enter price
             <input
@@ -21,4 +21,5 @@ import mask from './mask';
 })
 export class PrefixDocExample1 {
     readonly maskitoOptions = mask;
+    value = '';
 }
