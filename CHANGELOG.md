@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/tinkoff/maskito/compare/v0.8.1...v0.9.0) (2023-03-31)
+
+### Features
+
+- **kit:** new `maskitoPrefixPostprocessorGenerator` ([#235](https://github.com/tinkoff/maskito/issues/235))
+  ([50f0d58](https://github.com/tinkoff/maskito/commit/50f0d58ccbfa22d15174d76479a9d642687db099))
+
+### Bug Fixes
+
+- **angular:** Jest throws `Class constructor DefaultValueAccessor cannot be invoked without 'new'`
+  ([#232](https://github.com/tinkoff/maskito/issues/232))
+  ([5089612](https://github.com/tinkoff/maskito/commit/508961288898a5fdd21cc0e26b23ecc8845f9068))
+
 ### [0.8.1](https://github.com/tinkoff/maskito/compare/v0.8.0...v0.8.1) (2023-03-27)
 
 ### Bug Fixes
