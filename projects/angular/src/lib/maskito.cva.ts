@@ -1,9 +1,5 @@
-import {Directive, ElementRef, Inject, Input, Optional, Renderer2} from '@angular/core';
-import {
-    COMPOSITION_BUFFER_MODE,
-    DefaultValueAccessor,
-    NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import {Directive, Input} from '@angular/core';
+import {DefaultValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
 
 @Directive({
@@ -12,29 +8,25 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
         {
             provide: NG_VALUE_ACCESSOR,
             multi: true,
-            useExisting: MaskitoCva,
+            useClass: DefaultValueAccessor,
         },
     ],
     host: {
-        '(input)': '$any(this)._handleInput($event.target.value)',
-        '(blur)': 'onTouched()',
-        '(compositionstart)': '$any(this)._compositionStart()',
-        '(compositionend)': '$any(this)._compositionEnd($event.target.value)',
+        '(input)': '$any(this.accessor)._handleInput($event.target.value)',
+        '(blur)': 'accessor.onTouched()',
+        '(compositionstart)': '$any(this.accessor)._compositionStart()',
+        '(compositionend)': '$any(this.accessor)._compositionEnd($event.target.value)',
     },
 })
-export class MaskitoCva extends DefaultValueAccessor {
+export class MaskitoCva {
     @Input()
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
-    constructor(
-        renderer: Renderer2,
-        elementRef: ElementRef,
-        @Optional() @Inject(COMPOSITION_BUFFER_MODE) _compositionMode: boolean,
-    ) {
-        super(renderer, elementRef, _compositionMode);
-    }
+    constructor(readonly accessor: DefaultValueAccessor) {
+        const original = accessor.writeValue.bind(accessor);
 
-    override writeValue(value: unknown): void {
-        super.writeValue(maskitoTransform(String(value ?? ''), this.maskito));
+        accessor.writeValue = (value: unknown) => {
+            original(maskitoTransform(String(value ?? ''), this.maskito));
+        };
     }
 }
