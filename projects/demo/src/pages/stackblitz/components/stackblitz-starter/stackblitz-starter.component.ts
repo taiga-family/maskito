@@ -1,7 +1,14 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    Inject,
+    OnInit,
+    PLATFORM_ID,
+} from '@angular/core';
 import {tuiRawLoad} from '@taiga-ui/addon-doc';
 
-import {StackblitzService} from './stackblitz.service';
+import {StackblitzService} from '../../stackblitz.service';
 
 @Component({
     selector: 'stackblitz-starter',
@@ -18,17 +25,23 @@ import {StackblitzService} from './stackblitz.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StackblitzStarterComponent implements OnInit {
-    constructor(private readonly stackblitz: StackblitzService) {}
+    constructor(
+        @Inject(PLATFORM_ID) private readonly platformId: Record<string, unknown>,
+        private readonly stackblitz: StackblitzService,
+    ) {}
 
     async ngOnInit(): Promise<void> {
-        await this.openStackblitz();
+        if (isPlatformBrowser(this.platformId)) {
+            await this.openStackblitz();
+        }
     }
 
     async openStackblitz(): Promise<void> {
         const [ts, css] = await Promise.all(
-            [import('./files/starter.ts?raw'), import('./files/styles.css?raw')].map(
-                tuiRawLoad,
-            ),
+            [
+                import('../../files/starter.ts?raw'),
+                import('../../files/styles.css?raw'),
+            ].map(tuiRawLoad),
         );
 
         return this.stackblitz.openStarter(

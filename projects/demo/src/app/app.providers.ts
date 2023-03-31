@@ -13,7 +13,7 @@ import {
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';
-import {StackblitzService} from '../pages/stackblitz/stackblitz.service';
+import {StackblitzService} from '../pages/stackblitz';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 
 export const APP_PROVIDERS: Provider[] = [

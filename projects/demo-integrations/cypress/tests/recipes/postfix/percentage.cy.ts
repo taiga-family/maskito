@@ -2,7 +2,7 @@ import {DemoPath} from '@demo/path';
 
 describe('Postfix | Percentage', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.Postfix}`);
+        cy.visit(DemoPath.Postfix);
         cy.get('#percentage input')
             .should('be.visible')
             .first()

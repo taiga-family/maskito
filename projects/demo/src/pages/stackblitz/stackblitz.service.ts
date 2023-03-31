@@ -5,6 +5,9 @@ import {
     tuiRawLoad,
     tuiTryParseMarkdownCodeBlock,
 } from '@taiga-ui/addon-doc';
+import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
+
+import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';
 
 @Injectable()
 export class StackblitzService implements TuiCodeEditor {
@@ -17,6 +20,7 @@ export class StackblitzService implements TuiCodeEditor {
     };
 
     readonly name = 'Stackblitz';
+    readonly content = new PolymorpheusComponent(StackblitzEditButtonComponent);
 
     async edit(
         component: string,
