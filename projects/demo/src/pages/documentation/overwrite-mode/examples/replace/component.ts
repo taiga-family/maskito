@@ -6,10 +6,10 @@ import mask from './mask';
     selector: 'overwrite-mode-replace-doc-example-2',
     template: `
         <tui-input
-            ngModel="0000"
             tuiHintContent="Insert character somewhere in the middle"
             [style.max-width.rem]="20"
             [tuiTextfieldLabelOutside]="true"
+            [(ngModel)]="value"
         >
             <input
                 tuiTextfield
@@ -21,5 +21,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverwriteModeDocExample2 {
-    maskitoOptions = mask;
+    readonly maskitoOptions = mask;
+    value = '0000';
 }

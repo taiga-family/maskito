@@ -8,8 +8,8 @@ import mask from './mask';
         <tui-input
             tuiTextfieldCustomContent="tuiIconClockLarge"
             tuiTextfieldFiller="hh:mm:ss"
-            ngModel="23:59:59"
             [style.max-width.rem]="20"
+            [(ngModel)]="value"
         >
             HH:MM:SS
             <input
@@ -23,4 +23,5 @@ import mask from './mask';
 })
 export class TimeMaskDocExample1 {
     readonly mask = mask;
+    value = '23:59:59';
 }

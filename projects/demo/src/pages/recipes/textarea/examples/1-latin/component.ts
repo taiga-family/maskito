@@ -5,7 +5,7 @@ import mask from './mask';
 @Component({
     selector: 'textarea-doc-example-1',
     template: `
-        <tui-text-area ngModel="">
+        <tui-text-area [(ngModel)]="value">
             Enter address
             <textarea
                 autocomplete="street-address"
@@ -19,4 +19,5 @@ import mask from './mask';
 })
 export class TextareaDocExample1 {
     readonly mask = mask;
+    value = '';
 }

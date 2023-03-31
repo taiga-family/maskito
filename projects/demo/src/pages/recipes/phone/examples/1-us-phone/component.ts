@@ -6,9 +6,9 @@ import mask from './mask';
     selector: 'phone-doc-example-1',
     template: `
         <tui-input
-            ngModel="+1 (212) 555-2368"
             [tuiTextfieldCustomContent]="usFlag"
             [style.max-width.rem]="20"
+            [(ngModel)]="value"
         >
             Enter a phone number
             <input
@@ -30,4 +30,5 @@ import mask from './mask';
 })
 export class PhoneUSDocExample1 {
     readonly maskitoOptions = mask;
+    value = '+1 (212) 555-2368';
 }
