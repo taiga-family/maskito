@@ -101,6 +101,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Recipes',
+        title: 'With prefix',
+        route: DemoPath.Prefix,
+        keywords: `prefix, before, recipe`,
+    },
+    {
+        section: 'Recipes',
         title: 'With postfix',
         route: DemoPath.Postfix,
         keywords: `postfix, after, percent, am, pm, recipe`,

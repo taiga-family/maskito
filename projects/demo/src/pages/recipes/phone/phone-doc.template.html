@@ -37,17 +37,26 @@
         [description]="kzMaskDescription"
     >
         <ng-template #kzMaskDescription>
-            The following example demonstrates a more complex mask. It shows how
-            to make the country prefix non-removable. It is achieved by
-            <strong>postprocessor</strong>
-            . Read more about it in
-            <a
-                tuiLink
-                [routerLink]="processorsDocPage"
-            >
-                "Processors"
-            </a>
-            section.
+            <p class="tui-space_top-0">
+                The following example demonstrates a more complex mask. It shows
+                how to make the country prefix non-removable. It is achieved by
+                built-in
+                <strong>postprocessor</strong>
+                from
+                <code>@maskito/kit</code>
+                .
+            </p>
+            <p>
+                Read more about it in
+                <a
+                    tuiLink
+                    fragment="by-postprocessor"
+                    [routerLink]="prefixDocPage"
+                >
+                    "With prefix"
+                </a>
+                section.
+            </p>
         </ng-template>
         <phone-doc-example-2></phone-doc-example-2>
     </tui-doc-example>
