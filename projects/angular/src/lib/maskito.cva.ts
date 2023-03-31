@@ -5,10 +5,11 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
 @Directive({
     selector: 'input[maskito], textarea[maskito]',
     providers: [
+        DefaultValueAccessor,
         {
             provide: NG_VALUE_ACCESSOR,
             multi: true,
-            useClass: DefaultValueAccessor,
+            useExisting: DefaultValueAccessor,
         },
     ],
     host: {
