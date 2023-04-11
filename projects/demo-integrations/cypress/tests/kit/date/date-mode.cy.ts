@@ -69,6 +69,18 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '03.20'.length)
                     .should('have.prop', 'selectionEnd', '03.20'.length);
             });
+
+            it(' "mm/yy" => 03.22', () => {
+                cy.get('@input')
+                    .type('0')
+                    .should('have.value', '0')
+                    .should('have.prop', 'selectionStart', '0'.length)
+                    .should('have.prop', 'selectionEnd', '0'.length)
+                    .type('322')
+                    .should('have.value', '03.22')
+                    .should('have.prop', 'selectionStart', '03.22'.length)
+                    .should('have.prop', 'selectionEnd', '03.22'.length);
+            });
         });
     });
 });
