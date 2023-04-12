@@ -8,14 +8,16 @@ export function parseDateString(
     const cleanMode = fullMode.replace(/[^dmy]/g, '');
     const onlyDigitsDate = dateString.replace(/\D+/g, '');
 
-    const dayIndex = cleanMode.indexOf('d');
-    const monthIndex = cleanMode.indexOf('m');
-    const yearIndex = cleanMode.indexOf('y');
-
     const dateSegments: MaskitoDateSegments = {
-        day: onlyDigitsDate.slice(dayIndex, dayIndex + 2),
-        month: onlyDigitsDate.slice(monthIndex, monthIndex + 2),
-        year: onlyDigitsDate.slice(yearIndex, cleanMode.lastIndexOf('y') + 1),
+        day: onlyDigitsDate.slice(cleanMode.indexOf('d'), cleanMode.lastIndexOf('d') + 1),
+        month: onlyDigitsDate.slice(
+            cleanMode.indexOf('m'),
+            cleanMode.lastIndexOf('m') + 1,
+        ),
+        year: onlyDigitsDate.slice(
+            cleanMode.indexOf('y'),
+            cleanMode.lastIndexOf('y') + 1,
+        ),
     };
 
     return getObjectFromEntries(
