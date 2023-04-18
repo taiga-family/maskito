@@ -42,6 +42,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
 
     readonly decimalPseudoSeparatorsOptions = [['.', ',', 'б', 'ю'], ['.'], [',']];
+    readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
 
     precision = 0;
     isNegativeAllowed = true;
