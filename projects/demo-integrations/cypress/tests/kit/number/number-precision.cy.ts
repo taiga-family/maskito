@@ -64,4 +64,10 @@ describe('Number | precision', () => {
                 .should('have.prop', 'selectionEnd', 1);
         });
     });
+
+    it('will throw error during SSR', () => {
+        openNumberPage('decimalSeparator=,&precision=Infinity');
+
+        cy.get('@input').should('have.value', '');
+    });
 });
