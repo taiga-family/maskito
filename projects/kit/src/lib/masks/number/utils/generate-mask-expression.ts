@@ -18,7 +18,9 @@ export function generateMaskExpression({
     const integerPart = thousandSeparator
         ? `[${digit}\\${thousandSeparator}]*`
         : `[${digit}]*`;
-    const decimalPart = `(\\${decimalSeparator}${digit}{0,${precision}})?`;
+    const decimalPart = `(\\${decimalSeparator}${digit}{0,${
+        Number.isFinite(precision) ? precision : ''
+    }})?`;
 
     return precision > 0
         ? new RegExp(`^${optionalMinus}${integerPart}${decimalPart}$`)
