@@ -142,12 +142,19 @@
                 documentationPropertyName="precision"
                 documentationPropertyMode="input"
                 documentationPropertyType="number"
+                [documentationPropertyValues]="precisionOptions"
                 [(documentationPropertyValue)]="precision"
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 A number of digits after
                 <code>decimalSeparator</code>
                 .
+
+                <p>
+                    Use
+                    <code>Infinity</code>
+                    for an untouched decimal part.
+                </p>
 
                 <p>
                     <strong>Default:</strong>

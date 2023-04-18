@@ -64,4 +64,14 @@ describe('Number | precision', () => {
                 .should('have.prop', 'selectionEnd', 1);
         });
     });
+
+    it('keeps untouched decimal part if `precision: Infinity`', () => {
+        openNumberPage('decimalSeparator=,&precision=Infinity');
+
+        cy.get('@input')
+            .type('0,123456789')
+            .should('have.value', '0,123456789')
+            .should('have.prop', 'selectionStart', '0,123456789'.length)
+            .should('have.prop', 'selectionEnd', '0,123456789'.length);
+    });
 });
