@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[6015],{86015:function(o){o.exports="import {MaskitoOptions} from '@maskito/core';\n\nexport default {\n    mask: [/\\d/, /\\d/, ':', /\\d/, /\\d/, ...' pm'],\n    overwriteMode: 'replace',\n} as MaskitoOptions;\n"}}]);

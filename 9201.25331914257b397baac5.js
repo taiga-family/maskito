@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[9201],{9201:o=>{o.exports="```ts\nimport {NgModule} from '@angular/core';\nimport {MaskitoModule} from '@maskito/angular';\n\n@NgModule({\n  // ...\n  imports: [\n    // ...\n    MaskitoModule,\n  ],\n})\nexport class YourModule {}\n```\n"}}]);
