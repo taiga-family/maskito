@@ -1,4 +1,12 @@
-# we only want es2015 compliant browsers https://caniuse.com/#feat=es6
-# just use one as representative for all
+# Desktop
+Chrome >= 74
+Firefox >= 55
+Safari >= 12.1
+Opera >= 62
+Edge >= 74
 
-supports es6-module
+# Mobile
+ChromeAndroid >= 90
+FirefoxAndroid >= 99
+iOS >= 12.2
+OperaMobile >= 64
