@@ -15,21 +15,17 @@ export function maskitoPostfixPostprocessorGenerator(
             return {selection, value: value + postfix};
         }
 
-        let newValue = value;
-
-        Array.from(postfix)
-            .reverse()
-            .forEach((char, index) => {
-                const i = newValue.length - 1 - index;
-
-                if (newValue[i] !== char) {
-                    newValue = newValue.slice(0, i + 1) + char + newValue.slice(i + 1);
-                }
-            });
-
         return {
             selection,
-            value: newValue,
+            value: Array.from(postfix)
+                .reverse()
+                .reduce((newValue, char, index) => {
+                    const i = newValue.length - 1 - index;
+
+                    return newValue[i] !== char
+                        ? newValue.slice(0, i + 1) + char + newValue.slice(i + 1)
+                        : newValue;
+                }, value),
         };
     };
 }
