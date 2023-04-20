@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    NgZone,
+    ViewChild,
+} from '@angular/core';
 
 import mask from './mask';
 
@@ -29,14 +35,18 @@ export class PostfixDocExample2 {
     readonly maskitoOptions = mask;
     value = '';
 
+    constructor(private readonly ngZone: NgZone) {}
+
     onFocus(): void {
         if (!this.value) {
             this.value = '$.00';
 
-            setTimeout(() => {
-                // To put cursor after dollar ($|.00)
-                this.inputElement.nativeElement.setSelectionRange(1, 1);
-            });
+            this.ngZone.runOutsideAngular(() =>
+                setTimeout(() => {
+                    // To put cursor after dollar ($|.00)
+                    this.inputElement.nativeElement.setSelectionRange(1, 1);
+                }),
+            );
         }
     }
 
