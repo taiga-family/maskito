@@ -9,13 +9,13 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 })
 export class PostfixDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly timeMaskDocPage = `/${DemoPath.Time}`;
+    readonly processorsDocPage = `/${DemoPath.Processors}`;
 
-    readonly percentageExample1: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-percentage/mask.ts?raw'),
+    readonly patternMaskApproachExample1: TuiDocExample = {
+        MaskitoOptions: import('./examples/1-pattern-mask/mask.ts?raw'),
     };
 
-    readonly timeExample2: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-time-pm/mask.ts?raw'),
+    readonly postprocessorApproachExample2: TuiDocExample = {
+        MaskitoOptions: import('./examples/2-postprocessor/mask.ts?raw'),
     };
 }

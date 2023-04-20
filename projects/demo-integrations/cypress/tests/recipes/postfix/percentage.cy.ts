@@ -1,9 +1,9 @@
 import {DemoPath} from '@demo/path';
 
-describe('Postfix | Percentage', () => {
+describe('Postfix | Dynamic Pattern Mask Expression', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Postfix);
-        cy.get('#percentage input')
+        cy.get('#by-pattern-mask-expression input')
             .should('be.visible')
             .first()
             .should('have.value', '')

@@ -2,50 +2,61 @@
     header="With postfix"
     package="Recipes"
 >
-    <tui-notification status="warning">
-        The recipe requires basic understanding of
-        <strong>pattern mask expression</strong>
-        with
-        <strong>fixed characters</strong>
-        .
-        <br />
-        Read more about it in
-        <a
-            tuiLink
-            [routerLink]="maskExpressionDocPage"
-        >
-            "Mask expression"
-        </a>
-        topic.
-    </tui-notification>
+    There are two approaches to add
+    <strong>postfix</strong>
+    for masked input. Every approach has its own behaviour and requires basic
+    understanding of different core concepts.
 
     <tui-doc-example
-        id="percentage"
-        heading="Percentage"
-        [content]="percentageExample1"
+        id="by-pattern-mask-expression"
+        heading="By pattern mask expression"
+        [content]="patternMaskApproachExample1"
+        [description]="patternMaskApproachDescription"
     >
+        <ng-template #patternMaskApproachDescription>
+            This example demonstrates how to create postfix via dynamic
+            <strong>
+                <a
+                    tuiLink
+                    [routerLink]="maskExpressionDocPage"
+                >
+                     pattern mask expression
+                </a>
+            </strong>
+            . Percent symbol is a trailing fixed character, which will be
+            automatically added when user enters the first digit.
+        </ng-template>
         <postfix-doc-example-1></postfix-doc-example-1>
     </tui-doc-example>
 
     <tui-doc-example
-        id="time"
-        heading="Time"
-        [content]="timeExample2"
-        [description]="timeExampleDescription"
+        id="by-postprocessor"
+        heading="By postprocessor"
+        [content]="postprocessorApproachExample2"
+        [description]="postprocessorApproachDescription"
     >
-        <ng-template #timeExampleDescription>
-            This example is just demonstration how
-            <strong>Maskito</strong>
-            manages trailing fixed characters.
-            <br />
-            Use ready-to-use
-            <a
-                tuiLink
-                [routerLink]="timeMaskDocPage"
-            >
-                Time
-            </a>
-            mask for more comprehensive UX.
+        <ng-template #postprocessorApproachDescription>
+            <p class="tui-space_top-0">
+                This example demonstrates how to create postfix via
+                <strong>
+                    <a
+                        tuiLink
+                        [routerLink]="processorsDocPage"
+                    >
+                        postprocessor
+                    </a>
+                </strong>
+                . It provides more flexibility, and you can configure any
+                desired behaviour. You can use built-in
+                <code>maskitoPostfixPostprocessorGenerator</code>
+                or create your own.
+            </p>
+
+            <tui-notification status="warning">
+                Don't forget that
+                <code>mask</code>
+                property should be compatible with a new postfix!
+            </tui-notification>
         </ng-template>
         <postfix-doc-example-2></postfix-doc-example-2>
     </tui-doc-example>

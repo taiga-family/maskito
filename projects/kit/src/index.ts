@@ -3,7 +3,10 @@ export {maskitoDateRangeOptionsGenerator} from './lib/masks/date-range';
 export {maskitoDateTimeOptionsGenerator} from './lib/masks/date-time';
 export {maskitoNumberOptionsGenerator, maskitoParseNumber} from './lib/masks/number';
 export {maskitoTimeOptionsGenerator} from './lib/masks/time';
-export {maskitoPrefixPostprocessorGenerator} from './lib/processors';
+export {
+    maskitoPostfixPostprocessorGenerator,
+    maskitoPrefixPostprocessorGenerator,
+} from './lib/processors';
 export {
     MaskitoDateMode,
     MaskitoDateSegments,
