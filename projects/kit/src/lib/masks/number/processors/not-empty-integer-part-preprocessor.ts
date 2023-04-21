@@ -1,6 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
+import {escapeRegExp} from '../../../utils';
 
 /**
  * It pads integer part with zero if user types decimal separator (for empty input).
@@ -13,7 +14,9 @@ export function createNotEmptyIntegerPartPreprocessor({
     decimalSeparator: string;
     precision: number;
 }): NonNullable<MaskitoOptions['preprocessor']> {
-    const startWithDecimalSepRegExp = new RegExp(`^\\D*\\${decimalSeparator}`);
+    const startWithDecimalSepRegExp = new RegExp(
+        `^\\D*${escapeRegExp(decimalSeparator)}`,
+    );
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;

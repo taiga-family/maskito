@@ -1,4 +1,5 @@
 import {CHAR_EM_DASH, CHAR_EN_DASH, CHAR_HYPHEN, CHAR_MINUS} from '../../../constants';
+import {escapeRegExp} from '../../../utils';
 
 export function maskitoParseNumber(
     maskedNumber: string,
@@ -11,7 +12,7 @@ export function maskitoParseNumber(
     return Number(
         (negativeSign ? CHAR_HYPHEN : '') +
             maskedNumber
-                .replace(new RegExp(`[^\\d\\${decimalSeparator}]`, 'g'), '')
+                .replace(new RegExp(`[^\\d${escapeRegExp(decimalSeparator)}]`, 'g'), '')
                 .replace(decimalSeparator, '.'),
     );
 }

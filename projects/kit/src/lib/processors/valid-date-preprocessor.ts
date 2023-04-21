@@ -1,7 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {POSSIBLE_DATES_SEPARATOR} from '../constants';
-import {parseDateRangeString, validateDateString} from '../utils';
+import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
     dateModeTemplate,
@@ -27,7 +27,10 @@ export function createValidDatePreprocessor({
         }
 
         const newCharacters = data.replace(
-            new RegExp(`[^\\d\\${dateSegmentsSeparator}${datesSeparator}]`, 'g'),
+            new RegExp(
+                `[^\\d${escapeRegExp(dateSegmentsSeparator)}${datesSeparator}]`,
+                'g',
+            ),
             '',
         );
 

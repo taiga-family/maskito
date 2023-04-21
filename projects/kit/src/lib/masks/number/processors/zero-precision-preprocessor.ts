@@ -1,5 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {escapeRegExp} from '../../../utils';
+
 /**
  * It drops decimal part if precision is zero.
  * @example User pastes '123.45' (but precision is zero) => 123
@@ -12,7 +14,7 @@ export function createZeroPrecisionPreprocessor(
         return elementState => elementState;
     }
 
-    const decimalPartRegExp = new RegExp(`\\${decimalSeparator}.*$`, 'g');
+    const decimalPartRegExp = new RegExp(`${escapeRegExp(decimalSeparator)}.*$`, 'g');
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
