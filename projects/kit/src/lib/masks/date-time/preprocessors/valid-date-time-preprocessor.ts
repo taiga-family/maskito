@@ -4,7 +4,7 @@ import {
     DEFAULT_TIME_SEGMENT_MAX_VALUES,
     POSSIBLE_DATE_TIME_SEPARATOR,
 } from '../../../constants';
-import {validateDateString} from '../../../utils';
+import {escapeRegExp, validateDateString} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 import {DATE_TIME_SEPARATOR} from '../constants';
 import {parseDateTimeString} from '../utils';
@@ -31,7 +31,7 @@ export function createValidDateTimePreprocessor({
         }
 
         const newCharacters = data.replace(
-            new RegExp(`[^\\d\\${dateSegmentsSeparator}]`, 'g'),
+            new RegExp(`[^\\d${escapeRegExp(dateSegmentsSeparator)}]`, 'g'),
             '',
         );
 

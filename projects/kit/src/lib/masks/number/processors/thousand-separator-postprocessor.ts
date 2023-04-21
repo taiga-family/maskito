@@ -23,7 +23,7 @@ export function createThousandSeparatorPostprocessor({
         let [from, to] = selection;
 
         const processedIntegerPart = Array.from(
-            integerPart.replace(new RegExp(`^\\${CHAR_MINUS}`), ''),
+            integerPart.replace(new RegExp(`^${CHAR_MINUS}`), ''),
         ).reduceRight((formattedValuePart, char, i) => {
             const isPositionForSeparator =
                 formattedValuePart.length && (formattedValuePart.length + 1) % 4 === 0;

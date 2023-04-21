@@ -1,6 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
+import {escapeRegExp} from '../../../utils';
 
 export function generateMaskExpression({
     decimalSeparator,
@@ -14,11 +15,11 @@ export function generateMaskExpression({
     thousandSeparator: string;
 }): MaskitoOptions['mask'] {
     const digit = '\\d';
-    const optionalMinus = isNegativeAllowed ? `\\${CHAR_MINUS}?` : '';
+    const optionalMinus = isNegativeAllowed ? `${CHAR_MINUS}?` : '';
     const integerPart = thousandSeparator
-        ? `[${digit}\\${thousandSeparator}]*`
+        ? `[${digit}${escapeRegExp(thousandSeparator)}]*`
         : `[${digit}]*`;
-    const decimalPart = `(\\${decimalSeparator}${digit}{0,${
+    const decimalPart = `(${escapeRegExp(decimalSeparator)}${digit}{0,${
         Number.isFinite(precision) ? precision : ''
     }})?`;
 

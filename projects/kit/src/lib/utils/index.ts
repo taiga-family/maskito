@@ -8,6 +8,7 @@ export * from './date/parse-date-string';
 export * from './date/segments-to-date';
 export * from './date/to-date-string';
 export * from './date/validate-date-string';
+export * from './escape-reg-exp';
 export * from './get-object-from-entries';
 export * from './is-empty';
 export * from './pad-with-zeroes-until-valid';
