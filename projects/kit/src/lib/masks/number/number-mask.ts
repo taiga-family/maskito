@@ -8,6 +8,10 @@ import {
     CHAR_NO_BREAK_SPACE,
 } from '../../constants';
 import {
+    maskitoPostfixPostprocessorGenerator,
+    maskitoPrefixPostprocessorGenerator,
+} from '../../processors';
+import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
     createMaxValidationPostprocessor,
@@ -30,6 +34,8 @@ export function maskitoNumberOptionsGenerator({
         thousandSeparator,
     ),
     decimalZeroPadding = false,
+    prefix = '',
+    postfix = '',
 }: {
     max?: number;
     isNegativeAllowed?: boolean;
@@ -38,6 +44,8 @@ export function maskitoNumberOptionsGenerator({
     decimalPseudoSeparators?: string[];
     decimalZeroPadding?: boolean;
     thousandSeparator?: string;
+    prefix?: string;
+    postfix?: string;
 } = {}): MaskitoOptions {
     const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
         char => char !== thousandSeparator && char !== decimalSeparator,
@@ -49,6 +57,8 @@ export function maskitoNumberOptionsGenerator({
             precision,
             thousandSeparator,
             isNegativeAllowed,
+            prefix,
+            postfix,
         }),
         preprocessor: maskitoPipe(
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
@@ -64,7 +74,14 @@ export function maskitoNumberOptionsGenerator({
         postprocessor: maskitoPipe(
             createLeadingZeroesValidationPostprocessor(decimalSeparator),
             createMaxValidationPostprocessor({decimalSeparator, max}),
-            createThousandSeparatorPostprocessor({decimalSeparator, thousandSeparator}),
+            maskitoPrefixPostprocessorGenerator(prefix),
+            maskitoPostfixPostprocessorGenerator(postfix),
+            createThousandSeparatorPostprocessor({
+                decimalSeparator,
+                thousandSeparator,
+                prefix,
+                postfix,
+            }),
             createDecimalZeroPaddingPostprocessor({
                 decimalSeparator,
                 decimalZeroPadding,

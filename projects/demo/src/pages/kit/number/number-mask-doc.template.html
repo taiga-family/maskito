@@ -100,9 +100,12 @@
                 >
                     Enter a number
                     <input
+                        #apiPageInput
                         tuiTextfield
                         inputmode="decimal"
                         [maskito]="maskitoOptions"
+                        (focus)="onFocus()"
+                        (blur)="onBlur()"
                     />
                 </tui-input>
             </ng-template>
@@ -227,6 +230,34 @@
                 <p>
                     <strong>Default:</strong>
                     non-breaking space.
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="prefix"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="prefix"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A prefix symbol, like currency.
+
+                <p>
+                    <strong>Default:</strong>
+                    empty string (no prefix).
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="postfix"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="postfix"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A postfix symbol, like currency.
+
+                <p>
+                    <strong>Default:</strong>
+                    empty string (no postfix).
                 </p>
             </ng-template>
         </tui-doc-documentation>

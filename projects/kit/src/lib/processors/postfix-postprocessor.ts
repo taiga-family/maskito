@@ -3,6 +3,10 @@ import {MaskitoOptions} from '@maskito/core';
 export function maskitoPostfixPostprocessorGenerator(
     postfix: string,
 ): NonNullable<MaskitoOptions['postprocessor']> {
+    if (!postfix) {
+        return elementState => elementState;
+    }
+
     return ({value, selection}, initialElementState) => {
         if (
             value.endsWith(postfix) || // already valid

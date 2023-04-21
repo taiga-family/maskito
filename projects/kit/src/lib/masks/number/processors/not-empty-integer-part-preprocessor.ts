@@ -1,6 +1,5 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {CHAR_MINUS} from '../../../constants';
 import {escapeRegExp} from '../../../utils';
 
 /**
@@ -30,12 +29,11 @@ export function createNotEmptyIntegerPartPreprocessor({
             return {elementState, data};
         }
 
-        const valueBeforeCursor = value.slice(0, from);
+        const digitsBeforeCursor = value.slice(0, from).match(/\d+/);
 
         return {
             elementState,
-            data:
-                valueBeforeCursor && valueBeforeCursor !== CHAR_MINUS ? data : `0${data}`,
+            data: digitsBeforeCursor ? data : `0${data}`,
         };
     };
 }
