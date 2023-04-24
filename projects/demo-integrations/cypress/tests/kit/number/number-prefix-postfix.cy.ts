@@ -153,7 +153,7 @@ describe('Number | Prefix & Postfix', () => {
     describe('cannot erase postfix', () => {
         it('Select all + Delete', () => {
             cy.get('@input')
-                .type('{selectAll}{backspace}')
+                .type('{selectAll}{del}')
                 .should('have.value', '$ per day')
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1);
