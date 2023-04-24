@@ -58,23 +58,52 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="decimal-zero-padding"
-            heading="Decimal zero padding"
-            [content]="decimalZeroPaddingExample3"
-            [description]="decimalZeroPaddingDescription"
+            id="postfix"
+            heading="Postfix"
+            [content]="postfixExample3"
+            [description]="postfixDescription"
         >
-            <ng-template #decimalZeroPaddingDescription>
-                Set
-                <code>decimalZeroPadding: true</code>
-                to always show trailing zeroes.
+            <ng-template #postfixDescription>
+                <p class="tui-space_top-0">
+                    Use
+                    <code>postfix</code>
+                    parameter to set non-removable text after the number.
+                </p>
+                <p>
+                    This example also shows how to restrict the greatest
+                    permitted value via
+                    <code>max</code>
+                    parameter.
+                </p>
             </ng-template>
             <number-mask-doc-example-3></number-mask-doc-example-3>
         </tui-doc-example>
 
         <tui-doc-example
+            id="decimal-zero-padding"
+            heading="Decimal zero padding"
+            [content]="decimalZeroPaddingExample4"
+            [description]="decimalZeroPaddingDescription"
+        >
+            <ng-template #decimalZeroPaddingDescription>
+                <p class="tui-space_top-0">
+                    Set
+                    <code>decimalZeroPadding: true</code>
+                    to always show trailing zeroes.
+                </p>
+                <p>
+                    Non removable dollar sign is achieved by using
+                    <code>prefix</code>
+                    parameter.
+                </p>
+            </ng-template>
+            <number-mask-doc-example-4></number-mask-doc-example-4>
+        </tui-doc-example>
+
+        <tui-doc-example
             id="dynamic-decimal-zero-padding"
             heading="Dynamic decimal zero padding"
-            [content]="decimalZeroPaddingExample4"
+            [content]="dynamicDecimalZeroPaddingExample5"
             [description]="dynamicDecimalZeroPaddingDescription"
         >
             <ng-template #dynamicDecimalZeroPaddingDescription>
@@ -87,7 +116,7 @@
                     and enable it only after user inserts decimal separator.
                 </div>
             </ng-template>
-            <number-mask-doc-example-4></number-mask-doc-example-4>
+            <number-mask-doc-example-5></number-mask-doc-example-5>
         </tui-doc-example>
     </ng-template>
 

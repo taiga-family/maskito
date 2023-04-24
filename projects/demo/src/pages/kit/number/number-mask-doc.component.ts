@@ -37,13 +37,17 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         MaskitoOptions: import('./examples/2-separators/mask.ts?raw'),
     };
 
-    readonly decimalZeroPaddingExample3: TuiDocExample = {
-        MaskitoOptions: import('./examples/3-decimal-zero-padding/mask.ts?raw'),
+    readonly postfixExample3: TuiDocExample = {
+        MaskitoOptions: import('./examples/3-postfix/mask.ts?raw'),
     };
 
     readonly decimalZeroPaddingExample4: TuiDocExample = {
-        MaskitoOptions: import('./examples/4-dynamic-decimal-zero-padding/mask.ts?raw'),
-        Component: import('./examples/4-dynamic-decimal-zero-padding/component.ts?raw'),
+        MaskitoOptions: import('./examples/4-decimal-zero-padding/mask.ts?raw'),
+    };
+
+    readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
+        MaskitoOptions: import('./examples/5-dynamic-decimal-zero-padding/mask.ts?raw'),
+        Component: import('./examples/5-dynamic-decimal-zero-padding/component.ts?raw'),
     };
 
     apiPageControl = new FormControl('');

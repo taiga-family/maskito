@@ -1,8 +1,8 @@
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 export default maskitoNumberOptionsGenerator({
-    decimalZeroPadding: true,
-    precision: 2,
-    decimalSeparator: '.',
     isNegativeAllowed: false,
+    precision: 2,
+    max: 100,
+    postfix: '%',
 });

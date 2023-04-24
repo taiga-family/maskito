@@ -6,15 +6,15 @@ import mask from './mask';
     selector: 'number-mask-doc-example-3',
     template: `
         <tui-input
-            tuiTextfieldPrefix="$"
+            [tuiTextfieldLabelOutside]="true"
             [style.max-width.rem]="30"
             [(ngModel)]="value"
         >
-            Cost
             <input
                 tuiTextfield
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
+                (focus)="onFocus()"
                 (blur)="onBlur()"
             />
         </tui-input>
@@ -22,10 +22,18 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample3 {
-    value = '100.00';
+    value = '97%';
     maskitoOptions = mask;
 
+    onFocus(): void {
+        if (!this.value) {
+            this.value = '%';
+        }
+    }
+
     onBlur(): void {
-        this.value = this.value.startsWith('.') ? `0${this.value}` : this.value;
+        if (this.value === '%') {
+            this.value = '0%';
+        }
     }
 }
