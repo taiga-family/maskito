@@ -1,9 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
-import {CHAR_MINUS} from '../../../constants';
-
 /**
- * It removes leading zeroes for integer part.
+ * It removes repeated leading zeroes for integer part.
  * @example 0,|00005 => Backspace => |5
  * @example -0,|00005 => Backspace => -|5
  * @example User types "000000" => 0|
@@ -22,20 +20,12 @@ export function createLeadingZeroesValidationPostprocessor(
             return {value, selection};
         }
 
-        const isIntegerPartEmpty =
-            !zeroTrimmedIntegerPart || zeroTrimmedIntegerPart === CHAR_MINUS;
-        const newIntegerPart = isIntegerPartEmpty
-            ? `${zeroTrimmedIntegerPart}0`
-            : zeroTrimmedIntegerPart;
-
-        const newFrom =
-            from - countTrimmedZeroesBefore(value, from) + Number(isIntegerPartEmpty);
-        const newTo =
-            to - countTrimmedZeroesBefore(value, to) + Number(isIntegerPartEmpty);
+        const newFrom = from - countTrimmedZeroesBefore(value, from);
+        const newTo = to - countTrimmedZeroesBefore(value, to);
 
         return {
             value:
-                newIntegerPart +
+                zeroTrimmedIntegerPart +
                 (hasDecimalSeparator ? decimalSeparator : '') +
                 decimalPart,
             selection: [Math.max(newFrom, 0), Math.max(newTo, 0)],
@@ -44,11 +34,18 @@ export function createLeadingZeroesValidationPostprocessor(
 }
 
 function trimLeadingZeroes(value: string): string {
-    return value.replace(new RegExp(`^(${CHAR_MINUS})?0+`), '$1');
+    return value
+        .replace(/^(\D+)?0+(?=0)/, '$1') // all leading zeroes followed by another zero
+        .replace(/^(\D+)?0+(?=[1-9])/, '$1'); // zero followed by not-zero digit
 }
 
 function countTrimmedZeroesBefore(value: string, index: number): number {
     const valueBefore = value.slice(0, index);
+    const followedByZero = value.slice(index).startsWith('0');
 
-    return valueBefore.length - trimLeadingZeroes(valueBefore).length;
+    return (
+        valueBefore.length -
+        trimLeadingZeroes(valueBefore).length +
+        (followedByZero ? 1 : 0)
+    );
 }

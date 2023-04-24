@@ -18,7 +18,7 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
     });
 
     it('−0|0005 => −|5', () => {
-        const {value, selection} = process('−00005', [1, 1]);
+        const {value, selection} = process('−00005', [2, 2]);
 
         expect(value).toBe('−5');
         expect(selection).toEqual([1, 1]);
@@ -29,6 +29,26 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
 
         expect(value).toBe('0,42');
         expect(selection).toEqual([3, 3]);
+    });
+
+    it('$0000,4|2 => 0,4|2', () => {
+        const {value, selection} = process('$0000,42', [
+            '$0000,4'.length,
+            '$0000,4'.length,
+        ]);
+
+        expect(value).toBe('$0,42');
+        expect(selection).toEqual([4, 4]);
+    });
+
+    it('$ 0000,4|2 => 0,4|2', () => {
+        const {value, selection} = process('$ 0000,42', [
+            '$ 0000,4'.length,
+            '$ 0000,4'.length,
+        ]);
+
+        expect(value).toBe('$ 0,42');
+        expect(selection).toEqual([5, 5]);
     });
 
     it('−0000,4|2 => -0.4|2', () => {

@@ -3,6 +3,10 @@ import {MaskitoOptions} from '@maskito/core';
 export function maskitoPrefixPostprocessorGenerator(
     prefix: string,
 ): NonNullable<MaskitoOptions['postprocessor']> {
+    if (!prefix) {
+        return elementState => elementState;
+    }
+
     return ({value, selection}, initialElementState) => {
         if (
             value.startsWith(prefix) || // already valid

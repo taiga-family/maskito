@@ -1,6 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
+import {escapeRegExp} from '../../../utils';
 
 /**
  * It adds symbol for separating thousands.
@@ -9,60 +10,75 @@ import {CHAR_MINUS} from '../../../constants';
 export function createThousandSeparatorPostprocessor({
     thousandSeparator,
     decimalSeparator,
+    prefix,
+    postfix,
 }: {
     thousandSeparator: string;
     decimalSeparator: string;
+    prefix: string;
+    postfix: string;
 }): NonNullable<MaskitoOptions['postprocessor']> {
     if (!thousandSeparator) {
         return elementState => elementState;
     }
+
+    const prefixReg = new RegExp(`^${escapeRegExp(prefix)}${CHAR_MINUS}?`);
+    const postfixReg = new RegExp(`${escapeRegExp(postfix)}$`);
 
     return ({value, selection}) => {
         const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
-        const processedIntegerPart = Array.from(
-            integerPart.replace(new RegExp(`^${CHAR_MINUS}`), ''),
-        ).reduceRight((formattedValuePart, char, i) => {
-            const isPositionForSeparator =
-                formattedValuePart.length && (formattedValuePart.length + 1) % 4 === 0;
+        const cleanIntegerPart = integerPart
+            .replace(prefixReg, '')
+            .replace(postfixReg, '');
+        const [integerPartPrefix = ''] = integerPart.match(prefixReg) || [];
+        const [integerPartPostfix = ''] = integerPart.match(postfixReg) || [];
+        const processedIntegerPart = Array.from(cleanIntegerPart).reduceRight(
+            (formattedValuePart, char, i) => {
+                const isPositionForSeparator =
+                    formattedValuePart.length &&
+                    (formattedValuePart.length + 1) % 4 === 0;
 
-            if (char === thousandSeparator && isPositionForSeparator) {
-                return char + formattedValuePart;
-            }
+                if (char === thousandSeparator && isPositionForSeparator) {
+                    return char + formattedValuePart;
+                }
 
-            if (char === thousandSeparator && !isPositionForSeparator) {
+                if (char === thousandSeparator && !isPositionForSeparator) {
+                    if (i <= initialFrom) {
+                        from--;
+                    }
+
+                    if (i <= initialTo) {
+                        to--;
+                    }
+
+                    return formattedValuePart;
+                }
+
+                if (!isPositionForSeparator) {
+                    return char + formattedValuePart;
+                }
+
                 if (i <= initialFrom) {
-                    from--;
+                    from++;
                 }
 
                 if (i <= initialTo) {
-                    to--;
+                    to++;
                 }
 
-                return formattedValuePart;
-            }
-
-            if (!isPositionForSeparator) {
-                return char + formattedValuePart;
-            }
-
-            if (i <= initialFrom) {
-                from++;
-            }
-
-            if (i <= initialTo) {
-                to++;
-            }
-
-            return char + thousandSeparator + formattedValuePart;
-        }, '');
+                return char + thousandSeparator + formattedValuePart;
+            },
+            '',
+        );
 
         return {
             value:
-                (value.startsWith(CHAR_MINUS) ? CHAR_MINUS : '') +
+                integerPartPrefix +
                 processedIntegerPart +
+                integerPartPostfix +
                 (value.includes(decimalSeparator) ? decimalSeparator : '') +
                 decimalPart,
             selection: [from, to],

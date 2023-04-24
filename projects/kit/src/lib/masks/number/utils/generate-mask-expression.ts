@@ -8,22 +8,40 @@ export function generateMaskExpression({
     isNegativeAllowed,
     precision,
     thousandSeparator,
+    prefix,
+    postfix,
 }: {
     decimalSeparator: string;
     isNegativeAllowed: boolean;
     precision: number;
     thousandSeparator: string;
+    prefix: string;
+    postfix: string;
 }): MaskitoOptions['mask'] {
+    const computedPrefix = computeAllOptionalCharsRegExp(prefix);
     const digit = '\\d';
     const optionalMinus = isNegativeAllowed ? `${CHAR_MINUS}?` : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator)}]*`
         : `[${digit}]*`;
-    const decimalPart = `(${escapeRegExp(decimalSeparator)}${digit}{0,${
-        Number.isFinite(precision) ? precision : ''
-    }})?`;
+    const decimalPart =
+        precision > 0
+            ? `(${escapeRegExp(decimalSeparator)}${digit}{0,${
+                  Number.isFinite(precision) ? precision : ''
+              }})?`
+            : '';
+    const computedPostfix = computeAllOptionalCharsRegExp(postfix);
 
-    return precision > 0
-        ? new RegExp(`^${optionalMinus}${integerPart}${decimalPart}$`)
-        : new RegExp(`^${optionalMinus}${integerPart}$`);
+    return new RegExp(
+        `^${computedPrefix}${optionalMinus}${integerPart}${decimalPart}${computedPostfix}$`,
+    );
+}
+
+function computeAllOptionalCharsRegExp(str: string): string {
+    return str
+        ? `${str
+              .split('')
+              .map(char => `${escapeRegExp(char)}?`)
+              .join('')}`
+        : '';
 }

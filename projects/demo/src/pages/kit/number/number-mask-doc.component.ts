@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    NgZone,
+    ViewChild,
+} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
@@ -16,6 +22,9 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
+    @ViewChild('apiPageInput', {read: ElementRef})
+    apiPageInput!: ElementRef<HTMLInputElement>;
+
     readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-number-demo.md?raw'
     );
@@ -51,8 +60,43 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     decimalZeroPadding = false;
     decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
     thousandSeparator = ' ';
+    prefix = '';
+    postfix = '';
+
+    constructor(private readonly ngZone: NgZone) {}
 
     updateOptions(): void {
         this.maskitoOptions = maskitoNumberOptionsGenerator(this);
+    }
+
+    onFocus(): void {
+        let value: string = this.apiPageControl.value;
+
+        if (!value) {
+            value = this.prefix + this.postfix;
+            this.apiPageControl.patchValue(value);
+        }
+
+        if (this.postfix) {
+            const newCaretIndex = value.length - this.postfix.length;
+
+            this.ngZone.runOutsideAngular(() => {
+                setTimeout(() => {
+                    // To put cursor before postfix
+                    this.apiPageInput.nativeElement.setSelectionRange(
+                        newCaretIndex,
+                        newCaretIndex,
+                    );
+                });
+            });
+        }
+    }
+
+    onBlur(): void {
+        const value = this.apiPageControl.value;
+
+        if (value && value === this.prefix + this.postfix) {
+            this.apiPageControl.patchValue('');
+        }
     }
 }
