@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/tinkoff/maskito/compare/v0.9.0...v0.10.0) (2023-04-25)
+
+### Features
+
+- **kit:** `Number` keeps untouched decimal part if `precision: Infinity`
+  ([#253](https://github.com/tinkoff/maskito/issues/253))
+  ([261779e](https://github.com/tinkoff/maskito/commit/261779ead327397a61b27e634bc827ee70b718f4))
+- **kit:** `Number` supports new `prefix` & `postfix` parameters ([#264](https://github.com/tinkoff/maskito/issues/264))
+  ([6e78581](https://github.com/tinkoff/maskito/commit/6e785818dabcde623d8c1c40a584166a0a66f5b6))
+- **kit:** new `maskitoPostfixPostprocessorGenerator` ([#257](https://github.com/tinkoff/maskito/issues/257))
+  ([fdc86db](https://github.com/tinkoff/maskito/commit/fdc86dbad368bfc17efd1047b7d68d9622968bb0))
+
+### Bug Fixes
+
+- **kit:** `Number` fails to trim leading zeroes after deleting of leading digit
+  ([#268](https://github.com/tinkoff/maskito/issues/268))
+  ([4ae0010](https://github.com/tinkoff/maskito/commit/4ae0010ef2149694d22d7ae9eb8c9880120c8c75))
+- **kit:** `Number` should trim redundant thousand separators ([#267](https://github.com/tinkoff/maskito/issues/267))
+  ([100b793](https://github.com/tinkoff/maskito/commit/100b79317a420103ca98a3b43fe646a6f77d19d5))
+- **kit:** fix first zero in short-format date-mask ([#251](https://github.com/tinkoff/maskito/issues/251))
+  ([08bdfd2](https://github.com/tinkoff/maskito/commit/08bdfd26727777c3a6fc870e433003be2b64cc0e))
+
 ## [0.9.0](https://github.com/tinkoff/maskito/compare/v0.8.1...v0.9.0) (2023-03-31)
 
 ### Features
