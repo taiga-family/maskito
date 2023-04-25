@@ -122,6 +122,19 @@ describe('Number | thousandSeparator', () => {
                 .should('have.prop', 'selectionStart', '100'.length)
                 .should('have.prop', 'selectionEnd', '100'.length);
         });
+
+        it('1|-234-567 => Backspace => 234-567', () => {
+            cy.get('@input')
+                .type('1234567')
+                .type('{moveToStart}{rightArrow}')
+                .should('have.value', '1-234-567')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '234-567')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
     });
 
     it('allows to set empty string as thousand separator', () => {
