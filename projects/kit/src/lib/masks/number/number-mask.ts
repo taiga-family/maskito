@@ -72,7 +72,10 @@ export function maskitoNumberOptionsGenerator({
             createZeroPrecisionPreprocessor(precision, decimalSeparator),
         ),
         postprocessor: maskitoPipe(
-            createLeadingZeroesValidationPostprocessor(decimalSeparator),
+            createLeadingZeroesValidationPostprocessor(
+                decimalSeparator,
+                thousandSeparator,
+            ),
             createMaxValidationPostprocessor({decimalSeparator, max}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),

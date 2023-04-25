@@ -1,5 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
+import {escapeRegExp} from '../../../utils';
+
 /**
  * It removes repeated leading zeroes for integer part.
  * @example 0,|00005 => Backspace => |5
@@ -9,7 +11,35 @@ import {MaskitoOptions} from '@maskito/core';
  */
 export function createLeadingZeroesValidationPostprocessor(
     decimalSeparator: string,
+    thousandSeparator: string,
 ): NonNullable<MaskitoOptions['postprocessor']> {
+    const trimLeadingZeroes = (value: string): string => {
+        const escapedThousandSeparator = escapeRegExp(thousandSeparator);
+
+        return value
+            .replace(
+                // all leading zeroes followed by another zero
+                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=0)`),
+                '$1',
+            )
+            .replace(
+                // zero followed by not-zero digit
+                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=[1-9])`),
+                '$1',
+            );
+    };
+
+    const countTrimmedZeroesBefore = (value: string, index: number): number => {
+        const valueBefore = value.slice(0, index);
+        const followedByZero = value.slice(index).startsWith('0');
+
+        return (
+            valueBefore.length -
+            trimLeadingZeroes(valueBefore).length +
+            (followedByZero ? 1 : 0)
+        );
+    };
+
     return ({value, selection}) => {
         const [from, to] = selection;
         const hasDecimalSeparator = value.includes(decimalSeparator);
@@ -31,21 +61,4 @@ export function createLeadingZeroesValidationPostprocessor(
             selection: [Math.max(newFrom, 0), Math.max(newTo, 0)],
         };
     };
-}
-
-function trimLeadingZeroes(value: string): string {
-    return value
-        .replace(/^(\D+)?0+(?=0)/, '$1') // all leading zeroes followed by another zero
-        .replace(/^(\D+)?0+(?=[1-9])/, '$1'); // zero followed by not-zero digit
-}
-
-function countTrimmedZeroesBefore(value: string, index: number): number {
-    const valueBefore = value.slice(0, index);
-    const followedByZero = value.slice(index).startsWith('0');
-
-    return (
-        valueBefore.length -
-        trimLeadingZeroes(valueBefore).length +
-        (followedByZero ? 1 : 0)
-    );
 }

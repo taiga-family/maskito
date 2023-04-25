@@ -88,9 +88,7 @@ describe('Number | Zero integer part', () => {
                 .should('have.prop', 'selectionEnd', '0'.length);
         });
 
-        // TODO: BUG!
-        // https://github.com/Tinkoff/maskito/issues/266
-        it.skip('1|-000-000 => Backspace => 0', () => {
+        it('1|-000-000 => Backspace => 0', () => {
             openNumberPage('thousandSeparator=_&precision=2');
 
             cy.get('@input')
