@@ -14,15 +14,17 @@ export function createLeadingZeroesValidationPostprocessor(
     thousandSeparator: string,
 ): NonNullable<MaskitoOptions['postprocessor']> {
     const trimLeadingZeroes = (value: string): string => {
+        const escapedThousandSeparator = escapeRegExp(thousandSeparator);
+
         return value
             .replace(
                 // all leading zeroes followed by another zero
-                new RegExp(`^(\\D+)?[0${escapeRegExp(thousandSeparator)}]+(?=0)`),
+                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=0)`),
                 '$1',
             )
             .replace(
                 // zero followed by not-zero digit
-                new RegExp(`^(\\D+)?[0${escapeRegExp(thousandSeparator)}]+(?=[1-9])`),
+                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=[1-9])`),
                 '$1',
             );
     };
