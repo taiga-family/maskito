@@ -11,7 +11,7 @@ import {tuiPure} from '@taiga-ui/cdk';
 import {getMaskitoOptions} from './mask';
 
 @Component({
-    selector: 'number-mask-doc-example-4',
+    selector: 'number-mask-doc-example-5',
     template: `
         <label tuiLabel="Enable decimal zero padding by typing dot">
             <tui-input
@@ -31,7 +31,7 @@ import {getMaskitoOptions} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample4 {
+export class NumberMaskDocExample5 {
     value = '42';
     decimalZeroPadding = this.value.includes('.');
 

@@ -65,4 +65,18 @@ describe('maskitoParseNumber', () => {
             expect(maskitoParseNumber('-123.456')).toBe(-123.456);
         });
     });
+
+    describe('Prefix & Postfix', () => {
+        it('parses number with only prefix', () => {
+            expect(maskitoParseNumber('$42')).toBe(42);
+        });
+
+        it('parses number with only postfix', () => {
+            expect(maskitoParseNumber('42%')).toBe(42);
+        });
+
+        it('parses number with both prefix and postfix', () => {
+            expect(maskitoParseNumber('$42 per day')).toBe(42);
+        });
+    });
 });
