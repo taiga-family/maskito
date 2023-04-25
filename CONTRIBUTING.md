@@ -21,12 +21,13 @@ steps to kick-start the development:
 npm run lint
 npm run build
 npm run test
+npm run cy:run
 ```
 
 ## Pull Request Process
 
 1. We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) in our commit messages, i.e.
    `feat(core): improve typing`
-2. Update [README.md](README.md) to reflect changes related to public API and everything relevant
-3. Make sure you cover all code changes with unit tests
+2. Update [demo](projects/demo) application to reflect changes related to public API and everything relevant
+3. Make sure you cover all code changes with unit tests and/or [Cypress](https://www.cypress.io) tests
 4. When you are ready, create Pull Request of your fork into original repository
