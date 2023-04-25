@@ -57,7 +57,7 @@ describe('Number | Zero integer part', () => {
         });
     });
 
-    describe('value cannot start with many digits', () => {
+    describe('value cannot start with many leading zeroes', () => {
         it('precision = 2 & positive number', () => {
             openNumberPage('precision=2');
 
@@ -86,6 +86,21 @@ describe('Number | Zero integer part', () => {
                 .should('have.value', '0')
                 .should('have.prop', 'selectionStart', '0'.length)
                 .should('have.prop', 'selectionEnd', '0'.length);
+        });
+
+        // TODO: BUG!
+        // https://github.com/Tinkoff/maskito/issues/266
+        it.skip('1|-000-000 => Backspace => 0', () => {
+            openNumberPage('thousandSeparator=_&precision=2');
+
+            cy.get('@input')
+                .type('1000000')
+                .should('have.value', '1_000_000')
+                .type('{moveToStart}{rightArrow}')
+                .type('{backspace}')
+                .should('have.value', '0')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
         });
     });
 

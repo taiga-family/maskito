@@ -37,7 +37,9 @@ export function createThousandSeparatorPostprocessor({
         const [integerPartPostfix = ''] = integerPart.match(postfixReg) || [];
         const processedIntegerPart = Array.from(cleanIntegerPart).reduceRight(
             (formattedValuePart, char, i) => {
+                const isLeadingThousandSeparator = !i && char === thousandSeparator;
                 const isPositionForSeparator =
+                    !isLeadingThousandSeparator &&
                     formattedValuePart.length &&
                     (formattedValuePart.length + 1) % 4 === 0;
 
@@ -46,11 +48,11 @@ export function createThousandSeparatorPostprocessor({
                 }
 
                 if (char === thousandSeparator && !isPositionForSeparator) {
-                    if (i <= initialFrom) {
+                    if (i && i <= initialFrom) {
                         from--;
                     }
 
-                    if (i <= initialTo) {
+                    if (i && i <= initialTo) {
                         to--;
                     }
 

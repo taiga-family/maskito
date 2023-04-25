@@ -46,9 +46,7 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', '$100'.length);
         });
 
-        // TODO: BUG!
-        // https://github.com/Tinkoff/maskito/issues/263
-        it.skip('$|1_234 per day => Del => $|234 per day', () => {
+        it('$|1_234 per day => Del => $|234 per day', () => {
             cy.get('@input')
                 .type('1234')
                 .should('have.value', '$1_234 per day')
@@ -56,8 +54,8 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', '$1_234'.length)
                 .type('{moveToStart}{rightArrow}{del}')
                 .should('have.value', '$234 per day')
-                .should('have.prop', 'selectionStart', '$234'.length)
-                .should('have.prop', 'selectionEnd', '$234'.length);
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1);
         });
 
         it('$1_2|34 per day => Del => $|234 per day', () => {
