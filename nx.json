@@ -56,6 +56,19 @@
         },
         "@nrwl/angular:component": {
             "style": "less"
+        },
+        "@nrwl/react": {
+            "application": {
+                "babel": true
+            },
+            "library": {
+                "linter": "eslint",
+                "publishable": true,
+                "bundler": "rollup",
+                "style": "none",
+                "strict": true,
+                "unitTestRunner": "jest"
+            }
         }
     },
     "cli": {
