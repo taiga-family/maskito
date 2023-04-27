@@ -1,6 +1,6 @@
 {
     "name": "@maskito/react",
-    "version": "0.0.1",
+    "version": "0.10.0",
     "description": "The React-specific Maskito's library",
     "keywords": [
         "mask",
@@ -17,6 +17,18 @@
         "url": "https://github.com/tinkoff/maskito.git"
     },
     "license": "Apache-2.0",
+    "author": {
+        "name": "Georgiy Lunin",
+        "email": "nextzeddicus@gmail.com",
+        "url": "https://github.com/nextZed"
+    },
+    "contributors": [
+        "Alex Inkin <alexander@inkin.ru>",
+        "Maksim Ivanov <splincodewd@yandex.ru>",
+        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
+        "Nikita Barsukov <nikita.s.barsukov@gmail.com>",
+        "Georgiy Lunin <nextzeddicus@gmail.com>"
+    ],
     "peerDependencies": {
         "@maskito/core": "^0.10.0",
         "react": ">=16.8",

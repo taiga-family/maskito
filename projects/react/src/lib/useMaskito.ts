@@ -1,8 +1,7 @@
 import {Maskito, MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
-import {RefCallback, useCallback, useEffect, useLayoutEffect, useState} from 'react';
+import {RefCallback, useCallback, useState} from 'react';
 
-const useIsomorphicLayoutEffect =
-    typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
 
 export type MaskitoPredicate = (
     element: HTMLElement,

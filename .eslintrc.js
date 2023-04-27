@@ -15,11 +15,16 @@ module.exports = {
         '@tinkoff/eslint-config-angular/decorator-position',
         '@tinkoff/eslint-config-angular/experimental',
         '@tinkoff/eslint-config-angular/function-return-type',
-        '@tinkoff/eslint-config-react',
     ],
     rules: {
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
     },
+    overrides: [
+        {
+            files: ['projects/react/**/*.{js,ts,jsx,tsx}'],
+            extends: ['@tinkoff/eslint-config-react'],
+        },
+    ],
     ignorePatterns: ['projects/**/test.ts', '*.json', '*.less', '*.md', '*.js'],
     parser: '@typescript-eslint/parser',
     parserOptions: {

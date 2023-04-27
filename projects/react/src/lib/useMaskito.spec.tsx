@@ -23,16 +23,13 @@ describe('Maskito React package', () => {
     const TestComponent = () => {
         const inputRef = useMaskito({options});
 
-        return (
-            <>
-                <input ref={inputRef} />
-            </>
-        );
+        return <input ref={inputRef} />;
     };
 
     let testElement: RenderResult;
 
-    const setValue = (user: ReturnType<typeof userEvent.setup>, v: string) => user.type(testElement.getByRole('textbox'), v);
+    const setValue = (user: ReturnType<typeof userEvent.setup>, v: string) =>
+        user.type(testElement.getByRole('textbox'), v);
     const getValue = () => (testElement.getByRole('textbox') as HTMLInputElement).value;
 
     beforeEach(() => {
@@ -46,6 +43,6 @@ describe('Maskito React package', () => {
     });
 
     afterEach(() => {
-        testElement.unmount()
-    })
+        testElement.unmount();
+    });
 });
