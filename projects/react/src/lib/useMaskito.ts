@@ -26,10 +26,10 @@ const defaultMaskitoPredicate: MaskitoPredicate = e =>
  */
 export const useMaskito = ({
     options = MASKITO_DEFAULT_OPTIONS,
-    predicate = defaultMaskitoPredicate,
+    elementPredicate = defaultMaskitoPredicate,
 }: {
     options?: MaskitoOptions;
-    predicate?: MaskitoPredicate;
+    elementPredicate?: MaskitoPredicate;
 } = {}): RefCallback<HTMLElement> => {
     const [element, setElement] = useState<HTMLElement | null>(null);
 
@@ -45,12 +45,12 @@ export const useMaskito = ({
             return;
         }
 
-        const maskedElement = new Maskito(predicate(element), options);
+        const maskedElement = new Maskito(elementPredicate(element), options);
 
         return () => {
             maskedElement.destroy();
         };
-    }, [options, element, predicate]);
+    }, [options, element, elementPredicate]);
 
     return onRefChange;
 };
