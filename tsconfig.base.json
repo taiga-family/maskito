@@ -38,7 +38,8 @@
             "@demo/path": ["projects/demo/src/app/demo-path.ts"],
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
-            "@maskito/kit": ["projects/kit/src/index.ts"]
+            "@maskito/kit": ["projects/kit/src/index.ts"],
+            "@maskito/react": ["projects/react/src/index.ts"]
         }
     },
     "ts-node": {

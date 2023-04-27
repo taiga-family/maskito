@@ -1,0 +1,25 @@
+{
+    "name": "@maskito/react",
+    "version": "0.0.1",
+    "description": "The React-specific Maskito's library",
+    "keywords": [
+        "mask",
+        "inputmask",
+        "input-mask",
+        "text-mask",
+        "input-formatting",
+        "react"
+    ],
+    "homepage": "https://tinkoff.github.io/maskito",
+    "bugs": "https://github.com/tinkoff/maskito/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tinkoff/maskito.git"
+    },
+    "license": "Apache-2.0",
+    "peerDependencies": {
+        "@maskito/core": "^0.10.0",
+        "react": ">=16.8",
+        "react-dom": ">=16.8"
+    }
+}

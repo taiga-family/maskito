@@ -15,6 +15,7 @@ module.exports = {
         '@tinkoff/eslint-config-angular/decorator-position',
         '@tinkoff/eslint-config-angular/experimental',
         '@tinkoff/eslint-config-angular/function-return-type',
+        '@tinkoff/eslint-config-react',
     ],
     rules: {
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
@@ -25,5 +26,8 @@ module.exports = {
         ecmaVersion: 2020,
         sourceType: 'module',
         project: [require.resolve('./tsconfig.eslint.json')],
+    },
+    env: {
+        jest: true,
     },
 };
