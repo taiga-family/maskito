@@ -12,6 +12,7 @@ body:
         - '@maskito/core'
         - '@maskito/kit'
         - '@maskito/angular'
+        - '@maskito/react'
         - Don't known / other
       multiple: true
     validations:

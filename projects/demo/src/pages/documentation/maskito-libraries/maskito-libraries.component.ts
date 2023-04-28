@@ -11,4 +11,5 @@ export class MaskitoLibrariesDocPageComponent {
     readonly timeMaskDocPage = `/${DemoPath.Time}`;
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     readonly angularDocPage = `/${DemoPath.Angular}`;
+    readonly reactDocPage = `/${DemoPath.React}`;
 }

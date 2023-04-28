@@ -104,5 +104,36 @@
                 section.
             </p>
         </li>
+
+        <li class="tui-list__item">
+            <strong>@maskito/react</strong>
+
+            <p class="tui-space_top-0">
+                The React-specific library. It provides a convenient way to use
+                Maskito as a hook.
+            </p>
+
+            <tui-notification status="warning">
+                This package requires
+                <code>@maskito/core</code>
+                as peer-dependency.
+            </tui-notification>
+
+            <tui-doc-code
+                code="npm install @maskito/react"
+                filename="/your/project/path>"
+            ></tui-doc-code>
+
+            <p>
+                Learn more about this library in
+                <a
+                    tuiLink
+                    [routerLink]="reactDocPage"
+                >
+                    "React"
+                </a>
+                section.
+            </p>
+        </li>
     </ul>
 </tui-doc-page>
