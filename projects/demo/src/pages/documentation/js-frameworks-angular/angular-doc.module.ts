@@ -7,7 +7,7 @@ import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {TuiCheckboxLabeledModule, TuiInputModule} from '@taiga-ui/kit';
 
-import {AngularDocPageComponent} from './angular.component';
+import {AngularDocPageComponent} from './angular-doc.component';
 import {NestedDocExample1} from './examples/1-nested/component';
 import {NestedDocExample2} from './examples/2-nested/component';
 import {CvaDocExample3} from './examples/3-cva/component';

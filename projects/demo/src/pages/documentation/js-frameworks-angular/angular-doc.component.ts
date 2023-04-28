@@ -4,8 +4,8 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 @Component({
     selector: 'angular-doc-page',
-    templateUrl: './angular.template.html',
-    styleUrls: ['./angular.style.less'],
+    templateUrl: './angular-doc.template.html',
+    styleUrls: ['./angular-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularDocPageComponent {

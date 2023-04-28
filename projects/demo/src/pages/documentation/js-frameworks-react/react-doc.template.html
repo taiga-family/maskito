@@ -1,0 +1,88 @@
+<tui-doc-page header="React">
+    <p class="tui-space_top-0">
+        <code>@maskito/react</code>
+        is a light-weighted library to use
+        <strong>Maskito</strong>
+        in an React-way.
+    </p>
+
+    <tui-notification
+        status="warning"
+        class="tui-space_top-6"
+    >
+        <strong>Prerequisites</strong>
+        <p class="tui-space_bottom-0">
+            To get the most out of this guide, you should review the topic
+            <a
+                tuiLink
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                "Core Concepts"
+            </a>
+            first.
+        </p>
+    </tui-notification>
+
+    <section class="tui-space_top-12">
+        <h2>Getting Started</h2>
+
+        <p>Install libraries</p>
+
+        <tui-doc-code code="npm install @maskito/{core,react}"></tui-doc-code>
+
+        <p>
+            and use
+            <strong>Maskito</strong>
+        </p>
+
+        <tui-doc-code [code]="useMaskitoBasicUsage"></tui-doc-code>
+    </section>
+
+    <section class="tui-space_top-12">
+        <h2>Query nested input element</h2>
+
+        <p>
+            Pass a predicate to
+            <strong>elementPredicate</strong>
+            to find input element for you, if you do not have a direct access to
+            it. For example, you use component from some UI Kit library.
+        </p>
+
+        <tui-notification class="tui-space_bottom-4">
+            By default
+            <strong>Maskito</strong>
+            will try to find input/textarea by querying its host:
+            <code>host.querySelector('input,textarea')</code>
+            so that might be sufficient. Use custom predicate if you need custom
+            logic.
+        </tui-notification>
+
+        <tui-doc-code [code]="queryNestedInputDemo"></tui-doc-code>
+    </section>
+
+    <section class="tui-space_top-12">
+        <h2>Controlled masked input</h2>
+
+        <p>
+            <strong>Maskito</strong>
+            core is developed as framework-agnostic library. It does not depends
+            on any JS-framework's peculiarities. It uses only native browser
+            API. That is why you should use native
+            <code>onInput</code>
+            instead of React-specific
+            <code>onChange</code>
+            event. Do not worry, both events works similarly! Read more about it
+            in the
+            <a
+                tuiLink
+                href="https://react.dev/reference/react-dom/components/input#props"
+                target="_blank"
+            >
+                official React documentation
+            </a>
+            .
+        </p>
+
+        <tui-doc-code [code]="controlledInputDemo"></tui-doc-code>
+    </section>
+</tui-doc-page>

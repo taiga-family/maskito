@@ -52,6 +52,18 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: 'core, concepts, programmatic, patch, set, update, value',
     },
     {
+        section: 'JS Frameworks',
+        title: 'Angular',
+        route: DemoPath.Angular,
+        keywords: `ng, angular, framework, addon`,
+    },
+    {
+        section: 'JS Frameworks',
+        title: 'React',
+        route: DemoPath.React,
+        keywords: `react, framework, addon`,
+    },
+    {
         section: 'Kit',
         title: 'Number',
         route: DemoPath.Number,
@@ -110,12 +122,6 @@ export const DEMO_PAGES: TuiDocPages = [
         title: 'With postfix',
         route: DemoPath.Postfix,
         keywords: `postfix, after, percent, am, pm, recipe`,
-    },
-    {
-        section: 'Other',
-        title: 'Angular',
-        route: DemoPath.Angular,
-        keywords: `ng, angular, framework, addon`,
     },
     {
         section: 'Other',
