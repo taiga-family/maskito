@@ -5,7 +5,6 @@ import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
 
 import {ReactDocPageComponent} from './react-doc.component';
 
@@ -16,7 +15,6 @@ import {ReactDocPageComponent} from './react-doc.component';
         ReactiveFormsModule,
         MaskitoModule,
         TuiAddonDocModule,
-        TuiInputModule,
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(ReactDocPageComponent)),

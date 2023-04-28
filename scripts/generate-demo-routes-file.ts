@@ -1,7 +1,7 @@
-import {DemoPath} from '@demo/path';
 import {readFileSync, writeFileSync} from 'fs';
 import {join} from 'path';
 
+import {DemoPath} from '../projects/demo/src/app/demo-path';
 import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
 
 const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
