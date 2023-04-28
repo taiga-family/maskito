@@ -1,7 +1,6 @@
 ```ts
 import {Component} from '@angular/core';
-import {MaskitoPredicate} from '@maskito/angular';
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoOptions, MaskitoElementPredicate} from '@maskito/core';
 
 @Component({
   selector: 'your-component',
@@ -19,6 +18,6 @@ export class YourComponent {
     mask: /^\d+$/,
   };
 
-  readonly predicate: MaskitoPredicate = element => element.querySelector('input[id="my-input"]')!;
+  readonly predicate: MaskitoElementPredicate = element => element.querySelector('input[id="my-input"]')!;
 }
 ```

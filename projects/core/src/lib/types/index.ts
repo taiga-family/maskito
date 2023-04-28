@@ -1,3 +1,4 @@
+export * from './element-predicate';
 export * from './element-state';
 export * from './mask-options';
 export * from './mask-processors';

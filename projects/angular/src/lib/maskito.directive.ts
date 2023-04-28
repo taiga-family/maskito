@@ -1,9 +1,10 @@
 import {Directive, ElementRef, Inject, Input, OnChanges, OnDestroy} from '@angular/core';
-import {Maskito, MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
-
-export type MaskitoPredicate = (
-    element: HTMLElement,
-) => HTMLInputElement | HTMLTextAreaElement;
+import {
+    Maskito,
+    MASKITO_DEFAULT_OPTIONS,
+    MaskitoElementPredicate,
+    MaskitoOptions,
+} from '@maskito/core';
 
 @Directive({
     selector: '[maskito]',
@@ -19,7 +20,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     ) {}
 
     @Input()
-    maskitoElement: MaskitoPredicate = e =>
+    maskitoElement: MaskitoElementPredicate = e =>
         e.querySelector('input,textarea') ||
         (e as HTMLInputElement | HTMLTextAreaElement);
 
