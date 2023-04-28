@@ -11,4 +11,5 @@ export class ReactDocPageComponent {
     readonly useMaskitoBasicUsage = import('./examples/use-maskito-basic-usage.md?raw');
     readonly queryNestedInputDemo = import('./examples/query-nested-input.md?raw');
     readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
+    readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
 }
