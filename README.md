@@ -28,8 +28,8 @@ users type values according to predefined format.
 
 - You can use it with `HTMLInputElement` and `HTMLTextAreaElement`.
 
-- **Maskito** core is zero-dependency package. You can mask input in your vanilla JavaScript project. However, we have a
-  separate package for Angular as well and React is coming soon.
+- **Maskito** core is zero-dependency package. You can mask input in your vanilla JavaScript project. However, we have
+  separate packages for Angular and React as well.
 
 - **Maskito** includes optional framework-agnostic package with configurable ready-to-use masks.
 

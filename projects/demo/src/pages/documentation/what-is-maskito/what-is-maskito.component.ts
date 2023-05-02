@@ -10,4 +10,6 @@ import {DemoPath} from '@demo/path';
 export class WhatIsMaskitoDocPageComponent {
     readonly maskitoLibrariesDocPage = `/${DemoPath.MaskitoLibraries}`;
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    readonly angularDocPage = `/${DemoPath.Angular}`;
+    readonly reactDocPage = `/${DemoPath.React}`;
 }
