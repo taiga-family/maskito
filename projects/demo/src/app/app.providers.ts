@@ -42,12 +42,12 @@ export const APP_PROVIDERS: Provider[] = [
         useValue: (context: TuiDocSourceCodePathOptions) => {
             const link = `https://github.com/tinkoff/maskito/tree/main/projects`;
 
-            if (!context.package || context.package.toLowerCase() !== 'kit') {
-                return null;
-            }
-
             if (context.path) {
                 return `${link}/${context.path}`;
+            }
+
+            if (!context.package || context.package.toLowerCase() !== 'kit') {
+                return null;
             }
 
             return `${link}/${context.package.toLowerCase()}/src/lib/masks/${(
