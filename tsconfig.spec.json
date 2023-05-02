@@ -7,5 +7,5 @@
         "esModuleInterop": true
     },
     "exclude": ["**/schematics/**/*", "projects/demo-integrations"],
-    "include": ["**/*.spec.ts", "**/*.d.ts"]
+    "include": ["**/*.spec.ts", "**/*.d.ts", "**/*.spec.tsx"]
 }

@@ -1,4 +1,3 @@
-const {resolve} = require('path');
 module.exports = {
     displayName: 'react',
     preset: '../../jest.preset.js',
@@ -7,10 +6,4 @@ module.exports = {
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
     coverageDirectory: '../../coverage/projects/react',
-    globals: {
-        'ts-jest': {
-            tsconfig: resolve(__dirname, 'tsconfig.spec.json'),
-            stringifyContentPathRegex: '\\.(html|svg)$',
-        },
-    },
 };
