@@ -1,9 +1,10 @@
 import {readFileSync, writeFileSync} from 'fs';
 import {join} from 'path';
 
+import {DemoPath} from '../projects/demo/src/app/demo-path';
 import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
 
-const EXCEPTIONS = ['/', 'angular/Setup'];
+const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
 
 /**
  * This script is required for correct of `nx prerender demo` command.

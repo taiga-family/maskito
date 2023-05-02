@@ -86,6 +86,27 @@ export const appRoutes: Routes = [
             title: `Transformer`,
         },
     },
+    // JS Frameworks
+    {
+        path: DemoPath.Angular,
+        loadChildren: async () =>
+            import(
+                `../pages/documentation/js-frameworks-angular/angular-doc.module`
+            ).then(m => m.AngularDocPageModule),
+        data: {
+            title: `Angular`,
+        },
+    },
+    {
+        path: DemoPath.React,
+        loadChildren: async () =>
+            import(`../pages/documentation/js-frameworks-react/react-doc.module`).then(
+                m => m.ReactDocPageModule,
+            ),
+        data: {
+            title: `React`,
+        },
+    },
     // Kit
     {
         path: DemoPath.Number,
@@ -185,16 +206,6 @@ export const appRoutes: Routes = [
         },
     },
     // Other
-    {
-        path: DemoPath.Angular,
-        loadChildren: async () =>
-            import(`../pages/documentation/angular/angular.module`).then(
-                m => m.AngularDocPageModule,
-            ),
-        data: {
-            title: `Angular`,
-        },
-    },
     {
         path: DemoPath.BrowserSupport,
         loadChildren: async () =>
