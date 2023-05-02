@@ -11,7 +11,14 @@
                 "outputPath": "dist/core",
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
-                "format": ["esm", "umd"]
+                "format": ["esm", "umd"],
+                "assets": [
+                    {
+                        "glob": "projects/core/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ]
             }
         },
         "test": {
@@ -25,11 +32,7 @@
         "publish": {
             "executor": "@nrwl/workspace:run-commands",
             "options": {
-                "parallel": false,
-                "commands": [
-                    "cp projects/core/README.md dist/core/README.md",
-                    "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
-                ]
+                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
             },
             "dependsOn": [
                 {
