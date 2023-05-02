@@ -5,6 +5,7 @@
         "angular": "projects/angular",
         "core": "projects/core",
         "demo": "projects/demo",
-        "kit": "projects/kit"
+        "kit": "projects/kit",
+        "react": "projects/react"
     }
 }

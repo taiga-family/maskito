@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MaskitoPredicate} from '@maskito/angular';
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 
 @Component({
     selector: 'test-doc-example-1',
@@ -30,9 +29,9 @@ export class TestDocExample1 {
         postprocessor: ({value, selection}) => ({value: value.toUpperCase(), selection}),
     };
 
-    readonly cardPredicate: MaskitoPredicate = element =>
+    readonly cardPredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[0]!;
 
-    readonly namePredicate: MaskitoPredicate = element =>
+    readonly namePredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[1]!;
 }

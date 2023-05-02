@@ -19,11 +19,20 @@ module.exports = {
     rules: {
         '@typescript-eslint/prefer-nullish-coalescing': 'off',
     },
+    overrides: [
+        {
+            files: ['projects/react/**/*.{js,ts,jsx,tsx}'],
+            extends: ['@tinkoff/eslint-config-react'],
+        },
+    ],
     ignorePatterns: ['projects/**/test.ts', '*.json', '*.less', '*.md', '*.js'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
         project: [require.resolve('./tsconfig.eslint.json')],
+    },
+    env: {
+        jest: true,
     },
 };

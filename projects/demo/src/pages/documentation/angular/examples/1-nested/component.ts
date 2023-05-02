@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MaskitoPredicate} from '@maskito/angular';
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 
 @Component({
     selector: 'nested-doc-example-1',
@@ -15,6 +14,6 @@ export class NestedDocExample1 {
         postprocessor: ({value, selection}) => ({value: value.toUpperCase(), selection}),
     };
 
-    readonly predicate: MaskitoPredicate = element =>
+    readonly predicate: MaskitoElementPredicate = element =>
         element.querySelector('tui-input input')!;
 }
