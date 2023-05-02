@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/tinkoff/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
+
+### Features
+
+- **react:** new library `@maskito/react` ([#273](https://github.com/tinkoff/maskito/issues/273))
+  ([4c2f755](https://github.com/tinkoff/maskito/commit/4c2f755bac9513689964af7fdb7f4deec56bfb52))
+
 ## [0.10.0](https://github.com/tinkoff/maskito/compare/v0.9.0...v0.10.0) (2023-04-25)
 
 ### Features
