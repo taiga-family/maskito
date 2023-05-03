@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 import {TuiDocPages} from '@taiga-ui/addon-doc';
 
 export const DEMO_PAGES: TuiDocPages = [

@@ -1,7 +1,7 @@
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {TUI_DOC_EXAMPLE_CONTENT_PROCESSOR} from '@taiga-ui/addon-doc';
 import {TuiInjectionTokenType} from '@taiga-ui/cdk';
 
-import {DocExamplePrimaryTab} from '../../constants';
 import {ANGULAR_DEFAULT_TAB} from './default-tabs/angular-default-tab';
 import {JS_DEFAULT_TAB} from './default-tabs/js-default-tab';
 import {REACT_DEFAULT_TAB} from './default-tabs/react-default-tab';

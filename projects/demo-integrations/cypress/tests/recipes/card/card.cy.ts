@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 describe('Card', () => {
     describe('Card number input', () => {

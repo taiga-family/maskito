@@ -1,8 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DemoPath} from '@demo/path';
+import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
-
-import {DocExamplePrimaryTab} from '../../../app/constants';
 
 @Component({
     selector: 'prefix-doc',

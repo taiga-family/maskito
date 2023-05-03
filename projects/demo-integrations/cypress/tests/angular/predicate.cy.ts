@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 describe('@maskito/angular | Predicate', () => {
     it('can detect run-time changes', () => {

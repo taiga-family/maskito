@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 

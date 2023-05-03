@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 describe('Angular FormControl and native input have the same values', () => {
     beforeEach(() => {

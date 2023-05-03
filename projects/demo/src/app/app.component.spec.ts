@@ -1,7 +1,7 @@
 import {APP_BASE_HREF} from '@angular/common';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {Router} from '@angular/router';
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 import {AppBrowserModule} from './app.browser.module';
 import {AppComponent} from './app.component';

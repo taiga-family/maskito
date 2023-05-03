@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 describe('DateRange | Min & Max Length', () => {
     describe('[minLength]="3"', () => {

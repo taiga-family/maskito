@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import stackblitz, {OpenOptions, Project} from '@stackblitz/sdk';
 import {
     TuiCodeEditor,
@@ -7,7 +8,6 @@ import {
 } from '@taiga-ui/addon-doc';
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 
-import {DocExamplePrimaryTab} from '../../app/constants';
 import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';
 
 @Injectable()
