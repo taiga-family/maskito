@@ -10,6 +10,7 @@ import {StackblitzEditButtonModule} from '../pages/stackblitz';
 import {AppComponent} from './app.component';
 import {APP_PROVIDERS} from './app.providers';
 import {AppRoutingModule} from './app.routes';
+import {DocExamplePrimaryTabsIconsModule} from './modules/example-primary-tabs-icons';
 import {LogoModule} from './modules/logo/logo.module';
 
 @NgModule({
@@ -30,6 +31,7 @@ import {LogoModule} from './modules/logo/logo.module';
         TuiLinkModule,
         TuiModeModule,
         StackblitzEditButtonModule,
+        DocExamplePrimaryTabsIconsModule,
     ],
     declarations: [AppComponent],
     providers: APP_PROVIDERS,

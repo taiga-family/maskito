@@ -12,10 +12,16 @@ import {
     tuiDocExampleOptionsProvider,
     TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
+import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';
 import {StackblitzService} from '../pages/stackblitz';
+import {
+    ANGULAR_LOGO,
+    JAVASCRIPT_LOGO,
+    REACT_LOGO,
+} from './modules/example-primary-tabs-icons';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 import {addDefaultTabsProcessor} from './utils';
 
@@ -72,6 +78,12 @@ export const APP_PROVIDERS: Provider[] = [
 
             return Object.keys(files).every(fileName => primaryTabs.includes(fileName));
         },
+        // @ts-ignore TODO: update Taiga UI and drop ts-ignore
+        tabTitles: new Map<string, PolymorpheusContent>([
+            [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
+            [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
+            [DocExamplePrimaryTab.React, REACT_LOGO],
+        ]),
     }),
     {
         provide: HIGHLIGHT_OPTIONS,
