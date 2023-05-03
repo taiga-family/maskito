@@ -78,7 +78,7 @@ export const APP_PROVIDERS: Provider[] = [
 
             return Object.keys(files).every(fileName => primaryTabs.includes(fileName));
         },
-        // @ts-ignore TODO: update Taiga UI and drop ts-ignore
+        // @ts-ignore TODO: update Taiga UI to 3.26.0 and drop ts-ignore
         tabTitles: new Map<string, PolymorpheusContent>([
             [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
             [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
