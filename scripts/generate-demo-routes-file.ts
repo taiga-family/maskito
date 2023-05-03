@@ -1,7 +1,7 @@
 import {readFileSync, writeFileSync} from 'fs';
 import {join} from 'path';
 
-import {DemoPath} from '../projects/demo/src/app/demo-path';
+import {DemoPath} from '../projects/demo/src/app/constants/demo-path';
 import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
 
 const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
@@ -15,7 +15,15 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
  */
 (function main(): void {
     const demoPathEnumContent = readFileSync(
-        join(process.cwd(), `projects`, `demo`, `src`, `app`, `demo-path.ts`),
+        join(
+            process.cwd(),
+            `projects`,
+            `demo`,
+            `src`,
+            `app`,
+            `constants`,
+            `demo-path.ts`,
+        ),
         `utf-8`,
     );
     const routes =

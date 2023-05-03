@@ -1,4 +1,4 @@
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 
 export function openNumberPage(queryParams: string): void {
     cy.visit(`/${DemoPath.Number}/API?${queryParams}`);

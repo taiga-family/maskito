@@ -6,12 +6,11 @@ import {
     ViewChild,
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
-
-import {DocExamplePrimaryTab} from '../../../app/constants';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>

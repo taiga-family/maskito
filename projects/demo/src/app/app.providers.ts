@@ -1,5 +1,6 @@
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {inject, PLATFORM_ID, Provider} from '@angular/core';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
@@ -15,7 +16,6 @@ import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';
 import {StackblitzService} from '../pages/stackblitz';
-import {DocExamplePrimaryTab} from './constants';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 import {addDefaultTabsProcessor} from './utils';
 

@@ -1,10 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
 import {MaskitoDateMode, maskitoDateOptionsGenerator} from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
-
-import {DocExamplePrimaryTab} from '../../../app/constants';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 

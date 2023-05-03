@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
 import {
     MaskitoDateMode,
@@ -8,8 +9,6 @@ import {
 } from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
-
-import {DocExamplePrimaryTab} from '../../../app/constants';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>

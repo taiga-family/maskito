@@ -36,7 +36,7 @@
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2017", "es2018.asynciterable", "dom"],
         "paths": {
-            "@demo/path": ["projects/demo/src/app/demo-path.ts"],
+            "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
             "@maskito/kit": ["projects/kit/src/index.ts"],

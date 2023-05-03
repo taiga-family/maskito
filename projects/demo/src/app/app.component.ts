@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DemoPath} from '@demo/path';
+import {DemoPath} from '@demo/constants';
 import {TUI_SANITIZER} from '@taiga-ui/core';
 import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
 

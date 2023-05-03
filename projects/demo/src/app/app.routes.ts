@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
-import {DemoPath} from './demo-path';
+import {DemoPath} from '@demo/constants';
 
 export const appRoutes: Routes = [
     // Getting started
