@@ -11,6 +11,8 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
 
+import {DocExamplePrimaryTab} from '../../../app/constants';
+
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
 >;
@@ -30,23 +32,31 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     );
 
     readonly highPrecisionExample1: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-high-precision/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/1-high-precision/mask.ts?raw'
+        ),
     };
 
     readonly separatorsExample2: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-separators/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-separators/mask.ts?raw'
+        ),
     };
 
     readonly postfixExample3: TuiDocExample = {
-        MaskitoOptions: import('./examples/3-postfix/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-postfix/mask.ts?raw'),
     };
 
     readonly decimalZeroPaddingExample4: TuiDocExample = {
-        MaskitoOptions: import('./examples/4-decimal-zero-padding/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/4-decimal-zero-padding/mask.ts?raw'
+        ),
     };
 
     readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
-        MaskitoOptions: import('./examples/5-dynamic-decimal-zero-padding/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
+        ),
         Component: import('./examples/5-dynamic-decimal-zero-padding/component.ts?raw'),
     };
 

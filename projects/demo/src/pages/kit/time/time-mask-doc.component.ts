@@ -8,6 +8,8 @@ import {
 } from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 
+import {DocExamplePrimaryTab} from '../../../app/constants';
+
 type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
 @Component({
@@ -18,11 +20,13 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
 })
 export class TimeMaskDocComponent implements GeneratorOptions {
     readonly modeExample1: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-modes/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw'),
     };
 
     readonly modeExample2: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-twelve-hour-format/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-twelve-hour-format/mask.ts?raw'
+        ),
     };
 
     apiPageControl = new FormControl('');
