@@ -9,6 +9,8 @@ import {
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
 
+import {DocExamplePrimaryTab} from '../../../app/constants';
+
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
 >;
@@ -20,11 +22,13 @@ type GeneratorOptions = Required<
 })
 export class DateTimeMaskDocComponent implements GeneratorOptions {
     readonly dateTimeLocalization: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-date-time-localization/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/1-date-time-localization/mask.ts?raw'
+        ),
     };
 
     readonly dateTimeMinMax: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
     apiPageControl = new FormControl('');

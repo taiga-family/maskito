@@ -9,6 +9,8 @@ import {
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
 
+import {DocExamplePrimaryTab} from '../../../app/constants';
+
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
 >;
@@ -20,15 +22,19 @@ type GeneratorOptions = Required<
 })
 export class DateRangeMaskDocComponent implements GeneratorOptions {
     readonly dateLocalizationExample1: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-date-localization/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/1-date-localization/mask.ts?raw'
+        ),
     };
 
     readonly minMaxExample2: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
     readonly minMaxLengthExample3: TuiDocExample = {
-        MaskitoOptions: import('./examples/3-min-max-length/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-min-max-length/mask.ts?raw'
+        ),
     };
 
     apiPageControl = new FormControl('');

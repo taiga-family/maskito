@@ -4,6 +4,8 @@ import {MaskitoOptions} from '@maskito/core';
 import {MaskitoDateMode, maskitoDateOptionsGenerator} from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 
+import {DocExamplePrimaryTab} from '../../../app/constants';
+
 type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 
 @Component({
@@ -16,11 +18,13 @@ export class DateMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
     readonly dateLocalization: TuiDocExample = {
-        MaskitoOptions: import('./examples/1-localization/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/1-localization/mask.ts?raw'
+        ),
     };
 
     readonly dateMinMax: TuiDocExample = {
-        MaskitoOptions: import('./examples/2-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
     readonly modeOptions: MaskitoDateMode[] = [

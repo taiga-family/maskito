@@ -3,6 +3,7 @@ import {inject, PLATFORM_ID, Provider} from '@angular/core';
 import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
+    TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
     TUI_DOC_LOGO,
     TUI_DOC_PAGES,
     TUI_DOC_SOURCE_CODE,
@@ -14,7 +15,9 @@ import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';
 import {StackblitzService} from '../pages/stackblitz';
+import {DocExamplePrimaryTab} from './constants';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
+import {addDefaultTabsProcessor} from './utils';
 
 export const APP_PROVIDERS: Provider[] = [
     {
@@ -59,9 +62,16 @@ export const APP_PROVIDERS: Provider[] = [
         provide: TUI_DOC_CODE_EDITOR,
         useClass: StackblitzService,
     },
+    {
+        provide: TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
+        useValue: addDefaultTabsProcessor,
+    },
     tuiDocExampleOptionsProvider({
-        codeEditorVisibilityHandler: files =>
-            Object.keys(files).length === 1 && Boolean(files['MaskitoOptions']),
+        codeEditorVisibilityHandler: files => {
+            const primaryTabs: string[] = Object.values(DocExamplePrimaryTab);
+
+            return Object.keys(files).every(fileName => primaryTabs.includes(fileName));
+        },
     }),
     {
         provide: HIGHLIGHT_OPTIONS,

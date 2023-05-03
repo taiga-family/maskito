@@ -7,6 +7,7 @@ import {
 } from '@taiga-ui/addon-doc';
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 
+import {DocExamplePrimaryTab} from '../../app/constants';
 import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';
 
 @Injectable()
@@ -44,7 +45,7 @@ export class StackblitzService implements TuiCodeEditor {
                         : `<input />`,
                     'styles.css': css,
                     'index.ts': tuiTryParseMarkdownCodeBlock(tsMd)[0],
-                    'mask.ts': files['MaskitoOptions'],
+                    'mask.ts': files[DocExamplePrimaryTab.MaskitoOptions],
                 },
             },
             {openFile: 'index.ts,mask.ts'},
