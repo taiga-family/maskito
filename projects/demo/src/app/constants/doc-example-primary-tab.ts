@@ -1,5 +1,5 @@
 export enum DocExamplePrimaryTab {
-    MaskitoOptions = 'mask.ts',
+    MaskitoOptions = 'mask',
     JavaScript = 'JavaScript',
     Angular = 'Angular',
     React = 'React',
