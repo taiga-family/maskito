@@ -4,7 +4,7 @@ import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 @Component({
     selector: 'react-logo',
     template: `
-        <tui-svg src="/assets/icons/react.svg"></tui-svg>
+        <tui-svg src="assets/icons/react.svg"></tui-svg>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
