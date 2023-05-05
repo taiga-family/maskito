@@ -29,6 +29,16 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>",
         "Georgiy Lunin <nextzeddicus@gmail.com>"
     ],
+    "devDependencies": {
+        "@testing-library/react": "12.1.5",
+        "@testing-library/react-hooks": "8.0.1",
+        "@testing-library/user-event": "^14.4.3",
+        "@types/react": ">=17.0.0",
+        "@types/react-dom": ">=17.0.0",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-test-renderer": ">=17.0.0"
+    },
     "peerDependencies": {
         "@maskito/core": "^0.11.1",
         "react": ">=16.8",

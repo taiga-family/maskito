@@ -7,7 +7,7 @@ import {MaskitoOptions} from '@maskito/core';
 describe(`Maskito Angular package`, () => {
     @Component({
         template: `
-            <div id="pipe">{{ control.value | maskito: options }}</div>
+            <div id="pipe">{{ control.value | maskito : options }}</div>
             <input
                 id="input"
                 [formControl]="control"
