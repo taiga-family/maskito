@@ -13,7 +13,7 @@ export function validateTimeString({
     timeString: string;
     paddedMaxValues: MaskitoTimeSegments<string>;
     offset: number;
-    selection: [number, number];
+    selection: readonly [number, number];
 }): {validatedTimeString: string; updatedTimeSelection: [number, number]} {
     const parsedTime = parseTimeString(timeString);
 

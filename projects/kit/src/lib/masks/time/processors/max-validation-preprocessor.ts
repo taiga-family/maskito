@@ -8,14 +8,31 @@ export function createMaxValidationPreprocessor(
 ): NonNullable<MaskitoOptions['preprocessor']> {
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
 
-    return ({elementState, data}) => {
-        const newCharacters = data.replace(/\D+/g, '');
-
-        if (!newCharacters) {
-            return {elementState, data: ''};
+    return ({elementState, data}, actionType) => {
+        if (actionType === 'deleteBackward' || actionType === 'deleteForward') {
+            return {elementState, data};
         }
 
         const {value, selection} = elementState;
+
+        if (actionType === 'validation') {
+            const {validatedTimeString, updatedTimeSelection} = validateTimeString({
+                timeString: value,
+                paddedMaxValues,
+                offset: 0,
+                selection,
+            });
+
+            return {
+                elementState: {
+                    value: validatedTimeString,
+                    selection: updatedTimeSelection,
+                },
+                data,
+            };
+        }
+
+        const newCharacters = data.replace(/\D+/g, '');
         const [from, rawTo] = selection;
         let to = rawTo + newCharacters.length; // to be conformed with `overwriteMode: replace`
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
