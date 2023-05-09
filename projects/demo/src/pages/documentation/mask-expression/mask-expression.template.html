@@ -57,14 +57,14 @@
                     </p>
 
                     <p>
-                        <code>{{ '/^\d{4}$/' }}</code>
+                        <code>{{ '/^\\d{4}$/' }}</code>
                         is a wrong mask expression. It does not match
                         intermediate states (you cannot complete 4-digit string
                         without possibility to type 1-, 2- or 3-digit string).
                     </p>
 
                     <p>
-                        <code>{{ '/^\d{0,4}$/' }}</code>
+                        <code>{{ '/^\\d{0,4}$/' }}</code>
                         is the right solution for our example.
                     </p>
                 </tui-notification>
