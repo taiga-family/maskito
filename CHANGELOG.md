@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://github.com/tinkoff/maskito/compare/v0.11.0...v0.11.1) (2023-05-11)
+
+### Bug Fixes
+
+- **core:** `insertFromDrop` action behaves now in the same way as `insertFromPaste`
+  ([#291](https://github.com/tinkoff/maskito/issues/291))
+  ([58e0fcc](https://github.com/tinkoff/maskito/commit/58e0fccb7ddd3c741ffa3c8b99efbcf4571aab37))
+- **kit:** `Time` doesn't validate time segments on `drop` event ([#289](https://github.com/tinkoff/maskito/issues/289))
+  ([0c6d1b9](https://github.com/tinkoff/maskito/commit/0c6d1b9917d0c86a98c0d215c38a0e2076ff5680))
+
 ## [0.11.0](https://github.com/tinkoff/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
 
 ### Features

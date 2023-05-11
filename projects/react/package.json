@@ -1,6 +1,6 @@
 {
     "name": "@maskito/react",
-    "version": "0.11.0",
+    "version": "0.11.1",
     "description": "The React-specific Maskito's library",
     "keywords": [
         "mask",
@@ -30,7 +30,7 @@
         "Georgiy Lunin <nextzeddicus@gmail.com>"
     ],
     "peerDependencies": {
-        "@maskito/core": "^0.11.0",
+        "@maskito/core": "^0.11.1",
         "react": ">=16.8",
         "react-dom": ">=16.8"
     }
