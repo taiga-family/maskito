@@ -122,8 +122,8 @@
         "typescript": "~4.3.5"
     },
     "engines": {
-        "node": ">= 16.14",
-        "npm": ">= 8.3",
+        "node": ">= 18",
+        "npm": ">= 9",
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "standard-version": {
