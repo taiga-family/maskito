@@ -6,6 +6,7 @@ export {maskitoTimeOptionsGenerator} from './lib/masks/time';
 export {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
+    maskitoWithGuide,
 } from './lib/processors';
 export {
     MaskitoDateMode,

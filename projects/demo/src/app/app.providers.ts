@@ -74,9 +74,12 @@ export const APP_PROVIDERS: Provider[] = [
     },
     tuiDocExampleOptionsProvider({
         codeEditorVisibilityHandler: files => {
-            const primaryTabs: string[] = Object.values(DocExamplePrimaryTab);
+            const fileNames = Object.keys(files);
 
-            return Object.keys(files).every(fileName => primaryTabs.includes(fileName));
+            return (
+                fileNames.includes(DocExamplePrimaryTab.MaskitoOptions) &&
+                fileNames.includes(DocExamplePrimaryTab.JavaScript)
+            );
         },
         tabTitles: new Map<string, PolymorpheusContent>([
             [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],

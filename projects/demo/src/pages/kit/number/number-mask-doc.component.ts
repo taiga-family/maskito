@@ -56,7 +56,9 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
-        Component: import('./examples/5-dynamic-decimal-zero-padding/component.ts?raw'),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/5-dynamic-decimal-zero-padding/component.ts?raw'
+        ),
     };
 
     apiPageControl = new FormControl('');

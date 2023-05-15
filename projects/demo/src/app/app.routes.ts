@@ -204,6 +204,14 @@ export const appRoutes: Routes = [
             title: `With postfix`,
         },
     },
+    {
+        path: DemoPath.Guide,
+        loadChildren: async () =>
+            import(`../pages/recipes/guide/guide-doc.module`).then(m => m.GuideDocModule),
+        data: {
+            title: `With guide`,
+        },
+    },
     // Other
     {
         path: DemoPath.BrowserSupport,
