@@ -85,14 +85,11 @@ export class Maskito extends MaskHistory {
                             selection: getLineSelection(this.elementState, isForward),
                             force: true,
                         });
-                    case 'insertFromDrop':
-                        // We don't know caret position at this moment
-                        // (inserted content will be handled later in "input"-event)
-                        return;
                     case 'insertLineBreak':
                         return this.handleEnter(event);
                     case 'insertFromPaste':
                     case 'insertText':
+                    case 'insertFromDrop':
                     default:
                         return this.handleInsert(event, event.data || '');
                 }
