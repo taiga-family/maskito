@@ -6,10 +6,10 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import mask, {GUIDE, removeGuide} from './mask';
+import mask, {PLACEHOLDER, removePlaceholder} from './mask';
 
 @Component({
-    selector: 'guide-doc-example-3',
+    selector: 'placeholder-doc-example-3',
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconCalendarLarge"
@@ -29,7 +29,7 @@ import mask, {GUIDE, removeGuide} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideDocExample3 {
+export class PlaceholderDocExample3 {
     @ViewChild('inputRef', {read: ElementRef})
     inputRef!: ElementRef<HTMLInputElement>;
 
@@ -39,13 +39,13 @@ export class GuideDocExample3 {
     constructor(private readonly ngZone: NgZone) {}
 
     onBlur(): void {
-        this.value = removeGuide(this.value);
+        this.value = removePlaceholder(this.value);
     }
 
     onFocus(): void {
         const initialValue = this.value;
 
-        this.value = initialValue + GUIDE.slice(this.value.length);
+        this.value = initialValue + PLACEHOLDER.slice(this.value.length);
 
         this.ngZone.runOutsideAngular(() => {
             setTimeout(() => {

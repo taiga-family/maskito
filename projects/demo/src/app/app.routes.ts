@@ -205,11 +205,13 @@ export const appRoutes: Routes = [
         },
     },
     {
-        path: DemoPath.Guide,
+        path: DemoPath.Placeholder,
         loadChildren: async () =>
-            import(`../pages/recipes/guide/guide-doc.module`).then(m => m.GuideDocModule),
+            import(`../pages/recipes/placeholder/placeholder-doc.module`).then(
+                m => m.PlaceholderDocModule,
+            ),
         data: {
-            title: `With guide`,
+            title: `With placeholder`,
         },
     },
     // Other

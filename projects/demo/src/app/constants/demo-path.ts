@@ -19,7 +19,7 @@ export const enum DemoPath {
     Textarea = 'recipes/textarea',
     Prefix = 'recipes/prefix',
     Postfix = 'recipes/postfix',
-    Guide = 'recipes/guide',
+    Placeholder = 'recipes/placeholder',
     BrowserSupport = 'browser-support',
     Changelog = 'changelog',
     Stackblitz = 'stackblitz',

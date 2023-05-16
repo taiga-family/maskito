@@ -125,8 +125,8 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Recipes',
-        title: 'With guide',
-        route: DemoPath.Guide,
+        title: 'With placeholder',
+        route: DemoPath.Placeholder,
         keywords: `guide, placeholder, fill, recipe`,
     },
     {

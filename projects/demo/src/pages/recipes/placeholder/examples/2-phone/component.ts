@@ -6,10 +6,10 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import mask, {GUIDE, removeGuide} from './mask';
+import mask, {PLACEHOLDER, removePlaceholder} from './mask';
 
 @Component({
-    selector: 'guide-doc-example-2',
+    selector: 'placeholder-doc-example-2',
     template: `
         <tui-input
             [tuiTextfieldCustomContent]="usFlag"
@@ -37,7 +37,7 @@ import mask, {GUIDE, removeGuide} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideDocExample2 {
+export class PlaceholderDocExample2 {
     @ViewChild('inputRef', {read: ElementRef})
     inputRef!: ElementRef<HTMLInputElement>;
 
@@ -47,7 +47,7 @@ export class GuideDocExample2 {
     constructor(private readonly ngZone: NgZone) {}
 
     onBlur(): void {
-        const cleanValue = removeGuide(this.value);
+        const cleanValue = removePlaceholder(this.value);
 
         this.value = cleanValue === '+1' ? '' : cleanValue;
     }
@@ -55,7 +55,7 @@ export class GuideDocExample2 {
     onFocus(): void {
         const initialValue = this.value || '+1 (';
 
-        this.value = initialValue + GUIDE.slice(initialValue.length);
+        this.value = initialValue + PLACEHOLDER.slice(initialValue.length);
 
         this.ngZone.runOutsideAngular(() => {
             setTimeout(() => {

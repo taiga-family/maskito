@@ -3,12 +3,11 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 @Component({
-    selector: 'guide-doc',
-    templateUrl: './guide-doc.template.html',
+    selector: 'placeholder-doc',
+    templateUrl: './placeholder-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GuideDocComponent {
-    readonly coreConceptsDocPage = `/${DemoPath.CoreConceptsOverview}`;
+export class PlaceholderDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
     readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;

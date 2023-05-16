@@ -12,10 +12,10 @@ import {
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {GuideDocExample1} from './examples/1-cvc-code/component';
-import {GuideDocExample2} from './examples/2-phone/component';
-import {GuideDocExample3} from './examples/3-date/component';
-import {GuideDocComponent} from './guide-doc.component';
+import {PlaceholderDocExample1} from './examples/1-cvc-code/component';
+import {PlaceholderDocExample2} from './examples/2-phone/component';
+import {PlaceholderDocExample3} from './examples/3-date/component';
+import {PlaceholderDocComponent} from './placeholder-doc.component';
 
 @NgModule({
     imports: [
@@ -28,14 +28,14 @@ import {GuideDocComponent} from './guide-doc.component';
         TuiLinkModule,
         TuiNotificationModule,
         TuiTextfieldControllerModule,
-        RouterModule.forChild(tuiGenerateRoutes(GuideDocComponent)),
+        RouterModule.forChild(tuiGenerateRoutes(PlaceholderDocComponent)),
     ],
     declarations: [
-        GuideDocComponent,
-        GuideDocExample1,
-        GuideDocExample2,
-        GuideDocExample3,
+        PlaceholderDocComponent,
+        PlaceholderDocExample1,
+        PlaceholderDocExample2,
+        PlaceholderDocExample3,
     ],
-    exports: [GuideDocComponent],
+    exports: [PlaceholderDocComponent],
 })
-export class GuideDocModule {}
+export class PlaceholderDocModule {}
