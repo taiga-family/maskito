@@ -1,8 +1,8 @@
 import {MaskitoOptions} from '@maskito/core';
 
-export function maskitoWithPlaceholder(placeholder: string): Omit<
+export function maskitoWithPlaceholder(placeholder: string): Pick<
     Required<MaskitoOptions>,
-    'mask'
+    'postprocessor' | 'preprocessor'
 > & {
     removePlaceholder: (value: string) => string;
 } {
@@ -39,7 +39,6 @@ export function maskitoWithPlaceholder(placeholder: string): Omit<
                   }
                 : {value, selection};
         },
-        overwriteMode: 'replace',
         removePlaceholder,
     };
 }

@@ -10,7 +10,6 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 export class PlaceholderDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
     readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
     readonly cvcExample1: TuiDocExample = {

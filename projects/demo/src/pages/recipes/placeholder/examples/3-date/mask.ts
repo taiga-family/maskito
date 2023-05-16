@@ -15,8 +15,7 @@ export const {
 } = maskitoWithPlaceholder(PLACEHOLDER);
 
 export default {
-    ...placeholderOptions,
-    mask: dateOptions.mask,
+    ...dateOptions,
     preprocessor: maskitoPipe(
         // Always put it BEFORE all other preprocessors
         placeholderOptions.preprocessor,

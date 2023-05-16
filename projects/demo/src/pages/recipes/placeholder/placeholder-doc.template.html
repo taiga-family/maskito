@@ -7,16 +7,6 @@
         helps to show placeholder mask characters. The placeholder character
         represents the fillable spot in the mask.
     </p>
-    <tui-notification status="warning">
-        Creating mask with placeholder is available only with
-        <a
-            tuiLink
-            fragment="replace"
-            [routerLink]="overwriteModeDocPage"
-        >
-            overwriteMode: 'replace'
-        </a>
-    </tui-notification>
 
     <tui-doc-example
         id="cvc"
@@ -53,14 +43,9 @@
     >
         <ng-template #phoneDescription>
             <p class="tui-space_top-0 tui-space_bottom-2">
-                The following example shows more complex mask and explains
-                return type of
+                The following example explains return type of
                 <code>maskitoWithPlaceholder</code>
-                utility.
-            </p>
-            <p class="tui-space_top-0 tui-space_bottom-2">
-                <code>maskitoWithPlaceholder</code>
-                returns an object which partially implements
+                utility — an object which partially implements
                 <code>MaskitoOptions</code>
                 interface. It contains its own
                 <a
@@ -69,16 +54,9 @@
                 >
                     processor and postprocessor
                 </a>
-                , and also defines the only supported
-                <a
-                    tuiLink
-                    fragment="replace"
-                    [routerLink]="overwriteModeDocPage"
-                >
-                    overwriteMode: 'replace'
-                </a>
                 .
             </p>
+            <p class="tui-space_top-0 tui-space_bottom-2"></p>
             <p class="tui-space_top-0 tui-space_bottom-0">
                 Also, this complex example uses built-in postprocessor
                 <a

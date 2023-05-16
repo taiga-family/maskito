@@ -22,7 +22,7 @@ export const {
 } = maskitoWithPlaceholder(PLACEHOLDER);
 
 export default {
-    ...placeholderOptions,
+    preprocessor: placeholderOptions.preprocessor,
     postprocessor: maskitoPipe(
         maskitoPrefixPostprocessorGenerator('+1'),
         placeholderOptions.postprocessor,
