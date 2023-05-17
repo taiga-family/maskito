@@ -8,10 +8,7 @@ export function maskitoWithPlaceholder(placeholder: string): Pick<
 } {
     const removePlaceholder = (value: string): string => {
         for (let i = value.length - 1; i >= 0; i--) {
-            const valueChar = value[i];
-            const placeholderChar = placeholder[i];
-
-            if (valueChar !== placeholderChar) {
+            if (value[i] !== placeholder[i]) {
                 return value.slice(0, i + 1);
             }
         }
@@ -31,14 +28,13 @@ export function maskitoWithPlaceholder(placeholder: string): Pick<
                 data,
             };
         },
-        postprocessor: ({value, selection}, initialElementState) => {
-            return initialElementState.value
+        postprocessor: ({value, selection}, initialElementState) =>
+            initialElementState.value
                 ? {
                       value: value + placeholder.slice(value.length),
                       selection,
                   }
-                : {value, selection};
-        },
+                : {value, selection},
         removePlaceholder,
     };
 }
