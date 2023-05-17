@@ -1,0 +1,28 @@
+import {MaskitoOptions} from '@maskito/core';
+
+import {getFocused} from '../utils';
+
+export function maskitoCaretGuard(
+    guard: (value: string) => [from: number, to: number],
+): NonNullable<MaskitoOptions['plugins']>[0] {
+    return (element: HTMLInputElement | HTMLTextAreaElement): (() => void) => {
+        const document = element.ownerDocument;
+        const onSelection = (): void => {
+            if (getFocused(document) !== element) {
+                return;
+            }
+
+            const start = element.selectionStart || 0;
+            const end = element.selectionEnd || 0;
+            const [from, to] = guard(element.value);
+
+            if (from > start || to < end) {
+                element.setSelectionRange(Math.max(from, start), Math.min(to, end));
+            }
+        };
+
+        document.addEventListener('selectionchange', onSelection);
+
+        return () => document.removeEventListener('selectionchange', onSelection);
+    };
+}

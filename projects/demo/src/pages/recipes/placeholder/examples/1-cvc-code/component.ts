@@ -16,7 +16,6 @@ import mask from './mask';
                 tuiTextfield
                 inputmode="numeric"
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
             />
         </tui-input>
     `,
@@ -28,15 +27,4 @@ export class PlaceholderDocExample1 {
 
     readonly maskitoOptions = mask;
     value = 'xxx';
-
-    onFocus(): void {
-        const beforePlaceholder = this.value.indexOf('x');
-
-        setTimeout(() => {
-            this.inputRef.nativeElement.setSelectionRange(
-                beforePlaceholder,
-                beforePlaceholder,
-            );
-        });
-    }
 }

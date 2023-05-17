@@ -18,6 +18,7 @@ export const {
      * });
      */
     removePlaceholder,
+    plugins,
     ...placeholderOptions
 } = maskitoWithPlaceholder(PLACEHOLDER);
 
@@ -27,6 +28,7 @@ export default {
         maskitoPrefixPostprocessorGenerator('+1'),
         placeholderOptions.postprocessor,
     ),
+    plugins,
     mask: [
         '+',
         '1',

@@ -8,14 +8,15 @@ const dateOptions = maskitoDateOptionsGenerator({
     separator: '/',
 });
 
-export const {
+const {
     // Use this utility to remove placeholder characters
-    removePlaceholder, // removePlaceholder('31/12/yyyy') => '31/12'
+    plugins, // plugin keeps caret inside actual value
     ...placeholderOptions
-} = maskitoWithPlaceholder(PLACEHOLDER);
+} = maskitoWithPlaceholder(PLACEHOLDER, true);
 
 export default {
     ...dateOptions,
+    plugins: plugins.concat(dateOptions.plugins || []),
     preprocessor: maskitoPipe(
         // Always put it BEFORE all other preprocessors
         placeholderOptions.preprocessor,
