@@ -1,15 +1,16 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 
-import mask from './mask';
+import mask, {PLACEHOLDER, removePlaceholder} from './mask';
 
 @Component({
-    selector: 'postfix-doc-example-2',
+    selector: 'placeholder-doc-example-3',
     template: `
         <tui-input
+            tuiTextfieldCustomContent="tuiIconCalendarLarge"
             [style.max-width.rem]="20"
             [(ngModel)]="value"
         >
-            Enter price
+            Enter date
             <input
                 #inputRef
                 tuiTextfield
@@ -22,27 +23,27 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostfixDocExample2 {
+export class PlaceholderDocExample3 {
     @ViewChild('inputRef', {read: ElementRef})
-    inputElement!: ElementRef<HTMLInputElement>;
+    inputRef!: ElementRef<HTMLInputElement>;
 
     readonly maskitoOptions = mask;
     value = '';
 
-    onFocus(): void {
-        if (!this.value) {
-            this.value = '$.00';
-
-            setTimeout(() => {
-                // To put cursor after dollar ($|.00)
-                this.inputElement.nativeElement.setSelectionRange(1, 1);
-            });
-        }
+    onBlur(): void {
+        this.value = removePlaceholder(this.value);
     }
 
-    onBlur(): void {
-        if (this.value === '$.00') {
-            this.value = '';
-        }
+    onFocus(): void {
+        const initialValue = this.value;
+
+        this.value = initialValue + PLACEHOLDER.slice(this.value.length);
+
+        setTimeout(() => {
+            this.inputRef.nativeElement.setSelectionRange(
+                initialValue.length,
+                initialValue.length,
+            );
+        });
     }
 }

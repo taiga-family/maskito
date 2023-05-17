@@ -204,6 +204,16 @@ export const appRoutes: Routes = [
             title: `With postfix`,
         },
     },
+    {
+        path: DemoPath.Placeholder,
+        loadChildren: async () =>
+            import(`../pages/recipes/placeholder/placeholder-doc.module`).then(
+                m => m.PlaceholderDocModule,
+            ),
+        data: {
+            title: `With placeholder`,
+        },
+    },
     // Other
     {
         path: DemoPath.BrowserSupport,

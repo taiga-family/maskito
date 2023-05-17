@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    NgZone,
-    ViewChild,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
@@ -56,7 +50,9 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
-        Component: import('./examples/5-dynamic-decimal-zero-padding/component.ts?raw'),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/5-dynamic-decimal-zero-padding/component.ts?raw'
+        ),
     };
 
     apiPageControl = new FormControl('');
@@ -76,8 +72,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     prefix = '';
     postfix = '';
 
-    constructor(private readonly ngZone: NgZone) {}
-
     updateOptions(): void {
         this.maskitoOptions = maskitoNumberOptionsGenerator(this);
     }
@@ -93,14 +87,12 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         if (this.postfix) {
             const newCaretIndex = value.length - this.postfix.length;
 
-            this.ngZone.runOutsideAngular(() => {
-                setTimeout(() => {
-                    // To put cursor before postfix
-                    this.apiPageInput.nativeElement.setSelectionRange(
-                        newCaretIndex,
-                        newCaretIndex,
-                    );
-                });
+            setTimeout(() => {
+                // To put cursor before postfix
+                this.apiPageInput.nativeElement.setSelectionRange(
+                    newCaretIndex,
+                    newCaretIndex,
+                );
             });
         }
     }

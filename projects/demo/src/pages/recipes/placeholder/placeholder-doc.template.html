@@ -1,0 +1,92 @@
+<tui-doc-page
+    header="With placeholder"
+    package="Recipes"
+>
+    <p class="tui-space_top-0">
+        <code>maskitoWithPlaceholder</code>
+        helps to show placeholder mask characters. The placeholder character
+        represents the fillable spot in the mask.
+    </p>
+
+    <tui-doc-example
+        id="cvc"
+        heading="Card Verification Code"
+        [content]="cvcExample1"
+        [description]="cvcDescription"
+    >
+        <ng-template #cvcDescription>
+            <p class="tui-space_top-0 tui-space_bottom-2">
+                This example is the simplest demonstration how to create masked
+                input with
+                <strong>placeholder</strong>
+                .
+            </p>
+            <p class="tui-space_top-0 tui-space_bottom-0">
+                The only required prerequisite is basic understanding of
+                <a
+                    tuiLink
+                    [routerLink]="maskExpressionDocPage"
+                >
+                    "Mask expression"
+                </a>
+                concept.
+            </p>
+        </ng-template>
+        <placeholder-doc-example-1></placeholder-doc-example-1>
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="phone"
+        heading="Phone"
+        [content]="phoneExample2"
+        [description]="phoneDescription"
+    >
+        <ng-template #phoneDescription>
+            <p class="tui-space_top-0 tui-space_bottom-2">
+                The following example explains return type of
+                <code>maskitoWithPlaceholder</code>
+                utility — an object which partially implements
+                <code>MaskitoOptions</code>
+                interface. It contains its own
+                <a
+                    tuiLink
+                    [routerLink]="processorsDocPage"
+                >
+                    processor and postprocessor
+                </a>
+                .
+            </p>
+            <p class="tui-space_top-0 tui-space_bottom-2"></p>
+            <p class="tui-space_top-0 tui-space_bottom-0">
+                Also, this complex example uses built-in postprocessor
+                <a
+                    tuiLink
+                    fragment="by-postprocessor"
+                    [routerLink]="prefixDocPage"
+                >
+                    maskitoPrefixPostprocessorGenerator
+                </a>
+                from
+                <code>@maskito/kit</code>
+                .
+            </p>
+        </ng-template>
+        <placeholder-doc-example-2></placeholder-doc-example-2>
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="date"
+        heading="Date"
+        [content]="dateExample3"
+        [description]="dateExampleDescription"
+    >
+        <ng-template #dateExampleDescription>
+            This last example demonstrates how to integrate
+            <code>maskitoWithPlaceholder</code>
+            with any built-in mask from
+            <code>@maskito/kit</code>
+            .
+        </ng-template>
+        <placeholder-doc-example-3></placeholder-doc-example-3>
+    </tui-doc-example>
+</tui-doc-page>

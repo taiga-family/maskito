@@ -124,6 +124,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `postfix, after, percent, am, pm, recipe`,
     },
     {
+        section: 'Recipes',
+        title: 'With placeholder',
+        route: DemoPath.Placeholder,
+        keywords: `guide, placeholder, fill, recipe`,
+    },
+    {
         section: 'Other',
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
