@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    NgZone,
-    ViewChild,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 
 import mask from './mask';
 
@@ -37,8 +31,6 @@ export class NumberMaskDocExample3 {
     value = `97${this.postfix}`;
     maskitoOptions = mask;
 
-    constructor(private readonly ngZone: NgZone) {}
-
     onFocus(): void {
         if (!this.value) {
             this.value = this.postfix;
@@ -46,14 +38,9 @@ export class NumberMaskDocExample3 {
 
         const newCaretIndex = this.value.length - this.postfix.length;
 
-        this.ngZone.runOutsideAngular(() => {
-            setTimeout(() => {
-                // To put cursor before postfix
-                this.inputRef.nativeElement.setSelectionRange(
-                    newCaretIndex,
-                    newCaretIndex,
-                );
-            });
+        setTimeout(() => {
+            // To put cursor before postfix
+            this.inputRef.nativeElement.setSelectionRange(newCaretIndex, newCaretIndex);
         });
     }
 

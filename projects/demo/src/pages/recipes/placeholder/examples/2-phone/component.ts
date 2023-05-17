@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    NgZone,
-    ViewChild,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 
 import mask, {PLACEHOLDER, removePlaceholder} from './mask';
 
@@ -44,8 +38,6 @@ export class PlaceholderDocExample2 {
     readonly maskitoOptions = mask;
     value = '';
 
-    constructor(private readonly ngZone: NgZone) {}
-
     onBlur(): void {
         const cleanValue = removePlaceholder(this.value);
 
@@ -57,13 +49,11 @@ export class PlaceholderDocExample2 {
 
         this.value = initialValue + PLACEHOLDER.slice(initialValue.length);
 
-        this.ngZone.runOutsideAngular(() => {
-            setTimeout(() => {
-                this.inputRef.nativeElement.setSelectionRange(
-                    initialValue.length,
-                    initialValue.length,
-                );
-            });
+        setTimeout(() => {
+            this.inputRef.nativeElement.setSelectionRange(
+                initialValue.length,
+                initialValue.length,
+            );
         });
     }
 }
