@@ -8,7 +8,7 @@ export interface MaskitoOptions {
     readonly mask: MaskExpression | ((elementState: ElementState) => MaskExpression);
     readonly preprocessor?: MaskPreprocessor;
     readonly postprocessor?: MaskPostprocessor;
-    readonly plugins?: Plugin[];
+    readonly plugins?: readonly Plugin[];
     readonly overwriteMode?:
         | 'replace'
         | 'shift'
