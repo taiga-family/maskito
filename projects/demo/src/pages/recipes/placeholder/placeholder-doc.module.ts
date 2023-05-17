@@ -7,7 +7,6 @@ import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {
     TuiFlagPipeModule,
     TuiLinkModule,
-    TuiNotificationModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
@@ -26,7 +25,6 @@ import {PlaceholderDocComponent} from './placeholder-doc.component';
         TuiFlagPipeModule,
         TuiInputModule,
         TuiLinkModule,
-        TuiNotificationModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PlaceholderDocComponent)),
     ],
