@@ -61,4 +61,38 @@ describe('Placeholder | Date', () => {
             .should('have.prop', 'selectionStart', '31/1'.length)
             .should('have.prop', 'selectionEnd', '31/1'.length);
     });
+
+    it('Cannot move caret outside actual value', () => {
+        cy.get('@input')
+            .type('311')
+            .type('{rightArrow}')
+            .should('have.prop', 'selectionStart', '31/1'.length)
+            .should('have.prop', 'selectionEnd', '31/1'.length)
+            .type('{selectAll}')
+            .should('have.prop', 'selectionStart', 0)
+            .should('have.prop', 'selectionEnd', '31/1'.length);
+    });
+
+    it('Removes placeholder on blur', () => {
+        cy.get('@input')
+            .type('311')
+            .should('have.value', '31/1m/yyyy')
+            .should('have.prop', 'selectionStart', '31/1'.length)
+            .should('have.prop', 'selectionEnd', '31/1'.length)
+            .blur()
+            .should('have.value', '31/1');
+    });
+
+    it('Removes placeholder from Angular control', () => {
+        cy.get('@input')
+            .type('311')
+            .should('have.value', '31/1m/yyyy')
+            .blur()
+            .should('have.value', '31/1');
+        // .magicNgMethod(
+        //     ng
+        //         .getComponent(document.querySelector('placeholder-doc-example-3'))
+        //         .value.should('eq', '31/1'),
+        // );
+    });
 });

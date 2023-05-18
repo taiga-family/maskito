@@ -210,7 +210,7 @@ This release introduces the first publishing of the following packages:
 
 - `@maskito/core` <br /> It is the main zero-dependency and framework-agnostic package. It can be used alone in Vanilla
   JavaScript project. It listens `beforeinput` and `input` events to validate and calibrate textfield's value. <br />
-  Read more: https://tinkoff.github.io/maskito/core-concepts/overview
+  Read more: https://tinkoff.github.io/maskito/concepts/overview
 - `@maskito/kit` <br /> The optional framework-agnostic package. It contains ready-to-use masks with configurable
   parameters. This release introduces the following masks:
   - [Number](https://tinkoff.github.io/maskito/kit/number)

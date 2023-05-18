@@ -7,7 +7,7 @@ export function maskitoCaretGuard(
 ): NonNullable<MaskitoOptions['plugins']>[0] {
     return (element: HTMLInputElement | HTMLTextAreaElement): (() => void) => {
         const document = element.ownerDocument;
-        const onSelection = (): void => {
+        const listener = (): void => {
             if (getFocused(document) !== element) {
                 return;
             }
@@ -21,8 +21,8 @@ export function maskitoCaretGuard(
             }
         };
 
-        document.addEventListener('selectionchange', onSelection);
+        document.addEventListener('selectionchange', listener);
 
-        return () => document.removeEventListener('selectionchange', onSelection);
+        return () => document.removeEventListener('selectionchange', listener);
     };
 }

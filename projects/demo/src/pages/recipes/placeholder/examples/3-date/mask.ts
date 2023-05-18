@@ -9,9 +9,9 @@ const dateOptions = maskitoDateOptionsGenerator({
 });
 
 const {
-    // Use this utility to remove placeholder characters
     plugins, // plugin keeps caret inside actual value
     ...placeholderOptions
+    // pass 'true' as second argument to hide placeholder when input is not focused
 } = maskitoWithPlaceholder(PLACEHOLDER, true);
 
 export default {

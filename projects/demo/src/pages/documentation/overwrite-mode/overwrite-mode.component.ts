@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import {DocExamplePrimaryTab} from '@demo/constants';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 @Component({
@@ -19,8 +19,4 @@ export class OverwriteModeDocPageComponent {
     readonly dynamicExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw'),
     };
-
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
 }

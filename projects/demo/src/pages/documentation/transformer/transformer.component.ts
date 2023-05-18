@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DemoPath} from '@demo/constants';
 
 @Component({
     selector: 'transformer-doc-page',
@@ -7,9 +6,5 @@ import {DemoPath} from '@demo/constants';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransformerDocPageComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
-
     readonly utilityInActionDemo = import('./examples/utility-in-action-demo.md?raw');
 }

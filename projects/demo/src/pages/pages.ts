@@ -41,6 +41,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Core concepts',
+        title: 'Plugins',
+        route: DemoPath.Plugins,
+        keywords: 'core, concepts, extension, event, focus, blur',
+    },
+    {
+        section: 'Core concepts',
         title: 'Overwrite mode',
         route: DemoPath.OverwriteMode,
         keywords: 'core, concepts, overwrite, mode, shift, replace',
