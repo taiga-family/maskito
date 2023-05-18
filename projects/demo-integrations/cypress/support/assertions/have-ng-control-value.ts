@@ -15,7 +15,7 @@ export const haveNgControlValueAssertion: Chai.ChaiPlugin = _chai => {
         // @ts-ignore
         const angularTools = windowRef.ng;
 
-        const controlValue: string = angularTools.getComponent(subject).value;
+        const controlValue: string = angularTools.getComponent(subject).control.value;
 
         this.assert(
             angularTools && controlValue === expectedValue,
