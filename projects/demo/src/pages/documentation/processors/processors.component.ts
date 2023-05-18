@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {DemoPath} from '@demo/constants';
 
 @Component({
     selector: 'processors-doc-page',
@@ -23,4 +24,5 @@ export class ProcessorsDocPageComponent {
     );
 
     readonly maskitoPipeDemo = import('./examples/maskito-pipe-demo.md?raw');
+    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
 }
