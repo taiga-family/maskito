@@ -9,9 +9,9 @@ const dateOptions = maskitoDateOptionsGenerator({
 });
 
 const {
-    plugins, // plugin keeps caret inside actual value
+    plugins, // plugins keeps caret inside actual value and remove placeholder on blur
     ...placeholderOptions
-    // pass 'true' as second argument to hide placeholder when input is not focused
+    // pass 'true' as second argument to add plugin to hide placeholder when input is not focused
 } = maskitoWithPlaceholder(PLACEHOLDER, true);
 
 export default {
