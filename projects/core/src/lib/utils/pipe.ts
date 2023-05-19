@@ -1,12 +1,12 @@
-import {MaskPostprocessor, MaskPreprocessor} from '../types';
+import {MaskitoPostprocessor, MaskitoPreprocessor} from '../types';
 
 export function maskitoPipe(
-    ...processors: ReadonlyArray<MaskPreprocessor | null | undefined>
-): MaskPreprocessor;
+    ...processors: ReadonlyArray<MaskitoPreprocessor | null | undefined>
+): MaskitoPreprocessor;
 
 export function maskitoPipe(
-    ...processors: ReadonlyArray<MaskPostprocessor | null | undefined>
-): MaskPostprocessor;
+    ...processors: ReadonlyArray<MaskitoPostprocessor | null | undefined>
+): MaskitoPostprocessor;
 
 /* eslint-disable @typescript-eslint/ban-types */
 export function maskitoPipe(

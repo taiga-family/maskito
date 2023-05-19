@@ -1,30 +1,30 @@
-import {ElementState, MaskPostprocessor, MaskPreprocessor} from '../../types';
+import {ElementState, MaskitoPostprocessor, MaskitoPreprocessor} from '../../types';
 import {maskitoPipe} from '../pipe';
 
 describe('maskitoPipe', () => {
     describe('Preprocessor', () => {
-        const preprocessorData: Parameters<MaskPreprocessor>[0] = {
+        const preprocessorData: Parameters<MaskitoPreprocessor>[0] = {
             elementState: {value: '2', selection: [2, 2]},
             data: '0',
         };
 
-        const add0ToValue: MaskPreprocessor = ({elementState}) => ({
+        const add0ToValue: MaskitoPreprocessor = ({elementState}) => ({
             elementState: {
                 ...elementState,
                 value: `${elementState.value}0`,
             },
         });
-        const add1ToValue: MaskPreprocessor = ({elementState}) => ({
+        const add1ToValue: MaskitoPreprocessor = ({elementState}) => ({
             elementState: {
                 ...elementState,
                 value: `${elementState.value}1`,
             },
         });
-        const add5ToData: MaskPreprocessor = ({elementState, data}) => ({
+        const add5ToData: MaskitoPreprocessor = ({elementState, data}) => ({
             elementState,
             data: `${data}5`,
         });
-        const add3ToData: MaskPreprocessor = ({elementState, data}) => ({
+        const add3ToData: MaskitoPreprocessor = ({elementState, data}) => ({
             elementState,
             data: `${data}3`,
         });
@@ -92,28 +92,28 @@ describe('maskitoPipe', () => {
     });
 
     describe('Postprocessor', () => {
-        const initialElementState: Parameters<MaskPostprocessor>[1] = {
+        const initialElementState: Parameters<MaskitoPostprocessor>[1] = {
             value: '',
             selection: [0, 0],
         };
-        const postprocessorData: Parameters<MaskPostprocessor>[0] = {
+        const postprocessorData: Parameters<MaskitoPostprocessor>[0] = {
             value: '0',
             selection: [5, 5],
         };
 
-        const add3: MaskPostprocessor = ({value, selection}) => ({
+        const add3: MaskitoPostprocessor = ({value, selection}) => ({
             selection,
             value: `${value}3`,
         });
-        const add5: MaskPostprocessor = ({value, selection}) => ({
+        const add5: MaskitoPostprocessor = ({value, selection}) => ({
             selection,
             value: `${value}5`,
         });
-        const doubleCaretIndex: MaskPostprocessor = ({value, selection}) => ({
+        const doubleCaretIndex: MaskitoPostprocessor = ({value, selection}) => ({
             value,
             selection: [selection[0] * 2, selection[1] * 2],
         });
-        const shiftCaretIndexBy5: MaskPostprocessor = ({value, selection}) => ({
+        const shiftCaretIndexBy5: MaskitoPostprocessor = ({value, selection}) => ({
             value,
             selection: [selection[0] + 5, selection[1] + 5],
         });
@@ -177,7 +177,7 @@ describe('maskitoPipe', () => {
         const elementState: ElementState = {value: '', selection: [0, 0]};
 
         it('Preprocessor', () => {
-            const checkActionType: MaskPreprocessor = (data, actionType) => {
+            const checkActionType: MaskitoPreprocessor = (data, actionType) => {
                 expect(actionType).toBe('deleteBackward');
 
                 return data;
@@ -196,7 +196,7 @@ describe('maskitoPipe', () => {
                 selection: [2, 7],
             };
 
-            const checkActionType: MaskPostprocessor = (data, actionType) => {
+            const checkActionType: MaskitoPostprocessor = (data, actionType) => {
                 expect(actionType).toEqual(initialElementState);
 
                 return data;

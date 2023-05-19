@@ -1,10 +1,10 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPlugin} from '@maskito/core';
 
 import {getFocused} from '../utils';
 
 export function maskitoCaretGuard(
     guard: (value: string) => [from: number, to: number],
-): NonNullable<MaskitoOptions['plugins']>[0] {
+): MaskitoPlugin {
     return (element: HTMLInputElement | HTMLTextAreaElement): (() => void) => {
         const document = element.ownerDocument;
         const listener = (): void => {

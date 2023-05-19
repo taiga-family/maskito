@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {
     isDateStringComplete,
@@ -13,7 +13,7 @@ export function createSwapDatesPostprocessor({
 }: {
     dateModeTemplate: string;
     datesSeparator: string;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     return ({value, selection}) => {
         const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);
         const isDateRangeComplete =

@@ -1,14 +1,13 @@
 import {ElementState} from './element-state';
-import {MaskPostprocessor, MaskPreprocessor} from './mask-processors';
-import {Plugin} from './plugin';
-
-export type MaskExpression = Array<RegExp | string> | RegExp;
+import {MaskitoMask} from './mask';
+import {MaskitoPostprocessor, MaskitoPreprocessor} from './mask-processors';
+import {MaskitoPlugin} from './plugin';
 
 export interface MaskitoOptions {
-    readonly mask: MaskExpression | ((elementState: ElementState) => MaskExpression);
-    readonly preprocessor?: MaskPreprocessor;
-    readonly postprocessor?: MaskPostprocessor;
-    readonly plugins?: readonly Plugin[];
+    readonly mask: MaskitoMask;
+    readonly preprocessor?: MaskitoPreprocessor;
+    readonly postprocessor?: MaskitoPostprocessor;
+    readonly plugins?: readonly MaskitoPlugin[];
     readonly overwriteMode?:
         | 'replace'
         | 'shift'

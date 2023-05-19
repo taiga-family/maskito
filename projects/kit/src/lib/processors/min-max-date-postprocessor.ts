@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {
@@ -24,7 +24,7 @@ export function createMinMaxDatePostprocessor({
     max?: Date;
     datesSeparator?: string;
     dateSegmentSeparator?: string;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithDatesSeparator = datesSeparator && value.endsWith(datesSeparator);
         const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);

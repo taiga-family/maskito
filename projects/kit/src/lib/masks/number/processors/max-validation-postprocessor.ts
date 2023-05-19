@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {maskitoParseNumber} from '../utils';
 
@@ -8,7 +8,7 @@ export function createMaxValidationPostprocessor({
 }: {
     max: number;
     decimalSeparator: string;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     return ({value, selection}) => {
         if (maskitoParseNumber(value, decimalSeparator) > max) {
             const newValue = `${max}`.replace('.', decimalSeparator);

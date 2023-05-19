@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 import {
     DEFAULT_TIME_SEGMENT_MAX_VALUES,
@@ -15,7 +15,7 @@ export function createValidDateTimePreprocessor({
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
-}): NonNullable<MaskitoOptions['preprocessor']> {
+}): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 

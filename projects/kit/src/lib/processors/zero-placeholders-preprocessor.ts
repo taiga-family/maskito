@@ -1,8 +1,6 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
-export function createZeroPlaceholdersPreprocessor(): NonNullable<
-    MaskitoOptions['preprocessor']
-> {
+export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
     return ({elementState}, actionType) => {
         const {value, selection} = elementState;
 

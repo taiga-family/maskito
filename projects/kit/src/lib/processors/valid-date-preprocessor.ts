@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 import {POSSIBLE_DATES_SEPARATOR} from '../constants';
 import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
@@ -11,7 +11,7 @@ export function createValidDatePreprocessor({
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
     datesSeparator?: string;
-}): NonNullable<MaskitoOptions['preprocessor']> {
+}): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 

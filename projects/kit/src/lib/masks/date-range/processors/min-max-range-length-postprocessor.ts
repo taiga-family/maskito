@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE} from '../../../constants';
 import {MaskitoDateSegments} from '../../../types';
@@ -26,7 +26,7 @@ export function createMinMaxRangeLengthPostprocessor({
     max?: Date;
     minLength?: Partial<MaskitoDateSegments<number>>;
     maxLength?: Partial<MaskitoDateSegments<number>>;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     if (isEmpty(minLength) && isEmpty(maxLength)) {
         return elementState => elementState;
     }
