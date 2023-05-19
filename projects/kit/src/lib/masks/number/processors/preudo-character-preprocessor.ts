@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 /**
  * It replaces pseudo characters with valid one.
@@ -8,7 +8,7 @@ import {MaskitoOptions} from '@maskito/core';
 export function createPseudoCharactersPreprocessor(
     validCharacter: string,
     pseudoCharacters: string[],
-): NonNullable<MaskitoOptions['preprocessor']> {
+): MaskitoPreprocessor {
     const pseudoCharactersRegExp = new RegExp(`[${pseudoCharacters.join('')}]`, 'gi');
 
     return ({elementState, data}) => {

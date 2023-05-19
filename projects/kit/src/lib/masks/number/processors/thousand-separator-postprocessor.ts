@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
 import {escapeRegExp} from '../../../utils';
@@ -17,7 +17,7 @@ export function createThousandSeparatorPostprocessor({
     decimalSeparator: string;
     prefix: string;
     postfix: string;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     if (!thousandSeparator) {
         return elementState => elementState;
     }

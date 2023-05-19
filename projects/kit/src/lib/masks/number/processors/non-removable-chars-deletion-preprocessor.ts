@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 /**
  * Manage caret-navigation when user "deletes" non-removable digits or separators
@@ -15,7 +15,7 @@ export function createNonRemovableCharsDeletionPreprocessor({
     decimalSeparator: string;
     thousandSeparator: string;
     decimalZeroPadding: boolean;
-}): NonNullable<MaskitoOptions['preprocessor']> {
+}): MaskitoPreprocessor {
     return ({elementState, data}, actionType) => {
         const {value, selection} = elementState;
         const [from, to] = selection;

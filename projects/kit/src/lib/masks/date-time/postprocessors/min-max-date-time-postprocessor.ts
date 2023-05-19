@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import {MaskitoTimeMode} from '../../../types';
@@ -23,7 +23,7 @@ export function createMinMaxDateTimePostprocessor({
     timeMode: MaskitoTimeMode;
     min?: Date;
     max?: Date;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
         const parsedDate = parseDateString(dateString, dateModeTemplate);

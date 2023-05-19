@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
 
@@ -12,7 +12,7 @@ import {escapeRegExp} from '../../../utils';
 export function createLeadingZeroesValidationPostprocessor(
     decimalSeparator: string,
     thousandSeparator: string,
-): NonNullable<MaskitoOptions['postprocessor']> {
+): MaskitoPostprocessor {
     const trimLeadingZeroes = (value: string): string => {
         const escapedThousandSeparator = escapeRegExp(thousandSeparator);
 

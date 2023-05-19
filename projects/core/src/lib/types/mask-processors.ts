@@ -1,6 +1,6 @@
 import {ElementState} from './element-state';
 
-export type MaskPreprocessor = (
+export type MaskitoPreprocessor = (
     _: {
         elementState: ElementState;
         data: string;
@@ -11,7 +11,7 @@ export type MaskPreprocessor = (
     data?: string;
 };
 
-export type MaskPostprocessor = (
+export type MaskitoPostprocessor = (
     elementState: ElementState,
     initialElementState: ElementState,
 ) => ElementState;

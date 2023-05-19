@@ -1,8 +1,8 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, MaskitoPostprocessor} from '@maskito/core';
 
 export function maskitoPrefixPostprocessorGenerator(
     prefix: string,
-): NonNullable<MaskitoOptions['postprocessor']> {
+): MaskitoPostprocessor {
     return prefix
         ? ({value, selection}, initialElementState) => {
               if (

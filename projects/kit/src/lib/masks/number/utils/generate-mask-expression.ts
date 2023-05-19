@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoMask} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
 import {escapeRegExp} from '../../../utils';
@@ -17,7 +17,7 @@ export function generateMaskExpression({
     thousandSeparator: string;
     prefix: string;
     postfix: string;
-}): MaskitoOptions['mask'] {
+}): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
     const digit = '\\d';
     const optionalMinus = isNegativeAllowed ? `${CHAR_MINUS}?` : '';

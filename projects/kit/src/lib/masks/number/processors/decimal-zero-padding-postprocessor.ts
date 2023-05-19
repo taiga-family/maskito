@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
 
 /**
  * If `decimalZeroPadding` is `true`, it pads decimal part with zeroes
@@ -13,7 +13,7 @@ export function createDecimalZeroPaddingPostprocessor({
     decimalSeparator: string;
     decimalZeroPadding: boolean;
     precision: number;
-}): NonNullable<MaskitoOptions['postprocessor']> {
+}): MaskitoPostprocessor {
     if (precision <= 0 || !decimalZeroPadding) {
         return elementState => elementState;
     }

@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
 
@@ -9,7 +9,7 @@ import {escapeRegExp} from '../../../utils';
 export function createZeroPrecisionPreprocessor(
     precision: number,
     decimalSeparator: string,
-): NonNullable<MaskitoOptions['preprocessor']> {
+): MaskitoPreprocessor {
     if (precision > 0) {
         return elementState => elementState;
     }

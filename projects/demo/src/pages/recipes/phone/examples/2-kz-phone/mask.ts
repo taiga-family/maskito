@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
 import {maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
 
 export default {
@@ -28,7 +28,7 @@ export default {
 } as MaskitoOptions;
 
 // Paste "89123456789" => "+7 (912) 345-67-89"
-function createTrickyPasteCasesPreprocessor(): MaskitoOptions['preprocessor'] {
+function createTrickyPasteCasesPreprocessor(): MaskitoPreprocessor {
     const trimPrefix = (value: string): string => value.replace(/^(\+?7?\s?8?)\s?/, '');
     const countDigits = (value: string): number => value.replace(/\D/g, '').length;
 

@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
 
@@ -12,7 +12,7 @@ export function createNotEmptyIntegerPartPreprocessor({
 }: {
     decimalSeparator: string;
     precision: number;
-}): NonNullable<MaskitoOptions['preprocessor']> {
+}): MaskitoPreprocessor {
     const startWithDecimalSepRegExp = new RegExp(
         `^\\D*${escapeRegExp(decimalSeparator)}`,
     );

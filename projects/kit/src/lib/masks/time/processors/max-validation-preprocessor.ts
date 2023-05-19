@@ -1,11 +1,11 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoPreprocessor} from '@maskito/core';
 
 import {MaskitoTimeSegments} from '../../../types';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
-): NonNullable<MaskitoOptions['preprocessor']> {
+): MaskitoPreprocessor {
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
 
     return ({elementState, data}, actionType) => {
