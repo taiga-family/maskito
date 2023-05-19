@@ -27,7 +27,8 @@ jobs:
           key: ${{ env.CACHE_DIST_KEY }}
 
       - name: Build demo
-        run: npm run build
+        # --optimization false to keep `window.ng` inside Cypress tests
+        run: npm run build -- --optimization false
 
       - name: Build SSR server
         run: npm run build:ssr
