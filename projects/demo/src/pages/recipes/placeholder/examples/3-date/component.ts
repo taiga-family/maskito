@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 
-import mask, {PLACEHOLDER, removePlaceholder} from './mask';
+import mask from './mask';
 
 @Component({
     selector: 'placeholder-doc-example-3',
@@ -16,8 +16,6 @@ import mask, {PLACEHOLDER, removePlaceholder} from './mask';
                 tuiTextfield
                 inputmode="numeric"
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
-                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -28,22 +26,6 @@ export class PlaceholderDocExample3 {
     inputRef!: ElementRef<HTMLInputElement>;
 
     readonly maskitoOptions = mask;
+
     value = '';
-
-    onBlur(): void {
-        this.value = removePlaceholder(this.value);
-    }
-
-    onFocus(): void {
-        const initialValue = this.value;
-
-        this.value = initialValue + PLACEHOLDER.slice(this.value.length);
-
-        setTimeout(() => {
-            this.inputRef.nativeElement.setSelectionRange(
-                initialValue.length,
-                initialValue.length,
-            );
-        });
-    }
 }

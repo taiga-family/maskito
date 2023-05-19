@@ -66,6 +66,16 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.Plugins,
+        loadChildren: async () =>
+            import(`../pages/documentation/plugins/plugins.module`).then(
+                m => m.PluginsDocPageModule,
+            ),
+        data: {
+            title: `Plugins`,
+        },
+    },
+    {
         path: DemoPath.OverwriteMode,
         loadChildren: async () =>
             import(`../pages/documentation/overwrite-mode/overwrite-mode.module`).then(

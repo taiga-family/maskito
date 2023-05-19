@@ -7,13 +7,10 @@ import {DemoPath} from '@demo/constants';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaskExpressionDocPageComponent {
+    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
     readonly regExpMaskExpDemo = import('./examples/reg-exp-mask-expression-demo.md?raw');
     readonly basicTimeDemo = import('./examples/basic-time-example.md?raw');
     readonly dynamicMaskExpDemo = import(
         './examples/dynamic-mask-expression-demo.md?raw'
     );
-
-    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
 }

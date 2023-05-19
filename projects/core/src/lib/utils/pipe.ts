@@ -14,6 +14,6 @@ export function maskitoPipe(
 ): Function {
     return (initialData: object, ...readonlyArgs: unknown[]) =>
         processors
-            .filter(<T>(x: T | null | undefined): x is T => Boolean(x))
+            .filter((x: Function | null | undefined): x is Function => !!x)
             .reduce((data, fn) => ({...data, ...fn(data, ...readonlyArgs)}), initialData);
 }

@@ -10,6 +10,7 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 export class PlaceholderDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
+    readonly pluginsDocPage = `/${DemoPath.Plugins}`;
     readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
     readonly cvcExample1: TuiDocExample = {
@@ -25,6 +26,5 @@ export class PlaceholderDocComponent {
 
     readonly dateExample3: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw'),
-        [DocExamplePrimaryTab.Angular]: import('./examples/3-date/component.ts?raw'),
     };
 }

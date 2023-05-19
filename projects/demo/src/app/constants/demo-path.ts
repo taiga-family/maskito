@@ -5,6 +5,7 @@ export const enum DemoPath {
     MaskExpression = 'core-concepts/mask-expression',
     ElementState = 'core-concepts/element-state',
     Processors = 'core-concepts/processors',
+    Plugins = 'core-concepts/plugins',
     OverwriteMode = 'core-concepts/overwrite-mode',
     Transformer = 'core-concepts/transformer',
     Angular = 'javascript-frameworks/angular',

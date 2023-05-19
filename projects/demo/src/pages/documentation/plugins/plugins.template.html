@@ -1,0 +1,25 @@
+<tui-doc-page header="Plugins">
+    <p class="tui-space_top-0">
+        <strong>Plugins</strong>
+        are functions that are called with input/textarea element and mask
+        options as arguments upon mask initialization. They can optionally
+        return cleanup logic and allow you to extend mask with arbitrary
+        additional behavior.
+    </p>
+
+    <tui-doc-example
+        id="reject"
+        heading="Visualize rejected characters"
+        [content]="rejectExample"
+    >
+        <tui-notification class="tui-space_bottom-3">
+            This plugin is available as
+            <code>maskitoRejectEvent</code>
+            in
+            <code>@maskito/kit</code>
+        </tui-notification>
+        <plugins-reject-doc-example-1></plugins-reject-doc-example-1>
+    </tui-doc-example>
+
+    <next-steps></next-steps>
+</tui-doc-page>

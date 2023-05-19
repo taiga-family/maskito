@@ -48,12 +48,5 @@ export class PlaceholderDocExample2 {
         const initialValue = this.value || '+1 (';
 
         this.value = initialValue + PLACEHOLDER.slice(initialValue.length);
-
-        setTimeout(() => {
-            this.inputRef.nativeElement.setSelectionRange(
-                initialValue.length,
-                initialValue.length,
-            );
-        });
     }
 }

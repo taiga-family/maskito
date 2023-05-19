@@ -1,4 +1,12 @@
-import {Directive, ElementRef, Inject, Input, OnChanges, OnDestroy} from '@angular/core';
+import {
+    Directive,
+    ElementRef,
+    Inject,
+    Input,
+    NgZone,
+    OnChanges,
+    OnDestroy,
+} from '@angular/core';
 import {
     Maskito,
     MASKITO_DEFAULT_OPTIONS,
@@ -16,6 +24,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
     constructor(
+        @Inject(NgZone) private readonly ngZone: NgZone,
         @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLElement>,
     ) {}
 
@@ -26,10 +35,12 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
 
     ngOnChanges(): void {
         this.maskedElement?.destroy();
-        this.maskedElement = new Maskito(
-            this.maskitoElement(this.elementRef.nativeElement),
-            this.maskito,
-        );
+        this.ngZone.runOutsideAngular(() => {
+            this.maskedElement = new Maskito(
+                this.maskitoElement(this.elementRef.nativeElement),
+                this.maskito,
+            );
+        });
     }
 
     ngOnDestroy(): void {

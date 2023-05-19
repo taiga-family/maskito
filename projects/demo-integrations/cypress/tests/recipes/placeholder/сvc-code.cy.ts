@@ -73,15 +73,23 @@ describe('Placeholder | CVC code', () => {
             .should('have.prop', 'selectionEnd', 0);
     });
 
-    it('12x| => Backspace => 12|x', () => {
+    it('1x|x => 1|xx', () => {
+        cy.get('@input')
+            .type('1')
+            .should('have.prop', 'selectionStart', 1)
+            .should('have.prop', 'selectionEnd', 1)
+            .type('{rightArrow}')
+            .should('have.prop', 'selectionStart', 1)
+            .should('have.prop', 'selectionEnd', 1);
+    });
+
+    it('12|x => select all => |12|x', () => {
         cy.get('@input')
             .type('12')
-            .type('{rightArrow}')
-            .should('have.prop', 'selectionStart', 3)
-            .should('have.prop', 'selectionEnd', 3)
-            .type('{backspace}')
-            .should('have.value', '12x')
             .should('have.prop', 'selectionStart', 2)
+            .should('have.prop', 'selectionEnd', 2)
+            .type('{selectAll}')
+            .should('have.prop', 'selectionStart', 0)
             .should('have.prop', 'selectionEnd', 2);
     });
 });

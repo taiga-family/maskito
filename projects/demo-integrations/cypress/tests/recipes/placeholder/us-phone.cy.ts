@@ -9,8 +9,8 @@ describe('Placeholder | US phone', () => {
             .should('have.value', '')
             .focus()
             .should('have.value', '+1 (   ) ___-____')
-            .should('have.prop', 'selectionStart', '+1 ('.length)
-            .should('have.prop', 'selectionEnd', '+1 ('.length)
+            .should('have.prop', 'selectionStart', '+1'.length)
+            .should('have.prop', 'selectionEnd', '+1'.length)
             .as('input');
     });
 
@@ -57,6 +57,16 @@ describe('Placeholder | US phone', () => {
             .type('{selectAll}{del}')
             .should('have.value', '+1 (   ) ___-____')
             .should('have.prop', 'selectionStart', '+1'.length)
+            .should('have.prop', 'selectionEnd', '+1'.length);
+    });
+
+    it('cannot move caret outside actual value', () => {
+        cy.get('@input')
+            .type('{rightArrow}')
+            .should('have.prop', 'selectionStart', '+1'.length)
+            .should('have.prop', 'selectionEnd', '+1'.length)
+            .type('{selectAll}')
+            .should('have.prop', 'selectionStart', 0)
             .should('have.prop', 'selectionEnd', '+1'.length);
     });
 });

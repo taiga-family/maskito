@@ -14,10 +14,13 @@ export const {
      * @example
      * inputRef.addEventListener('blur', () => {
      *     // removePlaceholder('+1 (212) 555-____') => '+1 (212) 555'
-     *     inputRef.value = removePlaceholder(inputRef.value);
+     *     const cleanValue = removePlaceholder(this.value);
+     *
+     *     inputRef.value = cleanValue === '+1' ? '' : cleanValue;
      * });
      */
     removePlaceholder,
+    plugins,
     ...placeholderOptions
 } = maskitoWithPlaceholder(PLACEHOLDER);
 
@@ -27,6 +30,7 @@ export default {
         maskitoPrefixPostprocessorGenerator('+1'),
         placeholderOptions.postprocessor,
     ),
+    plugins,
     mask: [
         '+',
         '1',

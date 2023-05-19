@@ -20,7 +20,5 @@ export class OverwriteModeDocPageComponent {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw'),
     };
 
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly elementStateDocPage = `/${DemoPath.ElementState}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
 }

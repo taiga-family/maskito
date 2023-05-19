@@ -20,6 +20,10 @@ export class Maskito extends MaskHistory {
         ...this.maskitoOptions,
     };
 
+    private readonly teardowns = this.options.plugins.map(plugin =>
+        plugin(this.element, this.options),
+    );
+
     constructor(
         private readonly element: HTMLInputElement | HTMLTextAreaElement,
         private readonly maskitoOptions: MaskitoOptions,
@@ -127,6 +131,7 @@ export class Maskito extends MaskHistory {
 
     destroy(): void {
         this.eventListener.destroy();
+        this.teardowns.forEach(teardown => teardown?.());
     }
 
     protected updateElementState(
