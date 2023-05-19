@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/tinkoff/maskito/compare/v0.11.1...v0.12.0) (2023-05-19)
+
+### Features
+
+- **core:** add `plugins` to `MaskitoOptions` ([#305](https://github.com/tinkoff/maskito/issues/305))
+  ([b512ae2](https://github.com/tinkoff/maskito/commit/b512ae2c64b2a2c6560e2e5c68d8c72952474c71))
+- **core:** expose `MaskitoMask`, `MaskitoPreprocessor`, `MaskitoPostprocessor` and `MaskitoPlugin`
+  ([70a0eda](https://github.com/tinkoff/maskito/commit/70a0eda2df2492d323e349506fafa75a14abb23b))
+- **core:** expose `MaskitoMask`, `MaskitoPreprocessor`, `MaskitoPostprocessor` and `MaskitoPlugin`
+  ([#307](https://github.com/tinkoff/maskito/issues/307))
+  ([9315a9f](https://github.com/tinkoff/maskito/commit/9315a9f4620b3be86cf3b7af993861664f281a19))
+- **kit:** new `maskitoWithPlaceholder` utility ([#299](https://github.com/tinkoff/maskito/issues/299))
+  ([21eb69c](https://github.com/tinkoff/maskito/commit/21eb69cfeb73bbe645d5a5879659ab8b6aadbf0c))
+
 ### [0.11.1](https://github.com/tinkoff/maskito/compare/v0.11.0...v0.11.1) (2023-05-11)
 
 ### Bug Fixes
