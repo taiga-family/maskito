@@ -5,6 +5,7 @@ import {MaskitoTimeMode} from '../../../types';
 import {
     clamp,
     dateToSegments,
+    isDateStringComplete,
     parseDateString,
     segmentsToDate,
     toDateString,
@@ -31,8 +32,15 @@ export function createMinMaxDateTimePostprocessor({
 
         if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
+            const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
+                ? dateToSegments(clamp(segmentsToDate(fixedDate), min, max))
+                : fixedDate;
+
             const fixedValue = toDateString(
-                {...fixedDate, ...parsedTime},
+                {
+                    ...{year, month, day},
+                    ...parsedTime,
+                },
                 dateModeTemplate,
                 timeMode,
             );

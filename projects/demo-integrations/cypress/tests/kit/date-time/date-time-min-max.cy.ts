@@ -40,6 +40,29 @@ describe('DateTime | Min & Max dates', () => {
                 .should('have.prop', 'selectionStart', '05.05.202'.length)
                 .should('have.prop', 'selectionEnd', '05.05.202'.length);
         });
+
+        describe('Correct value after date only input', () => {
+            it('06.06.202| => Type 5 => 05.05.2020| (max value)', () => {
+                cy.get('@input')
+                    .type('06.06.202')
+                    .should('have.value', '06.06.202')
+                    .should('have.prop', 'selectionStart', '06.06.202'.length)
+                    .should('have.prop', 'selectionEnd', '06.06.202'.length)
+                    .type('5')
+                    .should('have.value', '05.05.2020')
+                    .should('have.prop', 'selectionStart', '05.05.2020'.length)
+                    .should('have.prop', 'selectionEnd', '05.05.2020'.length);
+            });
+
+            it('0|1.05.2020 => Type 9 => 05|.05.2020 (max value)', () => {
+                cy.get('@input')
+                    .type('01052020')
+                    .type('{leftArrow}'.repeat('1.05.2020'.length))
+                    .type('9')
+                    .should('have.value', '05.05.2020')
+                    .should('have.prop', 'selectionStart', '05.'.length);
+            });
+        });
     });
 
     describe('Min', () => {
@@ -80,6 +103,29 @@ describe('DateTime | Min & Max dates', () => {
                 .should('have.value', '14.10.1995, 15:32')
                 .should('have.prop', 'selectionStart', '14.10.'.length)
                 .should('have.prop', 'selectionEnd', '14.10.'.length);
+        });
+
+        describe('Correct value after date only input', () => {
+            it('14.10.199 => Type 3 => 14.10.1995| (min)', () => {
+                cy.get('@input')
+                    .type('14.10.199')
+                    .should('have.value', '14.10.199')
+                    .should('have.prop', 'selectionStart', '14.10.199'.length)
+                    .should('have.prop', 'selectionEnd', '14.10.199'.length)
+                    .type('3')
+                    .should('have.value', '14.10.1995')
+                    .should('have.prop', 'selectionStart', '14.10.1995'.length)
+                    .should('have.prop', 'selectionEnd', '14.10.1995'.length);
+            });
+
+            it('14.10.199|5 => Type 3 => 14.10.1995| (min)', () => {
+                cy.get('@input')
+                    .type('14.10.1995')
+                    .type('{leftArrow}'.repeat('5'.length))
+                    .type('3')
+                    .should('have.value', '14.10.1995')
+                    .should('have.prop', 'selectionStart', '14.10.1995'.length);
+            });
         });
     });
 });
