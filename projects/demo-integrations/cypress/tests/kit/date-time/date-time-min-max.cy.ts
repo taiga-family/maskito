@@ -121,7 +121,7 @@ describe('DateTime | Min & Max dates', () => {
             it('14.10.199|5 => Type 3 => 14.10.1995| (min)', () => {
                 cy.get('@input')
                     .type('14.10.1995')
-                    .type('{leftArrow}'.repeat('5'.length))
+                    .type('{leftArrow}')
                     .type('3')
                     .should('have.value', '14.10.1995')
                     .should('have.prop', 'selectionStart', '14.10.1995'.length);
