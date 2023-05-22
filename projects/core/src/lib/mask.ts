@@ -11,6 +11,7 @@ import {
     isEventProducingCharacter,
     maskitoTransform,
 } from './utils';
+import {isRedo, isUndo} from './utils/dom/history-events';
 
 export class Maskito extends MaskHistory {
     private readonly isTextArea = this.element.nodeName === 'TEXTAREA';
@@ -33,15 +34,13 @@ export class Maskito extends MaskHistory {
         this.updateHistory(this.elementState);
 
         this.eventListener.listen('keydown', event => {
-            const {ctrlKey, key, metaKey, shiftKey} = event;
-
-            if ((metaKey && shiftKey && key === 'z') || (ctrlKey && key === 'y')) {
+            if (isRedo(event)) {
                 event.preventDefault();
 
                 return this.redo();
             }
 
-            if ((ctrlKey || metaKey) && key === 'z') {
+            if (isUndo(event)) {
                 event.preventDefault();
 
                 return this.undo();
