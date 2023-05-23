@@ -13,4 +13,16 @@ describe('@maskito/angular | Predicate', () => {
 
         cy.get('@name').focus().type('12341234abcd12341234').should('have.value', 'ABCD');
     });
+    it('supports asynchronous predicate', () => {
+        cy.visit(DemoPath.Cypress);
+        cy.get('#predicate #async-predicate input')
+            .should('be.visible')
+            .first()
+            .as('card');
+
+        cy.get('@card')
+            .focus()
+            .type('12341234abcd12341234')
+            .should('have.value', '1234 1234 1234 1234');
+    });
 });
