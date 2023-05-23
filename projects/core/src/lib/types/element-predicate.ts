@@ -1,5 +1,5 @@
-export type MaskitoElementPredicate = (
-    element: HTMLElement,
+export type MaskitoElementPredicate<T extends HTMLElement = HTMLElement> = (
+    element: T,
 ) =>
     | HTMLInputElement
     | HTMLTextAreaElement
