@@ -34,4 +34,7 @@ export class TestDocExample1 {
 
     readonly namePredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[1]!;
+
+    readonly asyncPredicate: MaskitoElementPredicate = async element =>
+        Promise.resolve(element.querySelectorAll('input')[0]!);
 }

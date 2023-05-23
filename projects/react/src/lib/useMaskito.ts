@@ -30,26 +30,32 @@ export const useMaskito = ({
     options?: MaskitoOptions;
     elementPredicate?: MaskitoElementPredicate;
 } = {}): RefCallback<HTMLElement> => {
-    const [element, setElement] = useState<HTMLElement | null>(null);
+    const [predicateResult, setPredicateResult] = useState<
+        HTMLInputElement | HTMLTextAreaElement | null
+    >(null);
 
     const onRefChange: RefCallback<HTMLElement> = useCallback(
-        (node: HTMLElement | null) => {
-            setElement(node);
+        async (node: HTMLElement | null) => {
+            if (node) {
+                const predicate = await elementPredicate(node);
+
+                setPredicateResult(predicate);
+            }
         },
-        [],
+        [elementPredicate],
     );
 
     useIsomorphicLayoutEffect(() => {
-        if (!element) {
+        if (!predicateResult) {
             return;
         }
 
-        const maskedElement = new Maskito(elementPredicate(element), options);
+        const maskedElement = new Maskito(predicateResult, options);
 
         return () => {
             maskedElement.destroy();
         };
-    }, [options, element, elementPredicate]);
+    }, [options, predicateResult]);
 
     return onRefChange;
 };

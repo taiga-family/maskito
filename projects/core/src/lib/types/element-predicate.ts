@@ -1,3 +1,6 @@
 export type MaskitoElementPredicate = (
     element: HTMLElement,
-) => HTMLInputElement | HTMLTextAreaElement;
+) =>
+    | HTMLInputElement
+    | HTMLTextAreaElement
+    | Promise<HTMLInputElement | HTMLTextAreaElement>;

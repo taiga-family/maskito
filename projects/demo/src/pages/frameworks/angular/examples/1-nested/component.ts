@@ -15,5 +15,5 @@ export class NestedDocExample1 {
     };
 
     readonly predicate: MaskitoElementPredicate = element =>
-        element.querySelector('tui-input input')!;
+        element.querySelector<HTMLInputElement>('tui-input input')!;
 }
