@@ -1,8 +1,13 @@
-import {TIME_SEGMENT_VALUE_LENGTHS} from '../../constants';
+import {TIME_FIXED_CHARACTERS, TIME_SEGMENT_VALUE_LENGTHS} from '../../constants';
 import {MaskitoTimeSegments} from '../../types';
+import {escapeRegExp} from '../escape-reg-exp';
 import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
 import {parseTimeString} from './parse-time-string';
 import {toTimeString} from './to-time-string';
+
+const TRAILING_TIME_SEGMENT_SEPARATOR_REG = new RegExp(
+    `[${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]$`,
+);
 
 export function validateTimeString({
     timeString,
@@ -54,8 +59,14 @@ export function validateTimeString({
         validatedTimeSegments[segmentName] = validatedSegmentValue;
     }
 
-    const validatedTimeString = toTimeString(validatedTimeSegments);
-    const addedDateSegmentSeparators = validatedTimeString.length - timeString.length;
+    const [trailingSegmentSeparator = ''] =
+        timeString.match(TRAILING_TIME_SEGMENT_SEPARATOR_REG) || [];
+    const validatedTimeString =
+        toTimeString(validatedTimeSegments) + trailingSegmentSeparator;
+    const addedDateSegmentSeparators = Math.max(
+        validatedTimeString.length - timeString.length,
+        0,
+    );
 
     return {
         validatedTimeString,

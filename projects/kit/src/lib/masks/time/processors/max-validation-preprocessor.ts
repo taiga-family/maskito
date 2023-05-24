@@ -1,12 +1,17 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
+import {TIME_FIXED_CHARACTERS} from '../../../constants';
 import {MaskitoTimeSegments} from '../../../types';
+import {escapeRegExp} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
 ): MaskitoPreprocessor {
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
+    const invalidCharsRegExp = new RegExp(
+        `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]+`,
+    );
 
     return ({elementState, data}, actionType) => {
         if (actionType === 'deleteBackward' || actionType === 'deleteForward') {
@@ -32,7 +37,7 @@ export function createMaxValidationPreprocessor(
             };
         }
 
-        const newCharacters = data.replace(/\D+/g, '');
+        const newCharacters = data.replace(invalidCharsRegExp, '');
         const [from, rawTo] = selection;
         let to = rawTo + newCharacters.length; // to be conformed with `overwriteMode: replace`
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
