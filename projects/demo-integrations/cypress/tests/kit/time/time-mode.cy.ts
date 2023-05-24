@@ -312,6 +312,38 @@ describe('Time', () => {
                     .should('have.prop', 'selectionStart', '09:09:09'.length)
                     .should('have.prop', 'selectionEnd', '09:09:09'.length);
             });
+
+            describe('accepts time segment separators typed by user', () => {
+                it('23 => Type : => 23:', () => {
+                    cy.get('@input')
+                        .type('23')
+                        .should('have.value', '23')
+                        .type(':')
+                        .should('have.value', '23:')
+                        .should('have.prop', 'selectionStart', '23:'.length)
+                        .should('have.prop', 'selectionEnd', '23:'.length);
+                });
+
+                it('23:59 => Type : => 23:59:', () => {
+                    cy.get('@input')
+                        .type('2359')
+                        .should('have.value', '23:59')
+                        .type(':')
+                        .should('have.value', '23:59:')
+                        .should('have.prop', 'selectionStart', '23:59:'.length)
+                        .should('have.prop', 'selectionEnd', '23:59:'.length);
+                });
+
+                it('23:59:59 => Type . => 23:59:59.', () => {
+                    cy.get('@input')
+                        .type('235959')
+                        .should('have.value', '23:59:59')
+                        .type('.')
+                        .should('have.value', '23:59:59.')
+                        .should('have.prop', 'selectionStart', '23:59:59.'.length)
+                        .should('have.prop', 'selectionEnd', '23:59:59.'.length);
+                });
+            });
         });
     });
 });

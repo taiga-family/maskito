@@ -18,6 +18,7 @@ describe('Time', () => {
                 // [Typed value, Masked value, caretIndex]
                 ['1', '1', 1],
                 ['12', '12', '12'.length],
+                ['12:', '12:', '12:'.length],
                 ['123', '12:3', '12:3'.length],
                 ['1234', '12:34', '12:34'.length],
             ] as const;

@@ -9,9 +9,10 @@ import {
     getWordSelection,
     isBeforeInputEventSupported,
     isEventProducingCharacter,
+    isRedo,
+    isUndo,
     maskitoTransform,
 } from './utils';
-import {isRedo, isUndo} from './utils/dom/history-events';
 
 export class Maskito extends MaskHistory {
     private readonly isTextArea = this.element.nodeName === 'TEXTAREA';

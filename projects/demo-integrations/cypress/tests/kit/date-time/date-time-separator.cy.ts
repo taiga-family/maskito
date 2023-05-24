@@ -22,6 +22,20 @@ describe('DateTime | Separator', () => {
                 .type('2000')
                 .should('have.value', '14/12/2000');
         });
+
+        it('accepts date segment separators typed by user', () => {
+            cy.get('@input')
+                .type('24')
+                .should('have.value', '24')
+                .type('/')
+                .should('have.value', '24/')
+                .should('have.prop', 'selectionStart', '24/'.length)
+                .should('have.prop', 'selectionEnd', '24/'.length)
+                .type('05/')
+                .should('have.value', '24/05/')
+                .should('have.prop', 'selectionStart', '24/05/'.length)
+                .should('have.prop', 'selectionEnd', '24/05/'.length);
+        });
     });
 
     describe('-', () => {
