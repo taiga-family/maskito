@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.1](https://github.com/tinkoff/maskito/compare/v0.12.0...v0.12.1) (2023-05-25)
+
+### Bug Fixes
+
+- **core:** a layout-independent way to detect undo and redo shortcuts
+  ([#313](https://github.com/tinkoff/maskito/issues/313))
+  ([9d215b8](https://github.com/tinkoff/maskito/commit/9d215b8e625db41ffea865455303d02837c7333e))
+- **kit:** `DateTime` validate min / max if date is complete ([#314](https://github.com/tinkoff/maskito/issues/314))
+  ([5783e76](https://github.com/tinkoff/maskito/commit/5783e766a657abcf0fc7f8a8d12ac1bf412dc18a))
+- **kit:** `Time` & `DateTime` should accept time segment separator typed by user
+  ([#317](https://github.com/tinkoff/maskito/issues/317))
+  ([3bcac7f](https://github.com/tinkoff/maskito/commit/3bcac7f6566043991a9211f04db744a5ec6f019f))
+
 ## [0.12.0](https://github.com/tinkoff/maskito/compare/v0.11.1...v0.12.0) (2023-05-19)
 
 ### Features
