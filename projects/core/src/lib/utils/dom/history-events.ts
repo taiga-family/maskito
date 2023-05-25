@@ -1,14 +1,16 @@
-export function isRedo({ctrlKey, metaKey, shiftKey, code}: KeyboardEvent): boolean {
+import {HotkeyCode, HotkeyModifier, isHotkey} from './hotkey';
+
+export function isRedo(event: KeyboardEvent): boolean {
     return (
-        (ctrlKey && code === 'KeyY') || // Windows
-        (ctrlKey && shiftKey && code === 'KeyZ') || // Windows & Android
-        (metaKey && shiftKey && code === 'KeyZ') // macOS & iOS
+        isHotkey(event, HotkeyModifier.CTRL, HotkeyCode.Y) || // Windows
+        isHotkey(event, HotkeyModifier.CTRL | HotkeyModifier.SHIFT, HotkeyCode.Z) || // Windows & Android
+        isHotkey(event, HotkeyModifier.META | HotkeyModifier.SHIFT, HotkeyCode.Z) // macOS & iOS
     );
 }
 
-export function isUndo({ctrlKey, metaKey, code}: KeyboardEvent): boolean {
+export function isUndo(event: KeyboardEvent): boolean {
     return (
-        (ctrlKey && code === 'KeyZ') || // Windows & Android
-        (metaKey && code === 'KeyZ') // macOS & iOS
+        isHotkey(event, HotkeyModifier.CTRL, HotkeyCode.Z) || // Windows & Android
+        isHotkey(event, HotkeyModifier.META, HotkeyCode.Z) // macOS & iOS
     );
 }
