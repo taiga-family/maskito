@@ -7,9 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- **core:** a layout-independent way to detect undo and redo shortcuts
-  ([#313](https://github.com/tinkoff/maskito/issues/313))
-  ([9d215b8](https://github.com/tinkoff/maskito/commit/9d215b8e625db41ffea865455303d02837c7333e))
 - **kit:** `DateTime` validate min / max if date is complete ([#314](https://github.com/tinkoff/maskito/issues/314))
   ([5783e76](https://github.com/tinkoff/maskito/commit/5783e766a657abcf0fc7f8a8d12ac1bf412dc18a))
 - **kit:** `Time` & `DateTime` should accept time segment separator typed by user
@@ -22,8 +19,6 @@ All notable changes to this project will be documented in this file. See
 
 - **core:** add `plugins` to `MaskitoOptions` ([#305](https://github.com/tinkoff/maskito/issues/305))
   ([b512ae2](https://github.com/tinkoff/maskito/commit/b512ae2c64b2a2c6560e2e5c68d8c72952474c71))
-- **core:** expose `MaskitoMask`, `MaskitoPreprocessor`, `MaskitoPostprocessor` and `MaskitoPlugin`
-  ([70a0eda](https://github.com/tinkoff/maskito/commit/70a0eda2df2492d323e349506fafa75a14abb23b))
 - **core:** expose `MaskitoMask`, `MaskitoPreprocessor`, `MaskitoPostprocessor` and `MaskitoPlugin`
   ([#307](https://github.com/tinkoff/maskito/issues/307))
   ([9315a9f](https://github.com/tinkoff/maskito/commit/9315a9f4620b3be86cf3b7af993861664f281a19))
