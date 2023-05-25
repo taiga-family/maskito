@@ -2,8 +2,8 @@ import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
-    MaskitoElementPredicate,
     MaskitoOptions,
+    SyncMaskitoElementPredicate,
 } from '@maskito/core';
 import {RefCallback, useCallback, useState} from 'react';
 
@@ -28,34 +28,28 @@ export const useMaskito = ({
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
-    elementPredicate?: MaskitoElementPredicate;
+    elementPredicate?: SyncMaskitoElementPredicate;
 } = {}): RefCallback<HTMLElement> => {
-    const [predicateResult, setPredicateResult] = useState<
-        HTMLInputElement | HTMLTextAreaElement | null
-    >(null);
+    const [element, setElement] = useState<HTMLElement | null>(null);
 
     const onRefChange: RefCallback<HTMLElement> = useCallback(
-        async (node: HTMLElement | null) => {
-            if (node) {
-                const predicate = await elementPredicate(node);
-
-                setPredicateResult(predicate);
-            }
+        (node: HTMLElement | null) => {
+            setElement(node);
         },
-        [elementPredicate],
+        [],
     );
 
     useIsomorphicLayoutEffect(() => {
-        if (!predicateResult) {
+        if (!element) {
             return;
         }
 
-        const maskedElement = new Maskito(predicateResult, options);
+        const maskedElement = new Maskito(elementPredicate(element), options);
 
         return () => {
             maskedElement.destroy();
         };
-    }, [options, predicateResult]);
+    }, [options, element, elementPredicate]);
 
     return onRefChange;
 };
