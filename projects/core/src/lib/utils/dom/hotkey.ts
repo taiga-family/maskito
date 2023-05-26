@@ -1,8 +1,8 @@
 export const enum HotkeyModifier {
-    CTRL = 0b0001,
-    ALT = 0b0010,
-    SHIFT = 0b0100,
-    META = 0b1000,
+    CTRL = 1 << 0,
+    ALT = 1 << 1,
+    SHIFT = 1 << 2,
+    META = 1 << 3,
 }
 
 // TODO add variants that can be processed correctly
