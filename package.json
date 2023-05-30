@@ -25,7 +25,7 @@
         "url": "https://github.com/nsbarsukov"
     },
     "contributors": [
-        "Alex Inkin <alexander@inkin.ru>",
+        "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
         "Maksim Ivanov <splincodewd@yandex.ru>",
         "Vladimir Potekhin <vladimir.potekh@gmail.com>",
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
@@ -119,7 +119,8 @@
         "ts-jest": "27.0.5",
         "ts-node": "^10.7.0",
         "tsutils": "^3.21.0",
-        "typescript": "~4.3.5"
+        "typescript": "~4.3.5",
+        "vue": "3.3.4"
     },
     "engines": {
         "node": ">= 18",

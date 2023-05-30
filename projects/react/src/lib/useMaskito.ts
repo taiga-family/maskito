@@ -1,15 +1,13 @@
 import {
     Maskito,
     MASKITO_DEFAULT_OPTIONS,
+    MASKITO_DEFAULT_PREDICATE,
     MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
 import {RefCallback, useCallback, useState} from 'react';
 
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
-
-const defaultMaskitoPredicate: MaskitoElementPredicate = e =>
-    e.querySelector('input,textarea') || (e as HTMLInputElement | HTMLTextAreaElement);
 
 /**
  * Hook for convenient use of Maskito in React
@@ -27,7 +25,7 @@ const defaultMaskitoPredicate: MaskitoElementPredicate = e =>
  */
 export const useMaskito = ({
     options = MASKITO_DEFAULT_OPTIONS,
-    elementPredicate = defaultMaskitoPredicate,
+    elementPredicate = MASKITO_DEFAULT_PREDICATE,
 }: {
     options?: MaskitoOptions;
     elementPredicate?: MaskitoElementPredicate;
