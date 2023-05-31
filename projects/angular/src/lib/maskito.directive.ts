@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import {
     Maskito,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
-    MASKITO_DEFAULT_PREDICATE,
     MaskitoOptions,
 } from '@maskito/core';
 
@@ -24,7 +24,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
     @Input()
-    maskitoElement = MASKITO_DEFAULT_PREDICATE;
+    maskitoElement = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     constructor(
         @Inject(NgZone) private readonly ngZone: NgZone,

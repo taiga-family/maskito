@@ -1,7 +1,7 @@
 import {
     Maskito,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
-    MASKITO_DEFAULT_PREDICATE,
     MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
@@ -25,7 +25,7 @@ import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
  */
 export const useMaskito = ({
     options = MASKITO_DEFAULT_OPTIONS,
-    elementPredicate = MASKITO_DEFAULT_PREDICATE,
+    elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
     elementPredicate?: MaskitoElementPredicate;

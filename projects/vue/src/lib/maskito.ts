@@ -1,6 +1,6 @@
 import {
     Maskito,
-    MASKITO_DEFAULT_PREDICATE,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
@@ -11,7 +11,7 @@ const teardown = new Map<HTMLElement, Maskito>();
 function fallback(options: {
     elementPredicate?: MaskitoElementPredicate;
 }): MaskitoElementPredicate {
-    return options.elementPredicate ?? MASKITO_DEFAULT_PREDICATE;
+    return options.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
 }
 
 export const maskito: ObjectDirective<

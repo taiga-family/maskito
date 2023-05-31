@@ -1,2 +1,2 @@
+export * from './default-element-predicate';
 export * from './default-options';
-export * from './default-predicate';
