@@ -1,7 +1,7 @@
 # @maskito/vue
 
-[![npm version](https://img.shields.io/npm/v/@maskito/vue.svg)](https://npmjs.com/package/@maskito/react)
-[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@maskito/vue)](https://bundlephobia.com/result?p=@maskito/react)
+[![npm version](https://img.shields.io/npm/v/@maskito/vue.svg)](https://npmjs.com/package/@maskito/vue)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@maskito/vue)](https://bundlephobia.com/result?p=@maskito/vue)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/Tinkoff/maskito/main/projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" height="120px">
