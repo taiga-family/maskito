@@ -8,10 +8,15 @@ import {ObjectDirective} from 'vue';
 
 const teardown = new Map<HTMLElement, Maskito>();
 
-function fallback(options: {
-    elementPredicate?: MaskitoElementPredicate;
-}): MaskitoElementPredicate {
-    return options.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
+function update(
+    element: HTMLElement,
+    options: MaskitoOptions & {elementPredicate?: MaskitoElementPredicate},
+): void {
+    const predicate = options.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    const predicateResult = predicate(element);
+
+    teardown.get(element)?.destroy();
+    teardown.set(element, new Maskito(predicateResult, options));
 }
 
 export const maskito: ObjectDirective<
@@ -19,12 +24,10 @@ export const maskito: ObjectDirective<
     MaskitoOptions & {elementPredicate?: MaskitoElementPredicate}
 > = {
     unmounted: element => teardown.get(element)?.destroy(),
-    mounted: (element, {value}) =>
-        teardown.set(element, new Maskito(fallback(value)(element), value)),
+    mounted: (element, {value}) => update(element, value),
     updated: (element, {value, oldValue}) => {
         if (value !== oldValue) {
-            teardown.get(element)?.destroy();
-            teardown.set(element, new Maskito(fallback(value)(element), value));
+            update(element, value);
         }
     },
 };
