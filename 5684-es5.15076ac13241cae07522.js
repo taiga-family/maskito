@@ -1,1 +1,0 @@
-!function(){"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[5684],{55684:function(t){t.exports='<input\n    [formControl]="control"\n    [maskito]="maskito"\n/>\n<button (click)="setValue()">Set 12345.67</button>\n'}}])}();
