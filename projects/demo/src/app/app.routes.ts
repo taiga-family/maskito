@@ -95,13 +95,13 @@ export const appRoutes: Routes = [
             title: `Transformer`,
         },
     },
-    // JS Frameworks
+    // Frameworks
     {
         path: DemoPath.Angular,
         loadChildren: async () =>
-            import(
-                `../pages/documentation/js-frameworks-angular/angular-doc.module`
-            ).then(m => m.AngularDocPageModule),
+            import(`../pages/frameworks/angular/angular-doc.module`).then(
+                m => m.AngularDocPageModule,
+            ),
         data: {
             title: `Angular`,
         },
@@ -109,11 +109,21 @@ export const appRoutes: Routes = [
     {
         path: DemoPath.React,
         loadChildren: async () =>
-            import(`../pages/documentation/js-frameworks-react/react-doc.module`).then(
+            import(`../pages/frameworks/react/react-doc.module`).then(
                 m => m.ReactDocPageModule,
             ),
         data: {
             title: `React`,
+        },
+    },
+    {
+        path: DemoPath.Vue,
+        loadChildren: async () =>
+            import(`../pages/frameworks/vue/vue-doc.module`).then(
+                m => m.VueDocPageModule,
+            ),
+        data: {
+            title: `Vue`,
         },
     },
     // Kit

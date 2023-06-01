@@ -5,6 +5,7 @@ import {TuiInjectionTokenType} from '@taiga-ui/cdk';
 import {ANGULAR_DEFAULT_TAB} from './default-tabs/angular-default-tab';
 import {JS_DEFAULT_TAB} from './default-tabs/js-default-tab';
 import {REACT_DEFAULT_TAB} from './default-tabs/react-default-tab';
+import {VUE_DEFAULT_TAB} from './default-tabs/vue-default-tab';
 
 export const addDefaultTabsProcessor: TuiInjectionTokenType<
     typeof TUI_DOC_EXAMPLE_CONTENT_PROCESSOR
@@ -17,6 +18,7 @@ export const addDefaultTabsProcessor: TuiInjectionTokenType<
               [DocExamplePrimaryTab.JavaScript]: JS_DEFAULT_TAB,
               [DocExamplePrimaryTab.Angular]: ANGULAR_DEFAULT_TAB,
               [DocExamplePrimaryTab.React]: REACT_DEFAULT_TAB,
+              [DocExamplePrimaryTab.Vue]: VUE_DEFAULT_TAB,
           }
         : files;
 };

@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import {
     Maskito,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
-    MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
 
@@ -23,15 +23,13 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     @Input()
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
+    @Input()
+    maskitoElement = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+
     constructor(
         @Inject(NgZone) private readonly ngZone: NgZone,
         @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLElement>,
     ) {}
-
-    @Input()
-    maskitoElement: MaskitoElementPredicate = e =>
-        e.querySelector('input,textarea') ||
-        (e as HTMLInputElement | HTMLTextAreaElement);
 
     ngOnChanges(): void {
         this.maskedElement?.destroy();

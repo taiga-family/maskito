@@ -31,6 +31,7 @@
         "noUnusedParameters": true,
         "noUnusedLocals": true,
         "resolveJsonModule": true,
+        "skipLibCheck": true,
         "jsx": "react-jsx",
         "target": "es2015",
         "typeRoots": ["node_modules/@types"],
@@ -40,7 +41,8 @@
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
             "@maskito/kit": ["projects/kit/src/index.ts"],
-            "@maskito/react": ["projects/react/src/index.ts"]
+            "@maskito/react": ["projects/react/src/index.ts"],
+            "@maskito/vue": ["projects/vue/src/index.ts"]
         }
     },
     "ts-node": {

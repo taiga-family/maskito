@@ -1,0 +1,60 @@
+{
+    "root": "projects/vue",
+    "sourceRoot": "projects/vue/src",
+    "projectType": "library",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nrwl/web:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/vue",
+                "tsConfig": "projects/vue/tsconfig.lib.json",
+                "project": "projects/vue/package.json",
+                "entryFile": "projects/vue/src/index.ts",
+                "assets": [
+                    {
+                        "glob": "projects/vue/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ]
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["projects/vue/**/*.{ts,js}"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/projects/vue"],
+            "options": {
+                "jestConfig": "projects/vue/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "publish": {
+            "executor": "@nrwl/workspace:run-commands",
+            "options": {
+                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/vue --dry-run {args.dry-run}"
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "self",
+                    "params": "ignore"
+                }
+            ]
+        }
+    }
+}

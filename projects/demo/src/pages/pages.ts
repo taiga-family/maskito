@@ -58,16 +58,22 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: 'core, concepts, programmatic, patch, set, update, value',
     },
     {
-        section: 'JS Frameworks',
+        section: 'Frameworks',
         title: 'Angular',
         route: DemoPath.Angular,
         keywords: `ng, angular, framework, addon`,
     },
     {
-        section: 'JS Frameworks',
+        section: 'Frameworks',
         title: 'React',
         route: DemoPath.React,
         keywords: `react, framework, addon`,
+    },
+    {
+        section: 'Frameworks',
+        title: 'Vue',
+        route: DemoPath.Vue,
+        keywords: `vue, framework, addon`,
     },
     {
         section: 'Kit',

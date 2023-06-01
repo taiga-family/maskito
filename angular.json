@@ -6,6 +6,7 @@
         "core": "projects/core",
         "demo": "projects/demo",
         "kit": "projects/kit",
-        "react": "projects/react"
+        "react": "projects/react",
+        "vue": "projects/vue"
     }
 }

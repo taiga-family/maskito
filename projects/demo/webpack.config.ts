@@ -64,6 +64,11 @@ const config: Configuration = {
             },
         ],
     },
+    resolve: {
+        alias: {
+            vue$: 'vue/dist/vue.esm-bundler.js',
+        },
+    },
 };
 
 export default (ngConfigs: Configuration): Configuration => {

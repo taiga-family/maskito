@@ -22,6 +22,7 @@ import {
     JAVASCRIPT_LOGO,
     REACT_LOGO,
 } from './modules/example-primary-tabs-icons';
+import {VUE_LOGO} from './modules/example-primary-tabs-icons/vue-logo.component';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 import {addDefaultTabsProcessor} from './utils';
 
@@ -85,6 +86,7 @@ export const APP_PROVIDERS: Provider[] = [
             [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
             [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
             [DocExamplePrimaryTab.React, REACT_LOGO],
+            [DocExamplePrimaryTab.Vue, VUE_LOGO],
         ]),
     }),
     {
