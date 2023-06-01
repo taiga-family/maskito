@@ -19,11 +19,16 @@ function update(
     teardown.set(element, new Maskito(predicateResult, options));
 }
 
+function unmount(element: HTMLElement): void {
+    teardown.get(element)?.destroy();
+    teardown.delete(element);
+}
+
 export const maskito: ObjectDirective<
     HTMLElement,
     MaskitoOptions & {elementPredicate?: MaskitoElementPredicate}
 > = {
-    unmounted: element => teardown.get(element)?.destroy(),
+    unmounted: element => unmount(element),
     mounted: (element, {value}) => update(element, value),
     updated: (element, {value, oldValue}) => {
         if (value !== oldValue) {
