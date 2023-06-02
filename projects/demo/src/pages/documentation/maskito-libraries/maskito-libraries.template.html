@@ -6,7 +6,7 @@
     </p>
 
     <ul class="tui-list">
-        <li class="tui-list__item tui-space_bottom-8">
+        <li class="tui-list__item tui-space_bottom-12">
             <strong>@maskito/core</strong>
 
             <p class="tui-space_top-0">
@@ -18,6 +18,12 @@
                 <code>input</code>
                 events to validate and calibrate text field value.
             </p>
+
+            <tui-notification status="info">
+                All other Maskito's packages require
+                <code>@maskito/core</code>
+                as peer-dependency.
+            </tui-notification>
 
             <tui-doc-code
                 code="npm install @maskito/core"
@@ -36,19 +42,13 @@
             </p>
         </li>
 
-        <li class="tui-list__item tui-space_bottom-8">
+        <li class="tui-list__item tui-space_bottom-12">
             <strong>@maskito/kit</strong>
 
             <p class="tui-space_top-0">
                 The optional framework-agnostic package. It contains
                 ready-to-use masks with configurable parameters.
             </p>
-
-            <tui-notification status="warning">
-                This package requires
-                <code>@maskito/core</code>
-                as peer-dependency.
-            </tui-notification>
 
             <tui-doc-code
                 code="npm install @maskito/kit"
@@ -74,19 +74,13 @@
             </p>
         </li>
 
-        <li class="tui-list__item">
+        <li class="tui-list__item tui-space_bottom-12">
             <strong>@maskito/angular</strong>
 
             <p class="tui-space_top-0">
                 The Angular-specific library. It provides a convenient way to
                 use Maskito as a directive.
             </p>
-
-            <tui-notification status="warning">
-                This package requires
-                <code>@maskito/core</code>
-                as peer-dependency.
-            </tui-notification>
 
             <tui-doc-code
                 code="npm install @maskito/angular"
@@ -105,19 +99,13 @@
             </p>
         </li>
 
-        <li class="tui-list__item">
+        <li class="tui-list__item tui-space_bottom-12">
             <strong>@maskito/react</strong>
 
             <p class="tui-space_top-0">
                 The React-specific library. It provides a convenient way to use
                 Maskito as a hook.
             </p>
-
-            <tui-notification status="warning">
-                This package requires
-                <code>@maskito/core</code>
-                as peer-dependency.
-            </tui-notification>
 
             <tui-doc-code
                 code="npm install @maskito/react"
@@ -131,6 +119,31 @@
                     [routerLink]="reactDocPage"
                 >
                     "React"
+                </a>
+                section.
+            </p>
+        </li>
+
+        <li class="tui-list__item">
+            <strong>@maskito/vue</strong>
+
+            <p class="tui-space_top-0">
+                The Vue-specific library. It provides a convenient way to use
+                Maskito as a directive.
+            </p>
+
+            <tui-doc-code
+                code="npm install @maskito/vue"
+                filename="/your/project/path>"
+            ></tui-doc-code>
+
+            <p>
+                Learn more about this library in
+                <a
+                    tuiLink
+                    [routerLink]="vueDocPage"
+                >
+                    "Vue"
                 </a>
                 section.
             </p>
