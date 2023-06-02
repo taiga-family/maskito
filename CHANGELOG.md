@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0](https://github.com/tinkoff/maskito/compare/v0.12.1...v0.13.0) (2023-06-02)
+
+### Features
+
+- **core:** better layout-independent way to detect `Undo` and `Redo`
+  ([#320](https://github.com/tinkoff/maskito/issues/320))
+  ([4c5a7f6](https://github.com/tinkoff/maskito/commit/4c5a7f64b9a8ac209584c75e17ec022674b87c1b))
+- **vue:** add dedicated Vue package ([#321](https://github.com/tinkoff/maskito/issues/321))
+  ([f6ffb24](https://github.com/tinkoff/maskito/commit/f6ffb24eca5f1a1a57a93103b9e74cdf410e4132))
+
 ### [0.12.1](https://github.com/tinkoff/maskito/compare/v0.12.0...v0.12.1) (2023-05-25)
 
 ### Bug Fixes
