@@ -1,4 +1,5 @@
-import {MaskitoElementPredicate} from '../types';
+import {SyncMaskitoElementPredicate} from '../types';
 
-export const MASKITO_DEFAULT_ELEMENT_PREDICATE: MaskitoElementPredicate = e =>
-    e.querySelector('input,textarea') || (e as HTMLInputElement | HTMLTextAreaElement);
+export const MASKITO_DEFAULT_ELEMENT_PREDICATE: SyncMaskitoElementPredicate = e =>
+    e.querySelector<HTMLInputElement | HTMLTextAreaElement>('input,textarea') ||
+    (e as HTMLInputElement | HTMLTextAreaElement);

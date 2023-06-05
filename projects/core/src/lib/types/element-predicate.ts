@@ -1,11 +1,11 @@
-export type SyncMaskitoElementPredicate<T extends HTMLElement = HTMLElement> = (
-    element: T,
+export type SyncMaskitoElementPredicate = (
+    element: HTMLElement,
 ) => HTMLInputElement | HTMLTextAreaElement;
 
-export type AsyncMaskitoElementPredicate<T extends HTMLElement = HTMLElement> = (
-    element: T,
+export type AsyncMaskitoElementPredicate = (
+    element: HTMLElement,
 ) => Promise<HTMLInputElement | HTMLTextAreaElement>;
 
-export type MaskitoElementPredicate<T extends HTMLElement = HTMLElement> =
-    | AsyncMaskitoElementPredicate<T>
-    | SyncMaskitoElementPredicate<T>;
+export type MaskitoElementPredicate =
+    | AsyncMaskitoElementPredicate
+    | SyncMaskitoElementPredicate;
