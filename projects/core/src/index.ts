@@ -4,13 +4,13 @@ export {
 } from './lib/constants';
 export {Maskito} from './lib/mask';
 export {
-    AsyncMaskitoElementPredicate,
     MaskitoElementPredicate,
+    MaskitoElementPredicateAsync,
+    MaskitoElementPredicateSync,
     MaskitoMask,
     MaskitoOptions,
     MaskitoPlugin,
     MaskitoPostprocessor,
     MaskitoPreprocessor,
-    SyncMaskitoElementPredicate,
 } from './lib/types';
 export {maskitoPipe, maskitoTransform} from './lib/utils';

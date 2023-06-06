@@ -2,8 +2,8 @@ import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
+    MaskitoElementPredicateSync,
     MaskitoOptions,
-    SyncMaskitoElementPredicate,
 } from '@maskito/core';
 import {RefCallback, useCallback, useState} from 'react';
 
@@ -28,7 +28,7 @@ export const useMaskito = ({
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
-    elementPredicate?: SyncMaskitoElementPredicate;
+    elementPredicate?: MaskitoElementPredicateSync;
 } = {}): RefCallback<HTMLElement> => {
     const [element, setElement] = useState<HTMLElement | null>(null);
 
