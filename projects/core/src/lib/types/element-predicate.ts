@@ -1,11 +1,7 @@
-export type MaskitoElementPredicateSync = (
+export type MaskitoElementPredicate = (
     element: HTMLElement,
 ) => HTMLInputElement | HTMLTextAreaElement;
 
 export type MaskitoElementPredicateAsync = (
     element: HTMLElement,
 ) => Promise<HTMLInputElement | HTMLTextAreaElement>;
-
-export type MaskitoElementPredicate =
-    | MaskitoElementPredicateAsync
-    | MaskitoElementPredicateSync;

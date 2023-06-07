@@ -6,7 +6,6 @@ export {Maskito} from './lib/mask';
 export {
     MaskitoElementPredicate,
     MaskitoElementPredicateAsync,
-    MaskitoElementPredicateSync,
     MaskitoMask,
     MaskitoOptions,
     MaskitoPlugin,
