@@ -11,6 +11,7 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
+import {createNotEmptyIntegerPlugin} from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
@@ -91,6 +92,7 @@ export function maskitoNumberOptionsGenerator({
                 precision,
             }),
         ),
+        plugins: [createNotEmptyIntegerPlugin(decimalSeparator)],
         overwriteMode: decimalZeroPadding
             ? ({value, selection: [from]}) =>
                   from <= value.indexOf(decimalSeparator) ? 'shift' : 'replace'

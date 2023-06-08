@@ -16,7 +16,6 @@ import mask from './mask';
                 placeholder="3,141..."
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
-                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -25,8 +24,4 @@ import mask from './mask';
 export class NumberMaskDocExample1 {
     value = '';
     maskitoOptions = mask;
-
-    onBlur(): void {
-        this.value = this.value.startsWith(',') ? `0${this.value}` : this.value;
-    }
 }

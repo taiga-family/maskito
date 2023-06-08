@@ -24,7 +24,6 @@ import {getMaskitoOptions} from './mask';
                     inputmode="decimal"
                     [maskito]="getMaskOptions(decimalZeroPadding)"
                     (beforeinput.capture)="handleBeforeInput($event)"
-                    (blur)="onBlur()"
                 />
             </tui-input>
         </label>
@@ -38,10 +37,6 @@ export class NumberMaskDocExample5 {
     @tuiPure // Decorator for memoization
     getMaskOptions(decimalZeroPadding: boolean): MaskitoOptions {
         return getMaskitoOptions(decimalZeroPadding);
-    }
-
-    onBlur(): void {
-        this.value = this.value.startsWith('.') ? `0${this.value}` : this.value;
     }
 
     handleBeforeInput(event: Event): void {
