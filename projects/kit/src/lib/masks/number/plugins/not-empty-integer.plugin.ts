@@ -10,9 +10,14 @@ import {escapeRegExp} from '../../../utils';
  */
 export function createNotEmptyIntegerPlugin(decimalSeparator: string): MaskitoPlugin {
     return maskitoEventHandler('blur', element => {
-        element.value = element.value.replace(
+        const newValue = element.value.replace(
             new RegExp(`^(\\D+)?${escapeRegExp(decimalSeparator)}`),
             `$10${decimalSeparator}`,
         );
+
+        if (newValue !== element.value) {
+            element.value = newValue;
+            element.dispatchEvent(new Event('input'));
+        }
     });
 }
