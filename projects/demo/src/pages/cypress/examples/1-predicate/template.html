@@ -11,3 +11,12 @@
     </tui-input>
     <tui-input [(ngModel)]="value.name">Name</tui-input>
 </div>
+
+<div
+    id="async-predicate"
+    tuiGroup
+    [maskito]="cardMask"
+    [maskitoElement]="asyncPredicate"
+>
+    <tui-input [(ngModel)]="value.number">Card number</tui-input>
+</div>

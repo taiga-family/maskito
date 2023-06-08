@@ -1,5 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {
+    MaskitoElementPredicate,
+    MaskitoElementPredicateAsync,
+    MaskitoOptions,
+} from '@maskito/core';
 
 @Component({
     selector: 'test-doc-example-1',
@@ -34,4 +38,7 @@ export class TestDocExample1 {
 
     readonly namePredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[1]!;
+
+    readonly asyncPredicate: MaskitoElementPredicateAsync = async element =>
+        Promise.resolve(element.querySelectorAll('input')[0]!);
 }

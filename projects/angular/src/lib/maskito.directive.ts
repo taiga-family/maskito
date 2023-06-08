@@ -11,6 +11,8 @@ import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
+    MaskitoElementPredicate,
+    MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
 
@@ -24,20 +26,28 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
     @Input()
-    maskitoElement = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    maskitoElement: MaskitoElementPredicate | MaskitoElementPredicateAsync =
+        MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     constructor(
         @Inject(NgZone) private readonly ngZone: NgZone,
         @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLElement>,
     ) {}
 
-    ngOnChanges(): void {
+    async ngOnChanges(): Promise<void> {
         this.maskedElement?.destroy();
+
+        const predicate = this.maskitoElement;
+        const predicateResult = await predicate(this.elementRef.nativeElement);
+
+        if (this.maskitoElement !== predicate) {
+            // Ignore the result of the predicate if the
+            // maskito element has changed before the predicate was resolved.
+            return;
+        }
+
         this.ngZone.runOutsideAngular(() => {
-            this.maskedElement = new Maskito(
-                this.maskitoElement(this.elementRef.nativeElement),
-                this.maskito,
-            );
+            this.maskedElement = new Maskito(predicateResult, this.maskito);
         });
     }
 
