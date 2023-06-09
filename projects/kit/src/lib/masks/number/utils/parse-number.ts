@@ -8,11 +8,11 @@ export function maskitoParseNumber(
     const negativeSign = maskedNumber.match(
         new RegExp(`^[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}]`),
     );
+    const unmaskedNumber = maskedNumber
+        .replace(new RegExp(`[^\\d${escapeRegExp(decimalSeparator)}]`, 'g'), '')
+        .replace(decimalSeparator, '.');
 
-    return Number(
-        (negativeSign ? CHAR_HYPHEN : '') +
-            maskedNumber
-                .replace(new RegExp(`[^\\d${escapeRegExp(decimalSeparator)}]`, 'g'), '')
-                .replace(decimalSeparator, '.'),
-    );
+    return unmaskedNumber
+        ? Number((negativeSign ? CHAR_HYPHEN : '') + unmaskedNumber)
+        : NaN;
 }

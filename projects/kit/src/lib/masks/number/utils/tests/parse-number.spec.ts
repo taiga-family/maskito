@@ -18,6 +18,10 @@ describe('maskitoParseNumber', () => {
         it('empty decimal part & thousand separator is comma', () => {
             expect(maskitoParseNumber('1,000,000')).toBe(1000000);
         });
+
+        it('trailing decimal separator', () => {
+            expect(maskitoParseNumber('0.')).toBe(0);
+        });
     });
 
     describe('decimal separator is comma', () => {
@@ -35,6 +39,10 @@ describe('maskitoParseNumber', () => {
 
         it('empty decimal part & thousand separator is dot', () => {
             expect(maskitoParseNumber('42.111', ',')).toBe(42111);
+        });
+
+        it('trailing decimal separator', () => {
+            expect(maskitoParseNumber('42,', ',')).toBe(42);
         });
     });
 
@@ -77,6 +85,24 @@ describe('maskitoParseNumber', () => {
 
         it('parses number with both prefix and postfix', () => {
             expect(maskitoParseNumber('$42 per day')).toBe(42);
+        });
+    });
+
+    describe('NaN', () => {
+        it('Empty string => NaN', () => {
+            expect(maskitoParseNumber('')).toBeNaN();
+        });
+
+        it('Decimal separator only => NaN', () => {
+            expect(maskitoParseNumber('.')).toBeNaN();
+            expect(maskitoParseNumber(',', ',')).toBeNaN();
+        });
+
+        it('Negative sign only => NaN', () => {
+            expect(maskitoParseNumber('\u2212')).toBeNaN(); // minus
+            expect(maskitoParseNumber('-')).toBeNaN();
+            expect(maskitoParseNumber('\u2013')).toBeNaN(); // en-dash
+            expect(maskitoParseNumber('\u2014')).toBeNaN(); // em-dash
         });
     });
 });
