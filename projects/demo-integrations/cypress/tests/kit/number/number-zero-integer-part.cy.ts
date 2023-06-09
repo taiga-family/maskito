@@ -126,4 +126,69 @@ describe('Number | Zero integer part', () => {
             .should('have.prop', 'selectionStart', 1)
             .should('have.prop', 'selectionEnd', 1);
     });
+
+    describe('pads empty integer part with zero on blur (if decimal part exists)', () => {
+        describe('Without prefix', () => {
+            it('Positive number & decimal separator is comma', () => {
+                openNumberPage('decimalSeparator=,&precision=2');
+
+                cy.get('@input')
+                    .type('1,23')
+                    .type('{moveToStart}{rightArrow}{backspace}')
+                    .blur()
+                    .should('have.value', '0,23');
+
+                cy.get('@input')
+                    .parents('tui-input')
+                    .should('have.ngControlValue', '0,23');
+            });
+
+            it('Negative number & decimal separator is dot', () => {
+                openNumberPage('decimalSeparator=.&precision=2');
+
+                cy.get('@input')
+                    .type('-1.23')
+                    .type('{leftArrow}'.repeat('.23'.length))
+                    .type('{backspace}')
+                    .blur()
+                    .should('have.value', '−0.23');
+
+                cy.get('@input')
+                    .parents('tui-input')
+                    .should('have.ngControlValue', '−0.23');
+            });
+        });
+
+        describe('With prefix', () => {
+            it('Positive number & decimal separator is dot', () => {
+                openNumberPage('decimalSeparator=.&precision=2&prefix=$');
+
+                cy.get('@input')
+                    .type('1.23')
+                    .type('{leftArrow}'.repeat('.23'.length))
+                    .type('{backspace}')
+                    .blur()
+                    .should('have.value', '$0.23');
+
+                cy.get('@input')
+                    .parents('tui-input')
+                    .should('have.ngControlValue', '$0.23');
+            });
+
+            it('Negative number & decimal separator is comma', () => {
+                openNumberPage('decimalSeparator=,&precision=2&prefix=>');
+
+                cy.get('@input')
+                    .type('-1,23')
+                    .type('{leftArrow}'.repeat(',23'.length))
+                    .type('{backspace}')
+                    .blur()
+                    .should('have.value', '>−0,23');
+
+                cy.get('@input')
+                    .parents('tui-input')
+                    .should('have.ngControlValue', '>−0,23');
+            });
+        });
+    });
 });

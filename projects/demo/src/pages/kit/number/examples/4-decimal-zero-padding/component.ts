@@ -14,7 +14,6 @@ import mask from './mask';
                 tuiTextfield
                 inputmode="decimal"
                 [maskito]="maskitoOptions"
-                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -23,8 +22,4 @@ import mask from './mask';
 export class NumberMaskDocExample4 {
     value = '$100.00';
     maskitoOptions = mask;
-
-    onBlur(): void {
-        this.value = this.value.replace('$.', '$0.');
-    }
 }
