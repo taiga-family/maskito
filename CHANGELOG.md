@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.14.0](https://github.com/tinkoff/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
+
+### Features
+
+- **angular:** `[maskitoElement]` can accept asynchronous predicate
+  ([#316](https://github.com/tinkoff/maskito/issues/316))
+  ([3d8949e](https://github.com/tinkoff/maskito/commit/3d8949e878e644079b7f5404cb9ebf6c5eadab86))
+- **kit:** `Number` pads empty integer part with zero on blur (if decimal part exists)
+  ([#328](https://github.com/tinkoff/maskito/issues/328))
+  ([bd01967](https://github.com/tinkoff/maskito/commit/bd01967fba38be26a3c8f0d2f23c0ced12d3b1c2))
+
 ## [0.13.0](https://github.com/tinkoff/maskito/compare/v0.12.1...v0.13.0) (2023-06-02)
 
 ### Features
