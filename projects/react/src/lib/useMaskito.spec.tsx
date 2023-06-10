@@ -6,17 +6,19 @@ import {useMaskito} from './useMaskito';
 
 const options: MaskitoOptions = {
     mask: /^\d+(,\d{0,2})?$/,
-    preprocessor: ({elementState, data}) => {
-        const {value, selection} = elementState;
+    preprocessors: [
+        ({elementState, data}) => {
+            const {value, selection} = elementState;
 
-        return {
-            elementState: {
-                selection,
-                value: value.replace('.', ','),
-            },
-            data: data.replace('.', ','),
-        };
-    },
+            return {
+                elementState: {
+                    selection,
+                    value: value.replace('.', ','),
+                },
+                data: data.replace('.', ','),
+            };
+        },
+    ],
 };
 
 describe('Maskito React package', () => {

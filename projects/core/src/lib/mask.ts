@@ -11,6 +11,7 @@ import {
     isEventProducingCharacter,
     isRedo,
     isUndo,
+    maskitoPipe,
     maskitoTransform,
 } from './utils';
 
@@ -21,6 +22,16 @@ export class Maskito extends MaskHistory {
         ...MASKITO_DEFAULT_OPTIONS,
         ...this.maskitoOptions,
     };
+
+    private readonly preprocessor = maskitoPipe(
+        this.options.preprocessor,
+        ...this.options.preprocessors,
+    );
+
+    private readonly postprocessor = maskitoPipe(
+        this.options.postprocessor,
+        ...this.options.postprocessors,
+    );
 
     private readonly teardowns = this.options.plugins.map(plugin =>
         plugin(this.element, this.options),
@@ -225,7 +236,7 @@ export class Maskito extends MaskHistory {
             selection,
         };
         const [initialFrom, initialTo] = initialState.selection;
-        const {elementState} = this.options.preprocessor(
+        const {elementState} = this.preprocessor(
             {
                 elementState: initialState,
                 data: '',
@@ -237,7 +248,7 @@ export class Maskito extends MaskHistory {
 
         maskModel.deleteCharacters([from, to]);
 
-        const newElementState = this.options.postprocessor(maskModel, initialState);
+        const newElementState = this.postprocessor(maskModel, initialState);
         const newPossibleValue =
             initialState.value.slice(0, initialFrom) +
             initialState.value.slice(initialTo);
@@ -269,7 +280,7 @@ export class Maskito extends MaskHistory {
 
     private handleInsert(event: Event | TypedInputEvent, data: string): void {
         const initialElementState = this.elementState;
-        const {elementState, data: insertedText = data} = this.options.preprocessor(
+        const {elementState, data: insertedText = data} = this.preprocessor(
             {
                 data,
                 elementState: initialElementState,
@@ -287,10 +298,7 @@ export class Maskito extends MaskHistory {
         const [from, to] = elementState.selection;
         const newPossibleValue =
             elementState.value.slice(0, from) + data + elementState.value.slice(to);
-        const newElementState = this.options.postprocessor(
-            maskModel,
-            initialElementState,
-        );
+        const newElementState = this.postprocessor(maskModel, initialElementState);
 
         if (newPossibleValue !== newElementState.value) {
             event.preventDefault();

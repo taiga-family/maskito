@@ -11,7 +11,9 @@ export class NestedDocExample1 {
 
     readonly nameMask: MaskitoOptions = {
         mask: /^[a-zA-Z\s]+$/,
-        postprocessor: ({value, selection}) => ({value: value.toUpperCase(), selection}),
+        postprocessors: [
+            ({value, selection}) => ({value: value.toUpperCase(), selection}),
+        ],
     };
 
     readonly predicate: MaskitoElementPredicate = element =>

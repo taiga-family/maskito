@@ -23,12 +23,12 @@ export default {
         /\d/,
     ],
     // non-removable country prefix
-    postprocessor: maskitoPrefixPostprocessorGenerator('+7 '),
-    preprocessor: createTrickyPasteCasesPreprocessor(),
+    postprocessors: [maskitoPrefixPostprocessorGenerator('+7 ')],
+    preprocessors: [createCompletePhoneInsertionPreprocessor()],
 } as MaskitoOptions;
 
 // Paste "89123456789" => "+7 (912) 345-67-89"
-function createTrickyPasteCasesPreprocessor(): MaskitoPreprocessor {
+function createCompletePhoneInsertionPreprocessor(): MaskitoPreprocessor {
     const trimPrefix = (value: string): string => value.replace(/^(\+?7?\s?8?)\s?/, '');
     const countDigits = (value: string): number => value.replace(/\D/g, '').length;
 

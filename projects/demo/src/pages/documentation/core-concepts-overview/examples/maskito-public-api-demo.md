@@ -1,12 +1,14 @@
 ```ts
-import {Maskito, maskitoPipe} from '@maskito/core';
+import {Maskito} from '@maskito/core';
 
 const maskedInput = new Maskito(element, {
   mask: /^\d+$/,
-  preprocessor: maskitoPipe(preprocessor1, preprocessor2),
-  postprocessor: ({value, selection}) => {
-    // ...
-  },
+  preprocessors: [preprocessor1, preprocessor2],
+  postprocessors: [
+    ({value, selection}) => {
+      // ...
+    },
+  ],
   overwriteMode: 'shift',
 });
 

@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 import {maskitoPrefixPostprocessorGenerator, maskitoWithPlaceholder} from '@maskito/kit';
 
 /**
@@ -25,11 +25,11 @@ export const {
 } = maskitoWithPlaceholder(PLACEHOLDER);
 
 export default {
-    preprocessor: placeholderOptions.preprocessor,
-    postprocessor: maskitoPipe(
+    preprocessors: placeholderOptions.preprocessors,
+    postprocessors: [
         maskitoPrefixPostprocessorGenerator('+1'),
-        placeholderOptions.postprocessor,
-    ),
+        ...placeholderOptions.postprocessors,
+    ],
     plugins,
     mask: [
         '+',

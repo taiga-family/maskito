@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {
     CHAR_EM_DASH,
@@ -47,12 +47,13 @@ export function maskitoNumberOptionsGenerator({
     thousandSeparator?: string;
     prefix?: string;
     postfix?: string;
-} = {}): MaskitoOptions {
+} = {}): Required<MaskitoOptions> {
     const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
         char => char !== thousandSeparator && char !== decimalSeparator,
     );
 
     return {
+        ...MASKITO_DEFAULT_OPTIONS,
         mask: generateMaskExpression({
             decimalSeparator,
             precision,
@@ -61,7 +62,7 @@ export function maskitoNumberOptionsGenerator({
             prefix,
             postfix,
         }),
-        preprocessor: maskitoPipe(
+        preprocessors: [
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
@@ -71,8 +72,8 @@ export function maskitoNumberOptionsGenerator({
                 thousandSeparator,
             }),
             createZeroPrecisionPreprocessor(precision, decimalSeparator),
-        ),
-        postprocessor: maskitoPipe(
+        ],
+        postprocessors: [
             createLeadingZeroesValidationPostprocessor(
                 decimalSeparator,
                 thousandSeparator,
@@ -91,7 +92,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalZeroPadding,
                 precision,
             }),
-        ),
+        ],
         plugins: [createNotEmptyIntegerPlugin(decimalSeparator)],
         overwriteMode: decimalZeroPadding
             ? ({value, selection: [from]}) =>

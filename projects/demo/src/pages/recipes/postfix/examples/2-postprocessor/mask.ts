@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
@@ -7,8 +7,8 @@ import {
 export default {
     // prefix (dollar sign) + digits + postfix ('.00')
     mask: /^\$?\d*(\.0{0,2})?$/,
-    postprocessor: maskitoPipe(
+    postprocessors: [
         maskitoPrefixPostprocessorGenerator('$'),
         maskitoPostfixPostprocessorGenerator('.00'),
-    ),
+    ],
 } as MaskitoOptions;

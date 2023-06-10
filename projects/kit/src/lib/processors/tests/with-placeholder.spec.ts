@@ -1,9 +1,12 @@
+import {maskitoPipe} from '@maskito/core';
 import {maskitoWithPlaceholder} from '@maskito/kit';
 
 describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
-    const {preprocessor, postprocessor} = maskitoWithPlaceholder('dd/mm/yyyy');
+    const {preprocessors, postprocessors} = maskitoWithPlaceholder('dd/mm/yyyy');
+    const preprocessor = maskitoPipe(...preprocessors);
+    const postprocessor = maskitoPipe(...postprocessors);
 
-    describe('preprocessor', () => {
+    describe('preprocessors', () => {
         const check = (valueBefore: string, valueAfter: string): void => {
             const {elementState} = preprocessor(
                 {
@@ -30,7 +33,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
         it('26/01/1997 => 26/01/1997', () => check('26/01/1997', '26/01/1997'));
     });
 
-    describe('postprocessor', () => {
+    describe('postprocessors', () => {
         const check = (valueBefore: string, valueAfter: string): void => {
             const INITIAL_ELEMENT_STATE = {
                 value: 'dd/mm/yyyy',
