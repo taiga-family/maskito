@@ -6,6 +6,6 @@ export function getMaskitoOptions(decimalZeroPadding: boolean): MaskitoOptions {
         decimalZeroPadding,
         precision: 2,
         decimalSeparator: '.',
-        isNegativeAllowed: false,
+        min: 0,
     });
 }

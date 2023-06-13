@@ -86,6 +86,11 @@ describe('maskitoParseNumber', () => {
         it('parses number with both prefix and postfix', () => {
             expect(maskitoParseNumber('$42 per day')).toBe(42);
         });
+
+        it('parses negative number with prefix', () => {
+            expect(maskitoParseNumber('>-42')).toBe(-42);
+            expect(maskitoParseNumber('> -42')).toBe(-42);
+        });
     });
 
     describe('NaN', () => {

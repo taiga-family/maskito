@@ -65,6 +65,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     precision = 0;
     isNegativeAllowed = true;
     max = Number.MAX_SAFE_INTEGER;
+    min = Number.MIN_SAFE_INTEGER;
     decimalSeparator = '.';
     decimalZeroPadding = false;
     decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];

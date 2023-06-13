@@ -1,6 +1,6 @@
 export * from './decimal-zero-padding-postprocessor';
 export * from './leading-zeroes-validation-postprocessor';
-export * from './max-validation-postprocessor';
+export * from './min-max-postprocessor';
 export * from './non-removable-chars-deletion-preprocessor';
 export * from './not-empty-integer-part-preprocessor';
 export * from './preudo-character-preprocessor';

@@ -176,7 +176,7 @@ describe('Number | Zero integer part', () => {
             });
 
             it('Negative number & decimal separator is comma', () => {
-                openNumberPage('decimalSeparator=,&precision=2&prefix=>');
+                openNumberPage('decimalSeparator=,&prefix=>&precision=2');
 
                 cy.get('@input')
                     .type('-1,23')
