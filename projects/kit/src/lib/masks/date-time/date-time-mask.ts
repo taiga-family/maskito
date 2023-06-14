@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../constants';
 import {createZeroPlaceholdersPreprocessor} from '../../processors';
@@ -19,10 +19,11 @@ export function maskitoDateTimeOptionsGenerator({
     dateSeparator?: string;
     max?: Date;
     min?: Date;
-}): MaskitoOptions {
+}): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
     return {
+        ...MASKITO_DEFAULT_OPTIONS,
         mask: [
             ...Array.from(dateModeTemplate).map(char =>
                 char === dateSeparator ? char : /\d/,
@@ -33,18 +34,20 @@ export function maskitoDateTimeOptionsGenerator({
             ),
         ],
         overwriteMode: 'replace',
-        preprocessor: maskitoPipe(
+        preprocessors: [
             createZeroPlaceholdersPreprocessor(),
             createValidDateTimePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
             }),
-        ),
-        postprocessor: createMinMaxDateTimePostprocessor({
-            min,
-            max,
-            dateModeTemplate,
-            timeMode,
-        }),
+        ],
+        postprocessors: [
+            createMinMaxDateTimePostprocessor({
+                min,
+                max,
+                dateModeTemplate,
+                timeMode,
+            }),
+        ],
     };
 }

@@ -1,11 +1,14 @@
-import {MaskitoOptions} from '@maskito/core';
+import {MaskitoOptions, MaskitoPostprocessor, MaskitoPreprocessor} from '@maskito/core';
 
 import {maskitoCaretGuard, maskitoEventHandler} from '../plugins';
 
 export function maskitoWithPlaceholder(
     placeholder: string,
     focusedOnly = false,
-): Pick<Required<MaskitoOptions>, 'plugins' | 'postprocessor' | 'preprocessor'> & {
+): Pick<
+    Required<MaskitoOptions>,
+    'plugins' | 'postprocessor' | 'postprocessors' | 'preprocessor' | 'preprocessors'
+> & {
     removePlaceholder: (value: string) => string;
 } {
     const removePlaceholder = (value: string): string => {
@@ -37,26 +40,35 @@ export function maskitoWithPlaceholder(
         plugins.push(focus, blur);
     }
 
+    const preprocessor: MaskitoPreprocessor = ({elementState, data}) => {
+        const {value, selection} = elementState;
+
+        return {
+            elementState: {
+                selection,
+                value: removePlaceholder(value),
+            },
+            data,
+        };
+    };
+
+    const postprocessor: MaskitoPostprocessor = (
+        {value, selection},
+        initialElementState,
+    ) =>
+        initialElementState.value && (focused || !focusedOnly)
+            ? {
+                  value: value + placeholder.slice(value.length),
+                  selection,
+              }
+            : {value, selection};
+
     return {
         plugins,
         removePlaceholder,
-        preprocessor: ({elementState, data}) => {
-            const {value, selection} = elementState;
-
-            return {
-                elementState: {
-                    selection,
-                    value: removePlaceholder(value),
-                },
-                data,
-            };
-        },
-        postprocessor: ({value, selection}, initialElementState) =>
-            initialElementState.value && (focused || !focusedOnly)
-                ? {
-                      value: value + placeholder.slice(value.length),
-                      selection,
-                  }
-                : {value, selection},
+        preprocessor,
+        postprocessor,
+        preprocessors: [preprocessor],
+        postprocessors: [postprocessor],
     };
 }

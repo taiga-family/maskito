@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoPipe} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 import {maskitoDateOptionsGenerator, maskitoWithPlaceholder} from '@maskito/kit';
 
 export const PLACEHOLDER = 'dd/mm/yyyy';
@@ -17,14 +17,14 @@ const {
 export default {
     ...dateOptions,
     plugins: plugins.concat(dateOptions.plugins || []),
-    preprocessor: maskitoPipe(
+    preprocessors: [
         // Always put it BEFORE all other preprocessors
-        placeholderOptions.preprocessor,
-        dateOptions.preprocessor,
-    ),
-    postprocessor: maskitoPipe(
-        dateOptions.postprocessor,
+        ...placeholderOptions.preprocessors,
+        ...dateOptions.preprocessors,
+    ],
+    postprocessors: [
+        ...dateOptions.postprocessors,
         // Always put it AFTER all other postprocessors
-        placeholderOptions.postprocessor,
-    ),
+        ...placeholderOptions.postprocessors,
+    ],
 } as Required<MaskitoOptions>;

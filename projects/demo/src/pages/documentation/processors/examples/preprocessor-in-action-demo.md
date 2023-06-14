@@ -3,16 +3,18 @@ import {Maskito} from '@maskito/core';
 
 const numberInput = new Maskito(element, {
   mask: /^\d+(,\d*)?$/, // digits and comma (as decimal separator)
-  preprocessor: ({elementState, data}, actionType) => {
-    const {value, selection} = elementState;
+  preprocessors: [
+    ({elementState, data}, actionType) => {
+      const {value, selection} = elementState;
 
-    return {
-      elementState: {
-        selection,
-        value: value.replace('.', ','),
-      },
-      data: data.replace('.', ','),
-    };
-  },
+      return {
+        elementState: {
+          selection,
+          value: value.replace('.', ','),
+        },
+        data: data.replace('.', ','),
+      };
+    },
+  ],
 });
 ```

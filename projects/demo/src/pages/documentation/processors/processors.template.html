@@ -12,7 +12,8 @@
             <code>preprocessors</code>
             and
             <code>postprocessors</code>
-            . These are functions triggered on every user's input (
+            . Both accept array of pure functions. These functions are triggered
+            on every user's input (
             <a
                 href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event"
                 target="_blank"
@@ -66,19 +67,19 @@
     </tui-notification>
 
     <section class="tui-space_bottom-12">
-        <h2>Preprocessor</h2>
+        <h2>Preprocessors</h2>
 
         <p>
-            It is a function that is called
+            Each preprocessor is a function that is called
             <strong>before</strong>
             mask is applied.
         </p>
 
         <p>
-            For example, if user types a new character, preprocessor will be
-            called first, and only then value that it returned will be passed
-            into the mask, and finally the mask will accept or reject new typed
-            character and update actual value of the text field.
+            For example, if user types a new character, all preprocessors will
+            be called first, and only then final value that they returned will
+            be passed into the mask, and finally the mask will accept or reject
+            new typed character and update actual value of the text field.
         </p>
 
         <section class="tui-space_bottom-6">
@@ -119,12 +120,12 @@
     </section>
 
     <section class="tui-space_bottom-12">
-        <h2>Postprocessor</h2>
+        <h2>Postprocessors</h2>
 
         <p class="tui-space_bottom-0">
-            It is a function that is called
+            Each postprocessor is a function that is called
             <strong>after</strong>
-            the mask is applied. When the preprocessor is already called, all
+            the mask is applied. When all preprocessors are already called, all
             mask operations happened and the input's value is about to be
             updated. You can change everything manually inside a postprocessor.
         </p>
@@ -170,26 +171,24 @@
         <tui-doc-code [code]="postprocessorInActionDemo"></tui-doc-code>
     </section>
 
-    <section class="tui-space_bottom-12">
-        <h2>maskitoPipe</h2>
+    <tui-notification>
+        <strong>Stacking of multiple processors</strong>
 
         <p>
             The
             <strong>Maskito</strong>
             team likes code decomposition and promotes it! Don't put all complex
-            logic inside a single processor. Break it into the several
+            logic inside a single processor. Both parameters
+            <code>preprocessors</code>
+            and
+            <code>postprocessors</code>
+            accepts
+            <strong>array</strong>
+            of same type processors. Break your code into the several
             independent processors so that each processor implements only a
             single task.
         </p>
-
-        <p>
-            Use the built-in
-            <code>maskitoPipe</code>
-            to stack multiple processors of the same type:
-        </p>
-
-        <tui-doc-code [code]="maskitoPipeDemo"></tui-doc-code>
-    </section>
+    </tui-notification>
 
     <next-steps></next-steps>
 </tui-doc-page>
