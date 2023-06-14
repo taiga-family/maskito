@@ -57,20 +57,27 @@ export class NumberMaskDocComponent implements GeneratorOptions {
 
     apiPageControl = new FormControl('');
 
-    maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
-
     readonly decimalPseudoSeparatorsOptions = [['.', ',', 'б', 'ю'], ['.'], [',']];
     readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
 
     precision = 0;
-    isNegativeAllowed = true;
     max = Number.MAX_SAFE_INTEGER;
+    min = Number.MIN_SAFE_INTEGER;
     decimalSeparator = '.';
     decimalZeroPadding = false;
     decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
     thousandSeparator = ' ';
     prefix = '';
     postfix = '';
+
+    maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
+
+    /**
+     * TODO: drop in 1.x.x
+     */
+    get isNegativeAllowed(): boolean {
+        return this.min < 0;
+    }
 
     updateOptions(): void {
         this.maskitoOptions = maskitoNumberOptionsGenerator(this);

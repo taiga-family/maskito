@@ -11,11 +11,11 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
-import {createNotEmptyIntegerPlugin} from './plugins';
+import {createMinMaxPlugin, createNotEmptyIntegerPlugin} from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
     createLeadingZeroesValidationPostprocessor,
-    createMaxValidationPostprocessor,
+    createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
     createPseudoCharactersPreprocessor,
@@ -26,7 +26,8 @@ import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
-    isNegativeAllowed = true,
+    min = Number.MIN_SAFE_INTEGER,
+    isNegativeAllowed = min < 0,
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
@@ -38,7 +39,12 @@ export function maskitoNumberOptionsGenerator({
     prefix = '',
     postfix = '',
 }: {
+    min?: number;
     max?: number;
+    /**
+     * @deprecated use `min > 0` instead of `isNegativeAllowed: false`
+     * TODO: delete in 1.x.x
+     */
     isNegativeAllowed?: boolean;
     precision?: number;
     decimalSeparator?: string;
@@ -78,7 +84,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 thousandSeparator,
             ),
-            createMaxValidationPostprocessor({decimalSeparator, max}),
+            createMinMaxPostprocessor({decimalSeparator, min, max}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor({
@@ -93,7 +99,10 @@ export function maskitoNumberOptionsGenerator({
                 precision,
             }),
         ],
-        plugins: [createNotEmptyIntegerPlugin(decimalSeparator)],
+        plugins: [
+            createNotEmptyIntegerPlugin(decimalSeparator),
+            createMinMaxPlugin({min, max, decimalSeparator}),
+        ],
         overwriteMode: decimalZeroPadding
             ? ({value, selection: [from]}) =>
                   from <= value.indexOf(decimalSeparator) ? 'shift' : 'replace'

@@ -141,36 +141,6 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="isNegativeAllowed"
-                documentationPropertyMode="input"
-                documentationPropertyType="boolean"
-                [(documentationPropertyValue)]="isNegativeAllowed"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                Allows to input negative sign (minus).
-
-                <p>
-                    <strong>Default:</strong>
-                    <code>true</code>
-                    .
-                </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyName="max"
-                documentationPropertyMode="input"
-                documentationPropertyType="number"
-                [(documentationPropertyValue)]="max"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                The greatest permitted value.
-
-                <p>
-                    <strong>Default:</strong>
-                    <code>Number.MAX_SAFE_INTEGER</code>
-                    .
-                </p>
-            </ng-template>
-            <ng-template
                 documentationPropertyName="precision"
                 documentationPropertyMode="input"
                 documentationPropertyType="number"
@@ -262,6 +232,36 @@
                 </p>
             </ng-template>
             <ng-template
+                documentationPropertyName="min"
+                documentationPropertyMode="input"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="min"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                The lowest permitted value.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>Number.MIN_SAFE_INTEGER</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="max"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                The greatest permitted value.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>Number.MAX_SAFE_INTEGER</code>
+                    .
+                </p>
+            </ng-template>
+            <ng-template
                 documentationPropertyName="prefix"
                 documentationPropertyMode="input"
                 documentationPropertyType="string"
@@ -287,6 +287,21 @@
                 <p>
                     <strong>Default:</strong>
                     empty string (no postfix).
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyName="isNegativeAllowed"
+                documentationPropertyMode="input"
+                [documentationPropertyDeprecated]="true"
+            >
+                Allows to input negative sign (minus).
+
+                <p>
+                    <strong>
+                        Use
+                        <code>min >= 0</code>
+                        to disable negative numbers.
+                    </strong>
                 </p>
             </ng-template>
         </tui-doc-documentation>

@@ -3,7 +3,7 @@ import {openNumberPage} from './utils';
 describe('Number | Max validation', () => {
     describe('Max = 3', () => {
         beforeEach(() => {
-            openNumberPage('max=3&isNegativeAllowed=true&precision=4');
+            openNumberPage('max=3&precision=4');
         });
 
         ['0', '1', '2', '3'].forEach(value => {
@@ -102,6 +102,47 @@ describe('Number | Max validation', () => {
                 .should('have.value', '777')
                 .should('have.prop', 'selectionStart', '777'.length)
                 .should('have.prop', 'selectionEnd', '777'.length);
+        });
+    });
+
+    describe('Max = -5', () => {
+        beforeEach(() => {
+            openNumberPage('max=-5');
+        });
+
+        it('can type -42 (via keyboard, 1 character per keydown)', () => {
+            cy.get('@input')
+                .type('-4')
+                .should('have.value', '−4')
+                .should('have.prop', 'selectionStart', '−4'.length)
+                .should('have.prop', 'selectionEnd', '−4'.length)
+                .type('2')
+                .should('have.value', '−42')
+                .should('have.prop', 'selectionStart', '−42'.length)
+                .should('have.prop', 'selectionEnd', '−42'.length);
+        });
+
+        it('replaces -4 with -5 on blur', () => {
+            cy.get('@input')
+                .type('-4')
+                .wait(100) // to be sure that value is not changed even in case of some async validation
+                .should('have.value', '−4')
+                .should('have.prop', 'selectionStart', '−4'.length)
+                .should('have.prop', 'selectionEnd', '−4'.length)
+                .blur()
+                .should('have.value', '−5');
+        });
+
+        it('keeps -6 untouched on blur', () => {
+            cy.get('@input')
+                .type('-6')
+                .wait(100) // to be sure that value is not changed even in case of some async validation
+                .should('have.value', '−6')
+                .should('have.prop', 'selectionStart', '−6'.length)
+                .should('have.prop', 'selectionEnd', '−6'.length)
+                .blur()
+                .wait(100)
+                .should('have.value', '−6');
         });
     });
 });

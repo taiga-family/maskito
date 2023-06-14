@@ -4,6 +4,6 @@ export default maskitoNumberOptionsGenerator({
     decimalZeroPadding: true,
     precision: 2,
     decimalSeparator: '.',
-    isNegativeAllowed: false,
+    min: 0,
     prefix: '$',
 });
