@@ -3,9 +3,7 @@ import {openNumberPage} from './utils';
 describe('Number | Zero integer part', () => {
     describe('User types decimal separator when input is empty (decimalSeparator="," && precision=2)', () => {
         beforeEach(() => {
-            openNumberPage(
-                'thousandSeparator=_&decimalSeparator=,&precision=2&isNegativeAllowed=true',
-            );
+            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=2');
         });
 
         it('Empty input => Type "," (decimal separator) => value is equal "0,"', () => {
