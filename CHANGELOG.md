@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0](https://github.com/tinkoff/maskito/compare/v0.14.0...v0.15.0) (2023-06-14)
+
+### Features
+
+- **core:** add new parameters `preprocessors` & `postprocessors` and deprecate `preprocessor` & `postprocessor`
+  ([#333](https://github.com/tinkoff/maskito/issues/333))
+  ([0137775](https://github.com/tinkoff/maskito/commit/01377751a9875143257930934b1e2a9143b6da03))
+
+### Bug Fixes
+
+- **kit:** `maskitoParseNumber` should return `NaN` for all strings with no digits
+  ([#331](https://github.com/tinkoff/maskito/issues/331))
+  ([d1ebcec](https://github.com/tinkoff/maskito/commit/d1ebceceedf418b21a68082f7350002d09159ebf))
+- **kit:** `Number` incorrectly implements `min`/`max` behaviour ([#334](https://github.com/tinkoff/maskito/issues/334))
+  ([9876d88](https://github.com/tinkoff/maskito/commit/9876d885f98f86d18db04d723460b468bca3837d))
+
 ## [0.14.0](https://github.com/tinkoff/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
 
 ### Features
