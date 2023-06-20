@@ -4,25 +4,24 @@ import {MaskitoPostprocessor, MaskitoPreprocessor} from '../types';
  * @internal
  */
 export function maskitoPipe(
-    ...processors: ReadonlyArray<MaskitoPreprocessor | null | undefined>
+    processors?: readonly MaskitoPreprocessor[],
 ): MaskitoPreprocessor;
 
 /**
  * @internal
  */
 export function maskitoPipe(
-    ...processors: ReadonlyArray<MaskitoPostprocessor | null | undefined>
+    processors?: readonly MaskitoPostprocessor[],
 ): MaskitoPostprocessor;
 
 /* eslint-disable @typescript-eslint/ban-types */
 /**
  * @internal
  */
-export function maskitoPipe(
-    ...processors: ReadonlyArray<Function | null | undefined>
-): Function {
+export function maskitoPipe(processors: readonly Function[] = []): Function {
     return (initialData: object, ...readonlyArgs: unknown[]) =>
-        processors
-            .filter((x: Function | null | undefined): x is Function => !!x)
-            .reduce((data, fn) => ({...data, ...fn(data, ...readonlyArgs)}), initialData);
+        processors.reduce(
+            (data, fn) => ({...data, ...fn(data, ...readonlyArgs)}),
+            initialData,
+        );
 }

@@ -31,11 +31,10 @@ describe('maskitoPipe', () => {
 
         it('take the last valid `data` if the previous processor did not modify it', () => {
             expect(
-                maskitoPipe(
-                    add3ToData,
-                    add0ToValue,
-                    add5ToData,
-                )(preprocessorData, 'insert'),
+                maskitoPipe([add3ToData, add0ToValue, add5ToData])(
+                    preprocessorData,
+                    'insert',
+                ),
             ).toEqual({
                 elementState: {value: '20', selection: [2, 2]},
                 data: '035',
@@ -45,14 +44,14 @@ describe('maskitoPipe', () => {
         describe('Order matters', () => {
             it('for `elementState`', () => {
                 expect(
-                    maskitoPipe(add0ToValue, add1ToValue)(preprocessorData, 'insert'),
+                    maskitoPipe([add0ToValue, add1ToValue])(preprocessorData, 'insert'),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
                     data: '0',
                 });
 
                 expect(
-                    maskitoPipe(add1ToValue, add0ToValue)(preprocessorData, 'insert'),
+                    maskitoPipe([add1ToValue, add0ToValue])(preprocessorData, 'insert'),
                 ).toEqual({
                     elementState: {value: '210', selection: [2, 2]},
                     data: '0',
@@ -61,14 +60,14 @@ describe('maskitoPipe', () => {
 
             it('for `data`', () => {
                 expect(
-                    maskitoPipe(add3ToData, add5ToData)(preprocessorData, 'insert'),
+                    maskitoPipe([add3ToData, add5ToData])(preprocessorData, 'insert'),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
                     data: '035',
                 });
 
                 expect(
-                    maskitoPipe(add5ToData, add3ToData)(preprocessorData, 'insert'),
+                    maskitoPipe([add5ToData, add3ToData])(preprocessorData, 'insert'),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
                     data: '053',
@@ -77,12 +76,10 @@ describe('maskitoPipe', () => {
 
             it('for `elementState` & `data` in one pipe', () => {
                 expect(
-                    maskitoPipe(
-                        add5ToData,
-                        add0ToValue,
-                        add3ToData,
-                        add1ToValue,
-                    )(preprocessorData, 'insert'),
+                    maskitoPipe([add5ToData, add0ToValue, add3ToData, add1ToValue])(
+                        preprocessorData,
+                        'insert',
+                    ),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
                     data: '053',
@@ -121,14 +118,14 @@ describe('maskitoPipe', () => {
         describe('Order matters', () => {
             it('for `value`', () => {
                 expect(
-                    maskitoPipe(add3, add5)(postprocessorData, initialElementState),
+                    maskitoPipe([add3, add5])(postprocessorData, initialElementState),
                 ).toEqual({
                     value: '035',
                     selection: [5, 5],
                 });
 
                 expect(
-                    maskitoPipe(add5, add3)(postprocessorData, initialElementState),
+                    maskitoPipe([add5, add3])(postprocessorData, initialElementState),
                 ).toEqual({
                     value: '053',
                     selection: [5, 5],
@@ -137,7 +134,7 @@ describe('maskitoPipe', () => {
 
             it('for `selection`', () => {
                 expect(
-                    maskitoPipe(doubleCaretIndex, shiftCaretIndexBy5)(
+                    maskitoPipe([doubleCaretIndex, shiftCaretIndexBy5])(
                         postprocessorData,
                         initialElementState,
                     ),
@@ -147,7 +144,7 @@ describe('maskitoPipe', () => {
                 });
 
                 expect(
-                    maskitoPipe(shiftCaretIndexBy5, doubleCaretIndex)(
+                    maskitoPipe([shiftCaretIndexBy5, doubleCaretIndex])(
                         postprocessorData,
                         initialElementState,
                     ),
@@ -159,12 +156,10 @@ describe('maskitoPipe', () => {
 
             it('for `value` & `selection` in one pipe', () => {
                 expect(
-                    maskitoPipe(
-                        add5,
-                        doubleCaretIndex,
-                        add3,
-                        shiftCaretIndexBy5,
-                    )(postprocessorData, initialElementState),
+                    maskitoPipe([add5, doubleCaretIndex, add3, shiftCaretIndexBy5])(
+                        postprocessorData,
+                        initialElementState,
+                    ),
                 ).toEqual({
                     value: '053',
                     selection: [15, 15],
@@ -183,11 +178,10 @@ describe('maskitoPipe', () => {
                 return data;
             };
 
-            maskitoPipe(
-                checkActionType,
-                checkActionType,
-                checkActionType,
-            )({elementState, data: ''}, 'deleteBackward');
+            maskitoPipe([checkActionType, checkActionType, checkActionType])(
+                {elementState, data: ''},
+                'deleteBackward',
+            );
         });
 
         it('Postprocessor', () => {
@@ -202,11 +196,10 @@ describe('maskitoPipe', () => {
                 return data;
             };
 
-            maskitoPipe(
-                checkActionType,
-                checkActionType,
-                checkActionType,
-            )(elementState, initialElementState);
+            maskitoPipe([checkActionType, checkActionType, checkActionType])(
+                elementState,
+                initialElementState,
+            );
         });
     });
 });

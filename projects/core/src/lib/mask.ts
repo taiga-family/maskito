@@ -23,9 +23,9 @@ export class Maskito extends MaskHistory {
         ...this.maskitoOptions,
     };
 
-    private readonly preprocessor = maskitoPipe(...this.options.preprocessors);
+    private readonly preprocessor = maskitoPipe(this.options.preprocessors);
 
-    private readonly postprocessor = maskitoPipe(...this.options.postprocessors);
+    private readonly postprocessor = maskitoPipe(this.options.postprocessors);
 
     private readonly teardowns = this.options.plugins.map(plugin =>
         plugin(this.element, this.options),

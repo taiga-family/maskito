@@ -17,8 +17,8 @@ export function maskitoTransform(
         ...MASKITO_DEFAULT_OPTIONS,
         ...maskitoOptions,
     };
-    const preprocessor = maskitoPipe(...options.preprocessors);
-    const postprocessor = maskitoPipe(...options.postprocessors);
+    const preprocessor = maskitoPipe(options.preprocessors);
+    const postprocessor = maskitoPipe(options.postprocessors);
     const initialElementState: ElementState =
         typeof valueOrState === 'string'
             ? {value: valueOrState, selection: [0, 0]}
