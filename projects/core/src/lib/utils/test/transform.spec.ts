@@ -4,24 +4,31 @@ import {maskitoTransform} from '../transform';
 describe('maskitoTransform', () => {
     const numberOptions: MaskitoOptions = {
         mask: /^\d+(,\d*)?$/,
-        preprocessor: ({elementState, data}) => {
-            const {value, selection} = elementState;
+        preprocessors: [
+            ({elementState, data}) => {
+                const {value, selection} = elementState;
 
-            return {
-                elementState: {
-                    selection,
-                    value: value.replace('.', ','),
-                },
-                data: data.replace('.', ','),
-            };
-        },
-        postprocessor: ({value, selection}) => {
-            const newValue = value.replace(/^0+/, '0');
-            const deletedChars = value.length - newValue.length;
-            const [from, to] = selection;
+                return {
+                    elementState: {
+                        selection,
+                        value: value.replace('.', ','),
+                    },
+                    data: data.replace('.', ','),
+                };
+            },
+        ],
+        postprocessors: [
+            ({value, selection}) => {
+                const newValue = value.replace(/^0+/, '0');
+                const deletedChars = value.length - newValue.length;
+                const [from, to] = selection;
 
-            return {value: newValue, selection: [from - deletedChars, to - deletedChars]};
-        },
+                return {
+                    value: newValue,
+                    selection: [from - deletedChars, to - deletedChars],
+                };
+            },
+        ],
     };
     const usPhoneOptions: MaskitoOptions = {
         mask: [

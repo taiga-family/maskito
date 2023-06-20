@@ -1,7 +1,6 @@
 import {MaskitoPostprocessor, MaskitoPreprocessor} from '../types';
 
 /**
- * @deprecated Use property `preprocessors` from `MaskitoOptions`
  * @internal
  */
 export function maskitoPipe(
@@ -9,7 +8,6 @@ export function maskitoPipe(
 ): MaskitoPreprocessor;
 
 /**
- * @deprecated Use property `postprocessors` from `MaskitoOptions`
  * @internal
  */
 export function maskitoPipe(
@@ -18,7 +16,6 @@ export function maskitoPipe(
 
 /* eslint-disable @typescript-eslint/ban-types */
 /**
- * @deprecated Use property `preprocessors` / `postprocessors` from `MaskitoOptions`
  * @internal
  */
 export function maskitoPipe(
