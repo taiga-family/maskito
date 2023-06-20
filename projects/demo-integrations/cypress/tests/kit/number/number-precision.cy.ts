@@ -65,13 +65,28 @@ describe('Number | precision', () => {
         });
     });
 
-    it('keeps untouched decimal part if `precision: Infinity`', () => {
-        openNumberPage('decimalSeparator=,&precision=Infinity');
+    describe('keeps untouched decimal part if `precision: Infinity`', () => {
+        it('0,123456789', () => {
+            openNumberPage('decimalSeparator=,&precision=Infinity');
 
-        cy.get('@input')
-            .type('0,123456789')
-            .should('have.value', '0,123456789')
-            .should('have.prop', 'selectionStart', '0,123456789'.length)
-            .should('have.prop', 'selectionEnd', '0,123456789'.length);
+            cy.get('@input')
+                .type('0,123456789')
+                .should('have.value', '0,123456789')
+                .should('have.prop', 'selectionStart', '0,123456789'.length)
+                .should('have.prop', 'selectionEnd', '0,123456789'.length);
+        });
+
+        it('0,0000000001', () => {
+            openNumberPage('decimalSeparator=,&precision=Infinity');
+
+            cy.get('@input')
+                .type('0,0000000001') // 1e-10
+                .should('have.value', '0,0000000001')
+                .should('have.prop', 'selectionStart', '0,0000000001'.length)
+                .should('have.prop', 'selectionEnd', '0,0000000001'.length)
+                .blur()
+                .wait(100) // to be sure that value is not changed even in case of some async validation
+                .should('have.value', '0,0000000001');
+        });
     });
 });

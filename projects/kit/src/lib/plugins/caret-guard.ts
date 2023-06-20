@@ -5,7 +5,7 @@ import {getFocused} from '../utils';
 export function maskitoCaretGuard(
     guard: (value: string) => [from: number, to: number],
 ): MaskitoPlugin {
-    return (element: HTMLInputElement | HTMLTextAreaElement): (() => void) => {
+    return element => {
         const document = element.ownerDocument;
         const listener = (): void => {
             if (getFocused(document) !== element) {
