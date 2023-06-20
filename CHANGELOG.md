@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.16.0](https://github.com/tinkoff/maskito/compare/v0.15.0...v0.16.0) (2023-06-20)
+
+### Features
+
+- **vue:** support async predicate ([#336](https://github.com/tinkoff/maskito/issues/336))
+  ([d1452b5](https://github.com/tinkoff/maskito/commit/d1452b5f1b2f8a252dfd05a5c1eb04ba971a1970))
+
+### Bug Fixes
+
+- **kit:** `Number` fails to parse small number on blur (exponential notation problem)
+  ([#339](https://github.com/tinkoff/maskito/issues/339))
+  ([7f83a7f](https://github.com/tinkoff/maskito/commit/7f83a7f170906c1911eb4444da2d636c0338ed4a))
+
 ## [0.15.0](https://github.com/tinkoff/maskito/compare/v0.14.0...v0.15.0) (2023-06-14)
 
 ### Features
