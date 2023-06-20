@@ -1,11 +1,14 @@
-import {MaskitoPlugin} from '@maskito/core';
+import {MaskitoOptions, MaskitoPlugin} from '@maskito/core';
 
 export function maskitoEventHandler(
     name: string,
-    handler: (element: HTMLInputElement | HTMLTextAreaElement) => void,
+    handler: (
+        element: HTMLInputElement | HTMLTextAreaElement,
+        options: Required<MaskitoOptions>,
+    ) => void,
 ): MaskitoPlugin {
-    return (element: HTMLInputElement | HTMLTextAreaElement): (() => void) => {
-        const listener = (): void => handler(element);
+    return (element, options) => {
+        const listener = (): void => handler(element, options);
 
         element.addEventListener(name, listener);
 

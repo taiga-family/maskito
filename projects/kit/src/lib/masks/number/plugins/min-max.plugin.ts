@@ -1,8 +1,8 @@
-import {MaskitoPlugin} from '@maskito/core';
+import {MaskitoPlugin, maskitoTransform} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {clamp} from '../../../utils';
-import {maskitoParseNumber} from '../utils';
+import {maskitoParseNumber, stringifyNumberWithoutExp} from '../utils';
 
 /**
  * This plugin is connected with {@link createMinMaxPostprocessor}:
@@ -17,12 +17,15 @@ export function createMinMaxPlugin({
     max: number;
     decimalSeparator: string;
 }): MaskitoPlugin {
-    return maskitoEventHandler('blur', element => {
+    return maskitoEventHandler('blur', (element, options) => {
         const parsedNumber = maskitoParseNumber(element.value, decimalSeparator);
-        const newValue = clamp(parsedNumber, min, max).toString();
+        const clampedNumber = clamp(parsedNumber, min, max);
 
-        if (newValue !== element.value) {
-            element.value = newValue;
+        if (parsedNumber !== clampedNumber) {
+            element.value = maskitoTransform(
+                stringifyNumberWithoutExp(clampedNumber),
+                options,
+            );
             element.dispatchEvent(new Event('input'));
         }
     });
