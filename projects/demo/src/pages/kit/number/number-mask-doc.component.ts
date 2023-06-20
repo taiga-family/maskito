@@ -72,13 +72,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
 
     maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
 
-    /**
-     * TODO: drop in 1.x.x
-     */
-    get isNegativeAllowed(): boolean {
-        return this.min < 0;
-    }
-
     updateOptions(): void {
         this.maskitoOptions = maskitoNumberOptionsGenerator(this);
     }
