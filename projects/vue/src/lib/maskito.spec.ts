@@ -22,7 +22,11 @@ describe('Maskito Vue package', () => {
         }),
     };
 
-    test('formats text', () => {
-        expect(mount(component).find('input').element.value).toBe(`1234 5678 9012 3456`);
+    test('formats text', async () => {
+        const mounted = mount(component);
+
+        await Promise.resolve();
+
+        expect(mounted.find('input').element.value).toBe(`1234 5678 9012 3456`);
     });
 });
