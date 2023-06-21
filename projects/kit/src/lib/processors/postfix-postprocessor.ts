@@ -1,4 +1,6 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoPostprocessor} from '@maskito/core';
+import {MaskitoPostprocessor} from '@maskito/core';
+
+import {identity} from '../utils';
 
 export function maskitoPostfixPostprocessorGenerator(
     postfix: string,
@@ -32,5 +34,5 @@ export function maskitoPostfixPostprocessorGenerator(
                       }, value),
               };
           }
-        : MASKITO_DEFAULT_OPTIONS.postprocessor;
+        : identity;
 }

@@ -3,8 +3,8 @@ import {maskitoWithPlaceholder} from '@maskito/kit';
 
 describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     const {preprocessors, postprocessors} = maskitoWithPlaceholder('dd/mm/yyyy');
-    const preprocessor = maskitoPipe(...preprocessors);
-    const postprocessor = maskitoPipe(...postprocessors);
+    const preprocessor = maskitoPipe(preprocessors);
+    const postprocessor = maskitoPipe(postprocessors);
 
     describe('preprocessors', () => {
         const check = (valueBefore: string, valueAfter: string): void => {

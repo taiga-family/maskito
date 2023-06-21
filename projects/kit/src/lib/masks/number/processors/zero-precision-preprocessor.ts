@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp} from '../../../utils';
+import {escapeRegExp, identity} from '../../../utils';
 
 /**
  * It drops decimal part if precision is zero.
@@ -11,7 +11,7 @@ export function createZeroPrecisionPreprocessor(
     decimalSeparator: string,
 ): MaskitoPreprocessor {
     if (precision > 0) {
-        return elementState => elementState;
+        return identity;
     }
 
     const decimalPartRegExp = new RegExp(`${escapeRegExp(decimalSeparator)}.*$`, 'g');

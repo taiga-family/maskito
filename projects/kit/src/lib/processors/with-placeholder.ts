@@ -1,14 +1,11 @@
-import {MaskitoOptions, MaskitoPostprocessor, MaskitoPreprocessor} from '@maskito/core';
+import {MaskitoOptions} from '@maskito/core';
 
 import {maskitoCaretGuard, maskitoEventHandler} from '../plugins';
 
 export function maskitoWithPlaceholder(
     placeholder: string,
     focusedOnly = false,
-): Pick<
-    Required<MaskitoOptions>,
-    'plugins' | 'postprocessor' | 'postprocessors' | 'preprocessor' | 'preprocessors'
-> & {
+): Pick<Required<MaskitoOptions>, 'plugins' | 'postprocessors' | 'preprocessors'> & {
     removePlaceholder: (value: string) => string;
 } {
     const removePlaceholder = (value: string): string => {
@@ -40,35 +37,30 @@ export function maskitoWithPlaceholder(
         plugins.push(focus, blur);
     }
 
-    const preprocessor: MaskitoPreprocessor = ({elementState, data}) => {
-        const {value, selection} = elementState;
-
-        return {
-            elementState: {
-                selection,
-                value: removePlaceholder(value),
-            },
-            data,
-        };
-    };
-
-    const postprocessor: MaskitoPostprocessor = (
-        {value, selection},
-        initialElementState,
-    ) =>
-        initialElementState.value && (focused || !focusedOnly)
-            ? {
-                  value: value + placeholder.slice(value.length),
-                  selection,
-              }
-            : {value, selection};
-
     return {
         plugins,
         removePlaceholder,
-        preprocessor,
-        postprocessor,
-        preprocessors: [preprocessor],
-        postprocessors: [postprocessor],
+        preprocessors: [
+            ({elementState, data}) => {
+                const {value, selection} = elementState;
+
+                return {
+                    elementState: {
+                        selection,
+                        value: removePlaceholder(value),
+                    },
+                    data,
+                };
+            },
+        ],
+        postprocessors: [
+            ({value, selection}, initialElementState) =>
+                initialElementState.value && (focused || !focusedOnly)
+                    ? {
+                          value: value + placeholder.slice(value.length),
+                          selection,
+                      }
+                    : {value, selection},
+        ],
     };
 }

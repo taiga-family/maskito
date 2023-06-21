@@ -1,7 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
-import {escapeRegExp} from '../../../utils';
+import {escapeRegExp, identity} from '../../../utils';
 
 /**
  * It adds symbol for separating thousands.
@@ -19,7 +19,7 @@ export function createThousandSeparatorPostprocessor({
     postfix: string;
 }): MaskitoPostprocessor {
     if (!thousandSeparator) {
-        return elementState => elementState;
+        return identity;
     }
 
     const prefixReg = new RegExp(`^${escapeRegExp(prefix)}${CHAR_MINUS}?`);

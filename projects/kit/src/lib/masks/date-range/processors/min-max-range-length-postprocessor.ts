@@ -6,6 +6,7 @@ import {
     appendDate,
     clamp,
     dateToSegments,
+    identity,
     isDateStringComplete,
     isEmpty,
     parseDateRangeString,
@@ -28,7 +29,7 @@ export function createMinMaxRangeLengthPostprocessor({
     maxLength?: Partial<MaskitoDateSegments<number>>;
 }): MaskitoPostprocessor {
     if (isEmpty(minLength) && isEmpty(maxLength)) {
-        return elementState => elementState;
+        return identity;
     }
 
     return ({value, selection}) => {
