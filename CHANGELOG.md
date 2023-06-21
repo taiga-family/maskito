@@ -7,11 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 ### ⚠ BREAKING CHANGES
 
-- **kit:** delete deprecated `isNegativeAllowed` parameter from `Number` mask (#338)
-- **core:** delete deprecated `preprocessor` & `postprocessor` from `MaskitoOptions` (#337)
-
-### Features
-
 - **core:** delete deprecated `preprocessor` & `postprocessor` from `MaskitoOptions`
   ([#337](https://github.com/tinkoff/maskito/issues/337))
   ([0b6aad2](https://github.com/tinkoff/maskito/commit/0b6aad2622ed152d12c91f8ca64b767709ecdbc2))
