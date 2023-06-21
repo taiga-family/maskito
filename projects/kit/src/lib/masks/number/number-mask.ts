@@ -27,7 +27,6 @@ import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
     min = Number.MIN_SAFE_INTEGER,
-    isNegativeAllowed = min < 0,
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
@@ -41,11 +40,6 @@ export function maskitoNumberOptionsGenerator({
 }: {
     min?: number;
     max?: number;
-    /**
-     * @deprecated use `min > 0` instead of `isNegativeAllowed: false`
-     * TODO: delete in 1.x.x
-     */
-    isNegativeAllowed?: boolean;
     precision?: number;
     decimalSeparator?: string;
     decimalPseudoSeparators?: string[];
@@ -64,9 +58,9 @@ export function maskitoNumberOptionsGenerator({
             decimalSeparator,
             precision,
             thousandSeparator,
-            isNegativeAllowed,
             prefix,
             postfix,
+            isNegativeAllowed: min < 0,
         }),
         preprocessors: [
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
