@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/tinkoff/maskito/compare/v0.16.0...v1.0.0) (2023-06-21)
+
+### ⚠ BREAKING CHANGES
+
+- **kit:** delete deprecated `isNegativeAllowed` parameter from `Number` mask (#338)
+- **core:** delete deprecated `preprocessor` & `postprocessor` from `MaskitoOptions` (#337)
+
+### Features
+
+- **core:** delete deprecated `preprocessor` & `postprocessor` from `MaskitoOptions`
+  ([#337](https://github.com/tinkoff/maskito/issues/337))
+  ([0b6aad2](https://github.com/tinkoff/maskito/commit/0b6aad2622ed152d12c91f8ca64b767709ecdbc2))
+- **kit:** delete deprecated `isNegativeAllowed` parameter from `Number` mask
+  ([#338](https://github.com/tinkoff/maskito/issues/338))
+  ([9fd3005](https://github.com/tinkoff/maskito/commit/9fd30055b3157072076f7a8567045fac05b6af9e))
+
 ## [0.16.0](https://github.com/tinkoff/maskito/compare/v0.15.0...v0.16.0) (2023-06-20)
 
 ### Features
