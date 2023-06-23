@@ -41,7 +41,7 @@ export function validateDateString({
             fantomSeparator +
             getDateSegmentValueLength(dateModeTemplate)[segmentName];
         const isLastSegmentDigitAdded =
-            lastSegmentDigitIndex >= from && lastSegmentDigitIndex <= to;
+            lastSegmentDigitIndex >= from && lastSegmentDigitIndex === to;
 
         if (isLastSegmentDigitAdded && Number(segmentValue) > Number(maxSegmentValue)) {
             // 3|1.10.2010 => Type 9 => 3|1.10.2010
