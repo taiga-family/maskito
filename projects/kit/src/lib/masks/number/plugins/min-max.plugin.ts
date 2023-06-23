@@ -17,16 +17,20 @@ export function createMinMaxPlugin({
     max: number;
     decimalSeparator: string;
 }): MaskitoPlugin {
-    return maskitoEventHandler('blur', (element, options) => {
-        const parsedNumber = maskitoParseNumber(element.value, decimalSeparator);
-        const clampedNumber = clamp(parsedNumber, min, max);
+    return maskitoEventHandler(
+        'blur',
+        (element, options) => {
+            const parsedNumber = maskitoParseNumber(element.value, decimalSeparator);
+            const clampedNumber = clamp(parsedNumber, min, max);
 
-        if (parsedNumber !== clampedNumber) {
-            element.value = maskitoTransform(
-                stringifyNumberWithoutExp(clampedNumber),
-                options,
-            );
-            element.dispatchEvent(new Event('input'));
-        }
-    });
+            if (parsedNumber !== clampedNumber) {
+                element.value = maskitoTransform(
+                    stringifyNumberWithoutExp(clampedNumber),
+                    options,
+                );
+                element.dispatchEvent(new Event('input'));
+            }
+        },
+        {capture: true},
+    );
 }
