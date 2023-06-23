@@ -6,12 +6,13 @@ export function maskitoEventHandler(
         element: HTMLInputElement | HTMLTextAreaElement,
         options: Required<MaskitoOptions>,
     ) => void,
+    eventListenerOptions?: AddEventListenerOptions,
 ): MaskitoPlugin {
-    return (element, options) => {
-        const listener = (): void => handler(element, options);
+    return (element, maskitoOptions) => {
+        const listener = (): void => handler(element, maskitoOptions);
 
-        element.addEventListener(name, listener);
+        element.addEventListener(name, listener, eventListenerOptions);
 
-        return () => element.removeEventListener(name, listener);
+        return () => element.removeEventListener(name, listener, eventListenerOptions);
     };
 }
