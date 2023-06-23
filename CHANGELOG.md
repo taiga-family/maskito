@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/tinkoff/maskito/compare/v1.0.0...v1.1.0) (2023-06-23)
+
+### Features
+
+- **kit:** `maskitoEventHandler` accepts `AddEventListenerOptions` as the 3d optional argument
+  ([#346](https://github.com/tinkoff/maskito/issues/346))
+  ([1d5866e](https://github.com/tinkoff/maskito/commit/1d5866efa5e0e4736dd735ae006e027e9bd01e31))
+- **kit:** use capturing phase for `focus`/`blur` events in plugins
+  ([#347](https://github.com/tinkoff/maskito/issues/347))
+  ([ef539e1](https://github.com/tinkoff/maskito/commit/ef539e160f601023e513036d704f7daff9689286))
+
+### Bug Fixes
+
+- **kit:** `Date` allows to replace the whole selection range with zero
+  ([#345](https://github.com/tinkoff/maskito/issues/345))
+  ([98fd21d](https://github.com/tinkoff/maskito/commit/98fd21d50899db365b864faf597fad9a21a3db06))
+
 ## [1.0.0](https://github.com/tinkoff/maskito/compare/v0.16.0...v1.0.0) (2023-06-21)
 
 ### ⚠ BREAKING CHANGES
