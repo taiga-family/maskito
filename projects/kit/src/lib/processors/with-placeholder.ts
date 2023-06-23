@@ -22,17 +22,25 @@ export function maskitoWithPlaceholder(
     let focused = false;
 
     if (focusedOnly) {
-        const focus = maskitoEventHandler('focus', element => {
-            focused = true;
-            element.value += placeholder.slice(element.value.length);
-            element.dispatchEvent(new Event('input'));
-        });
+        const focus = maskitoEventHandler(
+            'focus',
+            element => {
+                focused = true;
+                element.value += placeholder.slice(element.value.length);
+                element.dispatchEvent(new Event('input'));
+            },
+            {capture: true},
+        );
 
-        const blur = maskitoEventHandler('blur', element => {
-            focused = false;
-            element.value = removePlaceholder(element.value);
-            element.dispatchEvent(new Event('input'));
-        });
+        const blur = maskitoEventHandler(
+            'blur',
+            element => {
+                focused = false;
+                element.value = removePlaceholder(element.value);
+                element.dispatchEvent(new Event('input'));
+            },
+            {capture: true},
+        );
 
         plugins.push(focus, blur);
     }
