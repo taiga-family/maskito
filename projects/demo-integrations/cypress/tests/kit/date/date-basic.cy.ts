@@ -304,6 +304,56 @@ describe('Date', () => {
                             .should('have.prop', 'selectionEnd', '3'.length);
                     },
                 );
+
+                it(
+                    '|12|.11.2022 => Press 0 => 0|1.11.2022',
+                    BROWSER_SUPPORTS_REAL_EVENTS,
+                    () => {
+                        cy.get('@input')
+                            .type('12112022')
+                            .type('{leftArrow}'.repeat('.11.2022'.length))
+                            .realPress([
+                                'Shift',
+                                ...Array('12'.length).fill('ArrowLeft'),
+                            ]);
+
+                        cy.get('@input')
+                            .type('0')
+                            .should('have.value', '01.11.2022')
+                            .should('have.prop', 'selectionStart', '0'.length)
+                            .should('have.prop', 'selectionEnd', '0'.length);
+                    },
+                );
+
+                it('|12.11.2022 => Press 0 => 0|', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                    cy.get('@input')
+                        .type('12112022')
+                        .realPress([
+                            'Shift',
+                            ...Array('12.11.2022'.length).fill('ArrowLeft'),
+                        ]);
+
+                    cy.get('@input')
+                        .type('0')
+                        .should('have.value', '0')
+                        .should('have.prop', 'selectionStart', '0'.length)
+                        .should('have.prop', 'selectionEnd', '0'.length);
+                });
+
+                it('|12.11.2022 => Press 1 => 1|', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                    cy.get('@input')
+                        .type('12112022')
+                        .realPress([
+                            'Shift',
+                            ...Array('12.11.2022'.length).fill('ArrowLeft'),
+                        ]);
+
+                    cy.get('@input')
+                        .type('1')
+                        .should('have.value', '1')
+                        .should('have.prop', 'selectionStart', '1'.length)
+                        .should('have.prop', 'selectionEnd', '1'.length);
+                });
             });
         });
     });
