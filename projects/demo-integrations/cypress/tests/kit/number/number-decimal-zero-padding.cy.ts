@@ -128,7 +128,7 @@ describe('Number | decimalZeroPadding', () => {
                 .should('have.prop', 'selectionEnd', '42,2'.length);
         });
 
-        it('9|9,1234 => Type , => 9,|9123', () => {
+        it('9|9,1234 => Type , => 9|9,1234 (no changes)', () => {
             cy.get('@input')
                 .type('99,1234')
                 .type('{moveToStart}{rightArrow}')
@@ -136,9 +136,9 @@ describe('Number | decimalZeroPadding', () => {
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1)
                 .type(',')
-                .should('have.value', '9,9123')
-                .should('have.prop', 'selectionStart', 2)
-                .should('have.prop', 'selectionEnd', 2);
+                .should('have.value', '99,1234')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1);
         });
     });
 

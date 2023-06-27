@@ -1,3 +1,4 @@
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 import {openNumberPage} from './utils';
 
 describe('Number | Decimal separator (symbol used to separate the integer part from the fractional part)', () => {
@@ -81,15 +82,13 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
 
     describe('Decimal separator is a dot', () => {
         beforeEach(() => {
-            openNumberPage(
-                'decimalSeparator=.&precision=2&decimalZeroPadding=true&decimalPseudoSeparators$=2',
-            );
+            openNumberPage('decimalSeparator=.&precision=2&decimalPseudoSeparators$=2');
         });
 
         it('accepts dot (as the last character)', () => {
             cy.get('@input')
                 .type('123.')
-                .should('have.value', '123.00')
+                .should('have.value', '123.')
                 .should('have.prop', 'selectionStart', '123.'.length)
                 .should('have.prop', 'selectionEnd', '123.'.length);
         });
@@ -99,7 +98,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                 .type('42')
                 .type('{leftArrow}')
                 .type('.')
-                .should('have.value', '4.20')
+                .should('have.value', '4.2')
                 .should('have.prop', 'selectionStart', '4.'.length)
                 .should('have.prop', 'selectionEnd', '4.'.length);
         });
@@ -107,7 +106,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
         it('accepts comma (as the last character) and transforms it to dot', () => {
             cy.get('@input')
                 .type('123,')
-                .should('have.value', '123.00')
+                .should('have.value', '123.')
                 .should('have.prop', 'selectionStart', '123.'.length)
                 .should('have.prop', 'selectionEnd', '123.'.length);
         });
@@ -117,7 +116,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                 .type('42')
                 .type('{leftArrow}')
                 .type(',')
-                .should('have.value', '4.20')
+                .should('have.value', '4.2')
                 .should('have.prop', 'selectionStart', '4.'.length)
                 .should('have.prop', 'selectionEnd', '4.'.length);
         });
@@ -127,7 +126,53 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                 .type('123')
                 .type('{moveToStart}{rightArrow}')
                 .type('F')
-                .should('have.value', '123.00');
+                .should('have.value', '123');
         });
+    });
+
+    describe('Attempt to enter decimal separator when it already exists in text field', () => {
+        beforeEach(() => {
+            openNumberPage('decimalSeparator=,&thousandSeparator=_&precision=2');
+        });
+
+        it('1|23,45 => Press comma (decimal separator) => 1|23,45 (no changes)', () => {
+            cy.get('@input')
+                .type('123,45')
+                .type('{moveToStart}{rightArrow}')
+                .type(',')
+                .should('have.value', '123,45')
+                .should('have.prop', 'selectionStart', '1'.length)
+                .should('have.prop', 'selectionEnd', '1'.length);
+        });
+
+        it('1|23,45 => Press point (pseudo decimal separator) => 1|23,45 (no changes)', () => {
+            cy.get('@input')
+                .type('123.45')
+                .type('{moveToStart}{rightArrow}')
+                .type('.')
+                .should('have.value', '123,45')
+                .should('have.prop', 'selectionStart', '1'.length)
+                .should('have.prop', 'selectionEnd', '1'.length);
+        });
+
+        it(
+            '1|23,4|5 => Type decimal separator => 1,5',
+            BROWSER_SUPPORTS_REAL_EVENTS,
+            () => {
+                cy.get('@input')
+                    .type('123,45')
+                    .realPress([
+                        'ArrowLeft',
+                        'Shift',
+                        ...Array('23,4'.length).fill('ArrowLeft'),
+                    ]);
+
+                cy.get('@input')
+                    .type(',')
+                    .should('have.value', '1,5')
+                    .should('have.prop', 'selectionStart', '1,'.length)
+                    .should('have.prop', 'selectionEnd', '1,'.length);
+            },
+        );
     });
 });
