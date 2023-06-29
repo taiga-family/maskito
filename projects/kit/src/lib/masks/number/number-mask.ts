@@ -19,6 +19,7 @@ import {
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
     createPseudoCharactersPreprocessor,
+    createRepeatedDecimalSeparatorPreprocessor,
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
@@ -72,6 +73,7 @@ export function maskitoNumberOptionsGenerator({
                 thousandSeparator,
             }),
             createZeroPrecisionPreprocessor(precision, decimalSeparator),
+            createRepeatedDecimalSeparatorPreprocessor(decimalSeparator),
         ],
         postprocessors: [
             createLeadingZeroesValidationPostprocessor(
