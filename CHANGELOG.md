@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/tinkoff/maskito/compare/v1.1.0...v1.1.1) (2023-06-29)
+
+### Bug Fixes
+
+- **core:** don't ignore native attribute `maxlength` ([#350](https://github.com/tinkoff/maskito/issues/350))
+  ([8504f49](https://github.com/tinkoff/maskito/commit/8504f497152931da06dd745763be2505587f97b4))
+- **kit:** `Number` should ignore new typed decimal separator if it already exists in text field
+  ([#351](https://github.com/tinkoff/maskito/issues/351))
+  ([4ccfdc8](https://github.com/tinkoff/maskito/commit/4ccfdc86ff08bcebfd18c04403aa9c9c83cbbd02))
+
 ## [1.1.0](https://github.com/tinkoff/maskito/compare/v1.0.0...v1.1.0) (2023-06-23)
 
 ### Features
