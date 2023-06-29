@@ -134,6 +134,12 @@ export class Maskito extends MaskHistory {
         };
     }
 
+    private get maxLength(): number {
+        const {maxLength} = this.element;
+
+        return maxLength === -1 ? Infinity : maxLength;
+    }
+
     destroy(): void {
         this.eventListener.destroy();
         this.teardowns.forEach(teardown => teardown?.());
@@ -293,6 +299,10 @@ export class Maskito extends MaskHistory {
         const newPossibleValue =
             elementState.value.slice(0, from) + data + elementState.value.slice(to);
         const newElementState = this.postprocessor(maskModel, initialElementState);
+
+        if (newElementState.value.length > this.maxLength) {
+            return event.preventDefault();
+        }
 
         if (newPossibleValue !== newElementState.value) {
             event.preventDefault();
