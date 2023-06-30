@@ -1,6 +1,6 @@
 import {MaskitoPlugin} from '@maskito/core';
 
-import {getFocused} from '../utils';
+import {clamp, getFocused} from '../utils';
 
 export function maskitoCaretGuard(
     guard: (value: string) => [from: number, to: number],
@@ -14,10 +14,13 @@ export function maskitoCaretGuard(
 
             const start = element.selectionStart || 0;
             const end = element.selectionEnd || 0;
-            const [from, to] = guard(element.value);
+            const [fromLimit, toLimit] = guard(element.value);
 
-            if (from > start || to < end) {
-                element.setSelectionRange(Math.max(from, start), Math.min(to, end));
+            if (fromLimit > start || toLimit < end) {
+                element.setSelectionRange(
+                    clamp(start, fromLimit, toLimit),
+                    clamp(end, fromLimit, toLimit),
+                );
             }
         };
 
