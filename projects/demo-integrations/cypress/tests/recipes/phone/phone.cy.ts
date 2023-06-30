@@ -733,6 +733,32 @@ describe('Phone', () => {
                 .blur()
                 .should('have.value', '');
         });
+
+        describe('with caret guard', () => {
+            it('forbids to put caret before country prefix', () => {
+                cy.get('@input')
+                    .should('have.value', '+7 ')
+                    .should('have.prop', 'selectionStart', '+7 '.length)
+                    .should('have.prop', 'selectionEnd', '+7 '.length)
+                    .type('{moveToStart}')
+                    .should('have.value', '+7 ')
+                    .should('have.prop', 'selectionStart', '+7 '.length)
+                    .should('have.prop', 'selectionEnd', '+7 '.length)
+                    .type('{leftArrow}'.repeat(5))
+                    .should('have.value', '+7 ')
+                    .should('have.prop', 'selectionStart', '+7 '.length)
+                    .should('have.prop', 'selectionEnd', '+7 '.length);
+            });
+
+            it('can be selected via selectAll', () => {
+                cy.get('@input')
+                    .type('9123456789')
+                    .type('{selectall}')
+                    .should('have.value', '+7 (912) 345-67-89')
+                    .should('have.prop', 'selectionStart', 0)
+                    .should('have.prop', 'selectionEnd', '+7 (912) 345-67-89'.length);
+            });
+        });
     });
 
     describe('New typed character is equal to the previous (already existing) fixed character', () => {
