@@ -744,7 +744,7 @@ describe('Phone', () => {
                     .should('have.value', '+7 ')
                     .should('have.prop', 'selectionStart', '+7 '.length)
                     .should('have.prop', 'selectionEnd', '+7 '.length)
-                    .type('{rightArrow}'.repeat(5))
+                    .type('{leftArrow}'.repeat(5))
                     .should('have.value', '+7 ')
                     .should('have.prop', 'selectionStart', '+7 '.length)
                     .should('have.prop', 'selectionEnd', '+7 '.length);
