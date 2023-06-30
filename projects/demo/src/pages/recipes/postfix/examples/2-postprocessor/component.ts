@@ -32,11 +32,6 @@ export class PostfixDocExample2 {
     onFocus(): void {
         if (!this.value) {
             this.value = '$.00';
-
-            setTimeout(() => {
-                // To put cursor after dollar ($|.00)
-                this.inputElement.nativeElement.setSelectionRange(1, 1);
-            });
         }
     }
 
