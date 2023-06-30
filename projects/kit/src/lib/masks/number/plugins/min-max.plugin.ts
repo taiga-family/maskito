@@ -23,7 +23,7 @@ export function createMinMaxPlugin({
             const parsedNumber = maskitoParseNumber(element.value, decimalSeparator);
             const clampedNumber = clamp(parsedNumber, min, max);
 
-            if (parsedNumber !== clampedNumber) {
+            if (!Number.isNaN(parsedNumber) && parsedNumber !== clampedNumber) {
                 element.value = maskitoTransform(
                     stringifyNumberWithoutExp(clampedNumber),
                     options,
