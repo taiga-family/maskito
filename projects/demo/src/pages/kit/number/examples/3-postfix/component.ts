@@ -35,13 +35,6 @@ export class NumberMaskDocExample3 {
         if (!this.value) {
             this.value = this.postfix;
         }
-
-        const newCaretIndex = this.value.length - this.postfix.length;
-
-        setTimeout(() => {
-            // To put cursor before postfix
-            this.inputRef.nativeElement.setSelectionRange(newCaretIndex, newCaretIndex);
-        });
     }
 
     onBlur(): void {
