@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/tinkoff/maskito/compare/v1.1.1...v1.2.0) (2023-07-03)
+
+### Features
+
+- **kit:** `maskitoCaretGuard`'s function has the 2nd argument with current selection range
+  ([#358](https://github.com/tinkoff/maskito/issues/358))
+  ([eedc4d6](https://github.com/tinkoff/maskito/commit/eedc4d610efaf36b98a4049f5c5334561b5b21c5))
+
+### Bug Fixes
+
+- **kit:** `maskitoCaretGuard` incorrectly validates the left side of constraints
+  ([#356](https://github.com/tinkoff/maskito/issues/356))
+  ([17ee90f](https://github.com/tinkoff/maskito/commit/17ee90fe055f6a8370d6ea75ff2b236fd498441e))
+- **kit:** `Number` should skip min/max validation if value does not contain any digits
+  ([#359](https://github.com/tinkoff/maskito/issues/359))
+  ([ed8221e](https://github.com/tinkoff/maskito/commit/ed8221e14eca62334af41b4c8e571eb86ed68247))
+
 ### [1.1.1](https://github.com/tinkoff/maskito/compare/v1.1.0...v1.1.1) (2023-06-29)
 
 ### Bug Fixes
