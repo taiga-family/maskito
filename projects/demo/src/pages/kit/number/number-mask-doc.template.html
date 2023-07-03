@@ -64,17 +64,22 @@
             [description]="postfixDescription"
         >
             <ng-template #postfixDescription>
-                <p class="tui-space_top-0">
+                <div>
                     Use
                     <code>postfix</code>
                     parameter to set non-removable text after the number.
-                </p>
-                <p>
+                </div>
+                <div>
+                    Additionally you can use
+                    <code>maskitoCaretGuard</code>
+                    to clamp caret inside allowable range.
+                </div>
+                <div class="tui-space_top-4">
                     This example also shows how to restrict the greatest
                     permitted value via
                     <code>max</code>
                     parameter.
-                </p>
+                </div>
             </ng-template>
             <number-mask-doc-example-3></number-mask-doc-example-3>
         </tui-doc-example>

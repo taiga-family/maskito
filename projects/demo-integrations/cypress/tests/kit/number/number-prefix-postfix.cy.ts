@@ -52,7 +52,7 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.value', '$1_234 per day')
                 .should('have.prop', 'selectionStart', '$1_234'.length)
                 .should('have.prop', 'selectionEnd', '$1_234'.length)
-                .type('{moveToStart}{rightArrow}{del}')
+                .type('{moveToStart}{del}')
                 .should('have.value', '$234 per day')
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1);
@@ -131,17 +131,10 @@ describe('Number | Prefix & Postfix', () => {
         it('$|42 per day => Backspace => $|42 per day', () => {
             cy.get('@input')
                 .type('42')
-                .type('{moveToStart}{rightArrow}')
-                .type('{backspace}'.repeat(5))
-                .should('have.value', '$42 per day')
+                .type('{moveToStart}')
                 .should('have.prop', 'selectionStart', '$'.length)
-                .should('have.prop', 'selectionEnd', '$'.length);
-        });
-
-        it('|$42 per day => Delete => $|42 per day', () => {
-            cy.get('@input')
-                .type('42')
-                .type('{moveToStart}{del}')
+                .should('have.prop', 'selectionEnd', '$'.length)
+                .type('{backspace}'.repeat(5))
                 .should('have.value', '$42 per day')
                 .should('have.prop', 'selectionStart', '$'.length)
                 .should('have.prop', 'selectionEnd', '$'.length);
@@ -157,14 +150,28 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', 1);
         });
 
-        it('$42 per day| => Backspace => $42 per| day', () => {
+        it('$42| per day => Delete x4 => $42| per day', () => {
             cy.get('@input')
                 .type('42')
                 .type('{moveToEnd}')
-                .type('{backspace}'.repeat(4))
+                .should('have.prop', 'selectionStart', '$42'.length)
+                .should('have.prop', 'selectionEnd', '$42'.length)
+                .type('{del}'.repeat(4))
                 .should('have.value', '$42 per day')
-                .should('have.prop', 'selectionStart', '$42 per'.length)
-                .should('have.prop', 'selectionEnd', '$42 per'.length);
+                .should('have.prop', 'selectionStart', '$42'.length)
+                .should('have.prop', 'selectionEnd', '$42'.length);
+        });
+    });
+
+    describe('with maskitoCaretGuard', () => {
+        it('$|42 per day => ArrowLeft => $|42 per day', () => {
+            cy.get('@input')
+                .type('42')
+                .type('{moveToStart}')
+                .type('{leftArrow}'.repeat(3))
+                .should('have.value', '$42 per day')
+                .should('have.prop', 'selectionStart', '$'.length)
+                .should('have.prop', 'selectionEnd', '$'.length);
         });
     });
 });

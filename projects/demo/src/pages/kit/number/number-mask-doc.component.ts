@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angula
 import {FormControl} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
 
@@ -70,10 +70,10 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     prefix = '';
     postfix = '';
 
-    maskitoOptions: MaskitoOptions = maskitoNumberOptionsGenerator(this);
+    maskitoOptions: MaskitoOptions = this.calculateMask(this);
 
     updateOptions(): void {
-        this.maskitoOptions = maskitoNumberOptionsGenerator(this);
+        this.maskitoOptions = this.calculateMask(this);
     }
 
     onFocus(): void {
@@ -83,18 +83,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
             value = this.prefix + this.postfix;
             this.apiPageControl.patchValue(value);
         }
-
-        if (this.postfix) {
-            const newCaretIndex = value.length - this.postfix.length;
-
-            setTimeout(() => {
-                // To put cursor before postfix
-                this.apiPageInput.nativeElement.setSelectionRange(
-                    newCaretIndex,
-                    newCaretIndex,
-                );
-            });
-        }
     }
 
     onBlur(): void {
@@ -103,5 +91,21 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         if (value && value === this.prefix + this.postfix) {
             this.apiPageControl.patchValue('');
         }
+    }
+
+    private calculateMask(options: GeneratorOptions): MaskitoOptions {
+        const {prefix, postfix} = options;
+        const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
+
+        return {
+            ...numberOptions,
+            plugins: [
+                ...plugins,
+                maskitoCaretGuard(value => [
+                    prefix.length,
+                    value.length - postfix.length,
+                ]),
+            ],
+        };
     }
 }
