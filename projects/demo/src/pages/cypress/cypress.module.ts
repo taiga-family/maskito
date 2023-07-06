@@ -10,6 +10,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 import {CypressDocPageComponent} from './cypress.component';
 import {TestDocExample1} from './examples/1-predicate/component';
 import {TestDocExample2} from './examples/2-native-max-length/component';
+import {TestDocExample3} from './examples/3-mirrored-prefix-postfix/component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,12 @@ import {TestDocExample2} from './examples/2-native-max-length/component';
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(CypressDocPageComponent)),
     ],
-    declarations: [CypressDocPageComponent, TestDocExample1, TestDocExample2],
+    declarations: [
+        CypressDocPageComponent,
+        TestDocExample1,
+        TestDocExample2,
+        TestDocExample3,
+    ],
     exports: [CypressDocPageComponent],
 })
 export class CypressDocPageModule {}
