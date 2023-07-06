@@ -1,6 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {identity} from '../../../utils';
+import {escapeRegExp, identity} from '../../../utils';
+import {maskitoParseNumber} from '../utils';
 
 /**
  * If `decimalZeroPadding` is `true`, it pads decimal part with zeroes
@@ -11,24 +12,34 @@ export function createDecimalZeroPaddingPostprocessor({
     decimalSeparator,
     precision,
     decimalZeroPadding,
+    postfix,
 }: {
     decimalSeparator: string;
     decimalZeroPadding: boolean;
     precision: number;
+    postfix: string;
 }): MaskitoPostprocessor {
     if (precision <= 0 || !decimalZeroPadding) {
         return identity;
     }
 
-    return ({value, selection}) => {
-        const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
+    const trailingPostfixRegExp = new RegExp(`${escapeRegExp(postfix)}$`);
 
-        if (!value.includes(decimalSeparator) && !integerPart) {
+    return ({value, selection}) => {
+        if (isNaN(maskitoParseNumber(value))) {
             return {value, selection};
         }
 
+        const [integerPart, decimalPart = ''] = value
+            .replace(trailingPostfixRegExp, '')
+            .split(decimalSeparator);
+
         return {
-            value: integerPart + decimalSeparator + decimalPart.padEnd(precision, '0'),
+            value:
+                integerPart +
+                decimalSeparator +
+                decimalPart.padEnd(precision, '0') +
+                postfix,
             selection,
         };
     };

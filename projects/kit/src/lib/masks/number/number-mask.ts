@@ -93,6 +93,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalZeroPadding,
                 precision,
+                postfix,
             }),
         ],
         plugins: [
