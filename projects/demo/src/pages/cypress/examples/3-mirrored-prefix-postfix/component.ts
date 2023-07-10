@@ -6,7 +6,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     selector: 'test-doc-example-3',
     template: `
         <input
-            value="$ 100 per kg"
+            value="$ 100 per day"
             [maskito]="numberMask"
         />
     `,
@@ -15,6 +15,6 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 export class TestDocExample3 {
     readonly numberMask: MaskitoOptions = maskitoNumberOptionsGenerator({
         prefix: '$ ',
-        postfix: ' per kg',
+        postfix: ' per day',
     });
 }

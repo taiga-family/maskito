@@ -1,14 +1,16 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {escapeRegExp, identity} from '../utils';
+import {escapeRegExp, findCommonBeginningSubstr, identity} from '../utils';
 
 export function maskitoPostfixPostprocessorGenerator(
     postfix: string,
 ): MaskitoPostprocessor {
+    const postfixRE = new RegExp(`${escapeRegExp(postfix)}$`);
+
     return postfix
         ? ({value, selection}, initialElementState) => {
               if (!value && !initialElementState.value.endsWith(postfix)) {
-                  // cases when developer wants input to be empty
+                  // cases when developer wants input to be empty (programmatically)
                   return {value, selection};
               }
 
@@ -20,10 +22,15 @@ export function maskitoPostfixPostprocessorGenerator(
               }
 
               const initialValueBeforePostfix = initialElementState.value.replace(
-                  new RegExp(`${escapeRegExp(postfix)}$`),
+                  postfixRE,
                   '',
               );
-              const untouchedPart = getUntouched(initialValueBeforePostfix, value);
+              const postfixWasModified =
+                  initialElementState.selection[1] >= initialValueBeforePostfix.length;
+              const alreadyExistedValueBeforePostfix = findCommonBeginningSubstr(
+                  initialValueBeforePostfix,
+                  value,
+              );
 
               return {
                   selection,
@@ -31,26 +38,15 @@ export function maskitoPostfixPostprocessorGenerator(
                       .reverse()
                       .reduce((newValue, char, index) => {
                           const i = newValue.length - 1 - index;
+                          const isInitiallyMirroredChar =
+                              alreadyExistedValueBeforePostfix[i] === char &&
+                              postfixWasModified;
 
-                          return newValue[i] !== char || untouchedPart[i] === char
+                          return newValue[i] !== char || isInitiallyMirroredChar
                               ? newValue.slice(0, i + 1) + char + newValue.slice(i + 1)
                               : newValue;
                       }, value),
               };
           }
         : identity;
-}
-
-function getUntouched(initial: string, now: string): string {
-    let res = '';
-
-    for (let i = 0; i < now.length; i++) {
-        if (now[i] !== initial[i]) {
-            return res;
-        }
-
-        res += now[i];
-    }
-
-    return res;
 }

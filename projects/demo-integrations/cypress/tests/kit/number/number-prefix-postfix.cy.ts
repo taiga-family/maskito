@@ -1,5 +1,6 @@
 import {DemoPath} from '@demo/constants';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 import {openNumberPage} from './utils';
 
 describe('Number | Prefix & Postfix', () => {
@@ -179,18 +180,88 @@ describe('Number | Prefix & Postfix', () => {
         });
     });
 
-    describe('works if the same character ends/starts', () => {
-        describe('[prefix]="$_" | [postfix]="_per_day"', () => {
+    describe('prefix/postfix ends/starts with the same character', () => {
+        describe('[prefix]="$_" | [postfix]="_per_day" (with caret guard)', () => {
             beforeEach(() => {
                 openNumberPage('prefix=$_&postfix=_per_day');
+
+                cy.get('@input')
+                    .should('have.value', '$__per_day')
+                    .should('have.prop', 'selectionStart', '$_'.length)
+                    .should('have.prop', 'selectionEnd', '$_'.length);
             });
 
-            // TODO
-            it('$_|_per_day => Type Backspace => $_|_per_day', () => {});
+            it('$_|_per_day => Type Backspace => $_|_per_day', () => {
+                cy.get('@input')
+                    .type('{backspace}')
+                    .should('have.value', '$__per_day')
+                    .should('have.prop', 'selectionStart', '$_'.length)
+                    .should('have.prop', 'selectionEnd', '$_'.length);
+            });
 
-            it('$_|_per_day => Type Delete => $_|_per_day', () => {});
+            it('$_|_per_day => Type Delete => $_|_per_day', () => {
+                cy.get('@input')
+                    .type('{del}')
+                    .should('have.value', '$__per_day')
+                    .should('have.prop', 'selectionStart', '$_'.length)
+                    .should('have.prop', 'selectionEnd', '$_'.length);
+            });
 
-            it('$_|_per_day => Select all + Delete => $_|_per_day', () => {});
+            it('$_|_per_day => Select all + Delete => $_|_per_day', () => {
+                cy.get('@input')
+                    .type('{selectAll}{del}')
+                    .should('have.value', '$__per_day')
+                    .should('have.prop', 'selectionStart', '$_'.length)
+                    .should('have.prop', 'selectionEnd', '$_'.length);
+            });
+        });
+
+        describe('[prefix]="$ " | [postfix]=" per day" (without caret guard)', () => {
+            beforeEach(() => {
+                cy.visit(DemoPath.Cypress);
+                cy.get('#mirrored-prefix-postfix input')
+                    .focus()
+                    .type('{selectAll}{del}')
+                    .should('have.value', '$  per day')
+                    .should('have.prop', 'selectionStart', '$ '.length)
+                    .should('have.prop', 'selectionEnd', '$ '.length)
+                    .as('input');
+            });
+
+            it('$  per day| => Type Backspace => $  per da|y', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '$  per day')
+                    .should('have.prop', 'selectionStart', '$  per da'.length)
+                    .should('have.prop', 'selectionEnd', '$  per da'.length);
+            });
+
+            it('$  per da|y => Type Backspace => $  per d|ay', () => {
+                cy.get('@input')
+                    .type('{moveToEnd}{leftArrow}')
+                    .type('{backspace}')
+                    .should('have.value', '$  per day')
+                    .should('have.prop', 'selectionStart', '$  per d'.length)
+                    .should('have.prop', 'selectionEnd', '$  per d'.length);
+            });
+
+            it(
+                '$  p|er |day => Type Backspace => $  p|er da|y',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('{moveToEnd}')
+                        .type('{leftArrow}'.repeat('day'.length))
+                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+
+                    cy.get('@input')
+                        .type('{backspace}')
+                        .should('have.value', '$  per day')
+                        .should('have.prop', 'selectionStart', '$  p'.length)
+                        .should('have.prop', 'selectionEnd', '$  p'.length);
+                },
+            );
         });
     });
 });
