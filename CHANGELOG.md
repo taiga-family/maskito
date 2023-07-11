@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/tinkoff/maskito/compare/v1.2.0...v1.2.1) (2023-07-11)
+
+### Bug Fixes
+
+- **kit:** `Number` with `postfix` should be compatible with `decimalZeroPadding`
+  ([#364](https://github.com/tinkoff/maskito/issues/364))
+  ([501cf9c](https://github.com/tinkoff/maskito/commit/501cf9c747229d1776fb62cc04fbc8879990c617))
+- **kit:** `Prefix`/`Postfix` is incompatible if they end/start with the same character
+  ([#366](https://github.com/tinkoff/maskito/issues/366))
+  ([06afbcb](https://github.com/tinkoff/maskito/commit/06afbcb4a2c5c15e2ef9dc81db4309adf01aa8ef))
+
 ## [1.2.0](https://github.com/tinkoff/maskito/compare/v1.1.1...v1.2.0) (2023-07-03)
 
 ### Features
