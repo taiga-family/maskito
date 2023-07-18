@@ -10,9 +10,20 @@ export function maskitoCaretGuard(
 ): MaskitoPlugin {
     return element => {
         const document = element.ownerDocument;
+        let isPointerDown = 0;
+        const onPointerDown = (): number => isPointerDown++;
+        const onPointerUp = (): number => isPointerDown--;
+
         const listener = (): void => {
             if (getFocused(document) !== element) {
                 return;
+            }
+
+            if (isPointerDown) {
+                return document.addEventListener('mouseup', listener, {
+                    once: true,
+                    passive: true,
+                });
             }
 
             const start = element.selectionStart || 0;
@@ -27,8 +38,14 @@ export function maskitoCaretGuard(
             }
         };
 
-        document.addEventListener('selectionchange', listener);
+        document.addEventListener('selectionchange', listener, {passive: true});
+        document.addEventListener('mousedown', onPointerDown, {passive: true});
+        document.addEventListener('mouseup', onPointerUp, {passive: true});
 
-        return () => document.removeEventListener('selectionchange', listener);
+        return () => {
+            document.removeEventListener('selectionchange', listener);
+            document.removeEventListener('mousedown', onPointerDown);
+            document.removeEventListener('mouseup', onPointerUp);
+        };
     };
 }
