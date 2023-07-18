@@ -1,7 +1,9 @@
 import {MaskitoPlugin} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
-import {escapeRegExp} from '../../../utils';
+import {createLeadingZeroesValidationPostprocessor} from '../processors';
+
+const DUMMY_SELECTION = [0, 0] as const;
 
 /**
  * It removes repeated leading zeroes for integer part on blur-event.
@@ -12,39 +14,26 @@ export function createLeadingZeroesValidationPlugin(
     decimalSeparator: string,
     thousandSeparator: string,
 ): MaskitoPlugin {
-    const trimLeadingZeroes = (value: string): string => {
-        const escapedThousandSeparator = escapeRegExp(thousandSeparator);
-
-        return value
-            .replace(
-                // all leading zeroes followed by another zero
-                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=0)`),
-                '$1',
-            )
-            .replace(
-                // zero followed by not-zero digit
-                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=[1-9])`),
-                '$1',
-            );
-    };
+    const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor(
+        decimalSeparator,
+        thousandSeparator,
+    );
 
     return maskitoEventHandler(
         'blur',
         element => {
-            const {value} = element;
-            const hasDecimalSeparator = value.includes(decimalSeparator);
-            const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
-            const zeroTrimmedIntegerPart = trimLeadingZeroes(integerPart);
+            const newValue = dropRepeatedLeadingZeroes(
+                {
+                    value: element.value,
+                    selection: DUMMY_SELECTION,
+                },
+                {value: '', selection: DUMMY_SELECTION},
+            ).value;
 
-            if (integerPart === zeroTrimmedIntegerPart) {
-                return;
+            if (element.value !== newValue) {
+                element.value = newValue;
+                element.dispatchEvent(new Event('input'));
             }
-
-            element.value =
-                zeroTrimmedIntegerPart +
-                (hasDecimalSeparator ? decimalSeparator : '') +
-                decimalPart;
-            element.dispatchEvent(new Event('input'));
         },
         {capture: true},
     );
