@@ -91,35 +91,41 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', '$0.12'.length);
         });
 
-        describe('it removes repeated leading zeroes for integer part', () => {
-            it('Type 000000 => $0| per day', () => {
+        describe('it removes repeated leading zeroes for integer part on blur', () => {
+            it('Type 000000 => blur => $0| per day', () => {
                 cy.get('@input')
                     .type('000000')
-                    .should('have.value', '$0 per day')
-                    .should('have.prop', 'selectionStart', '$0'.length)
-                    .should('have.prop', 'selectionEnd', '$0'.length);
+                    .should('have.value', '$000_000 per day')
+                    .should('have.prop', 'selectionStart', '$000_000'.length)
+                    .should('have.prop', 'selectionEnd', '$000_000'.length)
+                    .blur()
+                    .should('have.value', '$0 per day');
             });
 
-            it('$0| per day => Type 5 => $5| per day', () => {
+            it('$0| per day => Type 5 => blur => $5| per day', () => {
                 cy.get('@input')
                     .type('0')
                     .should('have.value', '$0 per day')
                     .should('have.prop', 'selectionStart', '$0'.length)
                     .should('have.prop', 'selectionEnd', '$0'.length)
                     .type('5')
-                    .should('have.value', '$5 per day')
-                    .should('have.prop', 'selectionStart', '$5'.length)
-                    .should('have.prop', 'selectionEnd', '$5'.length);
+                    .should('have.value', '$05 per day')
+                    .should('have.prop', 'selectionStart', '$05'.length)
+                    .should('have.prop', 'selectionEnd', '$05'.length)
+                    .blur()
+                    .should('have.value', '$5 per day');
             });
 
-            it('$0.|05 per day => Backspace => $|5 per day', () => {
+            it('$0.|05 per day => Backspace => blur => $|5 per day', () => {
                 cy.get('@input')
                     .type('0.05')
                     .type('{leftArrow}'.repeat('05'.length))
                     .type('{backspace}')
-                    .should('have.value', '$5 per day')
-                    .should('have.prop', 'selectionStart', '$'.length)
-                    .should('have.prop', 'selectionEnd', '$'.length);
+                    .should('have.value', '$005 per day')
+                    .should('have.prop', 'selectionStart', '$0'.length)
+                    .should('have.prop', 'selectionEnd', '$0'.length)
+                    .blur()
+                    .should('have.value', '$5 per day');
             });
         });
 
