@@ -41,7 +41,7 @@
         "test": "nx run-many --target test --all",
         "*** Format ***": "",
         "lint": "eslint .",
-        "format": "prettier '**/*.{svg,yml,js,jsx,ts,tsx,html,md,less,json}'",
+        "prettier": "prettier '**/*.{svg,yml,js,jsx,ts,tsx,html,md,less,json}'",
         "stylelint": "stylelint '**/*.{less,css}'",
         "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",
         "*** SSR ***": "",
