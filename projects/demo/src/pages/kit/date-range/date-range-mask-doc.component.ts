@@ -9,6 +9,7 @@ import {
 } from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
+import {DEFAULT_DATE_RANGE_SEPARATOR} from 'projects/kit/src/lib/masks/date-range';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
@@ -36,6 +37,12 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
         ),
     };
 
+    readonly customRangeExample4: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/4-range-separator/mask.ts?raw'
+        ),
+    };
+
     apiPageControl = new FormControl('');
 
     readonly modeOptions: MaskitoDateMode[] = [`dd/mm/yyyy`, `mm/dd/yyyy`, `yyyy/mm/dd`];
@@ -59,6 +66,7 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     max = new Date(this.maxStr);
     minLength: Partial<MaskitoDateSegments<number>> = {};
     maxLength: Partial<MaskitoDateSegments<number>> = {};
+    rangeSeparator = DEFAULT_DATE_RANGE_SEPARATOR;
 
     maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 
