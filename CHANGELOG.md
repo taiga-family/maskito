@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/tinkoff/maskito/compare/v1.2.1...v1.2.2) (2023-07-19)
+
+### Bug Fixes
+
+- **kit:** `maskitoCaretGuard` should wait for `mouseup` before execution
+  ([#372](https://github.com/tinkoff/maskito/issues/372))
+  ([8554fea](https://github.com/tinkoff/maskito/commit/8554fead2a2474104f0674fb597cf86467274943))
+- **kit:** `Number` should remove repeated leading zeroes for integer part only on `blur`-event
+  ([#373](https://github.com/tinkoff/maskito/issues/373))
+  ([7cf4938](https://github.com/tinkoff/maskito/commit/7cf4938853ccbd049b89482f8eb22ab4e71fe01f))
+
 ### [1.2.1](https://github.com/tinkoff/maskito/compare/v1.2.0...v1.2.1) (2023-07-11)
 
 ### Bug Fixes
