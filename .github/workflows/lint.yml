@@ -2,20 +2,86 @@ name: Lint
 on: [pull_request]
 
 jobs:
-  lint:
+  typecheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js and Cache
         uses: ./.github/actions/nodejs
 
-      - name: Lint check
-        run: |
-          npm run typecheck
-          npm run format -- --check
-          npm run stylelint
-          npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup global variables
+        uses: ./.github/actions/variables
+
+      - uses: actions/checkout@v3
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.TINKOFF_BOT_PAT }}
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Run prettier
+        run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
+
+      - name: Apply changes after linting
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        uses: ./.github/actions/auto-push
+
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup global variables
+        uses: ./.github/actions/variables
+
+      - uses: actions/checkout@v3
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.TINKOFF_BOT_PAT }}
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Run stylelint
+        run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
+
+      - name: Apply changes after linting
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        uses: ./.github/actions/auto-push
+
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup global variables
+        uses: ./.github/actions/variables
+
+      - uses: actions/checkout@v3
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.TINKOFF_BOT_PAT }}
+
+      - name: Setup Node.js and Cache
+        uses: ./.github/actions/nodejs
+
+      - name: Run eslint
+        run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
+
+      - name: Apply changes after linting
+        if: env.SUPPORT_AUTO_PUSH == 'true'
+        uses: ./.github/actions/auto-push
 
 concurrency:
-  group: lint-${{ github.head_ref }}
+  group: lint-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
