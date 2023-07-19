@@ -55,38 +55,44 @@ describe('Number | Zero integer part', () => {
         });
     });
 
-    describe('value cannot start with many leading zeroes', () => {
+    describe('value cannot contain many leading zeroes after blur event', () => {
         it('precision = 2 & positive number', () => {
-            openNumberPage('precision=2');
+            openNumberPage('thousandSeparator=_&precision=2');
 
             cy.get('@input')
                 .type('0000000')
-                .should('have.value', '0')
-                .should('have.prop', 'selectionStart', '0'.length)
-                .should('have.prop', 'selectionEnd', '0'.length);
+                .should('have.value', '0_000_000')
+                .should('have.prop', 'selectionStart', '0_000_000'.length)
+                .should('have.prop', 'selectionEnd', '0_000_000'.length)
+                .blur()
+                .should('have.value', '0');
         });
 
         it('precision = 2 & negative number', () => {
-            openNumberPage('precision=2');
+            openNumberPage('thousandSeparator=_&precision=2');
 
             cy.get('@input')
                 .type('-00000006')
-                .should('have.value', '−6')
-                .should('have.prop', 'selectionStart', '−6'.length)
-                .should('have.prop', 'selectionEnd', '−6'.length);
+                .should('have.value', '−00_000_006')
+                .should('have.prop', 'selectionStart', '−00_000_006'.length)
+                .should('have.prop', 'selectionEnd', '−00_000_006'.length)
+                .blur()
+                .should('have.value', '−6');
         });
 
         it('precision = 0', () => {
-            openNumberPage('precision=0');
+            openNumberPage('thousandSeparator=_&precision=0');
 
             cy.get('@input')
                 .type('0000000')
-                .should('have.value', '0')
-                .should('have.prop', 'selectionStart', '0'.length)
-                .should('have.prop', 'selectionEnd', '0'.length);
+                .should('have.value', '0_000_000')
+                .should('have.prop', 'selectionStart', '0_000_000'.length)
+                .should('have.prop', 'selectionEnd', '0_000_000'.length)
+                .blur()
+                .should('have.value', '0');
         });
 
-        it('1|-000-000 => Backspace => 0', () => {
+        it('1|-000-000 => Backspace => blur => 0', () => {
             openNumberPage('thousandSeparator=_&precision=2');
 
             cy.get('@input')
@@ -94,35 +100,41 @@ describe('Number | Zero integer part', () => {
                 .should('have.value', '1_000_000')
                 .type('{moveToStart}{rightArrow}')
                 .type('{backspace}')
-                .should('have.value', '0')
+                .should('have.value', '000_000')
                 .should('have.prop', 'selectionStart', 0)
-                .should('have.prop', 'selectionEnd', 0);
+                .should('have.prop', 'selectionEnd', 0)
+                .blur()
+                .should('have.value', '0');
         });
-    });
 
-    it('remove leading zeroes when decimal separator is removed (positive number)', () => {
-        openNumberPage('decimalSeparator=,&precision=5');
+        it('remove leading zeroes (on blur only!) when decimal separator is removed (positive number)', () => {
+            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=5');
 
-        cy.get('@input')
-            .type('0,0005')
-            .type('{moveToStart}{rightArrow}{rightArrow}')
-            .type('{backspace}')
-            .should('have.value', '5')
-            .should('have.prop', 'selectionStart', 0)
-            .should('have.prop', 'selectionEnd', 0);
-    });
+            cy.get('@input')
+                .type('0,0005')
+                .type('{moveToStart}{rightArrow}{rightArrow}')
+                .type('{backspace}')
+                .should('have.value', '00_005')
+                .should('have.prop', 'selectionStart', '00'.length)
+                .should('have.prop', 'selectionEnd', '00'.length)
+                .blur()
+                .should('have.value', '5');
+        });
 
-    it('remove leading zeroes when decimal separator is removed (negative number)', () => {
-        openNumberPage('decimalSeparator=,&precision=5');
+        it('remove leading zeroes (on blur only!) when decimal separator is removed (negative number)', () => {
+            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=5');
 
-        cy.get('@input')
-            .type('-0,0005')
-            .type('{moveToStart}')
-            .type('{rightArrow}'.repeat('-0,'.length))
-            .type('{backspace}')
-            .should('have.value', '−5')
-            .should('have.prop', 'selectionStart', 1)
-            .should('have.prop', 'selectionEnd', 1);
+            cy.get('@input')
+                .type('-0,0005')
+                .type('{moveToStart}')
+                .type('{rightArrow}'.repeat('-0,'.length))
+                .type('{backspace}')
+                .should('have.value', '−00_005')
+                .should('have.prop', 'selectionStart', '-00'.length)
+                .should('have.prop', 'selectionEnd', '-00'.length)
+                .blur()
+                .should('have.value', '−5');
+        });
     });
 
     describe('pads empty integer part with zero on blur (if decimal part exists)', () => {

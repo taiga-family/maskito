@@ -11,10 +11,13 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
-import {createMinMaxPlugin, createNotEmptyIntegerPlugin} from './plugins';
+import {
+    createLeadingZeroesValidationPlugin,
+    createMinMaxPlugin,
+    createNotEmptyIntegerPlugin,
+} from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
-    createLeadingZeroesValidationPostprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
@@ -76,10 +79,6 @@ export function maskitoNumberOptionsGenerator({
             createRepeatedDecimalSeparatorPreprocessor(decimalSeparator),
         ],
         postprocessors: [
-            createLeadingZeroesValidationPostprocessor(
-                decimalSeparator,
-                thousandSeparator,
-            ),
             createMinMaxPostprocessor({decimalSeparator, min, max}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
@@ -97,6 +96,7 @@ export function maskitoNumberOptionsGenerator({
             }),
         ],
         plugins: [
+            createLeadingZeroesValidationPlugin(decimalSeparator, thousandSeparator),
             createNotEmptyIntegerPlugin(decimalSeparator),
             createMinMaxPlugin({min, max, decimalSeparator}),
         ],
