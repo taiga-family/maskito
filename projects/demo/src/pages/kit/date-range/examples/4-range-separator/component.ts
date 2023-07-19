@@ -7,7 +7,6 @@ import mask from './mask';
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconCalendarLarge"
-            [tuiHintContent]="hint"
             [tuiTextfieldLabelOutside]="true"
             [tuiTextfieldFiller]="filler"
             [style.max-width.rem]="30"

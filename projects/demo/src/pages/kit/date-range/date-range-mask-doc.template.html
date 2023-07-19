@@ -86,7 +86,9 @@
             <ng-template>
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                    [tuiTextfieldFiller]="getPlaceholder(mode, separator)"
+                    [tuiTextfieldFiller]="
+                        getPlaceholder(mode, separator, rangeSeparator)
+                    "
                     [formControl]="apiPageControl"
                 >
                     Enter dates
@@ -172,7 +174,7 @@
                 [(documentationPropertyValue)]="rangeSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Range separator
+                Separator between dates of the date range.
                 <p>
                     <strong>Default:</strong>
                     <code> – </code>

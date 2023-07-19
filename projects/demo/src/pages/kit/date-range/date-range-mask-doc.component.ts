@@ -8,8 +8,7 @@ import {
     MaskitoDateSegments,
 } from '@maskito/kit';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
-import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
-import {DEFAULT_DATE_RANGE_SEPARATOR} from 'projects/kit/src/lib/masks/date-range';
+import {tuiPure} from '@taiga-ui/cdk';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
@@ -66,15 +65,17 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     max = new Date(this.maxStr);
     minLength: Partial<MaskitoDateSegments<number>> = {};
     maxLength: Partial<MaskitoDateSegments<number>> = {};
-    rangeSeparator = DEFAULT_DATE_RANGE_SEPARATOR;
+    rangeSeparator = ' – ';
 
     maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 
     @tuiPure
-    getPlaceholder(mode: MaskitoDateMode, separator: string): string {
-        const datesSep = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
-
-        return `${mode.replace(/\//g, separator)}${datesSep}${mode.replace(
+    getPlaceholder(
+        mode: MaskitoDateMode,
+        separator: string,
+        rangeSeparator: string,
+    ): string {
+        return `${mode.replace(/\//g, separator)}${rangeSeparator}${mode.replace(
             /\//g,
             separator,
         )}`;

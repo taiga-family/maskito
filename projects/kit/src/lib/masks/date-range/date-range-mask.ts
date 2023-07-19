@@ -10,8 +10,6 @@ import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
 import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocessor';
 
-export const DEFAULT_DATE_RANGE_SEPARATOR = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
-
 export function maskitoDateRangeOptionsGenerator({
     mode,
     separator = '.',
@@ -19,7 +17,7 @@ export function maskitoDateRangeOptionsGenerator({
     max,
     minLength,
     maxLength,
-    rangeSeparator = DEFAULT_DATE_RANGE_SEPARATOR,
+    rangeSeparator = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`,
 }: {
     mode: MaskitoDateMode;
     separator?: string;
