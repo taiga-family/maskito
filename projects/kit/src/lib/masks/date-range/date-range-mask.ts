@@ -17,19 +17,25 @@ export function maskitoDateRangeOptionsGenerator({
     max,
     minLength,
     maxLength,
+    dateSeparator = separator,
     rangeSeparator = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`,
 }: {
     mode: MaskitoDateMode;
+    /**
+     * @deprecated use `dateSeparator` instead
+     * TODO: drop in v2.0
+     */
     separator?: string;
     min?: Date;
     max?: Date;
     minLength?: Partial<MaskitoDateSegments<number>>;
     maxLength?: Partial<MaskitoDateSegments<number>>;
+    dateSeparator?: string;
     rangeSeparator?: string;
 }): Required<MaskitoOptions> {
-    const dateModeTemplate = mode.split('/').join(separator);
+    const dateModeTemplate = mode.split('/').join(dateSeparator);
     const dateMask = Array.from(dateModeTemplate).map(char =>
-        char === separator ? char : /\d/,
+        char === dateSeparator ? char : /\d/,
     );
 
     return {
@@ -40,8 +46,8 @@ export function maskitoDateRangeOptionsGenerator({
             createZeroPlaceholdersPreprocessor(),
             createValidDatePreprocessor({
                 dateModeTemplate,
-                dateSegmentsSeparator: separator,
-                datesSeparator: rangeSeparator,
+                rangeSeparator,
+                dateSegmentsSeparator: dateSeparator,
             }),
         ],
         postprocessors: [
@@ -49,19 +55,19 @@ export function maskitoDateRangeOptionsGenerator({
                 min,
                 max,
                 dateModeTemplate,
-                datesSeparator: rangeSeparator,
-                dateSegmentSeparator: separator,
+                rangeSeparator,
+                dateSegmentSeparator: dateSeparator,
             }),
             createMinMaxRangeLengthPostprocessor({
                 dateModeTemplate,
                 minLength,
                 maxLength,
                 max,
-                datesSeparator: rangeSeparator,
+                rangeSeparator,
             }),
             createSwapDatesPostprocessor({
                 dateModeTemplate,
-                datesSeparator: rangeSeparator,
+                rangeSeparator,
             }),
         ],
     };
