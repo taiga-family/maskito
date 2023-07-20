@@ -11,6 +11,7 @@ import {DateRangeMaskDocComponent} from './date-range-mask-doc.component';
 import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
 import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
 import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
+import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
         DateRangeMaskDocExample1,
         DateRangeMaskDocExample2,
         DateRangeMaskDocExample3,
+        DateRangeMaskDocExample4,
     ],
     exports: [DateRangeMaskDocComponent],
 })

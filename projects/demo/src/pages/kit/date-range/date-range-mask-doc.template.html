@@ -64,6 +64,21 @@
             </ng-template>
             <date-range-mask-doc-example-3></date-range-mask-doc-example-3>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="custom-range-separator"
+            heading="Custom range separator"
+            [description]="customRangeSeparatorDescription"
+            [content]="customRangeExample4"
+        >
+            <ng-template #customRangeSeparatorDescription>
+                Use
+                <code>rangeSeparator</code>
+                parameter to customize separator between dates of the date
+                range.
+            </ng-template>
+            <date-range-mask-doc-example-4></date-range-mask-doc-example-4>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -71,7 +86,9 @@
             <ng-template>
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                    [tuiTextfieldFiller]="getPlaceholder(mode, separator)"
+                    [tuiTextfieldFiller]="
+                        getPlaceholder(mode, separator, rangeSeparator)
+                    "
                     [formControl]="apiPageControl"
                 >
                     Enter dates
@@ -149,6 +166,19 @@
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 Maximal length of the range
+            </ng-template>
+            <ng-template
+                documentationPropertyName="rangeSeparator"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="rangeSeparator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separator between dates of the date range.
+                <p>
+                    <strong>Default:</strong>
+                    <code> – </code>
+                </p>
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
