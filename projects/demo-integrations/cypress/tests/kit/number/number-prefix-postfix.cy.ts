@@ -270,4 +270,23 @@ describe('Number | Prefix & Postfix', () => {
             );
         });
     });
+
+    describe('runtime changes of postfix', () => {
+        beforeEach(() => {
+            cy.visit(DemoPath.Cypress);
+            cy.get('#runtime-postfix-changes input')
+                .focus()
+                .should('have.value', '1 year')
+                .as('input');
+        });
+
+        it('1| year => Type 0 => 10| years', () => {
+            cy.get('@input')
+                .type('{moveToStart}{rightArrow}')
+                .type('0')
+                .should('have.value', '10 years')
+                .should('have.prop', 'selectionStart', '10'.length)
+                .should('have.prop', 'selectionEnd', '10'.length);
+        });
+    });
 });

@@ -5,30 +5,36 @@ import {escapeRegExp} from '../../../utils';
 
 export function generateMaskExpression({
     decimalSeparator,
-    isNegativeAllowed,
-    precision,
-    thousandSeparator,
-    prefix,
-    postfix,
+    decimalPseudoSeparators = [],
+    isNegativeAllowed = true,
+    precision = Infinity,
+    thousandSeparator = '',
+    prefix = '',
+    postfix = '',
+    pseudoMinuses = [],
 }: {
     decimalSeparator: string;
-    isNegativeAllowed: boolean;
-    precision: number;
-    thousandSeparator: string;
-    prefix: string;
-    postfix: string;
+    decimalPseudoSeparators?: readonly string[];
+    isNegativeAllowed?: boolean;
+    precision?: number;
+    thousandSeparator?: string;
+    prefix?: string;
+    postfix?: string;
+    pseudoMinuses?: readonly string[];
 }): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
     const digit = '\\d';
-    const optionalMinus = isNegativeAllowed ? `${CHAR_MINUS}?` : '';
+    const optionalMinus = isNegativeAllowed
+        ? `[${CHAR_MINUS}${pseudoMinuses.map(x => `\\${x}`).join('')}]?`
+        : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator)}]*`
         : `[${digit}]*`;
     const decimalPart =
         precision > 0
-            ? `(${escapeRegExp(decimalSeparator)}${digit}{0,${
-                  Number.isFinite(precision) ? precision : ''
-              }})?`
+            ? `([${escapeRegExp(decimalSeparator)}${decimalPseudoSeparators
+                  .map(escapeRegExp)
+                  .join('')}]${digit}{0,${Number.isFinite(precision) ? precision : ''}})?`
             : '';
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
 
