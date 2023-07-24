@@ -44,7 +44,15 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
 
     apiPageControl = new FormControl('');
 
-    readonly modeOptions: MaskitoDateMode[] = [`dd/mm/yyyy`, `mm/dd/yyyy`, `yyyy/mm/dd`];
+    readonly modeOptions: MaskitoDateMode[] = [
+        `dd/mm/yyyy`,
+        `mm/dd/yyyy`,
+        `yyyy/mm/dd`,
+        'mm/yy',
+        'mm/yyyy',
+        'yyyy/mm',
+        'yyyy',
+    ];
     readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
     readonly minLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
         {day: 3},
