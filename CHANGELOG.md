@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/tinkoff/maskito/compare/v1.2.2...v1.3.0) (2023-07-24)
+
+### Features
+
+- **kit:** `DateRange` add configurable parameter `rangeSeparator`
+  ([#376](https://github.com/tinkoff/maskito/issues/376))
+  ([d904842](https://github.com/tinkoff/maskito/commit/d90484214da76f4c73ad925eef5fe391a154c499))
+
+### Bug Fixes
+
+- **kit:** `Number` has problems with run-time updates of postfix
+  ([#380](https://github.com/tinkoff/maskito/issues/380))
+  ([8210896](https://github.com/tinkoff/maskito/commit/8210896d2095a44e79a27a38e4c8745e2beccdb7))
+
 ### [1.2.2](https://github.com/tinkoff/maskito/compare/v1.2.1...v1.2.2) (2023-07-19)
 
 ### Bug Fixes
