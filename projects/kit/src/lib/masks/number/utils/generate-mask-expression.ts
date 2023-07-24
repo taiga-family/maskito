@@ -5,21 +5,21 @@ import {escapeRegExp} from '../../../utils';
 
 export function generateMaskExpression({
     decimalSeparator,
+    isNegativeAllowed,
+    precision,
+    thousandSeparator,
+    prefix,
+    postfix,
     decimalPseudoSeparators = [],
-    isNegativeAllowed = true,
-    precision = Infinity,
-    thousandSeparator = '',
-    prefix = '',
-    postfix = '',
     pseudoMinuses = [],
 }: {
     decimalSeparator: string;
+    isNegativeAllowed: boolean;
+    precision: number;
+    thousandSeparator: string;
+    prefix: string;
+    postfix: string;
     decimalPseudoSeparators?: readonly string[];
-    isNegativeAllowed?: boolean;
-    precision?: number;
-    thousandSeparator?: string;
-    prefix?: string;
-    postfix?: string;
     pseudoMinuses?: readonly string[];
 }): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);

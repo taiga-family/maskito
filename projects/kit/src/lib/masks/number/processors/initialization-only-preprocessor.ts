@@ -1,19 +1,37 @@
-import {MaskitoMask, MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
+import {MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
+
+import {generateMaskExpression} from '../utils';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).
  * This preprocessor helps to avoid conflicts during transition from one mask to another (for the same input).
  * For example, the developer changes postfix (or other mask's props) during run-time.
  * ```
- * const maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' year'});
+ * let maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' year'});
  * // [3 seconds later]
- * const maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' years'});
+ * maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' years'});
  * ```
  */
-export function createInitializationOnlyPreprocessor(
-    cleanNumberMask: MaskitoMask,
-): MaskitoPreprocessor {
+export function createInitializationOnlyPreprocessor({
+    decimalSeparator,
+    decimalPseudoSeparators,
+    pseudoMinuses,
+}: {
+    decimalSeparator: string;
+    decimalPseudoSeparators: readonly string[];
+    pseudoMinuses: readonly string[];
+}): MaskitoPreprocessor {
     let isInitializationPhase = true;
+    const cleanNumberMask = generateMaskExpression({
+        decimalSeparator,
+        decimalPseudoSeparators,
+        pseudoMinuses,
+        prefix: '',
+        postfix: '',
+        thousandSeparator: '',
+        precision: Infinity,
+        isNegativeAllowed: true,
+    });
 
     return ({elementState, data}) => {
         if (!isInitializationPhase) {

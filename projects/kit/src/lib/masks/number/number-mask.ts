@@ -56,7 +56,6 @@ export function maskitoNumberOptionsGenerator({
     const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
         char => char !== thousandSeparator && char !== decimalSeparator,
     );
-    const isNegativeAllowed = min < 0;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -66,16 +65,14 @@ export function maskitoNumberOptionsGenerator({
             thousandSeparator,
             prefix,
             postfix,
-            isNegativeAllowed,
+            isNegativeAllowed: min < 0,
         }),
         preprocessors: [
-            createInitializationOnlyPreprocessor(
-                generateMaskExpression({
-                    decimalSeparator,
-                    decimalPseudoSeparators,
-                    pseudoMinuses,
-                }),
-            ),
+            createInitializationOnlyPreprocessor({
+                decimalSeparator,
+                decimalPseudoSeparators,
+                pseudoMinuses,
+            }),
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
