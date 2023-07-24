@@ -18,6 +18,7 @@ import {
 } from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
+    createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
@@ -67,6 +68,11 @@ export function maskitoNumberOptionsGenerator({
             isNegativeAllowed: min < 0,
         }),
         preprocessors: [
+            createInitializationOnlyPreprocessor({
+                decimalSeparator,
+                decimalPseudoSeparators,
+                pseudoMinuses,
+            }),
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),

@@ -10,6 +10,8 @@ export function generateMaskExpression({
     thousandSeparator,
     prefix,
     postfix,
+    decimalPseudoSeparators = [],
+    pseudoMinuses = [],
 }: {
     decimalSeparator: string;
     isNegativeAllowed: boolean;
@@ -17,18 +19,22 @@ export function generateMaskExpression({
     thousandSeparator: string;
     prefix: string;
     postfix: string;
+    decimalPseudoSeparators?: readonly string[];
+    pseudoMinuses?: readonly string[];
 }): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
     const digit = '\\d';
-    const optionalMinus = isNegativeAllowed ? `${CHAR_MINUS}?` : '';
+    const optionalMinus = isNegativeAllowed
+        ? `[${CHAR_MINUS}${pseudoMinuses.map(x => `\\${x}`).join('')}]?`
+        : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator)}]*`
         : `[${digit}]*`;
     const decimalPart =
         precision > 0
-            ? `(${escapeRegExp(decimalSeparator)}${digit}{0,${
-                  Number.isFinite(precision) ? precision : ''
-              }})?`
+            ? `([${escapeRegExp(decimalSeparator)}${decimalPseudoSeparators
+                  .map(escapeRegExp)
+                  .join('')}]${digit}{0,${Number.isFinite(precision) ? precision : ''}})?`
             : '';
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
 
