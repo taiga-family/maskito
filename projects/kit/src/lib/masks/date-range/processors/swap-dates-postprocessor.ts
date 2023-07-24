@@ -9,13 +9,13 @@ import {
 
 export function createSwapDatesPostprocessor({
     dateModeTemplate,
-    datesSeparator,
+    rangeSeparator,
 }: {
     dateModeTemplate: string;
-    datesSeparator: string;
+    rangeSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);
+        const dateStrings = parseDateRangeString(value, dateModeTemplate, rangeSeparator);
         const isDateRangeComplete =
             dateStrings.length === 2 &&
             dateStrings.every(date => isDateStringComplete(date, dateModeTemplate));
@@ -33,7 +33,7 @@ export function createSwapDatesPostprocessor({
 
         return {
             selection,
-            value: fromDate > toDate ? dateStrings.reverse().join(datesSeparator) : value,
+            value: fromDate > toDate ? dateStrings.reverse().join(rangeSeparator) : value,
         };
     };
 }

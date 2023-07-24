@@ -5,7 +5,7 @@ describe('createValidDatePreprocessor', () => {
         const preprocessor = createValidDatePreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
             dateSegmentsSeparator: '.',
-            datesSeparator: ' – ',
+            rangeSeparator: ' – ',
         });
         const EMPTY_INPUT = {value: '', selection: [0, 0] as [number, number]};
 

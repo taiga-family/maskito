@@ -17,13 +17,13 @@ import {
 
 export function createMinMaxRangeLengthPostprocessor({
     dateModeTemplate,
-    datesSeparator,
+    rangeSeparator,
     minLength,
     maxLength,
     max = DEFAULT_MAX_DATE,
 }: {
     dateModeTemplate: string;
-    datesSeparator: string;
+    rangeSeparator: string;
     max?: Date;
     minLength?: Partial<MaskitoDateSegments<number>>;
     maxLength?: Partial<MaskitoDateSegments<number>>;
@@ -33,7 +33,7 @@ export function createMinMaxRangeLengthPostprocessor({
     }
 
     return ({value, selection}) => {
-        const dateStrings = parseDateRangeString(value, dateModeTemplate, datesSeparator);
+        const dateStrings = parseDateRangeString(value, dateModeTemplate, rangeSeparator);
 
         if (
             dateStrings.length !== 2 ||
@@ -69,7 +69,7 @@ export function createMinMaxRangeLengthPostprocessor({
             selection,
             value:
                 dateStrings[0] +
-                datesSeparator +
+                rangeSeparator +
                 toDateString(dateToSegments(minMaxLengthClampedToDate), dateModeTemplate),
         };
     };

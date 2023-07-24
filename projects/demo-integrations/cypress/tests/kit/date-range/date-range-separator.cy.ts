@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('DateRange | Separator', () => {
     describe('/', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?separator=/`);
+            cy.visit(`/${DemoPath.DateRange}/API?dateSeparator=/`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -28,7 +28,7 @@ describe('DateRange | Separator', () => {
 
     describe('-', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?separator=-`);
+            cy.visit(`/${DemoPath.DateRange}/API?dateSeparator=-`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -53,7 +53,7 @@ describe('DateRange | Separator', () => {
 
     describe('dates separator', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.DateRange}/API?separator=/`);
+            cy.visit(`/${DemoPath.DateRange}/API?dateSeparator=/`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()

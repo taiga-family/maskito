@@ -1,16 +1,16 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {POSSIBLE_DATES_SEPARATOR} from '../constants';
+import {POSSIBLE_DATE_RANGE_SEPARATOR} from '../constants';
 import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
     dateModeTemplate,
     dateSegmentsSeparator,
-    datesSeparator = '',
+    rangeSeparator = '',
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
-    datesSeparator?: string;
+    rangeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
@@ -22,13 +22,13 @@ export function createValidDatePreprocessor({
             };
         }
 
-        if (POSSIBLE_DATES_SEPARATOR.includes(data)) {
-            return {elementState, data: datesSeparator};
+        if (POSSIBLE_DATE_RANGE_SEPARATOR.includes(data)) {
+            return {elementState, data: rangeSeparator};
         }
 
         const newCharacters = data.replace(
             new RegExp(
-                `[^\\d${escapeRegExp(dateSegmentsSeparator)}${datesSeparator}]`,
+                `[^\\d${escapeRegExp(dateSegmentsSeparator)}${rangeSeparator}]`,
                 'g',
             ),
             '',
@@ -44,19 +44,19 @@ export function createValidDatePreprocessor({
         const dateStrings = parseDateRangeString(
             newPossibleValue,
             dateModeTemplate,
-            datesSeparator,
+            rangeSeparator,
         );
 
         let validatedValue = '';
         const hasRangeSeparator =
-            Boolean(datesSeparator) && newPossibleValue.includes(datesSeparator);
+            Boolean(rangeSeparator) && newPossibleValue.includes(rangeSeparator);
 
         for (const dateString of dateStrings) {
             const {validatedDateString, updatedSelection} = validateDateString({
                 dateString,
                 dateModeTemplate,
                 offset: validatedValue
-                    ? validatedValue.length + datesSeparator.length
+                    ? validatedValue.length + rangeSeparator.length
                     : 0,
                 selection: [from, to],
             });
@@ -69,7 +69,7 @@ export function createValidDatePreprocessor({
 
             validatedValue +=
                 hasRangeSeparator && validatedValue
-                    ? datesSeparator + validatedDateString
+                    ? rangeSeparator + validatedDateString
                     : validatedDateString;
         }
 

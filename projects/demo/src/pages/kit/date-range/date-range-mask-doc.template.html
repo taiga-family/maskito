@@ -87,7 +87,7 @@
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
                     [tuiTextfieldFiller]="
-                        getPlaceholder(mode, separator, rangeSeparator)
+                        getPlaceholder(mode, dateSeparator, rangeSeparator)
                     "
                     [formControl]="apiPageControl"
                 >
@@ -113,13 +113,13 @@
             </ng-template>
 
             <ng-template
-                documentationPropertyName="separator"
+                documentationPropertyName="dateSeparator"
                 documentationPropertyMode="input"
                 documentationPropertyType="string"
-                [(documentationPropertyValue)]="separator"
+                [(documentationPropertyValue)]="dateSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Separator
+                Separator between date segments (days, months and years).
 
                 <p>
                     <strong>Default:</strong>
@@ -127,46 +127,7 @@
                     (dot).
                 </p>
             </ng-template>
-            <ng-template
-                documentationPropertyName="min"
-                documentationPropertyMode="input"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="minStr"
-                (documentationPropertyValueChange)="updateDate()"
-            >
-                Earliest date
-            </ng-template>
-            <ng-template
-                documentationPropertyName="max"
-                documentationPropertyMode="input"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="maxStr"
-                (documentationPropertyValueChange)="updateDate()"
-            >
-                Latest date
-            </ng-template>
-            <ng-template
-                documentationPropertyName="minLength"
-                documentationPropertyMode="input"
-                documentationPropertyType="MaskitoDateSegments<number>"
-                [documentationPropertyValues]="minLengthOptions"
-                [(documentationPropertyValue)]="minLength"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                Minimal length of the range
-            </ng-template>
-            <ng-template
-                documentationPropertyName="maxLength"
-                documentationPropertyMode="input"
-                documentationPropertyType="MaskitoDateSegments<number>"
-                [documentationPropertyValues]="maxLengthOptions"
-                [(documentationPropertyValue)]="maxLength"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                Maximal length of the range
-            </ng-template>
+
             <ng-template
                 documentationPropertyName="rangeSeparator"
                 documentationPropertyMode="input"
@@ -178,6 +139,66 @@
                 <p>
                     <strong>Default:</strong>
                     <code> – </code>
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="min"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="minStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Earliest date
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="max"
+                documentationPropertyMode="input"
+                documentationPropertyType="Date"
+                [documentationPropertyValues]="minMaxOptions"
+                [(documentationPropertyValue)]="maxStr"
+                (documentationPropertyValueChange)="updateDate()"
+            >
+                Latest date
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="minLength"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateSegments<number>"
+                [documentationPropertyValues]="minLengthOptions"
+                [(documentationPropertyValue)]="minLength"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Minimal length of the range
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="maxLength"
+                documentationPropertyMode="input"
+                documentationPropertyType="MaskitoDateSegments<number>"
+                [documentationPropertyValues]="maxLengthOptions"
+                [(documentationPropertyValue)]="maxLength"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Maximal length of the range
+            </ng-template>
+
+            <ng-template
+                documentationPropertyName="separator"
+                documentationPropertyMode="input"
+                [documentationPropertyDeprecated]="true"
+            >
+                Use
+                <code>dateSeparator</code>
+                instead.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>.</code>
+                    (dot).
                 </p>
             </ng-template>
         </tui-doc-documentation>
