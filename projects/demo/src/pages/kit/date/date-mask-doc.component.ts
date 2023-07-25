@@ -31,6 +31,9 @@ export class DateMaskDocComponent implements GeneratorOptions {
         `mm/dd/yyyy`,
         `yyyy/mm/dd`,
         'mm/yy',
+        'mm/yyyy',
+        'yyyy/mm',
+        'yyyy',
     ];
 
     readonly separatorOptions: string[] = [`.`, `/`, `-`];

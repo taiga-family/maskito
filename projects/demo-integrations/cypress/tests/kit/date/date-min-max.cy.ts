@@ -183,4 +183,166 @@ describe('Date', () => {
                 .should('have.prop', 'selectionEnd', '05/20'.length);
         });
     });
+
+    describe('Min date, yyyy', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?min=2020-05-05&mode=yyyy`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than min value', () => {
+            cy.get('@input')
+                .type('2019')
+                .should('have.value', '2020')
+                .should('have.prop', 'selectionStart', '2020'.length)
+                .should('have.prop', 'selectionEnd', '2020'.length);
+        });
+
+        it('Input more than min value', () => {
+            cy.get('@input')
+                .type('2021')
+                .should('have.value', '2021')
+                .should('have.prop', 'selectionStart', '2021'.length)
+                .should('have.prop', 'selectionEnd', '2021'.length);
+        });
+    });
+
+    describe('Max date, yyyy', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?max=2020-05-05&mode=yyyy`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than max value', () => {
+            cy.get('@input')
+                .type('2019')
+                .should('have.value', '2019')
+                .should('have.prop', 'selectionStart', '2019'.length)
+                .should('have.prop', 'selectionEnd', '2019'.length);
+        });
+
+        it('Input more than max value', () => {
+            cy.get('@input')
+                .type('2021')
+                .should('have.value', '2020')
+                .should('have.prop', 'selectionStart', '2020'.length)
+                .should('have.prop', 'selectionEnd', '2020'.length);
+        });
+    });
+
+    describe('Min date, mm/yyyy', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?min=2020-05-05&mode=mm%2Fyyyy&separator=%2F`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than min value', () => {
+            cy.get('@input')
+                .type('042019')
+                .should('have.value', '05/2020')
+                .should('have.prop', 'selectionStart', '05/2020'.length)
+                .should('have.prop', 'selectionEnd', '05/2020'.length);
+        });
+
+        it('Input more than min value', () => {
+            cy.get('@input')
+                .type('062020')
+                .should('have.value', '06/2020')
+                .should('have.prop', 'selectionStart', '06/2020'.length)
+                .should('have.prop', 'selectionEnd', '06/2020'.length);
+        });
+    });
+
+    describe('Max date, mm/yyyy', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?max=2020-05-05&mode=mm%2Fyyyy&separator=%2F`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than max value', () => {
+            cy.get('@input')
+                .type('042019')
+                .should('have.value', '04/2019')
+                .should('have.prop', 'selectionStart', '04/2019'.length)
+                .should('have.prop', 'selectionEnd', '04/2019'.length);
+        });
+
+        it('Input more than max value', () => {
+            cy.get('@input')
+                .type('062020')
+                .should('have.value', '05/2020')
+                .should('have.prop', 'selectionStart', '05/2020'.length)
+                .should('have.prop', 'selectionEnd', '05/2020'.length);
+        });
+    });
+
+    describe('Min date yyyy/mm', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?min=2020-05-05&mode=yyyy%2Fmm&separator=%2F`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than min value', () => {
+            cy.get('@input')
+                .type('201904')
+                .should('have.value', '2020/05')
+                .should('have.prop', 'selectionStart', '2020/05'.length)
+                .should('have.prop', 'selectionEnd', '2020/05'.length);
+        });
+
+        it('Input more than min value', () => {
+            cy.get('@input')
+                .type('202106')
+                .should('have.value', '2021/06')
+                .should('have.prop', 'selectionStart', '2021/06'.length)
+                .should('have.prop', 'selectionEnd', '2021/06'.length);
+        });
+    });
+
+    describe('Max date yyyy/mm', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?max=2020-05-05&mode=yyyy%2Fmm&separator=%2F`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Input less than max value', () => {
+            cy.get('@input')
+                .type('201904')
+                .should('have.value', '2019/04')
+                .should('have.prop', 'selectionStart', '2019/04'.length)
+                .should('have.prop', 'selectionEnd', '2019/04'.length);
+        });
+
+        it('Input more than max value', () => {
+            cy.get('@input')
+                .type('202106')
+                .should('have.value', '2020/05')
+                .should('have.prop', 'selectionStart', '2020/05'.length)
+                .should('have.prop', 'selectionEnd', '2020/05'.length);
+        });
+    });
 });

@@ -82,5 +82,98 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '03.22'.length);
             });
         });
+
+        describe('mm/yyyy', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.Date}/API?mode=mm/yyyy`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it('"mm/yyyy" => 02.2025', () => {
+                cy.get('@input')
+                    .type('2')
+                    .should('have.value', '02')
+                    .should('have.prop', 'selectionStart', '02'.length)
+                    .should('have.prop', 'selectionEnd', '02'.length)
+                    .type('2025')
+                    .should('have.value', '02.2025')
+                    .should('have.prop', 'selectionStart', '02.2025'.length)
+                    .should('have.prop', 'selectionEnd', '02.2025'.length);
+            });
+
+            it('"mm/yyyy" => 11.1999', () => {
+                cy.get('@input')
+                    .type('1')
+                    .should('have.value', '1')
+                    .should('have.prop', 'selectionStart', '1'.length)
+                    .should('have.prop', 'selectionEnd', '1'.length)
+                    .type('11999')
+                    .should('have.value', '11.1999')
+                    .should('have.prop', 'selectionStart', '11.1999'.length)
+                    .should('have.prop', 'selectionEnd', '11.1999'.length);
+            });
+        });
+
+        describe('yyyy/mm', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.Date}/API?mode=yyyy/mm`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it('"yyyy/mm" => 2025.02', () => {
+                cy.get('@input')
+                    .type('2025')
+                    .should('have.value', '2025')
+                    .should('have.prop', 'selectionStart', '2025'.length)
+                    .should('have.prop', 'selectionEnd', '2025'.length)
+                    .type('2')
+                    .should('have.value', '2025.02')
+                    .should('have.prop', 'selectionStart', '2025.02'.length)
+                    .should('have.prop', 'selectionEnd', '2025.02'.length);
+            });
+
+            it('"yyyy/mm" => 1999.11', () => {
+                cy.get('@input')
+                    .type('19991')
+                    .should('have.value', '1999.1')
+                    .should('have.prop', 'selectionStart', '1999.1'.length)
+                    .should('have.prop', 'selectionEnd', '1999.1'.length)
+                    .type('1')
+                    .should('have.value', '1999.11')
+                    .should('have.prop', 'selectionStart', '1999.11'.length)
+                    .should('have.prop', 'selectionEnd', '1999.11'.length);
+            });
+        });
+
+        describe('yyyy', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.Date}/API?mode=yyyy`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it('"yyyy" => 2025', () => {
+                cy.get('@input')
+                    .type('2')
+                    .should('have.value', '2')
+                    .should('have.prop', 'selectionStart', '2'.length)
+                    .should('have.prop', 'selectionEnd', '2'.length)
+                    .type('025')
+                    .should('have.value', '2025')
+                    .should('have.prop', 'selectionStart', '2025'.length)
+                    .should('have.prop', 'selectionEnd', '2025'.length);
+            });
+        });
     });
 });
