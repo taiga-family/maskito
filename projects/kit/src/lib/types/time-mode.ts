@@ -1,1 +1,1 @@
-export type MaskitoTimeMode = 'HH:MM:SS.MSS' | 'HH:MM:SS' | 'HH:MM';
+export type MaskitoTimeMode = 'HH:MM:SS.MSS' | 'HH:MM:SS' | 'HH:MM' | 'HH';
