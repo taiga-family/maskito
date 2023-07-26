@@ -12,7 +12,6 @@ describe('Time', () => {
                     .first()
                     .focus()
                     .clear()
-                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -109,7 +108,6 @@ describe('Time', () => {
                     .first()
                     .focus()
                     .clear()
-                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -214,7 +212,6 @@ describe('Time', () => {
                     .first()
                     .focus()
                     .clear()
-                    .type('{moveToStart}')
                     .as('input');
             });
 
@@ -342,6 +339,76 @@ describe('Time', () => {
                         .should('have.value', '23:59:59.')
                         .should('have.prop', 'selectionStart', '23:59:59.'.length)
                         .should('have.prop', 'selectionEnd', '23:59:59.'.length);
+                });
+            });
+        });
+
+        describe('HH', () => {
+            describe('default segments', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('input');
+                });
+
+                it('2| => type 5 => 2|', () => {
+                    cy.get('@input')
+                        .type('2')
+                        .should('have.value', '2')
+                        .should('have.prop', 'selectionStart', '2'.length)
+                        .should('have.prop', 'selectionEnd', '2'.length)
+                        .type('5')
+                        .should('have.value', '2')
+                        .should('have.prop', 'selectionStart', '2'.length)
+                        .should('have.prop', 'selectionEnd', '2'.length);
+                });
+
+                it('2| => type 3 => 23|', () => {
+                    cy.get('@input')
+                        .type('2')
+                        .should('have.value', '2')
+                        .should('have.prop', 'selectionStart', '2'.length)
+                        .should('have.prop', 'selectionEnd', '2'.length)
+                        .type('3')
+                        .should('have.value', '23')
+                        .should('have.prop', 'selectionStart', '23'.length)
+                        .should('have.prop', 'selectionEnd', '23'.length);
+                });
+
+                it('23| => type 5 => 23|', () => {
+                    cy.get('@input')
+                        .type('23')
+                        .should('have.value', '23')
+                        .should('have.prop', 'selectionStart', '23'.length)
+                        .should('have.prop', 'selectionEnd', '23'.length)
+                        .type('5')
+                        .should('have.value', '23')
+                        .should('have.prop', 'selectionStart', '23'.length)
+                        .should('have.prop', 'selectionEnd', '23'.length);
+                });
+            });
+
+            describe('max hours 11', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH&timeSegmentMaxValues$=1`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('input');
+                });
+
+                it('type 2 => 02', () => {
+                    cy.get('@input')
+                        .type('2')
+                        .should('have.value', '02')
+                        .should('have.prop', 'selectionStart', '02'.length)
+                        .should('have.prop', 'selectionEnd', '02'.length);
                 });
             });
         });
