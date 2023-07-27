@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/tinkoff/maskito/compare/v1.3.0...v1.4.0) (2023-07-27)
+
+### Features
+
+- **kit:** `Date` & `DateRange` support new modes `yyyy`, `mm/yyyy`, `yyyy/mm`
+  ([#384](https://github.com/tinkoff/maskito/issues/384))
+  ([7886d50](https://github.com/tinkoff/maskito/commit/7886d50012a76fec872816b6d5e2b7e67c931dd7))
+- **kit:** `Time` supports new mode `HH` ([#385](https://github.com/tinkoff/maskito/issues/385))
+  ([3c7a3f6](https://github.com/tinkoff/maskito/commit/3c7a3f65a0013152473ba57af8da28012cb58f32))
+
 ## [1.3.0](https://github.com/tinkoff/maskito/compare/v1.2.2...v1.3.0) (2023-07-24)
 
 ### Features
