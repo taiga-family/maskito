@@ -47,12 +47,12 @@ describe('Number (maskitoTransform)', () => {
             expect(maskitoTransform('121.321', options)).toBe('121.321');
         });
 
-        it('drops decimal part (120,450)', () => {
+        it('drops last symbol in decimal part (120,45)', () => {
             expect(maskitoTransform('120,450', options)).toBe('120,45');
         });
 
-        it('keeps minus sign (-123.434) and replca space to dot', () => {
-            expect(maskitoTransform('−120.343', options)).toBe('−120.343');
+        it('keeps minus sign (-123.434) and replace space to dot', () => {
+            expect(maskitoTransform('−120 343', options)).toBe('−120.343');
         });
     });
 });
