@@ -24,7 +24,7 @@ body:
     attributes:
       label: Playground Link
       description: |
-        Link to an isolated reproduction in our [StackBlitz playground](https://tinkoff.github.io/maskito/stackblitz).
+        Link to an isolated reproduction in our [StackBlitz playground](https://maskito.dev/stackblitz).
 
         If either of the following holds true:
         - You can't reproduce the issue in the playground

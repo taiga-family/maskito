@@ -12,7 +12,7 @@
         "typescript",
         "angular"
     ],
-    "homepage": "https://tinkoff.github.io/maskito",
+    "homepage": "https://maskito.dev",
     "bugs": "https://github.com/tinkoff/maskito/issues",
     "repository": {
         "type": "git",
@@ -49,7 +49,7 @@
         "serve:ssr": "node dist/demo/server/main.js",
         "serve:prerender": "http-server dist/demo/browser",
         "build:ssr": "nx run demo:server:production",
-        "build:prerender": "nx run demo:prerender:production",
+        "build:prerender": "nx run demo:prerender",
         "*** Cypress ***": "",
         "cy:open": "cypress open --project ./projects/demo-integrations/",
         "cy:run": "cypress run --project ./projects/demo-integrations/ --browser chrome",

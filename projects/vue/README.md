@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-    <a href="https://tinkoff.github.io/maskito/frameworks/vue">Documentation</a> •
+    <a href="https://maskito.dev/frameworks/vue">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
-    <a href="https://t.me/taiga_ui">Contact Us</a>
+    <a href="https://t.me/taiga_ui/10600">Contact Us</a>
 </p>
 
 > The Vue-specific library.<br /> It provides a convenient way to use Maskito as a directive.

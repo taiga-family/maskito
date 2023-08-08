@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-    <a href="https://tinkoff.github.io/maskito">Documentation</a> •
+    <a href="https://maskito.dev">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
-    <a href="https://t.me/taiga_ui">Contact Us</a>
+    <a href="https://t.me/taiga_ui/10600">Contact Us</a>
 </p>
 
 > The optional framework-agnostic Maskito's package.<br />It contains ready-to-use masks with configurable parameters.
