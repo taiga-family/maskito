@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-    <a href="https://tinkoff.github.io/maskito">Documentation</a> •
+    <a href="https://maskito.dev">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
     <a href="https://t.me/taiga_ui">Contact Us</a>
 </p>
@@ -34,7 +34,7 @@ users type values according to predefined format.
 - **Maskito** includes optional framework-agnostic package with configurable ready-to-use masks.
 
 No text field with invalid value! Use Maskito. **Mask it!** Learn more about the library in our
-[documentation](https://tinkoff.github.io/maskito).
+[documentation](https://maskito.dev).
 
 ## Contributing
 
