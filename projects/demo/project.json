@@ -77,7 +77,7 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "echo 'Github pages require special baseHref + 404.html'",
+                    "echo 'Github pages require special 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
                     "nx build -c production",
