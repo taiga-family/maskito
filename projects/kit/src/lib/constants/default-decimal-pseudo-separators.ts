@@ -1,1 +1,1 @@
-export const DEFAULT_PSEUDO_SEPARATORS = ['.', ',', 'б', 'ю'];
+export const DEFAULT_DECIMAL_PSEUDO_SEPARATORS = ['.', ',', 'б', 'ю'];

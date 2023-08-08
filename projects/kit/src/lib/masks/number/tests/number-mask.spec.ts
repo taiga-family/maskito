@@ -27,7 +27,7 @@ describe('Number (maskitoTransform)', () => {
         });
     });
 
-    describe('`precision` is `2` with custom thousandSeparator', () => {
+    describe('`thousandSeparator` is equal to the item from `decimalPseudoSeparators`', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {

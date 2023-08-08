@@ -27,7 +27,7 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
-import {generateMaskExpression, validatePseudoSeparators} from './utils';
+import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
@@ -53,7 +53,7 @@ export function maskitoNumberOptionsGenerator({
     const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
         char => char !== thousandSeparator && char !== decimalSeparator,
     );
-    const validatedDecimalPseudoSeparators = validatePseudoSeparators({
+    const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
         thousandSeparator,
         decimalPseudoSeparators,

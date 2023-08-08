@@ -1,11 +1,14 @@
-import {DEFAULT_PSEUDO_SEPARATORS} from '../../../../constants';
-import {validatePseudoSeparators} from '../validate-pseudo-separators';
+import {DEFAULT_DECIMAL_PSEUDO_SEPARATORS} from '../../../../constants';
+import {validateDecimalPseudoSeparators} from '../validate-decimal-pseudo-separators';
 
 describe('validate decimal pseudo separators or return default', () => {
     it('should return no empty array if decimalPseudoSeparators === `undefined`', () => {
         expect(
-            validatePseudoSeparators({decimalSeparator: ',', thousandSeparator: ' '}),
-        ).toEqual(DEFAULT_PSEUDO_SEPARATORS.filter(char => char !== ','));
+            validateDecimalPseudoSeparators({
+                decimalSeparator: ',',
+                thousandSeparator: ' ',
+            }),
+        ).toEqual(DEFAULT_DECIMAL_PSEUDO_SEPARATORS.filter(char => char !== ','));
     });
 
     it('should exclude decimalSeparator and thousandSeparator from decimalPseudoSeparators', () => {
@@ -14,16 +17,12 @@ describe('validate decimal pseudo separators or return default', () => {
         const thousandSeparator = 'b';
 
         expect(
-            validatePseudoSeparators({
+            validateDecimalPseudoSeparators({
                 decimalSeparator,
                 thousandSeparator,
                 decimalPseudoSeparators,
             }),
-        ).toEqual(
-            decimalPseudoSeparators.filter(
-                char => char !== decimalSeparator && char !== thousandSeparator,
-            ),
-        );
+        ).toEqual([',', '.']);
     });
 
     it('should return original decimalPseudoSeparators', () => {
@@ -32,7 +31,7 @@ describe('validate decimal pseudo separators or return default', () => {
         const thousandSeparator = ' ';
 
         expect(
-            validatePseudoSeparators({
+            validateDecimalPseudoSeparators({
                 decimalSeparator,
                 thousandSeparator,
                 decimalPseudoSeparators,
