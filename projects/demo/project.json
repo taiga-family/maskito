@@ -68,30 +68,6 @@
                         }
                     ]
                 },
-                "github": {
-                    "baseHref": "/maskito/",
-                    "fileReplacements": [
-                        {
-                            "replace": "projects/demo/src/environments/environment.ts",
-                            "with": "projects/demo/src/environments/environment.prod.ts"
-                        }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "vendorChunk": false,
-                    "buildOptimizer": true,
-                    "budgets": [
-                        {
-                            "type": "initial",
-                            "maximumWarning": "2mb",
-                            "maximumError": "5mb"
-                        }
-                    ]
-                },
                 "development": {}
             },
             "defaultConfiguration": "production"
@@ -101,12 +77,12 @@
             "options": {
                 "parallel": false,
                 "commands": [
-                    "echo 'Github pages require special baseHref + 404.html'",
+                    "echo 'Github pages require special 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
-                    "nx build -c github",
+                    "nx build -c production",
                     "cp dist/demo/browser/index.html dist/demo/browser/404.html",
-                    "nx run demo:prerender -c github"
+                    "nx run demo:prerender"
                 ]
             }
         },
@@ -202,11 +178,7 @@
             "executor": "@nrwl/workspace:run-commands",
             "options": {
                 "command": "ts-node ./scripts/generate-demo-routes-file.ts"
-            },
-            "configurations": {
-                "github": {}
-            },
-            "defaultConfiguration": "github"
+            }
         },
         "prerender": {
             "executor": "@nguniversal/builders:prerender",
@@ -214,12 +186,6 @@
                 "browserTarget": "demo:build:production",
                 "serverTarget": "demo:server:production",
                 "routesFile": "./projects/demo/routesFile.txt"
-            },
-            "configurations": {
-                "production": {},
-                "github": {
-                    "browserTarget": "demo:build:github"
-                }
             },
             "dependsOn": [
                 {
