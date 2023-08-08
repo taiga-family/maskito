@@ -383,13 +383,13 @@ This release introduces the first publishing of the following packages:
 
 - `@maskito/core` <br /> It is the main zero-dependency and framework-agnostic package. It can be used alone in Vanilla
   JavaScript project. It listens `beforeinput` and `input` events to validate and calibrate textfield's value. <br />
-  Read more: https://tinkoff.github.io/maskito/core-concepts/overview
+  Read more: https://maskito.dev/core-concepts/overview
 - `@maskito/kit` <br /> The optional framework-agnostic package. It contains ready-to-use masks with configurable
   parameters. This release introduces the following masks:
-  - [Number](https://tinkoff.github.io/maskito/kit/number)
-  - [Time](https://tinkoff.github.io/maskito/kit/time)
-  - [Date](https://tinkoff.github.io/maskito/kit/date)
-  - [DateRange](https://tinkoff.github.io/maskito/kit/date-range)
+  - [Number](https://maskito.dev/kit/number)
+  - [Time](https://maskito.dev/kit/time)
+  - [Date](https://maskito.dev/kit/date)
+  - [DateRange](https://maskito.dev/kit/date-range)
 - `@maskito/angular`<br /> The Angular-specific library. It provides two convenient ways of using Maskito:
   - Basic directive approach (when developer has direct access to native input element).
   - Dependency Injection approach (when native input element is hidden somewhere deep inside another component).

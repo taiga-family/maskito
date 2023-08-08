@@ -48,7 +48,7 @@ export class StackblitzStarterComponent implements OnInit {
             {
                 title: 'Maskito Starter',
                 description:
-                    'A starter with Maskito library\nDocumentation: https://tinkoff.github.io/maskito',
+                    'A starter with Maskito library\nDocumentation: https://maskito.dev',
                 files: {
                     'index.html': `<input />`,
                     'index.ts': ts,

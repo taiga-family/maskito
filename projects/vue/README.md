@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-    <a href="https://tinkoff.github.io/maskito/frameworks/vue">Documentation</a> •
+    <a href="https://maskito.dev/frameworks/vue">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
     <a href="https://t.me/taiga_ui">Contact Us</a>
 </p>
