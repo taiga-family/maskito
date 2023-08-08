@@ -27,7 +27,7 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
-import {generateMaskExpression, getDefaultPseudoSeparators} from './utils';
+import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
@@ -35,10 +35,7 @@ export function maskitoNumberOptionsGenerator({
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
-    decimalPseudoSeparators = getDefaultPseudoSeparators(
-        decimalSeparator,
-        thousandSeparator,
-    ),
+    decimalPseudoSeparators,
     decimalZeroPadding = false,
     prefix = '',
     postfix = '',
@@ -56,6 +53,11 @@ export function maskitoNumberOptionsGenerator({
     const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH].filter(
         char => char !== thousandSeparator && char !== decimalSeparator,
     );
+    const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({
+        decimalSeparator,
+        thousandSeparator,
+        decimalPseudoSeparators,
+    });
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -70,11 +72,14 @@ export function maskitoNumberOptionsGenerator({
         preprocessors: [
             createInitializationOnlyPreprocessor({
                 decimalSeparator,
-                decimalPseudoSeparators,
+                decimalPseudoSeparators: validatedDecimalPseudoSeparators,
                 pseudoMinuses,
             }),
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
-            createPseudoCharactersPreprocessor(decimalSeparator, decimalPseudoSeparators),
+            createPseudoCharactersPreprocessor(
+                decimalSeparator,
+                validatedDecimalPseudoSeparators,
+            ),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
             createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,

@@ -1,3 +1,4 @@
+export * from './default-decimal-pseudo-separators';
 export * from './default-min-max-dates';
 export * from './default-time-segment-max-values';
 export * from './possible-dates-separator';
