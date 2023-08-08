@@ -10,7 +10,7 @@
 <p align="center">
     <a href="https://maskito.dev">Documentation</a> •
     <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
-    <a href="https://t.me/taiga_ui">Contact Us</a>
+    <a href="https://t.me/taiga_ui/10600">Contact Us</a>
 </p>
 
 **Maskito** is a collection of libraries, built with TypeScript. It helps you to create an input mask which ensures that
