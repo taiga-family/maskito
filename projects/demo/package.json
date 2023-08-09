@@ -18,7 +18,7 @@
         "@ng-web-apis/common": "^2.0.0",
         "@ng-web-apis/universal": "^2.1.0",
         "@nguniversal/express-engine": "^12.1.3",
-        "@stackblitz/sdk": "^1.8.2",
+        "@stackblitz/sdk": "1.9.0",
         "@taiga-ui/addon-doc": "3.26.0",
         "@taiga-ui/addon-mobile": "3.26.0",
         "@taiga-ui/cdk": "3.26.0",
