@@ -24,7 +24,7 @@ export const enum HotkeyCode {
  *     }
  * })
  *
- * @see {@link https://github.com/Tinkoff/maskito/issues/315 `KeyboardEvent#code` issue}
+ * @see {@link https://github.com/taiga-family/maskito/issues/315 `KeyboardEvent#code` issue}
  *
  * @return will return `true` only if the {@linkcode HotkeyCode} matches and only the necessary
  * {@link HotkeyModifier modifiers} have been pressed

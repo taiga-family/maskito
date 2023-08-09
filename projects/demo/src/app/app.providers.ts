@@ -50,7 +50,7 @@ export const APP_PROVIDERS: Provider[] = [
     {
         provide: TUI_DOC_SOURCE_CODE,
         useValue: (context: TuiDocSourceCodePathOptions) => {
-            const link = `https://github.com/tinkoff/maskito/tree/main/projects`;
+            const link = `https://github.com/taiga-family/maskito/tree/main/projects`;
 
             if (context.path) {
                 return `${link}/${context.path}`;

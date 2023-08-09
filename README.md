@@ -1,7 +1,7 @@
 # Maskito
 
 [![npm version](https://img.shields.io/npm/v/@maskito/core.svg)](https://npmjs.com/package/@maskito/core)
-[![All packages CI](https://github.com/tinkoff/maskito/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/tinkoff/maskito/actions/workflows/build.yml)
+[![All packages CI](https://github.com/taiga-family/maskito/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/taiga-family/maskito/actions/workflows/build.yml)
 
 <p align="center">
     <img src="projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" height="120px">
@@ -9,7 +9,7 @@
 
 <p align="center">
     <a href="https://maskito.dev">Documentation</a> •
-    <a href="https://github.com/Tinkoff/maskito/issues/new/choose">Submit an Issue</a> •
+    <a href="https://github.com/taiga-family/maskito/issues/new/choose">Submit an Issue</a> •
     <a href="https://t.me/taiga_ui/10600">Contact Us</a>
 </p>
 
