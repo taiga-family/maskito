@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.TINKOFF_BOT_PAT }}
 
       - name: Setup Node.js and Cache
-        uses: ./.github/actions/nodejs
+        uses: taiga-family/ci/actions/setup-node@1.7.5
 
       - name: Run release
         id: run-release

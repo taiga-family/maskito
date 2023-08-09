@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js and Cache
-        uses: ./.github/actions/nodejs
+        uses: taiga-family/ci/actions/setup-node@1.7.5
 
       - name: Run tests
         run: npx nx run-many --target test --all --coverage
