@@ -23,353 +23,359 @@
 </style><style ng-transition="demo">[_nghost-sc91]{position:-webkit-sticky;position:sticky;top:0;left:0;z-index:1;min-width:calc(100% - 1px);min-height:calc(100% - 1px);max-width:calc(100% - 1px);max-height:calc(100% - 1px);float:left;margin-right:calc(-100% + 1px);-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:calc(-100% + 1px);margin-inline-end:calc(-100% + 1px);pointer-events:none}.t-bar[_ngcontent-sc91]{position:absolute;right:0;bottom:0;pointer-events:auto}.t-bar_vertical[_ngcontent-sc91]{top:0;width:.875rem}.t-bar_horizontal[_ngcontent-sc91]{left:0;height:.875rem}.t-bar_has-horizontal[_ngcontent-sc91]{bottom:.5rem}.t-bar_has-vertical[_ngcontent-sc91]{right:.5rem}.t-thumb[_ngcontent-sc91]{transition-property:all;transition-duration:.15s;transition-timing-function:ease-in-out;position:absolute;border-radius:6.25rem;border:.25rem solid transparent;cursor:pointer;pointer-events:auto;background:var(--tui-text-01);background-clip:content-box;box-sizing:border-box;transition-property:width,height;opacity:.2}.t-thumb[_ngcontent-sc91]:hover{opacity:.24}.t-thumb[_ngcontent-sc91]:active{opacity:.48}[data-mode=onDark][_nghost-sc91]   .t-thumb[_ngcontent-sc91]{background-color:var(--tui-text-01-night)}.t-bar_vertical[_ngcontent-sc91]   .t-thumb[_ngcontent-sc91]{right:0;width:.75rem;min-height:1.25rem}.t-bar_vertical[_ngcontent-sc91]:hover   .t-thumb[_ngcontent-sc91], .t-bar_vertical[_ngcontent-sc91]   .t-thumb[_ngcontent-sc91]:active{width:.875rem}.t-bar_horizontal[_ngcontent-sc91]   .t-thumb[_ngcontent-sc91]{bottom:0;height:.75rem;min-width:1.25rem}.t-bar_horizontal[_ngcontent-sc91]:hover   .t-thumb[_ngcontent-sc91], .t-bar_horizontal[_ngcontent-sc91]   .t-thumb[_ngcontent-sc91]:active{height:.875rem}</style><style ng-transition="demo">[_nghost-sc169]{position:relative;display:block;overflow:hidden;border-radius:var(--tui-radius-l)}[data-borders=top-bottom][_nghost-sc169]{border-radius:0!important}.t-wrapper[_ngcontent-sc169]{position:relative;border-radius:inherit}.t-wrapper[_ngcontent-sc169]:after{position:absolute;top:0;left:0;width:100%;height:100%;content:"";box-sizing:border-box;border-radius:inherit;border:1px solid var(--tui-base-04);pointer-events:none}[_nghost-sc169]:not([data-borders])   .t-wrapper[_ngcontent-sc169]:after{border-width:0}[data-borders=all][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-width:1px}[data-borders=top-bottom][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-left-width:0;border-right-width:0}[data-borders=top][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-left-width:0;border-right-width:0;border-bottom-width:0}[data-borders=bottom][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-left-width:0;border-right-width:0;border-top-width:0}[data-mode=onDark][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-color:var(--tui-base-03)}[data-mode=onLight][_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border-color:var(--tui-text-01)}._focus-visible[_nghost-sc169]   .t-wrapper[_ngcontent-sc169]:after{border:2px solid var(--tui-focus)}[_nghost-sc169]:not([data-mode])   .t-wrapper[_ngcontent-sc169]{background:var(--tui-base-01)}.t-header[_ngcontent-sc169]{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:0;background:none;font-size:inherit;line-height:inherit;transition-property:background;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;display:flex;width:100%;font:var(--tui-font-text-l);align-items:center;box-sizing:border-box;border-bottom:1px solid var(--tui-base-04);min-height:var(--tui-height-l);padding:.75rem 1.25rem;color:var(--tui-text-01);cursor:pointer;text-align:left;outline:none}[data-mode=onDark][_nghost-sc169]   .t-header[_ngcontent-sc169]{color:var(--tui-text-01-night);border-color:var(--tui-base-03)}[data-mode=onLight][_nghost-sc169]   .t-header[_ngcontent-sc169]{border-color:var(--tui-text-01)}[_nghost-sc169]:not([data-borders])   .t-header[_ngcontent-sc169]{border-bottom-width:0;box-shadow:none}._has-arrow[_nghost-sc169]   .t-header[_ngcontent-sc169]{padding-right:.75rem}[data-mode=onDark][_nghost-sc169]   .t-header_open[_ngcontent-sc169]{background:var(--tui-clear-inverse)}[data-mode=onLight][_nghost-sc169]   .t-header_open[_ngcontent-sc169]{background:var(--tui-clear)}[data-size=s][_nghost-sc169]   .t-header[_ngcontent-sc169]{font:var(--tui-font-text-m);min-height:var(--tui-height-m);padding:.625rem .75rem .625rem 1rem}._no-padding[_nghost-sc169]   .t-header[_ngcontent-sc169]{padding-left:0;padding-right:0}._disabled[_nghost-sc169]   .t-header[_ngcontent-sc169]{cursor:default}[_nghost-sc169]:hover:not([data-mode])   .t-header_hoverable[_ngcontent-sc169]{background:var(--tui-base-02)}[_nghost-sc169]:hover[data-mode=onDark]   .t-header_hoverable[_ngcontent-sc169]{background:var(--tui-clear-inverse)}[_nghost-sc169]:hover[data-mode=onLight]   .t-header_hoverable[_ngcontent-sc169]{background:var(--tui-clear)}.t-title[_ngcontent-sc169]{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:0;flex-grow:1}._has-arrow[_nghost-sc169]   .t-title[_ngcontent-sc169]{margin-right:.5rem}.t-icon[_ngcontent-sc169]{transition-property:transform,color;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;width:1.5rem;height:1.5rem;margin-left:auto;color:var(--tui-base-06)}.t-icon_open[_ngcontent-sc169]{transform:rotate(180deg)}[data-mode][_nghost-sc169]   .t-icon[_ngcontent-sc169]{opacity:var(--tui-disabled-opacity)}[_nghost-sc169]:hover[data-mode]   .t-icon[_ngcontent-sc169]{opacity:.8}[data-mode=onDark][_nghost-sc169]   .t-icon[_ngcontent-sc169]{color:var(--tui-text-01-night)}[data-mode=onLight][_nghost-sc169]   .t-icon[_ngcontent-sc169]{color:var(--tui-text-01)}[_nghost-sc169]:hover:not([data-mode])   .t-icon[_ngcontent-sc169]{color:var(--tui-base-07)}.t-content[_ngcontent-sc169]{font:var(--tui-font-text-m);padding:1.25rem;word-wrap:break-word}[data-size=s][_nghost-sc169]   .t-content[_ngcontent-sc169]{font:var(--tui-font-text-s);padding:1rem}</style><style ng-transition="demo">[_nghost-sc164]{display:block;transition-property:opacity,height,visibility;transition-duration:var(--tui-duration, .3s);opacity:0}._overflow[_nghost-sc164]{overflow:hidden}._expanded[_nghost-sc164]{opacity:1;transform:translate(0)}._loading[_nghost-sc164]{opacity:.99}.t-wrapper[_ngcontent-sc164]:before, .t-wrapper[_ngcontent-sc164]:after{content:"";display:table}</style><style ng-transition="demo">[_nghost-sc106]{display:inline-flex;vertical-align:middle;flex-shrink:0;align-items:center;justify-content:center;line-height:0;height:1.5rem;width:1.5rem;fill:transparent;stroke:transparent;font-size:1rem}.t-src[_ngcontent-sc106]{display:flex;width:100%;height:100%;align-items:center;justify-content:center}.t-svg[_ngcontent-sc106]{overflow:visible}</style><style ng-transition="demo">[_nghost-sc225]{display:flex;align-items:center}[_nghost-sc225]   tui-root._mobile[_nghost-sc225], tui-root._mobile   [_nghost-sc225]{font-size:0}.logo-link[_ngcontent-sc225]{display:flex}.logo-name[_ngcontent-sc225]{display:flex;color:var(--tui-text-01)}.logo[_ngcontent-sc225]{margin-right:.625rem}.by[_ngcontent-sc225]{margin-left:.875rem}tui-root._mobile[_nghost-sc225]   .by[_ngcontent-sc225], tui-root._mobile   [_nghost-sc225]   .by[_ngcontent-sc225]{display:none}</style><style ng-transition="demo">markdown{max-width:58.25rem}markdown>:nth-child(1),markdown>:nth-child(2){display:none}markdown>*{margin-left:1.25rem}markdown h2{font-size:2em;padding-bottom:.5em;margin-left:0;border-bottom:1px solid var(--tui-base-03)}markdown h3{text-transform:uppercase;font-weight:normal;font-size:1.5rem;margin:1rem 0}markdown h3:not([id^="feat"]):not([id^="bug"]):not([id^="deprecations"]){font-size:1.75rem;padding-bottom:.5em;margin:2rem 0 0;border-bottom:1px solid var(--tui-base-03)}markdown h3[id^=breaking]{margin-left:1.25rem;color:var(--tui-error-fill)}markdown code{color:#d45d8c}markdown h3[id^=feat]:before{content:"\1f680"}markdown h3[id^=bug]:before{content:"\1f41e"}markdown h3[id^=deprecations]:before{content:"\26a0\fe0f"}markdown h3[id^=feat]:before,markdown h3[id^=bug]:before,markdown h3[id^=deprecations]:before{margin-right:.5rem}
 </style><style ng-transition="demo">[_nghost-sc216]{display:flex;flex-direction:column;min-height:0;flex-basis:0;flex-grow:1}.t-header[_ngcontent-sc216]{display:flex;font:var(--tui-font-heading-3);flex-wrap:wrap;min-height:7.25rem;color:var(--tui-text-01);box-shadow:inset 0 -1px 0 0 var(--tui-base-03);padding:3.75rem 0 0;box-sizing:border-box;flex-shrink:0;margin:0 min(10vw,8.75rem)}tui-root._mobile[_nghost-sc216]   .t-header[_ngcontent-sc216], tui-root._mobile   [_nghost-sc216]   .t-header[_ngcontent-sc216]{font:var(--tui-font-heading-4);min-height:4.5rem;padding:1.25rem 1.25rem 0;margin:0}.t-title[_ngcontent-sc216]{min-width:100%;font-size:inherit;margin:0}.t-tag[_ngcontent-sc216]{vertical-align:middle;text-transform:uppercase;margin-right:.5rem}.t-tag_deprecated[_ngcontent-sc216]{background-color:var(--tui-error-fill)}.t-tag.t-tag_package[_ngcontent-sc216]{color:#000}.t-tabs[_ngcontent-sc216]{flex:1;margin:1.125rem .3125rem 0 0}tui-root._mobile[_nghost-sc216]   .t-tabs[_ngcontent-sc216], tui-root._mobile   [_nghost-sc216]   .t-tabs[_ngcontent-sc216]{margin-top:.25rem}.t-content[_ngcontent-sc216]{padding:2rem 0;margin:0 min(10vw,8.75rem)}tui-root._mobile[_nghost-sc216]   .t-content[_ngcontent-sc216], tui-root._mobile   [_nghost-sc216]   .t-content[_ngcontent-sc216]{padding:2rem 1.25rem;margin:0}.t-see-also[_ngcontent-sc216]{min-width:18.75rem;width:30%;float:right;margin-left:1.5rem}tui-root._mobile[_nghost-sc216]   .t-see-also[_ngcontent-sc216], tui-root._mobile   [_nghost-sc216]   .t-see-also[_ngcontent-sc216]{float:none;width:100%;margin:0 0 1.5rem}.t-source-code[_ngcontent-sc216]{align-self:flex-end;line-height:2.75rem;margin-left:auto}</style></head>
     <body data-tui-theme="taiga">
-        <my-app _nghost-sc220="" ng-version="12.2.17"><tui-doc-main _ngcontent-sc220=""><!----><tui-root data-tui-version="3.26.0" style="--tui-duration:300ms;"><tui-scroll-controls class="t-root-scrollbar ng-tns-c91-3 ng-star-inserted" _nghost-sc91=""><!----><!----><!----><!----></tui-scroll-controls><!----><tui-svg-defs-host _nghost-sc191=""><svg _ngcontent-sc191="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!----><!----><!----></svg></tui-svg-defs-host><tui-dropdown-host _nghost-sc78=""><div class="t-root-content"><div class="tui-doc-page"><tui-doc-navigation class="tui-doc-navigation" _nghost-sc209=""><tui-input _ngcontent-sc209="" tuitextfieldsize="m" tuitextfieldiconleft="tuiIconSearch" class="t-input ng-untouched ng-pristine ng-valid" _nghost-sc183=""><tui-hosted-dropdown _ngcontent-sc183="" class="t-hosted" _nghost-sc114=""><div _ngcontent-sc114="" tuiaccessorproxy="" class="t-wrapper ng-star-inserted"><tui-primitive-textfield _ngcontent-sc183="" automation-id="tui-input__textfield" class="t-textfield _label-outside" _nghost-sc132="" data-size="m" style="--border-start:1.625rem;--border-end:0rem;"><!----><!----><div _ngcontent-sc132="" tuiwrapper="" automation-id="tui-primitive-textfield__wrapper" class="tui-autofill" style="--text-indent:;" data-appearance="textfield"><input _ngcontent-sc132="" tuimaskaccessor="" automation-id="tui-primitive-textfield__native-input" class="t-input ng-untouched ng-pristine ng-valid" id="tui_interactive_5231691581568983" aria-invalid="false" value="" tabindex="0"><!----><div _ngcontent-sc132="" class="t-content"><div _ngcontent-sc132="" class="t-icon t-icon_left t-textfield-icon ng-star-inserted"><tui-svg _ngcontent-sc132="" tuiwrapper="" appearance="icon" _nghost-sc106="" data-appearance="icon" class="ng-star-inserted"><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconSearch.svg?v=3.26.0#tuiIconSearch"></use></svg><!----><!----><!----><!----></tui-svg><!----></div><!----><div _ngcontent-sc132="" class="t-wrapper"><label _ngcontent-sc132="" automation-id="tui-primitive-textfield__placeholder" class="t-placeholder ng-star-inserted" for="" htmlfor=""> Search <!----></label><!----><div _ngcontent-sc132="" class="t-wrapper-value-decoration"><tui-value-decoration _ngcontent-sc132="" automation-id="tui-primitive-textfield__value-decoration" aria-hidden="true" class="t-value-decoration" _nghost-sc131="" style="text-indent:;"><span _ngcontent-sc131="" class="t-prefix t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-ghost t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-filler t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-postfix t-inline" textcontent=""></span></tui-value-decoration></div></div><!----><!----><!----><!----></div></div></tui-primitive-textfield><!----></div><!----></tui-hosted-dropdown></tui-input><nav _ngcontent-sc209="" class="t-navigation"><tui-scrollbar _ngcontent-sc209="" class="t-scrollbar _legacy" _nghost-sc94=""><!----><div _ngcontent-sc94="" class="t-content"><tui-accordion _ngcontent-sc209="" _nghost-sc170=""><div _ngcontent-sc170="" role="group" tuigroup="" automation-id="tui-accordion__group" orientation="vertical" size="l" class="tui-group t-group tui-group_collapsed tui-group_orientation_vertical tui-group_radius_large"><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Getting started</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-4 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-4 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Core concepts</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-5 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-5 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Frameworks</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-6 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-6 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Kit</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-7 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-7 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Recipes</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-8 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-8 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable t-header_open" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Other</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted t-icon_open" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-9 ng-star-inserted _expanded _overflow" aria-expanded="true" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-9 ng-trigger ng-trigger-tuiParentAnimation ng-animate-disabled" style=""><!----><!----><div _ngcontent-sc169="" automation-id="tui-accordion__item-content" class="t-content ng-star-inserted"><div _ngcontent-sc209="" class="t-section ng-star-inserted"><a _ngcontent-sc209="" tuilink="" routerlinkactive="t-sublink_active" class="t-sublink ng-star-inserted" _nghost-sc195="" href="/browser-support"><!----><span _ngcontent-sc195="" class="t-content"> Browser support </span><!----></a><!----><!----><!----><a _ngcontent-sc209="" tuilink="" routerlinkactive="t-sublink_active" class="t-sublink ng-star-inserted t-sublink_active" _nghost-sc195="" href="/changelog"><!----><span _ngcontent-sc195="" class="t-content"> Changelog </span><!----></a><!----><!----><!----><!----></div><!----></div><!----><!----><!----><!----></div></tui-expand></div></tui-accordion-item><!----></div></tui-accordion><div _ngcontent-sc209="" class="t-items-container"><!----></div><!----></div></tui-scrollbar></nav></tui-doc-navigation><div class="tui-doc-content"><router-outlet class="tui-doc-outlet"></router-outlet><changelog class="ng-star-inserted"><tui-doc-page header="Changelog" _nghost-sc216=""><header _ngcontent-sc216="" class="t-header"><h1 _ngcontent-sc216="" class="t-title"> Changelog <!----><!----></h1><!----><tui-doc-source-code _ngcontent-sc216="" class="t-source-code"><!----></tui-doc-source-code></header><div _ngcontent-sc216="" class="t-content"><markdown><h1 id="changelog">Changelog</h1>
+        <my-app _nghost-sc220="" ng-version="12.2.17"><tui-doc-main _ngcontent-sc220=""><!----><tui-root data-tui-version="3.26.0" style="--tui-duration:300ms;"><tui-scroll-controls class="t-root-scrollbar ng-tns-c91-3 ng-star-inserted" _nghost-sc91=""><!----><!----><!----><!----></tui-scroll-controls><!----><tui-svg-defs-host _nghost-sc191=""><svg _ngcontent-sc191="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><!----><!----><!----></svg></tui-svg-defs-host><tui-dropdown-host _nghost-sc78=""><div class="t-root-content"><div class="tui-doc-page"><tui-doc-navigation class="tui-doc-navigation" _nghost-sc209=""><tui-input _ngcontent-sc209="" tuitextfieldsize="m" tuitextfieldiconleft="tuiIconSearch" class="t-input ng-untouched ng-pristine ng-valid" _nghost-sc183=""><tui-hosted-dropdown _ngcontent-sc183="" class="t-hosted" _nghost-sc114=""><div _ngcontent-sc114="" tuiaccessorproxy="" class="t-wrapper ng-star-inserted"><tui-primitive-textfield _ngcontent-sc183="" automation-id="tui-input__textfield" class="t-textfield _label-outside" _nghost-sc132="" data-size="m" style="--border-start:1.625rem;--border-end:0rem;"><!----><!----><div _ngcontent-sc132="" tuiwrapper="" automation-id="tui-primitive-textfield__wrapper" class="tui-autofill" style="--text-indent:;" data-appearance="textfield"><input _ngcontent-sc132="" tuimaskaccessor="" automation-id="tui-primitive-textfield__native-input" class="t-input ng-untouched ng-pristine ng-valid" id="tui_interactive_5231691583221799" aria-invalid="false" value="" tabindex="0"><!----><div _ngcontent-sc132="" class="t-content"><div _ngcontent-sc132="" class="t-icon t-icon_left t-textfield-icon ng-star-inserted"><tui-svg _ngcontent-sc132="" tuiwrapper="" appearance="icon" _nghost-sc106="" data-appearance="icon" class="ng-star-inserted"><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconSearch.svg?v=3.26.0#tuiIconSearch"></use></svg><!----><!----><!----><!----></tui-svg><!----></div><!----><div _ngcontent-sc132="" class="t-wrapper"><label _ngcontent-sc132="" automation-id="tui-primitive-textfield__placeholder" class="t-placeholder ng-star-inserted" for="" htmlfor=""> Search <!----></label><!----><div _ngcontent-sc132="" class="t-wrapper-value-decoration"><tui-value-decoration _ngcontent-sc132="" automation-id="tui-primitive-textfield__value-decoration" aria-hidden="true" class="t-value-decoration" _nghost-sc131="" style="text-indent:;"><span _ngcontent-sc131="" class="t-prefix t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-ghost t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-filler t-inline" textcontent=""></span><span _ngcontent-sc131="" class="t-postfix t-inline" textcontent=""></span></tui-value-decoration></div></div><!----><!----><!----><!----></div></div></tui-primitive-textfield><!----></div><!----></tui-hosted-dropdown></tui-input><nav _ngcontent-sc209="" class="t-navigation"><tui-scrollbar _ngcontent-sc209="" class="t-scrollbar _legacy" _nghost-sc94=""><!----><div _ngcontent-sc94="" class="t-content"><tui-accordion _ngcontent-sc209="" _nghost-sc170=""><div _ngcontent-sc170="" role="group" tuigroup="" automation-id="tui-accordion__group" orientation="vertical" size="l" class="tui-group t-group tui-group_collapsed tui-group_orientation_vertical tui-group_radius_large"><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Getting started</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-4 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-4 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Core concepts</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-5 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-5 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Frameworks</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-6 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-6 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Kit</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-7 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-7 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Recipes</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-8 ng-star-inserted" aria-expanded="false" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-8 ng-trigger ng-trigger-tuiParentAnimation" style=""><!----></div></tui-expand></div></tui-accordion-item><tui-accordion-item _ngcontent-sc209="" size="s" _nghost-sc169="" class="_has-arrow ng-star-inserted" data-size="s"><div _ngcontent-sc169="" automation-id="tui-accordion__item-wrapper" class="t-wrapper"><button _ngcontent-sc169="" automation-id="tui-accordion__item-header" type="button" class="t-header t-header_hoverable t-header_open" tabindex="0"><span _ngcontent-sc169="" automation-id="tui-accordion__item-title" class="t-title"><span _ngcontent-sc209="" class="t-label"><strong _ngcontent-sc209="">Other</strong></span></span><tui-svg _ngcontent-sc169="" automation-id="tui-accordion__item-arrow" src="tuiIconChevronDownLarge" class="t-icon ng-star-inserted t-icon_open" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconChevronDownLarge.svg?v=3.26.0#tuiIconChevronDownLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></button><tui-expand _ngcontent-sc169="" _nghost-sc164="" class="ng-tns-c164-9 ng-star-inserted _expanded _overflow" aria-expanded="true" style="height:;"><div _ngcontent-sc164="" class="t-wrapper ng-tns-c164-9 ng-trigger ng-trigger-tuiParentAnimation ng-animate-disabled" style=""><!----><!----><div _ngcontent-sc169="" automation-id="tui-accordion__item-content" class="t-content ng-star-inserted"><div _ngcontent-sc209="" class="t-section ng-star-inserted"><a _ngcontent-sc209="" tuilink="" routerlinkactive="t-sublink_active" class="t-sublink ng-star-inserted" _nghost-sc195="" href="/browser-support"><!----><span _ngcontent-sc195="" class="t-content"> Browser support </span><!----></a><!----><!----><!----><a _ngcontent-sc209="" tuilink="" routerlinkactive="t-sublink_active" class="t-sublink ng-star-inserted t-sublink_active" _nghost-sc195="" href="/changelog"><!----><span _ngcontent-sc195="" class="t-content"> Changelog </span><!----></a><!----><!----><!----><!----></div><!----></div><!----><!----><!----><!----></div></tui-expand></div></tui-accordion-item><!----></div></tui-accordion><div _ngcontent-sc209="" class="t-items-container"><!----></div><!----></div></tui-scrollbar></nav></tui-doc-navigation><div class="tui-doc-content"><router-outlet class="tui-doc-outlet"></router-outlet><changelog class="ng-star-inserted"><tui-doc-page header="Changelog" _nghost-sc216=""><header _ngcontent-sc216="" class="t-header"><h1 _ngcontent-sc216="" class="t-title"> Changelog <!----><!----></h1><!----><tui-doc-source-code _ngcontent-sc216="" class="t-source-code"><!----></tui-doc-source-code></header><div _ngcontent-sc216="" class="t-content"><markdown><h1 id="changelog">Changelog</h1>
 <p>All notable changes to this project will be documented in this file. See
 <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> for commit guidelines.</p>
-<h2 id="140-2023-07-27"><a href="https://github.com/tinkoff/maskito/compare/v1.3.0...v1.4.0">1.4.0</a> (2023-07-27)</h2>
+<h2 id="140-2023-07-27"><a href="https://github.com/taiga-family/maskito/compare/v1.3.0...v1.4.0">1.4.0</a> (2023-07-27)</h2>
 <h3 id="features">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>Date</code> &amp; <code>DateRange</code> support new modes <code>yyyy</code>, <code>mm/yyyy</code>, <code>yyyy/mm</code>
-(<a href="https://github.com/tinkoff/maskito/issues/384">#384</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/7886d50012a76fec872816b6d5e2b7e67c931dd7">7886d50</a>)</li>
-<li><strong>kit:</strong> <code>Time</code> supports new mode <code>HH</code> (<a href="https://github.com/tinkoff/maskito/issues/385">#385</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/3c7a3f65a0013152473ba57af8da28012cb58f32">3c7a3f6</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/384">#384</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/7886d50012a76fec872816b6d5e2b7e67c931dd7">7886d50</a>)</li>
+<li><strong>kit:</strong> <code>Time</code> supports new mode <code>HH</code> (<a href="https://github.com/taiga-family/maskito/issues/385">#385</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/3c7a3f65a0013152473ba57af8da28012cb58f32">3c7a3f6</a>)</li>
 </ul>
-<h2 id="130-2023-07-24"><a href="https://github.com/tinkoff/maskito/compare/v1.2.2...v1.3.0">1.3.0</a> (2023-07-24)</h2>
+<h2 id="130-2023-07-24"><a href="https://github.com/taiga-family/maskito/compare/v1.2.2...v1.3.0">1.3.0</a> (2023-07-24)</h2>
 <h3 id="features-1">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>DateRange</code> add configurable parameter <code>rangeSeparator</code>
-(<a href="https://github.com/tinkoff/maskito/issues/376">#376</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/d90484214da76f4c73ad925eef5fe391a154c499">d904842</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/376">#376</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/d90484214da76f4c73ad925eef5fe391a154c499">d904842</a>)</li>
 </ul>
 <h3 id="bug-fixes">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> has problems with run-time updates of postfix
-(<a href="https://github.com/tinkoff/maskito/issues/380">#380</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/8210896d2095a44e79a27a38e4c8745e2beccdb7">8210896</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/380">#380</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/8210896d2095a44e79a27a38e4c8745e2beccdb7">8210896</a>)</li>
 </ul>
-<h3 id="122-2023-07-19"><a href="https://github.com/tinkoff/maskito/compare/v1.2.1...v1.2.2">1.2.2</a> (2023-07-19)</h3>
+<h3 id="122-2023-07-19"><a href="https://github.com/taiga-family/maskito/compare/v1.2.1...v1.2.2">1.2.2</a> (2023-07-19)</h3>
 <h3 id="bug-fixes-1">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>maskitoCaretGuard</code> should wait for <code>mouseup</code> before execution
-(<a href="https://github.com/tinkoff/maskito/issues/372">#372</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/8554fead2a2474104f0674fb597cf86467274943">8554fea</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/372">#372</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/8554fead2a2474104f0674fb597cf86467274943">8554fea</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> should remove repeated leading zeroes for integer part only on <code>blur</code>-event
-(<a href="https://github.com/tinkoff/maskito/issues/373">#373</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/7cf4938853ccbd049b89482f8eb22ab4e71fe01f">7cf4938</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/373">#373</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/7cf4938853ccbd049b89482f8eb22ab4e71fe01f">7cf4938</a>)</li>
 </ul>
-<h3 id="121-2023-07-11"><a href="https://github.com/tinkoff/maskito/compare/v1.2.0...v1.2.1">1.2.1</a> (2023-07-11)</h3>
+<h3 id="121-2023-07-11"><a href="https://github.com/taiga-family/maskito/compare/v1.2.0...v1.2.1">1.2.1</a> (2023-07-11)</h3>
 <h3 id="bug-fixes-2">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> with <code>postfix</code> should be compatible with <code>decimalZeroPadding</code>
-(<a href="https://github.com/tinkoff/maskito/issues/364">#364</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/501cf9c747229d1776fb62cc04fbc8879990c617">501cf9c</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/364">#364</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/501cf9c747229d1776fb62cc04fbc8879990c617">501cf9c</a>)</li>
 <li><strong>kit:</strong> <code>Prefix</code>/<code>Postfix</code> is incompatible if they end/start with the same character
-(<a href="https://github.com/tinkoff/maskito/issues/366">#366</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/06afbcb4a2c5c15e2ef9dc81db4309adf01aa8ef">06afbcb</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/366">#366</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/06afbcb4a2c5c15e2ef9dc81db4309adf01aa8ef">06afbcb</a>)</li>
 </ul>
-<h2 id="120-2023-07-03"><a href="https://github.com/tinkoff/maskito/compare/v1.1.1...v1.2.0">1.2.0</a> (2023-07-03)</h2>
+<h2 id="120-2023-07-03"><a href="https://github.com/taiga-family/maskito/compare/v1.1.1...v1.2.0">1.2.0</a> (2023-07-03)</h2>
 <h3 id="features-2">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>maskitoCaretGuard</code>'s function has the 2nd argument with current selection range
-(<a href="https://github.com/tinkoff/maskito/issues/358">#358</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/eedc4d610efaf36b98a4049f5c5334561b5b21c5">eedc4d6</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/358">#358</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/eedc4d610efaf36b98a4049f5c5334561b5b21c5">eedc4d6</a>)</li>
 </ul>
 <h3 id="bug-fixes-3">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>maskitoCaretGuard</code> incorrectly validates the left side of constraints
-(<a href="https://github.com/tinkoff/maskito/issues/356">#356</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/17ee90fe055f6a8370d6ea75ff2b236fd498441e">17ee90f</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/356">#356</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/17ee90fe055f6a8370d6ea75ff2b236fd498441e">17ee90f</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> should skip min/max validation if value does not contain any digits
-(<a href="https://github.com/tinkoff/maskito/issues/359">#359</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/ed8221e14eca62334af41b4c8e571eb86ed68247">ed8221e</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/359">#359</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/ed8221e14eca62334af41b4c8e571eb86ed68247">ed8221e</a>)</li>
 </ul>
-<h3 id="111-2023-06-29"><a href="https://github.com/tinkoff/maskito/compare/v1.1.0...v1.1.1">1.1.1</a> (2023-06-29)</h3>
+<h3 id="111-2023-06-29"><a href="https://github.com/taiga-family/maskito/compare/v1.1.0...v1.1.1">1.1.1</a> (2023-06-29)</h3>
 <h3 id="bug-fixes-4">Bug Fixes</h3>
 <ul>
-<li><strong>core:</strong> don't ignore native attribute <code>maxlength</code> (<a href="https://github.com/tinkoff/maskito/issues/350">#350</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/8504f497152931da06dd745763be2505587f97b4">8504f49</a>)</li>
+<li><strong>core:</strong> don't ignore native attribute <code>maxlength</code> (<a href="https://github.com/taiga-family/maskito/issues/350">#350</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/8504f497152931da06dd745763be2505587f97b4">8504f49</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> should ignore new typed decimal separator if it already exists in text field
-(<a href="https://github.com/tinkoff/maskito/issues/351">#351</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/4ccfdc86ff08bcebfd18c04403aa9c9c83cbbd02">4ccfdc8</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/351">#351</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/4ccfdc86ff08bcebfd18c04403aa9c9c83cbbd02">4ccfdc8</a>)</li>
 </ul>
-<h2 id="110-2023-06-23"><a href="https://github.com/tinkoff/maskito/compare/v1.0.0...v1.1.0">1.1.0</a> (2023-06-23)</h2>
+<h2 id="110-2023-06-23"><a href="https://github.com/taiga-family/maskito/compare/v1.0.0...v1.1.0">1.1.0</a> (2023-06-23)</h2>
 <h3 id="features-3">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>maskitoEventHandler</code> accepts <code>AddEventListenerOptions</code> as the 3d optional argument
-(<a href="https://github.com/tinkoff/maskito/issues/346">#346</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/1d5866efa5e0e4736dd735ae006e027e9bd01e31">1d5866e</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/346">#346</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/1d5866efa5e0e4736dd735ae006e027e9bd01e31">1d5866e</a>)</li>
 <li><strong>kit:</strong> use capturing phase for <code>focus</code>/<code>blur</code> events in plugins
-(<a href="https://github.com/tinkoff/maskito/issues/347">#347</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/ef539e160f601023e513036d704f7daff9689286">ef539e1</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/347">#347</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/ef539e160f601023e513036d704f7daff9689286">ef539e1</a>)</li>
 </ul>
 <h3 id="bug-fixes-5">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Date</code> allows to replace the whole selection range with zero
-(<a href="https://github.com/tinkoff/maskito/issues/345">#345</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/98fd21d50899db365b864faf597fad9a21a3db06">98fd21d</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/345">#345</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/98fd21d50899db365b864faf597fad9a21a3db06">98fd21d</a>)</li>
 </ul>
-<h2 id="100-2023-06-21"><a href="https://github.com/tinkoff/maskito/compare/v0.16.0...v1.0.0">1.0.0</a> (2023-06-21)</h2>
+<h2 id="100-2023-06-21"><a href="https://github.com/taiga-family/maskito/compare/v0.16.0...v1.0.0">1.0.0</a> (2023-06-21)</h2>
 <h3 id="⚠-breaking-changes">⚠ BREAKING CHANGES</h3>
 <ul>
 <li><strong>core:</strong> delete deprecated <code>preprocessor</code> &amp; <code>postprocessor</code> from <code>MaskitoOptions</code>
-(<a href="https://github.com/tinkoff/maskito/issues/337">#337</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/0b6aad2622ed152d12c91f8ca64b767709ecdbc2">0b6aad2</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/337">#337</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/0b6aad2622ed152d12c91f8ca64b767709ecdbc2">0b6aad2</a>)</li>
 <li><strong>kit:</strong> delete deprecated <code>isNegativeAllowed</code> parameter from <code>Number</code> mask
-(<a href="https://github.com/tinkoff/maskito/issues/338">#338</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/9fd30055b3157072076f7a8567045fac05b6af9e">9fd3005</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/338">#338</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/9fd30055b3157072076f7a8567045fac05b6af9e">9fd3005</a>)</li>
 </ul>
-<h2 id="0160-2023-06-20"><a href="https://github.com/tinkoff/maskito/compare/v0.15.0...v0.16.0">0.16.0</a> (2023-06-20)</h2>
+<h2 id="0160-2023-06-20"><a href="https://github.com/taiga-family/maskito/compare/v0.15.0...v0.16.0">0.16.0</a> (2023-06-20)</h2>
 <h3 id="features-4">Features</h3>
 <ul>
-<li><strong>vue:</strong> support async predicate (<a href="https://github.com/tinkoff/maskito/issues/336">#336</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/d1452b5f1b2f8a252dfd05a5c1eb04ba971a1970">d1452b5</a>)</li>
+<li><strong>vue:</strong> support async predicate (<a href="https://github.com/taiga-family/maskito/issues/336">#336</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/d1452b5f1b2f8a252dfd05a5c1eb04ba971a1970">d1452b5</a>)</li>
 </ul>
 <h3 id="bug-fixes-6">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> fails to parse small number on blur (exponential notation problem)
-(<a href="https://github.com/tinkoff/maskito/issues/339">#339</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/7f83a7f170906c1911eb4444da2d636c0338ed4a">7f83a7f</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/339">#339</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/7f83a7f170906c1911eb4444da2d636c0338ed4a">7f83a7f</a>)</li>
 </ul>
-<h2 id="0150-2023-06-14"><a href="https://github.com/tinkoff/maskito/compare/v0.14.0...v0.15.0">0.15.0</a> (2023-06-14)</h2>
+<h2 id="0150-2023-06-14"><a href="https://github.com/taiga-family/maskito/compare/v0.14.0...v0.15.0">0.15.0</a> (2023-06-14)</h2>
 <h3 id="features-5">Features</h3>
 <ul>
 <li><strong>core:</strong> add new parameters <code>preprocessors</code> &amp; <code>postprocessors</code> and deprecate <code>preprocessor</code> &amp; <code>postprocessor</code>
-(<a href="https://github.com/tinkoff/maskito/issues/333">#333</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/01377751a9875143257930934b1e2a9143b6da03">0137775</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/333">#333</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/01377751a9875143257930934b1e2a9143b6da03">0137775</a>)</li>
 </ul>
 <h3 id="bug-fixes-7">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>maskitoParseNumber</code> should return <code>NaN</code> for all strings with no digits
-(<a href="https://github.com/tinkoff/maskito/issues/331">#331</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/d1ebceceedf418b21a68082f7350002d09159ebf">d1ebcec</a>)</li>
-<li><strong>kit:</strong> <code>Number</code> incorrectly implements <code>min</code>/<code>max</code> behaviour (<a href="https://github.com/tinkoff/maskito/issues/334">#334</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/9876d885f98f86d18db04d723460b468bca3837d">9876d88</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/331">#331</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/d1ebceceedf418b21a68082f7350002d09159ebf">d1ebcec</a>)</li>
+<li><strong>kit:</strong> <code>Number</code> incorrectly implements <code>min</code>/<code>max</code> behaviour
+(<a href="https://github.com/taiga-family/maskito/issues/334">#334</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/9876d885f98f86d18db04d723460b468bca3837d">9876d88</a>)</li>
 </ul>
-<h2 id="0140-2023-06-09"><a href="https://github.com/tinkoff/maskito/compare/v0.13.0...v0.14.0">0.14.0</a> (2023-06-09)</h2>
+<h2 id="0140-2023-06-09"><a href="https://github.com/taiga-family/maskito/compare/v0.13.0...v0.14.0">0.14.0</a> (2023-06-09)</h2>
 <h3 id="features-6">Features</h3>
 <ul>
 <li><strong>angular:</strong> <code>[maskitoElement]</code> can accept asynchronous predicate
-(<a href="https://github.com/tinkoff/maskito/issues/316">#316</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/3d8949e878e644079b7f5404cb9ebf6c5eadab86">3d8949e</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/316">#316</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/3d8949e878e644079b7f5404cb9ebf6c5eadab86">3d8949e</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> pads empty integer part with zero on blur (if decimal part exists)
-(<a href="https://github.com/tinkoff/maskito/issues/328">#328</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/bd01967fba38be26a3c8f0d2f23c0ced12d3b1c2">bd01967</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/328">#328</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/bd01967fba38be26a3c8f0d2f23c0ced12d3b1c2">bd01967</a>)</li>
 </ul>
-<h2 id="0130-2023-06-02"><a href="https://github.com/tinkoff/maskito/compare/v0.12.1...v0.13.0">0.13.0</a> (2023-06-02)</h2>
+<h2 id="0130-2023-06-02"><a href="https://github.com/taiga-family/maskito/compare/v0.12.1...v0.13.0">0.13.0</a> (2023-06-02)</h2>
 <h3 id="features-7">Features</h3>
 <ul>
 <li><strong>core:</strong> better layout-independent way to detect <code>Undo</code> and <code>Redo</code>
-(<a href="https://github.com/tinkoff/maskito/issues/320">#320</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/4c5a7f64b9a8ac209584c75e17ec022674b87c1b">4c5a7f6</a>)</li>
-<li><strong>vue:</strong> add dedicated Vue package (<a href="https://github.com/tinkoff/maskito/issues/321">#321</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/f6ffb24eca5f1a1a57a93103b9e74cdf410e4132">f6ffb24</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/320">#320</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/4c5a7f64b9a8ac209584c75e17ec022674b87c1b">4c5a7f6</a>)</li>
+<li><strong>vue:</strong> add dedicated Vue package (<a href="https://github.com/taiga-family/maskito/issues/321">#321</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/f6ffb24eca5f1a1a57a93103b9e74cdf410e4132">f6ffb24</a>)</li>
 </ul>
-<h3 id="0121-2023-05-25"><a href="https://github.com/tinkoff/maskito/compare/v0.12.0...v0.12.1">0.12.1</a> (2023-05-25)</h3>
+<h3 id="0121-2023-05-25"><a href="https://github.com/taiga-family/maskito/compare/v0.12.0...v0.12.1">0.12.1</a> (2023-05-25)</h3>
 <h3 id="bug-fixes-8">Bug Fixes</h3>
 <ul>
-<li><strong>kit:</strong> <code>DateTime</code> validate min / max if date is complete (<a href="https://github.com/tinkoff/maskito/issues/314">#314</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/5783e766a657abcf0fc7f8a8d12ac1bf412dc18a">5783e76</a>)</li>
+<li><strong>kit:</strong> <code>DateTime</code> validate min / max if date is complete
+(<a href="https://github.com/taiga-family/maskito/issues/314">#314</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/5783e766a657abcf0fc7f8a8d12ac1bf412dc18a">5783e76</a>)</li>
 <li><strong>kit:</strong> <code>Time</code> &amp; <code>DateTime</code> should accept time segment separator typed by user
-(<a href="https://github.com/tinkoff/maskito/issues/317">#317</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/3bcac7f6566043991a9211f04db744a5ec6f019f">3bcac7f</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/317">#317</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/3bcac7f6566043991a9211f04db744a5ec6f019f">3bcac7f</a>)</li>
 </ul>
-<h2 id="0120-2023-05-19"><a href="https://github.com/tinkoff/maskito/compare/v0.11.1...v0.12.0">0.12.0</a> (2023-05-19)</h2>
+<h2 id="0120-2023-05-19"><a href="https://github.com/taiga-family/maskito/compare/v0.11.1...v0.12.0">0.12.0</a> (2023-05-19)</h2>
 <h3 id="features-8">Features</h3>
 <ul>
-<li><strong>core:</strong> add <code>plugins</code> to <code>MaskitoOptions</code> (<a href="https://github.com/tinkoff/maskito/issues/305">#305</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/b512ae2c64b2a2c6560e2e5c68d8c72952474c71">b512ae2</a>)</li>
+<li><strong>core:</strong> add <code>plugins</code> to <code>MaskitoOptions</code> (<a href="https://github.com/taiga-family/maskito/issues/305">#305</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/b512ae2c64b2a2c6560e2e5c68d8c72952474c71">b512ae2</a>)</li>
 <li><strong>core:</strong> expose <code>MaskitoMask</code>, <code>MaskitoPreprocessor</code>, <code>MaskitoPostprocessor</code> and <code>MaskitoPlugin</code>
-(<a href="https://github.com/tinkoff/maskito/issues/307">#307</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/9315a9f4620b3be86cf3b7af993861664f281a19">9315a9f</a>)</li>
-<li><strong>kit:</strong> new <code>maskitoWithPlaceholder</code> utility (<a href="https://github.com/tinkoff/maskito/issues/299">#299</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/21eb69cfeb73bbe645d5a5879659ab8b6aadbf0c">21eb69c</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/307">#307</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/9315a9f4620b3be86cf3b7af993861664f281a19">9315a9f</a>)</li>
+<li><strong>kit:</strong> new <code>maskitoWithPlaceholder</code> utility (<a href="https://github.com/taiga-family/maskito/issues/299">#299</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/21eb69cfeb73bbe645d5a5879659ab8b6aadbf0c">21eb69c</a>)</li>
 </ul>
-<h3 id="0111-2023-05-11"><a href="https://github.com/tinkoff/maskito/compare/v0.11.0...v0.11.1">0.11.1</a> (2023-05-11)</h3>
+<h3 id="0111-2023-05-11"><a href="https://github.com/taiga-family/maskito/compare/v0.11.0...v0.11.1">0.11.1</a> (2023-05-11)</h3>
 <h3 id="bug-fixes-9">Bug Fixes</h3>
 <ul>
 <li><strong>core:</strong> <code>insertFromDrop</code> action behaves now in the same way as <code>insertFromPaste</code>
-(<a href="https://github.com/tinkoff/maskito/issues/291">#291</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/58e0fccb7ddd3c741ffa3c8b99efbcf4571aab37">58e0fcc</a>)</li>
-<li><strong>kit:</strong> <code>Time</code> doesn't validate time segments on <code>drop</code> event (<a href="https://github.com/tinkoff/maskito/issues/289">#289</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/0c6d1b9917d0c86a98c0d215c38a0e2076ff5680">0c6d1b9</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/291">#291</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/58e0fccb7ddd3c741ffa3c8b99efbcf4571aab37">58e0fcc</a>)</li>
+<li><strong>kit:</strong> <code>Time</code> doesn't validate time segments on <code>drop</code> event
+(<a href="https://github.com/taiga-family/maskito/issues/289">#289</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/0c6d1b9917d0c86a98c0d215c38a0e2076ff5680">0c6d1b9</a>)</li>
 </ul>
-<h2 id="0110-2023-05-02"><a href="https://github.com/tinkoff/maskito/compare/v0.10.0...v0.11.0">0.11.0</a> (2023-05-02)</h2>
+<h2 id="0110-2023-05-02"><a href="https://github.com/taiga-family/maskito/compare/v0.10.0...v0.11.0">0.11.0</a> (2023-05-02)</h2>
 <h3 id="features-9">Features</h3>
 <ul>
-<li><strong>react:</strong> new library <code>@maskito/react</code> (<a href="https://github.com/tinkoff/maskito/issues/273">#273</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/4c2f755bac9513689964af7fdb7f4deec56bfb52">4c2f755</a>)</li>
+<li><strong>react:</strong> new library <code>@maskito/react</code> (<a href="https://github.com/taiga-family/maskito/issues/273">#273</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/4c2f755bac9513689964af7fdb7f4deec56bfb52">4c2f755</a>)</li>
 </ul>
-<h2 id="0100-2023-04-25"><a href="https://github.com/tinkoff/maskito/compare/v0.9.0...v0.10.0">0.10.0</a> (2023-04-25)</h2>
+<h2 id="0100-2023-04-25"><a href="https://github.com/taiga-family/maskito/compare/v0.9.0...v0.10.0">0.10.0</a> (2023-04-25)</h2>
 <h3 id="features-10">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> keeps untouched decimal part if <code>precision: Infinity</code>
-(<a href="https://github.com/tinkoff/maskito/issues/253">#253</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/261779ead327397a61b27e634bc827ee70b718f4">261779e</a>)</li>
-<li><strong>kit:</strong> <code>Number</code> supports new <code>prefix</code> &amp; <code>postfix</code> parameters (<a href="https://github.com/tinkoff/maskito/issues/264">#264</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/6e785818dabcde623d8c1c40a584166a0a66f5b6">6e78581</a>)</li>
-<li><strong>kit:</strong> new <code>maskitoPostfixPostprocessorGenerator</code> (<a href="https://github.com/tinkoff/maskito/issues/257">#257</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/fdc86dbad368bfc17efd1047b7d68d9622968bb0">fdc86db</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/253">#253</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/261779ead327397a61b27e634bc827ee70b718f4">261779e</a>)</li>
+<li><strong>kit:</strong> <code>Number</code> supports new <code>prefix</code> &amp; <code>postfix</code> parameters
+(<a href="https://github.com/taiga-family/maskito/issues/264">#264</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/6e785818dabcde623d8c1c40a584166a0a66f5b6">6e78581</a>)</li>
+<li><strong>kit:</strong> new <code>maskitoPostfixPostprocessorGenerator</code> (<a href="https://github.com/taiga-family/maskito/issues/257">#257</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/fdc86dbad368bfc17efd1047b7d68d9622968bb0">fdc86db</a>)</li>
 </ul>
 <h3 id="bug-fixes-10">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> fails to trim leading zeroes after deleting of leading digit
-(<a href="https://github.com/tinkoff/maskito/issues/268">#268</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/4ae0010ef2149694d22d7ae9eb8c9880120c8c75">4ae0010</a>)</li>
-<li><strong>kit:</strong> <code>Number</code> should trim redundant thousand separators (<a href="https://github.com/tinkoff/maskito/issues/267">#267</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/100b79317a420103ca98a3b43fe646a6f77d19d5">100b793</a>)</li>
-<li><strong>kit:</strong> fix first zero in short-format date-mask (<a href="https://github.com/tinkoff/maskito/issues/251">#251</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/08bdfd26727777c3a6fc870e433003be2b64cc0e">08bdfd2</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/268">#268</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/4ae0010ef2149694d22d7ae9eb8c9880120c8c75">4ae0010</a>)</li>
+<li><strong>kit:</strong> <code>Number</code> should trim redundant thousand separators
+(<a href="https://github.com/taiga-family/maskito/issues/267">#267</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/100b79317a420103ca98a3b43fe646a6f77d19d5">100b793</a>)</li>
+<li><strong>kit:</strong> fix first zero in short-format date-mask (<a href="https://github.com/taiga-family/maskito/issues/251">#251</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/08bdfd26727777c3a6fc870e433003be2b64cc0e">08bdfd2</a>)</li>
 </ul>
-<h2 id="090-2023-03-31"><a href="https://github.com/tinkoff/maskito/compare/v0.8.1...v0.9.0">0.9.0</a> (2023-03-31)</h2>
+<h2 id="090-2023-03-31"><a href="https://github.com/taiga-family/maskito/compare/v0.8.1...v0.9.0">0.9.0</a> (2023-03-31)</h2>
 <h3 id="features-11">Features</h3>
 <ul>
-<li><strong>kit:</strong> new <code>maskitoPrefixPostprocessorGenerator</code> (<a href="https://github.com/tinkoff/maskito/issues/235">#235</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/50f0d58ccbfa22d15174d76479a9d642687db099">50f0d58</a>)</li>
+<li><strong>kit:</strong> new <code>maskitoPrefixPostprocessorGenerator</code> (<a href="https://github.com/taiga-family/maskito/issues/235">#235</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/50f0d58ccbfa22d15174d76479a9d642687db099">50f0d58</a>)</li>
 </ul>
 <h3 id="bug-fixes-11">Bug Fixes</h3>
 <ul>
 <li><strong>angular:</strong> Jest throws <code>Class constructor DefaultValueAccessor cannot be invoked without 'new'</code>
-(<a href="https://github.com/tinkoff/maskito/issues/232">#232</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/508961288898a5fdd21cc0e26b23ecc8845f9068">5089612</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/232">#232</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/508961288898a5fdd21cc0e26b23ecc8845f9068">5089612</a>)</li>
 </ul>
-<h3 id="081-2023-03-27"><a href="https://github.com/tinkoff/maskito/compare/v0.8.0...v0.8.1">0.8.1</a> (2023-03-27)</h3>
+<h3 id="081-2023-03-27"><a href="https://github.com/taiga-family/maskito/compare/v0.8.0...v0.8.1">0.8.1</a> (2023-03-27)</h3>
 <h3 id="bug-fixes-12">Bug Fixes</h3>
 <ul>
 <li><code>@maskito/core</code> &amp; <code>@maskito/kit</code> now include both <code>UMD</code> and <code>ESM</code> module formats
-(<a href="https://github.com/tinkoff/maskito/issues/227">#227</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/fa1c514a5753e3bca20e8b0994e4bf9f1c0ab6a4">fa1c514</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/227">#227</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/fa1c514a5753e3bca20e8b0994e4bf9f1c0ab6a4">fa1c514</a>)</li>
 </ul>
-<h2 id="080-2023-03-23"><a href="https://github.com/tinkoff/maskito/compare/v0.7.2...v0.8.0">0.8.0</a> (2023-03-23)</h2>
+<h2 id="080-2023-03-23"><a href="https://github.com/taiga-family/maskito/compare/v0.7.2...v0.8.0">0.8.0</a> (2023-03-23)</h2>
 <h3 id="features-12">Features</h3>
 <ul>
 <li><strong>kit:</strong> <code>DateRange</code> swaps dates if the 2nd date is less than the 1st one
-(<a href="https://github.com/tinkoff/maskito/issues/212">#212</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/3efbb42f2dd5c4e43ff514da7a82abfc7c4b3a38">3efbb42</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/212">#212</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/3efbb42f2dd5c4e43ff514da7a82abfc7c4b3a38">3efbb42</a>)</li>
 </ul>
 <h3 id="bug-fixes-13">Bug Fixes</h3>
 <ul>
 <li><strong>core:</strong> incorrect order of actions during update of native element
-(<a href="https://github.com/tinkoff/maskito/issues/225">#225</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/394d5d996bdb9d21229ea0301eb3f776bee05d30">394d5d9</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/225">#225</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/394d5d996bdb9d21229ea0301eb3f776bee05d30">394d5d9</a>)</li>
 </ul>
-<h3 id="072-2023-03-23"><a href="https://github.com/tinkoff/maskito/compare/v0.7.1...v0.7.2">0.7.2</a> (2023-03-23)</h3>
+<h3 id="072-2023-03-23"><a href="https://github.com/taiga-family/maskito/compare/v0.7.1...v0.7.2">0.7.2</a> (2023-03-23)</h3>
 <h3 id="bug-fixes-14">Bug Fixes</h3>
 <ul>
 <li><strong>angular:</strong> <code>@maskito/angular</code> should not depend on <code>@maskito/kit</code>
-(<a href="https://github.com/tinkoff/maskito/issues/221">#221</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/0ae7b2089ec0436caa8dbb14d5c696ae93e9e7ed">0ae7b20</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/221">#221</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/0ae7b2089ec0436caa8dbb14d5c696ae93e9e7ed">0ae7b20</a>)</li>
 <li><strong>angular:</strong> <code>npm i @maskito/angular</code> throws <code>ERESOLVE unable to resolve dependency tree</code>
-(<a href="https://github.com/tinkoff/maskito/issues/220">#220</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/8b4d6e6186db47f97d328186b7afd9af75a3889b">8b4d6e6</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/220">#220</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/8b4d6e6186db47f97d328186b7afd9af75a3889b">8b4d6e6</a>)</li>
 </ul>
-<h3 id="071-2023-03-22"><a href="https://github.com/tinkoff/maskito/compare/v0.7.0...v0.7.1">0.7.1</a> (2023-03-22)</h3>
+<h3 id="071-2023-03-22"><a href="https://github.com/taiga-family/maskito/compare/v0.7.0...v0.7.1">0.7.1</a> (2023-03-22)</h3>
 <h3 id="bug-fixes-15">Bug Fixes</h3>
 <ul>
 <li><strong>angular:</strong> use <code>@nrwl/angular:package</code> executor instead of <code>@nrwl/angular:ng-packagr-lite</code>
-(<a href="https://github.com/tinkoff/maskito/issues/216">#216</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/164d015c2f18a279e195b45329e84c0d023c9483">164d015</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/216">#216</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/164d015c2f18a279e195b45329e84c0d023c9483">164d015</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> broken <code>Delete</code>-button navigation if <code>decimalZeroPadding=true</code>
-(<a href="https://github.com/tinkoff/maskito/issues/211">#211</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/1b750d135ebd53bfeda2ca734425de08a808b1af">1b750d1</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/211">#211</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/1b750d135ebd53bfeda2ca734425de08a808b1af">1b750d1</a>)</li>
 </ul>
-<h2 id="070-2023-03-20"><a href="https://github.com/tinkoff/maskito/compare/v0.6.0...v0.7.0">0.7.0</a> (2023-03-20)</h2>
+<h2 id="070-2023-03-20"><a href="https://github.com/taiga-family/maskito/compare/v0.6.0...v0.7.0">0.7.0</a> (2023-03-20)</h2>
 <h3 id="features-13">Features</h3>
 <ul>
 <li><strong>core:</strong> add <code>deleteSoftLineBackward</code> &amp; <code>deleteSoftLineForward</code> support
-(<a href="https://github.com/tinkoff/maskito/issues/207">#207</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/cbd5479c04c07113804eee6ea6c9838ee8681597">cbd5479</a>)</li>
-<li><strong>kit:</strong> use 1 as min segment value in <code>Date</code>-related masks (<a href="https://github.com/tinkoff/maskito/issues/197">#197</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c">c85ca23</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/207">#207</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/cbd5479c04c07113804eee6ea6c9838ee8681597">cbd5479</a>)</li>
+<li><strong>kit:</strong> use 1 as min segment value in <code>Date</code>-related masks
+(<a href="https://github.com/taiga-family/maskito/issues/197">#197</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c">c85ca23</a>)</li>
 </ul>
 <h3 id="bug-fixes-16">Bug Fixes</h3>
 <ul>
 <li><strong>core:</strong> <code>Maskito</code> losses valid characters on invalid insertion (<code>overwriteMode: replace</code>)
-(<a href="https://github.com/tinkoff/maskito/issues/208">#208</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/ef183b454e4a7db5b2cb48cbe26129bf303f676a">ef183b4</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/208">#208</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/ef183b454e4a7db5b2cb48cbe26129bf303f676a">ef183b4</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> should drop leading zeroes for negative numbers
-(<a href="https://github.com/tinkoff/maskito/issues/204">#204</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/6e9adf758aa585944ee08f2e2aff81a5664adefd">6e9adf7</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/204">#204</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/6e9adf758aa585944ee08f2e2aff81a5664adefd">6e9adf7</a>)</li>
 </ul>
-<h2 id="060-2023-03-15"><a href="https://github.com/tinkoff/maskito/compare/v0.5.0...v0.6.0">0.6.0</a> (2023-03-15)</h2>
+<h2 id="060-2023-03-15"><a href="https://github.com/taiga-family/maskito/compare/v0.5.0...v0.6.0">0.6.0</a> (2023-03-15)</h2>
 <h3 id="features-14">Features</h3>
 <ul>
-<li><strong>angular:</strong> add CVA and pipe (<a href="https://github.com/tinkoff/maskito/issues/187">#187</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/a099257a16b569444cdae9276ce66e9a806f531e">a099257</a>)</li>
+<li><strong>angular:</strong> add CVA and pipe (<a href="https://github.com/taiga-family/maskito/issues/187">#187</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/a099257a16b569444cdae9276ce66e9a806f531e">a099257</a>)</li>
 <li><strong>core:</strong> add <code>deleteWordBackward</code> &amp; <code>deleteWordForward</code> support
-(<a href="https://github.com/tinkoff/maskito/issues/193">#193</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/24b761c84d0947df5e4c78a2114f1de8f6ca20f4">24b761c</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/193">#193</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/24b761c84d0947df5e4c78a2114f1de8f6ca20f4">24b761c</a>)</li>
 </ul>
 <h3 id="bug-fixes-17">Bug Fixes</h3>
 <ul>
 <li><strong>core:</strong> show trailing fixed characters + duplicated fixed character on <code>Drop</code>
-(<a href="https://github.com/tinkoff/maskito/issues/185">#185</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/c7f6a1bb8098b5641ed8c6921c2ebc86c6135b58">c7f6a1b</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/185">#185</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/c7f6a1bb8098b5641ed8c6921c2ebc86c6135b58">c7f6a1b</a>)</li>
 <li><strong>kit:</strong> <code>maskitoParseNumber</code> incorrectly parses negative numbers
-(<a href="https://github.com/tinkoff/maskito/issues/190">#190</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/d713bd143e5090870a406ea14498cb99843bb9d0">d713bd1</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/190">#190</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/d713bd143e5090870a406ea14498cb99843bb9d0">d713bd1</a>)</li>
 <li><strong>kit:</strong> <code>Number</code> should drop decimal part on paste from clipboard if <code>precision=0</code>
-(<a href="https://github.com/tinkoff/maskito/issues/195">#195</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/ba85c38ec0c81a22ff758f4ba386d045ac49ffd5">ba85c38</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/195">#195</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/ba85c38ec0c81a22ff758f4ba386d045ac49ffd5">ba85c38</a>)</li>
 </ul>
-<h2 id="050-2023-03-09"><a href="https://github.com/tinkoff/maskito/compare/v0.4.0...v0.5.0">0.5.0</a> (2023-03-09)</h2>
+<h2 id="050-2023-03-09"><a href="https://github.com/taiga-family/maskito/compare/v0.4.0...v0.5.0">0.5.0</a> (2023-03-09)</h2>
 <h3 id="features-15">Features</h3>
 <ul>
 <li><strong>core:</strong> new utility <code>maskitoTransform(value, maskitoOptions)</code>
-(<a href="https://github.com/tinkoff/maskito/issues/177">#177</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/20316f15e153bfeeb45eda6406b8792e00f3238f">20316f1</a>)</li>
-<li><strong>kit:</strong> new utility <code>maskitoParseNumber</code> (<a href="https://github.com/tinkoff/maskito/issues/178">#178</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/fc58141625ecbdc7d804aa382a69b38bf7146fc4">fc58141</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/177">#177</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/20316f15e153bfeeb45eda6406b8792e00f3238f">20316f1</a>)</li>
+<li><strong>kit:</strong> new utility <code>maskitoParseNumber</code> (<a href="https://github.com/taiga-family/maskito/issues/178">#178</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/fc58141625ecbdc7d804aa382a69b38bf7146fc4">fc58141</a>)</li>
 </ul>
 <h3 id="bug-fixes-18">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> mask throws an error on empty string in <code>thousandSeparator</code>
-(<a href="https://github.com/tinkoff/maskito/issues/176">#176</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/cd52fad80bc278f171dafa1709c54cba3f8fbc81">cd52fad</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/176">#176</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/cd52fad80bc278f171dafa1709c54cba3f8fbc81">cd52fad</a>)</li>
 </ul>
-<h2 id="040-2023-03-02"><a href="https://github.com/tinkoff/maskito/compare/v0.3.0...v0.4.0">0.4.0</a> (2023-03-02)</h2>
+<h2 id="040-2023-03-02"><a href="https://github.com/taiga-family/maskito/compare/v0.3.0...v0.4.0">0.4.0</a> (2023-03-02)</h2>
 <h3 id="features-16">Features</h3>
 <ul>
-<li><strong>angular:</strong> <code>maskitoElement</code> add new input (<a href="https://github.com/tinkoff/maskito/issues/164">#164</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/407c131d2d8f8514173ad7a5e248759e2d4f8abc">407c131</a>)</li>
+<li><strong>angular:</strong> <code>maskitoElement</code> add new input (<a href="https://github.com/taiga-family/maskito/issues/164">#164</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/407c131d2d8f8514173ad7a5e248759e2d4f8abc">407c131</a>)</li>
 </ul>
 <h3 id="bug-fixes-19">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> pads empty integer part when paste from clipboard
-(<a href="https://github.com/tinkoff/maskito/issues/168">#168</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/d043a82561cbed94b19d59d174fa6da7f08d49d4">d043a82</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/168">#168</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/d043a82561cbed94b19d59d174fa6da7f08d49d4">d043a82</a>)</li>
 </ul>
-<h2 id="030-2023-03-01"><a href="https://github.com/tinkoff/maskito/compare/v0.2.0...v0.3.0">0.3.0</a> (2023-03-01)</h2>
+<h2 id="030-2023-03-01"><a href="https://github.com/taiga-family/maskito/compare/v0.2.0...v0.3.0">0.3.0</a> (2023-03-01)</h2>
 <h3 id="features-17">Features</h3>
 <ul>
 <li><strong>angular:</strong> add other maskito packages to <code>ng-update.packageGroup</code> of <code>package.json</code>
-(<a href="https://github.com/tinkoff/maskito/issues/161">#161</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/bdecdaa9cac2681e35191cabd2d5d853eb97a09d">bdecdaa</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/161">#161</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/bdecdaa9cac2681e35191cabd2d5d853eb97a09d">bdecdaa</a>)</li>
 </ul>
 <h3 id="bug-fixes-20">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Date</code>-mask fix wrong year that appears using the min property
-(<a href="https://github.com/tinkoff/maskito/issues/157">#157</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/544e8912d2752e0fc8f77757e935070b94823f65">544e891</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/157">#157</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/544e8912d2752e0fc8f77757e935070b94823f65">544e891</a>)</li>
 </ul>
-<h2 id="020-2023-02-28"><a href="https://github.com/tinkoff/maskito/compare/v0.1.1...v0.2.0">0.2.0</a> (2023-02-28)</h2>
+<h2 id="020-2023-02-28"><a href="https://github.com/taiga-family/maskito/compare/v0.1.1...v0.2.0">0.2.0</a> (2023-02-28)</h2>
 <h3 id="features-18">Features</h3>
 <ul>
-<li><strong>kit:</strong> new <code>DateTime</code> mask (<a href="https://github.com/tinkoff/maskito/issues/146">#146</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/6d6b2c17b5c0f62bc804451524cd4b2ce3e50660">6d6b2c1</a>)</li>
+<li><strong>kit:</strong> new <code>DateTime</code> mask (<a href="https://github.com/taiga-family/maskito/issues/146">#146</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/6d6b2c17b5c0f62bc804451524cd4b2ce3e50660">6d6b2c1</a>)</li>
 </ul>
 <h3 id="bug-fixes-21">Bug Fixes</h3>
 <ul>
 <li><strong>kit:</strong> <code>Number</code> is now replacing hyphen, en-dash and em-dash with minus sign
-(<a href="https://github.com/tinkoff/maskito/issues/153">#153</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/1f21f1159baadcef65e49bacaec77eba3b6f36d8">1f21f11</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/153">#153</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/1f21f1159baadcef65e49bacaec77eba3b6f36d8">1f21f11</a>)</li>
 </ul>
-<h3 id="011-2023-02-15"><a href="https://github.com/tinkoff/maskito/compare/v0.1.0...v0.1.1">0.1.1</a> (2023-02-15)</h3>
+<h3 id="011-2023-02-15"><a href="https://github.com/taiga-family/maskito/compare/v0.1.0...v0.1.1">0.1.1</a> (2023-02-15)</h3>
 <h3 id="bug-fixes-22">Bug Fixes</h3>
 <ul>
 <li><strong>core:</strong> <code>Module parse failed: 'import' and 'export' may appear only with 'sourceType: module'</code>
-(<a href="https://github.com/tinkoff/maskito/issues/131">#131</a>)
-(<a href="https://github.com/tinkoff/maskito/commit/41e05c09e41ed611e0c2b9aa07a953dfbe049da7">41e05c0</a>)</li>
+(<a href="https://github.com/taiga-family/maskito/issues/131">#131</a>)
+(<a href="https://github.com/taiga-family/maskito/commit/41e05c09e41ed611e0c2b9aa07a953dfbe049da7">41e05c0</a>)</li>
 </ul>
 <h2 id="010-2023-02-14">0.1.0 (2023-02-14)</h2>
 <p>This release introduces the first publishing of the following packages:</p>
@@ -391,8 +397,8 @@ parameters. This release introduces the following masks:<ul>
 </ul>
 </li>
 </ul>
-</markdown><!----><!----></div></tui-doc-page></changelog><!----></div></div><header tuidocheader="" _nghost-sc210=""><button _ngcontent-sc210="" tuiiconbutton="" icon="tuiIconMenuLarge" appearance="icon" type="button" class="t-menu" _nghost-sc176="" title="Menu" tabindex="0" data-size="l" data-appearance="icon"><!----><!----><div _ngcontent-sc176="" tuiwrapper="" class="t-wrapper" data-appearance="icon"><span _ngcontent-sc176="" class="t-content"><span _ngcontent-sc176="" class="t-left ng-star-inserted"><tui-svg _ngcontent-sc176="" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconMenuLarge.svg?v=3.26.0#tuiIconMenuLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></span><!----><!----><!----></span><!----></div></button><div _ngcontent-sc210="" class="t-logo"><logo _nghost-sc225="" class="ng-star-inserted"><a _ngcontent-sc225="" tuilink="" routerlink="/" class="logo-link" _nghost-sc195="" href="/"><!----><span _ngcontent-sc195="" class="t-content"><span _ngcontent-sc225="" class="logo-name"><img _ngcontent-sc225="" src="assets/icons/maskito.svg" alt="Maskito logo" class="logo"> Maskito </span></span><!----></a><img _ngcontent-sc225="" src="assets/icons/by.svg" alt="by Tinkoff" class="by"></logo><!----></div><a _ngcontent-sc220="" tuilink="" tuimode="onLight" href="https://github.com/tinkoff/maskito" title="Maskito source code on GitHub" rel="noreferrer" iconalign="left" icon="assets/icons/github.svg" target="_blank" class="link" _nghost-sc195=""><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><a _ngcontent-sc220="" tuilink="" tuimode="onLight" href="https://t.me/taiga_ui/10600" title="Get help on Telegram" iconalign="left" rel="noreferrer" icon="assets/icons/telegram.svg" target="_blank" class="link" _nghost-sc195=""><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><a _ngcontent-sc220="" tuilink="" tuimode="onLight" title="Maskito StackBlitz Starter" iconalign="left" icon="assets/icons/stackblitz.svg" class="link" _nghost-sc195="" href="/stackblitz"><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><!----><button tuiiconbutton="" tuimode="onLight" appearance="secondary" size="s" shape="rounded" type="button" class="tui-doc-night-mode-switch" _nghost-sc176="" tabindex="0" data-shape="rounded" data-size="s" data-appearance="secondary"><!----><!----><div _ngcontent-sc176="" tuiwrapper="" class="t-wrapper" data-appearance="secondary"><span _ngcontent-sc176="" class="t-content"><span _ngcontent-sc176="" class="t-left ng-star-inserted"><tui-svg _ngcontent-sc176="" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconMoonLarge.svg?v=3.26.0#tuiIconMoonLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></span><!----><!----></span><!----></div></button></header></div><!----><tui-dialog-host _nghost-sc188="" class="ng-tns-c188-0 ng-star-inserted"><!----><div _ngcontent-sc188="" class="t-overlay ng-tns-c188-0 ng-star-inserted"></div><!----><!----><!----></tui-dialog-host><!----><tui-alert-host class="ng-tns-c189-1 ng-star-inserted"><div class="t-wrapper ng-tns-c189-1 ng-trigger ng-trigger-tuiParentAnimation ng-star-inserted" style=""><!----></div><!----></tui-alert-host><!----><!----></tui-dropdown-host><!----><tui-hints-host aria-live="polite" _nghost-sc192="" class="ng-tns-c192-2"><!----></tui-hints-host><!----></tui-root></tui-doc-main></my-app>
-    <script src="runtime-es2015.0c94e3f9e6bbb6158e76.js" type="module"></script><script src="runtime-es5.0c94e3f9e6bbb6158e76.js" nomodule="" defer=""></script><script src="polyfills-es5.9a33eb5bbb3157d2deb1.js" nomodule="" defer=""></script><script src="polyfills-es2015.fcbecedf580c45d12063.js" type="module"></script><script src="main-es2015.e7f58a1637ffc8cd8333.js" type="module"></script><script src="main-es5.e7f58a1637ffc8cd8333.js" nomodule="" defer=""></script>
+</markdown><!----><!----></div></tui-doc-page></changelog><!----></div></div><header tuidocheader="" _nghost-sc210=""><button _ngcontent-sc210="" tuiiconbutton="" icon="tuiIconMenuLarge" appearance="icon" type="button" class="t-menu" _nghost-sc176="" title="Menu" tabindex="0" data-size="l" data-appearance="icon"><!----><!----><div _ngcontent-sc176="" tuiwrapper="" class="t-wrapper" data-appearance="icon"><span _ngcontent-sc176="" class="t-content"><span _ngcontent-sc176="" class="t-left ng-star-inserted"><tui-svg _ngcontent-sc176="" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconMenuLarge.svg?v=3.26.0#tuiIconMenuLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></span><!----><!----><!----></span><!----></div></button><div _ngcontent-sc210="" class="t-logo"><logo _nghost-sc225="" class="ng-star-inserted"><a _ngcontent-sc225="" tuilink="" routerlink="/" class="logo-link" _nghost-sc195="" href="/"><!----><span _ngcontent-sc195="" class="t-content"><span _ngcontent-sc225="" class="logo-name"><img _ngcontent-sc225="" src="assets/icons/maskito.svg" alt="Maskito logo" class="logo"> Maskito </span></span><!----></a><img _ngcontent-sc225="" src="assets/icons/by.svg" alt="by Tinkoff" class="by"></logo><!----></div><a _ngcontent-sc220="" tuilink="" tuimode="onLight" href="https://github.com/taiga-family/maskito" title="Maskito source code on GitHub" rel="noreferrer" iconalign="left" icon="assets/icons/github.svg" target="_blank" class="link" _nghost-sc195=""><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><a _ngcontent-sc220="" tuilink="" tuimode="onLight" href="https://t.me/taiga_ui/10600" title="Get help on Telegram" iconalign="left" rel="noreferrer" icon="assets/icons/telegram.svg" target="_blank" class="link" _nghost-sc195=""><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><a _ngcontent-sc220="" tuilink="" tuimode="onLight" title="Maskito StackBlitz Starter" iconalign="left" icon="assets/icons/stackblitz.svg" class="link" _nghost-sc195="" href="/stackblitz"><tui-svg _ngcontent-sc195="" class="t-icon t-icon_left ng-star-inserted" _nghost-sc106=""><div _ngcontent-sc106="" class="t-src ng-star-inserted"></div><!----><!----><!----><!----></tui-svg><!----><span _ngcontent-sc195="" class="t-content"></span><!----></a><!----><button tuiiconbutton="" tuimode="onLight" appearance="secondary" size="s" shape="rounded" type="button" class="tui-doc-night-mode-switch" _nghost-sc176="" tabindex="0" data-shape="rounded" data-size="s" data-appearance="secondary"><!----><!----><div _ngcontent-sc176="" tuiwrapper="" class="t-wrapper" data-appearance="secondary"><span _ngcontent-sc176="" class="t-content"><span _ngcontent-sc176="" class="t-left ng-star-inserted"><tui-svg _ngcontent-sc176="" class="t-icon ng-star-inserted" _nghost-sc106=""><svg _ngcontent-sc106="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-sc106="" xlink:href="assets/taiga-ui/icons/tuiIconMoonLarge.svg?v=3.26.0#tuiIconMoonLarge"></use></svg><!----><!----><!----><!----></tui-svg><!----></span><!----><!----></span><!----></div></button></header></div><!----><tui-dialog-host _nghost-sc188="" class="ng-tns-c188-0 ng-star-inserted"><!----><div _ngcontent-sc188="" class="t-overlay ng-tns-c188-0 ng-star-inserted"></div><!----><!----><!----></tui-dialog-host><!----><tui-alert-host class="ng-tns-c189-1 ng-star-inserted"><div class="t-wrapper ng-tns-c189-1 ng-trigger ng-trigger-tuiParentAnimation ng-star-inserted" style=""><!----></div><!----></tui-alert-host><!----><!----></tui-dropdown-host><!----><tui-hints-host aria-live="polite" _nghost-sc192="" class="ng-tns-c192-2"><!----></tui-hints-host><!----></tui-root></tui-doc-main></my-app>
+    <script src="runtime-es2015.859d6603e1b9ccd09910.js" type="module"></script><script src="runtime-es5.859d6603e1b9ccd09910.js" nomodule="" defer=""></script><script src="polyfills-es5.9a33eb5bbb3157d2deb1.js" nomodule="" defer=""></script><script src="polyfills-es2015.fcbecedf580c45d12063.js" type="module"></script><script src="main-es2015.f06edae69dddce40bcf7.js" type="module"></script><script src="main-es5.f06edae69dddce40bcf7.js" nomodule="" defer=""></script>
 
 
 </body><!-- This page was prerendered with Angular Universal --></html>
