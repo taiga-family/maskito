@@ -24,7 +24,7 @@ jobs:
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.TINKOFF_BOT_PAT }}
+          token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.7.5
@@ -47,7 +47,7 @@ jobs:
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.TINKOFF_BOT_PAT }}
+          token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.7.5
@@ -70,7 +70,7 @@ jobs:
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
-          token: ${{ secrets.TINKOFF_BOT_PAT }}
+          token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.7.5
