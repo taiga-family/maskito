@@ -130,7 +130,8 @@ All notable changes to this project will be documented in this file. See
 - **kit:** `maskitoParseNumber` should return `NaN` for all strings with no digits
   ([#331](https://github.com/taiga-family/maskito/issues/331))
   ([d1ebcec](https://github.com/taiga-family/maskito/commit/d1ebceceedf418b21a68082f7350002d09159ebf))
-- **kit:** `Number` incorrectly implements `min`/`max` behaviour ([#334](https://github.com/taiga-family/maskito/issues/334))
+- **kit:** `Number` incorrectly implements `min`/`max` behaviour
+  ([#334](https://github.com/taiga-family/maskito/issues/334))
   ([9876d88](https://github.com/taiga-family/maskito/commit/9876d885f98f86d18db04d723460b468bca3837d))
 
 ## [0.14.0](https://github.com/taiga-family/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
@@ -158,7 +159,8 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
-- **kit:** `DateTime` validate min / max if date is complete ([#314](https://github.com/taiga-family/maskito/issues/314))
+- **kit:** `DateTime` validate min / max if date is complete
+  ([#314](https://github.com/taiga-family/maskito/issues/314))
   ([5783e76](https://github.com/taiga-family/maskito/commit/5783e766a657abcf0fc7f8a8d12ac1bf412dc18a))
 - **kit:** `Time` & `DateTime` should accept time segment separator typed by user
   ([#317](https://github.com/taiga-family/maskito/issues/317))
@@ -183,7 +185,8 @@ All notable changes to this project will be documented in this file. See
 - **core:** `insertFromDrop` action behaves now in the same way as `insertFromPaste`
   ([#291](https://github.com/taiga-family/maskito/issues/291))
   ([58e0fcc](https://github.com/taiga-family/maskito/commit/58e0fccb7ddd3c741ffa3c8b99efbcf4571aab37))
-- **kit:** `Time` doesn't validate time segments on `drop` event ([#289](https://github.com/taiga-family/maskito/issues/289))
+- **kit:** `Time` doesn't validate time segments on `drop` event
+  ([#289](https://github.com/taiga-family/maskito/issues/289))
   ([0c6d1b9](https://github.com/taiga-family/maskito/commit/0c6d1b9917d0c86a98c0d215c38a0e2076ff5680))
 
 ## [0.11.0](https://github.com/taiga-family/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
@@ -200,7 +203,8 @@ All notable changes to this project will be documented in this file. See
 - **kit:** `Number` keeps untouched decimal part if `precision: Infinity`
   ([#253](https://github.com/taiga-family/maskito/issues/253))
   ([261779e](https://github.com/taiga-family/maskito/commit/261779ead327397a61b27e634bc827ee70b718f4))
-- **kit:** `Number` supports new `prefix` & `postfix` parameters ([#264](https://github.com/taiga-family/maskito/issues/264))
+- **kit:** `Number` supports new `prefix` & `postfix` parameters
+  ([#264](https://github.com/taiga-family/maskito/issues/264))
   ([6e78581](https://github.com/taiga-family/maskito/commit/6e785818dabcde623d8c1c40a584166a0a66f5b6))
 - **kit:** new `maskitoPostfixPostprocessorGenerator` ([#257](https://github.com/taiga-family/maskito/issues/257))
   ([fdc86db](https://github.com/taiga-family/maskito/commit/fdc86dbad368bfc17efd1047b7d68d9622968bb0))
@@ -210,7 +214,8 @@ All notable changes to this project will be documented in this file. See
 - **kit:** `Number` fails to trim leading zeroes after deleting of leading digit
   ([#268](https://github.com/taiga-family/maskito/issues/268))
   ([4ae0010](https://github.com/taiga-family/maskito/commit/4ae0010ef2149694d22d7ae9eb8c9880120c8c75))
-- **kit:** `Number` should trim redundant thousand separators ([#267](https://github.com/taiga-family/maskito/issues/267))
+- **kit:** `Number` should trim redundant thousand separators
+  ([#267](https://github.com/taiga-family/maskito/issues/267))
   ([100b793](https://github.com/taiga-family/maskito/commit/100b79317a420103ca98a3b43fe646a6f77d19d5))
 - **kit:** fix first zero in short-format date-mask ([#251](https://github.com/taiga-family/maskito/issues/251))
   ([08bdfd2](https://github.com/taiga-family/maskito/commit/08bdfd26727777c3a6fc870e433003be2b64cc0e))
@@ -279,7 +284,8 @@ All notable changes to this project will be documented in this file. See
 - **core:** add `deleteSoftLineBackward` & `deleteSoftLineForward` support
   ([#207](https://github.com/taiga-family/maskito/issues/207))
   ([cbd5479](https://github.com/taiga-family/maskito/commit/cbd5479c04c07113804eee6ea6c9838ee8681597))
-- **kit:** use 1 as min segment value in `Date`-related masks ([#197](https://github.com/taiga-family/maskito/issues/197))
+- **kit:** use 1 as min segment value in `Date`-related masks
+  ([#197](https://github.com/taiga-family/maskito/issues/197))
   ([c85ca23](https://github.com/taiga-family/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c))
 
 ### Bug Fixes
