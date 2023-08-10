@@ -28,7 +28,7 @@
         "@taiga-ui/styles": "3.26.0",
         "@taiga-ui/testing": "3.26.0",
         "@tinkoff/ng-dompurify": "3.0.0",
-        "dompurify": "2.4.5",
+        "dompurify": "2.4.7",
         "ngx-markdown": "10.1.1",
         "rxjs": "6.6.7",
         "tslib": "2.3.0",
