@@ -195,6 +195,14 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.PhonePackage,
+        loadChildren: async () =>
+            import(`../pages/phone/phone-doc.module`).then(m => m.PhoneDocModule),
+        data: {
+            title: `Phone`,
+        },
+    },
+    {
         path: DemoPath.Textarea,
         loadChildren: async () =>
             import(`../pages/recipes/textarea/textarea-doc.module`).then(

@@ -1,0 +1,60 @@
+<tui-doc-page
+    header="Phone"
+    package="PHONE"
+>
+    <ng-template pageTab>
+        <p>
+            This mask is based on the
+            <a
+                tuiLink
+                href="https://www.npmjs.com/package/libphonenumber-js"
+            >
+                libphonenumber-js
+            </a>
+            package.
+        </p>
+        Use
+        <code>maskitoPhoneOptionsGenerator</code>
+        to create a mask for phone input.
+
+        <tui-doc-example
+            id="basic"
+            heading="basic"
+            description="Kazakhstan phone example"
+            [content]="basic"
+        >
+            <phone-doc-example-1></phone-doc-example-1>
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiTextfieldCustomContent="tuiIconPhoneLarge"
+                    class="phone"
+                    [formControl]="apiPageControl"
+                >
+                    Enter phone
+                    <input
+                        tuiTextfield
+                        inputmode="numeric"
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="countryCode"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [documentationPropertyValues]="countryCodeVariants"
+                [(documentationPropertyValue)]="countryIsoCode"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Country code
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>

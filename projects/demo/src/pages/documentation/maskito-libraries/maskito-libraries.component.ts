@@ -8,6 +8,7 @@ import {DemoPath} from '@demo/constants';
 })
 export class MaskitoLibrariesDocPageComponent {
     readonly numberMaskDocPage = `/${DemoPath.Number}`;
+    readonly phoneMaskDocPage = `/${DemoPath.PhonePackage}`;
     readonly timeMaskDocPage = `/${DemoPath.Time}`;
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     readonly angularDocPage = `/${DemoPath.Angular}`;

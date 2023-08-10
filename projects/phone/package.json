@@ -1,0 +1,38 @@
+{
+    "name": "@maskito/phone",
+    "version": "1.4.0",
+    "description": "The optional framework-agnostic Maskito's package with phone masks",
+    "keywords": [
+        "mask",
+        "inputmask",
+        "phonemask",
+        "phone",
+        "javascript",
+        "typescript"
+    ],
+    "homepage": "https://tinkoff.github.io/maskito",
+    "bugs": "https://github.com/tinkoff/maskito/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tinkoff/maskito.git"
+    },
+    "license": "Apache-2.0",
+    "author": {
+        "name": "Nikita Barsukov",
+        "email": "nikita.s.barsukov@gmail.com",
+        "url": "https://github.com/nsbarsukov"
+    },
+    "contributors": [
+        "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
+        "Maksim Ivanov <splincodewd@yandex.ru>",
+        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
+        "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
+    ],
+    "devDependencies": {
+        "libphonenumber-js": "^1.10.37"
+    },
+    "peerDependencies": {
+        "@maskito/core": "^1.4.0",
+        "libphonenumber-js": "^1.10.37"
+    }
+}

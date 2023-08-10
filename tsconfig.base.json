@@ -41,6 +41,7 @@
             "@maskito/angular": ["projects/angular/src/index.ts"],
             "@maskito/core": ["projects/core/src/index.ts"],
             "@maskito/kit": ["projects/kit/src/index.ts"],
+            "@maskito/phone": ["projects/phone/src/index.ts"],
             "@maskito/react": ["projects/react/src/index.ts"],
             "@maskito/vue": ["projects/vue/src/index.ts"]
         }

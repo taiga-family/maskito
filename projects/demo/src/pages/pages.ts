@@ -106,6 +106,12 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `date, day, month, year, mask, time, date-time, hour, minute, second, kit, generator`,
     },
     {
+        section: 'Phone',
+        title: 'Phone',
+        route: DemoPath.PhonePackage,
+        keywords: `phone, libphonenumber, generator`,
+    },
+    {
         section: 'Recipes',
         title: 'Card',
         route: DemoPath.Card,
