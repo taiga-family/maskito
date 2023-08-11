@@ -9,6 +9,8 @@
         autocomplete="tel"
         inputmode="tel"
         [maskito]="maskitoOptions"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
     />
 </tui-input>
 

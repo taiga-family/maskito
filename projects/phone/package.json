@@ -10,17 +10,17 @@
         "javascript",
         "typescript"
     ],
-    "homepage": "https://tinkoff.github.io/maskito",
-    "bugs": "https://github.com/tinkoff/maskito/issues",
+    "homepage": "https://maskito.dev",
+    "bugs": "https://github.com/taiga-family/maskito/issues",
     "repository": {
         "type": "git",
-        "url": "https://github.com/tinkoff/maskito.git"
+        "url": "https://github.com/taiga-family/maskito.git"
     },
     "license": "Apache-2.0",
     "author": {
-        "name": "Nikita Barsukov",
-        "email": "nikita.s.barsukov@gmail.com",
-        "url": "https://github.com/nsbarsukov"
+        "name": "Vladimir Potekhin",
+        "email": "vladimir.potekh@gmail.com",
+        "url": "https://github.com/vladimirpotekhin"
     },
     "contributors": [
         "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
@@ -29,10 +29,11 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "devDependencies": {
-        "libphonenumber-js": "^1.10.37"
+        "libphonenumber-js": "^1.10.0"
     },
     "peerDependencies": {
         "@maskito/core": "^1.4.0",
-        "libphonenumber-js": "^1.10.37"
+        "@maskito/kit": "^1.4.0",
+        "libphonenumber-js": ">=1.0.0"
     }
 }

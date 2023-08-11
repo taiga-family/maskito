@@ -106,10 +106,10 @@ export const DEMO_PAGES: TuiDocPages = [
         keywords: `date, day, month, year, mask, time, date-time, hour, minute, second, kit, generator`,
     },
     {
-        section: 'Phone',
-        title: 'Phone',
+        section: 'Addons',
+        title: '@maskito/phone',
         route: DemoPath.PhonePackage,
-        keywords: `phone, libphonenumber, generator`,
+        keywords: `phone, libphonenumber, international, generator`,
     },
     {
         section: 'Recipes',

@@ -1,4 +1,4 @@
-import {MaskExpression} from '@maskito/core/src/lib/types';
+import {MaskExpression} from '@maskito/core';
 
 import {TEMPLATE_FILLER} from '../constants';
 

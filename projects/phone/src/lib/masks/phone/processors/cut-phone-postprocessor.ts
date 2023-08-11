@@ -9,13 +9,12 @@ export function maskitoCutPhonePostprocessorGenerator(
     countryIsoCode: CountryCode,
 ): MaskitoPostprocessor {
     return ({value, selection}) => {
-        if (value.length > MIN_LENGTH) {
-            return {
-                value: cutPhoneByValidLength({phone: value, countryIsoCode, metadata}),
-                selection,
-            };
-        }
-
-        return {value, selection};
+        return {
+            value:
+                value.length > MIN_LENGTH
+                    ? cutPhoneByValidLength({phone: value, countryIsoCode, metadata})
+                    : value,
+            selection,
+        };
     };
 }
