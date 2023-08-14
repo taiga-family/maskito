@@ -126,6 +126,9 @@
         "npm": ">= 9",
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
+    "overrides": {
+        "ngx-highlightjs": "5.0.0"
+    },
     "standard-version": {
         "scripts": {
             "postchangelog": "ts-node ./scripts/postchangelog.ts",
