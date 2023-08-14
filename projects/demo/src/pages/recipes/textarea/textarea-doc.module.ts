@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
-import {TuiTextAreaModule} from '@taiga-ui/kit';
+import {TuiTextareaModule} from '@taiga-ui/kit';
 
 import {TextareaDocExample1} from './examples/1-latin/component';
 import {TextareaDocComponent} from './textarea-doc.component';
@@ -16,7 +16,7 @@ import {TextareaDocComponent} from './textarea-doc.component';
         FormsModule,
         MaskitoModule,
         TuiAddonDocModule,
-        TuiTextAreaModule,
+        TuiTextareaModule,
         TuiLinkModule,
         RouterModule.forChild(tuiGenerateRoutes(TextareaDocComponent)),
     ],
