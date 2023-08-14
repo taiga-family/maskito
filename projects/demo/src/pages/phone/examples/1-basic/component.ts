@@ -29,6 +29,8 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
             Basic
             <input
                 tuiTextfield
+                autocomplete="tel"
+                inputmode="tel"
                 [maskito]="mask"
             />
         </tui-input>
