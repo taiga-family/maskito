@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 10
 
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.7.6
+        uses: taiga-family/ci/actions/setup-node@1.9.1
 
       - name: Mark demo-app directory for persist in cache
         uses: actions/cache@v3
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.7.6
+        uses: taiga-family/ci/actions/setup-node@1.9.1
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -71,7 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.7.6
+        uses: taiga-family/ci/actions/setup-node@1.9.1
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -95,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.7.6
+        uses: taiga-family/ci/actions/setup-node@1.9.1
 
       - name: Download demo build from cache
         uses: actions/cache@v3
