@@ -1,10 +1,25 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {
+    AbstractControl,
+    FormControl,
+    ValidationErrors,
+    ValidatorFn,
+} from '@angular/forms';
+import {TuiValidationError} from '@taiga-ui/cdk';
+import {CountryCode, isValidPhoneNumber} from 'libphonenumber-js/max';
 
 import mask from './mask';
 
+function phoneValidator(countryCode: CountryCode): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        const valid = isValidPhoneNumber(control.value, countryCode);
+
+        return valid ? null : new TuiValidationError('Invalid number');
+    };
+}
+
 @Component({
-    selector: 'phone-doc-example-1',
+    selector: 'phone-doc-example-2',
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconPhoneLarge"
@@ -26,7 +41,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample1 {
-    value = new FormControl('+7 771 931-1111');
+export class PhoneMaskDocExample2 {
+    value = new FormControl('+36 20 123-3122', phoneValidator('HU'));
     readonly mask = mask;
 }

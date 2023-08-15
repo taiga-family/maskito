@@ -21,6 +21,15 @@ export class PhoneDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw'),
     };
 
+    readonly validation: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-validation/mask.ts?raw'
+        ),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/2-validation/component.ts?raw'
+        ),
+    };
+
     metadata = metadata;
 
     countryCodeVariants = getCountries(this.metadata);

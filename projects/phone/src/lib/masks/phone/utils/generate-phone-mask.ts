@@ -1,4 +1,4 @@
-import {MaskExpression} from '@maskito/core';
+import {MaskitoMaskExpression} from '@maskito/core';
 
 import {TEMPLATE_FILLER} from '../constants';
 
@@ -10,9 +10,9 @@ export function generatePhoneMask({
     value: string;
     template: string;
     prefix: string;
-}): MaskExpression {
+}): MaskitoMaskExpression {
     return [
-        ...prefix.split(''),
+        ...prefix,
         ...(template
             ? template
                   .slice(prefix.length)

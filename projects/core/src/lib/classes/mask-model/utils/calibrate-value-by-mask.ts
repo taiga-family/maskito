@@ -1,11 +1,11 @@
-import {ElementState, MaskExpression} from '../../../types';
+import {ElementState, MaskitoMaskExpression} from '../../../types';
 import {guessValidValueByPattern} from './guess-valid-value-by-pattern';
 import {guessValidValueByRegExp} from './guess-valid-value-by-reg-exp';
 import {validateValueWithMask} from './validate-value-with-mask';
 
 export function calibrateValueByMask(
     elementState: ElementState,
-    mask: MaskExpression,
+    mask: MaskitoMaskExpression,
     initialElementState: ElementState | null = null,
 ): ElementState {
     if (validateValueWithMask(elementState.value, mask)) {

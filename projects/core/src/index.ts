@@ -4,10 +4,10 @@ export {
 } from './lib/constants';
 export {Maskito} from './lib/mask';
 export {
-    MaskExpression,
     MaskitoElementPredicate,
     MaskitoElementPredicateAsync,
     MaskitoMask,
+    MaskitoMaskExpression,
     MaskitoOptions,
     MaskitoPlugin,
     MaskitoPostprocessor,

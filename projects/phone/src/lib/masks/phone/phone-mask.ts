@@ -1,5 +1,10 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
-import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
+import {
+    maskitoAddOnFocusPlugin,
+    maskitoCaretGuard,
+    maskitoPrefixPostprocessorGenerator,
+    maskitoRemoveOnBlurPlugin,
+} from '@maskito/kit';
 import {
     AsYouType,
     CountryCode,
@@ -7,10 +12,9 @@ import {
     MetadataJson,
 } from 'libphonenumber-js/core';
 
-import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '../../plugins';
 import {
     cutInitCountryCodePreprocessor,
-    maskitoCutPhonePostprocessorGenerator,
+    maskitoPhoneLengthPostprocessorGenerator,
     maskitoValidatePhonePreprocessorGenerator,
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate} from './utils';
@@ -43,7 +47,7 @@ export function maskitoPhoneOptionsGenerator({
         ],
         postprocessors: [
             maskitoPrefixPostprocessorGenerator(prefix),
-            maskitoCutPhonePostprocessorGenerator(metadata, countryIsoCode),
+            maskitoPhoneLengthPostprocessorGenerator(metadata, countryIsoCode),
         ],
         preprocessors: [
             cutInitCountryCodePreprocessor({countryIsoCode, metadata}),

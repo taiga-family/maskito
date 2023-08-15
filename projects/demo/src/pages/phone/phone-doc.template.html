@@ -25,6 +25,43 @@
         >
             <phone-doc-example-1></phone-doc-example-1>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="validation"
+            heading="validation"
+            [description]="description"
+            [content]="validation"
+        >
+            <phone-doc-example-2></phone-doc-example-2>
+
+            <ng-template #description>
+                <p>
+                    For validating phone number you can use
+                    <code>isValidPhoneNumber</code>
+                    ,
+                    <code>isPossiblePhoneNumber</code>
+                    functions from
+                    <a
+                        tuiLink
+                        href="https://www.npmjs.com/package/libphonenumber-js"
+                    >
+                        libphonenumber-js
+                    </a>
+                    package.
+                    <a
+                        tuiLink
+                        href="https://www.npmjs.com/package/libphonenumber-js"
+                    >
+                        Read more
+                    </a>
+                </p>
+
+                <p>
+                    Below is an example of a Hungarian phone mask with an
+                    angular validator.
+                </p>
+            </ng-template>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -38,7 +75,8 @@
                     Enter phone
                     <input
                         tuiTextfield
-                        inputmode="numeric"
+                        autocomplete="tel"
+                        inputmode="tel"
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>

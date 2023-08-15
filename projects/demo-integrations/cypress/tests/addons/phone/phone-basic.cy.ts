@@ -67,7 +67,7 @@ describe('Phone', () => {
 
             it('+7 920 424-1|1-32 => Backspace => +7 920 424-|13-2 => Type "2" => +7 920 424-2|1-32', () => {
                 cy.get('@input')
-                    .type('{leftArrow}'.repeat(4))
+                    .type('{leftArrow}'.repeat('13-2'.length))
                     .type('{backspace}')
                     .should('have.value', '+7 920 424-13-2')
                     .should('have.prop', 'selectionStart', '+7 920 424-'.length)
@@ -80,7 +80,7 @@ describe('Phone', () => {
 
             it('+7 9|20 424-11-32 => Backspace => +7 2|04241132', () => {
                 cy.get('@input')
-                    .type('{leftArrow}'.repeat(12))
+                    .type('{leftArrow}'.repeat('20 424-11-32'.length))
                     .type('{backspace}')
                     .should('have.value', '+7 204241132')
                     .should('have.prop', 'selectionStart', '+7 '.length)
@@ -114,7 +114,7 @@ describe('Phone', () => {
 
                     it('+7 920 424-11-32 => Select "+7 920 424-1|1-3|2" => Backspace => +7 920 424-1|2', () => {
                         cy.get('@input')
-                            .type('{leftArrow}'.repeat('2'.length))
+                            .type('{leftArrow}')
                             .realPress([
                                 'Shift',
                                 ...Array('1-3'.length).fill('ArrowLeft'),
@@ -150,7 +150,7 @@ describe('Phone', () => {
 
                     it('+7 920 424-11-32 => Select "+7 920 424-1|1-3|2" => Type "5" => +7 920 424-15-|2', () => {
                         cy.get('@input')
-                            .type('{leftArrow}'.repeat('2'.length))
+                            .type('{leftArrow}')
                             .realPress([
                                 'Shift',
                                 ...Array('1-3'.length).fill('ArrowLeft'),

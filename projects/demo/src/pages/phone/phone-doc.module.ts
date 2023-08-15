@@ -11,7 +11,8 @@ import {
 } from '@taiga-ui/core';
 import {TuiFieldErrorPipeModule, TuiInputModule} from '@taiga-ui/kit';
 
-import {DateMaskDocExample1} from './examples/1-basic/component';
+import {PhoneMaskDocExample1} from './examples/1-basic/component';
+import {PhoneMaskDocExample2} from './examples/2-validation/component';
 import {PhoneDocComponent} from './phone-doc.component';
 
 @NgModule({
@@ -28,7 +29,7 @@ import {PhoneDocComponent} from './phone-doc.component';
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PhoneDocComponent)),
     ],
-    declarations: [PhoneDocComponent, DateMaskDocExample1],
+    declarations: [PhoneDocComponent, PhoneMaskDocExample1, PhoneMaskDocExample2],
     exports: [PhoneDocComponent],
 })
 export class PhoneDocModule {}

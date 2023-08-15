@@ -1,5 +1,5 @@
 import {MaskitoPlugin} from '@maskito/core';
-import {maskitoEventHandler} from '@maskito/kit';
+import {maskitoEventHandler} from './event-handler';
 
 export function maskitoAddOnFocusPlugin(value: string): MaskitoPlugin {
     return maskitoEventHandler('focus', element => {

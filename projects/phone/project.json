@@ -35,19 +35,6 @@
                 "jestConfig": "projects/phone/jest.config.js",
                 "passWithNoTests": true
             }
-        },
-        "publish": {
-            "executor": "@nrwl/workspace:run-commands",
-            "options": {
-                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/phone --dry-run {args.dry-run}"
-            },
-            "dependsOn": [
-                {
-                    "target": "build",
-                    "projects": "self",
-                    "params": "ignore"
-                }
-            ]
         }
     },
     "tags": []
