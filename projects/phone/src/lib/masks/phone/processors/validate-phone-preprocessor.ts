@@ -22,7 +22,7 @@ export function maskitoValidatePhonePreprocessorGenerator({
         const cleanCode = prefix.trim();
 
         // handling autocomplete
-        if (!value.startsWith(cleanCode) && !data) {
+        if (value && !value.startsWith(cleanCode) && !data) {
             return {elementState: {value: prefix + value, selection}};
         }
 
