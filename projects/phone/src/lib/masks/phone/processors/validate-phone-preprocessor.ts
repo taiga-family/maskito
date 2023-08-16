@@ -16,9 +16,15 @@ export function maskitoValidatePhonePreprocessorGenerator({
     metadata: MetadataJson;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
-        const {selection} = elementState;
+        const {selection, value} = elementState;
         const [from] = selection;
         const selectionIncludesPrefix = from < prefix.length;
+        const cleanCode = prefix.trim();
+
+        // handling autocomplete
+        if (!value.startsWith(cleanCode) && !data) {
+            return {elementState: {value: prefix + value, selection}};
+        }
 
         try {
             const validationError = validatePhoneNumberLength(

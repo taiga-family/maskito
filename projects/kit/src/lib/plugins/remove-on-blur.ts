@@ -1,4 +1,5 @@
 import {MaskitoPlugin} from '@maskito/core';
+
 import {maskitoEventHandler} from './event-handler';
 
 export function maskitoRemoveOnBlurPlugin(value: string): MaskitoPlugin {

@@ -30,6 +30,7 @@
         "noImplicitReturns": true,
         "noUnusedParameters": true,
         "noUnusedLocals": true,
+        "downlevelIteration": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "jsx": "react-jsx",
