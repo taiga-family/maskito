@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.9.1
+        uses: taiga-family/ci/actions/setup-node@1.9.2
 
       - name: Typecheck
         run: npm run typecheck
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.9.1
+        uses: taiga-family/ci/actions/variables@1.9.2
 
       - uses: actions/checkout@v3
         if: env.SUPPORT_AUTO_PUSH == 'true'
@@ -27,21 +27,21 @@ jobs:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.9.1
+        uses: taiga-family/ci/actions/setup-node@1.9.2
 
       - name: Run prettier
         run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
 
       - name: Apply changes after linting
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.9.1
+        uses: taiga-family/ci/actions/auto-push@1.9.2
 
   stylelint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.9.1
+        uses: taiga-family/ci/actions/variables@1.9.2
 
       - uses: actions/checkout@v3
         if: env.SUPPORT_AUTO_PUSH == 'true'
@@ -50,21 +50,21 @@ jobs:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.9.1
+        uses: taiga-family/ci/actions/setup-node@1.9.2
 
       - name: Run stylelint
         run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
 
       - name: Apply changes after linting
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.9.1
+        uses: taiga-family/ci/actions/auto-push@1.9.2
 
   eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.9.1
+        uses: taiga-family/ci/actions/variables@1.9.2
 
       - uses: actions/checkout@v3
         if: env.SUPPORT_AUTO_PUSH == 'true'
@@ -73,14 +73,14 @@ jobs:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.9.1
+        uses: taiga-family/ci/actions/setup-node@1.9.2
 
       - name: Run eslint
         run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
 
       - name: Apply changes after linting
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.9.1
+        uses: taiga-family/ci/actions/auto-push@1.9.2
 
 concurrency:
   group: lint-${{ github.workflow }}-${{ github.ref }}
