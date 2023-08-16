@@ -25,7 +25,7 @@
         "@taiga-ui/icons": "3.40.0",
         "@taiga-ui/kit": "3.40.0",
         "@taiga-ui/styles": "3.40.0",
-        "@taiga-ui/testing": "3.40.0",
+        "@taiga-ui/testing": "3.41.0",
         "@tinkoff/ng-dompurify": "3.0.0",
         "dompurify": "2.4.7",
         "ngx-markdown": "10.1.1",
