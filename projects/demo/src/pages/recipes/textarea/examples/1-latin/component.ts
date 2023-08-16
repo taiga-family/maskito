@@ -5,7 +5,7 @@ import mask from './mask';
 @Component({
     selector: 'textarea-doc-example-1',
     template: `
-        <tui-text-area [(ngModel)]="value">
+        <tui-textarea [(ngModel)]="value">
             Enter address
             <textarea
                 autocomplete="street-address"
@@ -13,7 +13,7 @@ import mask from './mask';
                 placeholder="Only latin letters and digits are allowed"
                 [maskito]="mask"
             ></textarea>
-        </tui-text-area>
+        </tui-textarea>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

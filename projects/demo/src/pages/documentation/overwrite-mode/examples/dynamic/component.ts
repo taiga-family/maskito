@@ -5,7 +5,7 @@ import mask from './mask';
 @Component({
     selector: 'overwrite-mode-dynamic-doc-example-3',
     template: `
-        <tui-text-area
+        <tui-textarea
             [ngModel]="initialValue"
             [style.max-width.rem]="20"
             [expandable]="true"
@@ -15,7 +15,7 @@ import mask from './mask';
                 tuiTextfield
                 [maskito]="maskitoOptions"
             ></textarea>
-        </tui-text-area>
+        </tui-textarea>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
