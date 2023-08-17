@@ -4,7 +4,7 @@ import {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {cutPhoneByValidLength} from '../utils';
 
 const MIN_LENGTH = 3;
-export function maskitoPhoneLengthPostprocessorGenerator(
+export function phoneLengthPostprocessorGenerator(
     metadata: MetadataJson,
     countryIsoCode: CountryCode,
 ): MaskitoPostprocessor {

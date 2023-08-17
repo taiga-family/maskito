@@ -1,3 +1,7 @@
-export * from './constants';
-export * from './phone-mask';
-export * from './processors';
+export {TEMPLATE_FILLER} from './constants';
+export {maskitoPhoneOptionsGenerator} from './phone-mask';
+export {
+    cutInitCountryCodePreprocessor,
+    phoneLengthPostprocessorGenerator,
+    validatePhonePreprocessorGenerator,
+} from './processors';

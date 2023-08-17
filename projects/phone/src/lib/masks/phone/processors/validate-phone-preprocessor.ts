@@ -6,7 +6,7 @@ import {
     validatePhoneNumberLength,
 } from 'libphonenumber-js/core';
 
-export function maskitoValidatePhonePreprocessorGenerator({
+export function validatePhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,

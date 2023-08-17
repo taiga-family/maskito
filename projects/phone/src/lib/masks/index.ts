@@ -1,1 +1,1 @@
-export * from './phone';
+export {maskitoPhoneOptionsGenerator} from './phone';

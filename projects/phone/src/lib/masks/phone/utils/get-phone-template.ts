@@ -1,7 +1,7 @@
 import {AsYouType} from 'libphonenumber-js/core';
 
 export function getPhoneTemplate(formatter: AsYouType, value: string): string {
-    formatter.input(value.replace(/[\s\-()[\]{}]/g, ''));
+    formatter.input(value.replace(/[^\d+]/g, ''));
 
     const initialTemplate = formatter.getTemplate();
     const split = initialTemplate.split(' ');

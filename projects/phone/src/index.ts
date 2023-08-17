@@ -1,1 +1,1 @@
-export * from './lib/masks';
+export {maskitoPhoneOptionsGenerator} from './lib/masks';

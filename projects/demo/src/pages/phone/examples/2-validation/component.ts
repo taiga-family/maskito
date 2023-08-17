@@ -24,7 +24,7 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
         <tui-input
             tuiTextfieldCustomContent="tuiIconPhoneLarge"
             [style.max-width.rem]="30"
-            [formControl]="value"
+            [formControl]="control"
         >
             Basic
             <input
@@ -35,13 +35,13 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
             />
         </tui-input>
         <tui-error
-            [formControl]="value"
+            [formControl]="control"
             [error]="[] | tuiFieldError | async"
         ></tui-error>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneMaskDocExample2 {
-    value = new FormControl('+36 20 123-3122', phoneValidator('HU'));
+    readonly control = new FormControl('+36 20 123-3122', phoneValidator('HU'));
     readonly mask = mask;
 }
