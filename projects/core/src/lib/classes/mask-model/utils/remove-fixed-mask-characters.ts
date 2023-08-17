@@ -1,9 +1,9 @@
-import {ElementState, MaskExpression} from '../../../types';
+import {ElementState, MaskitoMaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function removeFixedMaskCharacters(
     initialElementState: ElementState,
-    mask: MaskExpression,
+    mask: MaskitoMaskExpression,
 ): ElementState {
     if (!Array.isArray(mask)) {
         return initialElementState;

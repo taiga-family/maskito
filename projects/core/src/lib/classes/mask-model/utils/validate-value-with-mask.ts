@@ -1,9 +1,9 @@
-import {MaskExpression} from '../../../types';
+import {MaskitoMaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function validateValueWithMask(
     value: string,
-    maskExpression: MaskExpression,
+    maskExpression: MaskitoMaskExpression,
 ): boolean {
     if (Array.isArray(maskExpression)) {
         return (

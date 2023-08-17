@@ -6,6 +6,7 @@
         "core": "projects/core",
         "demo": "projects/demo",
         "kit": "projects/kit",
+        "phone": "projects/phone",
         "react": "projects/react",
         "vue": "projects/vue"
     }

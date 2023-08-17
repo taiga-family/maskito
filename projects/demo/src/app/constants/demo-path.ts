@@ -16,6 +16,7 @@ export const enum DemoPath {
     Date = 'kit/date',
     DateRange = 'kit/date-range',
     DateTime = 'kit/date-time',
+    PhonePackage = 'addons/phone',
     Card = 'recipes/card',
     Phone = 'recipes/phone',
     Textarea = 'recipes/textarea',

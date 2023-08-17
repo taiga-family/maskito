@@ -1,0 +1,100 @@
+<tui-doc-page
+    header="Phone"
+    package="PHONE"
+>
+    <ng-template pageTab>
+        <p>
+            This mask is based on the
+            <a
+                tuiLink
+                href="https://www.npmjs.com/package/libphonenumber-js"
+            >
+                libphonenumber-js
+            </a>
+            package.
+        </p>
+        Use
+        <code>maskitoPhoneOptionsGenerator</code>
+        to create a mask for phone input.
+
+        <tui-notification class="tui-space_top-4">Coming soon</tui-notification>
+
+        <tui-doc-example
+            id="basic"
+            heading="basic"
+            description="Kazakhstan phone example"
+            [content]="basic"
+        >
+            <phone-doc-example-1></phone-doc-example-1>
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="validation"
+            heading="validation"
+            [description]="description"
+            [content]="validation"
+        >
+            <phone-doc-example-2></phone-doc-example-2>
+
+            <ng-template #description>
+                <p class="tui-space_top-0">
+                    For validating phone number you can use
+                    <code>isValidPhoneNumber</code>
+                    ,
+                    <code>isPossiblePhoneNumber</code>
+                    functions from
+                    <a
+                        tuiLink
+                        href="https://www.npmjs.com/package/libphonenumber-js"
+                    >
+                        libphonenumber-js
+                    </a>
+                    package.
+                    <a
+                        tuiLink
+                        href="https://www.npmjs.com/package/libphonenumber-js"
+                    >
+                        Read more
+                    </a>
+                </p>
+
+                <p>
+                    Below is an example of a Hungarian phone mask with an
+                    angular validator.
+                </p>
+            </ng-template>
+        </tui-doc-example>
+    </ng-template>
+
+    <ng-template pageTab>
+        <tui-doc-demo [control]="apiPageControl">
+            <ng-template>
+                <tui-input
+                    tuiTextfieldCustomContent="tuiIconPhoneLarge"
+                    class="phone"
+                    [formControl]="apiPageControl"
+                >
+                    Enter phone
+                    <input
+                        tuiTextfield
+                        autocomplete="tel"
+                        inputmode="tel"
+                        [maskito]="maskitoOptions"
+                    />
+                </tui-input>
+            </ng-template>
+        </tui-doc-demo>
+        <tui-doc-documentation>
+            <ng-template
+                documentationPropertyName="countryCode"
+                documentationPropertyMode="input"
+                documentationPropertyType="string"
+                [documentationPropertyValues]="countryCodeVariants"
+                [(documentationPropertyValue)]="countryIsoCode"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Country ISO-code
+            </ng-template>
+        </tui-doc-documentation>
+    </ng-template>
+</tui-doc-page>

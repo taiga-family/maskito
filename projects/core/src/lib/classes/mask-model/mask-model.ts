@@ -1,4 +1,9 @@
-import {ElementState, MaskExpression, MaskitoOptions, SelectionRange} from '../../types';
+import {
+    ElementState,
+    MaskitoMaskExpression,
+    MaskitoOptions,
+    SelectionRange,
+} from '../../types';
 import {areElementStatesEqual} from '../../utils/element-states-equality';
 import {applyOverwriteMode} from './utils/apply-overwrite-mode';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
@@ -102,7 +107,7 @@ export class MaskModel implements ElementState {
         this.selection = maskedElementState.selection;
     }
 
-    private getMaskExpression(elementState: ElementState): MaskExpression {
+    private getMaskExpression(elementState: ElementState): MaskitoMaskExpression {
         const {mask} = this.maskOptions;
 
         return typeof mask === 'function' ? mask(elementState) : mask;

@@ -7,6 +7,7 @@ export {
     MaskitoElementPredicate,
     MaskitoElementPredicateAsync,
     MaskitoMask,
+    MaskitoMaskExpression,
     MaskitoOptions,
     MaskitoPlugin,
     MaskitoPostprocessor,

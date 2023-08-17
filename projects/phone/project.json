@@ -1,0 +1,41 @@
+{
+    "root": "projects/phone",
+    "sourceRoot": "projects/phone/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/web:rollup",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "project": "projects/phone/package.json",
+                "outputPath": "dist/phone",
+                "entryFile": "projects/phone/src/index.ts",
+                "tsConfig": "projects/phone/tsconfig.workaround.json",
+                "format": ["esm", "umd"],
+                "assets": [
+                    {
+                        "glob": "projects/phone/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ]
+            },
+            "dependsOn": [
+                {
+                    "target": "build",
+                    "projects": "dependencies",
+                    "params": "forward"
+                }
+            ]
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/phone"],
+            "options": {
+                "jestConfig": "projects/phone/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

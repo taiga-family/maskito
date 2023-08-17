@@ -1,0 +1,1 @@
+export {maskitoPhoneOptionsGenerator} from './phone';
