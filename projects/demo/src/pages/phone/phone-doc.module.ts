@@ -7,6 +7,7 @@ import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {
     TuiErrorModule,
     TuiLinkModule,
+    TuiNotificationModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {TuiFieldErrorPipeModule, TuiInputModule} from '@taiga-ui/kit';
@@ -25,6 +26,7 @@ import {PhoneDocComponent} from './phone-doc.component';
         TuiInputModule,
         TuiLinkModule,
         TuiErrorModule,
+        TuiNotificationModule,
         TuiFieldErrorPipeModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PhoneDocComponent)),
