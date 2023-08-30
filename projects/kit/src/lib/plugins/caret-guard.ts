@@ -12,7 +12,9 @@ export function maskitoCaretGuard(
         const document = element.ownerDocument;
         let isPointerDown = 0;
         const onPointerDown = (): number => isPointerDown++;
-        const onPointerUp = (): number => isPointerDown--;
+        const onPointerUp = (): void => {
+            isPointerDown = Math.max(--isPointerDown, 0);
+        };
 
         const listener = (): void => {
             if (getFocused(document) !== element) {
@@ -39,7 +41,7 @@ export function maskitoCaretGuard(
         };
 
         document.addEventListener('selectionchange', listener, {passive: true});
-        document.addEventListener('mousedown', onPointerDown, {passive: true});
+        element.addEventListener('mousedown', onPointerDown, {passive: true});
         document.addEventListener('mouseup', onPointerUp, {passive: true});
 
         return () => {
