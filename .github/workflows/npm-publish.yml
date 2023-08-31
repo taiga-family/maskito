@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.10.1
+        uses: taiga-family/ci/actions/setup-node@1.11.1
 
       - name: Build publishable libraries
         run: npx nx run-many --target build --all --exclude=demo
