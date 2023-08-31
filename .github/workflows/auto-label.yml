@@ -1,0 +1,14 @@
+name: 🤖 Auto label
+on: pull_request_review
+
+jobs:
+  label-when-approved:
+    name: Label when approved
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.6.0
+      - uses: taiga-family/ci/actions/variables@1.11.1
+      - uses: taiga-family/ci/actions/label-when-approved@1.11.1
+        with:
+          approvals: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
