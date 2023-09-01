@@ -95,6 +95,8 @@ export class Maskito extends MaskHistory {
                             selection: getLineSelection(this.elementState, isForward),
                             force: true,
                         });
+                    case 'insertCompositionText':
+                        return; // will be handled inside `compositionend` event
                     case 'insertLineBreak':
                         return this.handleEnter(event);
                     case 'insertFromPaste':
@@ -119,7 +121,16 @@ export class Maskito extends MaskHistory {
             );
         }
 
-        this.eventListener.listen('input', () => {
+        this.eventListener.listen('input', ({inputType}) => {
+            if (inputType === 'insertCompositionText') {
+                return; // will be handled inside `compositionend` event
+            }
+
+            this.ensureValueFitsMask();
+            this.updateHistory(this.elementState);
+        });
+
+        this.eventListener.listen(`compositionend`, () => {
             this.ensureValueFitsMask();
             this.updateHistory(this.elementState);
         });
