@@ -7,8 +7,6 @@ All notable changes to this project will be documented in this file. See
 
 ### Features
 
-- `Phone` add new package ([#425](https://github.com/taiga-family/maskito/issues/425))
-  ([621e61d](https://github.com/taiga-family/maskito/commit/621e61d5a8aa1788405369e4bd881dddd2beaed3))
 - **core:** add IME composition support ([#467](https://github.com/taiga-family/maskito/issues/467))
   ([e7d664b](https://github.com/taiga-family/maskito/commit/e7d664b66a008a742c0a532e341b0e0bb0a0f759))
 - **demo:** documentation is now available at https://maskito.dev
