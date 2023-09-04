@@ -6,8 +6,8 @@
         <p>
             This mask is based on the
             <a
-                tuiLink
                 href="https://www.npmjs.com/package/libphonenumber-js"
+                tuiLink
             >
                 libphonenumber-js
             </a>
@@ -21,8 +21,8 @@
 
         <tui-doc-example
             id="basic"
-            heading="basic"
             description="Kazakhstan phone example"
+            heading="basic"
             [content]="basic"
         >
             <phone-doc-example-1></phone-doc-example-1>
@@ -31,8 +31,8 @@
         <tui-doc-example
             id="validation"
             heading="validation"
-            [description]="description"
             [content]="validation"
+            [description]="description"
         >
             <phone-doc-example-2></phone-doc-example-2>
 
@@ -44,24 +44,21 @@
                     <code>isPossiblePhoneNumber</code>
                     functions from
                     <a
-                        tuiLink
                         href="https://www.npmjs.com/package/libphonenumber-js"
+                        tuiLink
                     >
                         libphonenumber-js
                     </a>
                     package.
                     <a
-                        tuiLink
                         href="https://www.npmjs.com/package/libphonenumber-js"
+                        tuiLink
                     >
                         Read more
                     </a>
                 </p>
 
-                <p>
-                    Below is an example of a Hungarian phone mask with an
-                    angular validator.
-                </p>
+                <p>Below is an example of a Hungarian phone mask with an angular validator.</p>
             </ng-template>
         </tui-doc-example>
     </ng-template>
@@ -76,9 +73,9 @@
                 >
                     Enter phone
                     <input
-                        tuiTextfield
                         autocomplete="tel"
                         inputmode="tel"
+                        tuiTextfield
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>
@@ -86,8 +83,8 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="countryCode"
                 documentationPropertyMode="input"
+                documentationPropertyName="countryCode"
                 documentationPropertyType="string"
                 [documentationPropertyValues]="countryCodeVariants"
                 [(documentationPropertyValue)]="countryIsoCode"

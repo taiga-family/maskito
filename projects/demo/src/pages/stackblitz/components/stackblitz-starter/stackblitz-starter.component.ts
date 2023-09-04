@@ -50,7 +50,7 @@ export class StackblitzStarterComponent implements OnInit {
                 description:
                     'A starter with Maskito library\nDocumentation: https://maskito.dev',
                 files: {
-                    'index.html': `<input />`,
+                    'index.html': '<input />',
                     'index.ts': ts,
                     'styles.css': css,
                 },

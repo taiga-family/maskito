@@ -29,7 +29,7 @@ export class TestPipe4 implements PipeTransform {
             #inputRef
             placeholder="Enter number"
             value="1 year"
-            [maskito]="parsedValue | i18nPlural : pluralize | calculateMask"
+            [maskito]="parsedValue | i18nPlural: pluralize | calculateMask"
         />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,9 +43,9 @@ export class TestDocExample4 {
     }
 
     readonly pluralize = {
-        one: ` year`,
-        few: ` years`,
-        many: ` years`,
-        other: ` years`,
+        one: ' year',
+        few: ' years',
+        many: ' years',
+        other: ' years',
     };
 }

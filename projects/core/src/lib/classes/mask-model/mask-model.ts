@@ -56,6 +56,7 @@ export class MaskModel implements ElementState {
             initialElementState,
         );
         const isInvalidCharsInsertion =
+            // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
             value.slice(0, unmaskedFrom) ===
             calibrateValueByMask(
                 {

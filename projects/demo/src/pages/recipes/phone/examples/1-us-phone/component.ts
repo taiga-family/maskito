@@ -6,21 +6,21 @@ import mask from './mask';
     selector: 'phone-doc-example-1',
     template: `
         <tui-input
-            [tuiTextfieldCustomContent]="usFlag"
             [style.max-width.rem]="20"
+            [tuiTextfieldCustomContent]="usFlag"
             [(ngModel)]="value"
         >
             Enter a phone number
             <input
-                tuiTextfield
                 inputmode="tel"
+                tuiTextfield
                 [maskito]="maskitoOptions"
             />
 
             <ng-template #usFlag>
                 <img
-                    width="28"
                     alt="Flag of the United States"
+                    width="28"
                     [src]="'US' | tuiFlag"
                 />
             </ng-template>

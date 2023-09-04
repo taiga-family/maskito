@@ -28,8 +28,7 @@
             <ng-template #precisionDescription>
                 Use
                 <code>precision</code>
-                parameter to configure the number of digits after decimal
-                separator.
+                parameter to configure the number of digits after decimal separator.
             </ng-template>
             <number-mask-doc-example-1></number-mask-doc-example-1>
         </tui-doc-example>
@@ -51,8 +50,7 @@
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="30"
             >
-                In Germany people use comma as decimal separator and dot for
-                thousands
+                In Germany people use comma as decimal separator and dot for thousands
             </tui-notification>
             <number-mask-doc-example-2></number-mask-doc-example-2>
         </tui-doc-example>
@@ -75,8 +73,7 @@
                     to clamp caret inside allowable range.
                 </div>
                 <div class="tui-space_top-4">
-                    This example also shows how to restrict the greatest
-                    permitted value via
+                    This example also shows how to restrict the greatest permitted value via
                     <code>max</code>
                     parameter.
                 </div>
@@ -112,9 +109,7 @@
             [description]="dynamicDecimalZeroPaddingDescription"
         >
             <ng-template #dynamicDecimalZeroPaddingDescription>
-                <div>
-                    You can change options on the fly to build complex logic.
-                </div>
+                <div>You can change options on the fly to build complex logic.</div>
                 <div>
                     This example shows how to initially disable
                     <code>decimalZeroPadding</code>
@@ -135,19 +130,19 @@
                     Enter a number
                     <input
                         #apiPageInput
-                        tuiTextfield
                         inputmode="decimal"
+                        tuiTextfield
                         [maskito]="maskitoOptions"
-                        (focus)="onFocus()"
                         (blur)="onBlur()"
+                        (focus)="onFocus()"
                     />
                 </tui-input>
             </ng-template>
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="precision"
                 documentationPropertyMode="input"
+                documentationPropertyName="precision"
                 documentationPropertyType="number"
                 [documentationPropertyValues]="precisionOptions"
                 [(documentationPropertyValue)]="precision"
@@ -170,8 +165,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="decimalSeparator"
                 documentationPropertyMode="input"
+                documentationPropertyName="decimalSeparator"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="decimalSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -184,8 +179,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="decimalPseudoSeparators"
                 documentationPropertyMode="input"
+                documentationPropertyName="decimalPseudoSeparators"
                 documentationPropertyType="string[]"
                 [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
                 [(documentationPropertyValue)]="decimalPseudoSeparators"
@@ -202,8 +197,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="decimalZeroPadding"
                 documentationPropertyMode="input"
+                documentationPropertyName="decimalZeroPadding"
                 documentationPropertyType="boolean"
                 [(documentationPropertyValue)]="decimalZeroPadding"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -223,8 +218,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="thousandSeparator"
                 documentationPropertyMode="input"
+                documentationPropertyName="thousandSeparator"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="thousandSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -237,8 +232,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="min"
                 documentationPropertyMode="input"
+                documentationPropertyName="min"
                 documentationPropertyType="number"
                 [(documentationPropertyValue)]="min"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -252,8 +247,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="max"
                 documentationPropertyMode="input"
+                documentationPropertyName="max"
                 documentationPropertyType="number"
                 [(documentationPropertyValue)]="max"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -267,8 +262,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="prefix"
                 documentationPropertyMode="input"
+                documentationPropertyName="prefix"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="prefix"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -281,8 +276,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="postfix"
                 documentationPropertyMode="input"
+                documentationPropertyName="postfix"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="postfix"
                 (documentationPropertyValueChange)="updateOptions()"

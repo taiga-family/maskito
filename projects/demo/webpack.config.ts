@@ -20,7 +20,7 @@ const RAW_QUERY = /raw/;
  * Default Angular configurations have rules to compile (uglify) ts/less-files.
  * We don't need any transformations for RAW loading of these files.
  */
-const DONT_MUTATE_RAW_FILE_CONTENTS = [`*.ts`, `*.less`, `*.html`, `*.css`];
+const DONT_MUTATE_RAW_FILE_CONTENTS = ['*.ts', '*.less', '*.html', '*.css'];
 
 /**
  * [Fixed bug in Node.js 18]
@@ -43,11 +43,12 @@ const DONT_MUTATE_RAW_FILE_CONTENTS = [`*.ts`, `*.less`, `*.html`, `*.css`];
  *
  * instead of:
  */
-const crypto = require(`crypto`);
+const crypto = require('crypto');
+
 const fallbackCreateHash = crypto.createHash;
 
 crypto.createHash = (algorithm: string) =>
-    fallbackCreateHash(algorithm === `md4` ? `sha256` : algorithm);
+    fallbackCreateHash(algorithm === 'md4' ? 'sha256' : algorithm);
 
 const config: Configuration = {
     module: {
@@ -60,7 +61,7 @@ const config: Configuration = {
             {
                 test: /\.(ts|html|css|less|md|svg)$/i,
                 resourceQuery: RAW_QUERY,
-                type: `asset/source`,
+                type: 'asset/source',
             },
         ],
     },
@@ -74,7 +75,7 @@ const config: Configuration = {
 export default (ngConfigs: Configuration): Configuration => {
     const ngRules = [...(ngConfigs.module?.rules || [])].map(rule => {
         if (
-            typeof rule === `object` &&
+            typeof rule === 'object' &&
             DONT_MUTATE_RAW_FILE_CONTENTS.some(
                 pattern => rule.test instanceof RegExp && rule.test?.test(pattern),
             )

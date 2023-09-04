@@ -11,11 +11,11 @@ import mask from './mask';
         >
             Enter price
             <input
-                tuiTextfield
                 inputmode="tel"
+                tuiTextfield
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
                 (blur)="onBlur()"
+                (focus)="onFocus()"
             />
         </tui-input>
     `,

@@ -18,13 +18,13 @@ export class TestDocExample1 {
 
     readonly cardMask: MaskitoOptions = {
         mask: [
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
         ],
     };
 

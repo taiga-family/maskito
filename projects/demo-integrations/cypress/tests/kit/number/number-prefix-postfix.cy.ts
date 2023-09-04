@@ -259,7 +259,10 @@ describe('Number | Prefix & Postfix', () => {
                     cy.get('@input')
                         .type('{moveToEnd}')
                         .type('{leftArrow}'.repeat('day'.length))
-                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('1.1'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{backspace}')

@@ -9,8 +9,8 @@ import mask from './mask';
             Enter address
             <textarea
                 autocomplete="street-address"
-                tuiTextfield
                 placeholder="Only latin letters and digits are allowed"
+                tuiTextfield
                 [maskito]="mask"
             ></textarea>
         </tui-textarea>

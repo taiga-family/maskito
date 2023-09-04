@@ -94,7 +94,7 @@ describe('Native attribute maxlength works', () => {
             });
         });
 
-        it("overwriteMode 'replace' works even if value's length is equal to [maxlength]", () => {
+        it('overwriteMode `replace` works even if value`s length is equal to [maxlength]', () => {
             cy.get('@input')
                 .type('123456')
                 .type('{leftArrow}'.repeat(3))

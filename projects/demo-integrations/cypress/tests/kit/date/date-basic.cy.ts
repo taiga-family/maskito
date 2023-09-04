@@ -252,7 +252,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('.2022'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('12'.length).fill('ArrowLeft'),
+                                ...new Array('12'.length).fill('ArrowLeft'),
                                 'Backspace',
                             ]);
 
@@ -272,7 +272,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('1.2011'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('1.1'.length).fill('ArrowLeft'),
+                                ...new Array('1.1'.length).fill('ArrowLeft'),
                                 'Backspace',
                             ]);
 
@@ -294,7 +294,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('.11.2022'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('12'.length).fill('ArrowLeft'),
+                                ...new Array('12'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -314,7 +314,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('.11.2022'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('12'.length).fill('ArrowLeft'),
+                                ...new Array('12'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')

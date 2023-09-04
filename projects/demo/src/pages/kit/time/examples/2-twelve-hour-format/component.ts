@@ -8,13 +8,13 @@ import mask from './mask';
         <tui-input
             tuiTextfieldCustomContent="tuiIconClockLarge"
             tuiTextfieldFiller="hh:mm"
-            [tuiTextfieldLabelOutside]="true"
             [style.max-width.rem]="20"
+            [tuiTextfieldLabelOutside]="true"
             [(ngModel)]="value"
         >
             <input
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="mask"
                 (blur)="onBlur()"
             />

@@ -10,7 +10,7 @@ export function toDateString(
         minutes,
         seconds,
         milliseconds,
-    }: Partial<MaskitoDateSegments<string> & Partial<MaskitoTimeSegments>>,
+    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
     dateMode: string,
     timeMode?: string,
 ): string {

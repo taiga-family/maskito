@@ -130,7 +130,7 @@ export class Maskito extends MaskHistory {
             this.updateHistory(this.elementState);
         });
 
-        this.eventListener.listen(`compositionend`, () => {
+        this.eventListener.listen('compositionend', () => {
             this.ensureValueFitsMask();
             this.updateHistory(this.elementState);
         });

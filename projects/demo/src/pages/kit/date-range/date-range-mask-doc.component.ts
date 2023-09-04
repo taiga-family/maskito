@@ -45,9 +45,9 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
     readonly modeOptions: MaskitoDateMode[] = [
-        `dd/mm/yyyy`,
-        `mm/dd/yyyy`,
-        `yyyy/mm/dd`,
+        'dd/mm/yyyy',
+        'mm/dd/yyyy',
+        'yyyy/mm/dd',
         'mm/yy',
         'mm/yyyy',
         'yyyy/mm',

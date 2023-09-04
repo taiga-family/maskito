@@ -1,10 +1,9 @@
 <tui-doc-page header="Mask expression">
     <div>
         <strong>Mask expression</strong>
-        is the the main concept of Maskito core library. It provides the
-        developer with opportunity to predefine format of user's input. For
-        example, you can set mask expression to accept only digits, only Latin
-        letters or you can configure more complex patterns like a date string.
+        is the the main concept of Maskito core library. It provides the developer with opportunity to predefine format
+        of user's input. For example, you can set mask expression to accept only digits, only Latin letters or you can
+        configure more complex patterns like a date string.
     </div>
 
     <p>
@@ -13,6 +12,7 @@
         parameter of
         <a
             href="https://github.com/taiga-family/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
+            rel="noreferrer"
             target="_blank"
             tuiLink
         >
@@ -28,10 +28,11 @@
                 <strong>RegExp mask expression</strong>
 
                 <p class="tui-space_top-0">
-                    The most basic and comprehensible type. The only required
-                    knowledge is understanding of native JavaScript
+                    The most basic and comprehensible type. The only required knowledge is understanding of native
+                    JavaScript
                     <a
                         href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions"
+                        rel="noreferrer"
                         target="_blank"
                         tuiLink
                     >
@@ -48,19 +49,14 @@
                     status="warning"
                     class="tui-space_top-3"
                 >
-                    Make sure that mask expression works with any of
-                    intermediate states, not just the final value.
+                    Make sure that mask expression works with any of intermediate states, not just the final value.
 
-                    <p>
-                        For example, imagine that you have to create mask for
-                        4-digits PIN code.
-                    </p>
+                    <p>For example, imagine that you have to create mask for 4-digits PIN code.</p>
 
                     <p>
                         <code>{{ '/^\\d{4}$/' }}</code>
-                        is a wrong mask expression. It does not match
-                        intermediate states (you cannot complete 4-digit string
-                        without possibility to type 1-, 2- or 3-digit string).
+                        is a wrong mask expression. It does not match intermediate states (you cannot complete 4-digit
+                        string without possibility to type 1-, 2- or 3-digit string).
                     </p>
 
                     <p>
@@ -73,29 +69,24 @@
                 <strong>Pattern mask expression</strong>
 
                 <p class="tui-space_top-0">
-                    It is a good choice for more complex masks that are fixed in
-                    size. This type of mask expression is presented as array.
-                    Each element in the array has to be either a string or a
-                    regular expression. Each string is a
+                    It is a good choice for more complex masks that are fixed in size. This type of mask expression is
+                    presented as array. Each element in the array has to be either a string or a regular expression.
+                    Each string is a
                     <em>fixed character</em>
-                    and each regular expression is validator of character at the
-                    same index.
+                    and each regular expression is validator of character at the same index.
                 </p>
 
                 <tui-notification status="info">
                     <strong>Fixed character</strong>
-                    — a predefined character at a certain position (the same as
-                    its index inside mask expression array). It is automatically
-                    added when user forgets to type it. It cannot be erased or
-                    replaced with another character.
+                    — a predefined character at a certain position (the same as its index inside mask expression array).
+                    It is automatically added when user forgets to type it. It cannot be erased or replaced with another
+                    character.
                 </tui-notification>
 
                 <p>
-                    For example, imagine that you have to create mask for a
-                    time-string with
+                    For example, imagine that you have to create mask for a time-string with
                     <code>HH:MM</code>
-                    format. It consists of 4 digits and 1 fixed-character
-                    separator
+                    format. It consists of 4 digits and 1 fixed-character separator
                     <code>:</code>
                     .
                 </p>
@@ -103,8 +94,7 @@
                 <tui-doc-code [code]="basicTimeDemo"></tui-doc-code>
 
                 <p>
-                    This mask expression forbids anything excepts digits and
-                    limits length of the value to 5 characters.
+                    This mask expression forbids anything excepts digits and limits length of the value to 5 characters.
                 </p>
 
                 <p>Also, it manages user interactions with fixed character.</p>
@@ -117,11 +107,9 @@
                 </p>
 
                 <p>
-                    Another example, if caret position is after the colon and
-                    user presses
+                    Another example, if caret position is after the colon and user presses
                     <kbd>Backspace</kbd>
-                    , the input's value will not change but caret will be moved
-                    to the left of the colon.
+                    , the input's value will not change but caret will be moved to the left of the colon.
                 </p>
             </li>
             <li class="tui-list__item">
@@ -129,8 +117,7 @@
 
                 <p class="tui-space_top-0">
                     <code>mask</code>
-                    parameter can also accepts function which generates mask
-                    expression. This function will be called
+                    parameter can also accepts function which generates mask expression. This function will be called
                     <strong>every time before</strong>
                     input changes to generate a new version of mask expression.
                 </p>
@@ -146,8 +133,7 @@
                     >
                         "Element state"
                     </a>
-                    object with raw value and current selection is passed as an
-                    argument to the function.
+                    object with raw value and current selection is passed as an argument to the function.
                 </tui-notification>
 
                 <tui-doc-code [code]="dynamicMaskExpDemo"></tui-doc-code>
@@ -157,14 +143,11 @@
                     class="tui-space_top-6"
                 >
                     <div>
-                        Be careful! It can be not performance-friendly to
-                        generate new mask expression on every input change.
+                        Be careful! It can be not performance-friendly to generate new mask expression on every input
+                        change.
                     </div>
 
-                    <p class="tui-space_bottom-0">
-                        Think about optimization and memoization of the such
-                        function.
-                    </p>
+                    <p class="tui-space_bottom-0">Think about optimization and memoization of the such function.</p>
                 </tui-notification>
             </li>
         </ul>

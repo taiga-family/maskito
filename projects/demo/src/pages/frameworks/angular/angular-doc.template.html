@@ -37,8 +37,7 @@
                 </li>
                 <li class="tui-list__item">
                     <strong>No need to worry about clean-ups.</strong>
-                    All created event listeners are automatically removed after
-                    element is detached from DOM.
+                    All created event listeners are automatically removed after element is detached from DOM.
                 </li>
             </ul>
         </section>
@@ -60,8 +59,7 @@
             <p>
                 Pass a predicate to
                 <strong>maskito</strong>
-                to find input element for you, if you do not have a direct
-                access to it.
+                to find input element for you, if you do not have a direct access to it.
             </p>
 
             <tui-notification>
@@ -69,8 +67,7 @@
                 <strong>maskito</strong>
                 will try to find input/textarea by querying its host:
                 <code>host.querySelector('input,textarea')</code>
-                so that might be sufficient. Use custom predicate if you need
-                custom logic.
+                so that might be sufficient. Use custom predicate if you need custom logic.
             </tui-notification>
 
             <tui-doc-code
@@ -80,15 +77,15 @@
         </section>
 
         <tui-doc-example
-            heading="Custom input"
             description="See querying nested input in action"
+            heading="Custom input"
             [content]="nestedInputExample"
         >
             <tui-notification class="example tui-space_bottom-3">
                 Default behavior is enough for
                 <a
-                    tuiLink
                     href="https://github.com/Tinkoff/taiga-ui"
+                    tuiLink
                 >
                     Taiga UI
                 </a>
@@ -101,8 +98,7 @@
             ></nested-doc-example-1>
 
             <tui-notification class="example tui-space_vertical-3">
-                Custom predicate is required if target input is not the first on
-                in the DOM
+                Custom predicate is required if target input is not the first on in the DOM
             </tui-notification>
 
             <nested-doc-example-2
@@ -113,16 +109,16 @@
         </tui-doc-example>
 
         <tui-doc-example
-            heading="Form controls"
             description="When directly on native input/textarea tag, maskito directive formats value set programmatically with Angular forms."
+            heading="Form controls"
             [content]="cvaExample"
         >
             <cva-doc-example-3></cva-doc-example-3>
         </tui-doc-example>
 
         <tui-doc-example
-            heading="Pipe"
             description="Format arbitrary value with the same options"
+            heading="Pipe"
             [content]="pipeExample"
         >
             <pipe-doc-example-4></pipe-doc-example-4>

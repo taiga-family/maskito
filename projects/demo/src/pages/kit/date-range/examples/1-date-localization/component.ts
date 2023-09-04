@@ -7,15 +7,15 @@ import mask from './mask';
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconCalendarLarge"
-            [tuiTextfieldFiller]="filler"
-            [tuiHintContent]="hint"
             [style.max-width.rem]="30"
+            [tuiHintContent]="hint"
+            [tuiTextfieldFiller]="filler"
             [(ngModel)]="value"
         >
             US format
             <input
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="mask"
             />
         </tui-input>

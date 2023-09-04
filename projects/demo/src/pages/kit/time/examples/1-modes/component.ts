@@ -13,8 +13,8 @@ import mask from './mask';
         >
             HH:MM:SS
             <input
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="mask"
             />
         </tui-input>

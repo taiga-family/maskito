@@ -347,7 +347,7 @@ describe('DateRange | Basic', () => {
                         .type('{leftArrow}'.repeat('.2005 - 16.12.2007'.length))
                         .realPress([
                             'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
+                            ...new Array('12'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -368,7 +368,7 @@ describe('DateRange | Basic', () => {
                         .type('{leftArrow}'.repeat('.12.2007'.length))
                         .realPress([
                             'Shift',
-                            ...Array('16'.length).fill('ArrowLeft'),
+                            ...new Array('16'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -387,7 +387,10 @@ describe('DateRange | Basic', () => {
                         .type('11112011-11112025')
                         .should('have.value', '11.11.2011 – 11.11.2025')
                         .type('{leftArrow}'.repeat('1.2011 – 11.11.2025'.length))
-                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('1.1'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -405,7 +408,10 @@ describe('DateRange | Basic', () => {
                         .type('11112011-11112025')
                         .should('have.value', '11.11.2011 – 11.11.2025')
                         .type('{leftArrow}'.repeat('1.2025'.length))
-                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('1.1'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -424,7 +430,10 @@ describe('DateRange | Basic', () => {
                     cy.get('@input')
                         .type('12112022')
                         .type('{leftArrow}'.repeat('.11.2022'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('12'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('3')
@@ -441,7 +450,10 @@ describe('DateRange | Basic', () => {
                     cy.get('@input')
                         .type('01012000-12112022')
                         .type('{leftArrow}'.repeat('.11.2022'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('12'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('3')

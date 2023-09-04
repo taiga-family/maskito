@@ -18,8 +18,7 @@
                 <code>mode</code>
                 and
                 <code>separator</code>
-                properties to get a mask with a locale specific representation
-                of dates.
+                properties to get a mask with a locale specific representation of dates.
             </ng-template>
 
             <date-mask-doc-example-1></date-mask-doc-example-1>
@@ -36,12 +35,12 @@
                 <code>min</code>
                 and
                 <code>max</code>
-                allow you to set the earliest and the latest available dates.
-                They accept native
+                allow you to set the earliest and the latest available dates. They accept native
                 <a
-                    tuiLink
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+                    rel="noreferrer"
                     target="_blank"
+                    tuiLink
                 >
                     Date
                 </a>
@@ -62,8 +61,8 @@
                 >
                     Enter date
                     <input
-                        tuiTextfield
                         inputmode="numeric"
+                        tuiTextfield
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>
@@ -71,8 +70,8 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="mode"
                 documentationPropertyMode="input"
+                documentationPropertyName="mode"
                 documentationPropertyType="MaskitoDateMode"
                 [documentationPropertyValues]="modeOptions"
                 [(documentationPropertyValue)]="mode"
@@ -81,8 +80,8 @@
                 Date format mode
             </ng-template>
             <ng-template
-                documentationPropertyName="separator"
                 documentationPropertyMode="input"
+                documentationPropertyName="separator"
                 documentationPropertyType="string"
                 [documentationPropertyValues]="separatorOptions"
                 [(documentationPropertyValue)]="separator"
@@ -97,8 +96,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="min"
                 documentationPropertyMode="input"
+                documentationPropertyName="min"
                 documentationPropertyType="Date"
                 [documentationPropertyValues]="minMaxOptions"
                 [(documentationPropertyValue)]="minStr"
@@ -112,8 +111,8 @@
                 </p>
             </ng-template>
             <ng-template
-                documentationPropertyName="max"
                 documentationPropertyMode="input"
+                documentationPropertyName="max"
                 documentationPropertyType="Date"
                 [documentationPropertyValues]="minMaxOptions"
                 [(documentationPropertyValue)]="maxStr"

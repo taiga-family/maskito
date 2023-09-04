@@ -173,7 +173,7 @@ describe('Time', () => {
                         .type('1234')
                         .realPress([
                             'Shift',
-                            ...Array('34'.length).fill('ArrowLeft'),
+                            ...new Array('34'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -189,7 +189,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...Array('2:3'.length).fill('ArrowLeft'),
+                            ...new Array('2:3'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -203,9 +203,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
-                            ...Array(':34'.length).fill('ArrowLeft'),
+                            ...new Array(':34'.length).fill('ArrowLeft'),
                             'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
+                            ...new Array('12'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -220,7 +220,10 @@ describe('Time', () => {
                 it('23:|59| => Delete => 23', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
-                        .realPress(['Shift', ...Array('59'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('59'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -235,7 +238,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...Array('3:5'.length).fill('ArrowLeft'),
+                            ...new Array('3:5'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
@@ -249,9 +252,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
-                            ...Array(':59'.length).fill('ArrowLeft'),
+                            ...new Array(':59'.length).fill('ArrowLeft'),
                             'Shift',
-                            ...Array('23'.length).fill('ArrowLeft'),
+                            ...new Array('23'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
@@ -266,7 +269,10 @@ describe('Time', () => {
                 it('11:|22| => Press 3 => 11:3|', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1122')
-                        .realPress(['Shift', ...Array('22'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('22'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('3')
@@ -281,7 +287,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...Array('1:2'.length).fill('ArrowLeft'),
+                            ...new Array('1:2'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
@@ -295,9 +301,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('1133')
                         .realPress([
-                            ...Array(':33'.length).fill('ArrowLeft'),
+                            ...new Array(':33'.length).fill('ArrowLeft'),
                             'Shift',
-                            ...Array('11'.length).fill('ArrowLeft'),
+                            ...new Array('11'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')

@@ -50,7 +50,7 @@ export const APP_PROVIDERS: Provider[] = [
     {
         provide: TUI_DOC_SOURCE_CODE,
         useValue: (context: TuiDocSourceCodePathOptions) => {
-            const link = `https://github.com/taiga-family/maskito/tree/main/projects`;
+            const link = 'https://github.com/taiga-family/maskito/tree/main/projects';
 
             if (context.path) {
                 return `${link}/${context.path}`;
@@ -95,17 +95,17 @@ export const APP_PROVIDERS: Provider[] = [
             const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
             return {
-                coreLibraryLoader: async () => import(`highlight.js/lib/core`),
+                coreLibraryLoader: async () => import('highlight.js/lib/core'),
                 lineNumbersLoader: async () =>
                     // SSR ReferenceError: window is not defined
                     isBrowser
-                        ? import(`highlightjs-line-numbers.js` as string)
+                        ? import('highlightjs-line-numbers.js' as string)
                         : Promise.resolve(),
                 languages: {
                     typescript: async () =>
-                        import(`highlight.js/lib/languages/typescript`),
-                    less: async () => import(`highlight.js/lib/languages/less`),
-                    xml: async () => import(`highlight.js/lib/languages/xml`),
+                        import('highlight.js/lib/languages/typescript'),
+                    less: async () => import('highlight.js/lib/languages/less'),
+                    xml: async () => import('highlight.js/lib/languages/xml'),
                 },
             };
         },

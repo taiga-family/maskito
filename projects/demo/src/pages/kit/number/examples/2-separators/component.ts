@@ -11,9 +11,9 @@ import mask from './mask';
         >
             Type number like a German
             <input
-                tuiTextfield
-                placeholder="1.000,42"
                 inputmode="decimal"
+                placeholder="1.000,42"
+                tuiTextfield
                 [maskito]="maskitoOptions"
             />
         </tui-input>
