@@ -8,7 +8,9 @@ export class EventListener {
     listen<E extends keyof HTMLElementEventMap>(
         eventType: E,
         fn: (
-            event: E extends 'beforeinput' ? TypedInputEvent : HTMLElementEventMap[E],
+            event: E extends 'beforeinput' | 'input'
+                ? TypedInputEvent
+                : HTMLElementEventMap[E],
         ) => unknown,
         options?: AddEventListenerOptions,
     ): void {
