@@ -3,36 +3,49 @@
  */
 module.exports = {
     root: true,
-    extends: [
-        '@tinkoff/eslint-config-angular',
-        '@tinkoff/eslint-config-angular/html',
-        '@tinkoff/eslint-config-angular/rxjs',
-        '@tinkoff/eslint-config-angular/imports',
-        '@tinkoff/eslint-config-angular/promise',
-        '@tinkoff/eslint-config-angular/file-progress',
-        '@tinkoff/eslint-config-angular/line-statements',
-        '@tinkoff/eslint-config-angular/member-ordering',
-        '@tinkoff/eslint-config-angular/decorator-position',
-        '@tinkoff/eslint-config-angular/experimental',
-        '@tinkoff/eslint-config-angular/function-return-type',
-    ],
-    rules: {
-        '@typescript-eslint/prefer-nullish-coalescing': 'off',
-    },
+    extends: ['plugin:@taiga-ui/experience/all'],
     overrides: [
         {
             files: ['projects/react/**/*.{js,ts,jsx,tsx}'],
             extends: ['@tinkoff/eslint-config-react'],
+            rules: {
+                'unicorn/filename-case': [
+                    'error',
+                    {
+                        case: 'camelCase',
+                    },
+                ],
+            },
+        },
+        {
+            files: ['*'],
+            rules: {
+                '@typescript-eslint/quotes': ['error', 'single'],
+                '@angular-eslint/pipe-prefix': 'off',
+                '@taiga-ui/experience/strict-tui-doc-example': 'off',
+                '@taiga-ui/experience/prefer-inject-decorator': 'off',
+                '@taiga-ui/experience/no-typeof': 'off',
+                '@typescript-eslint/naming-convention': 'off', // TODO
+                '@typescript-eslint/consistent-type-assertions': 'off',
+                'perfectionist/sort-interfaces': 'off',
+                'perfectionist/sort-enums': 'off',
+                'perfectionist/sort-object-types': 'off',
+                'perfectionist/sort-map-elements': 'off',
+                'no-irregular-whitespace': 'off',
+                'max-statements': 'off',
+                'no-restricted-syntax': 'off', // TODO
+            },
+        },
+        {
+            files: ['*.spec.ts', '*.spec.tsx'],
+            rules: {
+                'no-undef': 'off',
+            },
         },
     ],
-    ignorePatterns: ['projects/**/test.ts', '*.json', '*.less', '*.md', '*.js'],
-    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
         project: [require.resolve('./tsconfig.eslint.json')],
-    },
-    env: {
-        jest: true,
     },
 };
