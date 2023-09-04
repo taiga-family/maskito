@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/taiga-family/maskito/compare/v1.4.0...v1.5.0) (2023-09-04)
+
+### Features
+
+- `Phone` add new package ([#425](https://github.com/taiga-family/maskito/issues/425))
+  ([621e61d](https://github.com/taiga-family/maskito/commit/621e61d5a8aa1788405369e4bd881dddd2beaed3))
+- **core:** add IME composition support ([#467](https://github.com/taiga-family/maskito/issues/467))
+  ([e7d664b](https://github.com/taiga-family/maskito/commit/e7d664b66a008a742c0a532e341b0e0bb0a0f759))
+- **demo:** documentation is now available at https://maskito.dev
+  ([#392](https://github.com/taiga-family/maskito/issues/392))
+  ([355f87f](https://github.com/taiga-family/maskito/commit/355f87fd536758bc2db59f760ed114d28264122a))
+
+### Bug Fixes
+
+- **kit:** `maskitoCaretGuard` doesn't work after focus on `<select />`
+  ([#462](https://github.com/taiga-family/maskito/issues/462))
+  ([9f456da](https://github.com/taiga-family/maskito/commit/9f456dad7f7f9d02db4eb5993ecb5fb5aabfe613))
+- **kit:** `Number` should drop items from `decimalPseudoSeparators` if any is equal to `thousandSeparator`
+  ([#390](https://github.com/taiga-family/maskito/issues/390))
+  ([2107adc](https://github.com/taiga-family/maskito/commit/2107adc445ed26ce1507c5e0c534b668d7ae5b12))
+
 ## [1.4.0](https://github.com/taiga-family/maskito/compare/v1.3.0...v1.4.0) (2023-07-27)
 
 ### Features
