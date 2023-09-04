@@ -5,7 +5,7 @@ import {isMaskitoPackageName} from './is-maskito-package-name';
 function isObject<T extends Record<string, any>>(
     value: unknown,
 ): value is NonNullable<T> {
-    return typeof value === `object` && !!value;
+    return typeof value === 'object' && !!value;
 }
 
 interface UpdatePackageJsonOptions {

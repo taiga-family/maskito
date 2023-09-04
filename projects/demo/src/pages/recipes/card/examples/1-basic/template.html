@@ -1,6 +1,6 @@
 <form
-    tuiGroup
     autocomplete="on"
+    tuiGroup
     class="wrapper"
     [formGroup]="form"
 >
@@ -10,10 +10,10 @@
     >
         Card number
         <input
-            tuiTextfield
+            autocomplete="cc-number"
             inputmode="numeric"
             placeholder="0000 0000 0000 0000"
-            autocomplete="cc-number"
+            tuiTextfield
             [maskito]="cardMask"
         />
     </tui-input>
@@ -23,10 +23,10 @@
     >
         EXP
         <input
-            tuiTextfield
+            autocomplete="cc-exp"
             inputmode="numeric"
             placeholder="mm/yy"
-            autocomplete="cc-exp"
+            tuiTextfield
             [maskito]="expiredMask"
         />
     </tui-input>
@@ -36,10 +36,10 @@
     >
         CVV
         <input
-            tuiTextfield
+            autocomplete="cc-csc"
             inputmode="numeric"
             placeholder="000"
-            autocomplete="cc-csc"
+            tuiTextfield
             [maskito]="cvvMask"
         />
     </tui-input>

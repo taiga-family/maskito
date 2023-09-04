@@ -9,7 +9,8 @@
     --tui-primary: #526ed3;
 }
 
-input, textarea {
+input,
+textarea {
     display: block;
     width: 100%;
     max-width: 25rem;
@@ -21,8 +22,11 @@ input, textarea {
     color: var(--tui-text-01);
     background: var(--tui-base-01);
     outline: none;
-    transition: box-shadow, background, 0.2s ease-in-out;
-    box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1)
+    transition:
+        box-shadow,
+        background,
+        0.2s ease-in-out;
+    box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1);
 }
 
 input {
@@ -35,16 +39,18 @@ textarea {
     padding: 0.5rem;
 }
 
-
-input:focus::placeholder, textarea:focus::placeholder {
+input:focus::placeholder,
+textarea:focus::placeholder {
     color: var(--tui-text-03);
 }
 
-input:hover, textarea:hover {
-    box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,.16)
+input:hover,
+textarea:hover {
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.16);
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     box-shadow: none;
     border-color: var(--tui-primary);
     border-width: 2px;

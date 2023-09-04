@@ -16,7 +16,7 @@ export function validateTimeString({
     selection: [from, to],
 }: {
     timeString: string;
-    paddedMaxValues: MaskitoTimeSegments<string>;
+    paddedMaxValues: MaskitoTimeSegments;
     offset: number;
     selection: readonly [number, number];
 }): {validatedTimeString: string; updatedTimeSelection: [number, number]} {

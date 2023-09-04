@@ -47,9 +47,9 @@ describe('Time', () => {
                         .type('235959')
                         .should('have.value', '23:59')
                         .realPress([
-                            ...Array(':59'.length).fill('ArrowLeft'),
+                            ...new Array(':59'.length).fill('ArrowLeft'),
                             'Shift',
-                            ...Array('23'.length).fill('ArrowLeft'),
+                            ...new Array('23'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
@@ -64,9 +64,9 @@ describe('Time', () => {
                         .type('235959')
                         .should('have.value', '23:59')
                         .realPress([
-                            ...Array(':59'.length).fill('ArrowLeft'),
+                            ...new Array(':59'.length).fill('ArrowLeft'),
                             'Shift',
-                            ...Array('23'.length).fill('ArrowLeft'),
+                            ...new Array('23'.length).fill('ArrowLeft'),
                         ]);
 
                     cy.get('@input')
@@ -152,9 +152,9 @@ describe('Time', () => {
                             .type('235959')
                             .should('have.value', '23:59:59')
                             .realPress([
-                                ...Array(':59'.length).fill('ArrowLeft'),
+                                ...new Array(':59'.length).fill('ArrowLeft'),
                                 'Shift',
-                                ...Array('59'.length).fill('ArrowLeft'),
+                                ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -173,9 +173,9 @@ describe('Time', () => {
                             .type('235959')
                             .should('have.value', '23:59:59')
                             .realPress([
-                                ...Array(':59'.length).fill('ArrowLeft'),
+                                ...new Array(':59'.length).fill('ArrowLeft'),
                                 'Shift',
-                                ...Array('59'.length).fill('ArrowLeft'),
+                                ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -259,9 +259,9 @@ describe('Time', () => {
                             .type('235959999')
                             .should('have.value', '23:59:59.999')
                             .realPress([
-                                ...Array(':59.999'.length).fill('ArrowLeft'),
+                                ...new Array(':59.999'.length).fill('ArrowLeft'),
                                 'Shift',
-                                ...Array('59'.length).fill('ArrowLeft'),
+                                ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -280,9 +280,9 @@ describe('Time', () => {
                             .type('235959999')
                             .should('have.value', '23:59:59.999')
                             .realPress([
-                                ...Array(':59.999'.length).fill('ArrowLeft'),
+                                ...new Array(':59.999'.length).fill('ArrowLeft'),
                                 'Shift',
-                                ...Array('59'.length).fill('ArrowLeft'),
+                                ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')

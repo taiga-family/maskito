@@ -12,8 +12,8 @@ import mask from './mask';
             [(ngModel)]="value"
         >
             <input
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="maskitoOptions"
             />
         </tui-input>

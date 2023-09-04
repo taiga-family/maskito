@@ -11,8 +11,8 @@ import mask from './mask';
         >
             Cost
             <input
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="maskitoOptions"
             />
         </tui-input>

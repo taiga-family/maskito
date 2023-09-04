@@ -20,8 +20,7 @@
                 <code>timeMode</code>
                 and
                 <code>dateSeparator</code>
-                parameters to get a mask with a locale specific representation
-                of dates.
+                parameters to get a mask with a locale specific representation of dates.
             </ng-template>
             <date-time-mask-doc-example-1></date-time-mask-doc-example-1>
         </tui-doc-example>
@@ -37,12 +36,12 @@
                 <code>min</code>
                 and
                 <code>max</code>
-                allow to set the earliest and the latest available dates. They
-                accept native
+                allow to set the earliest and the latest available dates. They accept native
                 <a
-                    tuiLink
                     href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+                    rel="noreferrer"
                     target="_blank"
+                    tuiLink
                 >
                     Date
                 </a>
@@ -57,15 +56,13 @@
             <ng-template>
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
-                    [tuiTextfieldFiller]="
-                        getPlaceholder(dateMode, timeMode, dateSeparator)
-                    "
                     [formControl]="apiPageControl"
+                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator)"
                 >
                     Enter date and time
                     <input
-                        tuiTextfield
                         inputmode="numeric"
+                        tuiTextfield
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>
@@ -73,8 +70,8 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="dateMode"
                 documentationPropertyMode="input"
+                documentationPropertyName="dateMode"
                 documentationPropertyType="MaskitoDateMode"
                 [documentationPropertyValues]="dateModeOptions"
                 [(documentationPropertyValue)]="dateMode"
@@ -84,8 +81,8 @@
             </ng-template>
 
             <ng-template
-                documentationPropertyName="timeMode"
                 documentationPropertyMode="input"
+                documentationPropertyName="timeMode"
                 documentationPropertyType="MaskitoTimeMode"
                 [documentationPropertyValues]="timeModeOptions"
                 [(documentationPropertyValue)]="timeMode"
@@ -95,8 +92,8 @@
             </ng-template>
 
             <ng-template
-                documentationPropertyName="dateSeparator"
                 documentationPropertyMode="input"
+                documentationPropertyName="dateSeparator"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="dateSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
@@ -111,8 +108,8 @@
             </ng-template>
 
             <ng-template
-                documentationPropertyName="min"
                 documentationPropertyMode="input"
+                documentationPropertyName="min"
                 documentationPropertyType="Date"
                 [documentationPropertyValues]="minMaxOptions"
                 [(documentationPropertyValue)]="minStr"
@@ -121,8 +118,8 @@
                 Earliest date
             </ng-template>
             <ng-template
-                documentationPropertyName="max"
                 documentationPropertyMode="input"
+                documentationPropertyName="max"
                 documentationPropertyType="Date"
                 [documentationPropertyValues]="minMaxOptions"
                 [(documentationPropertyValue)]="maxStr"

@@ -17,14 +17,14 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
     const demoPathEnumContent = readFileSync(
         join(
             process.cwd(),
-            `projects`,
-            `demo`,
-            `src`,
-            `app`,
-            `constants`,
-            `demo-path.ts`,
+            'projects',
+            'demo',
+            'src',
+            'app',
+            'constants',
+            'demo-path.ts',
         ),
-        `utf-8`,
+        'utf-8',
     );
     const routes =
         demoPathEnumContent
@@ -42,7 +42,7 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
     routes.forEach(route => infoLog(`${SMALL_TAB_SYMBOL}* ${route}`));
 
     writeFileSync(
-        join(process.cwd(), `projects`, `demo`, `routesFile.txt`),
+        join(process.cwd(), 'projects', 'demo', 'routesFile.txt'),
         routes?.join('\n') || '',
     );
 })();

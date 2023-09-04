@@ -7,7 +7,7 @@ import {StackblitzStarterComponent} from './stackblitz-starter.component';
 @NgModule({
     imports: [
         TuiLoaderModule,
-        RouterModule.forChild([{path: ``, component: StackblitzStarterComponent}]),
+        RouterModule.forChild([{path: '', component: StackblitzStarterComponent}]),
     ],
     declarations: [StackblitzStarterComponent],
     exports: [StackblitzStarterComponent],

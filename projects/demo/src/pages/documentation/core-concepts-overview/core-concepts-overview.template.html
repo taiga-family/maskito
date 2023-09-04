@@ -17,6 +17,7 @@
                 set of configurable
                 <a
                     href="https://github.com/taiga-family/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
+                    rel="noreferrer"
                     target="_blank"
                     tuiLink
                 >
@@ -33,23 +34,20 @@
 
     <tui-notification status="warning">
         <div>
-            <strong>
-                Avoid wasting computation power or memory resources!
-            </strong>
+            <strong>Avoid wasting computation power or memory resources!</strong>
         </div>
 
         <p class="tui-space_bottom-0">
             The only available public method
             <code>destroy</code>
-            removes all created event listeners. Call it to clean everything up
-            when the work is finished.
+            removes all created event listeners. Call it to clean everything up when the work is finished.
         </p>
     </tui-notification>
 
     <section>
         <p>
-            To understand the capabilities of the Maskito library, you need to
-            learn about the following features and concepts:
+            To understand the capabilities of the Maskito library, you need to learn about the following features and
+            concepts:
         </p>
 
         <div class="islands-wrapper">
@@ -61,9 +59,8 @@
             >
                 <h3 class="tui-island__title">Mask expression</h3>
                 <p class="tui-island__paragraph">
-                    Learn how to predefine your mask format via mask expression.
-                    This section describes different types of mask expression
-                    and explains meaning of "fixed character" term.
+                    Learn how to predefine your mask format via mask expression. This section describes different types
+                    of mask expression and explains meaning of "fixed character" term.
                 </p>
             </a>
 
@@ -74,9 +71,7 @@
                 [routerLink]="processorsDocPage"
             >
                 <h3 class="tui-island__title">Processors</h3>
-                <p class="tui-island__paragraph">
-                    Learn about preprocessors and postprocessors.
-                </p>
+                <p class="tui-island__paragraph">Learn about preprocessors and postprocessors.</p>
             </a>
 
             <a
@@ -87,22 +82,20 @@
             >
                 <h3 class="tui-island__title">Plugins</h3>
                 <p class="tui-island__paragraph">
-                    Learn how you can augment masking with some custom logic
-                    bound to the masked HTML element.
+                    Learn how you can augment masking with some custom logic bound to the masked HTML element.
                 </p>
             </a>
 
             <a
                 tuiIsland
                 class="island"
-                [routerLink]="overwriteModeDocPage"
                 [hoverable]="true"
+                [routerLink]="overwriteModeDocPage"
             >
                 <h3 class="tui-island__title">Overwrite mode</h3>
                 <p class="tui-island__paragraph">
-                    Maskito can behave differently when user inserts new
-                    character in the middle of text field value. Learn how to
-                    control this behaviour via
+                    Maskito can behave differently when user inserts new character in the middle of text field value.
+                    Learn how to control this behaviour via
                     <code>overwriteMode</code>
                     parameter.
                 </p>
@@ -116,8 +109,7 @@
             >
                 <h3 class="tui-island__title">Transformer</h3>
                 <p class="tui-island__paragraph">
-                    Learn how to correctly programatically update
-                    element's value via
+                    Learn how to correctly programatically update element's value via
                     <code>maskitoTransform</code>
                     .
                 </p>

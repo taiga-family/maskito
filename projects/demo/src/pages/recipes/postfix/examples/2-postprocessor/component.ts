@@ -12,11 +12,11 @@ import mask from './mask';
             Enter price
             <input
                 #inputRef
-                tuiTextfield
                 inputmode="numeric"
+                tuiTextfield
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
                 (blur)="onBlur()"
+                (focus)="onFocus()"
             />
         </tui-input>
     `,

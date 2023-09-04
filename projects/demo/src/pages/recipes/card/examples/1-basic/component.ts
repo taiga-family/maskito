@@ -12,22 +12,22 @@ import {maskitoDateOptionsGenerator} from '@maskito/kit';
 export class CardDocExample1 {
     readonly cardMask: MaskitoOptions = {
         mask: [
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(4).fill(/\d/),
+            ...new Array(4).fill(/\d/),
             ' ',
-            ...Array(3).fill(/\d/),
+            ...new Array(3).fill(/\d/),
         ],
     };
 
     readonly expiredMask = maskitoDateOptionsGenerator({mode: 'mm/yy', separator: '/'});
 
     readonly cvvMask: MaskitoOptions = {
-        mask: [...Array(3).fill(/\d/)],
+        mask: [...new Array(3).fill(/\d/)],
     };
 
     readonly form = new FormGroup({

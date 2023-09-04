@@ -38,7 +38,9 @@ export function createMinMaxDateTimePostprocessor({
 
             const fixedValue = toDateString(
                 {
-                    ...{year, month, day},
+                    year,
+                    month,
+                    day,
                     ...parsedTime,
                 },
                 dateModeTemplate,

@@ -4,10 +4,10 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoModule} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 
-describe(`Maskito Angular package`, () => {
+describe('Maskito Angular package', () => {
     @Component({
         template: `
-            <div id="pipe">{{ control.value | maskito : options }}</div>
+            <div id="pipe">{{ control.value | maskito: options }}</div>
             <input
                 id="input"
                 [formControl]="control"
@@ -47,17 +47,17 @@ describe(`Maskito Angular package`, () => {
         fixture.detectChanges();
     });
 
-    it(`Null is treated as empty string`, () => {
-        expect(getText()).toBe(``);
-        expect(getValue()).toBe(``);
+    it('Null is treated as empty string', () => {
+        expect(getText()).toBe('');
+        expect(getValue()).toBe('');
     });
 
-    it(`Formats new control value`, () => {
+    it('Formats new control value', () => {
         fixture.componentInstance.control.setValue(12345.6789);
         fixture.detectChanges();
 
-        expect(getText()).toBe(`12345,67`);
-        expect(getValue()).toBe(`12345,67`);
+        expect(getText()).toBe('12345,67');
+        expect(getValue()).toBe('12345,67');
     });
 
     function getText(): string {

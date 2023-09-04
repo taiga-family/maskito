@@ -6,24 +6,24 @@ import mask, {PLACEHOLDER, removePlaceholder} from './mask';
     selector: 'placeholder-doc-example-2',
     template: `
         <tui-input
-            [tuiTextfieldCustomContent]="usFlag"
             [style.max-width.rem]="20"
+            [tuiTextfieldCustomContent]="usFlag"
             [(ngModel)]="value"
         >
             Enter US phone number
             <input
                 #inputRef
-                tuiTextfield
                 inputmode="tel"
+                tuiTextfield
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
                 (blur)="onBlur()"
+                (focus)="onFocus()"
             />
 
             <ng-template #usFlag>
                 <img
-                    width="28"
                     alt="Flag of the United States"
+                    width="28"
                     [src]="'US' | tuiFlag"
                 />
             </ng-template>

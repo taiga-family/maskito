@@ -13,7 +13,7 @@ import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button
 @Injectable()
 export class StackblitzService implements TuiCodeEditor {
     private readonly baseProjectConfigs: Pick<Project, 'dependencies' | 'template'> = {
-        template: `typescript`,
+        template: 'typescript',
         dependencies: {
             '@maskito/core': '*',
             '@maskito/kit': '*',
@@ -41,8 +41,8 @@ export class StackblitzService implements TuiCodeEditor {
                 description: `Maskito example of the component ${component}`,
                 files: {
                     'index.html': component.includes('textarea')
-                        ? `<textarea></textarea>`
-                        : `<input />`,
+                        ? '<textarea></textarea>'
+                        : '<input />',
                     'styles.css': css,
                     'index.ts': tuiTryParseMarkdownCodeBlock(tsMd)[0],
                     'mask.ts': files[DocExamplePrimaryTab.MaskitoOptions],

@@ -12,9 +12,9 @@ import mask from './mask';
             <strong>&pi;</strong>
             -value
             <input
-                tuiTextfield
-                placeholder="3,141..."
                 inputmode="decimal"
+                placeholder="3,141..."
+                tuiTextfield
                 [maskito]="maskitoOptions"
             />
         </tui-input>

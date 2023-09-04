@@ -4,7 +4,7 @@ describe('Card', () => {
     describe('Card number input', () => {
         beforeEach(() => {
             cy.visit(DemoPath.Card);
-            cy.get('#Card input').should('be.visible').first().focus().as('input');
+            cy.get('#card input').should('be.visible').first().focus().as('input');
         });
 
         it('accepts 16-digits card number', () => {
@@ -35,7 +35,7 @@ describe('Card', () => {
     describe('Expiration date', () => {
         beforeEach(() => {
             cy.visit(DemoPath.Card);
-            cy.get('#Card input').should('be.visible').eq(2).focus().as('input');
+            cy.get('#card input').should('be.visible').eq(2).focus().as('input');
         });
 
         it('input 321 => 03/21', () => {
@@ -50,7 +50,7 @@ describe('Card', () => {
     describe('CVV', () => {
         beforeEach(() => {
             cy.visit(DemoPath.Card);
-            cy.get('#Card input').should('be.visible').eq(4).focus().as('input');
+            cy.get('#card input').should('be.visible').eq(4).focus().as('input');
         });
 
         it('input 4321 => 432', () => {

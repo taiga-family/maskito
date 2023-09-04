@@ -63,13 +63,13 @@
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconClockLarge"
                     class="input-time"
-                    [tuiTextfieldFiller]="mode.toLowerCase()"
                     [formControl]="apiPageControl"
+                    [tuiTextfieldFiller]="mode.toLowerCase()"
                 >
                     Enter time
                     <input
-                        tuiTextfield
                         inputmode="numeric"
+                        tuiTextfield
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>
@@ -77,8 +77,8 @@
         </tui-doc-demo>
         <tui-doc-documentation>
             <ng-template
-                documentationPropertyName="mode"
                 documentationPropertyMode="input"
+                documentationPropertyName="mode"
                 documentationPropertyType="MaskitoTimeMode"
                 [documentationPropertyValues]="modeOptions"
                 [(documentationPropertyValue)]="mode"
@@ -87,8 +87,8 @@
                 Time format mode
             </ng-template>
             <ng-template
-                documentationPropertyName="timeSegmentMaxValues"
                 documentationPropertyMode="input"
+                documentationPropertyName="timeSegmentMaxValues"
                 documentationPropertyType="MaskitoTimeSegments<number>"
                 [documentationPropertyValues]="timeSegmentMaxValuesOptions"
                 [(documentationPropertyValue)]="timeSegmentMaxValues"

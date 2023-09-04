@@ -2,7 +2,7 @@ export function padWithZeroesUntilValid(
     segmentValue: string,
     paddedMaxValue: string,
     prefixedZeroesCount = 0,
-): {validatedSegmentValue: string; prefixedZeroesCount: number} {
+): {prefixedZeroesCount: number; validatedSegmentValue: string} {
     if (
         Number(segmentValue.padEnd(paddedMaxValue.length, '0')) <= Number(paddedMaxValue)
     ) {

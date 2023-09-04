@@ -299,7 +299,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...Array('7-89'.length).fill('ArrowLeft'),
+                        ...new Array('7-89'.length).fill('ArrowLeft'),
                         'Backspace',
                     ]);
 
@@ -317,7 +317,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...Array('7-8'.length).fill('ArrowLeft'),
+                        ...new Array('7-8'.length).fill('ArrowLeft'),
                         'Backspace',
                     ]);
 
@@ -333,9 +333,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-89'.length).fill('ArrowLeft'),
+                        ...new Array('-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('67'.length).fill('ArrowLeft'),
+                        ...new Array('67'.length).fill('ArrowLeft'),
                         'Backspace',
                     ]);
 
@@ -351,9 +351,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-67-89'.length).fill('ArrowLeft'),
+                        ...new Array('-67-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('345'.length).fill('ArrowLeft'),
+                        ...new Array('345'.length).fill('ArrowLeft'),
                         'Backspace',
                     ]);
 
@@ -386,7 +386,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...Array('7-89'.length).fill('ArrowLeft'),
+                        ...new Array('7-89'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -404,7 +404,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...Array('7-8'.length).fill('ArrowLeft'),
+                        ...new Array('7-8'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -420,9 +420,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-89'.length).fill('ArrowLeft'),
+                        ...new Array('-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('67'.length).fill('ArrowLeft'),
+                        ...new Array('67'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -438,9 +438,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-67-89'.length).fill('ArrowLeft'),
+                        ...new Array('-67-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('345'.length).fill('ArrowLeft'),
+                        ...new Array('345'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -473,7 +473,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...Array('7-89'.length).fill('ArrowLeft'),
+                        ...new Array('7-89'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -491,7 +491,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...Array('7-8'.length).fill('ArrowLeft'),
+                        ...new Array('7-8'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -507,9 +507,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-89'.length).fill('ArrowLeft'),
+                        ...new Array('-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('67'.length).fill('ArrowLeft'),
+                        ...new Array('67'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -525,9 +525,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('-67-89'.length).fill('ArrowLeft'),
+                        ...new Array('-67-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('345'.length).fill('ArrowLeft'),
+                        ...new Array('345'.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -545,9 +545,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('345-67-89'.length).fill('ArrowLeft'),
+                        ...new Array('345-67-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array(') '.length).fill('ArrowLeft'),
+                        ...new Array(') '.length).fill('ArrowLeft'),
                         'Backspace',
                     ]);
 
@@ -563,9 +563,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...Array('345-67-89'.length).fill('ArrowLeft'),
+                        ...new Array('345-67-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array(') '.length).fill('ArrowLeft'),
+                        ...new Array(') '.length).fill('ArrowLeft'),
                     ]);
 
                     cy.get('@input')
@@ -613,9 +613,9 @@ describe('Phone', () => {
                 cy.get('@input')
                     .type('9123456789')
                     .realPress([
-                        ...Array('-89'.length).fill('ArrowLeft'),
+                        ...new Array('-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('345-67'.length).fill('ArrowLeft'),
+                        ...new Array('345-67'.length).fill('ArrowLeft'),
                     ]);
 
                 cy.get('@input')
@@ -662,9 +662,9 @@ describe('Phone', () => {
                 cy.get('@input')
                     .type('9123456789')
                     .realPress([
-                        ...Array('-89'.length).fill('ArrowLeft'),
+                        ...new Array('-89'.length).fill('ArrowLeft'),
                         'Shift',
-                        ...Array('345-67'.length).fill('ArrowLeft'),
+                        ...new Array('345-67'.length).fill('ArrowLeft'),
                     ]);
 
                 cy.get('@input')

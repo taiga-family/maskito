@@ -7,7 +7,7 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
     const process = (
         value: string,
         selection: [number, number],
-    ): {value: string; selection: readonly [number, number]} =>
+    ): {selection: readonly [number, number]; value: string} =>
         processor({value, selection}, DYMMY_INITIAL_STATE);
 
     it('0|0005 => |5', () => {

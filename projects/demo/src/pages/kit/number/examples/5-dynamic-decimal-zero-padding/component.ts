@@ -15,13 +15,13 @@ import {getMaskitoOptions} from './mask';
     template: `
         <label tuiLabel="Enable decimal zero padding by typing dot">
             <tui-input
-                [tuiTextfieldLabelOutside]="true"
                 [style.max-width.rem]="30"
+                [tuiTextfieldLabelOutside]="true"
                 [(ngModel)]="value"
             >
                 <input
-                    tuiTextfield
                     inputmode="decimal"
+                    tuiTextfield
                     [maskito]="getMaskOptions(decimalZeroPadding)"
                     (beforeinput.capture)="handleBeforeInput($event)"
                 />

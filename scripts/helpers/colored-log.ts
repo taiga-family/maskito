@@ -1,5 +1,5 @@
 export function processLog(message: string): void {
-    console.info('\x1b[36m%s\x1b[0m', message);
+    console.info('\x1B[36m%s\x1B[0m', message);
 }
 
 export function errorLog(message: string): void {
@@ -15,7 +15,7 @@ export function infoLog(message: string): void {
 }
 
 export function titleLog(message: string): void {
-    console.info('\x1b[35m', message);
+    console.info('\x1B[35m', message);
 }
 
-export const SMALL_TAB_SYMBOL = `  `; // @note: if you use \t then we have big gaps
+export const SMALL_TAB_SYMBOL = '  '; // @note: if you use \t then we have big gaps

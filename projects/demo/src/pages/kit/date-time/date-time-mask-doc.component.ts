@@ -33,12 +33,12 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
     apiPageControl = new FormControl('');
 
     readonly dateModeOptions: MaskitoDateMode[] = [
-        `dd/mm/yyyy`,
-        `mm/dd/yyyy`,
-        `yyyy/mm/dd`,
+        'dd/mm/yyyy',
+        'mm/dd/yyyy',
+        'yyyy/mm/dd',
     ];
 
-    readonly timeModeOptions: MaskitoTimeMode[] = [`HH:MM`, `HH:MM:SS`, `HH:MM:SS.MSS`];
+    readonly timeModeOptions: MaskitoTimeMode[] = ['HH:MM', 'HH:MM:SS', 'HH:MM:SS.MSS'];
     readonly minMaxOptions = [
         '0001-01-01T00:00:00',
         '9999-12-31T23:59:59',

@@ -1,3 +1,5 @@
+/* eslint-disable perfectionist/sort-enums */
+
 export const enum HotkeyModifier {
     CTRL = 1 << 0,
     ALT = 1 << 1,

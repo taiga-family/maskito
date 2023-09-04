@@ -6,9 +6,9 @@ import mask from './mask';
     selector: 'overwrite-mode-dynamic-doc-example-3',
     template: `
         <tui-textarea
+            [expandable]="true"
             [ngModel]="initialValue"
             [style.max-width.rem]="20"
-            [expandable]="true"
             [tuiTextfieldLabelOutside]="true"
         >
             <textarea

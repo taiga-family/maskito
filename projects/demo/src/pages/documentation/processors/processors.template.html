@@ -3,6 +3,7 @@
         <p class="tui-space_top-0">
             <a
                 href="https://github.com/taiga-family/maskito/blob/main/projects/core/src/lib/types/mask-options.ts"
+                rel="noreferrer"
                 target="_blank"
                 tuiLink
             >
@@ -12,10 +13,10 @@
             <code>preprocessors</code>
             and
             <code>postprocessors</code>
-            . Both accept array of pure functions. These functions are triggered
-            on every user's input (
+            . Both accept array of pure functions. These functions are triggered on every user's input (
             <a
                 href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event"
+                rel="noreferrer"
                 target="_blank"
                 tuiLink
             >
@@ -24,39 +25,36 @@
             and
             <a
                 href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event"
+                rel="noreferrer"
                 target="_blank"
                 tuiLink
             >
                 input
             </a>
-            events). They provide an opportunity to modify value before / after
-            the mask is applied.
+            events). They provide an opportunity to modify value before / after the mask is applied.
         </p>
 
         <section>
             <p>
-                Preprocessors and postprocessors accept different types of
-                arguments but they have two important similarities:
+                Preprocessors and postprocessors accept different types of arguments but they have two important
+                similarities:
             </p>
             <ul class="tui-list">
                 <li class="tui-list__item">
-                    The first argument always contains object with information
-                    that you can change. Object with the same properties and
-                    updated values can be returned from the processor. It means
-                    that you can keep all properties untouched or you can change
-                    any or all of these properties.
+                    The first argument always contains object with information that you can change. Object with the same
+                    properties and updated values can be returned from the processor. It means that you can keep all
+                    properties untouched or you can change any or all of these properties.
                 </li>
                 <li class="tui-list__item">
-                    The rest arguments contain information that can be useful to
-                    build some complex logic, but you cannot change it.
+                    The rest arguments contain information that can be useful to build some complex logic, but you
+                    cannot change it.
                 </li>
             </ul>
         </section>
     </section>
 
     <tui-notification class="tui-space_bottom-12">
-        Before you learn more about processors, you should learn a single
-        prerequisite — meaning of the term
+        Before you learn more about processors, you should learn a single prerequisite — meaning of the term
         <a
             tuiLink
             [routerLink]="elementStateDocPage"
@@ -76,10 +74,9 @@
         </p>
 
         <p>
-            For example, if user types a new character, all preprocessors will
-            be called first, and only then final value that they returned will
-            be passed into the mask, and finally the mask will accept or reject
-            new typed character and update actual value of the text field.
+            For example, if user types a new character, all preprocessors will be called first, and only then final
+            value that they returned will be passed into the mask, and finally the mask will accept or reject new typed
+            character and update actual value of the text field.
         </p>
 
         <section class="tui-space_bottom-6">
@@ -93,8 +90,8 @@
                         <code>data</code>
                         .
                     </strong>
-                    Object of the same interface with updated or unchanged
-                    properties can be returned from the preprocessor.
+                    Object of the same interface with updated or unchanged properties can be returned from the
+                    preprocessor.
 
                     <tui-doc-code
                         class="tui-space_top-1"
@@ -102,19 +99,13 @@
                     ></tui-doc-code>
                 </li>
                 <li class="tui-list__item">
-                    Name of the action which triggers current execution. It can
-                    be one of the following possible values:
-                    <tui-doc-code
-                        [code]="preprocessorsSecondArgDemo"
-                    ></tui-doc-code>
+                    Name of the action which triggers current execution. It can be one of the following possible values:
+                    <tui-doc-code [code]="preprocessorsSecondArgDemo"></tui-doc-code>
                 </li>
             </ol>
         </section>
 
-        <p>
-            Preprocessor returns an objects of the same interface as the first
-            argument.
-        </p>
+        <p>Preprocessor returns an objects of the same interface as the first argument.</p>
 
         <tui-doc-code [code]="preprocessorInActionDemo"></tui-doc-code>
     </section>
@@ -125,9 +116,8 @@
         <p class="tui-space_bottom-0">
             Each postprocessor is a function that is called
             <strong>after</strong>
-            the mask is applied. When all preprocessors are already called, all
-            mask operations happened and the input's value is about to be
-            updated. You can change everything manually inside a postprocessor.
+            the mask is applied. When all preprocessors are already called, all mask operations happened and the input's
+            value is about to be updated. You can change everything manually inside a postprocessor.
         </p>
 
         <section class="tui-space_bottom-6">
@@ -135,23 +125,17 @@
             <ol class="tui-list tui-list_ordered">
                 <li class="tui-list__item">
                     <strong>Element state after mask had been applied.</strong>
-                    Postprocessor can return updated element state which would
-                    then be reflected by the actual text field.
+                    Postprocessor can return updated element state which would then be reflected by the actual text
+                    field.
                 </li>
                 <li class="tui-list__item">
-                    <strong>
-                        Initial element state before preprocessors and mask
-                        execution.
-                    </strong>
+                    <strong>Initial element state before preprocessors and mask execution.</strong>
                     It is a readonly argument, the past cannot be changed...
                 </li>
             </ol>
         </section>
 
-        <p>
-            Postprocessor returns an objects of the same interface as the first
-            argument.
-        </p>
+        <p>Postprocessor returns an objects of the same interface as the first argument.</p>
 
         <tui-notification
             status="warning"
@@ -162,9 +146,8 @@
             </p>
 
             <p class="tui-space_bottom-0">
-                Postprocessor is the final step before input's value update
-                which gives a lot of flexibility. Use postprocessor wisely and
-                return a valid value!
+                Postprocessor is the final step before input's value update which gives a lot of flexibility. Use
+                postprocessor wisely and return a valid value!
             </p>
         </tui-notification>
 
@@ -177,16 +160,15 @@
         <p>
             The
             <strong>Maskito</strong>
-            team likes code decomposition and promotes it! Don't put all complex
-            logic inside a single processor. Both parameters
+            team likes code decomposition and promotes it! Don't put all complex logic inside a single processor. Both
+            parameters
             <code>preprocessors</code>
             and
             <code>postprocessors</code>
             accepts
             <strong>array</strong>
-            of same type processors. Break your code into the several
-            independent processors so that each processor implements only a
-            single task.
+            of same type processors. Break your code into the several independent processors so that each processor
+            implements only a single task.
         </p>
     </tui-notification>
 

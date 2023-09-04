@@ -27,16 +27,16 @@ export class DateMaskDocComponent implements GeneratorOptions {
     };
 
     readonly modeOptions: MaskitoDateMode[] = [
-        `dd/mm/yyyy`,
-        `mm/dd/yyyy`,
-        `yyyy/mm/dd`,
+        'dd/mm/yyyy',
+        'mm/dd/yyyy',
+        'yyyy/mm/dd',
         'mm/yy',
         'mm/yyyy',
         'yyyy/mm',
         'yyyy',
     ];
 
-    readonly separatorOptions: string[] = [`.`, `/`, `-`];
+    readonly separatorOptions: string[] = ['.', '/', '-'];
     readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
     minStr = this.minMaxOptions[0];
     maxStr = this.minMaxOptions[1];

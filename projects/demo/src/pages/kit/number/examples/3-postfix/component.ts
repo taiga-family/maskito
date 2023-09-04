@@ -6,17 +6,17 @@ import mask from './mask';
     selector: 'number-mask-doc-example-3',
     template: `
         <tui-input
-            [tuiTextfieldLabelOutside]="true"
             [style.max-width.rem]="30"
+            [tuiTextfieldLabelOutside]="true"
             [(ngModel)]="value"
         >
             <input
                 #nativeInput
-                tuiTextfield
                 inputmode="decimal"
+                tuiTextfield
                 [maskito]="maskitoOptions"
-                (focus)="onFocus()"
                 (blur)="onBlur()"
+                (focus)="onFocus()"
             />
         </tui-input>
     `,

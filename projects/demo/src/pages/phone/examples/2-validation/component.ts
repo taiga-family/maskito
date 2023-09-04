@@ -23,20 +23,20 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconPhoneLarge"
-            [style.max-width.rem]="30"
             [formControl]="control"
+            [style.max-width.rem]="30"
         >
             Basic
             <input
-                tuiTextfield
                 autocomplete="tel"
                 inputmode="tel"
+                tuiTextfield
                 [maskito]="mask"
             />
         </tui-input>
         <tui-error
-            [formControl]="control"
             [error]="[] | tuiFieldError | async"
+            [formControl]="control"
         ></tui-error>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -164,7 +164,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                     .realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...Array('23,4'.length).fill('ArrowLeft'),
+                        ...new Array('23,4'.length).fill('ArrowLeft'),
                     ]);
 
                 cy.get('@input')

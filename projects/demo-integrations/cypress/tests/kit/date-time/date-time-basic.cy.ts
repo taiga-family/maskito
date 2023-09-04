@@ -236,7 +236,7 @@ describe('DateTime | Basic', () => {
                         .type('{leftArrow}'.repeat('.2005, 12:30'.length))
                         .realPress([
                             'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
+                            ...new Array('12'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -257,7 +257,7 @@ describe('DateTime | Basic', () => {
                         .type('{leftArrow}'.repeat(':30'.length))
                         .realPress([
                             'Shift',
-                            ...Array('12'.length).fill('ArrowLeft'),
+                            ...new Array('12'.length).fill('ArrowLeft'),
                             'Backspace',
                         ]);
 
@@ -276,7 +276,10 @@ describe('DateTime | Basic', () => {
                         .type('111120111230')
                         .should('have.value', '11.11.2011, 12:30')
                         .type('{leftArrow}'.repeat('1.2011, 12:30'.length))
-                        .realPress(['Shift', ...Array('1.1'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('1.1'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -294,7 +297,10 @@ describe('DateTime | Basic', () => {
                         .type('111120111230')
                         .should('have.value', '11.11.2011, 12:30')
                         .type('{leftArrow}'.repeat('0'.length))
-                        .realPress(['Shift', ...Array('2.3'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('2.3'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -313,7 +319,10 @@ describe('DateTime | Basic', () => {
                     cy.get('@input')
                         .type('12112022')
                         .type('{leftArrow}'.repeat('.11.2022'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('12'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('3')
@@ -330,7 +339,10 @@ describe('DateTime | Basic', () => {
                     cy.get('@input')
                         .type('010120001230')
                         .type('{leftArrow}'.repeat(':30'.length))
-                        .realPress(['Shift', ...Array('12'.length).fill('ArrowLeft')]);
+                        .realPress([
+                            'Shift',
+                            ...new Array('12'.length).fill('ArrowLeft'),
+                        ]);
 
                     cy.get('@input')
                         .type('2')
