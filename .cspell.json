@@ -4,10 +4,16 @@
     "files": ["*/*.*"],
     "ignorePaths": [
         ".git",
+        ".gitignore",
         ".cspell.json",
         "**/dist/**",
         "**/assets/**",
         "**/node_modules/**",
-        "*.{log,svg,snap,png,ogv,yml}"
-    ]
+        "**/demo/server.ts",
+        "**/demo-integrations/cypress/tests/**",
+        "*.{log,svg,snap,png,ogv,yml}",
+        "**/package.json",
+        "**/tsconfig*.json"
+    ],
+    "ignoreWords": ["onbeforeinput", "libphonenumber", "teardowns", "сhar", "dont"]
 }

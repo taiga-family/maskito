@@ -30,7 +30,7 @@ describe('Number | Basic', () => {
                 .should('have.prop', 'selectionEnd', '123_456'.length);
         });
 
-        it('rejects lowercase cyrillics letters', () => {
+        it('rejects lowercase cyrillic letters', () => {
             cy.get('@input')
                 .type('123авгдеёжзийклмнопрстуфхцчшщъыьэя456') // without "б" and "ю"
                 .should('have.value', '123_456')
@@ -38,7 +38,7 @@ describe('Number | Basic', () => {
                 .should('have.prop', 'selectionEnd', '123_456'.length);
         });
 
-        it('rejects uppercase cyrillics letters', () => {
+        it('rejects uppercase cyrillic letters', () => {
             cy.get('@input')
                 .type('123АВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЯ456')
                 .should('have.value', '123_456')
