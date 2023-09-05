@@ -256,21 +256,21 @@ describe('Phone', () => {
 
     describe('Some countries', () => {
         it('US: +1 212 343-3355', () => {
-            openCounrty('US');
+            openCountry('US');
 
             cy.get('@input').type('2123433355');
             cy.get('@input').should('have.value', '+1 212 343-3355');
         });
 
         it('KZ: +7 771 931-1111', () => {
-            openCounrty('KZ');
+            openCountry('KZ');
 
             cy.get('@input').type('7719311111');
             cy.get('@input').should('have.value', '+7 771 931-1111');
         });
 
         it('BY: +375 44 748-82-69', () => {
-            openCounrty('BY');
+            openCountry('BY');
 
             cy.get('@input').type('447488269');
             cy.get('@input').should('have.value', '+375 44 748-82-69');
@@ -278,7 +278,7 @@ describe('Phone', () => {
     });
 });
 
-function openCounrty(code: string): void {
+function openCountry(code: string): void {
     cy.visit(`/${DemoPath.PhonePackage}/API?countryCode=${code}`);
     cy.get('#demo-content input').should('be.visible').first().focus().as('input');
 }

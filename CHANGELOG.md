@@ -281,7 +281,7 @@ All notable changes to this project will be documented in this file. See
 - **angular:** `@maskito/angular` should not depend on `@maskito/kit`
   ([#221](https://github.com/taiga-family/maskito/issues/221))
   ([0ae7b20](https://github.com/taiga-family/maskito/commit/0ae7b2089ec0436caa8dbb14d5c696ae93e9e7ed))
-- **angular:** `npm i @maskito/angular` throws `ERESOLVE unable to resolve dependency tree`
+- **angular:** `npm i @maskito/angular` throws `unable to resolve dependency tree`
   ([#220](https://github.com/taiga-family/maskito/issues/220))
   ([8b4d6e6](https://github.com/taiga-family/maskito/commit/8b4d6e6186db47f97d328186b7afd9af75a3889b))
 

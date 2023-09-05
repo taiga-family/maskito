@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/master/cspell.schema.json",
+    "import": ["node_modules/@taiga-ui/cspell-config/cspell.config.js"],
+    "files": ["*/*.*"],
+    "ignorePaths": [
+        ".git",
+        ".gitignore",
+        ".cspell.json",
+        "**/dist/**",
+        "**/assets/**",
+        "**/node_modules/**",
+        "**/demo/server.ts",
+        "**/demo-integrations/cypress/tests/**",
+        "*.{log,svg,snap,png,ogv,yml}",
+        "**/package.json",
+        "**/tsconfig*.json"
+    ],
+    "ignoreWords": ["onbeforeinput", "libphonenumber", "teardowns", "сhar", "dont"]
+}
