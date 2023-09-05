@@ -1,4 +1,4 @@
 module.exports = {
-    extends: ['@tinkoff/stylelint-config/less', '@tinkoff/stylelint-config/angular'],
+    extends: ['@taiga-ui/stylelint-config/angular-less'],
     ignoreFiles: ['**/demo/**', '**/dist/**', '**/coverage/**', '**/node_modules/**'],
 };
