@@ -22,7 +22,7 @@ jobs:
         uses: taiga-family/ci/actions/setup-node@1.12.0
 
       - name: Run cspell
-      - run: npm run cspell -- --no-progress
+        run: npm run cspell -- --no-progress
 
   prettier:
     runs-on: ubuntu-latest
