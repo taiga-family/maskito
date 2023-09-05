@@ -93,7 +93,7 @@
         "@nrwl/tao": "13.1.4",
         "@nrwl/web": "13.4.2",
         "@nrwl/workspace": "13.1.4",
-        "@taiga-ui/eslint-plugin-experience": "0.6.2",
+        "@taiga-ui/eslint-plugin-experience": "0.6.3",
         "@taiga-ui/prettier-config": "0.2.1",
         "@tinkoff/eslint-config": "1.52.1",
         "@tinkoff/eslint-config-react": "1.52.1",
