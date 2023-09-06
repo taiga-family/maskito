@@ -30,7 +30,24 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
+    readonly nonStrict: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-non-strict/mask.ts?raw'
+        ),
+    };
+
+    readonly lazyMetadata: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-validation/mask.ts?raw'
+        ),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/2-validation/component.ts?raw'
+        ),
+    };
+
     metadata = metadata;
+
+    strict = true;
 
     countryCodeVariants = getCountries(this.metadata);
 

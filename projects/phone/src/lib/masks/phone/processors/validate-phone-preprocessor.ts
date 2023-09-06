@@ -12,7 +12,7 @@ export function validatePhonePreprocessorGenerator({
     metadata,
 }: {
     prefix: string;
-    countryIsoCode: CountryCode;
+    countryIsoCode?: CountryCode;
     metadata: MetadataJson;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
@@ -29,14 +29,17 @@ export function validatePhonePreprocessorGenerator({
         try {
             const validationError = validatePhoneNumberLength(
                 data,
-                countryIsoCode,
+                {defaultCountry: countryIsoCode},
                 metadata,
             );
 
             if (!validationError) {
                 // handle past-event with different code, for example for 8 / +7
-                const phone = parsePhoneNumber(data, countryIsoCode, metadata);
-                const nationalSignificantNumber = phone.nationalNumber;
+                const phone = countryIsoCode
+                    ? parsePhoneNumber(data, countryIsoCode, metadata)
+                    : parsePhoneNumber(data, metadata);
+
+                const {nationalNumber, countryCallingCode} = phone;
 
                 return {
                     elementState: {
@@ -44,8 +47,8 @@ export function validatePhonePreprocessorGenerator({
                         value: selectionIncludesPrefix ? '' : prefix,
                     },
                     data: selectionIncludesPrefix
-                        ? `${prefix}${nationalSignificantNumber}`
-                        : nationalSignificantNumber,
+                        ? `+${countryCallingCode} ${nationalNumber}`
+                        : nationalNumber,
                 };
             }
         } catch {

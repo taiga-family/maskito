@@ -5,3 +5,4 @@ export {
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
+export {maskitoGetCountryFromNumber} from './utils';
