@@ -102,7 +102,7 @@ describe('Phone', () => {
                             .type('{leftArrow}'.repeat('-32'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('11'.length).fill('ArrowLeft'),
+                                ...new Array('11'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -117,7 +117,7 @@ describe('Phone', () => {
                             .type('{leftArrow}')
                             .realPress([
                                 'Shift',
-                                ...Array('1-3'.length).fill('ArrowLeft'),
+                                ...new Array('1-3'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -138,7 +138,7 @@ describe('Phone', () => {
                             .type('{leftArrow}'.repeat('-32'.length))
                             .realPress([
                                 'Shift',
-                                ...Array('11'.length).fill('ArrowLeft'),
+                                ...new Array('11'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
@@ -153,7 +153,7 @@ describe('Phone', () => {
                             .type('{leftArrow}')
                             .realPress([
                                 'Shift',
-                                ...Array('1-3'.length).fill('ArrowLeft'),
+                                ...new Array('1-3'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')

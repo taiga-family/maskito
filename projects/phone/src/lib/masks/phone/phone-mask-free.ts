@@ -15,7 +15,7 @@ export function maskitoPhoneFreeOptionsGenerator({
     metadata: MetadataJson;
 }): Required<MaskitoOptions> {
     const formatter = new AsYouType(defaultIsoCode, metadata);
-    const prefix = `+`;
+    const prefix = '+';
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
