@@ -14,9 +14,9 @@ import mask from './mask';
         >
             Basic
             <input
-                tuiTextfield
                 autocomplete="tel"
                 inputmode="tel"
+                tuiTextfield
                 [maskito]="mask"
             />
         </tui-input>

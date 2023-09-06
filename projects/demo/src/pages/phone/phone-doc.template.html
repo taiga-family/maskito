@@ -65,8 +65,8 @@
         <tui-doc-example
             id="non-strict"
             heading="Non-strict mask"
-            [description]="nonStrictDescription"
             [content]="nonStrict"
+            [description]="nonStrictDescription"
         >
             <phone-doc-example-3></phone-doc-example-3>
 
@@ -76,15 +76,13 @@
                     <code>strict</code>
                     option to
                     <code>false</code>
-                    enables non-strict mask mode. There is no strict country
-                    code in the mask in this mode.
+                    enables non-strict mask mode. There is no strict country code in the mask in this mode.
                 </p>
                 <p>
                     The
                     <code>countryIsoCode</code>
-                    option is optional in that case, but if you specify it, the
-                    mask will try to add that country's calling code when you
-                    try to insert a phone number without a calling code.
+                    option is optional in that case, but if you specify it, the mask will try to add that country's
+                    calling code when you try to insert a phone number without a calling code.
                 </p>
             </ng-template>
         </tui-doc-example>
@@ -92,28 +90,25 @@
         <tui-doc-example
             id="lazy-metadata"
             heading="Lazy metadata"
-            [description]="lazyDescription"
             [content]="lazyMetadata"
+            [description]="lazyDescription"
         >
             <phone-doc-example-4></phone-doc-example-4>
 
             <ng-template #lazyDescription>
-                <p>
-                    You can load metadata lazily, below is an example of how to
-                    do it in Angular.
-                </p>
+                <p>You can load metadata lazily, below is an example of how to do it in Angular.</p>
                 <p>
                     You can also
                     <a
-                        tuiLink
                         href="https://gitlab.com/catamphetamine/libphonenumber-js#customizing-metadata"
+                        tuiLink
                     >
                         customize the metadata
                     </a>
                     to reduce metadata size. See instructions
                     <a
-                        tuiLink
                         href="https://gitlab.com/catamphetamine/libphonenumber-metadata-generator"
+                        tuiLink
                     >
                         here
                     </a>
@@ -152,8 +147,8 @@
                 Country ISO-code
             </ng-template>
             <ng-template
-                documentationPropertyName="strict"
                 documentationPropertyMode="input"
+                documentationPropertyName="strict"
                 documentationPropertyType="boolean"
                 [(documentationPropertyValue)]="strict"
                 (documentationPropertyValueChange)="updateOptions()"
