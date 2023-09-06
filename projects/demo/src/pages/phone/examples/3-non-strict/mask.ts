@@ -2,7 +2,7 @@ import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import metadata from 'libphonenumber-js/min/metadata';
 
 export default maskitoPhoneOptionsGenerator({
-    countryIsoCode: 'RU',
+    countryIsoCode: 'HU',
     metadata,
     strict: false,
 });

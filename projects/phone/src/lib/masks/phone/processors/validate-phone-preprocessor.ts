@@ -1,5 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 import {
+    AsYouType,
     CountryCode,
     MetadataJson,
     parsePhoneNumber,
@@ -23,7 +24,14 @@ export function validatePhonePreprocessorGenerator({
 
         // handling autocomplete
         if (value && !value.startsWith(cleanCode) && !data) {
-            return {elementState: {value: prefix + value, selection}};
+            const formatter = new AsYouType({defaultCountry: countryIsoCode}, metadata);
+
+            formatter.input(value);
+            const numberValue = formatter.getNumberValue() || '';
+
+            formatter.reset();
+
+            return {elementState: {value: formatter.input(numberValue), selection}};
         }
 
         try {

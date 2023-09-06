@@ -34,14 +34,14 @@ export class PhoneDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-non-strict/mask.ts?raw'
         ),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/3-non-strict/component.ts?raw'
+        ),
     };
 
     readonly lazyMetadata: TuiDocExample = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-validation/mask.ts?raw'
-        ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/2-validation/component.ts?raw'
+            './examples/4-lazy-metadata/component.ts?raw'
         ),
     };
 
