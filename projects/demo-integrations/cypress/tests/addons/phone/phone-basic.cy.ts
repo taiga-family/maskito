@@ -275,6 +275,13 @@ describe('Phone', () => {
             cy.get('@input').type('447488269');
             cy.get('@input').should('have.value', '+375 44 748-82-69');
         });
+
+        it('TR: +90 539 377-07-43', () => {
+            openCountry('TR');
+
+            cy.get('@input').type('5393770743');
+            cy.get('@input').should('have.value', '+90 539 377-07-43');
+        });
     });
 });
 

@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {CountryCode, getCountries} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
@@ -54,6 +55,12 @@ export class PhoneDocComponent implements GeneratorOptions {
     countryIsoCode: CountryCode = 'RU';
 
     maskitoOptions = maskitoPhoneOptionsGenerator(this);
+
+    constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
+
+    get pattern(): string {
+        return this.isApple ? '+{1}[0-9]{1,3} [0-9]{1,14}' : '';
+    }
 
     updateOptions(): void {
         this.maskitoOptions = maskitoPhoneOptionsGenerator(this);

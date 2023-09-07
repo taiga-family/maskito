@@ -173,29 +173,36 @@ describe('Phone', () => {
 
     describe('Some countries', () => {
         it('US: +1 212 343-3355', () => {
-            openCounrty('US');
+            openCountry('US');
 
             cy.get('@input').type('12123433355');
             cy.get('@input').should('have.value', '+1 212 343-3355');
         });
 
         it('KZ: +7 771 931-1111', () => {
-            openCounrty('KZ');
+            openCountry('KZ');
 
             cy.get('@input').type('77719311111');
             cy.get('@input').should('have.value', '+7 771 931-1111');
         });
 
         it('BY: +375 44 748-82-69', () => {
-            openCounrty('BY');
+            openCountry('BY');
 
             cy.get('@input').type('375447488269');
             cy.get('@input').should('have.value', '+375 44 748-82-69');
         });
+
+        it('TR: +90 539 377-07-43', () => {
+            openCountry('TR');
+
+            cy.get('@input').type('905393770743');
+            cy.get('@input').should('have.value', '+90 539 377-07-43');
+        });
     });
 });
 
-function openCounrty(code: string): void {
+function openCountry(code: string): void {
     cy.visit(`/${DemoPath.PhonePackage}/API?strict=false&countryCode=${code}`);
     cy.get('#demo-content input').should('be.visible').first().focus().as('input');
 }

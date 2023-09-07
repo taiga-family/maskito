@@ -32,4 +32,30 @@ describe('Phone (maskitoTransform)', () => {
             );
         });
     });
+
+    describe('non-strict', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        beforeEach(() => {
+            options = maskitoPhoneOptionsGenerator({
+                metadata,
+                strict: false,
+                countryIsoCode: 'RU',
+            });
+        });
+
+        it('full number +7 code', () => {
+            expect(maskitoTransform('+79202800155', options)).toBe('+7 920 280-01-55');
+        });
+
+        it('full number 8 code', () => {
+            expect(maskitoTransform('89202800155', options)).toBe('+7 920 280-01-55');
+        });
+
+        it('full number with extra chars', () => {
+            expect(maskitoTransform('8 (920) 280-01-55', options)).toBe(
+                '+7 920 280-01-55',
+            );
+        });
+    });
 });

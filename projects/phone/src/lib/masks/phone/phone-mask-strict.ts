@@ -30,10 +30,20 @@ export function maskitoPhoneStrictOptionsGenerator({
     const formatter = new AsYouType(countryIsoCode, metadata);
     const prefix = `+${code} `;
 
+    let template = '';
+    let prevPhoneLength = 0;
+
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const template = getPhoneTemplate(formatter, value);
+            const newTemplate = getPhoneTemplate(formatter, value);
+            const phoneLength = value.replace(/\D/g, '').length;
+
+            template =
+                newTemplate.length < template.length && phoneLength > prevPhoneLength
+                    ? template
+                    : newTemplate;
+            prevPhoneLength = phoneLength;
 
             return generatePhoneMask({value, template, prefix});
         },

@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
+import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import mask from './mask';
@@ -17,6 +18,7 @@ import mask from './mask';
                 autocomplete="tel"
                 inputmode="tel"
                 tuiTextfield
+                [attr.pattern]="pattern"
                 [maskito]="mask"
             />
         </tui-input>
@@ -31,5 +33,11 @@ export class PhoneMaskDocExample3 {
 
     get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.value, metadata) || '';
+    }
+
+    constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
+
+    get pattern(): string {
+        return this.isApple ? '+{1}[0-9]{1,3} [0-9]{1,14}' : '';
     }
 }

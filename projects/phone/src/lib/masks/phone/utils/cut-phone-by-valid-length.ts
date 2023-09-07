@@ -9,7 +9,7 @@ export function cutPhoneByValidLength({
 }): string {
     const validationResult = validatePhoneNumberLength(phone, metadata);
 
-    if (validationResult === 'INVALID_LENGTH' || validationResult === 'TOO_LONG') {
+    if (validationResult === 'TOO_LONG') {
         return cutPhoneByValidLength({
             phone: phone.slice(0, phone.length - 1),
             metadata,
