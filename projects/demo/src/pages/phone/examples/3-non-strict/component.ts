@@ -13,7 +13,7 @@ import mask from './mask';
             [style.max-width.rem]="30"
             [(ngModel)]="value"
         >
-            Basic
+            Non-strict
             <input
                 autocomplete="tel"
                 inputmode="tel"
