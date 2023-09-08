@@ -286,6 +286,6 @@ describe('Phone', () => {
 });
 
 function openCountry(code: string): void {
-    cy.visit(`/${DemoPath.PhonePackage}/API?countryCode=${code}`);
+    cy.visit(`/${DemoPath.PhonePackage}/API?countryIsoCode=${code}`);
     cy.get('#demo-content input').should('be.visible').first().focus().as('input');
 }
