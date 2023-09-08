@@ -27,10 +27,6 @@ module.exports = {
                 '@taiga-ui/experience/no-typeof': 'off',
                 '@typescript-eslint/naming-convention': 'off', // TODO
                 '@typescript-eslint/consistent-type-assertions': 'off',
-                'perfectionist/sort-interfaces': 'off',
-                'perfectionist/sort-enums': 'off',
-                'perfectionist/sort-object-types': 'off',
-                'perfectionist/sort-map-elements': 'off',
                 'no-irregular-whitespace': 'off',
                 'max-statements': 'off',
                 'no-restricted-syntax': 'off', // TODO
