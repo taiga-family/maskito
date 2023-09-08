@@ -8,7 +8,10 @@ import {DemoPath} from '@demo/constants';
 })
 export class ReactDocPageComponent {
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly useMaskitoBasicUsage = import('./examples/use-maskito-basic-usage.md?raw');
+    readonly useMaskitoBasicUsage = import(
+        './examples/use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
+    );
+
     readonly queryNestedInputDemo = import('./examples/query-nested-input.md?raw');
     readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
     readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');

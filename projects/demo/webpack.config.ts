@@ -59,7 +59,7 @@ const config: Configuration = {
          */
         rules: [
             {
-                test: /\.(ts|html|css|less|md|svg)$/i,
+                test: /\.(ts|tsx|html|css|less|md|svg)$/i,
                 resourceQuery: RAW_QUERY,
                 type: 'asset/source',
             },

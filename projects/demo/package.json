@@ -29,6 +29,8 @@
         "@tinkoff/ng-dompurify": "3.0.0",
         "dompurify": "2.4.7",
         "ngx-markdown": "10.1.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
         "rxjs": "6.6.7",
         "tslib": "2.6.2",
         "vue": "3.3.4",
