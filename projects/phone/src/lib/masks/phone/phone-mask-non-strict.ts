@@ -7,7 +7,7 @@ import {
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate} from './utils';
 
-export function maskitoPhoneFreeOptionsGenerator({
+export function maskitoPhoneNonStrictOptionsGenerator({
     defaultIsoCode,
     metadata,
 }: {
@@ -30,7 +30,6 @@ export function maskitoPhoneFreeOptionsGenerator({
                     ? template
                     : newTemplate;
             prevPhoneLength = phoneLength;
-
             const mask = generatePhoneMask({value, template, prefix});
 
             return template.length === 1 ? ['+', /\d/] : mask;

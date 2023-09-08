@@ -1,7 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 import {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 
-import {maskitoPhoneFreeOptionsGenerator} from './phone-mask-free';
+import {maskitoPhoneNonStrictOptionsGenerator} from './phone-mask-non-strict';
 import {maskitoPhoneStrictOptionsGenerator} from './phone-mask-strict';
 
 export function maskitoPhoneOptionsGenerator({
@@ -15,5 +15,8 @@ export function maskitoPhoneOptionsGenerator({
 }): Required<MaskitoOptions> {
     return strict && countryIsoCode
         ? maskitoPhoneStrictOptionsGenerator({countryIsoCode, metadata})
-        : maskitoPhoneFreeOptionsGenerator({defaultIsoCode: countryIsoCode, metadata});
+        : maskitoPhoneNonStrictOptionsGenerator({
+              defaultIsoCode: countryIsoCode,
+              metadata,
+          });
 }

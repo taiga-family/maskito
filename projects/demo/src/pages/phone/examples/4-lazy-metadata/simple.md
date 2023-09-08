@@ -1,0 +1,19 @@
+```js
+import {Maskito, MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
+import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+
+const element = document.querySelector('input,textarea');
+let maskedInput = new Maskito(element, MASKITO_DEFAULT_OPTIONS);
+
+(async function initMask() {
+  const maskitoOptions = maskitoPhoneOptionsGenerator({
+    countryIsoCode: 'RU',
+    metadata: await import('libphonenumber-js/min/metadata').then(m => m.default),
+  });
+
+  maskedInput = new Maskito(element, maskitoOptions);
+})();
+
+// Call this function when the element is detached from DOM
+maskedInput.destroy();
+```

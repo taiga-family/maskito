@@ -9,8 +9,8 @@ import mask from './mask';
     selector: 'phone-doc-example-3',
     template: `
         <tui-input
-            tuiTextfieldCustomContent="tuiIconPhoneLarge"
             [style.max-width.rem]="30"
+            [tuiTextfieldCustomContent]="countryIsoCode ? flag : 'tuiIconPhoneLarge'"
             [(ngModel)]="value"
         >
             Non-strict
@@ -23,7 +23,13 @@ import mask from './mask';
             />
         </tui-input>
 
-        <div>Country code: {{ countryIsoCode }}</div>
+        <ng-template #flag>
+            <img
+                width="28"
+                [attr.alt]="countryIsoCode"
+                [src]="countryIsoCode | tuiFlag"
+            />
+        </ng-template>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -76,7 +76,7 @@
                     <code>strict</code>
                     option to
                     <code>false</code>
-                    enables non-strict mask mode. There is no strict country code in the mask in this mode.
+                    enables non-strict mask mode and allow user to type any country phone number.
                 </p>
                 <p>
                     The
@@ -139,7 +139,7 @@
         <tui-doc-documentation>
             <ng-template
                 documentationPropertyMode="input"
-                documentationPropertyName="countryCode"
+                documentationPropertyName="countryIsoCode"
                 documentationPropertyType="string"
                 [documentationPropertyValues]="countryCodeVariants"
                 [(documentationPropertyValue)]="countryIsoCode"
@@ -154,7 +154,12 @@
                 [(documentationPropertyValue)]="strict"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Strict mode
+                If true, it allows to enter only phone number of selected country (see countryIsoCode property). If
+                false, all country phone number is allowed.
+                <p>
+                    <strong>Default:</strong>
+                    <code>true</code>
+                </p>
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
