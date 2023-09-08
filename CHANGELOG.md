@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/taiga-family/maskito/compare/v1.5.0...v1.5.1) (2023-09-08)
+
+### Bug Fixes
+
+- **vue:** `elementPredicate` should accept `MaskitoElementPredicateAsync` type
+  ([#487](https://github.com/taiga-family/maskito/issues/487))
+  ([fe7e9dc](https://github.com/taiga-family/maskito/commit/fe7e9dcb468bf3ab30978c947d8fa21cc0e51a75))
+
 ## [1.5.0](https://github.com/taiga-family/maskito/compare/v1.4.0...v1.5.0) (2023-09-04)
 
 ### Features
