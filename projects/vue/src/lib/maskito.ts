@@ -41,7 +41,9 @@ function unmount(element: HTMLElement): void {
 
 export const maskito: ObjectDirective<
     HTMLElement,
-    MaskitoOptions & {elementPredicate?: MaskitoElementPredicate}
+    MaskitoOptions & {
+        elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
+    }
 > = {
     unmounted: element => unmount(element),
     mounted: async (element, {value}) => update(element, value),
