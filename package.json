@@ -104,7 +104,7 @@
         "@types/jest": "27.5.2",
         "@types/node": "17.0.45",
         "babel-jest": "27.5.1",
-        "cspell": "7.3.2",
+        "cspell": "7.3.3",
         "cypress": "10.11.0",
         "cypress-real-events": "1.10.1",
         "eslint": "8.49.0",
