@@ -112,7 +112,7 @@ jobs:
         # Replace with npm run cy:run -- --spec "**/!(kit|recipes)/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
         # After this issue fix: https://github.com/cypress-io/cypress/issues/22407
         run:
-          npm run cy:run -- --spec "**/(angular|ssr|addons|others)/**/*.cy.ts" --config baseUrl="${{
+          npm run cy:run -- --spec "**/(angular|react|ssr|addons|others)/**/*.cy.ts" --config baseUrl="${{
           env.UNIVERSAL_SERVER }}"
 concurrency:
   group: e2e-${{ github.workflow }}-${{ github.ref }}

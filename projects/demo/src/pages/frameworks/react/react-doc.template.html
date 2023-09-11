@@ -52,7 +52,7 @@
 
         <p>
             Pass a predicate to
-            <strong>elementPredicate</strong>
+            <code>elementPredicate</code>
             to find input element for you, if you do not have a direct access to it. For example, you use component from
             some UI Kit library.
         </p>
@@ -65,7 +65,12 @@
             so that might be sufficient. Use custom predicate if you need custom logic.
         </tui-notification>
 
-        <tui-doc-code [code]="queryNestedInputDemo"></tui-doc-code>
+        <tui-doc-example
+            [content]="elementPredicateExample"
+            [style.padding-top.px]="0"
+        >
+            <react-example-2></react-example-2>
+        </tui-doc-example>
     </section>
 
     <section class="tui-space_top-12">
