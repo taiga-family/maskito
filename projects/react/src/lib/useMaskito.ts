@@ -3,11 +3,16 @@ import {
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
     MaskitoElementPredicate,
+    MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
 import {RefCallback, useCallback, useState} from 'react';
 
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
+
+function isThenable<T = unknown>(x: PromiseLike<T> | T): x is PromiseLike<T> {
+    return x && typeof x === 'object' && 'then' in x;
+}
 
 /**
  * Hook for convenient use of Maskito in React
@@ -28,28 +33,45 @@ export const useMaskito = ({
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
-    elementPredicate?: MaskitoElementPredicate;
+    elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
 } = {}): RefCallback<HTMLElement> => {
-    const [element, setElement] = useState<HTMLElement | null>(null);
+    const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
+    const [element, setElement] = useState<HTMLInputElement | HTMLTextAreaElement | null>(
+        null,
+    );
 
     const onRefChange: RefCallback<HTMLElement> = useCallback(
         (node: HTMLElement | null) => {
-            setElement(node);
+            setHostElement(node);
         },
         [],
     );
+
+    useIsomorphicLayoutEffect(() => {
+        if (!hostElement) {
+            return;
+        }
+
+        const elementOrPromise = elementPredicate(hostElement);
+
+        if (isThenable(elementOrPromise)) {
+            void elementOrPromise.then(setElement);
+        } else {
+            setElement(elementOrPromise);
+        }
+    }, [hostElement, elementPredicate]);
 
     useIsomorphicLayoutEffect(() => {
         if (!element) {
             return;
         }
 
-        const maskedElement = new Maskito(elementPredicate(element), options);
+        const maskedElement = new Maskito(element, options);
 
         return () => {
             maskedElement.destroy();
         };
-    }, [options, element, elementPredicate]);
+    }, [options, element]);
 
     return onRefChange;
 };
