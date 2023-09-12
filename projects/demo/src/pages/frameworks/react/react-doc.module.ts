@@ -6,7 +6,8 @@ import {MaskitoModule} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
-import {ReactExample1} from './examples/use-maskito-basic-usage/example.component';
+import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
+import {ReactExample2} from './examples/2-element-predicate/example.component';
 import {ReactDocPageComponent} from './react-doc.component';
 
 @NgModule({
@@ -20,7 +21,7 @@ import {ReactDocPageComponent} from './react-doc.component';
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(ReactDocPageComponent)),
     ],
-    declarations: [ReactDocPageComponent, ReactExample1],
+    declarations: [ReactDocPageComponent, ReactExample1, ReactExample2],
     exports: [ReactDocPageComponent],
 })
 export class ReactDocPageModule {}
