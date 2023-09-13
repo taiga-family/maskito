@@ -155,7 +155,20 @@ describe('@maskito/react | `elementPredicate` property', () => {
                 });
 
                 await setValue(user, '123blah45');
-                expect(getValue()).toBe('12345');
+
+                await waitFor(() => {
+                    expect(getValue()).toBe('12345');
+                });
+
+                act(() => {
+                    jest.advanceTimersByTime(3_500); // longInvalidPredicate resolves
+                });
+
+                await setValue(user, 'bla bla');
+
+                await waitFor(() => {
+                    expect(getValue()).toBe('12345bla bla');
+                });
             });
         });
     });
