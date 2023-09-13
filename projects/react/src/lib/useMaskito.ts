@@ -6,7 +6,7 @@ import {
     MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
-import {RefCallback, useCallback, useState} from 'react';
+import {RefCallback, useCallback, useRef, useState} from 'react';
 
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
 
@@ -47,19 +47,28 @@ export const useMaskito = ({
         [],
     );
 
+    const latestPredicateRef = useRef(elementPredicate);
+
+    latestPredicateRef.current = elementPredicate;
+
     useIsomorphicLayoutEffect(() => {
         if (!hostElement) {
             return;
         }
 
-        const elementOrPromise = elementPredicate(hostElement);
+        const predicate = elementPredicate;
+        const elementOrPromise = predicate(hostElement);
 
         if (isThenable(elementOrPromise)) {
-            void elementOrPromise.then(setElement);
+            void elementOrPromise.then(el => {
+                if (latestPredicateRef.current === predicate) {
+                    setElement(el);
+                }
+            });
         } else {
             setElement(elementOrPromise);
         }
-    }, [hostElement, elementPredicate]);
+    }, [hostElement, elementPredicate, latestPredicateRef]);
 
     useIsomorphicLayoutEffect(() => {
         if (!element) {
