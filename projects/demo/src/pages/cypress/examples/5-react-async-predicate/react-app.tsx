@@ -1,19 +1,33 @@
 // @ts-nocheck React & Vue Global JSX Types Conflicts
 // TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
 import type {MaskitoElementPredicateAsync} from '@maskito/core';
+import {MaskitoElementPredicate} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
-import {forwardRef} from 'react';
+import {forwardRef, useEffect, useState} from 'react';
 
 const options = maskitoTimeOptionsGenerator({
     mode: 'HH:MM',
 });
 
-const elementPredicate: MaskitoElementPredicateAsync = host =>
+const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
+const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
+
+const longCorrectPredicate: MaskitoElementPredicateAsync = host =>
     new Promise(resolve => {
         setTimeout(() => {
-            resolve(host.querySelector('input.real-input')!);
+            resolve(correctPredicate(host));
         }, 2_000);
+    });
+
+const longInvalidPredicate: MaskitoElementPredicateAsync = host =>
+    new Promise(resolve => {
+        setTimeout(() => resolve(wrongPredicate(host)), 7_000);
+    });
+
+const fastValidPredicate: MaskitoElementPredicateAsync = host =>
+    new Promise(resolve => {
+        setTimeout(() => resolve(correctPredicate(host)), 500);
     });
 
 const hiddenInputStyles = {
@@ -32,12 +46,32 @@ export const AwesomeInput = forwardRef<HTMLInputElement>((props, ref) => (
 ));
 
 export const App = () => {
-    const inputRef = useMaskito({options, elementPredicate});
+    const [useCorrectPredicate, setUseCorrectPredicate] = useState(false);
+    const inputRef2sec = useMaskito({options, elementPredicate: longCorrectPredicate});
+    const inputRefRaceCondition = useMaskito({
+        options,
+        elementPredicate: useCorrectPredicate ? fastValidPredicate : longInvalidPredicate,
+    });
+
+    useEffect(() => {
+        setTimeout(() => {
+            setUseCorrectPredicate(true);
+        }, 2_000);
+    }, []);
 
     return (
-        <AwesomeInput
-            ref={inputRef}
-            placeholder="React async predicate"
-        />
+        <>
+            <AwesomeInput
+                ref={inputRef2sec}
+                id="async-predicate-2s-resolves"
+                placeholder="Async predicate (2s)"
+            />
+
+            <AwesomeInput
+                ref={inputRefRaceCondition}
+                id="race-condition-check"
+                placeholder="Race condition check"
+            />
+        </>
     );
 };

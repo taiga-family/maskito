@@ -4,9 +4,8 @@ import {
     MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
-import {act, render, RenderResult, waitFor} from '@testing-library/react';
+import {render, RenderResult, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {useEffect, useRef} from 'react';
 
 import {useMaskito} from '../useMaskito';
 
@@ -109,66 +108,6 @@ describe('@maskito/react | `elementPredicate` property', () => {
 
             await waitFor(() => {
                 expect(getValue()).toBe('12345');
-            });
-        });
-
-        // TODO BROKEN TEST
-        describe('race condition check', () => {
-            beforeEach(() => {
-                jest.useFakeTimers();
-            });
-
-            afterEach(() => {
-                jest.runOnlyPendingTimers();
-                jest.useRealTimers();
-            });
-
-            const longInvalidPredicate: MaskitoElementPredicateAsync = host =>
-                new Promise(resolve => {
-                    setTimeout(() => resolve(wrongPredicate(host)), 1_000);
-                });
-
-            const fastValidPredicate: MaskitoElementPredicateAsync = host =>
-                new Promise(resolve => {
-                    setTimeout(() => resolve(correctPredicate(host)), 100);
-                });
-
-            const Wrapper = () => {
-                const predicate = useRef(fastValidPredicate);
-
-                useEffect(() => {
-                    setTimeout(() => {
-                        predicate.current = longInvalidPredicate;
-                    }, 2_000);
-                }, []);
-
-                return <TestComponent elementPredicate={predicate.current} />;
-            };
-
-            it('ignores previous predicate result', async () => {
-                const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime});
-
-                testElement = render(<Wrapper />);
-
-                act(() => {
-                    jest.advanceTimersByTime(200); // fastValidPredicate resolves
-                });
-
-                await setValue(user, '123blah45');
-
-                await waitFor(() => {
-                    expect(getValue()).toBe('12345');
-                });
-
-                act(() => {
-                    jest.advanceTimersByTime(3_500); // longInvalidPredicate resolves
-                });
-
-                await setValue(user, 'bla bla');
-
-                await waitFor(() => {
-                    expect(getValue()).toBe('12345bla bla');
-                });
             });
         });
     });
