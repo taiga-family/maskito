@@ -24,6 +24,7 @@ export function createThousandSeparatorPostprocessor({
 
     const prefixReg = new RegExp(`^${escapeRegExp(prefix)}${CHAR_MINUS}?`);
     const postfixReg = new RegExp(`${escapeRegExp(postfix)}$`);
+    const isAllSpaces = (...chars: string[]): boolean => chars.every(x => /\s/.test(x));
 
     return ({value, selection}) => {
         const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
@@ -43,8 +44,11 @@ export function createThousandSeparatorPostprocessor({
                     formattedValuePart.length &&
                     (formattedValuePart.length + 1) % 4 === 0;
 
-                if (char === thousandSeparator && isPositionForSeparator) {
-                    return char + formattedValuePart;
+                if (
+                    isPositionForSeparator &&
+                    (char === thousandSeparator || isAllSpaces(char, thousandSeparator))
+                ) {
+                    return thousandSeparator + formattedValuePart;
                 }
 
                 if (char === thousandSeparator && !isPositionForSeparator) {
