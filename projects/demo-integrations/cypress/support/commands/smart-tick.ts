@@ -11,5 +11,16 @@ export function smartTick(
         cy.wait(0, {log: false}); // allow React hooks to process
     }
 
+    Cypress.log({
+        displayName: 'smartTick',
+        message: `${durationMs}ms`,
+        consoleProps() {
+            return {
+                durationMs,
+                frequencyMs,
+            };
+        },
+    });
+
     return cy.wrap($subject, {log: false});
 }
