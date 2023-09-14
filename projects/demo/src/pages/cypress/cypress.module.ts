@@ -12,6 +12,7 @@ import {TestDocExample1} from './examples/1-predicate/component';
 import {TestDocExample2} from './examples/2-native-max-length/component';
 import {TestDocExample3} from './examples/3-mirrored-prefix-postfix/component';
 import {TestDocExample4, TestPipe4} from './examples/4-runtime-postfix-changes/component';
+import {TestDocExample5} from './examples/5-react-async-predicate/angular-wrapper';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import {TestDocExample4, TestPipe4} from './examples/4-runtime-postfix-changes/c
         TestDocExample3,
         TestDocExample4,
         TestPipe4,
+        TestDocExample5,
     ],
     exports: [CypressDocPageComponent],
 })

@@ -2,7 +2,7 @@ import {MaskitoOptions} from '@maskito/core';
 import {render, RenderResult} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import {useMaskito} from './useMaskito';
+import {useMaskito} from '../useMaskito';
 
 const options: MaskitoOptions = {
     mask: /^\d+(,\d{0,2})?$/,

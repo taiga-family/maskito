@@ -3,11 +3,16 @@ import {
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
     MaskitoElementPredicate,
+    MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
-import {RefCallback, useCallback, useState} from 'react';
+import {RefCallback, useCallback, useRef, useState} from 'react';
 
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
+
+function isThenable<T = unknown>(x: PromiseLike<T> | T): x is PromiseLike<T> {
+    return x && typeof x === 'object' && 'then' in x;
+}
 
 /**
  * Hook for convenient use of Maskito in React
@@ -28,28 +33,54 @@ export const useMaskito = ({
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
-    elementPredicate?: MaskitoElementPredicate;
+    elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
 } = {}): RefCallback<HTMLElement> => {
-    const [element, setElement] = useState<HTMLElement | null>(null);
+    const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
+    const [element, setElement] = useState<HTMLInputElement | HTMLTextAreaElement | null>(
+        null,
+    );
 
     const onRefChange: RefCallback<HTMLElement> = useCallback(
         (node: HTMLElement | null) => {
-            setElement(node);
+            setHostElement(node);
         },
         [],
     );
+
+    const latestPredicateRef = useRef(elementPredicate);
+
+    latestPredicateRef.current = elementPredicate;
+
+    useIsomorphicLayoutEffect(() => {
+        if (!hostElement) {
+            return;
+        }
+
+        const predicate = elementPredicate;
+        const elementOrPromise = predicate(hostElement);
+
+        if (isThenable(elementOrPromise)) {
+            void elementOrPromise.then(el => {
+                if (latestPredicateRef.current === predicate) {
+                    setElement(el);
+                }
+            });
+        } else {
+            setElement(elementOrPromise);
+        }
+    }, [hostElement, elementPredicate, latestPredicateRef]);
 
     useIsomorphicLayoutEffect(() => {
         if (!element) {
             return;
         }
 
-        const maskedElement = new Maskito(elementPredicate(element), options);
+        const maskedElement = new Maskito(element, options);
 
         return () => {
             maskedElement.destroy();
         };
-    }, [options, element, elementPredicate]);
+    }, [options, element]);
 
     return onRefChange;
 };
