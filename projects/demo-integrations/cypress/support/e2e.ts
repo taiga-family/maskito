@@ -15,6 +15,10 @@ declare global {
              * */
             (chainer: 'have.ngControlValue'): Chainable<Subject>;
         }
+
+        interface Chainable {
+            smartTick(durationMs: number, frequencyMs?: number): Chainable;
+        }
     }
 }
 
