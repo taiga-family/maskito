@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.12.3
+        uses: taiga-family/ci/actions/setup-node@1.12.4
 
       - run: npm run build
 

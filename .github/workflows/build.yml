@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.12.3
+        uses: taiga-family/ci/actions/setup-node@1.12.4
 
       - name: Build packages
         run: npx nx run-many --target build --all --exclude=demo
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.12.3
+        uses: taiga-family/ci/actions/setup-node@1.12.4
 
       - name: Build demo application for Github Pages
         run: npx nx build-gh-pages
