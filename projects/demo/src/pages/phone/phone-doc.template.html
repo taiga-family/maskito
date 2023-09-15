@@ -90,7 +90,6 @@
         <tui-doc-example
             id="lazy-metadata"
             heading="Lazy metadata"
-            [attr.pattern]="pattern"
             [content]="lazyMetadata"
             [description]="lazyDescription"
         >
@@ -131,6 +130,7 @@
                         autocomplete="tel"
                         inputmode="tel"
                         tuiTextfield
+                        [attr.pattern]="pattern"
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>

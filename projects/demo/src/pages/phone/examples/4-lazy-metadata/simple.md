@@ -3,7 +3,8 @@ import {Maskito, MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 
 const element = document.querySelector('input,textarea');
-let maskedInput = new Maskito(element, MASKITO_DEFAULT_OPTIONS);
+
+let maskedInput;
 
 (async function initMask() {
   const maskitoOptions = maskitoPhoneOptionsGenerator({

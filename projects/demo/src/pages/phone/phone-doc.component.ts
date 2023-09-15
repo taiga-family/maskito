@@ -62,7 +62,7 @@ export class PhoneDocComponent implements GeneratorOptions {
     constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
 
     get pattern(): string {
-        return this.isApple ? '+{1}[0-9]{1,3} [0-9]{1,14}' : '';
+        return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 
     updateOptions(): void {

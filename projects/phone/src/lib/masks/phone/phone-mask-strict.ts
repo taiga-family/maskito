@@ -17,7 +17,7 @@ import {
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
-import {generatePhoneMask, getPhoneTemplate} from './utils';
+import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
 export function maskitoPhoneStrictOptionsGenerator({
     countryIsoCode,
@@ -30,22 +30,24 @@ export function maskitoPhoneStrictOptionsGenerator({
     const formatter = new AsYouType(countryIsoCode, metadata);
     const prefix = `+${code} `;
 
-    let template = '';
-    let prevPhoneLength = 0;
+    let currentTemplate = '';
+    let currentPhoneLength = 0;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
             const newTemplate = getPhoneTemplate(formatter, value);
-            const phoneLength = value.replace(/\D/g, '').length;
+            const newPhoneLength = value.replace(/\D/g, '').length;
 
-            template =
-                newTemplate.length < template.length && phoneLength > prevPhoneLength
-                    ? template
-                    : newTemplate;
-            prevPhoneLength = phoneLength;
+            currentTemplate = selectTemplate({
+                currentTemplate,
+                newTemplate,
+                currentPhoneLength,
+                newPhoneLength,
+            });
+            currentPhoneLength = newPhoneLength;
 
-            return generatePhoneMask({value, template, prefix});
+            return generatePhoneMask({value, template: currentTemplate, prefix});
         },
         plugins: [
             maskitoCaretGuard((value, [from, to]) => [
