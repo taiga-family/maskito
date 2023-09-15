@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/taiga-family/maskito/compare/v1.5.1...v1.6.0) (2023-09-15)
+
+### Features
+
+- **react:** `elementPredicate` can accept asynchronous predicate
+  ([#502](https://github.com/taiga-family/maskito/issues/502))
+  ([4bbf758](https://github.com/taiga-family/maskito/commit/4bbf758107ed4b2fdbde5a241f22c0f363c22104))
+
+### Bug Fixes
+
+- **kit:** `Number` should accept all types of spaces as interchangeable characters for `thousandSeparator`
+  ([#505](https://github.com/taiga-family/maskito/issues/505))
+  ([73975bb](https://github.com/taiga-family/maskito/commit/73975bbc676487330359056c367f73e32ea6eaf4))
+
 ### [1.5.1](https://github.com/taiga-family/maskito/compare/v1.5.0...v1.5.1) (2023-09-08)
 
 ### Bug Fixes
