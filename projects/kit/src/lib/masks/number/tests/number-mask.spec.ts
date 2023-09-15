@@ -55,4 +55,14 @@ describe('Number (maskitoTransform)', () => {
             expect(maskitoTransform('−120 343', options)).toBe('−120.343');
         });
     });
+
+    it('should accept simple and non-breaking spaces as interchangeable characters for [thousandSeparator]', () => {
+        const options = maskitoNumberOptionsGenerator({
+            postfix: ' $',
+            thousandSeparator: ' ',
+        });
+
+        expect(maskitoTransform('45 001 $', options)).toBe('45 001 $'); // initialization phase
+        expect(maskitoTransform('45 001 $', options)).toBe('45 001 $'); // next user interaction
+    });
 });
