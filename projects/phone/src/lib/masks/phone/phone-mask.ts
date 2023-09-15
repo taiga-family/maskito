@@ -1,57 +1,22 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
-import {
-    maskitoAddOnFocusPlugin,
-    maskitoCaretGuard,
-    maskitoPrefixPostprocessorGenerator,
-    maskitoRemoveOnBlurPlugin,
-} from '@maskito/kit';
-import {
-    AsYouType,
-    CountryCode,
-    getCountryCallingCode,
-    MetadataJson,
-} from 'libphonenumber-js/core';
+import {MaskitoOptions} from '@maskito/core';
+import {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 
-import {
-    cutInitCountryCodePreprocessor,
-    phoneLengthPostprocessorGenerator,
-    validatePhonePreprocessorGenerator,
-} from './processors';
-import {generatePhoneMask, getPhoneTemplate} from './utils';
+import {maskitoPhoneNonStrictOptionsGenerator} from './phone-mask-non-strict';
+import {maskitoPhoneStrictOptionsGenerator} from './phone-mask-strict';
 
 export function maskitoPhoneOptionsGenerator({
     countryIsoCode,
     metadata,
+    strict = true,
 }: {
-    countryIsoCode: CountryCode;
+    countryIsoCode?: CountryCode;
     metadata: MetadataJson;
+    strict?: boolean;
 }): Required<MaskitoOptions> {
-    const code = getCountryCallingCode(countryIsoCode, metadata);
-    const formatter = new AsYouType(countryIsoCode, metadata);
-    const prefix = `+${code} `;
-
-    return {
-        ...MASKITO_DEFAULT_OPTIONS,
-        mask: ({value}) => {
-            const template = getPhoneTemplate(formatter, value);
-
-            return generatePhoneMask({value, template, prefix});
-        },
-        plugins: [
-            maskitoCaretGuard((value, [from, to]) => [
-                from === to ? prefix.length : 0,
-                value.length,
-            ]),
-            maskitoRemoveOnBlurPlugin(prefix),
-            maskitoAddOnFocusPlugin(prefix),
-        ],
-        postprocessors: [
-            maskitoPrefixPostprocessorGenerator(prefix),
-            phoneLengthPostprocessorGenerator(metadata, countryIsoCode),
-        ],
-        preprocessors: [
-            cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
-            validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
-        ],
-    };
+    return strict && countryIsoCode
+        ? maskitoPhoneStrictOptionsGenerator({countryIsoCode, metadata})
+        : maskitoPhoneNonStrictOptionsGenerator({
+              defaultIsoCode: countryIsoCode,
+              metadata,
+          });
 }

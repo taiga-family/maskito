@@ -3,9 +3,9 @@ import {DemoPath} from '@demo/constants';
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 
 describe('Phone', () => {
-    describe('Basic', () => {
+    describe('Non-strict', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.PhonePackage}/API`);
+            cy.visit(`/${DemoPath.PhonePackage}/API?strict=false`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -16,12 +16,12 @@ describe('Phone', () => {
         describe('basic typing (1 character per keydown)', () => {
             const tests = [
                 // [Typed value, Masked value, caretIndex]
-                ['920', '+7 920', '+7 920'.length],
-                ['920341', '+7 920 341', '+7 920 341'.length],
-                ['92034156', '+7 920 341-56', '+7 920 341-56'.length],
-                ['9203415627', '+7 920 341-56-27', '+7 920 341-56-27'.length],
-                ['92034156274234123', '+7 920 341-56-27', '+7 920 341-56-27'.length],
-                ['9 nd4 e', '+7 94', '+7 94'.length],
+                ['7920', '+7 920', '+7 920'.length],
+                ['7920341', '+7 920 341', '+7 920 341'.length],
+                ['792034156', '+7 920 341-56', '+7 920 341-56'.length],
+                ['79203415627', '+7 920 341-56-27', '+7 920 341-56-27'.length],
+                ['792034156274234123', '+7 920 341-56-27', '+7 920 341-56-27'.length],
+                ['79 nd4 e', '+7 94', '+7 94'.length],
             ] as const;
 
             tests.forEach(([typedValue, maskedValue, caretIndex]) => {
@@ -37,7 +37,7 @@ describe('Phone', () => {
 
         describe('basic erasing (value = "+7 920 424-11-32"', () => {
             beforeEach(() => {
-                cy.get('@input').type('9204241132');
+                cy.get('@input').type('+79204241132');
             });
 
             const tests = [
@@ -46,7 +46,7 @@ describe('Phone', () => {
                 [2, '+7 920 424-11'.length, '+7 920 424-11'],
                 [3, '+7 920 424-1'.length, '+7 920 424-1'],
                 [4, '+7 920 424'.length, '+7 920 424'],
-                [13, '+7 '.length, '+7 '],
+                [13, ''.length, ''],
             ] as const;
 
             tests.forEach(([n, caretIndex, maskedValue]) => {
@@ -62,7 +62,7 @@ describe('Phone', () => {
 
         describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
             beforeEach(() => {
-                cy.get('@input').type('920 424-11-32');
+                cy.get('@input').type('+7 920 424-11-32');
             });
 
             it('+7 920 424-1|1-32 => Backspace => +7 920 424-|13-2 => Type "2" => +7 920 424-2|1-32', () => {
@@ -90,7 +90,7 @@ describe('Phone', () => {
 
         describe('Text selection', () => {
             beforeEach(() => {
-                cy.get('@input').type('920 424-11-32');
+                cy.get('@input').type('+7 920 424-11-32');
             });
 
             describe(
@@ -169,123 +169,40 @@ describe('Phone', () => {
                 },
             );
         });
-
-        describe('Non-removable country prefix', () => {
-            it('cannot be removed via selectAll + Backspace', () => {
-                cy.get('@input')
-                    .type('9123456789')
-                    .type('{selectall}{backspace}')
-                    .should('have.value', '+7 ')
-                    .should('have.prop', 'selectionStart', '+7 '.length)
-                    .should('have.prop', 'selectionEnd', '+7 '.length);
-            });
-
-            it('cannot be removed via selectAll + Delete', () => {
-                cy.get('@input')
-                    .type('9123456789')
-                    .type('{selectall}{del}')
-                    .should('have.value', '+7 ')
-                    .should('have.prop', 'selectionStart', '+7 '.length)
-                    .should('have.prop', 'selectionEnd', '+7 '.length);
-            });
-
-            it('cannot be removed via Backspace', () => {
-                cy.get('@input')
-                    .type('9123456789')
-                    .type('{backspace}'.repeat('+7 912 345-89'.length))
-                    .should('have.value', '+7 ')
-                    .should('have.prop', 'selectionStart', '+7 '.length)
-                    .should('have.prop', 'selectionEnd', '+7 '.length);
-            });
-
-            it('cannot be removed via Delete', () => {
-                cy.get('@input')
-                    .type('9123456789')
-                    .type('{moveToStart}')
-                    .type('{del}'.repeat('+7 912 345-89'.length))
-                    .should('have.value', '+7 ')
-                    .should('have.prop', 'selectionStart', '+7 '.length)
-                    .should('have.prop', 'selectionEnd', '+7 '.length);
-            });
-
-            it('appears on focus if input is empty', () => {
-                cy.get('@input')
-                    .blur()
-                    .should('have.value', '')
-                    .focus()
-                    .should('have.value', '+7 ')
-                    .should('have.prop', 'selectionStart', '+7 '.length)
-                    .should('have.prop', 'selectionEnd', '+7 '.length);
-            });
-
-            it('disappears on blur if there are no more digits except it', () => {
-                cy.get('@input')
-                    .focus()
-                    .should('have.value', '+7 ')
-                    .blur()
-                    .should('have.value', '');
-            });
-
-            describe('with caret guard', () => {
-                it('forbids to put caret before country prefix', () => {
-                    cy.get('@input')
-                        .should('have.value', '+7 ')
-                        .should('have.prop', 'selectionStart', '+7 '.length)
-                        .should('have.prop', 'selectionEnd', '+7 '.length)
-                        .type('{moveToStart}')
-                        .should('have.value', '+7 ')
-                        .should('have.prop', 'selectionStart', '+7 '.length)
-                        .should('have.prop', 'selectionEnd', '+7 '.length)
-                        .type('{leftArrow}'.repeat(5))
-                        .should('have.value', '+7 ')
-                        .should('have.prop', 'selectionStart', '+7 '.length)
-                        .should('have.prop', 'selectionEnd', '+7 '.length);
-                });
-
-                it('can be selected via selectAll', () => {
-                    cy.get('@input')
-                        .type('9123456789')
-                        .type('{selectall}')
-                        .should('have.value', '+7 912 345-67-89')
-                        .should('have.prop', 'selectionStart', 0)
-                        .should('have.prop', 'selectionEnd', '+7 912 345-67-89'.length);
-                });
-            });
-        });
     });
 
     describe('Some countries', () => {
         it('US: +1 212 343-3355', () => {
             openCountry('US');
 
-            cy.get('@input').type('2123433355');
+            cy.get('@input').type('12123433355');
             cy.get('@input').should('have.value', '+1 212 343-3355');
         });
 
         it('KZ: +7 771 931-1111', () => {
             openCountry('KZ');
 
-            cy.get('@input').type('7719311111');
+            cy.get('@input').type('77719311111');
             cy.get('@input').should('have.value', '+7 771 931-1111');
         });
 
         it('BY: +375 44 748-82-69', () => {
             openCountry('BY');
 
-            cy.get('@input').type('447488269');
+            cy.get('@input').type('375447488269');
             cy.get('@input').should('have.value', '+375 44 748-82-69');
         });
 
         it('TR: +90 539 377-07-43', () => {
             openCountry('TR');
 
-            cy.get('@input').type('5393770743');
+            cy.get('@input').type('905393770743');
             cy.get('@input').should('have.value', '+90 539 377-07-43');
         });
     });
 });
 
 function openCountry(code: string): void {
-    cy.visit(`/${DemoPath.PhonePackage}/API?countryIsoCode=${code}`);
+    cy.visit(`/${DemoPath.PhonePackage}/API?strict=false&countryIsoCode=${code}`);
     cy.get('#demo-content input').should('be.visible').first().focus().as('input');
 }

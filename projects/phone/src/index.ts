@@ -1,1 +1,1 @@
-export {maskitoPhoneOptionsGenerator} from './lib/masks';
+export {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from './lib/masks';
