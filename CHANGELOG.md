@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/taiga-family/maskito/compare/v1.6.0...v1.7.0) (2023-09-15)
+
+### Features
+
+- **phone:** add non-strict phone mask ([#482](https://github.com/taiga-family/maskito/issues/482))
+  ([d831793](https://github.com/taiga-family/maskito/commit/d831793c133903d2d3975314ec919d8ea371ac4d))
+
 ## [1.6.0](https://github.com/taiga-family/maskito/compare/v1.5.1...v1.6.0) (2023-09-15)
 
 ### Features
