@@ -120,7 +120,7 @@
         "jest-preset-angular": "11.1.2",
         "lint-staged": "12.5.0",
         "ng-packagr": "12.2.7",
-        "postcss": "8.4.29",
+        "postcss": "8.4.30",
         "postcss-import": "14.1.0",
         "postcss-preset-env": "6.7.1",
         "postcss-url": "10.1.3",
