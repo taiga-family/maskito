@@ -39,7 +39,7 @@ jobs:
       - name: Run release
         id: run-release
         run: |
-            npm run release -- \
+          npm run release -- \
               --release-as ${{ github.event.inputs.mode }} \
               --dry-run ${{ github.event.inputs.dryRun }}
 
