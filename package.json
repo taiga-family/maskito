@@ -67,7 +67,7 @@
         ]
     },
     "lint-staged": {
-        "*.{js,ts,html,md,less,json}": [
+        "*.{js,ts,html,md,less,json,svg,yml}": [
             "npm run lint -- --fix",
             "prettier --write",
             "git add"
