@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.0.0
       - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.12.4
+        uses: taiga-family/ci/actions/setup-node@1.13.0
 
       - name: Build demo
         run: npx nx build-gh-pages
