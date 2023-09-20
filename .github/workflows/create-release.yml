@@ -25,26 +25,23 @@ jobs:
     env:
       IS_DRY_MODE: ${{ github.event.inputs.dryRun == 'true' }}
     steps:
-      - name: Fetch from origin repo
-        uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.0.0
         with:
           fetch-depth: 0
+          persist-credentials: false
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.13.0
+      - uses: taiga-family/ci/actions/setup-node@1.13.0
+      - uses: taiga-family/ci/actions/setup-git@1.13.0
+        with:
+          token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - name: Run release
         id: run-release
         run: |
-          git config --global user.name "tinkoff-bot"
-          git config --global user.email "tinkoff-bot@tinkoff.ru"
-          git config --global push.followTags true
-
-          npm run release -- \
-            --release-as ${{ github.event.inputs.mode }} \
-            --dry-run ${{ github.event.inputs.dryRun }}
+            npm run release -- \
+              --release-as ${{ github.event.inputs.mode }} \
+              --dry-run ${{ github.event.inputs.dryRun }}
 
           echo "new_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
@@ -52,7 +49,7 @@ jobs:
         id: generate_body
         run: |
           npx extract-changelog-release > RELEASE_BODY.md
-          echo "tag_name=$(git describe HEAD --abbrev=0)" >> $GITHUB_OUTPUT
+          echo "tag_name=$(git describe --abbrev=0 --tags)" >> $GITHUB_OUTPUT
 
       - id: get-pr-body
         run: |
@@ -94,7 +91,7 @@ jobs:
 
       - name: Create GitHub Release
         if: ${{ env.IS_DRY_MODE == 'false' }}
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.13.0
         with:
           name: Release ${{ steps.generate_body.outputs.tag_name }}
           tag: ${{ steps.generate_body.outputs.tag_name }}
