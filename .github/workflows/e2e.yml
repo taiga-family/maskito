@@ -13,7 +13,7 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.1.0
         with:
           fetch-depth: 10
 
@@ -43,7 +43,7 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.1.0
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.13.0
 
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.1.0
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.13.0
 
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: actions/checkout@v4.0.0
+      - uses: actions/checkout@v4.1.0
       - name: Setup Node.js and Cache
         uses: taiga-family/ci/actions/setup-node@1.13.0
 
