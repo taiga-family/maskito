@@ -17,8 +17,7 @@ jobs:
         with:
           fetch-depth: 10
 
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
 
       - name: Mark demo-app directory for persist in cache
         uses: actions/cache@v3
@@ -44,8 +43,7 @@ jobs:
     name: Kit / ${{ matrix.project }}
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -70,8 +68,7 @@ jobs:
     name: Recipes
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -94,8 +91,7 @@ jobs:
     name: Others
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3

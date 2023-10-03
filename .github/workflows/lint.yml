@@ -6,92 +6,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Typecheck
-        run: npm run typecheck
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run typecheck
 
   cspell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Run cspell
-        run: npm run cspell -- --no-progress
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run cspell -- --no-progress
 
   prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.16.0
-
+      - uses: taiga-family/ci/actions/setup/variables@1.20.0
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Run prettier
-        run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
-
-      - name: Apply changes after linting
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
+      - uses: taiga-family/ci/actions/auto/push@1.20.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.16.0
 
   stylelint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.16.0
-
+      - uses: taiga-family/ci/actions/setup/variables@1.20.0
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Run stylelint
-        run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-
-      - name: Apply changes after linting
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
+      - uses: taiga-family/ci/actions/auto/push@1.20.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.16.0
 
   eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
       - name: Setup global variables
-        uses: taiga-family/ci/actions/variables@1.16.0
-
+        uses: taiga-family/ci/actions/setup/variables@1.20.0
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Run eslint
-        run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-
-      - name: Apply changes after linting
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
+      - uses: taiga-family/ci/actions/auto/push@1.20.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
-        uses: taiga-family/ci/actions/auto-push@1.16.0
 
 concurrency:
   group: lint-${{ github.workflow }}-${{ github.ref }}

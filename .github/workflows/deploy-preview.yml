@@ -11,16 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
       - run: npm run build
 
       - name: Debug output
         run: tree dist/demo/browser -P '*.html'
 
-      - name: Deploy preview
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         continue-on-error: true
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

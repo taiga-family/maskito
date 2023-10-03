@@ -12,24 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Run tests
-        run: npx nx run-many --target test --all --coverage
-
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npx nx run-many --target test --all --coverage
       - uses: codecov/codecov-action@v3.1.4
         with:
           directory: ./coverage/core/
           flags: summary,core
           name: core
-
       - uses: codecov/codecov-action@v3.1.4
         with:
           directory: ./coverage/kit/
           flags: summary,kit
           name: kit
-
       - uses: codecov/codecov-action@v3.1.4
         with:
           directory: ./coverage/angular/
