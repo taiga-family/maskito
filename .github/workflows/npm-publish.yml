@@ -12,14 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npx nx run-many --target build --all --exclude=demo
+      - run: npx nx run-many --target publish --all --exclude=demo
 
-      - name: Build publishable libraries
-        run: npx nx run-many --target build --all --exclude=demo
+      - id: info
+        run: |
+          echo "version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
-      - name: Publish libraries
-        run: npx nx run-many --target publish --all --exclude=demo
+      - name: Announce to Telegram
+        uses: taiga-family/ci/actions/messenger/telegram/announce@1.20.0
+        with:
+          chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
+          topicId: ${{ secrets.TAIGA_TELEGRAM_CHAT_THREAD_ID }}
+          token: ${{ secrets.TAIGA_TELEGRAM_BOT_TOKEN }}
+          version: ${{ steps.info.outputs.version }}
 
 concurrency:
   group: release-${{ github.workflow }}-${{ github.ref }}

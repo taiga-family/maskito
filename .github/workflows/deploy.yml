@@ -9,14 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - name: Setup Node.js and Cache
-        uses: taiga-family/ci/actions/setup-node@1.16.0
-
-      - name: Build demo
-        run: npx nx build-gh-pages
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+      - uses: taiga-family/ci/actions/setup/node@1.20.0
+      - run: npx nx build-gh-pages
+      - uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
           branch: gh-pages
           folder: dist/demo/browser
