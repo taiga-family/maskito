@@ -6,44 +6,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/node@v1.27.1
+      - uses: taiga-family/ci/actions/setup/node@v1.27.6
       - run: npm run typecheck
 
   cspell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/node@v1.27.1
+      - uses: taiga-family/ci/actions/setup/node@v1.27.6
       - run: npm run cspell -- --no-progress
 
   prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.27.1
+      - uses: taiga-family/ci/actions/setup/variables@v1.27.6
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-      - uses: taiga-family/ci/actions/setup/node@v1.27.1
+      - uses: taiga-family/ci/actions/setup/node@v1.27.6
       - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.27.1
+      - uses: taiga-family/ci/actions/auto/push@v1.27.6
         if: env.SUPPORT_AUTO_PUSH == 'true'
 
   stylelint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.27.1
+      - uses: taiga-family/ci/actions/setup/variables@v1.27.6
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-      - uses: taiga-family/ci/actions/setup/node@v1.27.1
+      - uses: taiga-family/ci/actions/setup/node@v1.27.6
       - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.27.1
+      - uses: taiga-family/ci/actions/auto/push@v1.27.6
         if: env.SUPPORT_AUTO_PUSH == 'true'
 
   eslint:
@@ -51,15 +51,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.0
       - name: Setup global variables
-        uses: taiga-family/ci/actions/setup/variables@v1.27.1
+        uses: taiga-family/ci/actions/setup/variables@v1.27.6
       - uses: actions/checkout@v4.1.0
         if: env.SUPPORT_AUTO_PUSH == 'true'
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
-      - uses: taiga-family/ci/actions/setup/node@v1.27.1
+      - uses: taiga-family/ci/actions/setup/node@v1.27.6
       - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.27.1
+      - uses: taiga-family/ci/actions/auto/push@v1.27.6
         if: env.SUPPORT_AUTO_PUSH == 'true'
 
   result:
