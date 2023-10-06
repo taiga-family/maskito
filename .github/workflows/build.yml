@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/node@v1.28.0
+      - uses: taiga-family/ci/actions/setup/node@v1.29.0
       - run: npx nx run-many --target build --all --exclude=demo
 
   build-demo:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/node@v1.28.0
+      - uses: taiga-family/ci/actions/setup/node@v1.29.0
       - run: npx nx build-gh-pages
 
 concurrency:
