@@ -62,6 +62,13 @@ jobs:
       - uses: taiga-family/ci/actions/auto/push@v1.25.8
         if: env.SUPPORT_AUTO_PUSH == 'true'
 
+  result:
+    needs: [typecheck, cspell, prettier, stylelint, eslint]
+    runs-on: ubuntu-latest
+    name: Lint result
+    steps:
+      - run: echo "Success"
+
 concurrency:
   group: lint-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
