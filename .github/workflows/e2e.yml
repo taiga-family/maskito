@@ -110,6 +110,15 @@ jobs:
         run:
           npm run cy:run -- --spec "**/(angular|react|ssr|addons|others)/**/*.cy.ts" --config baseUrl="${{
           env.UNIVERSAL_SERVER }}"
+
+  result:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    needs: [build-demo, e2e-kit, e2e-recipes, e2e-others]
+    runs-on: ubuntu-latest
+    name: E2E result
+    steps:
+      - run: echo "Success"
+
 concurrency:
   group: e2e-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
