@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.0
-      - uses: taiga-family/ci/actions/setup/node@v1.29.0
+      - uses: taiga-family/ci/actions/setup/node@v1.29.19
       - run: npm run build
 
       - name: Debug output
