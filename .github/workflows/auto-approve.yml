@@ -14,7 +14,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/checkout@v1.29.19
       - uses: taiga-family/ci/actions/setup/variables@v1.29.19
       - id: matrix
-        if: env.TAIGA_FAMILY_BOT_IS_AUTHOR == 'true'
+        if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
         run: |
           if [[ "${{ env.IS_RELEASE_BRANCH }}" == "false" ]]; then
               echo "value=$PR_JOBS_NAME" >> $GITHUB_OUTPUT
