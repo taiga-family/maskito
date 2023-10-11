@@ -26,7 +26,7 @@ export function createDecimalZeroPaddingPostprocessor({
     const trailingPostfixRegExp = new RegExp(`${escapeRegExp(postfix)}$`);
 
     return ({value, selection}) => {
-        if (Number.isNaN(maskitoParseNumber(value))) {
+        if (Number.isNaN(maskitoParseNumber(value, decimalSeparator))) {
             return {value, selection};
         }
 

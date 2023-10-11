@@ -65,4 +65,22 @@ describe('Number (maskitoTransform)', () => {
         expect(maskitoTransform('45 001 $', options)).toBe('45 001 $'); // initialization phase
         expect(maskitoTransform('45 001 $', options)).toBe('45 001 $'); // next user interaction
     });
+
+    describe('`thousandSeparator` is equal to the item from `decimalPseudoSeparators` with zero padding', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        beforeEach(() => {
+            options = maskitoNumberOptionsGenerator({
+                decimalSeparator: ',',
+                thousandSeparator: '.',
+                decimalPseudoSeparators: ['.', ','],
+                precision: 2,
+                decimalZeroPadding: true,
+            });
+        });
+
+        it('add dots and decimals (21.121.321,00)', () => {
+            expect(maskitoTransform('21121321', options)).toBe('21.121.321,00');
+        });
+    });
 });
