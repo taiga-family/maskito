@@ -12,8 +12,8 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.32.2
-      - uses: taiga-family/ci/actions/setup/node@v1.32.2
+      - uses: taiga-family/ci/actions/setup/checkout@v1.33.1
+      - uses: taiga-family/ci/actions/setup/node@v1.33.1
       - run: npx nx run-many --target build --all --exclude=demo
       - run: npx nx run-many --target publish --all --exclude=demo
 
@@ -22,7 +22,7 @@ jobs:
           echo "version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Announce to Telegram
-        uses: taiga-family/ci/actions/messenger/telegram/announce@v1.32.2
+        uses: taiga-family/ci/actions/messenger/telegram/announce@v1.33.1
         with:
           chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
           topicId: ${{ secrets.TAIGA_TELEGRAM_CHAT_THREAD_ID }}
