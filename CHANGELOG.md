@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/taiga-family/maskito/compare/v1.7.0...v1.8.0) (2023-10-18)
+
+### Features
+
+- **angular:** allow nullable options ([#605](https://github.com/taiga-family/maskito/issues/605))
+  ([21eaa7c](https://github.com/taiga-family/maskito/commit/21eaa7c0c0e7d5173c6f070f5222ba6492e196a6))
+
+### Bug Fixes
+
+- **kit:** `Number` has broken zero padding when `decimalSeparator` equals to non-default value
+  ([#586](https://github.com/taiga-family/maskito/issues/586))
+  ([7241761](https://github.com/taiga-family/maskito/commit/72417614dd4974c22854dfacc2ee35044c080074))
+
 ## [1.7.0](https://github.com/taiga-family/maskito/compare/v1.6.0...v1.7.0) (2023-09-15)
 
 ### Features
