@@ -21,13 +21,18 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
 })
 export class MaskitoCva {
     @Input()
-    maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+    maskito: MaskitoOptions | null = MASKITO_DEFAULT_OPTIONS;
 
     constructor(readonly accessor: DefaultValueAccessor) {
         const original = accessor.writeValue.bind(accessor);
 
         accessor.writeValue = (value: unknown) => {
-            original(maskitoTransform(String(value ?? ''), this.maskito));
+            original(
+                maskitoTransform(
+                    String(value ?? ''),
+                    this.maskito ?? MASKITO_DEFAULT_OPTIONS,
+                ),
+            );
         };
     }
 }
