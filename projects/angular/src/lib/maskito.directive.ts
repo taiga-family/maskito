@@ -23,7 +23,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     private maskedElement: Maskito | null = null;
 
     @Input()
-    maskito: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+    maskito: MaskitoOptions | null = MASKITO_DEFAULT_OPTIONS;
 
     @Input()
     maskitoElement: MaskitoElementPredicate | MaskitoElementPredicateAsync =
@@ -47,7 +47,10 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         }
 
         this.ngZone.runOutsideAngular(() => {
-            this.maskedElement = new Maskito(predicateResult, this.maskito);
+            this.maskedElement = new Maskito(
+                predicateResult,
+                this.maskito ?? MASKITO_DEFAULT_OPTIONS,
+            );
         });
     }
 

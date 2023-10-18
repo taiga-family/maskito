@@ -17,7 +17,7 @@ describe('Maskito Angular package', () => {
     })
     class TestComponent {
         readonly control = new FormControl();
-        readonly options: MaskitoOptions = {
+        options: MaskitoOptions | null = {
             mask: /^\d+(,\d{0,2})?$/,
             preprocessors: [
                 ({elementState, data}) => {
@@ -58,6 +58,17 @@ describe('Maskito Angular package', () => {
 
         expect(getText()).toBe('12345,67');
         expect(getValue()).toBe('12345,67');
+    });
+
+    it('disable mask formatting if options is null', () => {
+        fixture.componentInstance.options = null;
+        fixture.detectChanges();
+
+        fixture.componentInstance.control.setValue(123456.9999);
+        fixture.detectChanges();
+
+        expect(getText()).toBe('123456.9999');
+        expect(getValue()).toBe('123456.9999');
     });
 
     function getText(): string {
