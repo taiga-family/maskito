@@ -4,6 +4,7 @@ import {
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
+    normalizeDatePreprocessor,
 } from '../../processors';
 import {MaskitoDateMode} from '../../types';
 
@@ -28,6 +29,10 @@ export function maskitoDateOptionsGenerator({
         overwriteMode: 'replace',
         preprocessors: [
             createZeroPlaceholdersPreprocessor(),
+            normalizeDatePreprocessor({
+                dateModeTemplate,
+                dateSegmentsSeparator: separator,
+            }),
             createValidDatePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: separator,
