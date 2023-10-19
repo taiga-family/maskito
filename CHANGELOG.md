@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/taiga-family/maskito/compare/v1.8.0...v1.8.1) (2023-10-19)
+
+### Bug Fixes
+
+- **kit:** `Date` accept single character date segment during paste
+  ([#610](https://github.com/taiga-family/maskito/issues/610))
+  ([e493198](https://github.com/taiga-family/maskito/commit/e4931987c2fad37894ea07f658f08e35152040df))
+
 ## [1.8.0](https://github.com/taiga-family/maskito/compare/v1.7.0...v1.8.0) (2023-10-18)
 
 ### Features
