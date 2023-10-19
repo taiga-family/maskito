@@ -5,6 +5,7 @@ import {
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
+    normalizeDatePreprocessor,
 } from '../../processors';
 import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
@@ -44,6 +45,11 @@ export function maskitoDateRangeOptionsGenerator({
         overwriteMode: 'replace',
         preprocessors: [
             createZeroPlaceholdersPreprocessor(),
+            normalizeDatePreprocessor({
+                dateModeTemplate,
+                rangeSeparator,
+                dateSegmentsSeparator: dateSeparator,
+            }),
             createValidDatePreprocessor({
                 dateModeTemplate,
                 rangeSeparator,

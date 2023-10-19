@@ -1,7 +1,10 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../constants';
-import {createZeroPlaceholdersPreprocessor} from '../../processors';
+import {
+    createZeroPlaceholdersPreprocessor,
+    normalizeDatePreprocessor,
+} from '../../processors';
 import {MaskitoDateMode, MaskitoTimeMode} from '../../types';
 import {DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
@@ -36,6 +39,10 @@ export function maskitoDateTimeOptionsGenerator({
         overwriteMode: 'replace',
         preprocessors: [
             createZeroPlaceholdersPreprocessor(),
+            normalizeDatePreprocessor({
+                dateModeTemplate,
+                dateSegmentsSeparator: dateSeparator,
+            }),
             createValidDateTimePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
