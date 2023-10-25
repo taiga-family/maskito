@@ -98,7 +98,7 @@
         "@nrwl/tao": "13.1.4",
         "@nrwl/web": "13.4.2",
         "@nrwl/workspace": "13.1.4",
-        "@taiga-ui/commitlint-config": "0.3.1",
+        "@taiga-ui/commitlint-config": "0.3.2",
         "@taiga-ui/cspell-config": "0.17.0",
         "@taiga-ui/eslint-plugin-experience": "0.11.2",
         "@taiga-ui/prettier-config": "0.4.0",
