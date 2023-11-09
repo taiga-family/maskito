@@ -7,13 +7,13 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     selector: 'my-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.style.less'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         {
             provide: TUI_SANITIZER,
             useClass: NgDompurifySanitizer,
         },
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
     readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
