@@ -8,7 +8,7 @@ import {ServerErrorHandler} from './server-error-handler';
 
 @NgModule({
     imports: [AppBrowserModule, ServerModule, UniversalModule],
-    bootstrap: [AppComponent],
     providers: [{provide: ErrorHandler, useClass: ServerErrorHandler}],
+    bootstrap: [AppComponent],
 })
 export class AppServerModule {}

@@ -13,8 +13,8 @@ type GeneratorOptions = Required<
 @Component({
     selector: 'number-mask-doc',
     templateUrl: './number-mask-doc.template.html',
-    providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
     @ViewChild('apiPageInput', {read: ElementRef})

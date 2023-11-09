@@ -21,8 +21,8 @@ import {StackblitzService} from '../../stackblitz.service';
         ></tui-loader>
     `,
     styleUrls: ['./stackblitz-starter.style.less'],
-    providers: [StackblitzService],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [StackblitzService],
 })
 export class StackblitzStarterComponent implements OnInit {
     constructor(

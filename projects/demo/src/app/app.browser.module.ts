@@ -14,7 +14,6 @@ import {DocExamplePrimaryTabsIconsModule} from './modules/example-primary-tabs-i
 import {LogoModule} from './modules/logo/logo.module';
 
 @NgModule({
-    bootstrap: [AppComponent],
     imports: [
         BrowserModule.withServerTransition({
             appId: 'demo',
@@ -35,5 +34,6 @@ import {LogoModule} from './modules/logo/logo.module';
     ],
     declarations: [AppComponent],
     providers: APP_PROVIDERS,
+    bootstrap: [AppComponent],
 })
 export class AppBrowserModule {}
