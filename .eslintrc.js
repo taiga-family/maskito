@@ -7,7 +7,7 @@ module.exports = {
     overrides: [
         {
             files: ['projects/react/**/*.{js,ts,jsx,tsx}'],
-            extends: ['@tinkoff/eslint-config-react'],
+            extends: ['prettier'],
             rules: {
                 'unicorn/filename-case': [
                     'error',
