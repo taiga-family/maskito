@@ -42,7 +42,7 @@
         "*** Format ***": "",
         "lint": "eslint .",
         "cspell": "cspell --relative --dot --gitignore .",
-        "prettier": "prettier '**/*.{svg,yml,js,jsx,ts,tsx,html,md,less,json}'",
+        "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
         "stylelint": "stylelint '**/*.{less,css}'",
         "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",
         "*** SSR ***": "",
