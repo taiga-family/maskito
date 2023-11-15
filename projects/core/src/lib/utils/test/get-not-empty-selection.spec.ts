@@ -55,7 +55,7 @@ describe('getNotEmptySelection', () => {
             expect(getNotEmptySelection(elementStateStub, true)).toEqual([2, 3]);
         });
 
-        it('should return value length as end position, when value`s length less or equal then end position ', () => {
+        it('should return value length as end position, when value`s length less or equal then end position', () => {
             const elementStateStub: ElementState = {
                 value: 'sx',
                 selection: [4, 4],

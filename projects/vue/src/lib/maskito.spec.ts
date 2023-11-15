@@ -22,7 +22,7 @@ describe('Maskito Vue package', () => {
         }),
     };
 
-    test('formats text', async () => {
+    it('formats text', async () => {
         const mounted = mount(component);
 
         await Promise.resolve();

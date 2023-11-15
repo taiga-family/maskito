@@ -33,19 +33,17 @@ async function update(
     teardown.set(element, new Maskito(predicateResult, options));
 }
 
-function unmount(element: HTMLElement): void {
-    teardown.get(element)?.destroy();
-    teardown.delete(element);
-    predicates.delete(element);
-}
-
 export const maskito: ObjectDirective<
     HTMLElement,
     MaskitoOptions & {
         elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
     }
 > = {
-    unmounted: element => unmount(element),
+    unmounted: element => {
+        teardown.get(element)?.destroy();
+        teardown.delete(element);
+        predicates.delete(element);
+    },
     mounted: async (element, {value}) => update(element, value),
     updated: async (element, {value, oldValue}) => {
         if (value !== oldValue) {
