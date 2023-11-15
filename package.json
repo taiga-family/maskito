@@ -118,7 +118,7 @@
         "husky": "8.0.3",
         "jest": "27.5.1",
         "jest-preset-angular": "11.1.2",
-        "lint-staged": "12.5.0",
+        "lint-staged": "15.1.0",
         "ng-packagr": "12.2.7",
         "postcss": "8.4.31",
         "postcss-import": "14.1.0",
