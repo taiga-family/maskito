@@ -16,11 +16,11 @@ describe('parseDateRangeString', () => {
         ['1302202314032025', ['13022023', '14032025']],
     ] as const;
 
-    for (const [dateRangeString, expectedParsedDates] of tests) {
+    tests.forEach(([dateRangeString, expectedParsedDates]) => {
         it(`${dateRangeString} => ${JSON.stringify(expectedParsedDates)}`, () => {
             expect(parseDateRangeString(dateRangeString, 'dd.mm.yyyy', ' – ')).toEqual(
                 expectedParsedDates,
             );
         });
-    }
+    });
 });

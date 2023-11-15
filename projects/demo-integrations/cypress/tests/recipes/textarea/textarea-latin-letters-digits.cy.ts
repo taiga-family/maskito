@@ -83,7 +83,7 @@ describe('Textarea (mask latin letters + digits)', () => {
             {initialValue: '1', newValue: ''},
         ] as const;
 
-        for (const {initialValue, newValue} of tests) {
+        tests.forEach(({initialValue, newValue}) => {
             it(`"${initialValue}|" => Ctrl + Backspace => "${newValue}|"`, () => {
                 cy.get('@textArea')
                     .type(initialValue)
@@ -92,7 +92,7 @@ describe('Textarea (mask latin letters + digits)', () => {
                     .should('have.prop', 'selectionStart', newValue.length)
                     .should('have.prop', 'selectionEnd', newValue.length);
             });
-        }
+        });
     });
 
     it('Type `deleteWordBackward` of `InputEvent`', () => {
