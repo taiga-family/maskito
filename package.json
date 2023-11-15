@@ -115,7 +115,7 @@
         "eslint": "8.52.0",
         "eslint-config-prettier": "7.2.0",
         "http-server": "14.1.1",
-        "husky": "7.0.4",
+        "husky": "8.0.3",
         "jest": "27.5.1",
         "jest-preset-angular": "11.1.2",
         "lint-staged": "12.5.0",
