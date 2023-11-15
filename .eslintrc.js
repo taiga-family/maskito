@@ -29,5 +29,5 @@ module.exports = {
                 'no-restricted-syntax': 'off', // TODO
             },
         },
-    ]
+    ],
 };
