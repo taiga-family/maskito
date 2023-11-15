@@ -13,11 +13,11 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.42.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.43.0
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/node@v1.42.0
+      - uses: taiga-family/ci/actions/setup/node@v1.43.0
 
       - name: Mark demo-app directory for persist in cache
         uses: actions/cache@v3
@@ -42,8 +42,8 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.42.0
-      - uses: taiga-family/ci/actions/setup/node@v1.42.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.43.0
+      - uses: taiga-family/ci/actions/setup/node@v1.43.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -67,8 +67,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.42.0
-      - uses: taiga-family/ci/actions/setup/node@v1.42.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.43.0
+      - uses: taiga-family/ci/actions/setup/node@v1.43.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3
@@ -90,8 +90,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.42.0
-      - uses: taiga-family/ci/actions/setup/node@v1.42.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.43.0
+      - uses: taiga-family/ci/actions/setup/node@v1.43.0
 
       - name: Download demo build from cache
         uses: actions/cache@v3
