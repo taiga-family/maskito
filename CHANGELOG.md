@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/taiga-family/maskito/compare/v1.8.1...v1.8.2) (2023-11-16)
+
+### Bug Fixes
+
+- **kit:** `PrefixPostprocessor` has problems with multi-character prefix
+  ([#669](https://github.com/taiga-family/maskito/issues/669))
+  ([be459e5](https://github.com/taiga-family/maskito/commit/be459e51f3cbf028fa36b1b6a57e47d7fe8482a3))
+
 ### [1.8.1](https://github.com/taiga-family/maskito/compare/v1.8.0...v1.8.1) (2023-10-19)
 
 ### Bug Fixes
