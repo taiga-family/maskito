@@ -312,4 +312,24 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', 0);
         });
     });
+
+    describe('multi-character prefix "EUR " (no initial value & no caret guard)', () => {
+        beforeEach(() => {
+            cy.visit(DemoPath.Cypress);
+            cy.get('#multi-character-prefix input')
+                .focus()
+                .should('have.value', '')
+                .as('input');
+        });
+
+        ['E', 'U', 'R'].forEach(char => {
+            it(`Empty input => Type "${char} => Textfield's value is "EUR "`, () => {
+                cy.get('@input')
+                    .type(char)
+                    .should('have.value', 'EUR ')
+                    .should('have.prop', 'selectionStart', 'EUR '.length)
+                    .should('have.prop', 'selectionEnd', 'EUR '.length);
+            });
+        });
+    });
 });

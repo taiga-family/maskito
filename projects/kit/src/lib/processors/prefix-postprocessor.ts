@@ -15,20 +15,18 @@ export function maskitoPrefixPostprocessorGenerator(
               }
 
               const [from, to] = selection;
-              const requiredPrefix = Array.from(prefix).reduce(
-                  (computedPrefix, char, i) => {
-                      const newValue = computedPrefix + value;
-
-                      return newValue[i] === char
-                          ? computedPrefix
-                          : computedPrefix + char;
-                  },
-                  '',
+              const prefixedValue = Array.from(prefix).reduce(
+                  (modifiedValue, char, i) =>
+                      modifiedValue[i] === char
+                          ? modifiedValue
+                          : modifiedValue.slice(0, i) + char + modifiedValue.slice(i),
+                  value,
               );
+              const addedCharsCount = prefixedValue.length - value.length;
 
               return {
-                  selection: [from + requiredPrefix.length, to + requiredPrefix.length],
-                  value: requiredPrefix + value,
+                  selection: [from + addedCharsCount, to + addedCharsCount],
+                  value: prefixedValue,
               };
           }
         : identity;

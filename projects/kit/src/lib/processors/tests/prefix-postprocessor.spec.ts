@@ -1,4 +1,8 @@
+import {MaskitoPostprocessor} from '@maskito/core';
+
 import {maskitoPrefixPostprocessorGenerator} from '../prefix-postprocessor';
+
+type ElementState = ReturnType<MaskitoPostprocessor>;
 
 describe('maskitoPrefixPostprocessorGenerator', () => {
     const EMPTY_INPUT = {value: '', selection: [0, 0] as const};
@@ -67,6 +71,32 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
                     {value: 'kg 123', selection: [2, 2]}, // before
                 ),
             ).toEqual({value: 'kg 123', selection: [2, 2]});
+        });
+
+        describe('Textfield is empty => Type any character from prefix', () => {
+            const process = (elementState: ElementState): ElementState =>
+                postprocessor(elementState, EMPTY_INPUT);
+
+            it('Empty input => type k (part of prefix) => kg |', () => {
+                expect(process({value: 'k', selection: [1, 1]})).toEqual({
+                    value: 'kg ',
+                    selection: [3, 3],
+                });
+            });
+
+            it('Empty input => type g (part of prefix) => kg |', () => {
+                expect(process({value: 'g', selection: [1, 1]})).toEqual({
+                    value: 'kg ',
+                    selection: [3, 3],
+                });
+            });
+
+            it('Empty input => type space (part of prefix) => kg |', () => {
+                expect(process({value: ' ', selection: [1, 1]})).toEqual({
+                    value: 'kg ',
+                    selection: [3, 3],
+                });
+            });
         });
     });
 });
