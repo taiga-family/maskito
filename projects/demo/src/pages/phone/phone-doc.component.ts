@@ -57,6 +57,10 @@ export class PhoneDocComponent implements GeneratorOptions {
 
     countryIsoCode: CountryCode = 'RU';
 
+    separatorVariants = ['-', ' '];
+
+    separator = '-';
+
     maskitoOptions = maskitoPhoneOptionsGenerator(this);
 
     constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
