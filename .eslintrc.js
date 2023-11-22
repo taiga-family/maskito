@@ -18,15 +18,20 @@ module.exports = {
             },
         },
         {
-            files: ['*'],
+            files: ['*.ts'],
             rules: {
                 '@typescript-eslint/quotes': ['error', 'single'],
                 '@taiga-ui/experience/strict-tui-doc-example': 'off',
                 '@taiga-ui/experience/prefer-inject-decorator': 'off',
                 '@taiga-ui/experience/no-typeof': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
-                'no-irregular-whitespace': 'off',
                 'no-restricted-syntax': 'off', // TODO
+            },
+        },
+        {
+            files: ['*'],
+            rules: {
+                'no-irregular-whitespace': 'off',
             },
         },
     ],

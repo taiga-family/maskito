@@ -22,11 +22,11 @@ const options: MaskitoOptions = {
 };
 
 describe('Maskito React package', () => {
-    const TestComponent = () => {
+    function TestComponent() {
         const inputRef = useMaskito({options});
 
         return <input ref={inputRef} />;
-    };
+    }
 
     let testElement: RenderResult;
 

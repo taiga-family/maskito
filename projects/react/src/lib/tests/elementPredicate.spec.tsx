@@ -18,7 +18,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
     const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
     const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
 
-    const TestComponent = ({elementPredicate = predicate}) => {
+    function TestComponent({elementPredicate = predicate}) {
         const inputRef = useMaskito({options, elementPredicate});
 
         return (
@@ -31,7 +31,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
                 <input className="hidden-input" />
             </div>
         );
-    };
+    }
 
     let testElement: RenderResult;
 
