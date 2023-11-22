@@ -159,6 +159,20 @@
                     <code>true</code>
                 </p>
             </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="separator"
+                documentationPropertyType="string"
+                [documentationPropertyValues]="separatorVariants"
+                [(documentationPropertyValue)]="separator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separator between groups of numbers in a phone number (excluding country code and area code).
+                <p>
+                    <strong>Default:</strong>
+                    <code>-</code>
+                </p>
+            </ng-template>
         </tui-doc-documentation>
     </ng-template>
 </tui-doc-page>

@@ -22,9 +22,11 @@ import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 export function maskitoPhoneStrictOptionsGenerator({
     countryIsoCode,
     metadata,
+    separator = '-',
 }: {
     countryIsoCode: CountryCode;
     metadata: MetadataJson;
+    separator?: string;
 }): Required<MaskitoOptions> {
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
@@ -36,7 +38,7 @@ export function maskitoPhoneStrictOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const newTemplate = getPhoneTemplate(formatter, value);
+            const newTemplate = getPhoneTemplate(formatter, value, separator);
             const newPhoneLength = value.replace(/\D/g, '').length;
 
             currentTemplate = selectTemplate({
