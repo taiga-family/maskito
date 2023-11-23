@@ -4,7 +4,7 @@ import {join} from 'path';
 import {DemoPath} from '../projects/demo/src/app/constants/demo-path';
 import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
 
-const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`];
+const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/API`];
 
 /**
  * This script is required for correct of `nx prerender demo` command.
