@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/taiga-family/maskito/compare/v1.8.2...v1.9.0) (2023-11-23)
+
+### Features
+
+- **phone:** add ability to configure the separator ([#685](https://github.com/taiga-family/maskito/issues/685))
+  ([ab6bb11](https://github.com/taiga-family/maskito/commit/ab6bb11b1b40e069d31598b676c04456329aaf64))
+
 ### [1.8.2](https://github.com/taiga-family/maskito/compare/v1.8.1...v1.8.2) (2023-11-16)
 
 ### Bug Fixes
