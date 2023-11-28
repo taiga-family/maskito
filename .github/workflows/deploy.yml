@@ -8,8 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.44.4
-      - uses: taiga-family/ci/actions/setup/node@v1.44.4
+      - uses: taiga-family/ci/actions/setup/checkout@v1.44.5
+      - uses: taiga-family/ci/actions/setup/node@v1.44.5
       - run: npx nx build-gh-pages
       - uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
