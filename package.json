@@ -107,7 +107,7 @@
         "@tinkoff/eslint-config-react": "2.0.0",
         "@types/estree": "1.0.5",
         "@types/jest": "28.1.8",
-        "@types/node": "20.10.0",
+        "@types/node": "20.10.1",
         "babel-jest": "29.7.0",
         "cspell": "8.0.0",
         "cypress": "13.6.0",
