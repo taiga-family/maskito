@@ -1,6 +1,27 @@
-// TODO after update all "@nrwl/*"-packages to 13.8.6+:
-// 1. Drop this file
-// 2. Rename "tsconfig.base.json" => "tsconfig.json"
 {
-    "extends": "./tsconfig.base.json"
+    "extends": "@taiga-ui/tsconfig",
+    "exclude": ["projects/demo-integrations"],
+    "angularCompilerOptions": {
+        "strictTemplates": true
+    },
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "typeRoots": ["node_modules/@types", "node_modules/@taiga-ui/tsconfig/@types"],
+        "sourceMap": true,
+        "module": "es2020",
+        "jsx": "react-jsx",
+        "target": "es2015",
+        "lib": ["es2017", "es2018.asynciterable", "dom"],
+        "checkJs": false,
+        "paths": {
+            "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
+            "@maskito/angular": ["projects/angular/src/index.ts"],
+            "@maskito/core": ["projects/core/src/index.ts"],
+            "@maskito/kit": ["projects/kit/src/index.ts"],
+            "@maskito/phone": ["projects/phone/src/index.ts"],
+            "@maskito/react": ["projects/react/src/index.ts"],
+            "@maskito/vue": ["projects/vue/src/index.ts"]
+        }
+    }
 }

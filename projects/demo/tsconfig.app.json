@@ -3,5 +3,8 @@
     "compilerOptions": {
         "outDir": "../out-tsc/app"
     },
+    "angularCompilerOptions": {
+        "compilationMode": "full"
+    },
     "files": ["./src/typings.d.ts", "./src/main.browser.ts", "./src/polyfills.ts"]
 }
