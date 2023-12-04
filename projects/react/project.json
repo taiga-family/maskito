@@ -1,5 +1,4 @@
 {
-    "root": "projects/react",
     "sourceRoot": "projects/react/src",
     "projectType": "library",
     "tags": [],
@@ -41,7 +40,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/projects/react"],
             "options": {
-                "jestConfig": "projects/react/jest.config.js",
+                "jestConfig": "projects/react/jest.config.ts",
                 "passWithNoTests": true
             }
         },

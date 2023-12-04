@@ -12,15 +12,6 @@
         "tsconfig.json": "*"
     },
     "npmScope": "maskito",
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/nx-cloud",
-            "options": {
-                "cacheableOperations": ["build", "test", "lint"],
-                "parallel": 3
-            }
-        }
-    },
     "affected": {
         "defaultBase": "origin/main"
     },

@@ -1,5 +1,4 @@
 {
-    "root": "projects/vue",
     "sourceRoot": "projects/vue/src",
     "projectType": "library",
     "tags": [],
@@ -39,7 +38,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/projects/vue"],
             "options": {
-                "jestConfig": "projects/vue/jest.config.js",
+                "jestConfig": "projects/vue/jest.config.ts",
                 "passWithNoTests": true
             }
         },

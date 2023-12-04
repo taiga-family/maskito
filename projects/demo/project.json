@@ -1,7 +1,6 @@
 {
     "projectType": "application",
     "generators": {},
-    "root": "projects/demo",
     "sourceRoot": "projects/demo/src",
     "prefix": "app",
     "targets": {
@@ -130,7 +129,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/demo"],
             "options": {
-                "jestConfig": "projects/demo/jest.config.js",
+                "jestConfig": "projects/demo/jest.config.ts",
                 "passWithNoTests": true
             }
         },

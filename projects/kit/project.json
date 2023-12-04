@@ -1,5 +1,4 @@
 {
-    "root": "projects/kit",
     "sourceRoot": "projects/kit/src",
     "projectType": "library",
     "targets": {
@@ -32,7 +31,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/kit"],
             "options": {
-                "jestConfig": "projects/kit/jest.config.js",
+                "jestConfig": "projects/kit/jest.config.ts",
                 "passWithNoTests": true
             }
         },
