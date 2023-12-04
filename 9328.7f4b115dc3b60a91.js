@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[9328],{5968:o=>{o.exports="import {MaskitoOptions} from '@maskito/core';\nimport {maskitoPrefixPostprocessorGenerator} from '@maskito/kit';\n\nexport default {\n    mask: /^\\$?\\d*$/, // dollar sign or digits\n    postprocessors: [maskitoPrefixPostprocessorGenerator('$')],\n} as MaskitoOptions;\n"}}]);
