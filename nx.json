@@ -17,7 +17,7 @@
             "runner": "@nrwl/nx-cloud",
             "options": {
                 "cacheableOperations": ["build", "test", "lint"],
-                "parallel": 1
+                "parallel": 3
             }
         }
     },
@@ -39,7 +39,6 @@
             "config": "project"
         },
         "@nrwl/angular:library": {
-            "style": "less",
             "linter": "none",
             "unitTestRunner": "jest",
             "buildable": true,
