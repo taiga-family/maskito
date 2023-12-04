@@ -7,6 +7,7 @@
     },
     "files": ["src/typings.d.ts", "src/main.server.ts", "server.ts"],
     "angularCompilerOptions": {
-        "entryModule": "./src/app/app.server.module#AppServerModule"
+        "entryModule": "./src/app/app.server.module#AppServerModule",
+        "compilationMode": "full"
     }
 }
