@@ -1,9 +1,9 @@
-module.exports = {
-    displayName: 'react',
+export default {
+    displayName: 'phone',
     preset: '../../jest.preset.js',
     transform: {
         '^.+\\.[tj]sx?$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: '../../coverage/projects/react',
+    coverageDirectory: '../../coverage/phone',
 };

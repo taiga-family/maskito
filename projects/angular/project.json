@@ -1,6 +1,5 @@
 {
     "projectType": "library",
-    "root": "projects/angular",
     "sourceRoot": "projects/angular/src",
     "prefix": "maskito",
     "targets": {
@@ -31,7 +30,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/angular"],
             "options": {
-                "jestConfig": "projects/angular/jest.config.js",
+                "jestConfig": "projects/angular/jest.config.ts",
                 "passWithNoTests": true
             }
         },
