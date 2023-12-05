@@ -8,11 +8,13 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CvaDocExample3 {
-    readonly control = new FormControl();
+    readonly control = new FormControl('');
 
     readonly maskito = maskitoNumberOptionsGenerator({precision: 2});
 
     setValue(): void {
-        this.control.setValue(12345.67);
+        this.control.setValue(
+            '12345.6789', // This value will be formatted to "12 345.67"
+        );
     }
 }

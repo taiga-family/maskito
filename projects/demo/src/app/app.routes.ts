@@ -2,11 +2,13 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 
+/* eslint-disable @typescript-eslint/promise-function-async */
+
 export const appRoutes: Routes = [
     // Getting started
     {
         path: DemoPath.WhatIsMaskito,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/what-is-maskito/what-is-maskito.module').then(
                 m => m.WhatIsMaskitoDocPageModule,
             ),
@@ -16,7 +18,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.MaskitoLibraries,
-        loadChildren: async () =>
+        loadChildren: () =>
             import(
                 '../pages/documentation/maskito-libraries/maskito-libraries.module'
             ).then(m => m.MaskitoLibrariesDocPageModule),
@@ -27,7 +29,7 @@ export const appRoutes: Routes = [
     // Core concepts
     {
         path: DemoPath.CoreConceptsOverview,
-        loadChildren: async () =>
+        loadChildren: () =>
             import(
                 '../pages/documentation/core-concepts-overview/core-concepts-overview.module'
             ).then(m => m.CoreConceptsOverviewDocPageModule),
@@ -37,7 +39,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.MaskExpression,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/mask-expression/mask-expression.module').then(
                 m => m.MaskExpressionDocPageModule,
             ),
@@ -47,7 +49,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.ElementState,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/element-state/element-state.module').then(
                 m => m.ElementStateDocPageModule,
             ),
@@ -57,7 +59,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Processors,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/processors/processors.module').then(
                 m => m.ProcessorsDocPageModule,
             ),
@@ -67,7 +69,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Plugins,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/plugins/plugins.module').then(
                 m => m.PluginsDocPageModule,
             ),
@@ -77,7 +79,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.OverwriteMode,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/overwrite-mode/overwrite-mode.module').then(
                 m => m.OverwriteModeDocPageModule,
             ),
@@ -87,7 +89,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Transformer,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/transformer/transformer.module').then(
                 m => m.TransformerDocPageModule,
             ),
@@ -98,7 +100,7 @@ export const appRoutes: Routes = [
     // Frameworks
     {
         path: DemoPath.Angular,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/frameworks/angular/angular-doc.module').then(
                 m => m.AngularDocPageModule,
             ),
@@ -108,7 +110,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.React,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/frameworks/react/react-doc.module').then(
                 m => m.ReactDocPageModule,
             ),
@@ -118,7 +120,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Vue,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/frameworks/vue/vue-doc.module').then(
                 m => m.VueDocPageModule,
             ),
@@ -129,7 +131,7 @@ export const appRoutes: Routes = [
     // Kit
     {
         path: DemoPath.Number,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/kit/number/number-mask-doc.module').then(
                 m => m.NumberMaskDocModule,
             ),
@@ -139,7 +141,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Time,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/kit/time/time-mask-doc.module').then(
                 m => m.TimeMaskDocModule,
             ),
@@ -149,7 +151,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Date,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/kit/date/date-mask-doc.module').then(
                 m => m.DateMaskDocModule,
             ),
@@ -159,7 +161,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.DateRange,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/kit/date-range/date-range-mask-doc.module').then(
                 m => m.DateRangeMaskDocModule,
             ),
@@ -170,7 +172,7 @@ export const appRoutes: Routes = [
     // Recipes
     {
         path: DemoPath.DateTime,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/kit/date-time/date-time-mask-doc.module').then(
                 m => m.DateTimeMaskDocModule,
             ),
@@ -180,7 +182,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Card,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/card/card-doc.module').then(m => m.CardDocModule),
         data: {
             title: 'Card',
@@ -188,7 +190,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Phone,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/phone/phone-doc.module').then(m => m.PhoneDocModule),
         data: {
             title: 'Phone',
@@ -196,7 +198,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.PhonePackage,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/phone/phone-doc.module').then(m => m.PhoneDocModule),
         data: {
             title: 'Phone',
@@ -204,7 +206,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Textarea,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/textarea/textarea-doc.module').then(
                 m => m.TextareaDocModule,
             ),
@@ -214,7 +216,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Prefix,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/prefix/prefix-doc.module').then(
                 m => m.PrefixDocModule,
             ),
@@ -224,7 +226,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Postfix,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/postfix/postfix-doc.module').then(
                 m => m.PostfixDocModule,
             ),
@@ -234,7 +236,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Placeholder,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/recipes/placeholder/placeholder-doc.module').then(
                 m => m.PlaceholderDocModule,
             ),
@@ -245,7 +247,7 @@ export const appRoutes: Routes = [
     // Other
     {
         path: DemoPath.BrowserSupport,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/browser-support/browser-support.module').then(
                 m => m.BrowserSupportModule,
             ),
@@ -255,7 +257,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Changelog,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/documentation/changelog/changelog.module').then(
                 m => m.ChangelogModule,
             ),
@@ -265,7 +267,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Stackblitz,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/stackblitz').then(m => m.StackblitzStarterModule),
         data: {
             title: 'Stackblitz Starter',
@@ -274,7 +276,7 @@ export const appRoutes: Routes = [
     // TODO: replace this page with Cypress Component Testing after angular13+ update
     {
         path: DemoPath.Cypress,
-        loadChildren: async () =>
+        loadChildren: () =>
             import('../pages/cypress/cypress.module').then(m => m.CypressDocPageModule),
         data: {
             title: 'Cypress tests 🤫',

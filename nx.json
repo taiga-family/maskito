@@ -61,7 +61,14 @@
             }
         }
     },
-    "cli": {
-        "defaultCollection": "@nrwl/js"
-    }
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "test", "lint"],
+                "parallel": 3
+            }
+        }
+    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
