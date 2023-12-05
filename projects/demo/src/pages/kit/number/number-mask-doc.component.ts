@@ -77,11 +77,8 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     }
 
     onFocus(): void {
-        let value: string = this.apiPageControl.value;
-
-        if (!value) {
-            value = this.prefix + this.postfix;
-            this.apiPageControl.patchValue(value);
+        if (!this.apiPageControl.value) {
+            this.apiPageControl.patchValue(this.prefix + this.postfix);
         }
     }
 
