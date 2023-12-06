@@ -12,7 +12,7 @@
                 "outputPath": "dist/kit",
                 "entryFile": "projects/kit/src/index.ts",
                 "tsConfig": "projects/kit/tsconfig.workaround.json",
-                "format": ["esm", "umd"],
+                "format": ["esm", "cjs"],
                 "assets": [
                     {
                         "glob": "projects/kit/README.md",

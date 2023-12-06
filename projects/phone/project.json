@@ -12,7 +12,7 @@
                 "outputPath": "dist/phone",
                 "entryFile": "projects/phone/src/index.ts",
                 "tsConfig": "projects/phone/tsconfig.workaround.json",
-                "format": ["esm", "umd"],
+                "format": ["esm", "cjs"],
                 "assets": [
                     {
                         "glob": "projects/phone/README.md",

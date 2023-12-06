@@ -12,7 +12,7 @@
                 "outputPath": "dist/core",
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
-                "format": ["esm", "umd"],
+                "format": ["esm", "cjs"],
                 "assets": [
                     {
                         "glob": "projects/core/README.md",

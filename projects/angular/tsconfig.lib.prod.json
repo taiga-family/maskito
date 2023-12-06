@@ -2,8 +2,6 @@
     "extends": "../../tsconfig.build.json",
     "include": ["**/*"],
     "compilerOptions": {
-        "declarationMap": false,
-        "target": "ES2022",
-        "useDefineForClassFields": false
+        "declarationMap": false
     }
 }
