@@ -110,7 +110,7 @@
         "@types/node": "20.10.3",
         "babel-jest": "29.7.0",
         "cspell": "8.1.2",
-        "cypress": "13.6.0",
+        "cypress": "13.6.1",
         "cypress-real-events": "1.11.0",
         "eslint": "8.55.0",
         "http-server": "14.1.1",
