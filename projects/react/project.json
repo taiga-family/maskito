@@ -1,11 +1,12 @@
 {
+    "name": "react",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "projects/react/src",
     "projectType": "library",
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nrwl/web:rollup",
+            "executor": "@nrwl/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/react",
@@ -39,14 +40,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/projects/react"],
+            "outputs": ["{workspaceRoot}/coverage/projects/react"],
             "options": {
                 "jestConfig": "projects/react/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/react --dry-run {args.dry-run}"
             },

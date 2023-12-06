@@ -1,4 +1,5 @@
 {
+    "name": "demo",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "generators": {},
@@ -74,14 +75,14 @@
             "defaultConfiguration": "production"
         },
         "build-gh-pages": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
                     "echo 'Github pages require special 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
-                    "nx build -c production",
+                    "nx build demo -c production",
                     "cp dist/demo/browser/index.html dist/demo/browser/404.html",
                     "nx run demo:prerender"
                 ]
@@ -106,13 +107,13 @@
             "defaultConfiguration": "development"
         },
         "serve-ip": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "nx serve --open --host 0.0.0.0 --disable-host-check"
             }
         },
         "serve-ssl": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "parallel": false,
                 "commands": [
@@ -128,7 +129,7 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/demo"],
+            "outputs": ["{workspaceRoot}/coverage/demo"],
             "options": {
                 "jestConfig": "projects/demo/jest.config.ts",
                 "passWithNoTests": true
@@ -176,7 +177,7 @@
             "defaultConfiguration": "development"
         },
         "generate-routes-file": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/generate-demo-routes-file.ts"
             }

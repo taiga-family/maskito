@@ -1,4 +1,5 @@
 {
+    "name": "angular",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "library",
     "sourceRoot": "projects/angular/src",
@@ -6,7 +7,7 @@
     "targets": {
         "build": {
             "executor": "@nrwl/angular:package",
-            "outputs": ["dist/angular"],
+            "outputs": ["{workspaceRoot}/dist/angular"],
             "options": {
                 "project": "projects/angular/ng-package.json"
             },
@@ -29,14 +30,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/angular"],
+            "outputs": ["{workspaceRoot}/coverage/angular"],
             "options": {
                 "jestConfig": "projects/angular/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/angular --dry-run {args.dry-run}"
             },

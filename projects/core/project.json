@@ -1,17 +1,18 @@
 {
+    "name": "core",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "projects/core/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/web:rollup",
+            "executor": "@nrwl/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/core/package.json",
                 "outputPath": "dist/core",
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
-                "format": ["esm", "umd"],
+                "format": ["esm", "cjs"],
                 "assets": [
                     {
                         "glob": "projects/core/README.md",
@@ -23,14 +24,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/core"],
+            "outputs": ["{workspaceRoot}/coverage/core"],
             "options": {
                 "jestConfig": "projects/core/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
             },
