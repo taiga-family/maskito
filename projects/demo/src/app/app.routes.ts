@@ -292,7 +292,6 @@ export const appRoutes: Routes = [
     imports: [
         RouterModule.forRoot(appRoutes, {
             initialNavigation: 'enabledBlocking',
-            relativeLinkResolution: 'corrected',
             scrollPositionRestoration: 'enabled',
         }),
     ],

@@ -1,11 +1,12 @@
 {
+    "name": "vue",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "projects/vue/src",
     "projectType": "library",
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nrwl/web:rollup",
+            "executor": "@nrwl/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/vue",
@@ -37,14 +38,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/projects/vue"],
+            "outputs": ["{workspaceRoot}/coverage/projects/vue"],
             "options": {
                 "jestConfig": "projects/vue/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/vue --dry-run {args.dry-run}"
             },

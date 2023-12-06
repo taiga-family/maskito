@@ -1,10 +1,11 @@
 {
+    "name": "kit",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "projects/kit/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/web:rollup",
+            "executor": "@nrwl/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/kit/package.json",
@@ -30,14 +31,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/kit"],
+            "outputs": ["{workspaceRoot}/coverage/kit"],
             "options": {
                 "jestConfig": "projects/kit/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/kit --dry-run {args.dry-run}"
             },

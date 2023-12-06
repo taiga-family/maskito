@@ -8,7 +8,9 @@
         "inlineSources": true,
         "paths": {
             "@maskito/core": ["./dist/core/src/index"]
-        }
+        },
+        "target": "ES2022",
+        "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "compilationMode": "partial"

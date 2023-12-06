@@ -1,10 +1,11 @@
 {
+    "name": "phone",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "projects/phone/src",
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/web:rollup",
+            "executor": "@nrwl/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/phone/package.json",
@@ -30,14 +31,14 @@
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/phone"],
+            "outputs": ["{workspaceRoot}/coverage/phone"],
             "options": {
                 "jestConfig": "projects/phone/jest.config.ts",
                 "passWithNoTests": true
             }
         },
         "publish": {
-            "executor": "@nrwl/workspace:run-commands",
+            "executor": "nx:run-commands",
             "options": {
                 "command": "ts-node ./scripts/npm-publish.ts --path ./dist/phone --dry-run {args.dry-run}"
             },

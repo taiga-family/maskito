@@ -1,16 +1,4 @@
 {
-    "implicitDependencies": {
-        "angular.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        ".eslintrc.js": "*",
-        "nx.json": "*",
-        "karma.*.js": "*",
-        "tsconfig.*.json": "*",
-        "tsconfig.json": "*"
-    },
     "npmScope": "maskito",
     "affected": {
         "defaultBase": "origin/main"
@@ -70,5 +58,30 @@
             }
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json"
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": [
+            "{workspaceRoot}/angular.json",
+            "{workspaceRoot}/nx.json",
+            "{workspaceRoot}/karma.*.js",
+            "{workspaceRoot}/tsconfig.*.json",
+            "{workspaceRoot}/tsconfig.json",
+            "{workspaceRoot}/babel.config.json"
+        ],
+        "production": [
+            "default",
+            "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{projectRoot}/tsconfig.spec.json",
+            "!{projectRoot}/jest.config.[jt]s"
+        ]
+    },
+    "targetDefaults": {
+        "build": {
+            "inputs": ["production", "^production"]
+        },
+        "test": {
+            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+        }
+    }
 }
