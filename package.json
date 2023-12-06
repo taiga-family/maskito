@@ -103,7 +103,7 @@
         "@nrwl/workspace": "15.9.7",
         "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
         "@schematics/angular": "15.2.10",
-        "@svgr/webpack": "6.5.1",
+        "@svgr/webpack": "8.1.0",
         "@taiga-ui/commitlint-config": "0.4.2",
         "@taiga-ui/cspell-config": "0.24.0",
         "@taiga-ui/eslint-plugin-experience": "0.39.5",
