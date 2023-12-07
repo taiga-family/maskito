@@ -5,7 +5,7 @@
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/rollup:rollup",
+            "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/core/package.json",
@@ -13,6 +13,7 @@
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
+                "compiler": "tsc",
                 "assets": [
                     {
                         "glob": "projects/core/README.md",
@@ -23,7 +24,7 @@
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/core"],
             "options": {
                 "jestConfig": "projects/core/jest.config.ts",
@@ -38,7 +39,6 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]

@@ -6,7 +6,7 @@
     "prefix": "maskito",
     "targets": {
         "build": {
-            "executor": "@nrwl/angular:package",
+            "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/angular"],
             "options": {
                 "project": "projects/angular/ng-package.json"
@@ -23,13 +23,13 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "dependencies",
-                    "params": "forward"
+                    "params": "forward",
+                    "dependencies": true
                 }
             ]
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/angular"],
             "options": {
                 "jestConfig": "projects/angular/jest.config.ts",
@@ -44,7 +44,6 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]

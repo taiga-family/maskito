@@ -6,13 +6,15 @@
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nrwl/rollup:rollup",
+            "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/vue",
                 "tsConfig": "projects/vue/tsconfig.lib.json",
                 "project": "projects/vue/package.json",
                 "entryFile": "projects/vue/src/index.ts",
+                "format": ["esm", "cjs"],
+                "compiler": "tsc",
                 "assets": [
                     {
                         "glob": "projects/vue/README.md",
@@ -24,20 +26,20 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "dependencies",
-                    "params": "forward"
+                    "params": "forward",
+                    "dependencies": true
                 }
             ]
         },
         "lint": {
-            "executor": "@nrwl/linter:eslint",
+            "executor": "@nx/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["projects/vue/**/*.{ts,js}"]
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/projects/vue"],
             "options": {
                 "jestConfig": "projects/vue/jest.config.ts",
@@ -52,7 +54,6 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]
