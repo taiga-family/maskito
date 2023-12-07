@@ -13,7 +13,7 @@
                 "tsConfig": "projects/react/tsconfig.lib.json",
                 "project": "projects/react/package.json",
                 "entryFile": "projects/react/src/index.ts",
-                "external": ["react/jsx-runtime"],
+                "external": "all",
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
                 "assets": [
                     {

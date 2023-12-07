@@ -15,6 +15,7 @@
                 "entryFile": "projects/vue/src/index.ts",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "external": "all",
                 "assets": [
                     {
                         "glob": "projects/vue/README.md",
