@@ -5,7 +5,7 @@
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/rollup:rollup",
+            "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/core/package.json",
@@ -19,11 +19,13 @@
                         "input": ".",
                         "output": "."
                     }
-                ]
+                ],
+                "babelUpwardRootMode": true,
+                "updateBuildableProjectDepsInPackageJson": true
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/core"],
             "options": {
                 "jestConfig": "projects/core/jest.config.ts",
@@ -38,7 +40,6 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]

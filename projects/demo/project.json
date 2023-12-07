@@ -128,7 +128,7 @@
             }
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/demo"],
             "options": {
                 "jestConfig": "projects/demo/jest.config.ts",
@@ -192,7 +192,6 @@
             "dependsOn": [
                 {
                     "target": "generate-routes-file",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]

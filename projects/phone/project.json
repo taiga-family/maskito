@@ -5,7 +5,7 @@
     "projectType": "library",
     "targets": {
         "build": {
-            "executor": "@nrwl/rollup:rollup",
+            "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "projects/phone/package.json",
@@ -19,18 +19,20 @@
                         "input": ".",
                         "output": "."
                     }
-                ]
+                ],
+                "babelUpwardRootMode": true,
+                "updateBuildableProjectDepsInPackageJson": true
             },
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "dependencies",
-                    "params": "forward"
+                    "params": "forward",
+                    "dependencies": true
                 }
             ]
         },
         "test": {
-            "executor": "@nrwl/jest:jest",
+            "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/phone"],
             "options": {
                 "jestConfig": "projects/phone/jest.config.ts",
@@ -45,7 +47,6 @@
             "dependsOn": [
                 {
                     "target": "build",
-                    "projects": "self",
                     "params": "ignore"
                 }
             ]
