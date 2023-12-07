@@ -14,6 +14,7 @@
                 "tsConfig": "projects/kit/tsconfig.workaround.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "external": "all",
                 "assets": [
                     {
                         "glob": "projects/kit/README.md",
@@ -34,8 +35,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/kit"],
             "options": {
-                "jestConfig": "projects/kit/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/kit/jest.config.ts"
             }
         },
         "publish": {

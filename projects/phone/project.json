@@ -14,6 +14,7 @@
                 "tsConfig": "projects/phone/tsconfig.workaround.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "external": "all",
                 "assets": [
                     {
                         "glob": "projects/phone/README.md",
@@ -34,8 +35,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/phone"],
             "options": {
-                "jestConfig": "projects/phone/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/phone/jest.config.ts"
             }
         },
         "publish": {

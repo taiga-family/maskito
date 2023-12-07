@@ -14,6 +14,7 @@
                 "tsConfig": "projects/core/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "external": "all",
                 "assets": [
                     {
                         "glob": "projects/core/README.md",
@@ -27,8 +28,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/core"],
             "options": {
-                "jestConfig": "projects/core/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/core/jest.config.ts"
             }
         },
         "publish": {

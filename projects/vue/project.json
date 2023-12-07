@@ -15,6 +15,7 @@
                 "entryFile": "projects/vue/src/index.ts",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "external": "all",
                 "assets": [
                     {
                         "glob": "projects/vue/README.md",
@@ -32,7 +33,7 @@
             ]
         },
         "lint": {
-            "executor": "@nx/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["projects/vue/**/*.{ts,js}"]
@@ -42,8 +43,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/projects/vue"],
             "options": {
-                "jestConfig": "projects/vue/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/vue/jest.config.ts"
             }
         },
         "publish": {

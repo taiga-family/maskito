@@ -131,8 +131,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/demo"],
             "options": {
-                "jestConfig": "projects/demo/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/demo/jest.config.ts"
             }
         },
         "server": {
