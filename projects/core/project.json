@@ -13,15 +13,14 @@
                 "entryFile": "projects/core/src/index.ts",
                 "tsConfig": "projects/core/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
+                "compiler": "tsc",
                 "assets": [
                     {
                         "glob": "projects/core/README.md",
                         "input": ".",
                         "output": "."
                     }
-                ],
-                "babelUpwardRootMode": true,
-                "updateBuildableProjectDepsInPackageJson": true
+                ]
             }
         },
         "test": {

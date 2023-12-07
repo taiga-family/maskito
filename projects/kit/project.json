@@ -13,15 +13,14 @@
                 "entryFile": "projects/kit/src/index.ts",
                 "tsConfig": "projects/kit/tsconfig.workaround.json",
                 "format": ["esm", "cjs"],
+                "compiler": "tsc",
                 "assets": [
                     {
                         "glob": "projects/kit/README.md",
                         "input": ".",
                         "output": "."
                     }
-                ],
-                "babelUpwardRootMode": true,
-                "updateBuildableProjectDepsInPackageJson": true
+                ]
             },
             "dependsOn": [
                 {

@@ -21,9 +21,7 @@
                         "input": ".",
                         "output": "."
                     }
-                ],
-                "babelUpwardRootMode": true,
-                "updateBuildableProjectDepsInPackageJson": true
+                ]
             },
             "dependsOn": [
                 {

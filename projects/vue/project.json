@@ -13,15 +13,15 @@
                 "tsConfig": "projects/vue/tsconfig.lib.json",
                 "project": "projects/vue/package.json",
                 "entryFile": "projects/vue/src/index.ts",
+                "format": ["esm", "cjs"],
+                "compiler": "tsc",
                 "assets": [
                     {
                         "glob": "projects/vue/README.md",
                         "input": ".",
                         "output": "."
                     }
-                ],
-                "babelUpwardRootMode": true,
-                "updateBuildableProjectDepsInPackageJson": true
+                ]
             },
             "dependsOn": [
                 {
