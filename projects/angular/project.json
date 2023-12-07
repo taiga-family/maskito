@@ -32,8 +32,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/angular"],
             "options": {
-                "jestConfig": "projects/angular/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/angular/jest.config.ts"
             }
         },
         "publish": {

@@ -34,8 +34,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/kit"],
             "options": {
-                "jestConfig": "projects/kit/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/kit/jest.config.ts"
             }
         },
         "publish": {

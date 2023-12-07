@@ -47,6 +47,7 @@ Thumbs.db
 # cypress
 **/cypress/**/screenshots/**
 
+.nx/cache
 .ssl
 RELEASE_BODY.md
 projects/demo/routesFile.txt

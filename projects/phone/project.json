@@ -34,8 +34,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/phone"],
             "options": {
-                "jestConfig": "projects/phone/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/phone/jest.config.ts"
             }
         },
         "publish": {

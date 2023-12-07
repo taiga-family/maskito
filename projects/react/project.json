@@ -32,7 +32,7 @@
             ]
         },
         "lint": {
-            "executor": "@nx/linter:eslint",
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["projects/react/**/*.{ts,tsx,js,jsx}"]
@@ -42,8 +42,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/projects/react"],
             "options": {
-                "jestConfig": "projects/react/jest.config.ts",
-                "passWithNoTests": true
+                "jestConfig": "projects/react/jest.config.ts"
             }
         },
         "publish": {
