@@ -34,7 +34,7 @@
         "react-dom": "18.2.0",
         "rxjs": "6.6.7",
         "tslib": "2.6.2",
-        "vue": "3.3.10",
+        "vue": "3.3.11",
         "zone.js": "0.13.3"
     },
     "devDependencies": {
