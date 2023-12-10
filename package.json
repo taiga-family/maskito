@@ -78,6 +78,17 @@
         ]
     },
     "prettier": "@taiga-ui/prettier-config",
+    "stylelint": {
+        "extends": [
+            "@taiga-ui/stylelint-config"
+        ],
+        "ignoreFiles": [
+            "**/demo/**",
+            "**/dist/**",
+            "**/coverage/**",
+            "**/node_modules/**"
+        ]
+    },
     "devDependencies": {
         "@angular-devkit/build-angular": "15.2.10",
         "@angular-devkit/core": "15.2.10",
