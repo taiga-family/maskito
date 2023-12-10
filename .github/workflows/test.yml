@@ -11,8 +11,8 @@ jobs:
     if: ${{ !contains(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.44.7
-      - uses: taiga-family/ci/actions/setup/node@v1.44.7
+      - uses: taiga-family/ci/actions/setup/checkout@v1.45.0
+      - uses: taiga-family/ci/actions/setup/node@v1.45.0
       - run: npx nx run-many --target test --all --coverage
       - uses: codecov/codecov-action@v3.1.4
         with:
