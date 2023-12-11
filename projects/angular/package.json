@@ -31,12 +31,14 @@
     "dependencies": {
         "tslib": "2.6.2"
     },
+    "devDependencies": {
+        "@angular/core": "15.2.10",
+        "@angular/forms": "15.2.10"
+    },
     "peerDependencies": {
-        "@angular/common": ">=15.0.0",
         "@angular/core": ">=15.0.0",
         "@angular/forms": ">=15.0.0",
-        "@maskito/core": "^1.9.0",
-        "rxjs": ">=6.0.0"
+        "@maskito/core": "^1.9.0"
     },
     "ng-update": {
         "packageGroup": [
