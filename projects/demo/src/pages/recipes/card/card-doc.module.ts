@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiGroupModule, TuiLinkModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
@@ -14,7 +14,7 @@ import {CardDocExample1} from './examples/1-basic/component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        MaskitoModule,
+        MaskitoDirective,
         TuiAddonDocModule,
         TuiInputModule,
         TuiGroupModule,

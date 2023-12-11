@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoCVA, MaskitoDirective, MaskitoPipe} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 
 describe('Maskito Angular package', () => {
     @Component({
+        standalone: true,
+        imports: [MaskitoDirective, MaskitoCVA, MaskitoPipe, ReactiveFormsModule],
         template: `
             <div id="pipe">{{ control.value | maskito: options }}</div>
             <input
@@ -39,8 +41,7 @@ describe('Maskito Angular package', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MaskitoModule, ReactiveFormsModule],
-            declarations: [TestComponent],
+            imports: [TestComponent],
         });
 
         fixture = TestBed.createComponent(TestComponent);

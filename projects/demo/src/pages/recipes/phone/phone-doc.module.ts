@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {
     TuiFlagPipeModule,
@@ -20,7 +20,7 @@ import {PhoneDocComponent} from './phone-doc.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MaskitoModule,
+        MaskitoDirective,
         TuiAddonDocModule,
         TuiFlagPipeModule,
         TuiInputModule,

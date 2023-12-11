@@ -77,6 +77,7 @@
         </section>
 
         <tui-doc-example
+            id="custom-input"
             description="See querying nested input in action"
             heading="Custom input"
             [content]="nestedInputExample"
@@ -109,14 +110,21 @@
         </tui-doc-example>
 
         <tui-doc-example
-            description="When directly on native input/textarea tag, maskito directive formats value set programmatically with Angular forms."
-            heading="Form controls"
+            id="cva"
+            heading="CVA"
             [content]="cvaExample"
+            [description]="cvaDescription"
         >
+            <ng-template #cvaDescription>
+                When directly on native input/textarea tag,
+                <code>MaskitoCVA</code>
+                formats value set programmatically with Angular forms.
+            </ng-template>
             <cva-doc-example-3></cva-doc-example-3>
         </tui-doc-example>
 
         <tui-doc-example
+            id="pipe"
             description="Format arbitrary value with the same options"
             heading="Pipe"
             [content]="pipeExample"
@@ -137,12 +145,12 @@
                 </li>
                 <li class="tui-list__item tui-space_top-8">
                     Import
-                    <code>MaskitoModule</code>
-                    to your module
+                    <code>MaskitoDirective</code>
+                    to your component / module
 
                     <tui-doc-code
-                        filename="your.module.ts"
-                        [code]="importMaskitoModuleExample"
+                        filename="your.component.ts"
+                        [code]="importMaskitoExample"
                     ></tui-doc-code>
                 </li>
             </ol>

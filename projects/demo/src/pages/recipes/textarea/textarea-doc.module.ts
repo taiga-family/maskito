@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
 import {TuiTextareaModule} from '@taiga-ui/kit';
@@ -14,7 +14,7 @@ import {TextareaDocComponent} from './textarea-doc.component';
     imports: [
         CommonModule,
         FormsModule,
-        MaskitoModule,
+        MaskitoDirective,
         TuiAddonDocModule,
         TuiTextareaModule,
         TuiLinkModule,
