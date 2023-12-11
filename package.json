@@ -145,7 +145,7 @@
     },
     "overrides": {
         "rollup-plugin-typescript2": "0.35.0",
-        "highlight.js": "11.5.1",
+        "highlight.js": "11.9.0",
         "eslint-plugin-prettier": "5.0.1"
     },
     "standard-version": {
