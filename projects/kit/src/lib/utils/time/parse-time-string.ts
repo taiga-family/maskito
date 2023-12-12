@@ -1,5 +1,4 @@
 import {MaskitoTimeSegments} from '../../types';
-import {getObjectFromEntries} from '../get-object-from-entries';
 
 /**
  * @param timeString can be with/without fixed characters
@@ -14,7 +13,7 @@ export function parseTimeString(timeString: string): Partial<MaskitoTimeSegments
         milliseconds: onlyDigits.slice(6, 9),
     };
 
-    return getObjectFromEntries(
+    return Object.fromEntries(
         Object.entries(timeSegments).filter(([_, value]) => Boolean(value)),
     );
 }

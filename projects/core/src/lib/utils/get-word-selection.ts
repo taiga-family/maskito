@@ -20,7 +20,7 @@ export function getWordSelection(
             '',
         ];
         const nearestWordEndIndex = valueAfterSelectionStart
-            .replace(LEADING_SPACES_REG, '') // TODO replace with `String.trimStart` after bumping Firefox to 61+
+            .trimStart()
             .search(SPACE_REG);
 
         return [
@@ -34,7 +34,7 @@ export function getWordSelection(
     const valueBeforeSelectionEnd = value.slice(0, to);
     const [trailingSpaces] = valueBeforeSelectionEnd.match(TRAILING_SPACES_REG) || [''];
     const selectedWordLength = valueBeforeSelectionEnd
-        .replace(TRAILING_SPACES_REG, '') // TODO replace with `String.trimEnd` after bumping Firefox to 61+
+        .trimEnd()
         .split('')
         .reverse()
         .findIndex(char => char.match(SPACE_REG));
