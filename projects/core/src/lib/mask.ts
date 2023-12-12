@@ -193,11 +193,7 @@ export class Maskito extends MaskHistory {
             data: null,
         },
     ): void {
-        const globalObject = typeof window !== 'undefined' ? window : globalThis;
-
-        // TODO: replace `globalObject` with `globalThis` after bumping Firefox to 65+
-        // @see https://caniuse.com/?search=globalThis
-        if (globalObject?.InputEvent) {
+        if (globalThis?.InputEvent) {
             this.element.dispatchEvent(
                 new InputEvent('input', {
                     ...eventInit,

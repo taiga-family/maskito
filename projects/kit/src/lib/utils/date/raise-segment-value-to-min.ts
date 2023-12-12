@@ -1,5 +1,4 @@
 import {MaskitoDateSegments} from '../../types';
-import {getObjectFromEntries} from '../get-object-from-entries';
 import {getDateSegmentValueLength} from './date-segment-value-length';
 
 export function raiseSegmentValueToMin(
@@ -8,7 +7,7 @@ export function raiseSegmentValueToMin(
 ): Partial<MaskitoDateSegments> {
     const segmentsLength = getDateSegmentValueLength(fullMode);
 
-    return getObjectFromEntries(
+    return Object.fromEntries(
         Object.entries<string>(segments).map(([key, value]: [string, string]) => {
             const segmentLength =
                 segmentsLength[key as keyof Partial<MaskitoDateSegments>];

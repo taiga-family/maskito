@@ -11,7 +11,6 @@ export * from './date/validate-date-string';
 export * from './escape-reg-exp';
 export * from './find-common-beginning-substr';
 export * from './get-focused';
-export * from './get-object-from-entries';
 export * from './identity';
 export * from './is-empty';
 export * from './pad-with-zeroes-until-valid';
