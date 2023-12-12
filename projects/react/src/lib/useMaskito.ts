@@ -3,7 +3,6 @@ import {
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
     MaskitoElementPredicate,
-    MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
 import {RefCallback, useCallback, useRef, useState} from 'react';
@@ -33,7 +32,7 @@ export const useMaskito = ({
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
     options?: MaskitoOptions;
-    elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
+    elementPredicate?: MaskitoElementPredicate;
 } = {}): RefCallback<HTMLElement> => {
     const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
     const [element, setElement] = useState<HTMLInputElement | HTMLTextAreaElement | null>(

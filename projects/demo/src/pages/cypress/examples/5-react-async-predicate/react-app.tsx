@@ -1,6 +1,5 @@
 // @ts-nocheck React & Vue Global JSX Types Conflicts
 // TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
-import type {MaskitoElementPredicateAsync} from '@maskito/core';
 import {MaskitoElementPredicate} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
@@ -13,19 +12,19 @@ const options = maskitoTimeOptionsGenerator({
 const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
 const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
 
-const longCorrectPredicate: MaskitoElementPredicateAsync = host =>
+const longCorrectPredicate: MaskitoElementPredicate = host =>
     new Promise(resolve => {
         setTimeout(() => {
             resolve(correctPredicate(host));
         }, 2_000);
     });
 
-const longInvalidPredicate: MaskitoElementPredicateAsync = host =>
+const longInvalidPredicate: MaskitoElementPredicate = host =>
     new Promise(resolve => {
         setTimeout(() => resolve(wrongPredicate(host)), 7_000);
     });
 
-const fastValidPredicate: MaskitoElementPredicateAsync = host =>
+const fastValidPredicate: MaskitoElementPredicate = host =>
     new Promise(resolve => {
         setTimeout(() => resolve(correctPredicate(host)), 500);
     });
