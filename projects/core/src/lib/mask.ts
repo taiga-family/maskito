@@ -7,8 +7,6 @@ import {
     getLineSelection,
     getNotEmptySelection,
     getWordSelection,
-    isBeforeInputEventSupported,
-    isEventProducingCharacter,
     isRedo,
     isUndo,
     maskitoPipe,
@@ -53,73 +51,58 @@ export class Maskito extends MaskHistory {
             }
         });
 
-        if (isBeforeInputEventSupported(element)) {
-            this.eventListener.listen('beforeinput', event => {
-                const isForward = event.inputType.includes('Forward');
+        this.eventListener.listen('beforeinput', event => {
+            const isForward = event.inputType.includes('Forward');
 
-                this.updateHistory(this.elementState);
+            this.updateHistory(this.elementState);
 
-                switch (event.inputType) {
-                    // historyUndo/historyRedo will not be triggered if value was modified programmatically
-                    case 'historyUndo':
-                        event.preventDefault();
+            switch (event.inputType) {
+                // historyUndo/historyRedo will not be triggered if value was modified programmatically
+                case 'historyUndo':
+                    event.preventDefault();
 
-                        return this.undo();
-                    case 'historyRedo':
-                        event.preventDefault();
+                    return this.undo();
+                case 'historyRedo':
+                    event.preventDefault();
 
-                        return this.redo();
-                    case 'deleteByCut':
-                    case 'deleteContentBackward':
-                    case 'deleteContentForward':
-                        return this.handleDelete({
-                            event,
-                            isForward,
-                            selection: getNotEmptySelection(this.elementState, isForward),
-                        });
-                    case 'deleteWordForward':
-                    case 'deleteWordBackward':
-                        return this.handleDelete({
-                            event,
-                            isForward,
-                            selection: getWordSelection(this.elementState, isForward),
-                            force: true,
-                        });
-                    case 'deleteSoftLineBackward':
-                    case 'deleteSoftLineForward':
-                    case 'deleteHardLineBackward':
-                    case 'deleteHardLineForward':
-                        return this.handleDelete({
-                            event,
-                            isForward,
-                            selection: getLineSelection(this.elementState, isForward),
-                            force: true,
-                        });
-                    case 'insertCompositionText':
-                        return; // will be handled inside `compositionend` event
-                    case 'insertLineBreak':
-                        return this.handleEnter(event);
-                    case 'insertFromPaste':
-                    case 'insertText':
-                    case 'insertFromDrop':
-                    default:
-                        return this.handleInsert(event, event.data || '');
-                }
-            });
-        } else {
-            /** TODO: drop it after browser support bump (Firefox 87+)
-             * Also, replace union types `Event | TypedInputEvent` with `TypedInputEvent` inside:
-             *** {@link handleDelete}
-             *** {@link handleInsert}
-             */
-            this.eventListener.listen('keydown', event => this.handleKeydown(event));
-            this.eventListener.listen('paste', event =>
-                this.handleInsert(
-                    event,
-                    event.clipboardData?.getData('text/plain') || '',
-                ),
-            );
-        }
+                    return this.redo();
+                case 'deleteByCut':
+                case 'deleteContentBackward':
+                case 'deleteContentForward':
+                    return this.handleDelete({
+                        event,
+                        isForward,
+                        selection: getNotEmptySelection(this.elementState, isForward),
+                    });
+                case 'deleteWordForward':
+                case 'deleteWordBackward':
+                    return this.handleDelete({
+                        event,
+                        isForward,
+                        selection: getWordSelection(this.elementState, isForward),
+                        force: true,
+                    });
+                case 'deleteSoftLineBackward':
+                case 'deleteSoftLineForward':
+                case 'deleteHardLineBackward':
+                case 'deleteHardLineForward':
+                    return this.handleDelete({
+                        event,
+                        isForward,
+                        selection: getLineSelection(this.elementState, isForward),
+                        force: true,
+                    });
+                case 'insertCompositionText':
+                    return; // will be handled inside `compositionend` event
+                case 'insertLineBreak':
+                    return this.handleEnter(event);
+                case 'insertFromPaste':
+                case 'insertText':
+                case 'insertFromDrop':
+                default:
+                    return this.handleInsert(event, event.data || '');
+            }
+        });
 
         this.eventListener.listen('input', ({inputType}) => {
             if (inputType === 'insertCompositionText') {
@@ -204,36 +187,13 @@ export class Maskito extends MaskHistory {
         }
     }
 
-    private handleKeydown(event: KeyboardEvent): void {
-        const pressedKey = event.key;
-        const isForward = pressedKey === 'Delete';
-
-        switch (pressedKey) {
-            case 'Backspace':
-            case 'Delete':
-                return this.handleDelete({
-                    event,
-                    isForward,
-                    selection: getNotEmptySelection(this.elementState, isForward),
-                });
-            case 'Enter':
-                return this.handleEnter(event);
-        }
-
-        if (!isEventProducingCharacter(event)) {
-            return;
-        }
-
-        this.handleInsert(event, pressedKey);
-    }
-
     private handleDelete({
         event,
         selection,
         isForward,
         force = false,
     }: {
-        event: Event | TypedInputEvent;
+        event: TypedInputEvent;
         selection: SelectionRange;
         isForward: boolean;
         force?: boolean;
@@ -273,19 +233,14 @@ export class Maskito extends MaskHistory {
             return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
         }
 
-        // TODO: drop it when `event: Event | TypedInputEvent` => `event: TypedInputEvent`
-        const inputTypeFallback = isForward
-            ? 'deleteContentForward'
-            : 'deleteContentBackward';
-
         this.updateElementState(newElementState, {
-            inputType: 'inputType' in event ? event.inputType : inputTypeFallback,
+            inputType: event.inputType,
             data: null,
         });
         this.updateHistory(newElementState);
     }
 
-    private handleInsert(event: Event | TypedInputEvent, data: string): void {
+    private handleInsert(event: TypedInputEvent, data: string): void {
         const initialElementState = this.elementState;
         const {elementState, data: insertedText = data} = this.preprocessor(
             {
@@ -316,13 +271,13 @@ export class Maskito extends MaskHistory {
 
             this.updateElementState(newElementState, {
                 data,
-                inputType: 'inputType' in event ? event.inputType : 'insertText',
+                inputType: event.inputType,
             });
             this.updateHistory(newElementState);
         }
     }
 
-    private handleEnter(event: Event): void {
+    private handleEnter(event: TypedInputEvent): void {
         if (this.isTextArea) {
             this.handleInsert(event, '\n');
         }
