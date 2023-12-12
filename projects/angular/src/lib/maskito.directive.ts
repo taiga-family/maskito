@@ -16,9 +16,7 @@ import {
     MaskitoOptions,
 } from '@maskito/core';
 
-@Directive({
-    selector: '[maskito]',
-})
+@Directive({standalone: true, selector: '[maskito]'})
 export class MaskitoDirective implements OnDestroy, OnChanges {
     private maskedElement: Maskito | null = null;
 

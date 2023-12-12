@@ -3,6 +3,7 @@ import {DefaultValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
 
 @Directive({
+    standalone: true,
     selector: 'input[maskito], textarea[maskito]',
     providers: [
         DefaultValueAccessor,
@@ -19,7 +20,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
         '(compositionend)': '$any(this.accessor)._compositionEnd($event.target.value)',
     },
 })
-export class MaskitoCva {
+export class MaskitoCVA {
     @Input()
     maskito: MaskitoOptions | null = MASKITO_DEFAULT_OPTIONS;
 

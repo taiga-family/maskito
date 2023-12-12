@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoCVA, MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiGroupModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
@@ -19,7 +19,8 @@ import {TestDocExample6} from './examples/6-multi-character-prefix/component';
     imports: [
         CommonModule,
         FormsModule,
-        MaskitoModule,
+        MaskitoDirective,
+        MaskitoCVA,
         TuiInputModule,
         TuiGroupModule,
         TuiAddonDocModule,

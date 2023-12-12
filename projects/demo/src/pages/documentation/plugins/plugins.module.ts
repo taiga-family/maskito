@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
@@ -15,7 +15,7 @@ import {PluginsDocPageComponent} from './plugins.component';
     imports: [
         CommonModule,
         FormsModule,
-        MaskitoModule,
+        MaskitoDirective,
         TuiLinkModule,
         TuiInputModule,
         TuiNotificationModule,

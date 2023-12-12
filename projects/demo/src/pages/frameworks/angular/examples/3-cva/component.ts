@@ -1,9 +1,16 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoCVA, MaskitoDirective} from '@maskito/angular';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 @Component({
+    standalone: true,
     selector: 'cva-doc-example-3',
+    imports: [
+        MaskitoDirective,
+        MaskitoCVA, // <--- Don't forget to import it
+        ReactiveFormsModule,
+    ],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

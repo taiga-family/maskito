@@ -11,9 +11,7 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 export class AngularDocPageComponent {
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
 
-    readonly importMaskitoModuleExample = import(
-        './examples/import-maskito-module.md?raw'
-    );
+    readonly importMaskitoExample = import('./examples/import-maskito.md?raw');
 
     readonly basicDirectiveApproach = import(
         './examples/basic-directive-approach.md?raw'

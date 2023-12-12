@@ -1,5 +1,6 @@
 ```ts
 import {Component} from '@angular/core';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions, MaskitoElementPredicate} from '@maskito/core';
 
 @Component({
@@ -12,6 +13,7 @@ import {MaskitoOptions, MaskitoElementPredicate} from '@maskito/core';
       Using maskito with another library
     </custom-input-wrapper>
   `,
+  imports: [MaskitoDirective],
 })
 export class YourComponent {
   readonly maskitoOptions: MaskitoOptions = {

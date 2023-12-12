@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaskitoModule} from '@maskito/angular';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiHintModule, TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
@@ -17,7 +17,7 @@ import {OverwriteModeDocPageComponent} from './overwrite-mode.component';
     imports: [
         CommonModule,
         FormsModule,
-        MaskitoModule,
+        MaskitoDirective,
         TuiAddonDocModule,
         TuiLinkModule,
         TuiInputModule,
