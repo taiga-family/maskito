@@ -2,21 +2,17 @@ import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MaskitoElementPredicate,
-    MaskitoElementPredicateAsync,
     MaskitoOptions,
 } from '@maskito/core';
 import {ObjectDirective} from 'vue';
 
 const teardown = new Map<HTMLElement, Maskito>();
-const predicates = new Map<
-    HTMLElement,
-    MaskitoElementPredicate | MaskitoElementPredicateAsync
->();
+const predicates = new Map<HTMLElement, MaskitoElementPredicate>();
 
 async function update(
     element: HTMLElement,
     options: MaskitoOptions & {
-        elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
+        elementPredicate?: MaskitoElementPredicate;
     },
 ): Promise<void> {
     const predicate = options.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
@@ -36,7 +32,7 @@ async function update(
 export const maskito: ObjectDirective<
     HTMLElement,
     MaskitoOptions & {
-        elementPredicate?: MaskitoElementPredicate | MaskitoElementPredicateAsync;
+        elementPredicate?: MaskitoElementPredicate;
     }
 > = {
     unmounted: element => {

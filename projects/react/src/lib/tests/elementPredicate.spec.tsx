@@ -1,9 +1,4 @@
-import {
-    MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MaskitoElementPredicate,
-    MaskitoElementPredicateAsync,
-    MaskitoOptions,
-} from '@maskito/core';
+import {MASKITO_DEFAULT_ELEMENT_PREDICATE, MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {render, RenderResult, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -13,9 +8,9 @@ describe('@maskito/react | `elementPredicate` property', () => {
     const options: MaskitoOptions = {
         mask: /^\d+$/,
     };
-    let predicate: MaskitoElementPredicate | MaskitoElementPredicateAsync = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    let predicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
-    const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
+    const correctPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('.real-input')!;
     const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
 
     function TestComponent({elementPredicate = predicate}) {
