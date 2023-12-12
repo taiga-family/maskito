@@ -2867,7 +2867,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-punycode
+punycode.js
 MIT
 Copyright Mathias Bynens <https://mathiasbynens.be/>
 
