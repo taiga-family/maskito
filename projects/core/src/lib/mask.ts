@@ -34,7 +34,6 @@ export class Maskito extends MaskHistory {
         private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
-        this.ensureValueFitsMask();
         this.updateHistory(this.elementState);
 
         this.eventListener.listen('keydown', event => {

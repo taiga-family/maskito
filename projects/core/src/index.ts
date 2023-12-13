@@ -12,4 +12,8 @@ export {
     MaskitoPostprocessor,
     MaskitoPreprocessor,
 } from './lib/types';
-export {maskitoPipe, maskitoTransform} from './lib/utils';
+export {
+    maskitoInitialCalibrationPlugin,
+    maskitoPipe,
+    maskitoTransform,
+} from './lib/utils';
