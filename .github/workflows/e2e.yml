@@ -17,6 +17,7 @@ jobs:
         with:
           fetch-depth: 10
 
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
 
       - name: Mark demo-app directory for persist in cache
@@ -43,6 +44,7 @@ jobs:
     name: Kit / ${{ matrix.project }}
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
 
       - name: Download demo build from cache
@@ -68,6 +70,7 @@ jobs:
     name: Recipes
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
 
       - name: Download demo build from cache
@@ -91,6 +94,7 @@ jobs:
     name: Others
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
 
       - name: Download demo build from cache

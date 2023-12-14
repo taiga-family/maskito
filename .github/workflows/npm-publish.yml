@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
       - run: npx nx run-many --target build --all --exclude=demo
       - run: npx nx run-many --target publish --all --exclude=demo

@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
       - run: npm run typecheck
 
@@ -13,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
       - run: npm run cspell -- --no-progress
 
