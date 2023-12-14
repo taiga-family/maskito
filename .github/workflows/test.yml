@@ -14,7 +14,30 @@ jobs:
       - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
       - uses: taiga-family/ci/actions/setup/variables@v1.45.2
       - uses: taiga-family/ci/actions/setup/node@v1.45.2
-      - run: npx nx run-many --target test --all --coverage
+
+      - name: Run tests
+        run: npx nx run-many --target test --all --coverage
+
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: coverage-${{ github.workflow }}-${{ github.run_id }}
+          path: coverage
+
+  codecov:
+    name: Collect coverage
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: taiga-family/ci/actions/setup/checkout@v1.45.2
+      - uses: actions/download-artifact@v3.0.2
+        with:
+          name: coverage-${{ github.workflow }}-${{ github.run_id }}
+          path: coverage
+
+      - name: Display structure of coverage files
+        run: tree -L 2 ./coverage -P 'lcov.info'
+
       - uses: codecov/codecov-action@v3.1.4
         with:
           directory: ./coverage/core/
@@ -27,10 +50,25 @@ jobs:
           name: kit
       - uses: codecov/codecov-action@v3.1.4
         with:
+          directory: ./coverage/phone/
+          flags: summary,phone
+          name: phone
+      - uses: codecov/codecov-action@v3.1.4
+        with:
           directory: ./coverage/angular/
           flags: summary,angular
           name: angular
+      - uses: codecov/codecov-action@v3.1.4
+        with:
+          directory: ./coverage/react/
+          flags: summary,react
+          name: react
+      - uses: codecov/codecov-action@v3.1.4
+        with:
+          directory: ./coverage/vue/
+          flags: summary,vue
+          name: vue
 
 concurrency:
-  group: test-${{ github.head_ref }}
+  group: test-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
