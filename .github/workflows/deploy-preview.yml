@@ -4,9 +4,7 @@ on: pull_request
 
 jobs:
   build_and_preview:
-    if:
-      github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' &&
-      github.actor != 'dependabot-preview[bot]' && !contains(github.head_ref, 'release/')
+    if: ${{ !contains(github.head_ref, 'release/') }}
     name: Firebase
     runs-on: ubuntu-latest
     steps:
@@ -17,9 +15,9 @@ jobs:
 
       - name: Debug output
         run: tree dist/demo/browser -P '*.html'
-
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        continue-on-error: true
+      - name: Deploy preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: env.IS_OWNER_MODE == 'true'
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MASKITO }}
