@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DocExamplePrimaryTab} from '@demo/constants';
+import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiDocExample} from '@taiga-ui/addon-doc';
 
 @Component({
@@ -8,9 +8,18 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PluginsDocPageComponent {
+    readonly transformerDocPage = `/${DemoPath.Transformer}`;
+
     readonly rejectExample: TuiDocExample = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/reject/mask.ts?raw'),
-        'index.less': import('./examples/reject/animation.less?raw'),
-        'index.ts': import('./examples/reject/index.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-reject/mask.ts?raw'),
+        'index.less': import('./examples/1-reject/animation.less?raw'),
+        'index.ts': import('./examples/1-reject/index.ts?raw'),
+    };
+
+    readonly initialCalibrationExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-initial-calibration/mask.ts?raw'
+        ),
+        'index.ts': import('./examples/2-initial-calibration/index.ts?raw'),
     };
 }

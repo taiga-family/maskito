@@ -20,5 +20,30 @@
         <plugins-reject-doc-example-1></plugins-reject-doc-example-1>
     </tui-doc-example>
 
+    <tui-doc-example
+        id="initial-calibration"
+        heading="Built-in initial calibration plugin"
+        [content]="initialCalibrationExample"
+        [description]="initialCalibrationDescription"
+    >
+        <ng-template #initialCalibrationDescription>
+            <strong>Maskito</strong>
+            libraries were created to prevent
+            <u>only user</u>
+            from typing invalid value. However, sometimes you (developer) need to enable mask but you not sure that you
+            programmatically patched textfield with valid value. In this case you can use
+            <a
+                tuiLink
+                [routerLink]="transformerDocPage"
+            >
+                <code>maskitoTransform</code>
+            </a>
+            or just add
+            <code>maskitoInitialCalibrationPlugin</code>
+            to mask options.
+        </ng-template>
+        <plugins-initial-calibration-doc-example-2></plugins-initial-calibration-doc-example-2>
+    </tui-doc-example>
+
     <next-steps></next-steps>
 </tui-doc-page>
