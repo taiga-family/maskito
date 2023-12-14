@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {maskitoRejectEvent} from '@maskito/kit';
 
 import mask from './mask';
@@ -7,8 +7,10 @@ import mask from './mask';
     selector: 'plugins-reject-doc-example-1',
     template: `
         <tui-input
-            class="input"
+            [style.animation-duration.ms]="300"
+            [style.animation-iteration-count]="1"
             [style.animation-name]="'reject-' + (reject % 2)"
+            [style.max-width.rem]="20"
             [(ngModel)]="value"
             (maskitoReject)="reject = reject + 1"
         >
@@ -19,7 +21,8 @@ import mask from './mask';
             />
         </tui-input>
     `,
-    styleUrls: ['./component.less'],
+    styleUrls: ['./animation.less'],
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PluginsDocExample1 {

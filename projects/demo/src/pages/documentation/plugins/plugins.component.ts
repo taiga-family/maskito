@@ -10,5 +10,7 @@ import {TuiDocExample} from '@taiga-ui/addon-doc';
 export class PluginsDocPageComponent {
     readonly rejectExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/reject/mask.ts?raw'),
+        'index.less': import('./examples/reject/animation.less?raw'),
+        'index.ts': import('./examples/reject/index.ts?raw'),
     };
 }
