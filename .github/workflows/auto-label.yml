@@ -1,5 +1,7 @@
 name: 🤖 Auto label
-on: pull_request_review
+on:
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   label-when-approved:
