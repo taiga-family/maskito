@@ -1,45 +1,47 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ElementRef,
-    Pipe,
-    PipeTransform,
-    ViewChild,
-} from '@angular/core';
-import {MaskitoOptions} from '@maskito/core';
+import {I18nPluralPipe} from '@angular/common';
+import {ChangeDetectionStrategy, Component, Pipe, PipeTransform} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
+import {maskitoInitialCalibrationPlugin, MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 
 @Pipe({
+    standalone: true,
     name: 'calculateMask',
 })
 export class TestPipe4 implements PipeTransform {
     transform(postfix: string): MaskitoOptions {
-        return maskitoNumberOptionsGenerator({
+        const options = maskitoNumberOptionsGenerator({
             postfix,
             precision: 2,
             thousandSeparator: ' ',
         });
+
+        return {
+            ...options,
+            plugins: [...options.plugins, maskitoInitialCalibrationPlugin()],
+        };
     }
 }
 
 @Component({
+    standalone: true,
     selector: 'test-doc-example-4',
+    imports: [FormsModule, I18nPluralPipe, MaskitoDirective, TestPipe4],
     template: `
         <input
-            #inputRef
             placeholder="Enter number"
-            value="1 year"
             [maskito]="parsedValue | i18nPlural: pluralize | calculateMask"
+            [(ngModel)]="value"
         />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample4 {
-    @ViewChild('inputRef', {read: ElementRef, static: true})
-    readonly inputRef!: ElementRef<HTMLInputElement>;
+    value = '1 year';
 
     get parsedValue(): number {
-        return maskitoParseNumber(this.inputRef.nativeElement.value);
+        return maskitoParseNumber(this.value);
     }
 
     readonly pluralize = {

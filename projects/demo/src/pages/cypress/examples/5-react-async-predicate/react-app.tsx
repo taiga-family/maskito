@@ -1,13 +1,18 @@
 // @ts-nocheck React & Vue Global JSX Types Conflicts
 // TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
-import {MaskitoElementPredicate} from '@maskito/core';
+import {MaskitoElementPredicate, maskitoInitialCalibrationPlugin, MaskitoOptions} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import {forwardRef, useEffect, useState} from 'react';
 
-const options = maskitoTimeOptionsGenerator({
+const timeOptions = maskitoTimeOptionsGenerator({
     mode: 'HH:MM',
 });
+
+const options: MaskitoOptions = {
+    ...timeOptions,
+    plugins: [...timeOptions.plugins, maskitoInitialCalibrationPlugin()],
+};
 
 const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
 const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;

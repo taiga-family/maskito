@@ -8,7 +8,8 @@ import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {NextStepsModule} from '../next-steps/next-steps.module';
-import {PluginsDocExample1} from './examples/reject/component';
+import {PluginsDocExample1} from './examples/1-reject/component';
+import {PluginsDocExample2} from './examples/2-initial-calibration/component';
 import {PluginsDocPageComponent} from './plugins.component';
 
 @NgModule({
@@ -23,7 +24,7 @@ import {PluginsDocPageComponent} from './plugins.component';
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(PluginsDocPageComponent)),
     ],
-    declarations: [PluginsDocPageComponent, PluginsDocExample1],
+    declarations: [PluginsDocPageComponent, PluginsDocExample1, PluginsDocExample2],
     exports: [PluginsDocPageComponent],
 })
 export class PluginsDocPageModule {}
