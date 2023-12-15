@@ -6,11 +6,8 @@ export function maskitoPrefixPostprocessorGenerator(
     prefix: string,
 ): MaskitoPostprocessor {
     return prefix
-        ? ({value, selection}, initialElementState) => {
-              if (
-                  value.startsWith(prefix) || // already valid
-                  (!value && !initialElementState.value.startsWith(prefix)) // cases when developer wants input to be empty
-              ) {
+        ? ({value, selection}) => {
+              if (value.startsWith(prefix)) {
                   return {value, selection};
               }
 

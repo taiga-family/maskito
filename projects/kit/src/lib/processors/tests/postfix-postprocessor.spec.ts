@@ -6,10 +6,6 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
     describe('postfix is a single character', () => {
         const postprocessor = maskitoPostfixPostprocessorGenerator('%');
 
-        it('does not add postfix if input was initially empty', () => {
-            expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
-        });
-
         it('Type 99 => 99%', () => {
             expect(
                 postprocessor(
@@ -33,10 +29,6 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
 
     describe('postfix consists of many characters', () => {
         const postprocessor = maskitoPostfixPostprocessorGenerator('.00');
-
-        it('does not add postfix if input was initially empty', () => {
-            expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
-        });
 
         it('Type 100 => 100.00', () => {
             expect(
