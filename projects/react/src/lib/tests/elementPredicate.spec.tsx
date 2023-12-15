@@ -1,4 +1,9 @@
-import {MASKITO_DEFAULT_ELEMENT_PREDICATE, MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    MaskitoElementPredicate,
+    maskitoInitialCalibrationPlugin,
+    MaskitoOptions,
+} from '@maskito/core';
 import {render, RenderResult, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -7,6 +12,7 @@ import {useMaskito} from '../useMaskito';
 describe('@maskito/react | `elementPredicate` property', () => {
     const options: MaskitoOptions = {
         mask: /^\d+$/,
+        plugins: [maskitoInitialCalibrationPlugin()],
     };
     let predicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 

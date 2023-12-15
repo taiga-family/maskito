@@ -1,3 +1,4 @@
+import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskito} from '@maskito/vue';
 import {mount} from '@vue/test-utils';
 
@@ -12,6 +13,7 @@ describe('Maskito Vue package', () => {
             ' ',
             ...new Array(4).fill(/\d/),
         ],
+        plugins: [maskitoInitialCalibrationPlugin()],
     };
     const component = {
         template: '<input v-model="value" v-maskito="options" />',
