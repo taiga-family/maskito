@@ -10,6 +10,6 @@ export function maskitoInitialCalibrationPlugin(
 
         element.value = maskitoTransform(element.value, customOptions || options);
         element.dispatchEvent(new Event('input'));
-        element?.setSelectionRange(from, to);
+        element.setSelectionRange?.(from, to);
     };
 }

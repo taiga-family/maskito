@@ -175,7 +175,7 @@ export class Maskito extends MaskHistory {
             data: null,
         },
     ): void {
-        if (globalThis?.InputEvent) {
+        if (globalThis.InputEvent) {
             this.element.dispatchEvent(
                 new InputEvent('input', {
                     ...eventInit,
