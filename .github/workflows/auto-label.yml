@@ -5,6 +5,7 @@ on:
 
 jobs:
   label-when-approved:
+    if: github.event.review.state == 'APPROVED'
     name: Label when approved
     runs-on: ubuntu-latest
     steps:
