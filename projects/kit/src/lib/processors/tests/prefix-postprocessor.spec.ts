@@ -10,6 +10,10 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
     describe('prefix is a single character', () => {
         const postprocessor = maskitoPrefixPostprocessorGenerator('$');
 
+        it('does not add prefix if input was initially empty', () => {
+            expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
+        });
+
         it('123 => $|123', () => {
             expect(
                 postprocessor(
@@ -33,6 +37,10 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
 
     describe('prefix consists of many characters', () => {
         const postprocessor = maskitoPrefixPostprocessorGenerator('kg ');
+
+        it('does not add prefix if input was initially empty', () => {
+            expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
+        });
 
         it('123 => kg |123', () => {
             expect(

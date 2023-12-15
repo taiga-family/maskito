@@ -62,8 +62,8 @@ export function maskitoWithPlaceholder(
             },
         ],
         postprocessors: [
-            ({value, selection}) =>
-                focused || !focusedOnly
+            ({value, selection}, initialElementState) =>
+                initialElementState.value && (focused || !focusedOnly)
                     ? {
                           value: value + placeholder.slice(value.length),
                           selection,

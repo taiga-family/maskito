@@ -9,6 +9,11 @@ export function maskitoPostfixPostprocessorGenerator(
 
     return postfix
         ? ({value, selection}, initialElementState) => {
+              if (!value && !initialElementState.value.endsWith(postfix)) {
+                  // cases when developer wants input to be empty (programmatically)
+                  return {value, selection};
+              }
+
               if (
                   !value.endsWith(postfix) &&
                   !initialElementState.value.endsWith(postfix)
