@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {tuiRawLoad} from '@taiga-ui/addon-doc';
-import {of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {of, switchMap} from 'rxjs';
 
 @Component({
     selector: 'changelog',
