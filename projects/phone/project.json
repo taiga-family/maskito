@@ -11,7 +11,7 @@
                 "project": "projects/phone/package.json",
                 "outputPath": "dist/phone",
                 "entryFile": "projects/phone/src/index.ts",
-                "tsConfig": "projects/phone/tsconfig.workaround.json",
+                "tsConfig": "projects/phone/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
                 "external": "all",
