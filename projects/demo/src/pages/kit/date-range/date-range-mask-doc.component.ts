@@ -67,8 +67,6 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     ];
 
     mode: MaskitoDateMode = this.modeOptions[0];
-    // TODO: drop in v2.0
-    separator = '.';
     minStr = this.minMaxOptions[0];
     maxStr = this.minMaxOptions[1];
     min = new Date(this.minStr);
