@@ -13,20 +13,14 @@ import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocesso
 
 export function maskitoDateRangeOptionsGenerator({
     mode,
-    separator = '.',
     min,
     max,
     minLength,
     maxLength,
-    dateSeparator = separator,
+    dateSeparator = '.',
     rangeSeparator = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`,
 }: {
     mode: MaskitoDateMode;
-    /**
-     * @deprecated use `dateSeparator` instead
-     * TODO: drop in v2.0
-     */
-    separator?: string;
     min?: Date;
     max?: Date;
     minLength?: Partial<MaskitoDateSegments<number>>;
