@@ -1,4 +1,5 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["github>taiga-family/renovate-config"]
+    "extends": ["github>taiga-family/renovate-config"],
+    "npmrc": "workspaces=true\ninclude-workspace-root=true"
 }
