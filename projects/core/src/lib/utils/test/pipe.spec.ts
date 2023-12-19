@@ -1,8 +1,18 @@
-import {ElementState, MaskitoPostprocessor, MaskitoPreprocessor} from '../../types';
+import {
+    ElementState,
+    MaskitoPostprocessor,
+    MaskitoPreprocessor,
+    MaskitoPreprocessorMetadata,
+} from '../../types';
 import {maskitoPipe} from '../pipe';
 
 describe('maskitoPipe', () => {
     describe('Preprocessor', () => {
+        const INSERT: MaskitoPreprocessorMetadata = {
+            eventName: 'beforeinput',
+            inputType: 'insertText',
+        };
+
         const preprocessorData: Parameters<MaskitoPreprocessor>[0] = {
             elementState: {value: '2', selection: [2, 2]},
             data: '0',
@@ -33,7 +43,7 @@ describe('maskitoPipe', () => {
             expect(
                 maskitoPipe([add3ToData, add0ToValue, add5ToData])(
                     preprocessorData,
-                    'insert',
+                    INSERT,
                 ),
             ).toEqual({
                 elementState: {value: '20', selection: [2, 2]},
@@ -44,14 +54,14 @@ describe('maskitoPipe', () => {
         describe('Order matters', () => {
             it('for `elementState`', () => {
                 expect(
-                    maskitoPipe([add0ToValue, add1ToValue])(preprocessorData, 'insert'),
+                    maskitoPipe([add0ToValue, add1ToValue])(preprocessorData, INSERT),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
                     data: '0',
                 });
 
                 expect(
-                    maskitoPipe([add1ToValue, add0ToValue])(preprocessorData, 'insert'),
+                    maskitoPipe([add1ToValue, add0ToValue])(preprocessorData, INSERT),
                 ).toEqual({
                     elementState: {value: '210', selection: [2, 2]},
                     data: '0',
@@ -60,14 +70,14 @@ describe('maskitoPipe', () => {
 
             it('for `data`', () => {
                 expect(
-                    maskitoPipe([add3ToData, add5ToData])(preprocessorData, 'insert'),
+                    maskitoPipe([add3ToData, add5ToData])(preprocessorData, INSERT),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
                     data: '035',
                 });
 
                 expect(
-                    maskitoPipe([add5ToData, add3ToData])(preprocessorData, 'insert'),
+                    maskitoPipe([add5ToData, add3ToData])(preprocessorData, INSERT),
                 ).toEqual({
                     elementState: {value: '2', selection: [2, 2]},
                     data: '053',
@@ -78,7 +88,7 @@ describe('maskitoPipe', () => {
                 expect(
                     maskitoPipe([add5ToData, add0ToValue, add3ToData, add1ToValue])(
                         preprocessorData,
-                        'insert',
+                        INSERT,
                     ),
                 ).toEqual({
                     elementState: {value: '201', selection: [2, 2]},
@@ -170,17 +180,21 @@ describe('maskitoPipe', () => {
 
     describe('Readonly arguments are passed to all processors', () => {
         const elementState: ElementState = {value: '', selection: [0, 0]};
+        const deleteEventMeta: MaskitoPreprocessorMetadata = {
+            eventName: 'beforeinput',
+            inputType: 'deleteContentBackward',
+        };
 
         it('Preprocessor', () => {
             const checkActionType: MaskitoPreprocessor = (data, actionType) => {
-                expect(actionType).toBe('deleteBackward');
+                expect(actionType).toEqual(deleteEventMeta);
 
                 return data;
             };
 
             maskitoPipe([checkActionType, checkActionType, checkActionType])(
                 {elementState, data: ''},
-                'deleteBackward',
+                deleteEventMeta,
             );
         });
 

@@ -16,7 +16,7 @@ export function createNonRemovableCharsDeletionPreprocessor({
     thousandSeparator: string;
     decimalZeroPadding: boolean;
 }): MaskitoPreprocessor {
-    return ({elementState, data}, actionType) => {
+    return ({elementState, data}, {eventName, inputType}) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
         const selectedCharacters = value.slice(from, to);
@@ -29,7 +29,8 @@ export function createNonRemovableCharsDeletionPreprocessor({
             Boolean(selectedCharacters.match(/^0+$/gi));
 
         if (
-            (actionType !== 'deleteBackward' && actionType !== 'deleteForward') ||
+            eventName !== 'beforeinput' ||
+            !inputType.includes('delete') ||
             (!nonRemovableSeparators.includes(selectedCharacters) &&
                 !areNonRemovableZeroesSelected)
         ) {
@@ -42,7 +43,7 @@ export function createNonRemovableCharsDeletionPreprocessor({
         return {
             elementState: {
                 value,
-                selection: actionType === 'deleteForward' ? [to, to] : [from, from],
+                selection: inputType.includes('Forward') ? [to, to] : [from, from],
             },
             data,
         };

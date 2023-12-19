@@ -16,7 +16,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
                     },
                     data: '',
                 },
-                'insert',
+                {eventName: 'beforeinput', inputType: 'insertText'},
             );
 
             expect(elementState.value).toBe(valueAfter);

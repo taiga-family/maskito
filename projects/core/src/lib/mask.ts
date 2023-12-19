@@ -103,17 +103,17 @@ export class Maskito extends MaskHistory {
             }
         });
 
-        this.eventListener.listen('input', ({inputType}) => {
-            if (inputType === 'insertCompositionText') {
+        this.eventListener.listen('input', event => {
+            if (event.inputType === 'insertCompositionText') {
                 return; // will be handled inside `compositionend` event
             }
 
-            this.ensureValueFitsMask();
+            this.ensureValueFitsMask(event);
             this.updateHistory(this.elementState);
         });
 
-        this.eventListener.listen('compositionend', () => {
-            this.ensureValueFitsMask();
+        this.eventListener.listen('compositionend', event => {
+            this.ensureValueFitsMask(event);
             this.updateHistory(this.elementState);
         });
     }
@@ -165,8 +165,13 @@ export class Maskito extends MaskHistory {
         this.element.value = value;
     }
 
-    private ensureValueFitsMask(): void {
-        this.updateElementState(maskitoTransform(this.elementState, this.options));
+    private ensureValueFitsMask(event: CompositionEvent | TypedInputEvent): void {
+        this.updateElementState(
+            maskitoTransform(this.elementState, this.options, {
+                eventName: event.type as 'compositionend' | 'input',
+                inputType: 'inputType' in event ? event.inputType : '',
+            }),
+        );
     }
 
     private dispatchInputEvent(
@@ -197,6 +202,7 @@ export class Maskito extends MaskHistory {
         isForward: boolean;
         force?: boolean;
     }): void {
+        const {type: eventName, inputType} = event;
         const initialState: ElementState = {
             value: this.elementState.value,
             selection,
@@ -207,7 +213,10 @@ export class Maskito extends MaskHistory {
                 elementState: initialState,
                 data: '',
             },
-            isForward ? 'deleteForward' : 'deleteBackward',
+            {
+                eventName,
+                inputType,
+            },
         );
         const maskModel = new MaskModel(elementState, this.options);
         const [from, to] = elementState.selection;
@@ -233,7 +242,7 @@ export class Maskito extends MaskHistory {
         }
 
         this.updateElementState(newElementState, {
-            inputType: event.inputType,
+            inputType,
             data: null,
         });
         this.updateHistory(newElementState);
@@ -241,12 +250,13 @@ export class Maskito extends MaskHistory {
 
     private handleInsert(event: TypedInputEvent, data: string): void {
         const initialElementState = this.elementState;
+        const {type: eventName, inputType} = event;
         const {elementState, data: insertedText = data} = this.preprocessor(
             {
                 data,
                 elementState: initialElementState,
             },
-            'insert',
+            {eventName, inputType},
         );
         const maskModel = new MaskModel(elementState, this.options);
 
@@ -270,7 +280,7 @@ export class Maskito extends MaskHistory {
 
             this.updateElementState(newElementState, {
                 data,
-                inputType: event.inputType,
+                inputType,
             });
             this.updateHistory(newElementState);
         }

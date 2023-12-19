@@ -1,4 +1,5 @@
 export interface TypedInputEvent extends InputEvent {
+    type: 'beforeinput' | 'input';
     inputType:
         | 'deleteByCut' // Ctrl (Command) + X
         | 'deleteContentBackward' // Backspace

@@ -1,11 +1,17 @@
 import {ElementState} from './element-state';
+import {TypedInputEvent} from './typed-input-event';
+
+export interface MaskitoPreprocessorMetadata {
+    readonly eventName: 'beforeinput' | 'compositionend' | 'input';
+    readonly inputType: TypedInputEvent['inputType'] | '';
+}
 
 export type MaskitoPreprocessor = (
     _: {
         elementState: ElementState;
         data: string;
     },
-    actionType: 'deleteBackward' | 'deleteForward' | 'insert' | 'validation',
+    metadata: MaskitoPreprocessorMetadata,
 ) => {
     elementState: ElementState;
     data?: string;

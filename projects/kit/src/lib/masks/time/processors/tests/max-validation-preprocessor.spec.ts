@@ -14,7 +14,10 @@ describe('createMaxValidationPreprocessor', () => {
                     },
                     data,
                 },
-                'insert',
+                {
+                    eventName: 'beforeinput',
+                    inputType: 'insertFromPaste',
+                },
             ).data || '';
 
         it('All time segments valid', () => {
@@ -30,7 +33,7 @@ describe('createMaxValidationPreprocessor', () => {
         });
     });
 
-    describe('Dropping text inside with a pointer / browser autofill', () => {
+    describe('Browser autofill', () => {
         const process = (value: string): string =>
             processor(
                 {
@@ -40,7 +43,7 @@ describe('createMaxValidationPreprocessor', () => {
                     },
                     data: '',
                 },
-                'validation',
+                {eventName: 'input', inputType: 'insertText'},
             ).elementState.value;
 
         it('All time segments valid', () => {

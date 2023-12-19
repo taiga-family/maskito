@@ -13,14 +13,14 @@ export function createMaxValidationPreprocessor(
         `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]+`,
     );
 
-    return ({elementState, data}, actionType) => {
-        if (actionType === 'deleteBackward' || actionType === 'deleteForward') {
+    return ({elementState, data}, {eventName, inputType}) => {
+        if (eventName === 'beforeinput' && inputType.includes('delete')) {
             return {elementState, data};
         }
 
         const {value, selection} = elementState;
 
-        if (actionType === 'validation') {
+        if (eventName === 'input' || eventName === 'compositionend') {
             const {validatedTimeString, updatedTimeSelection} = validateTimeString({
                 timeString: value,
                 paddedMaxValues,

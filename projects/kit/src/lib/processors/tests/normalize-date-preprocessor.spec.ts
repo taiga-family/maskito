@@ -100,7 +100,7 @@ function getCheckFunction(
 
         const {data} = preprocessor(
             {elementState: EMPTY_INPUT, data: insertedCharacters},
-            'insert',
+            {eventName: 'beforeinput', inputType: 'insertText'},
         );
 
         expect(data).toEqual(expectedValue);

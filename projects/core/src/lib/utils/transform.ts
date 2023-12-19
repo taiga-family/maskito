@@ -1,17 +1,26 @@
 import {MaskModel} from '../classes';
 import {MASKITO_DEFAULT_OPTIONS} from '../constants';
-import {ElementState, MaskitoOptions} from '../types';
+import {ElementState, MaskitoOptions, MaskitoPreprocessorMetadata} from '../types';
 import {maskitoPipe} from './pipe';
 
-export function maskitoTransform(value: string, maskitoOptions: MaskitoOptions): string;
+export function maskitoTransform(
+    value: string,
+    maskitoOptions: MaskitoOptions,
+    _internal?: MaskitoPreprocessorMetadata,
+): string;
 export function maskitoTransform(
     state: ElementState,
     maskitoOptions: MaskitoOptions,
+    _internal?: MaskitoPreprocessorMetadata,
 ): ElementState;
 
 export function maskitoTransform(
     valueOrState: ElementState | string,
     maskitoOptions: MaskitoOptions,
+    preprocessorMetadata: MaskitoPreprocessorMetadata = {
+        eventName: 'input',
+        inputType: 'insertText',
+    },
 ): ElementState | string {
     const options: Required<MaskitoOptions> = {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -26,7 +35,7 @@ export function maskitoTransform(
 
     const {elementState} = preprocessor(
         {elementState: initialElementState, data: ''},
-        'validation',
+        preprocessorMetadata,
     );
     const maskModel = new MaskModel(elementState, options);
     const {value, selection} = postprocessor(maskModel, initialElementState);

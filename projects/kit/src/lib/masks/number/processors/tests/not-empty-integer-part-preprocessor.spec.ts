@@ -1,8 +1,15 @@
+import {MaskitoPreprocessorMetadata} from '@maskito/core';
+
 import {createNotEmptyIntegerPartPreprocessor} from '../not-empty-integer-part-preprocessor';
 
 const EMPTY_ELEMENT_STATE = {
     value: '',
     selection: [0, 0] as const,
+};
+
+const INSERT: MaskitoPreprocessorMetadata = {
+    eventName: 'beforeinput',
+    inputType: 'insertText',
 };
 
 describe('createNotEmptyIntegerPartPreprocessor', () => {
@@ -19,7 +26,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'a,',
                     },
-                    'insert',
+                    INSERT,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -34,7 +41,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'aaa1aaa,',
                     },
-                    'insert',
+                    INSERT,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -49,7 +56,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: ',3123',
                     },
-                    'insert',
+                    INSERT,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,
@@ -64,7 +71,7 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
                         elementState: EMPTY_ELEMENT_STATE,
                         data: 'aaa0aaa,3123',
                     },
-                    'insert',
+                    INSERT,
                 ),
             ).toEqual({
                 elementState: EMPTY_ELEMENT_STATE,

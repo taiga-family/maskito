@@ -11,6 +11,7 @@ export {
     MaskitoPlugin,
     MaskitoPostprocessor,
     MaskitoPreprocessor,
+    MaskitoPreprocessorMetadata,
 } from './lib/types';
 export {
     maskitoInitialCalibrationPlugin,

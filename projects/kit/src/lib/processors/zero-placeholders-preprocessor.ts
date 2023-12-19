@@ -1,7 +1,7 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
 export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
-    return ({elementState}, actionType) => {
+    return ({elementState}, {eventName, inputType}) => {
         const {value, selection} = elementState;
 
         if (!value || isLastChar(value, selection)) {
@@ -13,7 +13,10 @@ export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
         const zeroes = value.slice(from, to).replace(/\d/g, '0');
         const newValue = value.slice(0, from) + zeroes + value.slice(to);
 
-        if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
+        if (
+            eventName !== 'beforeinput' ||
+            (inputType.includes('insert') && from === to)
+        ) {
             return {
                 elementState: {selection, value: newValue},
             };
@@ -22,7 +25,8 @@ export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
         return {
             elementState: {
                 selection:
-                    actionType === 'deleteBackward' || actionType === 'insert'
+                    (inputType.includes('delete') && inputType.includes('Backward')) ||
+                    inputType.includes('insert')
                         ? [from, from]
                         : [to, to],
                 value: newValue,
