@@ -20,7 +20,7 @@ export function createMaxValidationPreprocessor(
 
         const {value, selection} = elementState;
 
-        if (eventName === 'input' || eventName === 'compositionend') {
+        if (eventName !== 'beforeinput') {
             const {validatedTimeString, updatedTimeSelection} = validateTimeString({
                 timeString: value,
                 paddedMaxValues,
