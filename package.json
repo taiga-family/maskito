@@ -111,7 +111,7 @@
         "@tinkoff/eslint-config-react": "2.0.0",
         "@types/jest": "29.5.11",
         "@types/node": "20.10.5",
-        "cspell": "8.2.0",
+        "cspell": "8.2.1",
         "cypress": "13.6.1",
         "cypress-real-events": "1.11.0",
         "eslint": "8.56.0",
