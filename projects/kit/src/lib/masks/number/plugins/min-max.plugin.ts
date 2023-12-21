@@ -1,4 +1,4 @@
-import {MaskitoPlugin, maskitoSetElementValue, maskitoTransform} from '@maskito/core';
+import {MaskitoPlugin, maskitoTransform, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {clamp} from '../../../utils';
@@ -24,7 +24,7 @@ export function createMinMaxPlugin({
             const clampedNumber = clamp(parsedNumber, min, max);
 
             if (!Number.isNaN(parsedNumber) && parsedNumber !== clampedNumber) {
-                maskitoSetElementValue(
+                maskitoUpdateElement(
                     element,
                     maskitoTransform(stringifyNumberWithoutExp(clampedNumber), options),
                 );

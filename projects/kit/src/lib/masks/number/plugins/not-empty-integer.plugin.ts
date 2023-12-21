@@ -1,4 +1,4 @@
-import {MaskitoPlugin, maskitoSetElementValue} from '@maskito/core';
+import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {escapeRegExp} from '../../../utils';
@@ -18,7 +18,7 @@ export function createNotEmptyIntegerPlugin(decimalSeparator: string): MaskitoPl
             );
 
             if (newValue !== element.value) {
-                maskitoSetElementValue(element, newValue);
+                maskitoUpdateElement(element, newValue);
             }
         },
         {capture: true},

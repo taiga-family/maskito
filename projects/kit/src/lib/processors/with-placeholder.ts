@@ -1,4 +1,4 @@
-import {MaskitoOptions, maskitoSetElementValue} from '@maskito/core';
+import {MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoCaretGuard, maskitoEventHandler} from '../plugins';
 
@@ -26,7 +26,7 @@ export function maskitoWithPlaceholder(
             'focus',
             element => {
                 focused = true;
-                maskitoSetElementValue(
+                maskitoUpdateElement(
                     element,
                     element.value + placeholder.slice(element.value.length),
                 );
@@ -38,7 +38,7 @@ export function maskitoWithPlaceholder(
             'blur',
             element => {
                 focused = false;
-                maskitoSetElementValue(element, removePlaceholder(element.value));
+                maskitoUpdateElement(element, removePlaceholder(element.value));
             },
             {capture: true},
         );

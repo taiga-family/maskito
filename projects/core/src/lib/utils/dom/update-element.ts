@@ -1,18 +1,30 @@
+import {ElementState} from '../../types';
+
 /**
  * Sets value to element, and dispatches input event
+ * if you passed ELementState, it also sets selection range
  *
  * @example
- * maskitoSetElementValue(input, newValue);
+ * maskitoUpdateElement(input, newValue);
+ * maskitoUpdateElement(input, elementState);
  *
  * @see {@link https://github.com/taiga-family/maskito/issues/804 issue}
  *
  * @return void
  */
-export function maskitoSetElementValue(
+export function maskitoUpdateElement(
     element: HTMLInputElement | HTMLTextAreaElement,
-    value: string,
+    valueOrElementState: ElementState | string,
 ): void {
-    element.value = value;
+    if (typeof valueOrElementState === 'string') {
+        element.value = valueOrElementState;
+    } else {
+        const [from, to] = valueOrElementState.selection;
+
+        element.value = valueOrElementState.value;
+        element.setSelectionRange?.(from, to);
+    }
+
     element.dispatchEvent(
         new Event(
             'input',
