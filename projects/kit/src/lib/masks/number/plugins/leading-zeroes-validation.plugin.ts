@@ -1,4 +1,4 @@
-import {MaskitoPlugin} from '@maskito/core';
+import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {createLeadingZeroesValidationPostprocessor} from '../processors';
@@ -31,8 +31,7 @@ export function createLeadingZeroesValidationPlugin(
             ).value;
 
             if (element.value !== newValue) {
-                element.value = newValue;
-                element.dispatchEvent(new Event('input'));
+                maskitoUpdateElement(element, newValue);
             }
         },
         {capture: true},

@@ -16,4 +16,5 @@ export {
     maskitoInitialCalibrationPlugin,
     maskitoPipe,
     maskitoTransform,
+    maskitoUpdateElement,
 } from './lib/utils';

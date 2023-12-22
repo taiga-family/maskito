@@ -1,4 +1,5 @@
 import {MaskitoOptions, MaskitoPlugin} from '../types';
+import {maskitoUpdateElement} from './dom/update-element';
 import {maskitoTransform} from './transform';
 
 export function maskitoInitialCalibrationPlugin(
@@ -8,8 +9,9 @@ export function maskitoInitialCalibrationPlugin(
         const from = element.selectionStart || 0;
         const to = element.selectionEnd || 0;
 
-        element.value = maskitoTransform(element.value, customOptions || options);
-        element.dispatchEvent(new Event('input'));
-        element.setSelectionRange?.(from, to);
+        maskitoUpdateElement(element, {
+            value: maskitoTransform(element.value, customOptions || options),
+            selection: [from, to],
+        });
     };
 }
