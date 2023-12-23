@@ -2,6 +2,7 @@ import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {createLeadingZeroesValidationPostprocessor} from '../processors';
+import {extractPrefixAndPostfix} from '../utils/extract-prefix-and-postfix';
 
 const DUMMY_SELECTION = [0, 0] as const;
 
@@ -10,10 +11,17 @@ const DUMMY_SELECTION = [0, 0] as const;
  * @example 000000 => blur => 0
  * @example 00005 => blur => 5
  */
-export function createLeadingZeroesValidationPlugin(
-    decimalSeparator: string,
-    thousandSeparator: string,
-): MaskitoPlugin {
+export function createLeadingZeroesValidationPlugin({
+    decimalSeparator,
+    thousandSeparator,
+    prefix,
+    postfix,
+}: {
+    decimalSeparator: string;
+    thousandSeparator: string;
+    prefix: string;
+    postfix: string;
+}): MaskitoPlugin {
     const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor(
         decimalSeparator,
         thousandSeparator,
@@ -22,13 +30,23 @@ export function createLeadingZeroesValidationPlugin(
     return maskitoEventHandler(
         'blur',
         element => {
-            const newValue = dropRepeatedLeadingZeroes(
-                {
+            const {cleanValue, extractedPostfix, extractedPrefix} =
+                extractPrefixAndPostfix({
                     value: element.value,
-                    selection: DUMMY_SELECTION,
-                },
-                {value: '', selection: DUMMY_SELECTION},
-            ).value;
+                    prefix,
+                    postfix,
+                });
+
+            const newValue =
+                extractedPrefix +
+                dropRepeatedLeadingZeroes(
+                    {
+                        value: cleanValue,
+                        selection: DUMMY_SELECTION,
+                    },
+                    {value: '', selection: DUMMY_SELECTION},
+                ).value +
+                extractedPostfix;
 
             if (element.value !== newValue) {
                 maskitoUpdateElement(element, newValue);

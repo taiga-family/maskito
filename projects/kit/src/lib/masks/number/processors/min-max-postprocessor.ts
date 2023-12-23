@@ -11,13 +11,17 @@ export function createMinMaxPostprocessor({
     min,
     max,
     decimalSeparator,
+    prefix,
+    postfix,
 }: {
     min: number;
     max: number;
     decimalSeparator: string;
+    prefix: string;
+    postfix: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const parsedNumber = maskitoParseNumber(value, decimalSeparator);
+        const parsedNumber = maskitoParseNumber(value, decimalSeparator, prefix, postfix);
         const limitedValue =
             /**
              * We cannot limit lower bound if user enters positive number.

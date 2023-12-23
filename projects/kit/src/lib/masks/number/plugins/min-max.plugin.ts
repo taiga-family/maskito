@@ -12,15 +12,24 @@ export function createMinMaxPlugin({
     min,
     max,
     decimalSeparator,
+    prefix,
+    postfix,
 }: {
     min: number;
     max: number;
     decimalSeparator: string;
+    prefix: string;
+    postfix: string;
 }): MaskitoPlugin {
     return maskitoEventHandler(
         'blur',
         (element, options) => {
-            const parsedNumber = maskitoParseNumber(element.value, decimalSeparator);
+            const parsedNumber = maskitoParseNumber(
+                element.value,
+                decimalSeparator,
+                prefix,
+                postfix,
+            );
             const clampedNumber = clamp(parsedNumber, min, max);
 
             if (!Number.isNaN(parsedNumber) && parsedNumber !== clampedNumber) {

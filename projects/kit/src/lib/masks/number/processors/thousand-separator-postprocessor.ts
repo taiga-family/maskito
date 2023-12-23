@@ -1,7 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {CHAR_MINUS} from '../../../constants';
-import {escapeRegExp, identity} from '../../../utils';
+import {identity} from '../../../utils';
+import {extractPrefixAndPostfix} from '../utils/extract-prefix-and-postfix';
 
 /**
  * It adds symbol for separating thousands.
@@ -22,21 +22,21 @@ export function createThousandSeparatorPostprocessor({
         return identity;
     }
 
-    const prefixReg = new RegExp(`^${escapeRegExp(prefix)}${CHAR_MINUS}?`);
-    const postfixReg = new RegExp(`${escapeRegExp(postfix)}$`);
     const isAllSpaces = (...chars: string[]): boolean => chars.every(x => /\s/.test(x));
 
     return ({value, selection}) => {
-        const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
+        const {cleanValue, extractedPostfix, extractedPrefix} = extractPrefixAndPostfix({
+            value,
+            prefix,
+            postfix,
+            shouldExtractMinus: true,
+        });
+
+        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
-        const cleanIntegerPart = integerPart
-            .replace(prefixReg, '')
-            .replace(postfixReg, '');
-        const [integerPartPrefix = ''] = integerPart.match(prefixReg) || [];
-        const [integerPartPostfix = ''] = integerPart.match(postfixReg) || [];
-        const processedIntegerPart = Array.from(cleanIntegerPart).reduceRight(
+        const processedIntegerPart = Array.from(integerPart).reduceRight(
             (formattedValuePart, char, i) => {
                 const isLeadingThousandSeparator = !i && char === thousandSeparator;
                 const isPositionForSeparator =
@@ -82,11 +82,11 @@ export function createThousandSeparatorPostprocessor({
 
         return {
             value:
-                integerPartPrefix +
+                extractedPrefix +
                 processedIntegerPart +
-                integerPartPostfix +
-                (value.includes(decimalSeparator) ? decimalSeparator : '') +
-                decimalPart,
+                (cleanValue.includes(decimalSeparator) ? decimalSeparator : '') +
+                decimalPart +
+                extractedPostfix,
             selection: [from, to],
         };
     };

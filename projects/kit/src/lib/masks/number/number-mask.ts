@@ -81,11 +81,18 @@ export function maskitoNumberOptionsGenerator({
                 pseudoMinuses,
             }),
             createFullWidthToHalfWidthPreprocessor(),
-            createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
-            createPseudoCharactersPreprocessor(
-                decimalSeparator,
-                validatedDecimalPseudoSeparators,
-            ),
+            createPseudoCharactersPreprocessor({
+                validCharacter: CHAR_MINUS,
+                pseudoCharacters: pseudoMinuses,
+                prefix,
+                postfix,
+            }),
+            createPseudoCharactersPreprocessor({
+                validCharacter: decimalSeparator,
+                pseudoCharacters: validatedDecimalPseudoSeparators,
+                prefix,
+                postfix,
+            }),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
             createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
@@ -93,10 +100,14 @@ export function maskitoNumberOptionsGenerator({
                 thousandSeparator,
             }),
             createZeroPrecisionPreprocessor(precision, decimalSeparator),
-            createRepeatedDecimalSeparatorPreprocessor(decimalSeparator),
+            createRepeatedDecimalSeparatorPreprocessor({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
         ],
         postprocessors: [
-            createMinMaxPostprocessor({decimalSeparator, min, max}),
+            createMinMaxPostprocessor({decimalSeparator, min, max, prefix, postfix}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor({
@@ -109,13 +120,23 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalZeroPadding,
                 precision,
+                prefix,
                 postfix,
             }),
         ],
         plugins: [
-            createLeadingZeroesValidationPlugin(decimalSeparator, thousandSeparator),
-            createNotEmptyIntegerPlugin(decimalSeparator),
-            createMinMaxPlugin({min, max, decimalSeparator}),
+            createLeadingZeroesValidationPlugin({
+                decimalSeparator,
+                thousandSeparator,
+                prefix,
+                postfix,
+            }),
+            createNotEmptyIntegerPlugin({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
+            createMinMaxPlugin({min, max, decimalSeparator, prefix, postfix}),
         ],
         overwriteMode: decimalZeroPadding
             ? ({value, selection: [from]}) =>
