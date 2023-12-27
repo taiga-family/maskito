@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import 'cypress-real-events'; // https://github.com/cypress-io/cypress/issues/2839
-import './command';
+import './commands';
 
 import {haveNgControlValueAssertion} from './assertions';
 
@@ -14,10 +14,6 @@ declare global {
              * cy.get('tui-input').should('have.ngControlValue', '123')
              * */
             (chainer: 'have.ngControlValue'): Chainable<Subject>;
-        }
-
-        interface Chainable {
-            smartTick(durationMs: number, frequencyMs?: number): Chainable;
         }
     }
 }
