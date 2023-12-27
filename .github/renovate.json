@@ -10,6 +10,7 @@
             "echo 'TODO: workaround for https://github.com/npm/cli/issues/6787#issuecomment-1751005219'",
             "npm i --workspaces --include-workspace-root"
         ],
-        "executionMode": "branch"
+        "executionMode": "branch",
+        "fileFilters": ["package-lock.json"]
     }
 }
