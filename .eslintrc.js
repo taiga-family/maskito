@@ -23,7 +23,6 @@ module.exports = {
                 '@taiga-ui/experience/strict-tui-doc-example': 'off',
                 '@taiga-ui/experience/prefer-inject-decorator': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
-                'no-restricted-syntax': 'off', // TODO
             },
         },
     ],

@@ -1,7 +1,7 @@
-export enum DocExamplePrimaryTab {
-    MaskitoOptions = 'mask',
-    JavaScript = 'JavaScript',
-    Angular = 'Angular',
-    React = 'React',
-    Vue = 'Vue',
-}
+export const DocExamplePrimaryTab = {
+    MaskitoOptions: 'mask',
+    JavaScript: 'JavaScript',
+    Angular: 'Angular',
+    React: 'React',
+    Vue: 'Vue',
+} as const;
