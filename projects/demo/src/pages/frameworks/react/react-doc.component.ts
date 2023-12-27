@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DemoPath} from '@demo/constants';
-import {RawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 
 const DROP_TS_NO_CHECK_REG = /\/\/\s@ts-nocheck[^\n]+\n/;
 
@@ -15,7 +15,7 @@ export class ReactDocPageComponent {
         './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
     );
 
-    readonly elementPredicateExample: Record<string, RawLoaderContent> = {
+    readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
         'index.tsx': import('./examples/2-element-predicate/index.tsx?raw').then(m => ({
             // See: https://github.com/vuejs/core/issues/1033#issuecomment-1340309622
             // TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
