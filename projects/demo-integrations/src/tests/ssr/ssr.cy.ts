@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('Server side rendering', () => {
     beforeEach(() => {
         // Just a workaround for correct work of global run-time error handler
-        // See projects/demo-integrations/cypress/support/e2e.ts
+        // See projects/demo-integrations/src/support/e2e.ts
         cy.visit(DemoPath.WhatIsMaskito);
     });
 
