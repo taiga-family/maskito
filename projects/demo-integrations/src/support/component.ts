@@ -1,3 +1,4 @@
+import './assertions';
 import './commands';
 
 import {mount} from 'cypress/angular';

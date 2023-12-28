@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
-import {smartTick} from './commands/smart-tick';
+import {smartTick} from './smart-tick';
 
 declare global {
     namespace Cypress {
-        interface Chainable {
-            smartTick(durationMs: number, frequencyMs?: number): Chainable;
+        interface Chainable<Subject> {
+            smartTick(durationMs: number, frequencyMs?: number): Chainable<Subject>;
         }
     }
 }
