@@ -10,7 +10,7 @@
         "**/assets/**",
         "**/node_modules/**",
         "**/demo/server.ts",
-        "**/demo-integrations/cypress/tests/**",
+        "**/demo-integrations/src/tests/**",
         "*.{log,svg,snap,png,ogv,yml}",
         "**/package.json",
         "**/tsconfig*.json"
