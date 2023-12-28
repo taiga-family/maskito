@@ -64,7 +64,9 @@
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
             "!{projectRoot}/tsconfig.spec.json",
             "!{projectRoot}/jest.config.[jt]s",
-            "!{projectRoot}/src/test-setup.[jt]s"
+            "!{projectRoot}/src/test-setup.[jt]s",
+            "!{projectRoot}/**/*.cy.[jt]s?(x)",
+            "!{projectRoot}/cypress.config.[jt]s"
         ]
     },
     "targetDefaults": {
@@ -87,6 +89,10 @@
                     "codeCoverage": true
                 }
             }
+        },
+        "component-test": {
+            "cache": true,
+            "inputs": ["default", "^production"]
         }
     },
     "parallel": 3
