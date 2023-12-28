@@ -11,6 +11,15 @@
                 "testingType": "e2e",
                 "devServerTarget": "demo:serve:development"
             }
+        },
+        "component-test": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "cypressConfig": "projects/demo-integrations/cypress.config.ts",
+                "testingType": "component",
+                "skipServe": true,
+                "devServerTarget": "demo:build"
+            }
         }
     },
     "implicitDependencies": ["demo"]

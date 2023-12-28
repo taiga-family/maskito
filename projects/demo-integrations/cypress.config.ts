@@ -1,3 +1,4 @@
+import {nxComponentTestingPreset} from '@nx/angular/plugins/component-testing';
 import {nxE2EPreset} from '@nx/cypress/plugins/cypress-preset';
 import {defineConfig} from 'cypress';
 
@@ -17,7 +18,13 @@ export const CYPRESS_CONFIG: Cypress.ConfigOptions = {
             return require('./src/plugins/index.js')(on, config);
         },
         baseUrl: 'http://localhost:3333',
-        specPattern: 'src/tests/**/*.cy.ts',
+        specPattern: 'src/tests/!(component-testing)/**/*.cy.ts',
+    },
+    component: {
+        ...nxComponentTestingPreset(__filename),
+        supportFile: 'src/support/component.ts',
+        indexHtmlFile: 'src/support/component-index.html',
+        specPattern: 'src/tests/component-testing/*.cy.ts',
     },
 };
 

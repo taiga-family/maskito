@@ -115,9 +115,21 @@ jobs:
           npm run cy:run -- --spec "**/(angular|react|ssr|addons|others)/**/*.cy.ts" --config baseUrl="${{
           env.UNIVERSAL_SERVER }}"
 
+  component-testing:
+    if: ${{ !contains(github.head_ref, 'release/') }}
+    runs-on: ubuntu-latest
+    name: Component Testing
+    steps:
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.2
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.2
+      - uses: taiga-family/ci/actions/setup/node@v1.50.2
+
+      - name: Run Cypress tests
+        run: npx nx component-test demo-integrations --browser=chrome
+
   result:
     if: ${{ !contains(github.head_ref, 'release/') }}
-    needs: [build-demo, e2e-kit, e2e-recipes, e2e-others]
+    needs: [build-demo, e2e-kit, e2e-recipes, e2e-others, component-testing]
     runs-on: ubuntu-latest
     name: E2E result
     steps:

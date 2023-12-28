@@ -1,8 +1,8 @@
-export function smartTick(
-    $subject: Cypress.PrevSubjectMap<void>[Cypress.PrevSubject],
+export function smartTick<T extends Cypress.PrevSubjectMap<void>[Cypress.PrevSubject]>(
+    $subject: T,
     durationMs: number, // ms
     frequencyMs = 100, // ms
-): Cypress.Chainable<unknown> {
+): Cypress.Chainable<T> {
     const iterations = Math.ceil(durationMs / frequencyMs);
     const lastIterationMs = durationMs % frequencyMs || frequencyMs;
 
