@@ -18,6 +18,7 @@ import {
 } from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
+    createFullWidthToHalfWidthPreprocessor,
     createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
@@ -75,6 +76,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalPseudoSeparators: validatedDecimalPseudoSeparators,
                 pseudoMinuses,
             }),
+            createFullWidthToHalfWidthPreprocessor(),
             createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
             createPseudoCharactersPreprocessor(
                 decimalSeparator,
