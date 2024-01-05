@@ -23,7 +23,7 @@ export function generateMaskExpression({
     pseudoMinuses?: readonly string[];
 }): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
-    const digit = '[0-9][０－９]';
+    const digit = '\\d';
     const optionalMinus = isNegativeAllowed
         ? `[${CHAR_MINUS}${pseudoMinuses.map(x => `\\${x}`).join('')}]?`
         : '';
