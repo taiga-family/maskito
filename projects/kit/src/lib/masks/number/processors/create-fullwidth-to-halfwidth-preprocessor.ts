@@ -1,3 +1,5 @@
+import { MaskitoPreprocessor } from '@maskito/core';
+
 export function createFullWidthToHalfWidthPreprocessor(): MaskitoPreprocessor {
   return ({ elementState, data }) => {
     const { value, selection } = elementState;
