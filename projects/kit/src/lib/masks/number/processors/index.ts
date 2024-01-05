@@ -1,3 +1,4 @@
+export * from './create-fullwidth-to-halfwidth-preprocessor';
 export * from './decimal-zero-padding-postprocessor';
 export * from './initialization-only-preprocessor';
 export * from './leading-zeroes-validation-postprocessor';
