@@ -1,5 +1,7 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
+import {CHAR_MINUS} from '../../../constants';
+
 /**
  * Convert full width numbers like １, ２ to half width numbers 1, 2
  *
@@ -12,13 +14,15 @@ export function createFullWidthToHalfWidthPreprocessor(): MaskitoPreprocessor {
         return {
             elementState: {
                 selection,
-                value: value.replace(/[０-９]/g, s =>
-                    String.fromCharCode(s.charCodeAt(0) - 0xfee0),
-                ),
+                value: value
+                    .replace(/[０-９]/g, s =>
+                        String.fromCharCode(s.charCodeAt(0) - 0xfee0),
+                    )
+                    .replace(/[-－﹣−‐⁃‑‒–—﹘―⎯⏤ーｰ─━]/g, CHAR_MINUS),
             },
-            data: data.replace(/[０-９]/g, s =>
-                String.fromCharCode(s.charCodeAt(0) - 0xfee0),
-            ),
+            data: data
+                .replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xfee0))
+                .replace(/[-－﹣−‐⁃‑‒–—﹘―⎯⏤ーｰ─━]/g, CHAR_MINUS),
         };
     };
 }
