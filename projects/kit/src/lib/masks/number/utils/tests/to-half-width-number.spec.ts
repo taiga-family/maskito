@@ -16,7 +16,7 @@ describe('`toHalfWidthNumber` utility converts full width numbers to half width 
 
     tests.forEach(([fullWidthValue, halfWidthValue]) => {
         it(`${fullWidthValue} => ${halfWidthValue}`, () => {
-            expect(toHalfWidthNumber('０')).toBe('0');
+            expect(toHalfWidthNumber(fullWidthValue)).toBe(halfWidthValue);
         });
     });
 
