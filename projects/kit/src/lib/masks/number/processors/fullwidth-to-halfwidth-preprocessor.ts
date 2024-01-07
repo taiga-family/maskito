@@ -1,9 +1,9 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
+import {toHalfWidthNumber} from '../utils/to-half-width-number';
+
 /**
  * Convert full width numbers like １, ２ to half width numbers 1, 2
- *
- * 全角の１、２ののような数字を、半角の1、2のように直すプリプロセッサ
  */
 export function createFullWidthToHalfWidthPreprocessor(): MaskitoPreprocessor {
     return ({elementState, data}) => {
@@ -12,13 +12,9 @@ export function createFullWidthToHalfWidthPreprocessor(): MaskitoPreprocessor {
         return {
             elementState: {
                 selection,
-                value: value.replace(/[０-９]/g, s =>
-                    String.fromCharCode(s.charCodeAt(0) - 0xfee0),
-                ),
+                value: toHalfWidthNumber(value),
             },
-            data: data.replace(/[０-９]/g, s =>
-                String.fromCharCode(s.charCodeAt(0) - 0xfee0),
-            ),
+            data: toHalfWidthNumber(data),
         };
     };
 }
