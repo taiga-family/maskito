@@ -35,3 +35,9 @@ export const CHAR_HYPHEN = '\u002D';
  * Can be used as `&minus;`. Don't confuse with {@link CHAR_HYPHEN}
  */
 export const CHAR_MINUS = '\u2212';
+
+/**
+ * {@link https://symbl.cc/en/30FC/ Katakana-Hiragana Prolonged Sound Mark}
+ * is used as prolonged sounds in Japanese.
+ */
+export const CHAR_JP_HYPEN = '\u30FC';
