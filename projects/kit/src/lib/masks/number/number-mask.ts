@@ -4,7 +4,7 @@ import {
     CHAR_EM_DASH,
     CHAR_EN_DASH,
     CHAR_HYPHEN,
-    CHAR_JP_HYPEN,
+    CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
 } from '../../constants';
@@ -52,9 +52,12 @@ export function maskitoNumberOptionsGenerator({
     prefix?: string;
     postfix?: string;
 } = {}): Required<MaskitoOptions> {
-    const pseudoMinuses = [CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH, CHAR_JP_HYPEN].filter(
-        char => char !== thousandSeparator && char !== decimalSeparator,
-    );
+    const pseudoMinuses = [
+        CHAR_HYPHEN,
+        CHAR_EN_DASH,
+        CHAR_EM_DASH,
+        CHAR_JP_HYPHEN,
+    ].filter(char => char !== thousandSeparator && char !== decimalSeparator);
     const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
         thousandSeparator,

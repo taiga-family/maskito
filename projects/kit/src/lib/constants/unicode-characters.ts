@@ -40,4 +40,4 @@ export const CHAR_MINUS = '\u2212';
  * {@link https://symbl.cc/en/30FC/ Katakana-Hiragana Prolonged Sound Mark}
  * is used as prolonged sounds in Japanese.
  */
-export const CHAR_JP_HYPEN = '\u30FC';
+export const CHAR_JP_HYPHEN = '\u30FC';
