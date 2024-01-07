@@ -25,6 +25,6 @@ describe('`toHalfWidthNumber` utility converts full width numbers to half width 
     });
 
     it('１2３4５6 (full width + half width mix) => 123456', () => {
-        expect(toHalfWidthNumber('１2３4５6 ')).toBe('123456');
+        expect(toHalfWidthNumber('１2３4５6')).toBe('123456');
     });
 });
