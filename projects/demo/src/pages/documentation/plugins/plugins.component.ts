@@ -22,4 +22,10 @@ export class PluginsDocPageComponent {
         ),
         'index.ts': import('./examples/2-initial-calibration/index.ts?raw'),
     };
+
+    readonly compositionValidationExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-composition-validation/mask.ts?raw'
+        ),
+    };
 }

@@ -10,6 +10,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 import {NextStepsModule} from '../next-steps/next-steps.module';
 import {PluginsDocExample1} from './examples/1-reject/component';
 import {PluginsDocExample2} from './examples/2-initial-calibration/component';
+import {PluginsDocExample3} from './examples/3-composition-validation/component';
 import {PluginsDocPageComponent} from './plugins.component';
 
 @NgModule({
@@ -24,7 +25,12 @@ import {PluginsDocPageComponent} from './plugins.component';
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(PluginsDocPageComponent)),
     ],
-    declarations: [PluginsDocPageComponent, PluginsDocExample1, PluginsDocExample2],
+    declarations: [
+        PluginsDocPageComponent,
+        PluginsDocExample1,
+        PluginsDocExample2,
+        PluginsDocExample3,
+    ],
     exports: [PluginsDocPageComponent],
 })
 export class PluginsDocPageModule {}

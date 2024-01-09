@@ -1,3 +1,4 @@
+export * from './composition-validation-plugin';
 export * from './dom/event-listener';
 export * from './dom/history-events';
 export * from './dom/update-element';
