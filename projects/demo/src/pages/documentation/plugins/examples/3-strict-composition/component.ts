@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import mask from './mask';
 
 @Component({
-    selector: 'plugins-composition-validation-doc-example-3',
+    selector: 'plugins-strict-composition-doc-example-3',
     template: `
         <tui-input
             [maskito]="maskitoOptions"

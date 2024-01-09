@@ -1,4 +1,3 @@
-export * from './composition-validation-plugin';
 export * from './dom/event-listener';
 export * from './dom/history-events';
 export * from './dom/update-element';
@@ -8,4 +7,5 @@ export * from './get-not-empty-selection';
 export * from './get-word-selection';
 export * from './initial-calibration-plugin';
 export * from './pipe';
+export * from './strict-composition-plugin';
 export * from './transform';

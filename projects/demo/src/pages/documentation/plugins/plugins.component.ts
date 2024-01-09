@@ -23,9 +23,9 @@ export class PluginsDocPageComponent {
         'index.ts': import('./examples/2-initial-calibration/index.ts?raw'),
     };
 
-    readonly compositionValidationExample: TuiDocExample = {
+    readonly strictCompositionExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-composition-validation/mask.ts?raw'
+            './examples/3-strict-composition/mask.ts?raw'
         ),
     };
 }

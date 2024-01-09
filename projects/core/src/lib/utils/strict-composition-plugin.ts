@@ -3,7 +3,7 @@ import {maskitoUpdateElement} from './dom/update-element';
 import {areElementStatesEqual} from './element-states-equality';
 import {maskitoTransform} from './transform';
 
-export function maskitoCompositionValidationPlugin(): MaskitoPlugin {
+export function maskitoStrictCompositionPlugin(): MaskitoPlugin {
     return (element, maskitoOptions) => {
         const listener = (event: TypedInputEvent): void => {
             if (event.inputType !== 'insertCompositionText') {

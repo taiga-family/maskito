@@ -13,9 +13,9 @@ export {
     MaskitoPreprocessor,
 } from './lib/types';
 export {
-    maskitoCompositionValidationPlugin,
     maskitoInitialCalibrationPlugin,
     maskitoPipe,
+    maskitoStrictCompositionPlugin,
     maskitoTransform,
     maskitoUpdateElement,
 } from './lib/utils';
