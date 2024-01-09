@@ -24,7 +24,7 @@ export const CYPRESS_CONFIG: Cypress.ConfigOptions = {
         ...nxComponentTestingPreset(__filename),
         supportFile: 'src/support/component.ts',
         indexHtmlFile: 'src/support/component-index.html',
-        specPattern: 'src/tests/component-testing/*.cy.ts',
+        specPattern: 'src/tests/component-testing/**/*.cy.ts',
     },
 };
 

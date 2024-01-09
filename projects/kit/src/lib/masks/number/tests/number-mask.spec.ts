@@ -83,4 +83,40 @@ describe('Number (maskitoTransform)', () => {
             expect(maskitoTransform('21121321', options)).toBe('21.121.321,00');
         });
     });
+
+    // TODO https://github.com/taiga-family/maskito/issues/703
+    xdescribe('`postfix` contains point and space (` lbs.`)', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        beforeEach(() => {
+            options = maskitoNumberOptionsGenerator({
+                postfix: ' lbs.',
+                precision: 2,
+            });
+        });
+
+        it('Empty textfield => empty textfield', () => {
+            expect(maskitoTransform('', options)).toBe('');
+        });
+
+        it('Only postfix => Only postfix', () => {
+            expect(maskitoTransform(' lbs.', options)).toBe(' lbs.');
+        });
+
+        it('5 => 5 lbs.', () => {
+            expect(maskitoTransform('5', options)).toBe('5 lbs.');
+        });
+
+        it('0.42 => 5 lbs.', () => {
+            expect(maskitoTransform('0.42', options)).toBe('0.42 lbs.');
+        });
+
+        it('1 000 => 1 000 lbs.', () => {
+            expect(maskitoTransform('1 000', options)).toBe('1 000 lbs.');
+        });
+
+        it('1 000 lbs. => 1 000 lbs.', () => {
+            expect(maskitoTransform('1 000 lbs.', options)).toBe('1 000 lbs.');
+        });
+    });
 });
