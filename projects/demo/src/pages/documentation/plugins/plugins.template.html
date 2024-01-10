@@ -46,11 +46,40 @@
     </tui-doc-example>
 
     <tui-doc-example
-        id="composition-validation"
+        id="strict-composition"
         heading="Built-in plugin for composition event"
-        [content]="compositionValidationExample"
+        [content]="strictCompositionExample"
+        [description]="strictCompositionDescription"
     >
-        <plugins-composition-validation-doc-example-3></plugins-composition-validation-doc-example-3>
+        <ng-template #strictCompositionDescription>
+            <p class="tui-space_top-0">
+                By default,
+                <strong>Maskito</strong>
+                does not break IME Composition and waits until
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    <code>compositionend</code>
+                </a>
+                fires to begin calibration of the textfield's value. It is especially important for East Asian languages
+                such as Chinese, Japanese, Korean, and other languages with complex characters.
+            </p>
+
+            <p>
+                However, sometimes this behaviour is not desired and you can want to enable mask validation on every
+                keystroke (to be like a classic not-composition input). For example, some Android devices with enabled
+                system autocomplete can interpret user's input as part of composition event – waiting for
+                <code>compositionend</code>
+                can be not required for some cases (e.g. entering of numbers or your application is not used by East
+                Asian clients). For this cases, you can use
+                <code>maskitoStrictCompositionPlugin</code>
+                . It applies mask's constraints on ANY intermediate value of IME composition.
+            </p>
+        </ng-template>
+        <plugins-strict-composition-doc-example-3></plugins-strict-composition-doc-example-3>
     </tui-doc-example>
 
     <next-steps></next-steps>
