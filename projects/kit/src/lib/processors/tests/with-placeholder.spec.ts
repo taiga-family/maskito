@@ -5,6 +5,10 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     const {preprocessors, postprocessors} = maskitoWithPlaceholder('dd/mm/yyyy');
     const preprocessor = maskitoPipe(preprocessors);
     const postprocessor = maskitoPipe(postprocessors);
+    const EMPTY_ELEMENT_STATE = {
+        value: '',
+        selection: [0, 0] as const,
+    };
 
     describe('preprocessors', () => {
         const check = (valueBefore: string, valueAfter: string): void => {
@@ -34,30 +38,39 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     });
 
     describe('postprocessors', () => {
-        const check = (valueBefore: string, valueAfter: string): void => {
-            const INITIAL_ELEMENT_STATE = {
-                value: 'dd/mm/yyyy',
-                selection: [0, 0] as const,
-            };
-            const {value} = postprocessor(
+        describe('different initial element state (2nd argument of postprocessor)', () => {
+            [
+                EMPTY_ELEMENT_STATE,
                 {
-                    value: valueBefore,
+                    value: 'dd/mm/yyyy',
                     selection: [0, 0] as const,
                 },
-                INITIAL_ELEMENT_STATE,
-            );
+            ].forEach(initialState => {
+                const check = (valueBefore: string, valueAfter: string): void => {
+                    const {value} = postprocessor(
+                        {
+                            value: valueBefore,
+                            selection: [0, 0] as const,
+                        },
+                        initialState,
+                    );
 
-            expect(value).toBe(valueAfter);
-        };
+                    expect(value).toBe(valueAfter);
+                };
 
-        it('Empty', () => check('', 'dd/mm/yyyy'));
-        it('1 => 1d/mm/yyyy', () => check('1', '1d/mm/yyyy'));
-        it('16 => 16/mm/yyyy', () => check('16', '16/mm/yyyy'));
-        it('16/0 => 16/0m/yyyy', () => check('16/0', '16/0m/yyyy'));
-        it('16/05 => 16/05/yyyy', () => check('16/05', '16/05/yyyy'));
-        it('16/05/2 => 16/05/2yyy', () => check('16/05/2', '16/05/2yyy'));
-        it('16/05/20 => 16/05/20yy', () => check('16/05/20', '16/05/20yy'));
-        it('16/05/202 => 16/05/202y', () => check('16/05/202', '16/05/202y'));
-        it('16/05/2023 => 16/05/2023', () => check('16/05/2023', '16/05/2023'));
+                describe(`Initial element value is "${initialState.value}"`, () => {
+                    it('Empty', () => check('', 'dd/mm/yyyy'));
+                    it('1 => 1d/mm/yyyy', () => check('1', '1d/mm/yyyy'));
+                    it('16 => 16/mm/yyyy', () => check('16', '16/mm/yyyy'));
+                    it('16/0 => 16/0m/yyyy', () => check('16/0', '16/0m/yyyy'));
+                    it('16/05 => 16/05/yyyy', () => check('16/05', '16/05/yyyy'));
+                    it('16/05/2 => 16/05/2yyy', () => check('16/05/2', '16/05/2yyy'));
+                    it('16/05/20 => 16/05/20yy', () => check('16/05/20', '16/05/20yy'));
+                    it('16/05/202 => 16/05/202y', () => check('16/05/202', '16/05/202y'));
+                    it('16/05/2023 => 16/05/2023', () =>
+                        check('16/05/2023', '16/05/2023'));
+                });
+            });
+        });
     });
 });

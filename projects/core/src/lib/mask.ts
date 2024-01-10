@@ -258,7 +258,9 @@ export class Maskito extends MaskHistory {
 
         const [from, to] = elementState.selection;
         const newPossibleValue =
-            elementState.value.slice(0, from) + data + elementState.value.slice(to);
+            initialElementState.value.slice(0, from) +
+            data +
+            initialElementState.value.slice(to);
         const newElementState = this.postprocessor(maskModel, initialElementState);
 
         if (newElementState.value.length > this.maxLength) {
