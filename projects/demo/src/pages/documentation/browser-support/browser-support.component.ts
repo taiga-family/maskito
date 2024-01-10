@@ -9,7 +9,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 export class BrowserSupportComponent {
     readonly desktopBrowsers = [
         {name: 'Google Chrome', version: '74+'},
-        {name: 'Mozilla Firefox', version: '55+'},
+        {name: 'Mozilla Firefox', version: '87+'},
         {name: 'Safari', version: '12.1+'},
         {name: 'Opera', version: '62+'},
         {name: 'Edge (Chromium)', version: '74+'},
