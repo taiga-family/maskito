@@ -1,10 +1,10 @@
-import {forwardRef} from 'react';
+import {forwardRef, InputHTMLAttributes} from 'react';
 
 const hiddenInputStyles = {
     display: 'none',
 };
 
-export const AwesomeInput = forwardRef<HTMLInputElement>((props, ref) => (
+export const AwesomeInput = forwardRef<HTMLDivElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => (
     <div
         id="awesome-input-wrapper"
         ref={ref}
