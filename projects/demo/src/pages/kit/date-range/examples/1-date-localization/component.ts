@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {
     TuiHintModule,
     TuiPrimitiveTextfieldModule,
@@ -7,7 +8,6 @@ import {
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 @Component({

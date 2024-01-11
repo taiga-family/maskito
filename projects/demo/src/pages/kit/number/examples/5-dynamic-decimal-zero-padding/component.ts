@@ -6,6 +6,7 @@
 
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {tuiPure} from '@taiga-ui/cdk';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import {getMaskitoOptions} from './mask';
 
 @Component({

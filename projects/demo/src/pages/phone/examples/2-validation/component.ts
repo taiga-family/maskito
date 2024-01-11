@@ -7,6 +7,7 @@ import {
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {TuiValidationError} from '@taiga-ui/cdk';
 import {
     TuiErrorModule,
@@ -16,7 +17,6 @@ import {
 import {TuiFieldErrorPipeModule, TuiInputModule} from '@taiga-ui/kit';
 import {CountryCode, isValidPhoneNumber} from 'libphonenumber-js/max';
 
-import {MaskitoDirective} from '../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 function phoneValidator(countryCode: CountryCode): ValidatorFn {

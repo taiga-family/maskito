@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {
     MaskitoDateMode,
@@ -22,7 +23,6 @@ import {
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {MaskitoDirective} from '../../../../../angular/src/lib/maskito.directive';
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
 import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
 

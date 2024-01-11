@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {
     TuiDocDemoModule,
@@ -19,7 +20,6 @@ import {TuiInputModule} from '@taiga-ui/kit';
 import {CountryCode, getCountries} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
-import {MaskitoDirective} from '../../../../angular/src/lib/maskito.directive';
 import {PhoneMaskDocExample1} from './examples/1-basic/component';
 import {PhoneMaskDocExample2} from './examples/2-validation/component';
 import {PhoneMaskDocExample3} from './examples/3-non-strict/component';

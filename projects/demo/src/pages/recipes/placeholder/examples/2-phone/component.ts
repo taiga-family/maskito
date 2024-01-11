@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {
     TuiFlagPipeModule,
     TuiPrimitiveTextfieldModule,
@@ -7,7 +8,6 @@ import {
 } from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import mask, {PLACEHOLDER, removePlaceholder} from './mask';
 
 @Component({

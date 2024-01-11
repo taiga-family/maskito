@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {
@@ -14,7 +15,6 @@ import {
 import {TuiNotificationModule, TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
 
-import {MaskitoDirective} from '../../../../../angular/src/lib/maskito.directive';
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';

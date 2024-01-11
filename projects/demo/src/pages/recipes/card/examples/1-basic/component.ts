@@ -1,11 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
 import {TuiGroupModule, TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
-
-import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 
 @Component({
     standalone: true,

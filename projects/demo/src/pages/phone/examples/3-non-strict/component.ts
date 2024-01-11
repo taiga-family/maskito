@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
 import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {
@@ -10,7 +11,6 @@ import {
 import {TuiInputModule} from '@taiga-ui/kit';
 import metadata from 'libphonenumber-js/min/metadata';
 
-import {MaskitoDirective} from '../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 @Component({

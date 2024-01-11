@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {
     TuiDocCodeModule,
     TuiDocExample,
@@ -9,7 +10,6 @@ import {
 } from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
-import {MaskitoDirective} from '../../../../../angular/src/lib/maskito.directive';
 import {NestedDocExample1} from './examples/1-nested/component';
 import {NestedDocExample2} from './examples/2-nested/component';
 import {CvaDocExample3} from './examples/3-cva/component';
