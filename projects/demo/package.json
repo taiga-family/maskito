@@ -31,7 +31,7 @@
         "react-dom": "18.2.0",
         "rxjs": "7.8.1",
         "tslib": "2.6.2",
-        "vue": "3.4.7"
+        "vue": "3.4.8"
     },
     "devDependencies": {
         "@angular-builders/custom-webpack": "15.0.0",
