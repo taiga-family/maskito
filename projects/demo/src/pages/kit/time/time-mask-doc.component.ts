@@ -8,14 +8,8 @@ import {
     maskitoTimeOptionsGenerator,
     MaskitoTimeSegments,
 } from '@maskito/kit';
-import {
-    TuiDocDemoModule,
-    TuiDocDocumentationModule,
-    TuiDocExample,
-    TuiDocExampleModule,
-    TuiDocPageModule,
-} from '@taiga-ui/addon-doc';
-import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
@@ -27,17 +21,13 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     standalone: true,
     selector: 'time-mask-doc',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
-        TimeMaskDocExample1,
-        TimeMaskDocExample2,
-        TuiDocDemoModule,
+        MaskitoDirective,
+        ReactiveFormsModule,
+        TuiAddonDocModule,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        ReactiveFormsModule,
-        TuiPrimitiveTextfieldModule,
-        MaskitoDirective,
-        TuiDocDocumentationModule,
+        TimeMaskDocExample1,
+        TimeMaskDocExample2,
     ],
     templateUrl: './time-mask-doc.template.html',
     styleUrls: ['./time-mask-doc.style.less'],

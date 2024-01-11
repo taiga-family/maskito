@@ -131,40 +131,28 @@ export const appRoutes: Routes = [
     // Kit
     {
         path: DemoPath.Number,
-        loadChildren: () =>
-            import('../pages/kit/number/number-mask-doc.module').then(
-                m => m.NumberMaskDocModule,
-            ),
+        loadChildren: () => import('../pages/kit/number'),
         data: {
             title: 'Number',
         },
     },
     {
         path: DemoPath.Time,
-        loadChildren: () =>
-            import('../pages/kit/time/time-mask-doc.module').then(
-                m => m.TimeMaskDocModule,
-            ),
+        loadChildren: () => import('../pages/kit/time'),
         data: {
             title: 'Time',
         },
     },
     {
         path: DemoPath.Date,
-        loadChildren: () =>
-            import('../pages/kit/date/date-mask-doc.module').then(
-                m => m.DateMaskDocModule,
-            ),
+        loadChildren: () => import('../pages/kit/date'),
         data: {
             title: 'Date',
         },
     },
     {
         path: DemoPath.DateRange,
-        loadChildren: () =>
-            import('../pages/kit/date-range/date-range-mask-doc.module').then(
-                m => m.DateRangeMaskDocModule,
-            ),
+        loadChildren: () => import('../pages/kit/date-range'),
         data: {
             title: 'DateRange',
         },
@@ -172,10 +160,7 @@ export const appRoutes: Routes = [
     // Recipes
     {
         path: DemoPath.DateTime,
-        loadChildren: () =>
-            import('../pages/kit/date-time/date-time-mask-doc.module').then(
-                m => m.DateTimeMaskDocModule,
-            ),
+        loadChildren: () => import('../pages/kit/date-time'),
         data: {
             title: 'DateTime',
         },

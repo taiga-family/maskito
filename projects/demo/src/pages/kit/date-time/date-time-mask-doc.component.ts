@@ -8,19 +8,9 @@ import {
     maskitoDateTimeOptionsGenerator,
     MaskitoTimeMode,
 } from '@maskito/kit';
-import {
-    TuiDocDemoModule,
-    TuiDocDocumentationModule,
-    TuiDocExample,
-    TuiDocExampleModule,
-    TuiDocPageModule,
-} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
-import {
-    TuiLinkModule,
-    TuiPrimitiveTextfieldModule,
-    TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
+import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
@@ -34,18 +24,14 @@ type GeneratorOptions = Required<
     standalone: true,
     selector: 'date-time-mask-doc',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
-        DateTimeMaskDocExample1,
-        TuiLinkModule,
-        DateTimeMaskDocExample2,
-        TuiDocDemoModule,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-        ReactiveFormsModule,
-        TuiPrimitiveTextfieldModule,
         MaskitoDirective,
-        TuiDocDocumentationModule,
+        ReactiveFormsModule,
+        TuiAddonDocModule,
+        TuiInputModule,
+        TuiLinkModule,
+        TuiTextfieldControllerModule,
+        DateTimeMaskDocExample1,
+        DateTimeMaskDocExample2,
     ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
