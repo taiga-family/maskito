@@ -7,7 +7,6 @@ import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiHintModule, TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
 
-import {NextStepsModule} from '../next-steps/next-steps.module';
 import {OverwriteModeDocExample3} from './examples/dynamic/component';
 import {OverwriteModeDocExample2} from './examples/replace/component';
 import {OverwriteModeDocExample1} from './examples/shift/component';
@@ -24,10 +23,7 @@ import {OverwriteModeDocPageComponent} from './overwrite-mode.component';
         TuiHintModule,
         TuiTextareaModule,
         TuiTextfieldControllerModule,
-        NextStepsModule,
         RouterModule.forChild(tuiGenerateRoutes(OverwriteModeDocPageComponent)),
-    ],
-    declarations: [
         OverwriteModeDocPageComponent,
         OverwriteModeDocExample1,
         OverwriteModeDocExample2,

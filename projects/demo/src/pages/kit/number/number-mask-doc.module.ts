@@ -30,8 +30,6 @@ import {NumberMaskDocComponent} from './number-mask-doc.component';
         TuiNotificationModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(NumberMaskDocComponent)),
-    ],
-    declarations: [
         NumberMaskDocComponent,
         NumberMaskDocExample1,
         NumberMaskDocExample2,

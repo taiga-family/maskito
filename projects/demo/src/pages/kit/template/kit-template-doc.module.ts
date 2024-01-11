@@ -17,8 +17,8 @@ import {KitTemplateDocComponent} from './kit-template-doc.component';
         TuiAddonDocModule,
         TuiInputModule,
         RouterModule.forChild(tuiGenerateRoutes(KitTemplateDocComponent)),
+        KitTemplateDocComponent,
     ],
-    declarations: [KitTemplateDocComponent],
     exports: [KitTemplateDocComponent],
 })
 export class KitTemplateDocModule {}

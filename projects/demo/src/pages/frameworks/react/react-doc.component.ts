@@ -1,9 +1,30 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {
+    TuiDocCodeModule,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+    TuiRawLoaderContent,
+} from '@taiga-ui/addon-doc';
+import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+
+import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
+import {ReactExample2} from './examples/2-element-predicate/example.component';
 
 @Component({
+    standalone: true,
     selector: 'react-doc-page',
+    imports: [
+        TuiDocPageModule,
+        TuiNotificationModule,
+        TuiLinkModule,
+        RouterLink,
+        TuiDocCodeModule,
+        TuiDocExampleModule,
+        ReactExample1,
+        ReactExample2,
+    ],
     templateUrl: './react-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

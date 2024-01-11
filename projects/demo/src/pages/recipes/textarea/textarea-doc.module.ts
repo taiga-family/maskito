@@ -19,8 +19,9 @@ import {TextareaDocComponent} from './textarea-doc.component';
         TuiTextareaModule,
         TuiLinkModule,
         RouterModule.forChild(tuiGenerateRoutes(TextareaDocComponent)),
+        TextareaDocComponent,
+        TextareaDocExample1,
     ],
-    declarations: [TextareaDocComponent, TextareaDocExample1],
     exports: [TextareaDocComponent],
 })
 export class TextareaDocModule {}

@@ -1,14 +1,45 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {MaskitoDateMode, maskitoDateOptionsGenerator} from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {
+    TuiDocDemoModule,
+    TuiDocDocumentationModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
+import {
+    TuiLinkModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
+
+import {DateMaskDocExample1} from './examples/1-localization/component';
+import {DateMaskDocExample2} from './examples/2-min-max/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 
 @Component({
+    standalone: true,
     selector: 'date-mask-doc',
+    imports: [
+        TuiDocPageModule,
+        TuiDocExampleModule,
+        DateMaskDocExample1,
+        TuiLinkModule,
+        DateMaskDocExample2,
+        TuiDocDemoModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiDocDocumentationModule,
+    ],
     templateUrl: './date-mask-doc.template.html',
     styleUrls: ['./date-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

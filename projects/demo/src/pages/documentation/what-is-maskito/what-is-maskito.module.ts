@@ -15,8 +15,8 @@ import {WhatIsMaskitoDocPageComponent} from './what-is-maskito.component';
         TuiLinkModule,
         TuiMarkerIconModule,
         RouterModule.forChild(tuiGenerateRoutes(WhatIsMaskitoDocPageComponent)),
+        WhatIsMaskitoDocPageComponent,
     ],
-    declarations: [WhatIsMaskitoDocPageComponent],
     exports: [WhatIsMaskitoDocPageComponent],
 })
 export class WhatIsMaskitoDocPageModule {}

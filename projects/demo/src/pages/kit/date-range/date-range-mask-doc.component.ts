@@ -1,21 +1,56 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {
     MaskitoDateMode,
     maskitoDateRangeOptionsGenerator,
     MaskitoDateSegments,
 } from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {
+    TuiDocDemoModule,
+    TuiDocDocumentationModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
+import {
+    TuiLinkModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
+
+import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
+import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
+import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
+import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
 >;
 
 @Component({
+    standalone: true,
     selector: 'date-range-mask-doc',
+    imports: [
+        TuiDocPageModule,
+        TuiDocExampleModule,
+        DateRangeMaskDocExample1,
+        TuiLinkModule,
+        DateRangeMaskDocExample2,
+        DateRangeMaskDocExample3,
+        DateRangeMaskDocExample4,
+        TuiDocDemoModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiDocDocumentationModule,
+    ],
     templateUrl: './date-range-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

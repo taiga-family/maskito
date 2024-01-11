@@ -12,8 +12,8 @@ import {ElementStateDocPageComponent} from './element-state.component';
         TuiAddonDocModule,
         TuiLinkModule,
         RouterModule.forChild(tuiGenerateRoutes(ElementStateDocPageComponent)),
+        ElementStateDocPageComponent,
     ],
-    declarations: [ElementStateDocPageComponent],
     exports: [ElementStateDocPageComponent],
 })
 export class ElementStateDocPageModule {}

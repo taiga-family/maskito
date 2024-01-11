@@ -23,8 +23,8 @@ import {PipeDocExample4} from './examples/4-pipe/component';
         NestedDocExample2,
         CvaDocExample3,
         PipeDocExample4,
+        AngularDocPageComponent,
     ],
-    declarations: [AngularDocPageComponent],
     exports: [AngularDocPageComponent],
 })
 export class AngularDocPageModule {}

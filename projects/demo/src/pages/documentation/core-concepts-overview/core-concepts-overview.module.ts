@@ -16,8 +16,8 @@ import {CoreConceptsOverviewDocPageComponent} from './core-concepts-overview.com
         TuiMarkerIconModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(CoreConceptsOverviewDocPageComponent)),
+        CoreConceptsOverviewDocPageComponent,
     ],
-    declarations: [CoreConceptsOverviewDocPageComponent],
     exports: [CoreConceptsOverviewDocPageComponent],
 })
 export class CoreConceptsOverviewDocPageModule {}

@@ -1,16 +1,51 @@
 import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {
+    TuiDocDemoModule,
+    TuiDocDocumentationModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
 import {TUI_IS_APPLE} from '@taiga-ui/cdk';
+import {
+    TuiLinkModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 import {CountryCode, getCountries} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
+
+import {PhoneMaskDocExample1} from './examples/1-basic/component';
+import {PhoneMaskDocExample2} from './examples/2-validation/component';
+import {PhoneMaskDocExample3} from './examples/3-non-strict/component';
+import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
 
 @Component({
+    standalone: true,
     selector: 'phone-doc',
+    imports: [
+        TuiDocPageModule,
+        TuiLinkModule,
+        TuiDocExampleModule,
+        PhoneMaskDocExample1,
+        PhoneMaskDocExample2,
+        PhoneMaskDocExample3,
+        PhoneMaskDocExample4,
+        TuiDocDemoModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiDocDocumentationModule,
+    ],
     templateUrl: './phone-doc.template.html',
     styleUrls: ['./phone-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

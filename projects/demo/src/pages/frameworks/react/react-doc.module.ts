@@ -20,8 +20,10 @@ import {ReactDocPageComponent} from './react-doc.component';
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(ReactDocPageComponent)),
+        ReactDocPageComponent,
+        ReactExample1,
+        ReactExample2,
     ],
-    declarations: [ReactDocPageComponent, ReactExample1, ReactExample2],
     exports: [ReactDocPageComponent],
 })
 export class ReactDocPageModule {}

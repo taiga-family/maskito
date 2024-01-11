@@ -13,8 +13,8 @@ import {MaskitoLibrariesDocPageComponent} from './maskito-libraries.component';
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(MaskitoLibrariesDocPageComponent)),
+        MaskitoLibrariesDocPageComponent,
     ],
-    declarations: [MaskitoLibrariesDocPageComponent],
     exports: [MaskitoLibrariesDocPageComponent],
 })
 export class MaskitoLibrariesDocPageModule {}

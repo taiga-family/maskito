@@ -34,8 +34,6 @@ import {PhoneDocComponent} from './phone-doc.component';
         TuiFieldErrorPipeModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PhoneDocComponent)),
-    ],
-    declarations: [
         PhoneDocComponent,
         PhoneMaskDocExample1,
         PhoneMaskDocExample2,

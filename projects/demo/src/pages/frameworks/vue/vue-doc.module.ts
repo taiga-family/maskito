@@ -19,8 +19,9 @@ import {VueDocPageComponent} from './vue-doc.component';
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(VueDocPageComponent)),
+        VueDocPageComponent,
+        VueExample1,
     ],
-    declarations: [VueDocPageComponent, VueExample1],
     exports: [VueDocPageComponent],
 })
 export class VueDocPageModule {}

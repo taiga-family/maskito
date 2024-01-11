@@ -1,17 +1,50 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
-import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
+import {
+    TuiDocCodeModule,
+    TuiDocDemoModule,
+    TuiDocDocumentationModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
+import {TuiNotificationModule, TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
+import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
+
+import {NumberMaskDocExample1} from './examples/1-high-precision/component';
+import {NumberMaskDocExample2} from './examples/2-separators/component';
+import {NumberMaskDocExample3} from './examples/3-postfix/component';
+import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
+import {NumberMaskDocExample5} from './examples/5-dynamic-decimal-zero-padding/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
 >;
 
 @Component({
+    standalone: true,
     selector: 'number-mask-doc',
+    imports: [
+        TuiDocPageModule,
+        TuiNotificationModule,
+        TuiDocCodeModule,
+        TuiDocExampleModule,
+        NumberMaskDocExample1,
+        NumberMaskDocExample2,
+        NumberMaskDocExample3,
+        NumberMaskDocExample4,
+        NumberMaskDocExample5,
+        TuiDocDemoModule,
+        TuiInputModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiDocDocumentationModule,
+    ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],

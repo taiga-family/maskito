@@ -27,8 +27,10 @@ import {PhoneDocComponent} from './phone-doc.component';
         TuiLinkModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PhoneDocComponent)),
+        PhoneDocComponent,
+        PhoneUSDocExample1,
+        PhoneKZDocExample2,
     ],
-    declarations: [PhoneDocComponent, PhoneUSDocExample1, PhoneKZDocExample2],
     exports: [PhoneDocComponent],
 })
 export class PhoneDocModule {}

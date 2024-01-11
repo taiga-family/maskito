@@ -1,9 +1,12 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 @Component({
+    standalone: true,
     selector: 'test-doc-example-2',
+    imports: [MaskitoDirective],
     template: `
         <input
             maxlength="3"
