@@ -8,7 +8,7 @@ import {App} from './react-app';
     selector: 'test-doc-example-5',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true
+    standalone: true,
 })
 export class TestDocExample5 {
     constructor(elementRef: ElementRef, @Inject(PLATFORM_ID) platformId: Record<string, unknown>) {

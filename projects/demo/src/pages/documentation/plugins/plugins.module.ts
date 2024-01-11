@@ -7,7 +7,6 @@ import {TuiAddonDocModule, tuiGenerateRoutes} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {NextStepsModule} from '../next-steps/next-steps.module';
 import {PluginsDocExample1} from './examples/1-reject/component';
 import {PluginsDocExample2} from './examples/2-initial-calibration/component';
 import {PluginsDocExample3} from './examples/3-strict-composition/component';
@@ -21,7 +20,6 @@ import {PluginsDocPageComponent} from './plugins.component';
         TuiLinkModule,
         TuiInputModule,
         TuiNotificationModule,
-        NextStepsModule,
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(PluginsDocPageComponent)),
         PluginsDocPageComponent,
