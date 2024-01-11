@@ -24,8 +24,6 @@ import {PluginsDocPageComponent} from './plugins.component';
         NextStepsModule,
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(PluginsDocPageComponent)),
-    ],
-    declarations: [
         PluginsDocPageComponent,
         PluginsDocExample1,
         PluginsDocExample2,

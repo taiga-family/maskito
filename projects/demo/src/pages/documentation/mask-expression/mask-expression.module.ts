@@ -15,8 +15,8 @@ import {MaskExpressionDocPageComponent} from './mask-expression.component';
         TuiNotificationModule,
         NextStepsModule,
         RouterModule.forChild(tuiGenerateRoutes(MaskExpressionDocPageComponent)),
+        MaskExpressionDocPageComponent,
     ],
-    declarations: [MaskExpressionDocPageComponent],
     exports: [MaskExpressionDocPageComponent],
 })
 export class MaskExpressionDocPageModule {}

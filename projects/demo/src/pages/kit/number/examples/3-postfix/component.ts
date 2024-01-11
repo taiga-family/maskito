@@ -1,9 +1,22 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 
+import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 @Component({
+    standalone: true,
     selector: 'number-mask-doc-example-3',
+    imports: [
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+    ],
     template: `
         <tui-input
             [style.max-width.rem]="30"

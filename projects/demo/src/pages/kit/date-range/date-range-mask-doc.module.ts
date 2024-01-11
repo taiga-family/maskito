@@ -25,8 +25,6 @@ import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
         TuiLinkModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(DateRangeMaskDocComponent)),
-    ],
-    declarations: [
         DateRangeMaskDocComponent,
         DateRangeMaskDocExample1,
         DateRangeMaskDocExample2,

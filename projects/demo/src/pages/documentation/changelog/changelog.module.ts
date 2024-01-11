@@ -12,8 +12,8 @@ import {ChangelogComponent} from './changelog.component';
         MarkdownModule,
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(ChangelogComponent)),
+        ChangelogComponent,
     ],
-    declarations: [ChangelogComponent],
     exports: [ChangelogComponent],
 })
 export class ChangelogModule {}

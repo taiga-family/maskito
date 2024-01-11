@@ -1,13 +1,22 @@
+import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {
     AbstractControl,
     FormControl,
+    ReactiveFormsModule,
     ValidationErrors,
     ValidatorFn,
 } from '@angular/forms';
 import {TuiValidationError} from '@taiga-ui/cdk';
+import {
+    TuiErrorModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiFieldErrorPipeModule, TuiInputModule} from '@taiga-ui/kit';
 import {CountryCode, isValidPhoneNumber} from 'libphonenumber-js/max';
 
+import {MaskitoDirective} from '../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 function phoneValidator(countryCode: CountryCode): ValidatorFn {
@@ -19,7 +28,18 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
 }
 
 @Component({
+    standalone: true,
     selector: 'phone-doc-example-2',
+    imports: [
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiErrorModule,
+        AsyncPipe,
+        TuiFieldErrorPipeModule,
+    ],
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconPhoneLarge"

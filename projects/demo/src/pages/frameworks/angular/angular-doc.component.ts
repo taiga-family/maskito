@@ -1,9 +1,36 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {
+    TuiDocCodeModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
+import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+
+import {MaskitoDirective} from '../../../../../angular/src/lib/maskito.directive';
+import {NestedDocExample1} from './examples/1-nested/component';
+import {NestedDocExample2} from './examples/2-nested/component';
+import {CvaDocExample3} from './examples/3-cva/component';
+import {PipeDocExample4} from './examples/4-pipe/component';
 
 @Component({
+    standalone: true,
     selector: 'angular-doc-page',
+    imports: [
+        TuiDocPageModule,
+        TuiNotificationModule,
+        TuiLinkModule,
+        RouterLink,
+        TuiDocCodeModule,
+        TuiDocExampleModule,
+        NestedDocExample1,
+        NestedDocExample2,
+        MaskitoDirective,
+        CvaDocExample3,
+        PipeDocExample4,
+    ],
     templateUrl: './angular-doc.template.html',
     styleUrls: ['./angular-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

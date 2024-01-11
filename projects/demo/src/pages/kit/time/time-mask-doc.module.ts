@@ -21,8 +21,10 @@ import {TimeMaskDocComponent} from './time-mask-doc.component';
         TuiInputModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(TimeMaskDocComponent)),
+        TimeMaskDocComponent,
+        TimeMaskDocExample1,
+        TimeMaskDocExample2,
     ],
-    declarations: [TimeMaskDocComponent, TimeMaskDocExample1, TimeMaskDocExample2],
     exports: [TimeMaskDocComponent],
 })
 export class TimeMaskDocModule {}

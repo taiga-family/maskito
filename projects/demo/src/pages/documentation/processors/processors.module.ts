@@ -15,8 +15,8 @@ import {ProcessorsDocPageComponent} from './processors.component';
         TuiNotificationModule,
         NextStepsModule,
         RouterModule.forChild(tuiGenerateRoutes(ProcessorsDocPageComponent)),
+        ProcessorsDocPageComponent,
     ],
-    declarations: [ProcessorsDocPageComponent],
     exports: [ProcessorsDocPageComponent],
 })
 export class ProcessorsDocPageModule {}

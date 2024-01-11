@@ -8,8 +8,8 @@ import {StackblitzStarterComponent} from './stackblitz-starter.component';
     imports: [
         TuiLoaderModule,
         RouterModule.forChild([{path: '', component: StackblitzStarterComponent}]),
+        StackblitzStarterComponent,
     ],
-    declarations: [StackblitzStarterComponent],
     exports: [StackblitzStarterComponent],
 })
 export class StackblitzStarterModule {}

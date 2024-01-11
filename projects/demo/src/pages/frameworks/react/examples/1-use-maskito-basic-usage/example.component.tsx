@@ -10,6 +10,7 @@ import {App} from './use-maskito-basic-usage';
     host: {
         'comment-for-devtools': 'Everything inside this tag is really rendered by `react-dom` library',
     },
+    standalone: true
 })
 export class ReactExample1 {
     constructor(elementRef: ElementRef, @Inject(PLATFORM_ID) platformId: Record<string, unknown>) {

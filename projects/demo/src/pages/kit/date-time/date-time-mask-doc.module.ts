@@ -22,8 +22,6 @@ import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
         TuiLinkModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(DateTimeMaskDocComponent)),
-    ],
-    declarations: [
         DateTimeMaskDocComponent,
         DateTimeMaskDocExample1,
         DateTimeMaskDocExample2,

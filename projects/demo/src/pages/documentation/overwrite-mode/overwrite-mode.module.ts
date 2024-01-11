@@ -26,8 +26,6 @@ import {OverwriteModeDocPageComponent} from './overwrite-mode.component';
         TuiTextfieldControllerModule,
         NextStepsModule,
         RouterModule.forChild(tuiGenerateRoutes(OverwriteModeDocPageComponent)),
-    ],
-    declarations: [
         OverwriteModeDocPageComponent,
         OverwriteModeDocExample1,
         OverwriteModeDocExample2,

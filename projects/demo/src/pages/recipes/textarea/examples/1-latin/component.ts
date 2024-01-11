@@ -1,9 +1,21 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
+import {TuiTextareaModule} from '@taiga-ui/kit';
 
+import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 @Component({
+    standalone: true,
     selector: 'textarea-doc-example-1',
+    imports: [
+        TuiTextareaModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+    ],
     template: `
         <tui-textarea [(ngModel)]="value">
             Enter address

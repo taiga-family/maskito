@@ -5,8 +5,7 @@ import {TuiLinkModule} from '@taiga-ui/core';
 import {NextStepsComponent} from './next-steps.component';
 
 @NgModule({
-    imports: [TuiLinkModule, RouterModule],
-    declarations: [NextStepsComponent],
+    imports: [TuiLinkModule, RouterModule, NextStepsComponent],
     exports: [NextStepsComponent],
 })
 export class NextStepsModule {}

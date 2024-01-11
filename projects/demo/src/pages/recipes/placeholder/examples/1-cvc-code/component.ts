@@ -1,9 +1,22 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 
+import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import mask from './mask';
 
 @Component({
+    standalone: true,
     selector: 'placeholder-doc-example-1',
+    imports: [
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+    ],
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconCreditCardLarge"

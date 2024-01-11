@@ -10,8 +10,8 @@ import {BrowserSupportComponent} from './browser-support.component';
         CommonModule,
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(BrowserSupportComponent)),
+        BrowserSupportComponent,
     ],
-    declarations: [BrowserSupportComponent],
     exports: [BrowserSupportComponent],
 })
 export class BrowserSupportModule {}

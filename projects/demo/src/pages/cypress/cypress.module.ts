@@ -26,8 +26,6 @@ import {TestDocExample6} from './examples/6-multi-character-prefix/component';
         TuiAddonDocModule,
         RouterModule.forChild(tuiGenerateRoutes(CypressDocPageComponent)),
         TestDocExample4,
-    ],
-    declarations: [
         CypressDocPageComponent,
         TestDocExample1,
         TestDocExample2,

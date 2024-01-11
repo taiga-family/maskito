@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoOptions} from '@maskito/core';
 import {
@@ -7,15 +7,46 @@ import {
     maskitoDateTimeOptionsGenerator,
     MaskitoTimeMode,
 } from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {
+    TuiDocDemoModule,
+    TuiDocDocumentationModule,
+    TuiDocExample,
+    TuiDocExampleModule,
+    TuiDocPageModule,
+} from '@taiga-ui/addon-doc';
 import {CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
+import {
+    TuiLinkModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
+
+import {MaskitoDirective} from '../../../../../angular/src/lib/maskito.directive';
+import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
+import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
 >;
 
 @Component({
+    standalone: true,
     selector: 'date-time-mask-doc',
+    imports: [
+        TuiDocPageModule,
+        TuiDocExampleModule,
+        DateTimeMaskDocExample1,
+        TuiLinkModule,
+        DateTimeMaskDocExample2,
+        TuiDocDemoModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+        TuiDocDocumentationModule,
+    ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

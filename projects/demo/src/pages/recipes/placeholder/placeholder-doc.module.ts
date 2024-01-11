@@ -27,8 +27,6 @@ import {PlaceholderDocComponent} from './placeholder-doc.component';
         TuiLinkModule,
         TuiTextfieldControllerModule,
         RouterModule.forChild(tuiGenerateRoutes(PlaceholderDocComponent)),
-    ],
-    declarations: [
         PlaceholderDocComponent,
         PlaceholderDocExample1,
         PlaceholderDocExample2,

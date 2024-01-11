@@ -21,8 +21,10 @@ import {PrefixDocComponent} from './prefix-doc.component';
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(PrefixDocComponent)),
+        PrefixDocComponent,
+        PrefixDocExample1,
+        PrefixDocExample2,
     ],
-    declarations: [PrefixDocComponent, PrefixDocExample1, PrefixDocExample2],
     exports: [PrefixDocComponent],
 })
 export class PrefixDocModule {}

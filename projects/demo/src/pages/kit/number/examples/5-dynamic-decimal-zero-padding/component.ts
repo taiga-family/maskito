@@ -5,13 +5,31 @@
  */
 
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoOptions} from '@maskito/core';
 import {tuiPure} from '@taiga-ui/cdk';
+import {
+    TuiLabelModule,
+    TuiPrimitiveTextfieldModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 
+import {MaskitoDirective} from '../../../../../../../angular/src/lib/maskito.directive';
 import {getMaskitoOptions} from './mask';
 
 @Component({
+    standalone: true,
     selector: 'number-mask-doc-example-5',
+    imports: [
+        TuiLabelModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TuiPrimitiveTextfieldModule,
+        MaskitoDirective,
+    ],
     template: `
         <label tuiLabel="Enable decimal zero padding by typing dot">
             <tui-input

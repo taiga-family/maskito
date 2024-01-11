@@ -7,8 +7,8 @@ import {ReactLogoComponent} from './react-logo.component';
 import {VueLogoComponent} from './vue-logo.component';
 
 @NgModule({
-    imports: [TuiSvgModule],
-    declarations: [
+    imports: [
+        TuiSvgModule,
         JavaScriptLogoComponent,
         AngularLogoComponent,
         ReactLogoComponent,

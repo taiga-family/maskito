@@ -15,8 +15,8 @@ import {TransformerDocPageComponent} from './transformer.component';
         TuiNotificationModule,
         NextStepsModule,
         RouterModule.forChild(tuiGenerateRoutes(TransformerDocPageComponent)),
+        TransformerDocPageComponent,
     ],
-    declarations: [TransformerDocPageComponent],
     exports: [TransformerDocPageComponent],
 })
 export class TransformerDocPageModule {}

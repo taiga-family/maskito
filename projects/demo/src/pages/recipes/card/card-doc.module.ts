@@ -20,8 +20,9 @@ import {CardDocExample1} from './examples/1-basic/component';
         TuiGroupModule,
         TuiLinkModule,
         RouterModule.forChild(tuiGenerateRoutes(CardDocComponent)),
+        CardDocComponent,
+        CardDocExample1,
     ],
-    declarations: [CardDocComponent, CardDocExample1],
     exports: [CardDocComponent],
 })
 export class CardDocModule {}

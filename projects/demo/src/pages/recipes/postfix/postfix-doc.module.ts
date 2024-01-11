@@ -21,8 +21,10 @@ import {PostfixDocComponent} from './postfix-doc.component';
         TuiLinkModule,
         TuiNotificationModule,
         RouterModule.forChild(tuiGenerateRoutes(PostfixDocComponent)),
+        PostfixDocComponent,
+        PostfixDocExample1,
+        PostfixDocExample2,
     ],
-    declarations: [PostfixDocComponent, PostfixDocExample1, PostfixDocExample2],
     exports: [PostfixDocComponent],
 })
 export class PostfixDocModule {}
