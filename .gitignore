@@ -30,6 +30,7 @@ speed-measure-plugin.json
 .history/*
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -46,6 +47,7 @@ Thumbs.db
 # cypress
 **/cypress/**/screenshots/**
 
+.nx/cache
 .ssl
 RELEASE_BODY.md
 projects/demo/routesFile.txt
