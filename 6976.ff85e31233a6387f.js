@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[6976],{6976:e=>{e.exports="```ts\n// Best Practice \u2705\nuseMaskito({\n  options: maskitoOptions,\n  elementPredicate: predicate,\n});\n\n// Anti-Pattern \u274c\nuseMaskito({\n  options: {mask: /^.*$/},\n  elementPredicate: () => e.querySelector('input#my-input'),\n});\n```\n"}}]);
