@@ -1,6 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
+import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * It removes repeated leading zeroes for integer part.
@@ -9,10 +10,17 @@ import {escapeRegExp} from '../../../utils';
  * @example User types "000000" => 0|
  * @example 0| => User types "5" => 5|
  */
-export function createLeadingZeroesValidationPostprocessor(
-    decimalSeparator: string,
-    thousandSeparator: string,
-): MaskitoPostprocessor {
+export function createLeadingZeroesValidationPostprocessor({
+    decimalSeparator,
+    thousandSeparator,
+    prefix,
+    postfix,
+}: {
+    decimalSeparator: string;
+    thousandSeparator: string;
+    prefix: string;
+    postfix: string;
+}): MaskitoPostprocessor {
     const trimLeadingZeroes = (value: string): string => {
         const escapedThousandSeparator = escapeRegExp(thousandSeparator);
 
@@ -42,8 +50,13 @@ export function createLeadingZeroesValidationPostprocessor(
 
     return ({value, selection}) => {
         const [from, to] = selection;
-        const hasDecimalSeparator = value.includes(decimalSeparator);
-        const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
+        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
+            prefix,
+            postfix,
+        });
+
+        const hasDecimalSeparator = cleanValue.includes(decimalSeparator);
+        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
         const zeroTrimmedIntegerPart = trimLeadingZeroes(integerPart);
 
         if (integerPart === zeroTrimmedIntegerPart) {
@@ -55,9 +68,11 @@ export function createLeadingZeroesValidationPostprocessor(
 
         return {
             value:
+                extractedPrefix +
                 zeroTrimmedIntegerPart +
                 (hasDecimalSeparator ? decimalSeparator : '') +
-                decimalPart,
+                decimalPart +
+                extractedPostfix,
             selection: [Math.max(newFrom, 0), Math.max(newTo, 0)],
         };
     };

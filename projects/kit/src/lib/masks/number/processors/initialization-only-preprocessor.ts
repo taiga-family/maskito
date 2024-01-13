@@ -1,6 +1,7 @@
 import {MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
 
 import {generateMaskExpression} from '../utils';
+import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).
@@ -16,10 +17,14 @@ export function createInitializationOnlyPreprocessor({
     decimalSeparator,
     decimalPseudoSeparators,
     pseudoMinuses,
+    prefix,
+    postfix,
 }: {
     decimalSeparator: string;
     decimalPseudoSeparators: readonly string[];
     pseudoMinuses: readonly string[];
+    prefix: string;
+    postfix: string;
 }): MaskitoPreprocessor {
     let isInitializationPhase = true;
     const cleanNumberMask = generateMaskExpression({
@@ -40,10 +45,18 @@ export function createInitializationOnlyPreprocessor({
 
         isInitializationPhase = false;
 
+        const {cleanValue} = extractAffixes(elementState.value, {prefix, postfix});
+
         return {
-            elementState: maskitoTransform(elementState, {
-                mask: cleanNumberMask,
-            }),
+            elementState: maskitoTransform(
+                {
+                    ...elementState,
+                    value: cleanValue,
+                },
+                {
+                    mask: cleanNumberMask,
+                },
+            ),
             data,
         };
     };

@@ -1,7 +1,7 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
-import {extractPrefixAndPostfix} from '../utils/extract-prefix-and-postfix';
+import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * It rejects new typed decimal separator if it already exists in text field.
@@ -19,9 +19,10 @@ export function createRepeatedDecimalSeparatorPreprocessor({
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
+
         const [from, to] = selection;
 
-        const {cleanValue} = extractPrefixAndPostfix({value, prefix, postfix});
+        const {cleanValue} = extractAffixes(value, {prefix, postfix});
 
         return {
             elementState,

@@ -3,7 +3,7 @@ import {escapeRegExp} from '../../../utils';
 
 export function maskitoParseNumber(
     maskedNumber: string,
-    decimalSeparator: string = '.'
+    decimalSeparator: string = '.',
 ): number {
     const hasNegativeSign = !!maskedNumber.match(
         new RegExp(`^\\D*[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}]`),

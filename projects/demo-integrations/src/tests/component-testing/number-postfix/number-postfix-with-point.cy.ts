@@ -35,8 +35,7 @@ describe('Number | postfix with point', () => {
                     .should('have.prop', 'selectionEnd', 2);
             });
 
-            // TODO https://github.com/taiga-family/maskito/issues/703
-            it.skip('Empty => Type 0.42 => 0.42 lbs.', () => {
+            it('Empty => Type 0.42 => 0.42 lbs.', () => {
                 cy.mount(TestInput, {componentProperties: {maskitoOptions}});
                 cy.get('input')
                     .type('0')
@@ -52,8 +51,7 @@ describe('Number | postfix with point', () => {
             });
         });
 
-        // TODO https://github.com/taiga-family/maskito/issues/703
-        describe.skip('Complex: maskitoCaretGuard + maskitoAddOnFocusPlugin + maskitoRemoveOnBlurPlugin', () => {
+        describe('Complex: maskitoCaretGuard + maskitoAddOnFocusPlugin + maskitoRemoveOnBlurPlugin', () => {
             const postfix = ' lbs.';
             const numberOptions = maskitoNumberOptionsGenerator({
                 postfix,

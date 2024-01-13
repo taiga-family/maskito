@@ -2,7 +2,7 @@ import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {escapeRegExp} from '../../../utils';
-import {extractPrefixAndPostfix} from '../utils/extract-prefix-and-postfix';
+import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * It pads EMPTY integer part with zero if decimal parts exists.
@@ -21,12 +21,10 @@ export function createNotEmptyIntegerPlugin({
     return maskitoEventHandler(
         'blur',
         element => {
-            const {cleanValue, extractedPostfix, extractedPrefix} =
-                extractPrefixAndPostfix({
-                    value: element.value,
-                    prefix,
-                    postfix,
-                });
+            const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(
+                element.value,
+                {prefix, postfix},
+            );
             const newValue =
                 extractedPrefix +
                 cleanValue.replace(

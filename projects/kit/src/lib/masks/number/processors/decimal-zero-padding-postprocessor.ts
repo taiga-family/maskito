@@ -2,7 +2,7 @@ import {MaskitoPostprocessor} from '@maskito/core';
 
 import {identity} from '../../../utils';
 import {maskitoParseNumber} from '../utils';
-import {extractPrefixAndPostfix} from '../utils/extract-prefix-and-postfix';
+import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * If `decimalZeroPadding` is `true`, it pads decimal part with zeroes
@@ -27,17 +27,12 @@ export function createDecimalZeroPaddingPostprocessor({
     }
 
     return ({value, selection}) => {
-        const {cleanValue, extractedPrefix, extractedPostfix} = extractPrefixAndPostfix({
-            value,
+        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
             prefix,
             postfix,
         });
 
-        if (
-            Number.isNaN(
-                maskitoParseNumber(cleanValue, decimalSeparator, prefix, postfix),
-            )
-        ) {
+        if (Number.isNaN(maskitoParseNumber(cleanValue, decimalSeparator))) {
             return {value, selection};
         }
 

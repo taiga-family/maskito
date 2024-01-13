@@ -29,6 +29,7 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
+import {createAffixesFilterPreprocessor} from './processors/affixes-filter-preprocessor';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
@@ -79,7 +80,10 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalPseudoSeparators: validatedDecimalPseudoSeparators,
                 pseudoMinuses,
+                prefix,
+                postfix,
             }),
+            createAffixesFilterPreprocessor({prefix, postfix}),
             createFullWidthToHalfWidthPreprocessor(),
             createPseudoCharactersPreprocessor({
                 validCharacter: CHAR_MINUS,
@@ -99,7 +103,12 @@ export function maskitoNumberOptionsGenerator({
                 decimalZeroPadding,
                 thousandSeparator,
             }),
-            createZeroPrecisionPreprocessor(precision, decimalSeparator),
+            createZeroPrecisionPreprocessor({
+                precision,
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
             createRepeatedDecimalSeparatorPreprocessor({
                 decimalSeparator,
                 prefix,
@@ -107,7 +116,7 @@ export function maskitoNumberOptionsGenerator({
             }),
         ],
         postprocessors: [
-            createMinMaxPostprocessor({decimalSeparator, min, max, prefix, postfix}),
+            createMinMaxPostprocessor({decimalSeparator, min, max}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor({
@@ -136,7 +145,7 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
             }),
-            createMinMaxPlugin({min, max, decimalSeparator, prefix, postfix}),
+            createMinMaxPlugin({min, max, decimalSeparator}),
         ],
         overwriteMode: decimalZeroPadding
             ? ({value, selection: [from]}) =>
