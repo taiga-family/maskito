@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiDocExample, TuiDocExampleModule, TuiDocPageModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
 import {PrefixDocExample1} from './examples/1-pattern-mask/component';
@@ -11,18 +11,17 @@ import {PrefixDocExample2} from './examples/2-postprocessor/component';
     standalone: true,
     selector: 'prefix-doc',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
+        TuiAddonDocModule,
         TuiLinkModule,
+        TuiNotificationModule,
         RouterLink,
         PrefixDocExample1,
-        TuiNotificationModule,
         PrefixDocExample2,
     ],
     templateUrl: './prefix-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PrefixDocComponent {
+export default class PrefixDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
 

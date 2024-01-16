@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiDocExample, TuiDocExampleModule, TuiDocPageModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
 
 import {PlaceholderDocExample1} from './examples/1-cvc-code/component';
@@ -12,8 +12,7 @@ import {PlaceholderDocExample3} from './examples/3-date/component';
     standalone: true,
     selector: 'placeholder-doc',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
+        TuiAddonDocModule,
         TuiLinkModule,
         RouterLink,
         PlaceholderDocExample1,
@@ -23,7 +22,7 @@ import {PlaceholderDocExample3} from './examples/3-date/component';
     templateUrl: './placeholder-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceholderDocComponent {
+export default class PlaceholderDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
     readonly pluginsDocPage = `/${DemoPath.Plugins}`;
