@@ -2,6 +2,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../constants';
 import {
+    createFullWidthToHalfWidthPreprocessor,
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
@@ -39,6 +40,7 @@ export function maskitoDateTimeOptionsGenerator({
         overwriteMode: 'replace',
         preprocessors: [
             createZeroPlaceholdersPreprocessor(),
+            createFullWidthToHalfWidthPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
