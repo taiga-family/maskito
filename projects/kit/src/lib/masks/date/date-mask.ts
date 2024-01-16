@@ -1,6 +1,7 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {
+    createFullWidthToHalfWidthPreprocessor,
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
@@ -29,6 +30,7 @@ export function maskitoDateOptionsGenerator({
         overwriteMode: 'replace',
         preprocessors: [
             createZeroPlaceholdersPreprocessor(),
+            createFullWidthToHalfWidthPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: separator,

@@ -9,6 +9,7 @@ import {
     CHAR_NO_BREAK_SPACE,
 } from '../../constants';
 import {
+    createFullWidthToHalfWidthPreprocessor,
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
@@ -19,7 +20,6 @@ import {
 } from './plugins';
 import {
     createDecimalZeroPaddingPostprocessor,
-    createFullWidthToHalfWidthPreprocessor,
     createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,

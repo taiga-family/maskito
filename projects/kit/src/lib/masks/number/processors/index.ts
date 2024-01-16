@@ -1,5 +1,4 @@
 export * from './decimal-zero-padding-postprocessor';
-export * from './fullwidth-to-halfwidth-preprocessor';
 export * from './initialization-only-preprocessor';
 export * from './leading-zeroes-validation-postprocessor';
 export * from './min-max-postprocessor';
