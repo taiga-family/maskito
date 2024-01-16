@@ -4,15 +4,8 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
-import {
-    TuiDocCodeModule,
-    TuiDocDemoModule,
-    TuiDocDocumentationModule,
-    TuiDocExample,
-    TuiDocExampleModule,
-    TuiDocPageModule,
-} from '@taiga-ui/addon-doc';
-import {TuiNotificationModule, TuiPrimitiveTextfieldModule} from '@taiga-ui/core';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
@@ -29,21 +22,16 @@ type GeneratorOptions = Required<
     standalone: true,
     selector: 'number-mask-doc',
     imports: [
-        TuiDocPageModule,
+        MaskitoDirective,
+        ReactiveFormsModule,
+        TuiAddonDocModule,
+        TuiInputModule,
         TuiNotificationModule,
-        TuiDocCodeModule,
-        TuiDocExampleModule,
         NumberMaskDocExample1,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
         NumberMaskDocExample4,
         NumberMaskDocExample5,
-        TuiDocDemoModule,
-        TuiInputModule,
-        ReactiveFormsModule,
-        TuiPrimitiveTextfieldModule,
-        MaskitoDirective,
-        TuiDocDocumentationModule,
     ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

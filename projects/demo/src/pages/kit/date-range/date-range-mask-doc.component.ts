@@ -8,19 +8,9 @@ import {
     maskitoDateRangeOptionsGenerator,
     MaskitoDateSegments,
 } from '@maskito/kit';
-import {
-    TuiDocDemoModule,
-    TuiDocDocumentationModule,
-    TuiDocExample,
-    TuiDocExampleModule,
-    TuiDocPageModule,
-} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
-import {
-    TuiLinkModule,
-    TuiPrimitiveTextfieldModule,
-    TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
+import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
@@ -36,20 +26,16 @@ type GeneratorOptions = Required<
     standalone: true,
     selector: 'date-range-mask-doc',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
-        DateRangeMaskDocExample1,
+        MaskitoDirective,
+        TuiAddonDocModule,
         TuiLinkModule,
-        DateRangeMaskDocExample2,
-        DateRangeMaskDocExample3,
-        DateRangeMaskDocExample4,
-        TuiDocDemoModule,
         TuiInputModule,
         TuiTextfieldControllerModule,
         ReactiveFormsModule,
-        TuiPrimitiveTextfieldModule,
-        MaskitoDirective,
-        TuiDocDocumentationModule,
+        DateRangeMaskDocExample1,
+        DateRangeMaskDocExample2,
+        DateRangeMaskDocExample3,
+        DateRangeMaskDocExample4,
     ],
     templateUrl: './date-range-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
