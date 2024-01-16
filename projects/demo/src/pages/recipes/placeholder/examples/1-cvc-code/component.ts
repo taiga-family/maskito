@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 import mask from './mask';
@@ -10,12 +10,10 @@ import mask from './mask';
     standalone: true,
     selector: 'placeholder-doc-example-1',
     imports: [
+        FormsModule,
+        MaskitoDirective,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        ReactiveFormsModule,
-        FormsModule,
-        TuiPrimitiveTextfieldModule,
-        MaskitoDirective,
     ],
     template: `
         <tui-input

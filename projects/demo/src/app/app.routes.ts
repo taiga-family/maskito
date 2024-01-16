@@ -167,16 +167,14 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Card,
-        loadChildren: () =>
-            import('../pages/recipes/card/card-doc.module').then(m => m.CardDocModule),
+        loadComponent: () => import('../pages/recipes/card/card-doc.component'),
         data: {
             title: 'Card',
         },
     },
     {
         path: DemoPath.Phone,
-        loadChildren: () =>
-            import('../pages/recipes/phone/phone-doc.module').then(m => m.PhoneDocModule),
+        loadComponent: () => import('../pages/recipes/phone/phone-doc.component'),
         data: {
             title: 'Phone',
         },
@@ -191,40 +189,29 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.Textarea,
-        loadChildren: () =>
-            import('../pages/recipes/textarea/textarea-doc.module').then(
-                m => m.TextareaDocModule,
-            ),
+        loadComponent: () => import('../pages/recipes/textarea/textarea-doc.component'),
         data: {
             title: 'Textarea',
         },
     },
     {
         path: DemoPath.Prefix,
-        loadChildren: () =>
-            import('../pages/recipes/prefix/prefix-doc.module').then(
-                m => m.PrefixDocModule,
-            ),
+        loadComponent: () => import('../pages/recipes/prefix/prefix-doc.component'),
         data: {
             title: 'With prefix',
         },
     },
     {
         path: DemoPath.Postfix,
-        loadChildren: () =>
-            import('../pages/recipes/postfix/postfix-doc.module').then(
-                m => m.PostfixDocModule,
-            ),
+        loadComponent: () => import('../pages/recipes/postfix/postfix-doc.component'),
         data: {
             title: 'With postfix',
         },
     },
     {
         path: DemoPath.Placeholder,
-        loadChildren: () =>
-            import('../pages/recipes/placeholder/placeholder-doc.module').then(
-                m => m.PlaceholderDocModule,
-            ),
+        loadComponent: () =>
+            import('../pages/recipes/placeholder/placeholder-doc.component'),
         data: {
             title: 'With placeholder',
         },
