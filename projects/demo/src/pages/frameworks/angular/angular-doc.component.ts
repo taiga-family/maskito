@@ -2,12 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
-import {
-    TuiDocCodeModule,
-    TuiDocExample,
-    TuiDocExampleModule,
-    TuiDocPageModule,
-} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
 import {NestedDocExample1} from './examples/1-nested/component';
@@ -19,15 +14,13 @@ import {PipeDocExample4} from './examples/4-pipe/component';
     standalone: true,
     selector: 'angular-doc-page',
     imports: [
-        TuiDocPageModule,
+        MaskitoDirective,
+        RouterLink,
+        TuiAddonDocModule,
         TuiNotificationModule,
         TuiLinkModule,
-        RouterLink,
-        TuiDocCodeModule,
-        TuiDocExampleModule,
         NestedDocExample1,
         NestedDocExample2,
-        MaskitoDirective,
         CvaDocExample3,
         PipeDocExample4,
     ],

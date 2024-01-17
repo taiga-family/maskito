@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
 @Component({
@@ -12,9 +12,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
     imports: [
         TuiInputModule,
         TuiTextfieldControllerModule,
-        ReactiveFormsModule,
         FormsModule,
-        TuiPrimitiveTextfieldModule,
         MaskitoDirective,
     ],
     template: `

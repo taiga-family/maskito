@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiDocExample, TuiDocExampleModule, TuiDocPageModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
@@ -13,20 +13,19 @@ import {PluginsDocExample3} from './examples/3-strict-composition/component';
     standalone: true,
     selector: 'plugins-mode-doc-page',
     imports: [
-        TuiDocPageModule,
-        TuiDocExampleModule,
-        TuiNotificationModule,
-        PluginsDocExample1,
-        TuiLinkModule,
         RouterLink,
+        TuiAddonDocModule,
+        TuiNotificationModule,
+        TuiLinkModule,
+        NextStepsComponent,
+        PluginsDocExample1,
         PluginsDocExample2,
         PluginsDocExample3,
-        NextStepsComponent,
     ],
     templateUrl: './plugins.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PluginsDocPageComponent {
+export default class PluginsDocPageComponent {
     readonly transformerDocPage = `/${DemoPath.Transformer}`;
 
     readonly rejectExample: TuiDocExample = {

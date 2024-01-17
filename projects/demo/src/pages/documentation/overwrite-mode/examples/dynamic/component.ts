@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiPrimitiveTextfieldModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiTextareaModule} from '@taiga-ui/kit';
 
 import mask from './mask';
@@ -10,12 +10,10 @@ import mask from './mask';
     standalone: true,
     selector: 'overwrite-mode-dynamic-doc-example-3',
     imports: [
-        TuiTextareaModule,
-        ReactiveFormsModule,
         FormsModule,
-        TuiTextfieldControllerModule,
-        TuiPrimitiveTextfieldModule,
         MaskitoDirective,
+        TuiTextareaModule,
+        TuiTextfieldControllerModule,
     ],
     template: `
         <tui-textarea

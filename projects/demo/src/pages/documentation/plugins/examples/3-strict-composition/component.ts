@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiInputModule} from '@taiga-ui/kit';
 
@@ -8,7 +8,7 @@ import mask from './mask';
 @Component({
     standalone: true,
     selector: 'plugins-strict-composition-doc-example-3',
-    imports: [TuiInputModule, MaskitoDirective, ReactiveFormsModule, FormsModule],
+    imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `
         <tui-input
             [maskito]="maskitoOptions"
