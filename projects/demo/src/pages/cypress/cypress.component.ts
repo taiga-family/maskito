@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiDocPageModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 
 import {TestDocExample1} from './examples/1-predicate/component';
 import {TestDocExample2} from './examples/2-native-max-length/component';
@@ -12,7 +12,7 @@ import {TestDocExample6} from './examples/6-multi-character-prefix/component';
     standalone: true,
     selector: 'cypress-doc-page',
     imports: [
-        TuiDocPageModule,
+        TuiAddonDocModule,
         TestDocExample1,
         TestDocExample2,
         TestDocExample3,
@@ -24,4 +24,4 @@ import {TestDocExample6} from './examples/6-multi-character-prefix/component';
     styleUrls: ['./cypress.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CypressDocPageComponent {}
+export default class CypressDocPageComponent {}

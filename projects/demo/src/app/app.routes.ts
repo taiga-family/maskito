@@ -8,20 +8,18 @@ export const appRoutes: Routes = [
     // Getting started
     {
         path: DemoPath.WhatIsMaskito,
-        loadChildren: () =>
-            import('../pages/documentation/what-is-maskito/what-is-maskito.module').then(
-                m => m.WhatIsMaskitoDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/what-is-maskito/what-is-maskito.component'),
         data: {
             title: 'What is Maskito?',
         },
     },
     {
         path: DemoPath.MaskitoLibraries,
-        loadChildren: () =>
+        loadComponent: () =>
             import(
-                '../pages/documentation/maskito-libraries/maskito-libraries.module'
-            ).then(m => m.MaskitoLibrariesDocPageModule),
+                '../pages/documentation/maskito-libraries/maskito-libraries.component'
+            ),
         data: {
             title: 'Maskito libraries',
         },
@@ -29,70 +27,57 @@ export const appRoutes: Routes = [
     // Core concepts
     {
         path: DemoPath.CoreConceptsOverview,
-        loadChildren: () =>
+        loadComponent: () =>
             import(
-                '../pages/documentation/core-concepts-overview/core-concepts-overview.module'
-            ).then(m => m.CoreConceptsOverviewDocPageModule),
+                '../pages/documentation/core-concepts-overview/core-concepts-overview.component'
+            ),
         data: {
             title: 'Core concepts',
         },
     },
     {
         path: DemoPath.MaskExpression,
-        loadChildren: () =>
-            import('../pages/documentation/mask-expression/mask-expression.module').then(
-                m => m.MaskExpressionDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/mask-expression/mask-expression.component'),
         data: {
             title: 'Mask expression',
         },
     },
     {
         path: DemoPath.ElementState,
-        loadChildren: () =>
-            import('../pages/documentation/element-state/element-state.module').then(
-                m => m.ElementStateDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/element-state/element-state.component'),
         data: {
             title: 'Element state',
         },
     },
     {
         path: DemoPath.Processors,
-        loadChildren: () =>
-            import('../pages/documentation/processors/processors.module').then(
-                m => m.ProcessorsDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/processors/processors.component'),
         data: {
             title: 'Processors',
         },
     },
     {
         path: DemoPath.Plugins,
-        loadChildren: () =>
-            import('../pages/documentation/plugins/plugins.module').then(
-                m => m.PluginsDocPageModule,
-            ),
+        loadComponent: () => import('../pages/documentation/plugins/plugins.component'),
         data: {
             title: 'Plugins',
         },
     },
     {
         path: DemoPath.OverwriteMode,
-        loadChildren: () =>
-            import('../pages/documentation/overwrite-mode/overwrite-mode.module').then(
-                m => m.OverwriteModeDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/overwrite-mode/overwrite-mode.component'),
         data: {
             title: 'Overwrite mode',
         },
     },
     {
         path: DemoPath.Transformer,
-        loadChildren: () =>
-            import('../pages/documentation/transformer/transformer.module').then(
-                m => m.TransformerDocPageModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/transformer/transformer.component'),
         data: {
             title: 'Transformer',
         },
@@ -100,30 +85,21 @@ export const appRoutes: Routes = [
     // Frameworks
     {
         path: DemoPath.Angular,
-        loadChildren: () =>
-            import('../pages/frameworks/angular/angular-doc.module').then(
-                m => m.AngularDocPageModule,
-            ),
+        loadChildren: () => import('../pages/frameworks/angular'),
         data: {
             title: 'Angular',
         },
     },
     {
         path: DemoPath.React,
-        loadChildren: () =>
-            import('../pages/frameworks/react/react-doc.module').then(
-                m => m.ReactDocPageModule,
-            ),
+        loadComponent: () => import('../pages/frameworks/react/react-doc.component'),
         data: {
             title: 'React',
         },
     },
     {
         path: DemoPath.Vue,
-        loadChildren: () =>
-            import('../pages/frameworks/vue/vue-doc.module').then(
-                m => m.VueDocPageModule,
-            ),
+        loadComponent: () => import('../pages/frameworks/vue/vue-doc.component'),
         data: {
             title: 'Vue',
         },
@@ -181,8 +157,7 @@ export const appRoutes: Routes = [
     },
     {
         path: DemoPath.PhonePackage,
-        loadChildren: () =>
-            import('../pages/phone/phone-doc.module').then(m => m.PhoneDocModule),
+        loadChildren: () => import('../pages/phone'),
         data: {
             title: 'Phone',
         },
@@ -219,28 +194,24 @@ export const appRoutes: Routes = [
     // Other
     {
         path: DemoPath.BrowserSupport,
-        loadChildren: () =>
-            import('../pages/documentation/browser-support/browser-support.module').then(
-                m => m.BrowserSupportModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/browser-support/browser-support.component'),
         data: {
             title: 'Browser support',
         },
     },
     {
         path: DemoPath.Changelog,
-        loadChildren: () =>
-            import('../pages/documentation/changelog/changelog.module').then(
-                m => m.ChangelogModule,
-            ),
+        loadComponent: () =>
+            import('../pages/documentation/changelog/changelog.component'),
         data: {
             title: 'Changelog',
         },
     },
     {
         path: DemoPath.Stackblitz,
-        loadChildren: () =>
-            import('../pages/stackblitz').then(m => m.StackblitzStarterModule),
+        loadComponent: () =>
+            import('../pages/stackblitz').then(m => m.StackblitzStarterComponent),
         data: {
             title: 'Stackblitz Starter',
         },
@@ -248,8 +219,7 @@ export const appRoutes: Routes = [
     // TODO: replace this page with Cypress Component Testing after angular13+ update
     {
         path: DemoPath.Cypress,
-        loadChildren: () =>
-            import('../pages/cypress/cypress.module').then(m => m.CypressDocPageModule),
+        loadComponent: () => import('../pages/cypress/cypress.component'),
         data: {
             title: 'Cypress tests 🤫',
         },
