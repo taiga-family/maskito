@@ -1,7 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp, identity} from '../../../utils';
-import {extractAffixes} from '../utils/extract-affixes';
+import {escapeRegExp, extractAffixes, identity} from '../../../utils';
 
 /**
  * It drops decimal part if precision is zero.

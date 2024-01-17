@@ -1,7 +1,7 @@
 import {MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
 
+import {extractAffixes} from '../../../utils';
 import {generateMaskExpression} from '../utils';
-import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).

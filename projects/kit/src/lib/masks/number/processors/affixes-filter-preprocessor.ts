@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {extractAffixes} from '../utils/extract-affixes';
+import {extractAffixes} from '../../../utils';
 
 /**
  * It drops prefix and postfix from data

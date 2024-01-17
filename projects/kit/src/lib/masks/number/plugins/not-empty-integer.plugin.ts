@@ -1,8 +1,7 @@
 import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
-import {escapeRegExp} from '../../../utils';
-import {extractAffixes} from '../utils/extract-affixes';
+import {escapeRegExp, extractAffixes} from '../../../utils';
 
 /**
  * It pads EMPTY integer part with zero if decimal parts exists.

@@ -1,7 +1,6 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {escapeRegExp} from '../../../utils';
-import {extractAffixes} from '../utils/extract-affixes';
+import {escapeRegExp, extractAffixes} from '../../../utils';
 
 /**
  * It removes repeated leading zeroes for integer part.

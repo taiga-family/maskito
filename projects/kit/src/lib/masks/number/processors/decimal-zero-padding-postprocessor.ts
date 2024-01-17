@@ -1,8 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {identity} from '../../../utils';
+import {extractAffixes, identity} from '../../../utils';
 import {maskitoParseNumber} from '../utils';
-import {extractAffixes} from '../utils/extract-affixes';
 
 /**
  * If `decimalZeroPadding` is `true`, it pads decimal part with zeroes

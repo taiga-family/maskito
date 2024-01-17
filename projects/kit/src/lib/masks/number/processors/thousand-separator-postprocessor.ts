@@ -1,8 +1,7 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
 import {CHAR_MINUS} from '../../../constants';
-import {identity} from '../../../utils';
-import {extractAffixes} from '../utils/extract-affixes';
+import {extractAffixes, identity} from '../../../utils';
 
 /**
  * It adds symbol for separating thousands.
@@ -23,24 +22,17 @@ export function createThousandSeparatorPostprocessor({
         return identity;
     }
 
-    const minusReg = new RegExp(`^${CHAR_MINUS}?`);
     const isAllSpaces = (...chars: string[]): boolean => chars.every(x => /\s/.test(x));
 
     return ({value, selection}) => {
-        const {
-            cleanValue: cleanValueWithPossibleMinus,
-            extractedPostfix,
-            extractedPrefix,
-        } = extractAffixes(value, {
+        const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
             prefix,
             postfix,
         });
 
-        const [extractedMinus = ''] = cleanValueWithPossibleMinus.match(minusReg) || [];
-
-        const cleanValue = cleanValueWithPossibleMinus.replace(minusReg, '');
-
-        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
+        const [integerPart, decimalPart = ''] = cleanValue
+            .replace(CHAR_MINUS, '')
+            .split(decimalSeparator);
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
@@ -91,7 +83,7 @@ export function createThousandSeparatorPostprocessor({
         return {
             value:
                 extractedPrefix +
-                extractedMinus +
+                (cleanValue.includes(CHAR_MINUS) ? CHAR_MINUS : '') +
                 processedIntegerPart +
                 (cleanValue.includes(decimalSeparator) ? decimalSeparator : '') +
                 decimalPart +

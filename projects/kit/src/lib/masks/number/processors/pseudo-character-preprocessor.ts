@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {extractAffixes} from '../utils/extract-affixes';
+import {extractAffixes} from '../../../utils';
 
 /**
  * It replaces pseudo characters with valid one.
@@ -22,21 +22,18 @@ export function createPseudoCharactersPreprocessor({
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
-
         const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
             prefix,
             postfix,
         });
 
-        const newValue =
-            extractedPrefix +
-            cleanValue.replace(pseudoCharactersRegExp, validCharacter) +
-            extractedPostfix;
-
         return {
             elementState: {
                 selection,
-                value: newValue,
+                value:
+                    extractedPrefix +
+                    cleanValue.replace(pseudoCharactersRegExp, validCharacter) +
+                    extractedPostfix,
             },
             data: data.replace(pseudoCharactersRegExp, validCharacter),
         };

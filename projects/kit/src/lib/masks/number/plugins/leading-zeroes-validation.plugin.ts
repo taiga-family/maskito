@@ -2,7 +2,6 @@ import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {createLeadingZeroesValidationPostprocessor} from '../processors';
-import {extractAffixes} from '../utils/extract-affixes';
 
 const DUMMY_SELECTION = [0, 0] as const;
 
@@ -32,21 +31,13 @@ export function createLeadingZeroesValidationPlugin({
     return maskitoEventHandler(
         'blur',
         element => {
-            const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(
-                element.value,
-                {prefix, postfix},
-            );
-
-            const newValue =
-                extractedPrefix +
-                dropRepeatedLeadingZeroes(
-                    {
-                        value: cleanValue,
-                        selection: DUMMY_SELECTION,
-                    },
-                    {value: '', selection: DUMMY_SELECTION},
-                ).value +
-                extractedPostfix;
+            const newValue = dropRepeatedLeadingZeroes(
+                {
+                    value: element.value,
+                    selection: DUMMY_SELECTION,
+                },
+                {value: '', selection: DUMMY_SELECTION},
+            ).value;
 
             if (element.value !== newValue) {
                 maskitoUpdateElement(element, newValue);
