@@ -289,7 +289,7 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoParseNumber(expected)).toBe(1000);
             });
 
-            it('1 000. => lbs.1 000', () => {
+            it('1 000. => lbs.1 000.', () => {
                 const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}1${CHAR_NO_BREAK_SPACE}000.`;
 
                 expect(maskitoTransform('1 000.', options)).toBe(expected);
