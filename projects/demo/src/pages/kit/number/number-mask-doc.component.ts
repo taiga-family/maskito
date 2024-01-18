@@ -1,9 +1,14 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
-import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {
+    maskitoAddOnFocusPlugin,
+    maskitoCaretGuard,
+    maskitoNumberOptionsGenerator,
+    maskitoRemoveOnBlurPlugin,
+} from '@maskito/kit';
 import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
@@ -38,9 +43,6 @@ type GeneratorOptions = Required<
     providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
-    @ViewChild('apiPageInput', {read: ElementRef})
-    apiPageInput!: ElementRef<HTMLInputElement>;
-
     readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-number-demo.md?raw'
     );
@@ -97,20 +99,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         this.maskitoOptions = this.calculateMask(this);
     }
 
-    onFocus(): void {
-        if (!this.apiPageControl.value) {
-            this.apiPageControl.patchValue(this.prefix + this.postfix);
-        }
-    }
-
-    onBlur(): void {
-        const value = this.apiPageControl.value;
-
-        if (value && value === this.prefix + this.postfix) {
-            this.apiPageControl.patchValue('');
-        }
-    }
-
     private calculateMask(options: GeneratorOptions): MaskitoOptions {
         const {prefix, postfix} = options;
         const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
@@ -119,6 +107,8 @@ export class NumberMaskDocComponent implements GeneratorOptions {
             ...numberOptions,
             plugins: [
                 ...plugins,
+                maskitoAddOnFocusPlugin(prefix + postfix),
+                maskitoRemoveOnBlurPlugin(prefix + postfix),
                 maskitoCaretGuard(value => [
                     prefix.length,
                     value.length - postfix.length,

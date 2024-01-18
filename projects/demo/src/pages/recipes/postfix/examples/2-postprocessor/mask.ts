@@ -1,8 +1,10 @@
 import {MaskitoOptions} from '@maskito/core';
 import {
+    maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
+    maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 
 export default {
@@ -13,6 +15,8 @@ export default {
         maskitoPostfixPostprocessorGenerator('.00'),
     ],
     plugins: [
+        maskitoAddOnFocusPlugin('$.00'),
+        maskitoRemoveOnBlurPlugin('$.00'),
         // Disallow to put caret before the prefix or after the postfix
         maskitoCaretGuard(value => ['$'.length, value.length - '.00'.length]),
     ],
