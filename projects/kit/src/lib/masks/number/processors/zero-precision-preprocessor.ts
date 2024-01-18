@@ -1,15 +1,22 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp, identity} from '../../../utils';
+import {escapeRegExp, extractAffixes, identity} from '../../../utils';
 
 /**
  * It drops decimal part if precision is zero.
  * @example User pastes '123.45' (but precision is zero) => 123
  */
-export function createZeroPrecisionPreprocessor(
-    precision: number,
-    decimalSeparator: string,
-): MaskitoPreprocessor {
+export function createZeroPrecisionPreprocessor({
+    precision,
+    decimalSeparator,
+    prefix,
+    postfix,
+}: {
+    precision: number;
+    decimalSeparator: string;
+    prefix: string;
+    postfix: string;
+}): MaskitoPreprocessor {
     if (precision > 0) {
         return identity;
     }
@@ -18,8 +25,15 @@ export function createZeroPrecisionPreprocessor(
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
+        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
+            prefix,
+            postfix,
+        });
         const [from, to] = selection;
-        const newValue = value.replace(decimalPartRegExp, '');
+        const newValue =
+            extractedPrefix +
+            cleanValue.replace(decimalPartRegExp, '') +
+            extractedPostfix;
 
         return {
             elementState: {

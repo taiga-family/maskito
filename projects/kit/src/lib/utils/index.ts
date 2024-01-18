@@ -9,6 +9,7 @@ export * from './date/segments-to-date';
 export * from './date/to-date-string';
 export * from './date/validate-date-string';
 export * from './escape-reg-exp';
+export * from './extract-affixes';
 export * from './find-common-beginning-substr';
 export * from './get-focused';
 export * from './identity';

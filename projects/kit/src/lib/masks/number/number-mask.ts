@@ -29,6 +29,7 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
+import {createAffixesFilterPreprocessor} from './processors/affixes-filter-preprocessor';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
@@ -79,21 +80,40 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalPseudoSeparators: validatedDecimalPseudoSeparators,
                 pseudoMinuses,
+                prefix,
+                postfix,
             }),
+            createAffixesFilterPreprocessor({prefix, postfix}),
             createFullWidthToHalfWidthPreprocessor(),
-            createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
-            createPseudoCharactersPreprocessor(
-                decimalSeparator,
-                validatedDecimalPseudoSeparators,
-            ),
+            createPseudoCharactersPreprocessor({
+                validCharacter: CHAR_MINUS,
+                pseudoCharacters: pseudoMinuses,
+                prefix,
+                postfix,
+            }),
+            createPseudoCharactersPreprocessor({
+                validCharacter: decimalSeparator,
+                pseudoCharacters: validatedDecimalPseudoSeparators,
+                prefix,
+                postfix,
+            }),
             createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
             createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
                 decimalZeroPadding,
                 thousandSeparator,
             }),
-            createZeroPrecisionPreprocessor(precision, decimalSeparator),
-            createRepeatedDecimalSeparatorPreprocessor(decimalSeparator),
+            createZeroPrecisionPreprocessor({
+                precision,
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
+            createRepeatedDecimalSeparatorPreprocessor({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
         ],
         postprocessors: [
             createMinMaxPostprocessor({decimalSeparator, min, max}),
@@ -109,12 +129,22 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalZeroPadding,
                 precision,
+                prefix,
                 postfix,
             }),
         ],
         plugins: [
-            createLeadingZeroesValidationPlugin(decimalSeparator, thousandSeparator),
-            createNotEmptyIntegerPlugin(decimalSeparator),
+            createLeadingZeroesValidationPlugin({
+                decimalSeparator,
+                thousandSeparator,
+                prefix,
+                postfix,
+            }),
+            createNotEmptyIntegerPlugin({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
             createMinMaxPlugin({min, max, decimalSeparator}),
         ],
         overwriteMode: decimalZeroPadding
