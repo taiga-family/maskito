@@ -332,4 +332,55 @@ describe('Number | Prefix & Postfix', () => {
             });
         });
     });
+
+    describe('prefix ends with the same character as postfix starts', () => {
+        const prefix = 'lbs.​'; // padded with zero-width space
+
+        beforeEach(() => {
+            openNumberPage('prefix=lbs.&precision=2');
+
+            cy.get('@input')
+                .focus()
+                .should('have.value', prefix)
+                .should('have.prop', 'selectionStart', prefix.length)
+                .should('have.prop', 'selectionEnd', prefix.length);
+        });
+
+        it('lbs.| => Type Backspace (attempt to erase zero-width space) => lbs.|', () => {
+            cy.get('@input')
+                .type('{backspace}')
+                .should('have.value', prefix)
+                .should('have.prop', 'selectionStart', prefix.length)
+                .should('have.prop', 'selectionEnd', prefix.length);
+        });
+
+        it('lbs.| => Type 42 => lbs.42|', () => {
+            cy.get('@input')
+                .type('42')
+                .should('have.value', `${prefix}42`)
+                .should('have.prop', 'selectionStart', `${prefix}42`.length)
+                .should('have.prop', 'selectionEnd', `${prefix}42`.length);
+        });
+
+        it('lbs.| => Type .42 => lbs.0.42|', () => {
+            cy.get('@input')
+                .type('.42')
+                .should('have.value', `${prefix}0.42`)
+                .should('have.prop', 'selectionStart', `${prefix}0.42`.length)
+                .should('have.prop', 'selectionEnd', `${prefix}0.42`.length);
+        });
+
+        it('lbs.0|.42 => Backspace + Blur => lbs.0.42', () => {
+            cy.get('@input')
+                .type('0.42')
+                .type('{leftArrow}'.repeat('.42'.length))
+                .type('{backspace}')
+                .should('have.value', `${prefix}.42`)
+                .should('have.prop', 'selectionStart', prefix.length)
+                .should('have.prop', 'selectionEnd', prefix.length)
+                .blur()
+                .wait(100) // to be sure that value is not changed even in case of some async validation
+                .should('have.value', `${prefix}0.42`);
+        });
+    });
 });

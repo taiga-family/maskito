@@ -1,3 +1,4 @@
+export * from './affixes-filter-preprocessor';
 export * from './decimal-zero-padding-postprocessor';
 export * from './fullwidth-to-halfwidth-preprocessor';
 export * from './initialization-only-preprocessor';

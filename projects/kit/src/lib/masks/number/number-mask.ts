@@ -7,6 +7,7 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
+    CHAR_ZERO_WIDTH_SPACE,
 } from '../../constants';
 import {
     maskitoPostfixPostprocessorGenerator,
@@ -18,6 +19,7 @@ import {
     createNotEmptyIntegerPlugin,
 } from './plugins';
 import {
+    createAffixesFilterPreprocessor,
     createDecimalZeroPaddingPostprocessor,
     createFullWidthToHalfWidthPreprocessor,
     createInitializationOnlyPreprocessor,
@@ -29,7 +31,6 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
-import {createAffixesFilterPreprocessor} from './processors/affixes-filter-preprocessor';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
@@ -40,7 +41,7 @@ export function maskitoNumberOptionsGenerator({
     decimalSeparator = '.',
     decimalPseudoSeparators,
     decimalZeroPadding = false,
-    prefix = '',
+    prefix: unsafePrefix = '',
     postfix = '',
 }: {
     min?: number;
@@ -64,6 +65,10 @@ export function maskitoNumberOptionsGenerator({
         thousandSeparator,
         decimalPseudoSeparators,
     });
+    const prefix =
+        unsafePrefix.endsWith(decimalSeparator) && precision > 0
+            ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
+            : unsafePrefix;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -97,7 +102,12 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
             }),
-            createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
+            createNotEmptyIntegerPartPreprocessor({
+                decimalSeparator,
+                precision,
+                prefix,
+                postfix,
+            }),
             createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
                 decimalZeroPadding,
