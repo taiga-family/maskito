@@ -10,6 +10,8 @@ describe('createNotEmptyIntegerPartPreprocessor', () => {
         const preprocessor = createNotEmptyIntegerPartPreprocessor({
             decimalSeparator: ',',
             precision: 2,
+            prefix: '',
+            postfix: '',
         });
 
         it('should pad integer part with zero if user inserts "a,"', () => {
