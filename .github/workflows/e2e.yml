@@ -21,7 +21,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/node@v1.50.5
 
       - name: Mark demo-app directory for persist in cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -48,7 +48,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/node@v1.50.5
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -74,7 +74,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/node@v1.50.5
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -98,7 +98,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/node@v1.50.5
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
