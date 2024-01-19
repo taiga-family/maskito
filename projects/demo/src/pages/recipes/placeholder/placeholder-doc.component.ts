@@ -36,7 +36,6 @@ export default class PlaceholderDocComponent {
 
     readonly phoneExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-phone/mask.ts?raw'),
-        [DocExamplePrimaryTab.Angular]: import('./examples/2-phone/component.ts?raw'),
     };
 
     readonly dateExample3: TuiDocExample = {
