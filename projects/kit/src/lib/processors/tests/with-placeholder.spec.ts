@@ -39,13 +39,12 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
 
     describe('postprocessors', () => {
         describe('different initial element state (2nd argument of postprocessor)', () => {
-            [
-                EMPTY_ELEMENT_STATE,
-                {
-                    value: 'dd/mm/yyyy',
-                    selection: [0, 0] as const,
-                },
-            ].forEach(initialState => {
+            const ONLY_PLACEHOLDER_STATE = {
+                value: 'dd/mm/yyyy',
+                selection: [0, 0] as const,
+            };
+
+            [EMPTY_ELEMENT_STATE, ONLY_PLACEHOLDER_STATE].forEach(initialState => {
                 const check = (valueBefore: string, valueAfter: string): void => {
                     const {value} = postprocessor(
                         {
@@ -59,7 +58,6 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
                 };
 
                 describe(`Initial element value is "${initialState.value}"`, () => {
-                    it('Empty', () => check('', 'dd/mm/yyyy'));
                     it('1 => 1d/mm/yyyy', () => check('1', '1d/mm/yyyy'));
                     it('16 => 16/mm/yyyy', () => check('16', '16/mm/yyyy'));
                     it('16/0 => 16/0m/yyyy', () => check('16/0', '16/0m/yyyy'));
@@ -69,6 +67,36 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
                     it('16/05/202 => 16/05/202y', () => check('16/05/202', '16/05/202y'));
                     it('16/05/2023 => 16/05/2023', () =>
                         check('16/05/2023', '16/05/2023'));
+                });
+            });
+
+            describe('postprocessor gets empty value', () => {
+                /**
+                 * We can get this case only if textfield is updated programmatically.
+                 * User can't erase symbols from already empty textfield.
+                 */
+                it('if initial state has empty value too => Empty', () => {
+                    const {value} = postprocessor(
+                        {
+                            value: '',
+                            selection: [0, 0] as const,
+                        },
+                        EMPTY_ELEMENT_STATE,
+                    );
+
+                    expect(value).toBe('');
+                });
+
+                it('initial value is not empty => placeholder', () => {
+                    const {value} = postprocessor(
+                        {
+                            value: '',
+                            selection: [0, 0] as const,
+                        },
+                        ONLY_PLACEHOLDER_STATE,
+                    );
+
+                    expect(value).toBe('dd/mm/yyyy');
                 });
             });
         });

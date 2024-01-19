@@ -16,26 +16,28 @@ describe('Placeholder | US phone', () => {
 
     describe('basic typing (1 character per keydown)', () => {
         const tests = [
-            // [Typed value, Masked value, caretIndex]
-            ['2', '+1 (2  ) ___-____', '+1 (2'.length],
-            ['21', '+1 (21 ) ___-____', '+1 (21'.length],
-            ['212', '+1 (212) ___-____', '+1 (212'.length],
-            ['2125', '+1 (212) 5__-____', '+1 (212) 5'.length],
-            ['21255', '+1 (212) 55_-____', '+1 (212) 55'.length],
-            ['212555', '+1 (212) 555-____', '+1 (212) 555'.length],
-            ['2125552', '+1 (212) 555-2___', '+1 (212) 555-2'.length],
-            ['21255523', '+1 (212) 555-23__', '+1 (212) 555-23'.length],
-            ['212555236', '+1 (212) 555-236_', '+1 (212) 555-236'.length],
-            ['2125552368', '+1 (212) 555-2368', '+1 (212) 555-2368'.length],
+            // [Typed value, Masked value, valueWithoutPlaceholder]
+            ['2', '+1 (2  ) ___-____', '+1 (2'],
+            ['21', '+1 (21 ) ___-____', '+1 (21'],
+            ['212', '+1 (212) ___-____', '+1 (212'],
+            ['2125', '+1 (212) 5__-____', '+1 (212) 5'],
+            ['21255', '+1 (212) 55_-____', '+1 (212) 55'],
+            ['212555', '+1 (212) 555-____', '+1 (212) 555'],
+            ['2125552', '+1 (212) 555-2___', '+1 (212) 555-2'],
+            ['21255523', '+1 (212) 555-23__', '+1 (212) 555-23'],
+            ['212555236', '+1 (212) 555-236_', '+1 (212) 555-236'],
+            ['2125552368', '+1 (212) 555-2368', '+1 (212) 555-2368'],
         ] as const;
 
-        tests.forEach(([typed, masked, caretIndex]) => {
+        tests.forEach(([typed, masked, valueWithoutPlaceholder]) => {
             it(`Type ${typed} => ${masked}`, () => {
                 cy.get('@input')
                     .type(typed)
                     .should('have.value', masked)
-                    .should('have.prop', 'selectionStart', caretIndex)
-                    .should('have.prop', 'selectionEnd', caretIndex);
+                    .should('have.prop', 'selectionStart', valueWithoutPlaceholder.length)
+                    .should('have.prop', 'selectionEnd', valueWithoutPlaceholder.length)
+                    .blur()
+                    .should('have.value', valueWithoutPlaceholder);
             });
         });
     });
@@ -68,5 +70,13 @@ describe('Placeholder | US phone', () => {
             .type('{selectAll}')
             .should('have.prop', 'selectionStart', 0)
             .should('have.prop', 'selectionEnd', '+1'.length);
+    });
+
+    it('Value contains only country code and placeholder => Blur => Value is empty', () => {
+        cy.get('@input')
+            .focus()
+            .should('have.value', '+1 (   ) ___-____')
+            .blur()
+            .should('have.value', '');
     });
 });

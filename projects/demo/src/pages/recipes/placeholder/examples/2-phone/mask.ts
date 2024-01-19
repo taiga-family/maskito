@@ -1,13 +1,17 @@
-import {MaskitoOptions} from '@maskito/core';
-import {maskitoPrefixPostprocessorGenerator, maskitoWithPlaceholder} from '@maskito/kit';
+import {MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
+import {
+    maskitoEventHandler,
+    maskitoPrefixPostprocessorGenerator,
+    maskitoWithPlaceholder,
+} from '@maskito/kit';
 
 /**
  * It is better to use en quad for placeholder characters
  * instead of simple space.
  * @see https://symbl.cc/en/2000
  */
-export const PLACEHOLDER = '+  (   ) ___-____';
-export const {
+const PLACEHOLDER = '+  (   ) ___-____';
+const {
     /**
      * Use this utility to remove placeholder characters
      * ___
@@ -30,7 +34,6 @@ export default {
         maskitoPrefixPostprocessorGenerator('+1'),
         ...placeholderOptions.postprocessors,
     ],
-    plugins,
     mask: [
         '+',
         '1',
@@ -49,5 +52,21 @@ export default {
         /\d/,
         /\d/,
         /\d/,
+    ],
+    plugins: [
+        ...plugins,
+        maskitoEventHandler('focus', element => {
+            const initialValue = element.value || '+1 (';
+
+            maskitoUpdateElement(
+                element,
+                initialValue + PLACEHOLDER.slice(initialValue.length),
+            );
+        }),
+        maskitoEventHandler('blur', element => {
+            const cleanValue = removePlaceholder(element.value);
+
+            maskitoUpdateElement(element, cleanValue === '+1' ? '' : cleanValue);
+        }),
     ],
 } as MaskitoOptions;
