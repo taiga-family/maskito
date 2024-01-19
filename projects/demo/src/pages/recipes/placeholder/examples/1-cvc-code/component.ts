@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiTextfieldControllerModule} from '@taiga-ui/core';
@@ -23,7 +23,6 @@ import mask from './mask';
         >
             Enter CVC code
             <input
-                #inputRef
                 inputmode="numeric"
                 tuiTextfield
                 [maskito]="maskitoOptions"
@@ -33,9 +32,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaceholderDocExample1 {
-    @ViewChild('inputRef', {read: ElementRef})
-    inputRef!: ElementRef<HTMLInputElement>;
-
     readonly maskitoOptions = mask;
     value = 'xxx';
 }
