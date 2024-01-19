@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiInputModule} from '@taiga-ui/kit';
@@ -16,33 +16,15 @@ import mask from './mask';
         >
             Enter price
             <input
-                #inputRef
                 inputmode="numeric"
                 tuiTextfield
                 [maskito]="maskitoOptions"
-                (blur)="onBlur()"
-                (focus)="onFocus()"
             />
         </tui-input>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostfixDocExample2 {
-    @ViewChild('inputRef', {read: ElementRef})
-    inputElement!: ElementRef<HTMLInputElement>;
-
     readonly maskitoOptions = mask;
     value = '';
-
-    onFocus(): void {
-        if (!this.value) {
-            this.value = '$.00';
-        }
-    }
-
-    onBlur(): void {
-        if (this.value === '$.00') {
-            this.value = '';
-        }
-    }
 }

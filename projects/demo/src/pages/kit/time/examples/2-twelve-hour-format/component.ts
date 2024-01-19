@@ -27,7 +27,6 @@ import mask from './mask';
                 inputmode="decimal"
                 tuiTextfield
                 [maskito]="mask"
-                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -36,10 +35,4 @@ import mask from './mask';
 export class TimeMaskDocExample2 {
     value = '11:59';
     readonly mask = mask;
-
-    onBlur(): void {
-        const [hours, minutes = ''] = this.value.split(':');
-
-        this.value = [hours, minutes].map(segment => segment.padEnd(2, '0')).join(':');
-    }
 }

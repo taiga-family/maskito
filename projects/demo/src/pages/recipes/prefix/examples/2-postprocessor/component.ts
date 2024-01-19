@@ -19,8 +19,6 @@ import mask from './mask';
                 inputmode="tel"
                 tuiTextfield
                 [maskito]="maskitoOptions"
-                (blur)="onBlur()"
-                (focus)="onFocus()"
             />
         </tui-input>
     `,
@@ -30,16 +28,4 @@ export class PrefixDocExample2 {
     readonly maskitoOptions = mask;
 
     value = '';
-
-    onFocus(): void {
-        if (!this.value) {
-            this.value = '$';
-        }
-    }
-
-    onBlur(): void {
-        if (this.value === '$') {
-            this.value = '';
-        }
-    }
 }
