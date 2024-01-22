@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[8507],{68507:function(e){e.exports="```ts\nimport {maskitoParseNumber} from '@maskito/kit';\n\nmaskitoParseNumber(\n  '10 000,42', // document.querySelector('input').value\n  ',', // decimal separator (dot is default)\n); // 10000.42\n```\n"}}]);

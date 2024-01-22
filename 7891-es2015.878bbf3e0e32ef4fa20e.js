@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[7891],{17891:function(n){n.exports="```ts\nimport {Maskito} from '@maskito/core';\n\nconst timeInput = new Maskito(element, {\n  mask: [/\\d/, /\\d/, ':', /\\d/, /\\d/],\n});\n```\n"}}]);

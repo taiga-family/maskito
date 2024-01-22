@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmaskito=self.webpackChunkmaskito||[]).push([[3716],{23716:function(t){t.exports="import {maskitoPhoneOptionsGenerator} from '@maskito/phone';\nimport metadata from 'libphonenumber-js/min/metadata';\n\nexport default maskitoPhoneOptionsGenerator({\n    metadata,\n    strict: false,\n    countryIsoCode: 'RU',\n});\n"}}]);
