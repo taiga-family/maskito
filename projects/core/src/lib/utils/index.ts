@@ -1,4 +1,5 @@
 export * from './dom/event-listener';
+export * from './dom/get-focused';
 export * from './dom/history-events';
 export * from './dom/update-element';
 export * from './element-states-equality';

@@ -3,7 +3,7 @@
  *
  * @return element or null
  */
-export function getFocused({activeElement}: Document): Element | null {
+export function maskitoGetFocused({activeElement}: Document): Element | null {
     if (!activeElement?.shadowRoot) {
         return activeElement;
     }
