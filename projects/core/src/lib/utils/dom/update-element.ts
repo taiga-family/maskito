@@ -1,5 +1,4 @@
 import {ElementState} from '../../types';
-import {maskitoGetFocused} from './get-focused';
 
 /**
  * Sets value to element, and dispatches input event
@@ -24,7 +23,7 @@ export function maskitoUpdateElement(
 
         element.value = valueOrElementState.value;
 
-        if (maskitoGetFocused(element.ownerDocument) === element) {
+        if (element.matches(':focus')) {
             element.setSelectionRange?.(from, to);
         }
     }

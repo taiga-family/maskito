@@ -9,7 +9,6 @@ import {
     getWordSelection,
     isRedo,
     isUndo,
-    maskitoGetFocused,
     maskitoPipe,
     maskitoTransform,
 } from './utils';
@@ -160,7 +159,7 @@ export class Maskito extends MaskHistory {
         const {element} = this;
 
         if (
-            maskitoGetFocused(element.ownerDocument) === element &&
+            element.matches(':focus') &&
             (element.selectionStart !== from || element.selectionEnd !== to)
         ) {
             element.setSelectionRange?.(from, to);

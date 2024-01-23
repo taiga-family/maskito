@@ -1,4 +1,4 @@
-import {maskitoGetFocused, MaskitoPlugin} from '@maskito/core';
+import {MaskitoPlugin} from '@maskito/core';
 
 import {clamp} from '../utils';
 
@@ -17,7 +17,7 @@ export function maskitoCaretGuard(
         };
 
         const listener = (): void => {
-            if (maskitoGetFocused(document) !== element) {
+            if (!element.matches(':focus')) {
                 return;
             }
 
