@@ -1,7 +1,12 @@
 import {createLeadingZeroesValidationPostprocessor} from '../leading-zeroes-validation-postprocessor';
 
 describe('createLeadingZeroesValidationPostprocessor', () => {
-    const processor = createLeadingZeroesValidationPostprocessor(',', '');
+    const processor = createLeadingZeroesValidationPostprocessor({
+        decimalSeparator: ',',
+        thousandSeparator: '',
+        prefix: '',
+        postfix: '',
+    });
     const DUMMY_INITIAL_STATE = {value: '', selection: [0, 0]} as const;
 
     const process = (

@@ -1,9 +1,20 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 
 @Component({
+    standalone: true,
     selector: 'phone-doc-example-4',
+    imports: [
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        FormsModule,
+        MaskitoDirective,
+    ],
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconPhoneLarge"

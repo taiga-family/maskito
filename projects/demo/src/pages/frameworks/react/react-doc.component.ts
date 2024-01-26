@@ -1,26 +1,34 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 
-const DROP_TS_NO_CHECK_REG = /\/\/\s@ts-nocheck[^\n]+\n/;
+import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
+import {ReactExample2} from './examples/2-element-predicate/example.component';
 
 @Component({
+    standalone: true,
     selector: 'react-doc-page',
+    imports: [
+        TuiAddonDocModule,
+        TuiNotificationModule,
+        TuiLinkModule,
+        RouterLink,
+        ReactExample1,
+        ReactExample2,
+    ],
     templateUrl: './react-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ReactDocPageComponent {
+export default class ReactDocPageComponent {
     readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     readonly useMaskitoBasicUsage = import(
         './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
     );
 
     readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
-        'index.tsx': import('./examples/2-element-predicate/index.tsx?raw').then(m => ({
-            // See: https://github.com/vuejs/core/issues/1033#issuecomment-1340309622
-            // TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
-            default: m.default.replace(DROP_TS_NO_CHECK_REG, ''),
-        })),
+        'index.tsx': import('./examples/2-element-predicate/index.tsx?raw'),
         'awesome-input.tsx': import(
             './examples/2-element-predicate/awesome-input.tsx?raw'
         ),

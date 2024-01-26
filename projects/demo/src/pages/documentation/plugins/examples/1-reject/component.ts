@@ -1,10 +1,15 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
 import {maskitoRejectEvent} from '@maskito/kit';
+import {TuiInputModule} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
+    standalone: true,
     selector: 'plugins-reject-doc-example-1',
+    imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `
         <tui-input
             [style.animation-duration.ms]="300"

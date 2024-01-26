@@ -1,13 +1,27 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+
+import {PostfixDocExample1} from './examples/1-pattern-mask/component';
+import {PostfixDocExample2} from './examples/2-postprocessor/component';
 
 @Component({
+    standalone: true,
     selector: 'postfix-doc',
+    imports: [
+        TuiAddonDocModule,
+        TuiNotificationModule,
+        TuiLinkModule,
+        RouterLink,
+        PostfixDocExample1,
+        PostfixDocExample2,
+    ],
     templateUrl: './postfix-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostfixDocComponent {
+export default class PostfixDocComponent {
     readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     readonly processorsDocPage = `/${DemoPath.Processors}`;
 

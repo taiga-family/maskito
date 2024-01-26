@@ -7,6 +7,7 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
+    CHAR_ZERO_WIDTH_SPACE,
 } from '../../constants';
 import {
     createFullWidthToHalfWidthPreprocessor,
@@ -19,6 +20,7 @@ import {
     createNotEmptyIntegerPlugin,
 } from './plugins';
 import {
+    createAffixesFilterPreprocessor,
     createDecimalZeroPaddingPostprocessor,
     createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
@@ -39,7 +41,7 @@ export function maskitoNumberOptionsGenerator({
     decimalSeparator = '.',
     decimalPseudoSeparators,
     decimalZeroPadding = false,
-    prefix = '',
+    prefix: unsafePrefix = '',
     postfix = '',
 }: {
     min?: number;
@@ -63,6 +65,10 @@ export function maskitoNumberOptionsGenerator({
         thousandSeparator,
         decimalPseudoSeparators,
     });
+    const prefix =
+        unsafePrefix.endsWith(decimalSeparator) && precision > 0
+            ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
+            : unsafePrefix;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -79,21 +85,45 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalPseudoSeparators: validatedDecimalPseudoSeparators,
                 pseudoMinuses,
+                prefix,
+                postfix,
             }),
+            createAffixesFilterPreprocessor({prefix, postfix}),
             createFullWidthToHalfWidthPreprocessor(),
-            createPseudoCharactersPreprocessor(CHAR_MINUS, pseudoMinuses),
-            createPseudoCharactersPreprocessor(
+            createPseudoCharactersPreprocessor({
+                validCharacter: CHAR_MINUS,
+                pseudoCharacters: pseudoMinuses,
+                prefix,
+                postfix,
+            }),
+            createPseudoCharactersPreprocessor({
+                validCharacter: decimalSeparator,
+                pseudoCharacters: validatedDecimalPseudoSeparators,
+                prefix,
+                postfix,
+            }),
+            createNotEmptyIntegerPartPreprocessor({
                 decimalSeparator,
-                validatedDecimalPseudoSeparators,
-            ),
-            createNotEmptyIntegerPartPreprocessor({decimalSeparator, precision}),
+                precision,
+                prefix,
+                postfix,
+            }),
             createNonRemovableCharsDeletionPreprocessor({
                 decimalSeparator,
                 decimalZeroPadding,
                 thousandSeparator,
             }),
-            createZeroPrecisionPreprocessor(precision, decimalSeparator),
-            createRepeatedDecimalSeparatorPreprocessor(decimalSeparator),
+            createZeroPrecisionPreprocessor({
+                precision,
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
+            createRepeatedDecimalSeparatorPreprocessor({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
         ],
         postprocessors: [
             createMinMaxPostprocessor({decimalSeparator, min, max}),
@@ -109,12 +139,22 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 decimalZeroPadding,
                 precision,
+                prefix,
                 postfix,
             }),
         ],
         plugins: [
-            createLeadingZeroesValidationPlugin(decimalSeparator, thousandSeparator),
-            createNotEmptyIntegerPlugin(decimalSeparator),
+            createLeadingZeroesValidationPlugin({
+                decimalSeparator,
+                thousandSeparator,
+                prefix,
+                postfix,
+            }),
+            createNotEmptyIntegerPlugin({
+                decimalSeparator,
+                prefix,
+                postfix,
+            }),
             createMinMaxPlugin({min, max, decimalSeparator}),
         ],
         overwriteMode: decimalZeroPadding

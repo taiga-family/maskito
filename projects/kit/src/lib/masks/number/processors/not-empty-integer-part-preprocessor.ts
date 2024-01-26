@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp} from '../../../utils';
+import {escapeRegExp, extractAffixes} from '../../../utils';
 
 /**
  * It pads integer part with zero if user types decimal separator (for empty input).
@@ -9,9 +9,13 @@ import {escapeRegExp} from '../../../utils';
 export function createNotEmptyIntegerPartPreprocessor({
     decimalSeparator,
     precision,
+    prefix,
+    postfix,
 }: {
     decimalSeparator: string;
     precision: number;
+    prefix: string;
+    postfix: string;
 }): MaskitoPreprocessor {
     const startWithDecimalSepRegExp = new RegExp(
         `^\\D*${escapeRegExp(decimalSeparator)}`,
@@ -19,17 +23,21 @@ export function createNotEmptyIntegerPartPreprocessor({
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
+        const {cleanValue} = extractAffixes(value, {
+            prefix,
+            postfix,
+        });
         const [from] = selection;
 
         if (
             precision <= 0 ||
-            value.includes(decimalSeparator) ||
+            cleanValue.includes(decimalSeparator) ||
             !data.match(startWithDecimalSepRegExp)
         ) {
             return {elementState, data};
         }
 
-        const digitsBeforeCursor = value.slice(0, from).match(/\d+/);
+        const digitsBeforeCursor = cleanValue.slice(0, from).match(/\d+/);
 
         return {
             elementState,

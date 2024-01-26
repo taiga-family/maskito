@@ -10,14 +10,23 @@ const DUMMY_SELECTION = [0, 0] as const;
  * @example 000000 => blur => 0
  * @example 00005 => blur => 5
  */
-export function createLeadingZeroesValidationPlugin(
-    decimalSeparator: string,
-    thousandSeparator: string,
-): MaskitoPlugin {
-    const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor(
+export function createLeadingZeroesValidationPlugin({
+    decimalSeparator,
+    thousandSeparator,
+    prefix,
+    postfix,
+}: {
+    decimalSeparator: string;
+    thousandSeparator: string;
+    prefix: string;
+    postfix: string;
+}): MaskitoPlugin {
+    const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor({
         decimalSeparator,
         thousandSeparator,
-    );
+        prefix,
+        postfix,
+    });
 
     return maskitoEventHandler(
         'blur',

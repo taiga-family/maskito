@@ -7,11 +7,14 @@ import {
     PLATFORM_ID,
 } from '@angular/core';
 import {tuiRawLoad} from '@taiga-ui/addon-doc';
+import {TuiLoaderModule} from '@taiga-ui/core';
 
 import {StackblitzService} from '../../stackblitz.service';
 
 @Component({
+    standalone: true,
     selector: 'stackblitz-starter',
+    imports: [TuiLoaderModule],
     template: `
         <tui-loader
             size="xxl"

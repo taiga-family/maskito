@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/taiga-family/maskito/compare/v1.9.0...v2.0.0) (2024-01-22)
+
+### ⚠ BREAKING CHANGES
+
+- **core:** merge `MaskitoElementPredicate` & `MaskitoElementPredicateAsync` into single type
+  ([#757](https://github.com/taiga-family/maskito/issues/757))
+- **core:** remove value's calibration on initialization + new `maskitoInitialCalibrationPlugin`
+  ([#778](https://github.com/taiga-family/maskito/issues/778))
+- **core:** bump Firefox browser support (55+ => 87+) ([#876](https://github.com/taiga-family/maskito/issues/876)) and
+  drop legacy fallbacks for `Firefox` ([#756](https://github.com/taiga-family/maskito/issues/756))
+- **kit:** delete deprecated `separator` for `DateRange` (use `dateSeparator` instead)
+  ([#790](https://github.com/taiga-family/maskito/issues/790))
+- **angular:** bump minimum required Angular version (12+ => 15+)
+  ([#710](https://github.com/taiga-family/maskito/issues/710))
+  ([#720](https://github.com/taiga-family/maskito/issues/720))
+  ([#725](https://github.com/taiga-family/maskito/issues/725))
+- **angular:** deprecate `MaskitoModule` (use standalone `MaskitoDirective`, `MaskitoCVA`, `MaskitoPipe`)
+  ([#754](https://github.com/taiga-family/maskito/issues/754))
+
+### 🚀 More features
+
+- **core:** new built-in `maskitoStrictCompositionPlugin` ([#881](https://github.com/taiga-family/maskito/issues/881))
+- **kit:** `Number` allows to enter full width numbers ([#864](https://github.com/taiga-family/maskito/issues/864))
+
+### 🐞 Bug Fixes
+
+- **core:** drop some excess dispatches of `Input`-event ([#882](https://github.com/taiga-family/maskito/issues/882))
+- **kit:** add `{bubbles:true}` for `input` events inside all built-in plugins to support `ReactSyntheticEvent`
+  ([#806](https://github.com/taiga-family/maskito/issues/806))
+- **kit:** `Number` has problems when prefix/postfix includes `decimalSeparator` symbol
+  ([#874](https://github.com/taiga-family/maskito/issues/874))
+  ([#816](https://github.com/taiga-family/maskito/issues/816))
+  ([#921](https://github.com/taiga-family/maskito/issues/921))
+- **kit:** `Placeholder` is not compatible with `maskitoEventHandler` + `focus`/`blur` events
+  ([#928](https://github.com/taiga-family/maskito/pull/928))
+
 ## [1.9.0](https://github.com/taiga-family/maskito/compare/v1.8.2...v1.9.0) (2023-11-23)
 
 ### Features

@@ -1,16 +1,16 @@
 name: Deploy
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: ['release/*']
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
       - run: npx nx build-gh-pages
       - uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:

@@ -12,4 +12,9 @@ declare global {
     }
 }
 
-Cypress.Commands.add('mount', mount);
+export const stableMount: typeof mount = (...mountArgs) =>
+    mount(...mountArgs).then(async mountResponse =>
+        mountResponse.fixture.whenStable().then(() => mountResponse),
+    );
+
+Cypress.Commands.add('mount', stableMount);

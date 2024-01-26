@@ -4,6 +4,7 @@ import {maskito} from '@maskito/vue';
 import {createApp} from 'vue';
 
 @Component({
+    standalone: true,
     selector: 'vue-example-1',
     template: '<div id="vue"></div>',
 })

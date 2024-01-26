@@ -1,6 +1,6 @@
 import {MaskitoPlugin} from '@maskito/core';
 
-import {clamp, getFocused} from '../utils';
+import {clamp} from '../utils';
 
 export function maskitoCaretGuard(
     guard: (
@@ -17,7 +17,7 @@ export function maskitoCaretGuard(
         };
 
         const listener = (): void => {
-            if (getFocused(document) !== element) {
+            if (!element.matches(':focus')) {
                 return;
             }
 

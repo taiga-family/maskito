@@ -1,25 +1,48 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
-import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
-import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
+import {
+    maskitoAddOnFocusPlugin,
+    maskitoCaretGuard,
+    maskitoNumberOptionsGenerator,
+    maskitoRemoveOnBlurPlugin,
+} from '@maskito/kit';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiNotificationModule} from '@taiga-ui/core';
+import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
+
+import {NumberMaskDocExample1} from './examples/1-high-precision/component';
+import {NumberMaskDocExample2} from './examples/2-separators/component';
+import {NumberMaskDocExample3} from './examples/3-postfix/component';
+import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
+import {NumberMaskDocExample5} from './examples/5-dynamic-decimal-zero-padding/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
 >;
 
 @Component({
+    standalone: true,
     selector: 'number-mask-doc',
+    imports: [
+        MaskitoDirective,
+        ReactiveFormsModule,
+        TuiAddonDocModule,
+        TuiInputModule,
+        TuiNotificationModule,
+        NumberMaskDocExample1,
+        NumberMaskDocExample2,
+        NumberMaskDocExample3,
+        NumberMaskDocExample4,
+        NumberMaskDocExample5,
+    ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
-    @ViewChild('apiPageInput', {read: ElementRef})
-    apiPageInput!: ElementRef<HTMLInputElement>;
-
     readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-number-demo.md?raw'
     );
@@ -76,20 +99,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         this.maskitoOptions = this.calculateMask(this);
     }
 
-    onFocus(): void {
-        if (!this.apiPageControl.value) {
-            this.apiPageControl.patchValue(this.prefix + this.postfix);
-        }
-    }
-
-    onBlur(): void {
-        const value = this.apiPageControl.value;
-
-        if (value && value === this.prefix + this.postfix) {
-            this.apiPageControl.patchValue('');
-        }
-    }
-
     private calculateMask(options: GeneratorOptions): MaskitoOptions {
         const {prefix, postfix} = options;
         const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
@@ -98,6 +107,8 @@ export class NumberMaskDocComponent implements GeneratorOptions {
             ...numberOptions,
             plugins: [
                 ...plugins,
+                maskitoAddOnFocusPlugin(prefix + postfix),
+                maskitoRemoveOnBlurPlugin(prefix + postfix),
                 maskitoCaretGuard(value => [
                     prefix.length,
                     value.length - postfix.length,

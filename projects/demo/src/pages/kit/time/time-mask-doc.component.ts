@@ -1,18 +1,34 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 import {
     MaskitoTimeMode,
     maskitoTimeOptionsGenerator,
     MaskitoTimeSegments,
 } from '@maskito/kit';
-import {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
+
+import {TimeMaskDocExample1} from './examples/1-modes/component';
+import {TimeMaskDocExample2} from './examples/2-twelve-hour-format/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
 @Component({
+    standalone: true,
     selector: 'time-mask-doc',
+    imports: [
+        MaskitoDirective,
+        ReactiveFormsModule,
+        TuiAddonDocModule,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        TimeMaskDocExample1,
+        TimeMaskDocExample2,
+    ],
     templateUrl: './time-mask-doc.template.html',
     styleUrls: ['./time-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

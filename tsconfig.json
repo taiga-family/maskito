@@ -11,7 +11,7 @@
         "sourceMap": true,
         "module": "es2020",
         "jsx": "react-jsx",
-        "target": "es2015",
+        "target": "es2017",
         "lib": ["es2017", "es2018.asynciterable", "es2019.object", "es2019.string", "dom"],
         "checkJs": false,
         "paths": {

@@ -1,5 +1,10 @@
 import {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
-import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
+import {
+    maskitoAddOnFocusPlugin,
+    maskitoCaretGuard,
+    maskitoPrefixPostprocessorGenerator,
+    maskitoRemoveOnBlurPlugin,
+} from '@maskito/kit';
 
 export default {
     mask: [
@@ -22,10 +27,14 @@ export default {
         /\d/,
         /\d/,
     ],
-    // non-removable country prefix
-    postprocessors: [maskitoPrefixPostprocessorGenerator('+7 ')],
+    postprocessors: [
+        // non-removable country prefix
+        maskitoPrefixPostprocessorGenerator('+7 '),
+    ],
     preprocessors: [createCompletePhoneInsertionPreprocessor()],
     plugins: [
+        maskitoAddOnFocusPlugin('+7 '),
+        maskitoRemoveOnBlurPlugin('+7 '),
         // Forbids to put caret before non-removable country prefix
         // But allows to select all value!
         maskitoCaretGuard((value, [from, to]) => [

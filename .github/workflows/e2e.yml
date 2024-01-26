@@ -13,15 +13,15 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
 
       - name: Mark demo-app directory for persist in cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -43,12 +43,12 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -69,12 +69,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -93,12 +93,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
 
       - name: Download demo build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -120,9 +120,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Component Testing
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.50.3
-      - uses: taiga-family/ci/actions/setup/variables@v1.50.3
-      - uses: taiga-family/ci/actions/setup/node@v1.50.3
+      - uses: taiga-family/ci/actions/setup/checkout@v1.50.8
+      - uses: taiga-family/ci/actions/setup/variables@v1.50.8
+      - uses: taiga-family/ci/actions/setup/node@v1.50.8
 
       - name: Run Cypress tests
         run: npx nx component-test demo-integrations --browser=chrome

@@ -1,9 +1,20 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
+import {TuiTextfieldControllerModule} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
+    standalone: true,
     selector: 'time-mask-doc-example-2',
+    imports: [
+        TuiInputModule,
+        TuiTextfieldControllerModule,
+        FormsModule,
+        MaskitoDirective,
+    ],
     template: `
         <tui-input
             tuiTextfieldCustomContent="tuiIconClockLarge"
@@ -16,7 +27,6 @@ import mask from './mask';
                 inputmode="decimal"
                 tuiTextfield
                 [maskito]="mask"
-                (blur)="onBlur()"
             />
         </tui-input>
     `,
@@ -25,10 +35,4 @@ import mask from './mask';
 export class TimeMaskDocExample2 {
     value = '11:59';
     readonly mask = mask;
-
-    onBlur(): void {
-        const [hours, minutes = ''] = this.value.split(':');
-
-        this.value = [hours, minutes].map(segment => segment.padEnd(2, '0')).join(':');
-    }
 }

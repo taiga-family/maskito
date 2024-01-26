@@ -7,4 +7,5 @@ export * from './get-not-empty-selection';
 export * from './get-word-selection';
 export * from './initial-calibration-plugin';
 export * from './pipe';
+export * from './strict-composition-plugin';
 export * from './transform';

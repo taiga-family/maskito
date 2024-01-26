@@ -1,5 +1,7 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
+import {maskitoParseNumber} from '@maskito/kit';
 
+import {CHAR_NO_BREAK_SPACE, CHAR_ZERO_WIDTH_SPACE} from '../../../constants';
 import {maskitoNumberOptionsGenerator} from '../number-mask';
 
 describe('Number (maskitoTransform)', () => {
@@ -81,6 +83,218 @@ describe('Number (maskitoTransform)', () => {
 
         it('add dots and decimals (21.121.321,00)', () => {
             expect(maskitoTransform('21121321', options)).toBe('21.121.321,00');
+        });
+    });
+
+    describe('`postfix` contains point and space (` lbs.`)', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        describe('precision: 2', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    postfix: ' lbs.',
+                    precision: 2,
+                });
+            });
+
+            it('Empty textfield => empty textfield', () => {
+                expect(maskitoTransform('', options)).toBe('');
+            });
+
+            it('Only postfix => Only postfix', () => {
+                expect(maskitoTransform(' lbs.', options)).toBe(' lbs.');
+            });
+
+            it('5 => 5 lbs.', () => {
+                expect(maskitoTransform('5', options)).toBe('5 lbs.');
+            });
+
+            it('0.42 => 0.42 lbs.', () => {
+                expect(maskitoTransform('0.42', options)).toBe('0.42 lbs.');
+            });
+
+            it('1 000 => 1 000 lbs.', () => {
+                expect(maskitoTransform('1 000', options)).toBe('1 000 lbs.');
+            });
+
+            it('1 000. => 1 000. lbs.', () => {
+                expect(maskitoTransform('1 000.', options)).toBe('1 000. lbs.');
+            });
+
+            it('1 000 lbs. => 1 000 lbs.', () => {
+                expect(maskitoTransform('1 000 lbs.', options)).toBe('1 000 lbs.');
+            });
+        });
+
+        describe('precision: 0', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    postfix: ' lbs.',
+                    precision: 0,
+                });
+            });
+
+            it('Empty textfield => empty textfield', () => {
+                expect(maskitoTransform('', options)).toBe('');
+            });
+
+            it('Only postfix => Only postfix', () => {
+                expect(maskitoTransform(' lbs.', options)).toBe(' lbs.');
+            });
+
+            it('5 => 5 lbs.', () => {
+                expect(maskitoTransform('5', options)).toBe('5 lbs.');
+            });
+
+            it('0.42 => 0 lbs.', () => {
+                expect(maskitoTransform('0.42', options)).toBe('0 lbs.');
+            });
+
+            it('1 000 => 1 000 lbs.', () => {
+                expect(maskitoTransform('1 000', options)).toBe('1 000 lbs.');
+            });
+
+            it('1 000. => 1 000 lbs.', () => {
+                expect(maskitoTransform('1 000.', options)).toBe('1 000 lbs.');
+            });
+
+            it('1 000 lbs. => 1 000 lbs.', () => {
+                expect(maskitoTransform('1 000 lbs.', options)).toBe('1 000 lbs.');
+            });
+        });
+    });
+
+    describe('`prefix` contains point and space (`lbs. `)', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        describe('precision: 2', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    prefix: 'lbs. ',
+                    precision: 2,
+                });
+            });
+
+            it('Empty textfield => empty textfield', () => {
+                expect(maskitoTransform('', options)).toBe('');
+            });
+
+            it('Only prefix => Only prefix', () => {
+                expect(maskitoTransform('lbs. ', options)).toBe('lbs. ');
+            });
+
+            it('5 => lbs. 5', () => {
+                expect(maskitoTransform('5', options)).toBe('lbs. 5');
+            });
+
+            it('0.42 => lbs. 0.42', () => {
+                expect(maskitoTransform('0.42', options)).toBe('lbs. 0.42');
+            });
+
+            it('1 000 => lbs. 1 000', () => {
+                expect(maskitoTransform('1 000', options)).toBe('lbs. 1 000');
+            });
+
+            it('1 000. => lbs. 1 000', () => {
+                expect(maskitoTransform('1 000.', options)).toBe('lbs. 1 000.');
+            });
+
+            it('lbs. 1 000  => lbs. 1 000', () => {
+                expect(maskitoTransform('lbs. 1 000', options)).toBe('lbs. 1 000');
+            });
+        });
+
+        describe('precision: 0', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    prefix: 'lbs. ',
+                    precision: 0,
+                });
+            });
+
+            it('Empty textfield => empty textfield', () => {
+                expect(maskitoTransform('', options)).toBe('');
+            });
+
+            it('Only prefix => Only prefix', () => {
+                expect(maskitoTransform('lbs. ', options)).toBe('lbs. ');
+            });
+
+            it('5 => lbs. 5', () => {
+                expect(maskitoTransform('5', options)).toBe('lbs. 5');
+            });
+
+            it('0.42 => lbs. 0', () => {
+                expect(maskitoTransform('0.42', options)).toBe('lbs. 0');
+            });
+
+            it('1 000 => lbs. 1 000', () => {
+                expect(maskitoTransform('1 000', options)).toBe('lbs. 1 000');
+            });
+
+            it('1 000. => lbs. 1 000', () => {
+                expect(maskitoTransform('1 000.', options)).toBe('lbs. 1 000');
+            });
+
+            it('lbs. 1 000 => lbs. 1 000', () => {
+                expect(maskitoTransform('lbs. 1 000', options)).toBe('lbs. 1 000');
+            });
+        });
+
+        describe('prefix ends with same character as decimal separator equals (zero-width space workaround)', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    prefix: 'lbs.',
+                    decimalSeparator: '.',
+                    precision: 2,
+                });
+            });
+
+            it('Empty textfield => empty textfield', () => {
+                expect(maskitoTransform('', options)).toBe('');
+            });
+
+            it('Only prefix => prefix with zero-width space', () => {
+                expect(maskitoTransform('lbs.', options)).toBe(
+                    `lbs.${CHAR_ZERO_WIDTH_SPACE}`,
+                );
+            });
+
+            it('5 => lbs.5', () => {
+                expect(maskitoTransform('5', options)).toBe(
+                    `lbs.${CHAR_ZERO_WIDTH_SPACE}5`,
+                );
+            });
+
+            it('0.42 => lbs.0.42', () => {
+                const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}0.42`;
+
+                expect(maskitoTransform('0.42', options)).toBe(expected);
+                expect(maskitoParseNumber(expected)).toBe(0.42);
+            });
+
+            it('42 => lbs.42', () => {
+                const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}42`;
+
+                expect(maskitoTransform('42', options)).toBe(expected);
+                expect(maskitoParseNumber(expected)).toBe(42);
+            });
+
+            it('1 000 => lbs.1 000', () => {
+                const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}1${CHAR_NO_BREAK_SPACE}000`;
+
+                expect(maskitoTransform(`1${CHAR_NO_BREAK_SPACE}000`, options)).toBe(
+                    expected,
+                );
+                expect(maskitoParseNumber(expected)).toBe(1000);
+            });
+
+            it('1 000. => lbs.1 000.', () => {
+                const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}1${CHAR_NO_BREAK_SPACE}000.`;
+
+                expect(maskitoTransform('1 000.', options)).toBe(expected);
+                expect(maskitoParseNumber(expected)).toBe(1000);
+            });
         });
     });
 });

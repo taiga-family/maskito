@@ -64,7 +64,15 @@ export function maskitoWithPlaceholder(
         ],
         postprocessors: [
             ({value, selection}, initialElementState) =>
-                initialElementState.value && (focused || !focusedOnly)
+                /**
+                 * If `value` still equals to `initialElementState.value`,
+                 * then it means that value is patched programmatically (from Maskito's plugin or externally).
+                 * In this case, we don't want to mutate value and automatically add placeholder.
+                 * ___
+                 * For example, developer wants to remove manually placeholder (+ do something else with value) on blur.
+                 * Without this condition, placeholder will be unexpectedly added again.
+                 */
+                value !== initialElementState.value && (focused || !focusedOnly)
                     ? {
                           value: value + placeholder.slice(value.length),
                           selection,

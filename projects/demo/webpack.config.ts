@@ -1,4 +1,4 @@
-import {Configuration} from 'webpack';
+import {Configuration, DefinePlugin} from 'webpack';
 import {merge} from 'webpack-merge';
 
 /**
@@ -42,6 +42,11 @@ const config: Configuration = {
             vue$: 'vue/dist/vue.esm-bundler.js',
         },
     },
+    plugins: [
+        new DefinePlugin({
+            __VUE_PROD_DEVTOOLS__: 'false', // vue 3.4.0 regression (https://github.com/vuejs/core/issues/10039#issuecomment-1883015495)
+        }),
+    ],
     output: {
         hashFunction: 'xxhash64',
     },

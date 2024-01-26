@@ -4,6 +4,11 @@
 export const CHAR_NO_BREAK_SPACE = '\u00A0';
 
 /**
+ * {@link https://symbl.cc/en/200B/ Zero width space}.
+ */
+export const CHAR_ZERO_WIDTH_SPACE = '\u200B';
+
+/**
  * {@link https://unicode-table.com/en/2013/ EN dash}
  * is used to indicate a range of numbers or a span of time.
  * @example 2006–2022

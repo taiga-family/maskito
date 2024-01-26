@@ -1,9 +1,7 @@
-// @ts-nocheck React & Vue Global JSX Types Conflicts
-// TODO: Check if it still required after upgrade Vue to 3.4 (https://github.com/vuejs/core/pull/7958)
 import {MaskitoElementPredicate, maskitoInitialCalibrationPlugin, MaskitoOptions} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
-import {forwardRef, useEffect, useState} from 'react';
+import {forwardRef, InputHTMLAttributes, useEffect, useState} from 'react';
 
 const timeOptions = maskitoTimeOptionsGenerator({
     mode: 'HH:MM',
@@ -14,7 +12,7 @@ const options: MaskitoOptions = {
     plugins: [...timeOptions.plugins, maskitoInitialCalibrationPlugin()],
 };
 
-const correctPredicate: MaskitoElementPredicate = host => host.querySelector('.real-input')!;
+const correctPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('.real-input')!;
 const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
 
 const longCorrectPredicate: MaskitoElementPredicate = host =>
@@ -38,7 +36,7 @@ const hiddenInputStyles = {
     display: 'none',
 };
 
-export const AwesomeInput = forwardRef<HTMLInputElement>((props, ref) => (
+export const AwesomeInput = forwardRef<HTMLDivElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => (
     <div ref={ref}>
         <input style={hiddenInputStyles} />
         <input

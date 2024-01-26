@@ -156,8 +156,13 @@ export class Maskito extends MaskHistory {
     }
 
     private updateSelectionRange([from, to]: SelectionRange): void {
-        if (this.element.selectionStart !== from || this.element.selectionEnd !== to) {
-            this.element.setSelectionRange?.(from, to);
+        const {element} = this;
+
+        if (
+            element.matches(':focus') &&
+            (element.selectionStart !== from || element.selectionEnd !== to)
+        ) {
+            element.setSelectionRange?.(from, to);
         }
     }
 
@@ -258,7 +263,9 @@ export class Maskito extends MaskHistory {
 
         const [from, to] = elementState.selection;
         const newPossibleValue =
-            elementState.value.slice(0, from) + data + elementState.value.slice(to);
+            initialElementState.value.slice(0, from) +
+            data +
+            initialElementState.value.slice(to);
         const newElementState = this.postprocessor(maskModel, initialElementState);
 
         if (newElementState.value.length > this.maxLength) {

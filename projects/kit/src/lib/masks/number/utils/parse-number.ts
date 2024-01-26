@@ -8,8 +8,13 @@ export function maskitoParseNumber(
     const hasNegativeSign = !!maskedNumber.match(
         new RegExp(`^\\D*[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}]`),
     );
+    const escapedDecimalSeparator = escapeRegExp(decimalSeparator);
+
     const unmaskedNumber = maskedNumber
-        .replace(new RegExp(`[^\\d${escapeRegExp(decimalSeparator)}]`, 'g'), '')
+        // drop all decimal separators not followed by a digit
+        .replace(new RegExp(`${escapedDecimalSeparator}(?!\\d)`, 'g'), '')
+        // drop all non-digit characters except decimal separator
+        .replace(new RegExp(`[^\\d${escapedDecimalSeparator}]`, 'g'), '')
         .replace(decimalSeparator, '.');
 
     return unmaskedNumber
