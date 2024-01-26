@@ -81,6 +81,7 @@ export function maskitoNumberOptionsGenerator({
             isNegativeAllowed: min < 0,
         }),
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createInitializationOnlyPreprocessor({
                 decimalSeparator,
                 decimalPseudoSeparators: validatedDecimalPseudoSeparators,
@@ -89,7 +90,6 @@ export function maskitoNumberOptionsGenerator({
                 postfix,
             }),
             createAffixesFilterPreprocessor({prefix, postfix}),
-            createFullWidthToHalfWidthPreprocessor(),
             createPseudoCharactersPreprocessor({
                 validCharacter: CHAR_MINUS,
                 pseudoCharacters: pseudoMinuses,

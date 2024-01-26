@@ -297,4 +297,25 @@ describe('Number (maskitoTransform)', () => {
             });
         });
     });
+
+    describe('should transform full width number to half width', () => {
+        describe('at any time', () => {
+            it('at the 1st time (after initialization)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '_',
+                });
+
+                expect(maskitoTransform('１２３４５', options)).toBe('12_345');
+            });
+
+            it('at the 2nd time (after initialization)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '_',
+                });
+
+                maskitoTransform('１２３４５', options);
+                expect(maskitoTransform('１２３４５', options)).toBe('12_345');
+            });
+        });
+    });
 });
