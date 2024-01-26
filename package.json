@@ -102,7 +102,7 @@
         "@nx/react": "17.2.8",
         "@nx/rollup": "17.2.8",
         "@nx/workspace": "17.2.8",
-        "@taiga-ui/commitlint-config": "0.5.2",
+        "@taiga-ui/commitlint-config": "0.5.3",
         "@taiga-ui/cspell-config": "0.30.0",
         "@taiga-ui/eslint-plugin-experience": "0.47.2",
         "@taiga-ui/prettier-config": "0.7.0",
