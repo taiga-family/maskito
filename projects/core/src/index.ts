@@ -1,3 +1,4 @@
+export {MaskitoReactContentEditableElement} from './lib/classes';
 export {
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,

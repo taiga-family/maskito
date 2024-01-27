@@ -98,8 +98,17 @@ export class Maskito extends MaskHistory {
                 case 'insertFromPaste':
                 case 'insertText':
                 case 'insertFromDrop':
-                default:
-                    return this.handleInsert(event, event.data || '');
+                default: {
+                    let data = event.data;
+
+                    // When using beforeinput events on contenteditable,
+                    // it passes pasted or dropped data only through dataTransfer property
+                    if (!event.data && event.dataTransfer) {
+                        data = event.dataTransfer.getData('text/plain');
+                    }
+
+                    return this.handleInsert(event, data || '');
+                }
             }
         });
 
