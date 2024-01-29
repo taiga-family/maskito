@@ -15,6 +15,7 @@
                 "entryFile": "projects/react/src/index.ts",
                 "external": "all",
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
+                "compiler": "babel",
                 "assets": [
                     {
                         "glob": "projects/react/README.md",
