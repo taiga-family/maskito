@@ -1,4 +1,4 @@
-import {escapeRegExp} from '.';
+import {escapeRegExp} from './escape-reg-exp';
 
 export function extractAffixes(
     value: string,
