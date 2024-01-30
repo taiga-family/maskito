@@ -95,7 +95,7 @@
         "@angular-devkit/schematics": "15.2.10",
         "@angular/cli": "15.2.10",
         "@nx/angular": "17.2.8",
-        "@nx/cypress": "17.2.8",
+        "@nx/cypress": "17.3.0",
         "@nx/eslint": "17.2.8",
         "@nx/jest": "17.2.8",
         "@nx/js": "17.2.8",
