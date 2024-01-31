@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/taiga-family/maskito/compare/v2.0.0...v2.0.1) (2024-01-31)
+
+### Bug Fixes
+
+- **core:** `maskitoUpdateElement` should not dispatch `InputEvent` if value is not changed
+  ([#977](https://github.com/taiga-family/maskito/issues/977))
+  ([2410b64](https://github.com/taiga-family/maskito/commit/2410b6478c88f4d530b4469d7d50b1e4663d1572))
+- **core:** don't execute `setSelectionRange` if element is not focused
+  ([#937](https://github.com/taiga-family/maskito/issues/937))
+  ([92f288b](https://github.com/taiga-family/maskito/commit/92f288b677dbe77f7978308dd7b1612d6bfd68fb))
+- **kit:** `Number` rejects the first time input of full width digits
+  ([#955](https://github.com/taiga-family/maskito/issues/955))
+  ([c416884](https://github.com/taiga-family/maskito/commit/c41688488630e83d69eba795580916145e5fe17c))
+- **react:** `@maskito/react` library should not include `core-js` imports
+  ([#962](https://github.com/taiga-family/maskito/issues/962))
+  ([3b7e401](https://github.com/taiga-family/maskito/commit/3b7e4014029fae206020723c18762f08e92b8c41))
+
 ## [2.0.0](https://github.com/taiga-family/maskito/compare/v1.9.0...v2.0.0) (2024-01-22)
 
 ### ⚠ BREAKING CHANGES
