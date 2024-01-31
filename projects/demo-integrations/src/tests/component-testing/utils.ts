@@ -7,12 +7,16 @@ import {MaskitoOptions} from '@maskito/core';
     imports: [MaskitoDirective],
     template: `
         <input
+            [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             (input)="input.emit($event)"
         />
     `,
 })
 export class TestInput {
+    @Input()
+    initialValue = '';
+
     @Input()
     maskitoOptions: MaskitoOptions | null = null;
 

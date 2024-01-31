@@ -16,6 +16,8 @@ export function maskitoUpdateElement(
     element: HTMLInputElement | HTMLTextAreaElement,
     valueOrElementState: ElementState | string,
 ): void {
+    const initialValue = element.value;
+
     if (typeof valueOrElementState === 'string') {
         element.value = valueOrElementState;
     } else {
@@ -28,16 +30,18 @@ export function maskitoUpdateElement(
         }
     }
 
-    element.dispatchEvent(
-        new Event(
-            'input',
-            /**
-             * React handles this event only on bubbling phase
-             *
-             * here is the list of events that are processed in the capture stage, others are processed in the bubbling stage
-             * https://github.com/facebook/react/blob/cb2439624f43c510007f65aea5c50a8bb97917e4/packages/react-dom-bindings/src/events/DOMPluginEventSystem.js#L222
-             */
-            {bubbles: true},
-        ),
-    );
+    if (element.value !== initialValue) {
+        element.dispatchEvent(
+            new Event(
+                'input',
+                /**
+                 * React handles this event only on bubbling phase
+                 *
+                 * here is the list of events that are processed in the capture stage, others are processed in the bubbling stage
+                 * https://github.com/facebook/react/blob/cb2439624f43c510007f65aea5c50a8bb97917e4/packages/react-dom-bindings/src/events/DOMPluginEventSystem.js#L222
+                 */
+                {bubbles: true},
+            ),
+        );
+    }
 }
