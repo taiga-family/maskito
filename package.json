@@ -113,7 +113,7 @@
         "@types/jest": "29.5.11",
         "@types/node": "20.11.13",
         "cspell": "8.3.2",
-        "cypress": "13.6.3",
+        "cypress": "13.6.4",
         "cypress-real-events": "1.11.0",
         "eslint": "8.56.0",
         "http-server": "14.1.1",
