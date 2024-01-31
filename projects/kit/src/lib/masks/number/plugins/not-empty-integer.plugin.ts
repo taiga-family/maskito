@@ -32,9 +32,7 @@ export function createNotEmptyIntegerPlugin({
                 ) +
                 extractedPostfix;
 
-            if (newValue !== element.value) {
-                maskitoUpdateElement(element, newValue);
-            }
+            maskitoUpdateElement(element, newValue);
         },
         {capture: true},
     );

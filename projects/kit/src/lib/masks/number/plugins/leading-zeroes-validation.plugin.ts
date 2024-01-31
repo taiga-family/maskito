@@ -39,9 +39,7 @@ export function createLeadingZeroesValidationPlugin({
                 {value: '', selection: DUMMY_SELECTION},
             ).value;
 
-            if (element.value !== newValue) {
-                maskitoUpdateElement(element, newValue);
-            }
+            maskitoUpdateElement(element, newValue);
         },
         {capture: true},
     );
