@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
 
-import {extractAffixes} from '../../../utils';
+import {clamp, extractAffixes} from '../../../utils';
 import {generateMaskExpression} from '../utils';
 
 /**
@@ -45,18 +45,34 @@ export function createInitializationOnlyPreprocessor({
 
         isInitializationPhase = false;
 
-        const {cleanValue} = extractAffixes(elementState.value, {prefix, postfix});
+        const {value, selection} = elementState;
+        const [from, to] = selection;
+        const {extractedPrefix, cleanValue, extractedPostfix} = extractAffixes(value, {
+            prefix,
+            postfix,
+        });
+        const cleanState = maskitoTransform(
+            {
+                selection: [
+                    Math.max(from - extractedPrefix.length, 0),
+                    clamp(to - extractedPrefix.length, 0, cleanValue.length),
+                ],
+                value: cleanValue,
+            },
+            {
+                mask: cleanNumberMask,
+            },
+        );
+        const [cleanFrom, cleanTo] = cleanState.selection;
 
         return {
-            elementState: maskitoTransform(
-                {
-                    ...elementState,
-                    value: cleanValue,
-                },
-                {
-                    mask: cleanNumberMask,
-                },
-            ),
+            elementState: {
+                selection: [
+                    cleanFrom + extractedPrefix.length,
+                    cleanTo + extractedPrefix.length,
+                ],
+                value: extractedPrefix + cleanState.value + extractedPostfix,
+            },
             data,
         };
     };
