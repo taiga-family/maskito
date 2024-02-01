@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/taiga-family/maskito/compare/v2.0.1...v2.0.2) (2024-02-01)
+
+### Bug Fixes
+
+- **kit:** `Number` with initial value has problems with the first time input
+  ([#986](https://github.com/taiga-family/maskito/issues/986))
+  ([e40d3ff](https://github.com/taiga-family/maskito/commit/e40d3ff93c668c8afa60cd347faa7ebec76d0e6a))
+- **react:** `@maskito/react` includes again missing `cjs` module format
+  ([#991](https://github.com/taiga-family/maskito/issues/991))
+  ([18e3e0c](https://github.com/taiga-family/maskito/commit/18e3e0cf8911fa764a73e2e937081186f1dcde79))
+
 ### [2.0.1](https://github.com/taiga-family/maskito/compare/v2.0.0...v2.0.1) (2024-01-31)
 
 ### Bug Fixes
