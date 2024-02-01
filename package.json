@@ -110,7 +110,7 @@
         "@taiga-ui/tsconfig": "0.14.0",
         "@tinkoff/eslint-config": "2.0.0",
         "@tinkoff/eslint-config-react": "2.0.0",
-        "@types/jest": "29.5.11",
+        "@types/jest": "29.5.12",
         "@types/node": "20.11.15",
         "cspell": "8.3.2",
         "cypress": "13.6.4",
