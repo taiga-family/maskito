@@ -16,6 +16,7 @@
                 "external": "all",
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
                 "compiler": "babel",
+                "format": ["esm", "cjs"],
                 "assets": [
                     {
                         "glob": "projects/react/README.md",
