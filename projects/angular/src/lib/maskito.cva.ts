@@ -2,15 +2,23 @@ import {Directive, Input} from '@angular/core';
 import {DefaultValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
 
+import {MaskitoDirective} from './maskito.directive';
+
 @Directive({
     standalone: true,
-    selector: 'input[maskito], textarea[maskito]',
+    selector: '[maskito]:is(input, textarea)',
     providers: [
         DefaultValueAccessor,
         {
             provide: NG_VALUE_ACCESSOR,
             multi: true,
             useExisting: DefaultValueAccessor,
+        },
+    ],
+    hostDirectives: [
+        {
+            directive: MaskitoDirective,
+            inputs: ['maskito', 'maskitoElement'],
         },
     ],
     host: {

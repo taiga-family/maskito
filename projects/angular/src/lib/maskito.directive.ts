@@ -15,7 +15,7 @@ import {
     MaskitoOptions,
 } from '@maskito/core';
 
-@Directive({standalone: true, selector: '[maskito]'})
+@Directive({standalone: true, selector: '[maskito]:not(input):not(textarea)'})
 export class MaskitoDirective implements OnDestroy, OnChanges {
     private maskedElement: Maskito | null = null;
 
