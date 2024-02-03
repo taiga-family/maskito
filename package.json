@@ -135,8 +135,8 @@
         "webpack-merge": "5.10.0"
     },
     "engines": {
-        "node": ">= 18",
-        "npm": ">= 9",
+        "node": "21.6.1",
+        "npm": "10.4.0",
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "overrides": {
