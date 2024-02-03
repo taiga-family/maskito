@@ -38,11 +38,11 @@ export class TestDocExample1 {
     };
 
     readonly cardPredicate: MaskitoElementPredicate = element =>
-        element.querySelectorAll('input')[0]!;
+        element.querySelectorAll('input')[0];
 
     readonly namePredicate: MaskitoElementPredicate = element =>
-        element.querySelectorAll('input')[1]!;
+        element.querySelectorAll('input')[1];
 
     readonly asyncPredicate: MaskitoElementPredicate = async element =>
-        Promise.resolve(element.querySelectorAll('input')[0]!);
+        Promise.resolve(element.querySelectorAll('input')[0]);
 }
