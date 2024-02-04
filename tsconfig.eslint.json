@@ -3,8 +3,8 @@
     "compilerOptions": {
         "rootDir": ".",
         "baseUrl": ".",
-        "strict": false,
+        "strict": false
     },
     "include": ["projects", "scripts", "jest.config.ts"],
-    "exclude": ["**/node_modules", "**/schematics/**", "**/.*/", "*.js"],
+    "exclude": ["**/node_modules", "**/schematics/**", "**/.*/", "*.js"]
 }

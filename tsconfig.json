@@ -2,7 +2,7 @@
     "extends": "@taiga-ui/tsconfig",
     "exclude": ["projects/demo-integrations", "projects/**/*.spec.ts", "projects/**/*.spec.tsx"],
     "angularCompilerOptions": {
-        "strictTemplates": true,
+        "strictTemplates": true
     },
     "compilerOptions": {
         "baseUrl": "./",
@@ -21,7 +21,7 @@
             "@maskito/kit": ["projects/kit/src/index.ts"],
             "@maskito/phone": ["projects/phone/src/index.ts"],
             "@maskito/react": ["projects/react/src/index.ts"],
-            "@maskito/vue": ["projects/vue/src/index.ts"],
-        },
-    },
+            "@maskito/vue": ["projects/vue/src/index.ts"]
+        }
+    }
 }
