@@ -124,7 +124,7 @@
         "ng-packagr": "15.2.2",
         "nx": "17.3.0",
         "postcss-preset-env": "9.3.0",
-        "prettier": "3.2.4",
+        "prettier": "3.2.5",
         "standard-version": "9.5.0",
         "stylelint": "16.2.1",
         "ts-jest": "29.1.2",
