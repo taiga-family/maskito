@@ -1,6 +1,5 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {POSSIBLE_DATE_RANGE_SEPARATOR} from '../constants';
 import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
@@ -20,10 +19,6 @@ export function createValidDatePreprocessor({
                 elementState,
                 data: selection[0] === value.length ? data : '',
             };
-        }
-
-        if (POSSIBLE_DATE_RANGE_SEPARATOR.includes(data)) {
-            return {elementState, data: rangeSeparator};
         }
 
         const newCharacters = data.replace(
