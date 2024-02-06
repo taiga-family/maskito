@@ -1,6 +1,6 @@
 import {DemoPath} from '@demo/constants';
 
-describe('DateRange | Separator', () => {
+describe('DateRange | dateSeparator', () => {
     describe('/', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.DateRange}/API?dateSeparator=/`);

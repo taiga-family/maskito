@@ -50,9 +50,7 @@ export function createValidDatePreprocessor({
             const {validatedDateString, updatedSelection} = validateDateString({
                 dateString,
                 dateModeTemplate,
-                offset: validatedValue
-                    ? validatedValue.length + rangeSeparator.length
-                    : 0,
+                offset: validatedValue.length,
                 selection: [from, to],
             });
 
@@ -63,8 +61,8 @@ export function createValidDatePreprocessor({
             to = updatedSelection[1];
 
             validatedValue +=
-                hasRangeSeparator && validatedValue
-                    ? rangeSeparator + validatedDateString
+                hasRangeSeparator && !validatedValue
+                    ? validatedDateString + rangeSeparator
                     : validatedDateString;
         }
 

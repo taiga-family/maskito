@@ -18,6 +18,9 @@ describe('DateRange (maskitoTransform) | Pseudo range separators', () => {
         expect(maskitoTransform(`01012000${CHAR_EN_DASH}10102000`, options)).toBe(
             `01.01.2000${CHAR_EN_DASH}10.10.2000`,
         );
+        expect(maskitoTransform(`01012000 ${CHAR_EN_DASH} 10102000`, options)).toBe(
+            `01.01.2000${CHAR_EN_DASH}10.10.2000`,
+        );
     });
 
     it('replaces hyphen with valid range separator', () => {

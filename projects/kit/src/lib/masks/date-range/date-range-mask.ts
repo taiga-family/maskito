@@ -39,7 +39,7 @@ export function maskitoDateRangeOptionsGenerator({
         mask: [...dateMask, ...Array.from(rangeSeparator), ...dateMask],
         overwriteMode: 'replace',
         preprocessors: [
-            createPseudoRangeSeparatorPreprocessor(rangeSeparator),
+            createPseudoRangeSeparatorPreprocessor({rangeSeparator, dateSeparator}),
             createZeroPlaceholdersPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
