@@ -1,3 +1,4 @@
+export {createDateSegmentsZeroPaddingPostprocessor} from './date-segments-zero-padding-postprocessor';
 export {createMinMaxDatePostprocessor} from './min-max-date-postprocessor';
 export {normalizeDatePreprocessor} from './normalize-date-preprocessor';
 export {maskitoPostfixPostprocessorGenerator} from './postfix-postprocessor';
