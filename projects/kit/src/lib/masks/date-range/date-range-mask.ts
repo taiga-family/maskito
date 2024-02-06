@@ -9,7 +9,7 @@ import {
 } from '../../processors';
 import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
-import {createPseudoRangeSeparatorPreprocessor} from './processors/preudo-range-separator-preprocessor';
+import {createPseudoRangeSeparatorPreprocessor} from './processors/pseudo-range-separator-preprocessor';
 import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocessor';
 
 export function maskitoDateRangeOptionsGenerator({
