@@ -2,6 +2,11 @@ import {parseDateRangeString} from '../parse-date-range-string';
 
 describe('parseDateRangeString', () => {
     const tests = [
+        ['', []],
+        ['1', ['1']],
+        ['13', ['13']],
+        ['13.', ['13.']],
+        ['13.0', ['13.0']],
         ['13.02', ['13.02']],
         ['13.02.', ['13.02.']],
         ['13.02.2023', ['13.02.2023']],

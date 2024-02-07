@@ -1,6 +1,7 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {
+    createDateSegmentsZeroPaddingPostprocessor,
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
@@ -39,6 +40,12 @@ export function maskitoDateOptionsGenerator({
             }),
         ],
         postprocessors: [
+            createDateSegmentsZeroPaddingPostprocessor({
+                dateModeTemplate,
+                dateSegmentSeparator: separator,
+                splitFn: value => ({dateStrings: [value]}),
+                uniteFn: ([dateString]) => dateString,
+            }),
             createMinMaxDatePostprocessor({
                 min,
                 max,

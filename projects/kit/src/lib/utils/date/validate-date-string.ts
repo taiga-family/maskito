@@ -1,14 +1,8 @@
+import {DATE_SEGMENTS_MAX_VALUES} from '../../constants';
 import {MaskitoDateSegments} from '../../types';
-import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
 import {getDateSegmentValueLength} from './date-segment-value-length';
 import {parseDateString} from './parse-date-string';
 import {toDateString} from './to-date-string';
-
-const dateMaxValues: MaskitoDateSegments<number> = {
-    day: 31,
-    month: 12,
-    year: 9999,
-};
 
 export function validateDateString({
     dateString,
@@ -27,11 +21,9 @@ export function validateDateString({
     >;
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};
 
-    let paddedZeroes = 0;
-
     for (const [segmentName, segmentValue] of dateSegments) {
         const validatedDate = toDateString(validatedDateSegments, dateModeTemplate);
-        const maxSegmentValue = dateMaxValues[segmentName];
+        const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
 
         const fantomSeparator = validatedDate.length && 1;
 
@@ -53,14 +45,7 @@ export function validateDateString({
             return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
         }
 
-        const {validatedSegmentValue, prefixedZeroesCount} = padWithZeroesUntilValid(
-            segmentValue,
-            `${maxSegmentValue}`,
-        );
-
-        paddedZeroes += prefixedZeroesCount;
-
-        validatedDateSegments[segmentName] = validatedSegmentValue;
+        validatedDateSegments[segmentName] = segmentValue;
     }
 
     const validatedDateString = toDateString(validatedDateSegments, dateModeTemplate);
@@ -69,8 +54,8 @@ export function validateDateString({
     return {
         validatedDateString,
         updatedSelection: [
-            from + paddedZeroes + addedDateSegmentSeparators,
-            to + paddedZeroes + addedDateSegmentSeparators,
+            from + addedDateSegmentSeparators,
+            to + addedDateSegmentSeparators,
         ],
     };
 }

@@ -2,6 +2,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../constants';
 import {
+    createDateSegmentsZeroPaddingPostprocessor,
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
@@ -9,6 +10,7 @@ import {MaskitoDateMode, MaskitoTimeMode} from '../../types';
 import {DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
+import {parseDateTimeString} from './utils';
 
 export function maskitoDateTimeOptionsGenerator({
     dateMode,
@@ -49,6 +51,23 @@ export function maskitoDateTimeOptionsGenerator({
             }),
         ],
         postprocessors: [
+            createDateSegmentsZeroPaddingPostprocessor({
+                dateModeTemplate,
+                dateSegmentSeparator: dateSeparator,
+                splitFn: value => {
+                    const [dateString, timeString] = parseDateTimeString(
+                        value,
+                        dateModeTemplate,
+                    );
+
+                    return {dateStrings: [dateString], restPart: timeString};
+                },
+                uniteFn: ([validatedDateString], initialValue) =>
+                    validatedDateString +
+                    (initialValue.includes(DATE_TIME_SEPARATOR)
+                        ? DATE_TIME_SEPARATOR
+                        : ''),
+            }),
             createMinMaxDateTimePostprocessor({
                 min,
                 max,
