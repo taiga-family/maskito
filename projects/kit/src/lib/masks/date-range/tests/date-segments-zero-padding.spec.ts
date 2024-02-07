@@ -13,7 +13,7 @@ describe('DateRange (maskitoTransform) | Date segments zero padding', () => {
             });
         });
 
-        describe('pads digits with zero if date segment exceeds its max possible value (yyyy/mm/dd is enabled)', () => {
+        describe('pads digits with zero if date segment exceeds its max possible value', () => {
             describe('pads digit > 1 with zero for months', () => {
                 [0, 1].forEach(digit => {
                     it(`1234/${digit} => 1234/${digit}`, () => {

@@ -43,6 +43,8 @@ export function maskitoDateOptionsGenerator({
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: separator,
+                splitFn: value => ({dateStrings: [value]}),
+                uniteFn: ([dateString]) => dateString,
             }),
             createMinMaxDatePostprocessor({
                 min,

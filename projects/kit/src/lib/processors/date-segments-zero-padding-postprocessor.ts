@@ -2,30 +2,26 @@ import {MaskitoPostprocessor} from '@maskito/core';
 
 import {DATE_SEGMENTS_MAX_VALUES} from '../constants';
 import {MaskitoDateSegments} from '../types';
-import {
-    padWithZeroesUntilValid,
-    parseDateRangeString,
-    parseDateString,
-    toDateString,
-} from '../utils';
+import {padWithZeroesUntilValid, parseDateString, toDateString} from '../utils';
 
 export function createDateSegmentsZeroPaddingPostprocessor({
     dateModeTemplate,
     dateSegmentSeparator,
-    rangeSeparator = '',
+    splitFn,
+    uniteFn,
 }: {
     dateModeTemplate: string;
     dateSegmentSeparator: string;
-    rangeSeparator?: string;
+    splitFn: (value: string) => {dateStrings: string[]; restPart?: string};
+    uniteFn: (validatedDateStrings: string[], initialValue: string) => string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [from, to] = selection;
-        const dateStrings = parseDateRangeString(value, dateModeTemplate, rangeSeparator);
-
-        let validatedValue = '';
+        const {dateStrings, restPart = ''} = splitFn(value);
+        const validatedDateStrings: string[] = [];
         let caretShift = 0;
 
-        dateStrings.forEach((dateString, dateIndex) => {
+        dateStrings.forEach(dateString => {
             const parsedDate = parseDateString(dateString, dateModeTemplate);
             const dateSegments = Object.entries(parsedDate) as Array<
                 [keyof MaskitoDateSegments, string]
@@ -46,11 +42,17 @@ export function createDateSegmentsZeroPaddingPostprocessor({
                 {},
             );
 
-            validatedValue +=
-                toDateString(validatedDateSegments, dateModeTemplate) +
-                (!dateIndex && value.includes(rangeSeparator) ? rangeSeparator : '') +
-                (value.endsWith(dateSegmentSeparator) ? dateSegmentSeparator : '');
+            validatedDateStrings.push(
+                toDateString(validatedDateSegments, dateModeTemplate),
+            );
         });
+
+        const validatedValue =
+            uniteFn(validatedDateStrings, value) +
+            (dateStrings[dateStrings.length - 1]?.endsWith(dateSegmentSeparator)
+                ? dateSegmentSeparator
+                : '') +
+            restPart;
 
         if (caretShift && validatedValue[to + 1] === dateSegmentSeparator) {
             /**
