@@ -1,10 +1,7 @@
 import {CHAR_EM_DASH, CHAR_EN_DASH, CHAR_HYPHEN, CHAR_MINUS} from '../../../constants';
 import {escapeRegExp} from '../../../utils';
 
-export function maskitoParseNumber(
-    maskedNumber: string,
-    decimalSeparator: string = '.',
-): number {
+export function maskitoParseNumber(maskedNumber: string, decimalSeparator = '.'): number {
     const hasNegativeSign = !!maskedNumber.match(
         new RegExp(`^\\D*[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}]`),
     );
