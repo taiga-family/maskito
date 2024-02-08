@@ -56,6 +56,8 @@ export function maskitoPhoneStrictOptionsGenerator({
                 from === to ? prefix.length : 0,
                 value.length,
             ]),
+            // TODO: drop `maskitoAddOnFocusPlugin` & `maskitoRemoveOnBlurPlugin`
+            // TODO: Add examples how to enable `maskitoAddOnFocusPlugin` & `maskitoRemoveOnBlurPlugin` on https://maskito.dev/addons/phone
             maskitoRemoveOnBlurPlugin(prefix),
             maskitoAddOnFocusPlugin(prefix),
         ],

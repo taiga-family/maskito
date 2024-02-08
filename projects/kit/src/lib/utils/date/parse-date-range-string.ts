@@ -1,9 +1,11 @@
+import {countDigits} from '../count-digits';
+
 export function parseDateRangeString(
     dateRange: string,
     dateModeTemplate: string,
     rangeSeparator: string,
 ): string[] {
-    const digitsInDate = dateModeTemplate.replace(/\W/g, '').length;
+    const digitsInDate = countDigits(dateModeTemplate);
 
     return (
         dateRange

@@ -1,10 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {
-    DEFAULT_TIME_SEGMENT_MAX_VALUES,
-    POSSIBLE_DATE_TIME_SEPARATOR,
-    TIME_FIXED_CHARACTERS,
-} from '../../../constants';
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../../constants';
 import {escapeRegExp, validateDateString} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 import {DATE_TIME_SEPARATOR} from '../constants';
@@ -31,10 +27,6 @@ export function createValidDateTimePreprocessor({
                 elementState,
                 data: selection[0] === value.length ? data : '',
             };
-        }
-
-        if (POSSIBLE_DATE_TIME_SEPARATOR.includes(data)) {
-            return {elementState, data: DATE_TIME_SEPARATOR};
         }
 
         const newCharacters = data.replace(invalidCharsRegExp, '');
