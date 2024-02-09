@@ -1,0 +1,27 @@
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MaskitoDirective} from '@maskito/angular';
+
+import mask from './mask';
+
+@Component({
+    standalone: true,
+    selector: 'content-editable-doc-example-1',
+    imports: [MaskitoDirective],
+    template: `
+        Meeting time:
+        <span
+            contenteditable="true"
+            [maskito]="mask"
+        >
+            12:00
+        </span>
+    `,
+    styles: [
+        ':host {font-size: 2.5rem}',
+        '[contenteditable] {border: 3px dashed lightgrey}',
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ContentEditableDocExample1 {
+    protected readonly mask = mask;
+}

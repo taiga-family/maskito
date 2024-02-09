@@ -132,6 +132,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Recipes',
+        title: 'ContentEditable',
+        route: DemoPath.ContentEditable,
+        keywords: 'content, editable, contenteditable, contentEditable, mask, recipe',
+    },
+    {
+        section: 'Recipes',
         title: 'With prefix',
         route: DemoPath.Prefix,
         keywords: 'prefix, before, recipe',

@@ -1,0 +1,107 @@
+<tui-doc-page
+    header="ContentEditable"
+    package="Recipes"
+>
+    <section>
+        <p class="tui-space_top-0 tui-space_bottom-4">
+            You can use
+            <strong>Maskito</strong>
+            with
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/contentEditable"
+                rel="noreferrer"
+                target="_blank"
+                tuiLink
+            >
+                <code>contentEditable</code>
+            </a>
+            too.
+        </p>
+        <p>
+            Just wrap the element with
+            <code>maskitoAdaptContentEditable</code>
+            utility and use
+            <strong>Maskito</strong>
+            in the same way as
+            <code>HTMLInputElement</code>
+            /
+            <code>HTMLTextAreaElement</code>
+            .
+        </p>
+
+        <tui-notification
+            status="success"
+            class="tui-space_bottom-4"
+        >
+            No need to use
+            <code>maskitoAdaptContentEditable</code>
+            if you use
+            <a
+                tuiLink
+                [routerLink]="angularDocPage"
+            >
+                <code>&#64;maskito/angular</code>
+            </a>
+            ,
+            <a
+                tuiLink
+                [routerLink]="reactDocPage"
+            >
+                <code>&#64;maskito/react</code>
+            </a>
+            or
+            <a
+                tuiLink
+                [routerLink]="vueDocPage"
+            >
+                <code>&#64;maskito/vue</code>
+            </a>
+            with the default element predicate (it will be wrapped automatically).
+        </tui-notification>
+
+        <tui-doc-code [code]="maskitoWithContentEditableDemo" />
+
+        <p class="tui-space_bottom-0">
+            Learn more in the
+            <a
+                tuiLink
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                "Core Concepts"
+            </a>
+            section.
+        </p>
+    </section>
+
+    <tui-doc-example
+        id="time"
+        [content]="contentEditableExample1"
+        [heading]="heading1"
+    >
+        <ng-template #heading1>
+            With built-in
+            <a
+                tuiLink
+                [routerLink]="timeMaskDocPage"
+            >
+                <code>Time</code>
+            </a>
+            mask
+        </ng-template>
+        <content-editable-doc-example-1 />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="multi-line"
+        heading="Multi-line support"
+        [content]="contentEditableExample2"
+        [description]="description2"
+    >
+        <ng-template #description2>
+            Use
+            <code>white-space: pre</code>
+            for multi-line mode
+        </ng-template>
+        <content-editable-doc-example-2 />
+    </tui-doc-example>
+</tui-doc-page>
