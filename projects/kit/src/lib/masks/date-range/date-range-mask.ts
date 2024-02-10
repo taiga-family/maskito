@@ -11,6 +11,7 @@ import {
 } from '../../processors';
 import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {parseDateRangeString} from '../../utils';
+import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 import {POSSIBLE_DATE_RANGE_SEPARATOR} from './constants';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
 import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocessor';
@@ -42,6 +43,7 @@ export function maskitoDateRangeOptionsGenerator({
         mask: [...dateMask, ...Array.from(rangeSeparator), ...dateMask],
         overwriteMode: 'replace',
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,

@@ -8,6 +8,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import {MaskitoDateMode, MaskitoTimeMode} from '../../types';
+import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 import {DATE_TIME_SEPARATOR, POSSIBLE_DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
@@ -41,6 +42,7 @@ export function maskitoDateTimeOptionsGenerator({
         ],
         overwriteMode: 'replace',
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,

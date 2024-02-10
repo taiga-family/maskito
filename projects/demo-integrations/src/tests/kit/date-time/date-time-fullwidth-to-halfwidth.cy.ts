@@ -1,8 +1,10 @@
 import {DemoPath} from '@demo/constants';
 
-describe('DateRange | Full width character parsing', () => {
+describe('DateTime | Full width character parsing', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.DateRange}/API?mode=yyyy%2Fmm%2Fdd&dateSeparator=%2F`);
+        cy.visit(
+            `/${DemoPath.DateTime}/API?dateMode=yyyy%2Fmm%2Fdd&timeMode=HH:MM:SS&dateSeparator=%2F`,
+        );
         cy.get('#demo-content input').should('be.visible').first().focus().as('input');
     });
 
@@ -15,11 +17,10 @@ describe('DateRange | Full width character parsing', () => {
             ['２０１６', '2016'],
             ['２０１６２', '2016/02'],
             ['２０１６２２８', '2016/02/28'],
-            ['２０１６２２８２', '2016/02/28 – 2'],
-            ['２０１６２２８２０', '2016/02/28 – 20'],
-            ['２０１６２２８２０２０', '2016/02/28 – 2020'],
-            ['２０１６２２８２０２０４', '2016/02/28 – 2020/04'],
-            ['２０１６２２８２０２０４４', '2016/02/28 – 2020/04/04'],
+            ['２０１６２２８３', '2016/02/28, 03'],
+            ['２０１６２２８３３０', '2016/02/28, 03:30'],
+            ['２０１６２２８３３０４', '2016/02/28, 03:30:4'],
+            ['２０１６２２８３３０４５', '2016/02/28, 03:30:45'],
         ] as const;
 
         tests.forEach(([typedValue, maskedValue]) => {

@@ -3,6 +3,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
 import {createZeroPlaceholdersPreprocessor} from '../../processors';
 import {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 import {createMaxValidationPreprocessor} from './processors';
 
 export function maskitoTimeOptionsGenerator({
@@ -23,6 +24,7 @@ export function maskitoTimeOptionsGenerator({
             TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
         ),
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createZeroPlaceholdersPreprocessor(),
             createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues),
         ],

@@ -8,6 +8,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import {MaskitoDateMode} from '../../types';
+import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 
 export function maskitoDateOptionsGenerator({
     mode,
@@ -29,6 +30,7 @@ export function maskitoDateOptionsGenerator({
         ),
         overwriteMode: 'replace',
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createZeroPlaceholdersPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
