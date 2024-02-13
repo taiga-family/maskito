@@ -11,9 +11,9 @@ jobs:
     if: ${{ !contains(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.51.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.51.2
-      - uses: taiga-family/ci/actions/setup/node@v1.51.2
+      - uses: taiga-family/ci/actions/setup/checkout@v1.51.3
+      - uses: taiga-family/ci/actions/setup/variables@v1.51.3
+      - uses: taiga-family/ci/actions/setup/node@v1.51.3
 
       - name: Run tests
         run: npx nx run-many --target test --all --coverage
@@ -29,7 +29,7 @@ jobs:
     needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.51.2
+      - uses: taiga-family/ci/actions/setup/checkout@v1.51.3
       - uses: actions/download-artifact@v4.1.2
         with:
           name: coverage-${{ github.workflow }}-${{ github.run_id }}
