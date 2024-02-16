@@ -114,7 +114,7 @@
         "@types/node": "20.11.19",
         "cspell": "8.3.2",
         "cypress": "13.6.4",
-        "cypress-real-events": "1.11.0",
+        "cypress-real-events": "1.12.0",
         "eslint": "8.56.0",
         "http-server": "14.1.1",
         "husky": "9.0.11",
