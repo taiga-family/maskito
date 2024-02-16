@@ -4,6 +4,7 @@ import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE} from '../../constants';
 import {
     createDateSegmentsZeroPaddingPostprocessor,
     createFirstDateEndSeparatorPreprocessor,
+    createFullWidthToHalfWidthPreprocessor,
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
@@ -11,7 +12,6 @@ import {
 } from '../../processors';
 import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {parseDateRangeString} from '../../utils';
-import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 import {POSSIBLE_DATE_RANGE_SEPARATOR} from './constants';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
 import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocessor';

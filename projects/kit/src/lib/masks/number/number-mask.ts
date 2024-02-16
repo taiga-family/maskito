@@ -10,6 +10,7 @@ import {
     CHAR_ZERO_WIDTH_SPACE,
 } from '../../constants';
 import {
+    createFullWidthToHalfWidthPreprocessor,
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
@@ -21,7 +22,6 @@ import {
 import {
     createAffixesFilterPreprocessor,
     createDecimalZeroPaddingPostprocessor,
-    createFullWidthToHalfWidthPreprocessor,
     createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,

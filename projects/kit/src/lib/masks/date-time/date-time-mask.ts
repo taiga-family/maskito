@@ -4,11 +4,11 @@ import {TIME_FIXED_CHARACTERS} from '../../constants';
 import {
     createDateSegmentsZeroPaddingPostprocessor,
     createFirstDateEndSeparatorPreprocessor,
+    createFullWidthToHalfWidthPreprocessor,
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
 import {MaskitoDateMode, MaskitoTimeMode} from '../../types';
-import {createFullWidthToHalfWidthPreprocessor} from '../number/processors';
 import {DATE_TIME_SEPARATOR, POSSIBLE_DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
