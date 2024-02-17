@@ -1,6 +1,6 @@
 import {MaskitoPreprocessor} from '@maskito/core';
 
-import {toHalfWidthNumber} from '../masks/number/utils/to-half-width-number';
+import {toHalfWidthNumber} from '../utils';
 
 /**
  * Convert full width numbers like １, ２ to half width numbers 1, 2

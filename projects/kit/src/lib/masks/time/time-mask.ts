@@ -2,6 +2,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
 
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
 import {
+    createColonConvertPreprocessor,
     createFullWidthToHalfWidthPreprocessor,
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
@@ -27,6 +28,7 @@ export function maskitoTimeOptionsGenerator({
         ),
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
+            createColonConvertPreprocessor(),
             createZeroPlaceholdersPreprocessor(),
             createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues),
         ],
