@@ -46,3 +46,17 @@ export const CHAR_MINUS = '\u2212';
  * is used as prolonged sounds in Japanese.
  */
 export const CHAR_JP_HYPHEN = '\u30FC';
+
+/**
+ * {@link https://symbl.cc/en/003A/ Colon}
+ * is a punctuation mark that connects parts of a text logically.
+ * ---
+ * is also used as separator in time.
+ */
+export const CHAR_COLON = '\u003A';
+
+/**
+ * {@link https://symbl.cc/en/FF1A/ Full-width colon}
+ * is a full-width punctuation mark used to separate parts of a text commonly in Japanese.
+ */
+export const CHAR_JP_COLON = '\uFF1A';

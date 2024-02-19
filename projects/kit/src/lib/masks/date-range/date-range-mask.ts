@@ -4,6 +4,7 @@ import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE} from '../../constants';
 import {
     createDateSegmentsZeroPaddingPostprocessor,
     createFirstDateEndSeparatorPreprocessor,
+    createFullWidthToHalfWidthPreprocessor,
     createMinMaxDatePostprocessor,
     createValidDatePreprocessor,
     createZeroPlaceholdersPreprocessor,
@@ -42,6 +43,7 @@ export function maskitoDateRangeOptionsGenerator({
         mask: [...dateMask, ...Array.from(rangeSeparator), ...dateMask],
         overwriteMode: 'replace',
         preprocessors: [
+            createFullWidthToHalfWidthPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,

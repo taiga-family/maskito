@@ -16,3 +16,5 @@ export * from './find-common-beginning-substr';
 export * from './identity';
 export * from './is-empty';
 export * from './pad-with-zeroes-until-valid';
+export * from './to-half-width-colon';
+export * from './to-half-width-number';

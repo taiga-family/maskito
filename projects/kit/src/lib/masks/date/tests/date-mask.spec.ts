@@ -67,8 +67,7 @@ describe('Date (maskitoTransform)', () => {
             });
         });
 
-        // TODO: https://github.com/taiga-family/maskito/pull/907
-        xit('accepts full width characters', () => {
+        it('accepts full width characters', () => {
             expect(maskitoTransform('１２３４５', options)).toBe('1234/05');
             expect(maskitoTransform('１２３４１２２６', options)).toBe('1234/12/26');
         });
