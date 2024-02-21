@@ -50,7 +50,7 @@ export class MaskitoContentEditable implements MaskitoElement {
 
     set value(value) {
         // Setting into innerHTML of element with `white-space: pre;` style
-        this.element.innerText = value.replace(/\n$/, '\n\n');
+        this.element.innerHTML = value.replace(/\n$/, '\n\n');
     }
 
     get selectionStart(): number | null {
