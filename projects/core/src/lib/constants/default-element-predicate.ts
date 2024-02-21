@@ -1,13 +1,8 @@
-import {MaskitoReactContentEditableElement} from '../classes';
+import {MaskitoContentEditable} from '../classes';
 import {MaskitoElementPredicate} from '../types';
 
-export const MASKITO_DEFAULT_ELEMENT_PREDICATE: MaskitoElementPredicate = e => {
-    if (e.isContentEditable) {
-        return new MaskitoReactContentEditableElement(e).proxy;
-    }
-
-    return (
-        e.querySelector<HTMLInputElement | HTMLTextAreaElement>('input,textarea') ||
-        (e as HTMLInputElement | HTMLTextAreaElement)
-    );
-};
+export const MASKITO_DEFAULT_ELEMENT_PREDICATE: MaskitoElementPredicate = e =>
+    e.isContentEditable
+        ? new MaskitoContentEditable(e)
+        : e.querySelector<HTMLInputElement | HTMLTextAreaElement>('input,textarea') ||
+          (e as HTMLInputElement | HTMLTextAreaElement);

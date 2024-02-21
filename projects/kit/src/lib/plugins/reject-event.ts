@@ -1,6 +1,6 @@
-export function maskitoRejectEvent(
-    element: HTMLInputElement | HTMLTextAreaElement,
-): () => void {
+import {MaskitoPlugin} from '@maskito/core';
+
+export const maskitoRejectEvent: MaskitoPlugin = element => {
     const listener = (): void => {
         const value = element.value;
 
@@ -20,4 +20,4 @@ export function maskitoRejectEvent(
     element.addEventListener('beforeinput', listener, true);
 
     return () => element.removeEventListener('beforeinput', listener, true);
-}
+};

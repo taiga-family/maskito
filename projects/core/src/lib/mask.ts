@@ -1,6 +1,7 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
 import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './types';
+import {MaskitoElement} from './types/maskito-element';
 import {
     areElementValuesEqual,
     EventListener,
@@ -30,7 +31,7 @@ export class Maskito extends MaskHistory {
     );
 
     constructor(
-        private readonly element: HTMLInputElement | HTMLTextAreaElement,
+        private readonly element: MaskitoElement,
         private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
@@ -94,20 +95,24 @@ export class Maskito extends MaskHistory {
                 case 'insertCompositionText':
                     return; // will be handled inside `compositionend` event
                 case 'insertLineBreak':
+                case 'insertParagraph':
                     return this.handleEnter(event);
                 case 'insertFromPaste':
                 case 'insertText':
                 case 'insertFromDrop':
                 default: {
-                    let data = event.data;
-
                     // When using beforeinput events on contenteditable,
                     // it passes pasted or dropped data only through dataTransfer property
-                    if (!event.data && event.dataTransfer) {
-                        data = event.dataTransfer.getData('text/plain');
-                    }
 
-                    return this.handleInsert(event, data || '');
+                    return this.handleInsert(
+                        event,
+                        event.data ||
+                            /**
+                             * `event.data` for ContentEditable is always null for paste/drop events
+                             */
+                            event.dataTransfer?.getData('text/plain') ||
+                            '',
+                    );
                 }
             }
         });
@@ -233,7 +238,12 @@ export class Maskito extends MaskHistory {
             initialState.value.slice(0, initialFrom) +
             initialState.value.slice(initialTo);
 
-        if (newPossibleValue === newElementState.value && !force) {
+        if (
+            newPossibleValue === newElementState.value &&
+            !force &&
+            // Every update to contenteditable must be done using value assignment
+            !this.element.isContentEditable
+        ) {
             return;
         }
 
@@ -281,7 +291,11 @@ export class Maskito extends MaskHistory {
             return event.preventDefault();
         }
 
-        if (newPossibleValue !== newElementState.value) {
+        if (
+            newPossibleValue !== newElementState.value ||
+            // Every update to contenteditable must be done using value assignment
+            this.element.isContentEditable
+        ) {
             event.preventDefault();
 
             this.updateElementState(newElementState, {
@@ -293,7 +307,7 @@ export class Maskito extends MaskHistory {
     }
 
     private handleEnter(event: TypedInputEvent): void {
-        if (this.isTextArea) {
+        if (this.isTextArea || this.element.isContentEditable) {
             this.handleInsert(event, '\n');
         }
     }

@@ -1,5 +1,7 @@
 export * from './dom/event-listener';
+export * from './dom/get-content-editable-selection';
 export * from './dom/history-events';
+export * from './dom/set-content-editable-selection';
 export * from './dom/update-element';
 export * from './element-states-equality';
 export * from './get-line-selection';

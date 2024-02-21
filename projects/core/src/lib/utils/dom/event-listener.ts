@@ -1,9 +1,9 @@
-import {TypedInputEvent} from '../../types';
+import {MaskitoElement, TypedInputEvent} from '../../types';
 
 export class EventListener {
     private readonly listeners: Array<() => void> = [];
 
-    constructor(private readonly element: HTMLElement) {}
+    constructor(private readonly element: MaskitoElement) {}
 
     listen<E extends keyof HTMLElementEventMap>(
         eventType: E,

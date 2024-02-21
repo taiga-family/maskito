@@ -9,6 +9,12 @@ import mask from './mask';
     selector: 'contenteditable-doc-example-1',
     imports: [FormsModule, MaskitoDirective],
     template: `
+        <style>
+            [contenteditable='true'] {
+                white-space: pre;
+                padding: 10px;
+            }
+        </style>
         Enter address
         <div
             contenteditable="true"
