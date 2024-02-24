@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {MaskitoCVA, MaskitoDirective, MaskitoPipe} from '@maskito/angular';
+import {MaskitoDirective, MaskitoPipe} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 
 describe('Maskito Angular package', () => {
     @Component({
         standalone: true,
-        imports: [MaskitoDirective, MaskitoCVA, MaskitoPipe, ReactiveFormsModule],
+        imports: [MaskitoDirective, MaskitoPipe, ReactiveFormsModule],
         template: `
             <div id="pipe">{{ control.value | maskito: options }}</div>
             <input
