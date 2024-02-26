@@ -1,25 +1,23 @@
-import {DemoPath} from '@demo/constants';
+import {PredicateTestComponent} from './predicate-test.component';
 
 describe('@maskito/angular | Predicate', () => {
+    beforeEach(() => {
+        cy.mount(PredicateTestComponent);
+    });
     it('can detect run-time changes', () => {
-        cy.visit(DemoPath.Cypress);
-        cy.get('#predicate input').should('be.visible').first().as('card');
-        cy.get('#predicate input').should('be.visible').eq(1).as('name');
-
-        cy.get('@card')
+        cy.get('#predicate input')
+            .first()
             .focus()
             .type('12341234abcd12341234')
             .should('have.value', '1234 1234 1234 1234');
-
-        cy.get('@name').focus().type('12341234abcd12341234').should('have.value', 'ABCD');
+        cy.get('#predicate input')
+            .eq(1)
+            .focus()
+            .type('12341234abcd12341234')
+            .should('have.value', 'ABCD');
     });
     it('supports asynchronous predicate', () => {
-        cy.visit(DemoPath.Cypress);
-        cy.get('#predicate #async-predicate input')
-            .should('be.visible')
-            .first()
-            .as('card');
-
+        cy.get('#async-predicate input').as('card');
         cy.get('@card')
             .focus()
             .type('12341234abcd12341234')
