@@ -25,5 +25,5 @@ export class TestInput {
     input = new EventEmitter();
 
     @Input()
-    maxLength?: number | null = null;
+    maxLength: number = Infinity;
 }
