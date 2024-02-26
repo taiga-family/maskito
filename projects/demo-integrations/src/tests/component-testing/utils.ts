@@ -7,7 +7,6 @@ import {MaskitoOptions} from '@maskito/core';
     imports: [MaskitoDirective],
     template: `
         <input
-            #inputElemnt
             [attr.maxlength]="maxLength"
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
