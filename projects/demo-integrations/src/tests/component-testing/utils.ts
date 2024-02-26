@@ -36,7 +36,7 @@ export class TestInput implements AfterViewInit {
     input = new EventEmitter();
 
     @Input()
-    maxLength?: string;
+    maxLength?: number;
 
     ngAfterViewInit(): void {
         if (this.maxLength) {

@@ -14,7 +14,7 @@ describe('Native attribute maxlength works', () => {
             cy.mount(TestInput, {
                 componentProperties: {
                     maskitoOptions,
-                    maxLength: '3',
+                    maxLength: 3,
                 },
             });
             cy.get('input[maxlength="3"]')
@@ -97,7 +97,7 @@ describe('Native attribute maxlength works', () => {
             cy.mount(TestInput, {
                 componentProperties: {
                     maskitoOptions,
-                    maxLength: '6',
+                    maxLength: 6,
                 },
             });
             cy.get('input[maxlength="6"]')
