@@ -1,12 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
 import {MaskitoOptions} from '@maskito/core';
 
@@ -16,16 +8,14 @@ import {MaskitoOptions} from '@maskito/core';
     template: `
         <input
             #inputElemnt
+            [attr.maxlength]="maxLength"
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             (input)="input.emit($event)"
         />
     `,
 })
-export class TestInput implements AfterViewInit {
-    @ViewChild('inputElemnt')
-    inputElement!: ElementRef;
-
+export class TestInput {
     @Input()
     initialValue = '';
 
@@ -36,11 +26,5 @@ export class TestInput implements AfterViewInit {
     input = new EventEmitter();
 
     @Input()
-    maxLength?: number;
-
-    ngAfterViewInit(): void {
-        if (this.maxLength) {
-            this.inputElement.nativeElement.maxLength = this.maxLength;
-        }
-    }
+    maxLength?: number | null = null;
 }
