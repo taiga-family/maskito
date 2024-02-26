@@ -37,7 +37,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         @Optional()
         accessor: DefaultValueAccessor | null,
     ) {
-        if (accessor !== null) {
+        if (accessor) {
             const original = accessor.writeValue.bind(accessor);
 
             accessor.writeValue = (value: unknown) => {
