@@ -1,13 +1,11 @@
 import {
     Directive,
     ElementRef,
-    Inject,
+    inject,
     Input,
     NgZone,
     OnChanges,
     OnDestroy,
-    Optional,
-    Self,
 } from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
 import {
@@ -21,6 +19,8 @@ import {
 
 @Directive({standalone: true, selector: '[maskito]'})
 export class MaskitoDirective implements OnDestroy, OnChanges {
+    private readonly elementRef: HTMLElement = inject(ElementRef).nativeElement;
+    private readonly ngZone = inject(NgZone);
     private maskedElement: Maskito | null = null;
 
     @Input()
@@ -29,14 +29,9 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     @Input()
     maskitoElement: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
-    constructor(
-        @Inject(NgZone) private readonly ngZone: NgZone,
-        @Inject(ElementRef) private readonly elementRef: ElementRef<HTMLElement>,
-        @Inject(DefaultValueAccessor)
-        @Self()
-        @Optional()
-        accessor: DefaultValueAccessor | null,
-    ) {
+    constructor() {
+        const accessor = inject(DefaultValueAccessor, {self: true, optional: true});
+
         if (accessor) {
             const original = accessor.writeValue.bind(accessor);
 
@@ -54,7 +49,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         this.maskedElement?.destroy();
 
         const predicate = this.maskitoElement;
-        const predicateResult = await predicate(this.elementRef.nativeElement);
+        const predicateResult = await predicate(this.elementRef);
 
         if (this.maskitoElement !== predicate) {
             // Ignore the result of the predicate if the

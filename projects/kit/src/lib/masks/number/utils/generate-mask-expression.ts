@@ -28,7 +28,7 @@ export function generateMaskExpression({
         ? `[${CHAR_MINUS}${pseudoMinuses.map(x => `\\${x}`).join('')}]?`
         : '';
     const integerPart = thousandSeparator
-        ? `[${digit}${escapeRegExp(thousandSeparator).replace(/\s/g, '\\s')}]*`
+        ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, '\\s')}]*`
         : `[${digit}]*`;
     const decimalPart =
         precision > 0

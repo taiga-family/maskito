@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
@@ -46,14 +46,14 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneMaskDocExample3 {
+    private readonly isApple = inject(TUI_IS_APPLE);
+
     value = '';
     readonly mask = mask;
 
     get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.value, metadata) || '';
     }
-
-    constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
 
     get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';

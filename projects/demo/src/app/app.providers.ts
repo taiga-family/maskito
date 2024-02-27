@@ -62,7 +62,7 @@ export const APP_PROVIDERS: Provider[] = [
 
             return `${link}/${context.package.toLowerCase()}/src/lib/masks/${(
                 context.header[0].toLowerCase() + context.header.slice(1)
-            ).replace(/[A-Z]/g, m => `-${m.toLowerCase()}`)}`;
+            ).replaceAll(/[A-Z]/g, m => `-${m.toLowerCase()}`)}`;
         },
     },
     {

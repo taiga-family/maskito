@@ -9,10 +9,7 @@
         "outDir": "./dist/out-tsc",
         "typeRoots": ["node_modules/@types", "node_modules/@taiga-ui/tsconfig/@types"],
         "sourceMap": true,
-        "module": "es2020",
         "jsx": "react-jsx",
-        "target": "es2017",
-        "lib": ["es2017", "es2018.asynciterable", "es2019.object", "es2019.string", "dom"],
         "checkJs": false,
         "paths": {
             "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
