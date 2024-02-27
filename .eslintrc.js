@@ -21,7 +21,6 @@ module.exports = {
             files: ['*.ts'],
             rules: {
                 '@taiga-ui/experience/strict-tui-doc-example': 'off',
-                '@taiga-ui/experience/prefer-inject-decorator': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
             },
         },

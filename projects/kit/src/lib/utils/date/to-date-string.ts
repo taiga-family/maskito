@@ -18,13 +18,13 @@ export function toDateString(
     const fullMode = dateMode + (timeMode ? DATE_TIME_SEPARATOR + timeMode : '');
 
     return fullMode
-        .replace(/d+/g, day ?? '')
-        .replace(/m+/g, month ?? '')
-        .replace(/y+/g, safeYear ?? '')
-        .replace(/H+/g, hours ?? '')
-        .replace(/MSS/g, milliseconds ?? '')
-        .replace(/M+/g, minutes ?? '')
-        .replace(/S+/g, seconds ?? '')
-        .replace(/^\D+/g, '')
-        .replace(/\D+$/g, '');
+        .replaceAll(/d+/g, day ?? '')
+        .replaceAll(/m+/g, month ?? '')
+        .replaceAll(/y+/g, safeYear ?? '')
+        .replaceAll(/H+/g, hours ?? '')
+        .replaceAll('MSS', milliseconds ?? '')
+        .replaceAll(/M+/g, minutes ?? '')
+        .replaceAll(/S+/g, seconds ?? '')
+        .replaceAll(/^\D+/g, '')
+        .replaceAll(/\D+$/g, '');
 }

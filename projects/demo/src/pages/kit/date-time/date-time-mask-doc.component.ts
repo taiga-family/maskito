@@ -81,7 +81,7 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
     ): string {
         const dateTimeSep = `,${CHAR_NO_BREAK_SPACE}`;
 
-        return `${dateMode.replace(/\//g, separator)}${dateTimeSep}${timeMode}`;
+        return `${dateMode.replaceAll('/', separator)}${dateTimeSep}${timeMode}`;
     }
 
     updateOptions(): void {

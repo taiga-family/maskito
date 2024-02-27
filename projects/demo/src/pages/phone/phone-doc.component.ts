@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
@@ -37,6 +37,8 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneDocComponent implements GeneratorOptions {
+    private readonly isApple = inject(TUI_IS_APPLE);
+
     apiPageControl = new FormControl('');
 
     readonly basic: TuiDocExample = {
@@ -83,8 +85,6 @@ export class PhoneDocComponent implements GeneratorOptions {
     separator = '-';
 
     maskitoOptions = maskitoPhoneOptionsGenerator(this);
-
-    constructor(@Inject(TUI_IS_APPLE) private readonly isApple: boolean) {}
 
     get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';

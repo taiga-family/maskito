@@ -2,7 +2,7 @@ import {MaskitoOptions} from '@maskito/core';
 
 export default {
     mask: ({value}) => {
-        const digitsMask = Array.from(value.replace(/%/g, '')).map(() => /\d/);
+        const digitsMask = Array.from(value.replaceAll('%', '')).map(() => /\d/);
 
         if (!digitsMask.length) {
             return [/\d/];

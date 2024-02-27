@@ -29,7 +29,7 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/
     const routes =
         demoPathEnumContent
             .match(/['"`](.*)['"`]/g)
-            ?.map(route => route.replace(/['"`]/g, '')) || [];
+            ?.map(route => route.replaceAll(/['"`]/g, '')) || [];
 
     routes.forEach(route => {
         if (route.startsWith('kit')) {

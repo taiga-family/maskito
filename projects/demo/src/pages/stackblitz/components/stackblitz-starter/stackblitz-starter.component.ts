@@ -2,7 +2,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
-    Inject,
+    inject,
     OnInit,
     PLATFORM_ID,
 } from '@angular/core';
@@ -28,10 +28,8 @@ import {StackblitzService} from '../../stackblitz.service';
     providers: [StackblitzService],
 })
 export class StackblitzStarterComponent implements OnInit {
-    constructor(
-        @Inject(PLATFORM_ID) private readonly platformId: Record<string, unknown>,
-        private readonly stackblitz: StackblitzService,
-    ) {}
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly stackblitz = inject(StackblitzService);
 
     async ngOnInit(): Promise<void> {
         if (isPlatformBrowser(this.platformId)) {

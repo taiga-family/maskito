@@ -105,7 +105,7 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
         dateSeparator: string,
         rangeSeparator: string,
     ): string {
-        const datePlaceholder = mode.replace(/\//g, dateSeparator);
+        const datePlaceholder = mode.replaceAll('/', dateSeparator);
 
         return `${datePlaceholder}${rangeSeparator}${datePlaceholder}`;
     }

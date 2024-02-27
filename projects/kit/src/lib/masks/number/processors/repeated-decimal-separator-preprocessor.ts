@@ -28,7 +28,10 @@ export function createRepeatedDecimalSeparatorPreprocessor({
                 !cleanValue.includes(decimalSeparator) ||
                 value.slice(from, to + 1).includes(decimalSeparator)
                     ? data
-                    : data.replace(new RegExp(escapeRegExp(decimalSeparator), 'gi'), ''),
+                    : data.replaceAll(
+                          new RegExp(escapeRegExp(decimalSeparator), 'gi'),
+                          '',
+                      ),
         };
     };
 }

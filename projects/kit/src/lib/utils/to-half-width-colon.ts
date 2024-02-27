@@ -6,5 +6,5 @@ import {CHAR_COLON, CHAR_JP_COLON} from '../constants';
  * @returns processed half width colon
  */
 export function toHalfWidthColon(fullWidthColon: string): string {
-    return fullWidthColon.replace(new RegExp(CHAR_JP_COLON, 'g'), CHAR_COLON);
+    return fullWidthColon.replaceAll(new RegExp(CHAR_JP_COLON, 'g'), CHAR_COLON);
 }

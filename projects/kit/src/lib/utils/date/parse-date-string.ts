@@ -4,8 +4,8 @@ export function parseDateString(
     dateString: string,
     fullMode: string,
 ): Partial<MaskitoDateSegments> {
-    const cleanMode = fullMode.replace(/[^dmy]/g, '');
-    const onlyDigitsDate = dateString.replace(/\D+/g, '');
+    const cleanMode = fullMode.replaceAll(/[^dmy]/g, '');
+    const onlyDigitsDate = dateString.replaceAll(/\D+/g, '');
 
     const dateSegments: MaskitoDateSegments = {
         day: onlyDigitsDate.slice(cleanMode.indexOf('d'), cleanMode.lastIndexOf('d') + 1),
