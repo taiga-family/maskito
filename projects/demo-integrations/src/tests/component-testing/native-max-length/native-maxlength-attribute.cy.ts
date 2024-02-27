@@ -1,12 +1,23 @@
-import {DemoPath} from '@demo/constants';
+import {MaskitoOptions} from '@maskito/core';
+import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
-import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../support/constants';
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {TestInput} from '../utils';
 
 describe('Native attribute maxlength works', () => {
     describe('<input maxlength="3" /> & overwriteMode = shift', () => {
         beforeEach(() => {
-            cy.visit(DemoPath.Cypress);
-            cy.get('#maxlength input[maxlength="3"]')
+            const maskitoOptions = maskitoNumberOptionsGenerator({
+                thousandSeparator: ' ',
+            });
+
+            cy.mount(TestInput, {
+                componentProperties: {
+                    maskitoOptions,
+                    maxLength: 3,
+                },
+            });
+            cy.get('input[maxlength="3"]')
                 .should('have.prop', 'maxlength', 3)
                 .as('input');
         });
@@ -72,8 +83,24 @@ describe('Native attribute maxlength works', () => {
 
     describe('<input maxlength="6" /> & overwriteMode = replace', () => {
         beforeEach(() => {
-            cy.visit(DemoPath.Cypress);
-            cy.get('#maxlength input[maxlength="6"]')
+            const maskitoOptions: MaskitoOptions = {
+                mask: /^[A-F\d]*$/gi,
+                overwriteMode: 'replace',
+                postprocessors: [
+                    ({value, selection}) => ({
+                        selection,
+                        value: value.toUpperCase(),
+                    }),
+                ],
+            };
+
+            cy.mount(TestInput, {
+                componentProperties: {
+                    maskitoOptions,
+                    maxLength: 6,
+                },
+            });
+            cy.get('input[maxlength="6"]')
                 .should('have.prop', 'maxlength', 6)
                 .as('input');
         });

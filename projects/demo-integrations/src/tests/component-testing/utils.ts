@@ -7,6 +7,7 @@ import {MaskitoOptions} from '@maskito/core';
     imports: [MaskitoDirective],
     template: `
         <input
+            [attr.maxlength]="maxLength"
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             (input)="input.emit($event)"
@@ -22,4 +23,7 @@ export class TestInput {
 
     @Output()
     input = new EventEmitter();
+
+    @Input()
+    maxLength = Infinity;
 }
