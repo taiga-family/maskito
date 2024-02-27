@@ -41,31 +41,31 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangeMaskDocComponent implements GeneratorOptions {
-    readonly dateLocalizationExample1: TuiDocExample = {
+    protected readonly dateLocalizationExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-localization/mask.ts?raw'
         ),
     };
 
-    readonly minMaxExample2: TuiDocExample = {
+    protected readonly minMaxExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
-    readonly minMaxLengthExample3: TuiDocExample = {
+    protected readonly minMaxLengthExample3: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-min-max-length/mask.ts?raw'
         ),
     };
 
-    readonly customRangeExample4: TuiDocExample = {
+    protected readonly customRangeExample4: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-range-separator/mask.ts?raw'
         ),
     };
 
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly modeOptions: MaskitoDateMode[] = [
+    protected readonly modeOptions: MaskitoDateMode[] = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
@@ -75,32 +75,38 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
         'yyyy',
     ];
 
-    readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
-    readonly minLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
+    protected readonly minMaxOptions = [
+        '0001-01-01',
+        '9999-12-31',
+        '2000-01-01',
+        '2025-05-10',
+    ];
+
+    protected readonly minLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
         {day: 3},
         {day: 15},
     ];
 
-    readonly maxLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
+    protected readonly maxLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
         {day: 5},
         {month: 1},
         {year: 1},
     ];
 
-    mode: MaskitoDateMode = this.modeOptions[0];
-    minStr = this.minMaxOptions[0];
-    maxStr = this.minMaxOptions[1];
-    min = new Date(this.minStr);
-    max = new Date(this.maxStr);
-    minLength: Partial<MaskitoDateSegments<number>> = {};
-    maxLength: Partial<MaskitoDateSegments<number>> = {};
-    dateSeparator = '.';
-    rangeSeparator = ' – ';
+    protected mode: MaskitoDateMode = this.modeOptions[0];
+    protected minStr = this.minMaxOptions[0];
+    protected maxStr = this.minMaxOptions[1];
+    protected min = new Date(this.minStr);
+    protected max = new Date(this.maxStr);
+    protected minLength: Partial<MaskitoDateSegments<number>> = {};
+    protected maxLength: Partial<MaskitoDateSegments<number>> = {};
+    protected dateSeparator = '.';
+    protected rangeSeparator = ' – ';
 
-    maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
+    protected maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 
     @tuiPure
-    getPlaceholder(
+    protected getPlaceholder(
         mode: MaskitoDateMode,
         dateSeparator: string,
         rangeSeparator: string,
@@ -110,11 +116,11 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
         return `${datePlaceholder}${rangeSeparator}${datePlaceholder}`;
     }
 
-    updateOptions(): void {
+    protected updateOptions(): void {
         this.maskitoOptions = maskitoDateRangeOptionsGenerator(this);
     }
 
-    updateDate(): void {
+    protected updateDate(): void {
         this.min = new Date(this.minStr);
         this.max = new Date(this.maxStr);
         this.updateOptions();

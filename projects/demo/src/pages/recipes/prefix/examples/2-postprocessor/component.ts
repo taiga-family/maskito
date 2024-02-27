@@ -25,7 +25,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrefixDocExample2 {
-    readonly maskitoOptions = mask;
+    protected readonly maskitoOptions = mask;
 
-    value = '';
+    protected value = '';
 }

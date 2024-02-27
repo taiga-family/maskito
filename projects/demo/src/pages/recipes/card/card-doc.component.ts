@@ -14,10 +14,10 @@ import {CardDocExample1} from './examples/1-basic/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CardDocComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly dateMaskDocPage = `/${DemoPath.Date}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly dateMaskDocPage = `/${DemoPath.Date}`;
 
-    readonly cardExample1: TuiDocExample = {
+    protected readonly cardExample1: TuiDocExample = {
         TypeScript: import('./examples/1-basic/component.ts?raw'),
         HTML: import('./examples/1-basic/template.html?raw'),
     };

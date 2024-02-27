@@ -13,12 +13,12 @@ import {TuiInputModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample1 {
-    value = {
+    protected value = {
         number: '',
         name: '',
     };
 
-    readonly cardMask: MaskitoOptions = {
+    protected readonly cardMask: MaskitoOptions = {
         mask: [
             ...new Array(4).fill(/\d/),
             ' ',
@@ -30,19 +30,19 @@ export class TestDocExample1 {
         ],
     };
 
-    readonly nameMask: MaskitoOptions = {
+    protected readonly nameMask: MaskitoOptions = {
         mask: /^[a-zA-Z\s]+$/,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
     };
 
-    readonly cardPredicate: MaskitoElementPredicate = element =>
+    protected readonly cardPredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[0];
 
-    readonly namePredicate: MaskitoElementPredicate = element =>
+    protected readonly namePredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[1];
 
-    readonly asyncPredicate: MaskitoElementPredicate = async element =>
+    protected readonly asyncPredicate: MaskitoElementPredicate = async element =>
         Promise.resolve(element.querySelectorAll('input')[0]);
 }

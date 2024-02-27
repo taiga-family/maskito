@@ -5,7 +5,7 @@ export class EventListener {
 
     constructor(private readonly element: HTMLElement) {}
 
-    listen<E extends keyof HTMLElementEventMap>(
+    protected listen<E extends keyof HTMLElementEventMap>(
         eventType: E,
         fn: (
             event: E extends 'beforeinput' | 'input'
@@ -20,7 +20,7 @@ export class EventListener {
         this.listeners.push(() => this.element.removeEventListener(eventType, untypedFn));
     }
 
-    destroy(): void {
+    protected destroy(): void {
         this.listeners.forEach(stopListen => stopListen());
     }
 }

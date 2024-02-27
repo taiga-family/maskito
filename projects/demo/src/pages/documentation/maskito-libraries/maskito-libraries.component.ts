@@ -12,11 +12,11 @@ import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MaskitoLibrariesDocPageComponent {
-    readonly numberMaskDocPage = `/${DemoPath.Number}`;
-    readonly phoneMaskDocPage = `/${DemoPath.PhonePackage}`;
-    readonly timeMaskDocPage = `/${DemoPath.Time}`;
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly angularDocPage = `/${DemoPath.Angular}`;
-    readonly reactDocPage = `/${DemoPath.React}`;
-    readonly vueDocPage = `/${DemoPath.Vue}`;
+    protected readonly numberMaskDocPage = `/${DemoPath.Number}`;
+    protected readonly phoneMaskDocPage = `/${DemoPath.PhonePackage}`;
+    protected readonly timeMaskDocPage = `/${DemoPath.Time}`;
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly angularDocPage = `/${DemoPath.Angular}`;
+    protected readonly reactDocPage = `/${DemoPath.React}`;
+    protected readonly vueDocPage = `/${DemoPath.Vue}`;
 }

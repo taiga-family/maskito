@@ -20,8 +20,14 @@ import {VueExample1} from './examples/vue-1/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class VueDocPageComponent {
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly useMaskitoBasicUsage = import('./examples/use-maskito-basic-usage.md?raw');
-    readonly queryNestedInputDemo = import('./examples/query-nested-input.md?raw');
-    readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly useMaskitoBasicUsage = import(
+        './examples/use-maskito-basic-usage.md?raw'
+    );
+
+    protected readonly queryNestedInputDemo = import(
+        './examples/query-nested-input.md?raw'
+    );
+
+    protected readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
 }

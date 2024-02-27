@@ -35,10 +35,10 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangeMaskDocExample3 {
-    value = '01.01.2023 – 05.01.2023';
-    readonly filler = 'dd.mm.yyyy – dd.mm.yyyy';
-    readonly mask = mask;
-    readonly hint =
+    protected value = '01.01.2023 – 05.01.2023';
+    protected readonly filler = 'dd.mm.yyyy – dd.mm.yyyy';
+    protected readonly mask = mask;
+    protected readonly hint =
         'The right date must be at least 3 days after the left one.\n' +
         'Also, the difference between the dates must not exceed 1 month.';
 }

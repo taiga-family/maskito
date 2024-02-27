@@ -33,6 +33,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeMaskDocExample2 {
-    value = '11:59';
-    readonly mask = mask;
+    protected value = '11:59';
+    protected readonly mask = mask;
 }

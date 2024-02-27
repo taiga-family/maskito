@@ -11,11 +11,11 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgrammaticallyDocExample3 {
-    readonly control = new FormControl('');
+    protected readonly control = new FormControl('');
 
-    readonly maskito = maskitoNumberOptionsGenerator({precision: 2});
+    protected readonly maskito = maskitoNumberOptionsGenerator({precision: 2});
 
-    setValue(): void {
+    protected setValue(): void {
         this.control.setValue(
             '12345.6789', // This value will be formatted to "12 345.67"
         );

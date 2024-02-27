@@ -33,10 +33,10 @@ import {TuiInputModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneMaskDocExample4 implements OnInit {
-    value = '+7 920 123-4567';
-    mask = MASKITO_DEFAULT_OPTIONS;
+    protected value = '+7 920 123-4567';
+    protected mask = MASKITO_DEFAULT_OPTIONS;
 
-    async ngOnInit(): Promise<void> {
+    public async ngOnInit(): Promise<void> {
         this.mask = maskitoPhoneOptionsGenerator({
             countryIsoCode: 'RU',
             metadata: await import('libphonenumber-js/min/metadata').then(m => m.default),

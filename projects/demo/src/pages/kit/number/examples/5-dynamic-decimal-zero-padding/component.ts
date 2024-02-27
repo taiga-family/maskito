@@ -43,15 +43,15 @@ import {getMaskitoOptions} from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample5 {
-    value = '42';
-    decimalZeroPadding = this.value.includes('.');
+    protected value = '42';
+    protected decimalZeroPadding = this.value.includes('.');
 
     @tuiPure // Decorator for memoization
-    getMaskOptions(decimalZeroPadding: boolean): MaskitoOptions {
+    protected getMaskOptions(decimalZeroPadding: boolean): MaskitoOptions {
         return getMaskitoOptions(decimalZeroPadding);
     }
 
-    handleBeforeInput(event: Event): void {
+    protected handleBeforeInput(event: Event): void {
         const {inputType, target, data} = event as InputEvent;
 
         if (inputType.includes('delete')) {

@@ -10,11 +10,11 @@ import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 
 export class MaskModel implements ElementState {
-    value = '';
-    selection: SelectionRange = [0, 0];
+    public value = '';
+    public selection: SelectionRange = [0, 0];
 
     constructor(
-        readonly initialElementState: ElementState,
+        protected readonly initialElementState: ElementState,
         private readonly maskOptions: Required<MaskitoOptions>,
     ) {
         const {value, selection} = calibrateValueByMask(
@@ -26,7 +26,7 @@ export class MaskModel implements ElementState {
         this.selection = selection;
     }
 
-    addCharacters([from, to]: SelectionRange, newCharacters: string): void {
+    protected addCharacters([from, to]: SelectionRange, newCharacters: string): void {
         const {value} = this;
         const maskExpression = this.getMaskExpression({
             value: value.slice(0, from) + newCharacters + value.slice(to),
@@ -78,7 +78,7 @@ export class MaskModel implements ElementState {
         this.selection = maskedElementState.selection;
     }
 
-    deleteCharacters([from, to]: SelectionRange): void {
+    protected deleteCharacters([from, to]: SelectionRange): void {
         if (from === to || !to) {
             return;
         }

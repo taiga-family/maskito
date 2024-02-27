@@ -34,31 +34,36 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimeMaskDocComponent implements GeneratorOptions {
-    readonly modeExample1: TuiDocExample = {
+    protected readonly modeExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw'),
     };
 
-    readonly modeExample2: TuiDocExample = {
+    protected readonly modeExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-twelve-hour-format/mask.ts?raw'
         ),
     };
 
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly modeOptions: MaskitoTimeMode[] = ['HH:MM', 'HH:MM:SS', 'HH:MM:SS.MSS', 'HH'];
-    readonly timeSegmentMaxValuesOptions: Array<Partial<MaskitoTimeSegments<number>>> = [
-        {hours: 23, minutes: 59, seconds: 59, milliseconds: 999},
-        {hours: 11},
+    protected readonly modeOptions: MaskitoTimeMode[] = [
+        'HH:MM',
+        'HH:MM:SS',
+        'HH:MM:SS.MSS',
+        'HH',
     ];
 
-    mode: MaskitoTimeMode = this.modeOptions[0];
-    timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
+    protected readonly timeSegmentMaxValuesOptions: Array<
+        Partial<MaskitoTimeSegments<number>>
+    > = [{hours: 23, minutes: 59, seconds: 59, milliseconds: 999}, {hours: 11}];
+
+    protected mode: MaskitoTimeMode = this.modeOptions[0];
+    protected timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
         this.timeSegmentMaxValuesOptions[0];
 
-    maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
+    protected maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 
-    updateOptions(): void {
+    protected updateOptions(): void {
         this.maskitoOptions = maskitoTimeOptionsGenerator(this);
     }
 }

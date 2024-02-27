@@ -41,6 +41,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneUSDocExample1 {
-    readonly maskitoOptions = mask;
-    value = '+1 (212) 555-2368';
+    protected readonly maskitoOptions = mask;
+    protected value = '+1 (212) 555-2368';
 }

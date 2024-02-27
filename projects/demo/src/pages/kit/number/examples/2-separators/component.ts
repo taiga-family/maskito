@@ -26,6 +26,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample2 {
-    maskitoOptions = mask;
-    value = '';
+    protected maskitoOptions = mask;
+    protected value = '';
 }

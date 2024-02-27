@@ -22,16 +22,16 @@ import {PrefixDocExample2} from './examples/2-postprocessor/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PrefixDocComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly processorsDocPage = `/${DemoPath.Processors}`;
 
-    readonly patternMaskApproachExample1: TuiDocExample = {
+    protected readonly patternMaskApproachExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-pattern-mask/mask.ts?raw'
         ),
     };
 
-    readonly postprocessorApproachExample2: TuiDocExample = {
+    protected readonly postprocessorApproachExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-postprocessor/mask.ts?raw'
         ),

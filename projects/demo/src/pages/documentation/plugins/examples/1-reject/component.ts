@@ -31,9 +31,9 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PluginsDocExample1 {
-    maskitoOptions = {...mask, plugins: [maskitoRejectEvent]};
+    protected maskitoOptions = {...mask, plugins: [maskitoRejectEvent]};
 
-    value = '';
+    protected value = '';
 
-    reject = -1;
+    protected reject = -1;
 }

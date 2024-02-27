@@ -16,7 +16,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample3 {
-    readonly numberMask: MaskitoOptions = maskitoNumberOptionsGenerator({
+    protected readonly numberMask: MaskitoOptions = maskitoNumberOptionsGenerator({
         prefix: '$ ',
         postfix: ' per day',
     });

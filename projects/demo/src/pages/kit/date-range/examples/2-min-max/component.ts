@@ -33,7 +33,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateRangeMaskDocExample2 {
-    value = '19.11.1711 – 15.04.1765';
-    readonly filler = 'dd.mm.yyyy – dd.mm.yyyy';
-    readonly mask = mask;
+    protected value = '19.11.1711 – 15.04.1765';
+    protected readonly filler = 'dd.mm.yyyy – dd.mm.yyyy';
+    protected readonly mask = mask;
 }

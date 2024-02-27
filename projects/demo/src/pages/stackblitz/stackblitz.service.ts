@@ -20,10 +20,10 @@ export class StackblitzService implements TuiCodeEditor {
         },
     };
 
-    readonly name = 'Stackblitz';
-    readonly content = new PolymorpheusComponent(StackblitzEditButtonComponent);
+    public readonly name = 'Stackblitz';
+    public readonly content = new PolymorpheusComponent(StackblitzEditButtonComponent);
 
-    async edit(
+    public async edit(
         component: string,
         id: string,
         files: Record<string, string>,
@@ -52,7 +52,7 @@ export class StackblitzService implements TuiCodeEditor {
         );
     }
 
-    openStarter(
+    protected openStarter(
         {title, description, files}: Pick<Project, 'description' | 'files' | 'title'>,
         openOptions?: OpenOptions,
     ): void {

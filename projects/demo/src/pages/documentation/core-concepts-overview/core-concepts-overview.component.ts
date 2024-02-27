@@ -20,10 +20,13 @@ import {TuiIslandModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CoreConceptsOverviewDocPageComponent {
-    readonly maskitoPublicApiDemo = import('./examples/maskito-public-api-demo.md?raw');
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly pluginsDocPage = `/${DemoPath.Plugins}`;
-    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
-    readonly transformerDocPage = `/${DemoPath.Transformer}`;
+    protected readonly maskitoPublicApiDemo = import(
+        './examples/maskito-public-api-demo.md?raw'
+    );
+
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly processorsDocPage = `/${DemoPath.Processors}`;
+    protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
+    protected readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
+    protected readonly transformerDocPage = `/${DemoPath.Transformer}`;
 }

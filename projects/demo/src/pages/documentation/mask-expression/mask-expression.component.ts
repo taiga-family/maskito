@@ -20,10 +20,13 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MaskExpressionDocPageComponent {
-    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
-    readonly regExpMaskExpDemo = import('./examples/reg-exp-mask-expression-demo.md?raw');
-    readonly basicTimeDemo = import('./examples/basic-time-example.md?raw');
-    readonly dynamicMaskExpDemo = import(
+    protected readonly elementStateDocPage = `/${DemoPath.ElementState}`;
+    protected readonly regExpMaskExpDemo = import(
+        './examples/reg-exp-mask-expression-demo.md?raw'
+    );
+
+    protected readonly basicTimeDemo = import('./examples/basic-time-example.md?raw');
+    protected readonly dynamicMaskExpDemo = import(
         './examples/dynamic-mask-expression-demo.md?raw'
     );
 }

@@ -39,13 +39,13 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
 export class PhoneDocComponent implements GeneratorOptions {
     private readonly isApple = inject(TUI_IS_APPLE);
 
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly basic: TuiDocExample = {
+    protected readonly basic: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw'),
     };
 
-    readonly validation: TuiDocExample = {
+    protected readonly validation: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-validation/mask.ts?raw'
         ),
@@ -54,7 +54,7 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    readonly nonStrict: TuiDocExample = {
+    protected readonly nonStrict: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-non-strict/mask.ts?raw'
         ),
@@ -63,7 +63,7 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    readonly lazyMetadata: TuiDocExample = {
+    protected readonly lazyMetadata: TuiDocExample = {
         [DocExamplePrimaryTab.Angular]: import(
             './examples/4-lazy-metadata/component.ts?raw'
         ),
@@ -72,25 +72,25 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    metadata = metadata;
+    protected metadata = metadata;
 
-    strict = true;
+    protected strict = true;
 
-    countryCodeVariants = getCountries(this.metadata);
+    protected countryCodeVariants = getCountries(this.metadata);
 
-    countryIsoCode: CountryCode = 'RU';
+    protected countryIsoCode: CountryCode = 'RU';
 
-    separatorVariants = ['-', ' '];
+    protected separatorVariants = ['-', ' '];
 
-    separator = '-';
+    protected separator = '-';
 
-    maskitoOptions = maskitoPhoneOptionsGenerator(this);
+    protected maskitoOptions = maskitoPhoneOptionsGenerator(this);
 
-    get pattern(): string {
+    protected get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 
-    updateOptions(): void {
+    protected updateOptions(): void {
         this.maskitoOptions = maskitoPhoneOptionsGenerator(this);
     }
 }
