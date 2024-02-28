@@ -1,6 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
-import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    MaskitoElementPredicate,
+    MaskitoOptions,
+} from '@maskito/core';
 
 @Component({
     standalone: true,
@@ -9,6 +13,7 @@ import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
         <input
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
+            [maskitoElement]="maskitoElementPredicate"
             (input)="input.emit($event)"
         />
     `,
@@ -21,7 +26,7 @@ export class TestInput {
     maskitoOptions: MaskitoOptions | null = null;
 
     @Input()
-    maskitoElementPredicate: MaskitoElementPredicate | null = null;
+    maskitoElementPredicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     @Output()
     input = new EventEmitter();
