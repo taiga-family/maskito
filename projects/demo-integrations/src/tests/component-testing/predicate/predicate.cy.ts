@@ -23,12 +23,11 @@ describe('@maskito/angular | Predicate', () => {
     };
 
     describe('can detect run-time changes', () => {
-        it('card', () => {
+        it('12341234abcd12341234 => 1234 1234 1234 1234', () => {
             cy.mount(TestInput, {
                 componentProperties: {
                     maskitoOptions: cardMask,
-                    maskitoElementPredicate: element =>
-                        element.querySelectorAll('input')[0],
+                    maskitoElementPredicate: element => element as HTMLInputElement,
                 },
             });
 
@@ -37,12 +36,11 @@ describe('@maskito/angular | Predicate', () => {
                 .should('have.value', '1234 1234 1234 1234');
         });
 
-        it('name', () => {
+        it('12341234abcd12341234 => ABCD', () => {
             cy.mount(TestInput, {
                 componentProperties: {
                     maskitoOptions: nameMask,
-                    maskitoElementPredicate: element =>
-                        element.querySelectorAll('input')[0],
+                    maskitoElementPredicate: element => element as HTMLInputElement,
                 },
             });
 
@@ -50,12 +48,12 @@ describe('@maskito/angular | Predicate', () => {
         });
     });
     describe('supports asynchronous predicate', () => {
-        it('card', () => {
+        it('12341234abcd12341234 => 1234 1234 1234 1234', () => {
             cy.mount(TestInput, {
                 componentProperties: {
                     maskitoOptions: cardMask,
                     maskitoElementPredicate: async element =>
-                        Promise.resolve(element.querySelectorAll('input')[0]),
+                        Promise.resolve(element as HTMLInputElement),
                 },
             });
             cy.get('input').as('card');
