@@ -14,13 +14,13 @@ import {TuiInputModule} from '@taiga-ui/kit';
 export class NestedDocExample1 {
     protected value = '';
 
-    protected readonly nameMask: MaskitoOptions = {
+    public readonly nameMask: MaskitoOptions = {
         mask: /^[a-zA-Z\s]+$/,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
     };
 
-    protected readonly predicate: MaskitoElementPredicate = element =>
+    public readonly predicate: MaskitoElementPredicate = element =>
         element.querySelector<HTMLInputElement>('tui-input input')!;
 }
