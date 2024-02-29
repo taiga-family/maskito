@@ -133,7 +133,7 @@ export class Maskito extends MaskHistory {
         return maxLength === -1 ? Infinity : maxLength;
     }
 
-    protected destroy(): void {
+    public destroy(): void {
         this.eventListener.destroy();
         this.teardowns.forEach(teardown => teardown?.());
     }

@@ -14,19 +14,19 @@ export class MaskModel implements ElementState {
     public selection: SelectionRange = [0, 0];
 
     constructor(
-        protected readonly initialElementState: ElementState,
+        private readonly initialElementState: ElementState,
         private readonly maskOptions: Required<MaskitoOptions>,
     ) {
         const {value, selection} = calibrateValueByMask(
-            initialElementState,
-            this.getMaskExpression(initialElementState),
+            this.initialElementState,
+            this.getMaskExpression(this.initialElementState),
         );
 
         this.value = value;
         this.selection = selection;
     }
 
-    protected addCharacters([from, to]: SelectionRange, newCharacters: string): void {
+    public addCharacters([from, to]: SelectionRange, newCharacters: string): void {
         const {value} = this;
         const maskExpression = this.getMaskExpression({
             value: value.slice(0, from) + newCharacters + value.slice(to),
@@ -78,7 +78,7 @@ export class MaskModel implements ElementState {
         this.selection = maskedElementState.selection;
     }
 
-    protected deleteCharacters([from, to]: SelectionRange): void {
+    public deleteCharacters([from, to]: SelectionRange): void {
         if (from === to || !to) {
             return;
         }

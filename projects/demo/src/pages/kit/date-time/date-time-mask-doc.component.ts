@@ -68,13 +68,14 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
         '2025-05-10T18:30',
     ];
 
-    protected dateMode: MaskitoDateMode = this.dateModeOptions[0];
-    protected timeMode: MaskitoTimeMode = this.timeModeOptions[0];
-    protected dateSeparator = '.';
     protected minStr = this.minMaxOptions[0];
     protected maxStr = this.minMaxOptions[1];
-    protected min = new Date(this.minStr);
-    protected max = new Date(this.maxStr);
+
+    public dateMode: MaskitoDateMode = this.dateModeOptions[0];
+    public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
+    public dateSeparator = '.';
+    public min = new Date(this.minStr);
+    public max = new Date(this.maxStr);
 
     protected maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 

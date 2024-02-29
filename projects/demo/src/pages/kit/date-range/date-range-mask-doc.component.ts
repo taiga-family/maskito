@@ -93,15 +93,16 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
         {year: 1},
     ];
 
-    protected mode: MaskitoDateMode = this.modeOptions[0];
     protected minStr = this.minMaxOptions[0];
     protected maxStr = this.minMaxOptions[1];
-    protected min = new Date(this.minStr);
-    protected max = new Date(this.maxStr);
-    protected minLength: Partial<MaskitoDateSegments<number>> = {};
-    protected maxLength: Partial<MaskitoDateSegments<number>> = {};
-    protected dateSeparator = '.';
-    protected rangeSeparator = ' – ';
+
+    public mode: MaskitoDateMode = this.modeOptions[0];
+    public min = new Date(this.minStr);
+    public max = new Date(this.maxStr);
+    public minLength: Partial<MaskitoDateSegments<number>> = {};
+    public maxLength: Partial<MaskitoDateSegments<number>> = {};
+    public dateSeparator = '.';
+    public rangeSeparator = ' – ';
 
     protected maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 

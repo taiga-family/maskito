@@ -52,7 +52,7 @@ export class StackblitzService implements TuiCodeEditor {
         );
     }
 
-    protected openStarter(
+    public openStarter(
         {title, description, files}: Pick<Project, 'description' | 'files' | 'title'>,
         openOptions?: OpenOptions,
     ): void {

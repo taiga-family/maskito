@@ -57,8 +57,8 @@ export class TimeMaskDocComponent implements GeneratorOptions {
         Partial<MaskitoTimeSegments<number>>
     > = [{hours: 23, minutes: 59, seconds: 59, milliseconds: 999}, {hours: 11}];
 
-    protected mode: MaskitoTimeMode = this.modeOptions[0];
-    protected timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
+    public mode: MaskitoTimeMode = this.modeOptions[0];
+    public timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
         this.timeSegmentMaxValuesOptions[0];
 
     protected maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);

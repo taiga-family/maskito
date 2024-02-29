@@ -64,11 +64,11 @@ export class DateMaskDocComponent implements GeneratorOptions {
     protected minStr = this.minMaxOptions[0];
     protected maxStr = this.minMaxOptions[1];
 
-    protected mode: MaskitoDateMode = this.modeOptions[0];
-    protected separator = this.separatorOptions[0];
+    public mode: MaskitoDateMode = this.modeOptions[0];
+    public separator = this.separatorOptions[0];
 
-    protected min = new Date(this.minStr);
-    protected max = new Date(this.maxStr);
+    public min = new Date(this.minStr);
+    public max = new Date(this.maxStr);
 
     protected maskitoOptions: MaskitoOptions = maskitoDateOptionsGenerator(this);
 

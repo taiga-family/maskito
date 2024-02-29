@@ -72,17 +72,14 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected metadata = metadata;
-
-    protected strict = true;
+    public metadata = metadata;
+    public strict = true;
+    public countryIsoCode: CountryCode = 'RU';
+    public separator = '-';
 
     protected countryCodeVariants = getCountries(this.metadata);
 
-    protected countryIsoCode: CountryCode = 'RU';
-
     protected separatorVariants = ['-', ' '];
-
-    protected separator = '-';
 
     protected maskitoOptions = maskitoPhoneOptionsGenerator(this);
 

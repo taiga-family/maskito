@@ -88,15 +88,15 @@ export class NumberMaskDocComponent implements GeneratorOptions {
 
     protected readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
 
-    protected precision = 0;
-    protected max = Number.MAX_SAFE_INTEGER;
-    protected min = Number.MIN_SAFE_INTEGER;
-    protected decimalSeparator = '.';
-    protected decimalZeroPadding = false;
-    protected decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
-    protected thousandSeparator = ' ';
-    protected prefix = '';
-    protected postfix = '';
+    public precision = 0;
+    public max = Number.MAX_SAFE_INTEGER;
+    public min = Number.MIN_SAFE_INTEGER;
+    public decimalSeparator = '.';
+    public decimalZeroPadding = false;
+    public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
+    public thousandSeparator = ' ';
+    public prefix = '';
+    public postfix = '';
 
     protected maskitoOptions: MaskitoOptions = this.calculateMask(this);
 

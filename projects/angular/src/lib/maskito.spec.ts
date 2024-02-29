@@ -18,8 +18,8 @@ describe('Maskito Angular package', () => {
         `,
     })
     class TestComponent {
-        protected readonly control = new FormControl();
-        protected options: MaskitoOptions | null = {
+        public readonly control = new FormControl();
+        public options: MaskitoOptions | null = {
             mask: /^\d+(,\d{0,2})?$/,
             preprocessors: [
                 ({elementState, data}) => {
