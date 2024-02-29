@@ -23,22 +23,22 @@ import {PlaceholderDocExample3} from './examples/3-date/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PlaceholderDocComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly pluginsDocPage = `/${DemoPath.Plugins}`;
-    readonly prefixDocPage = `/${DemoPath.Prefix}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly processorsDocPage = `/${DemoPath.Processors}`;
+    protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
+    protected readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
-    readonly cvcExample1: TuiDocExample = {
+    protected readonly cvcExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-cvc-code/mask.ts?raw'
         ),
     };
 
-    readonly phoneExample2: TuiDocExample = {
+    protected readonly phoneExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-phone/mask.ts?raw'),
     };
 
-    readonly dateExample3: TuiDocExample = {
+    protected readonly dateExample3: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw'),
     };
 }

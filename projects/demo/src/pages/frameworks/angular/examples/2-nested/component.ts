@@ -10,6 +10,6 @@ import {TuiCheckboxLabeledModule, TuiInputModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedDocExample2 {
-    show = false;
-    value = '';
+    protected show = false;
+    protected value = '';
 }

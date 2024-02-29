@@ -48,14 +48,14 @@ import mask from './mask';
 export class PhoneMaskDocExample3 {
     private readonly isApple = inject(TUI_IS_APPLE);
 
-    value = '';
-    readonly mask = mask;
+    protected value = '';
+    protected readonly mask = mask;
 
-    get countryIsoCode(): string {
+    protected get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.value, metadata) || '';
     }
 
-    get pattern(): string {
+    protected get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 }

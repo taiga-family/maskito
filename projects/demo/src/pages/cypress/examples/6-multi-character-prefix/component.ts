@@ -17,7 +17,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample6 {
-    readonly numberMask: MaskitoOptions = maskitoNumberOptionsGenerator({
+    protected readonly numberMask: MaskitoOptions = maskitoNumberOptionsGenerator({
         prefix: 'EUR ',
     });
 }

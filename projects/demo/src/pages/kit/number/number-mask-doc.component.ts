@@ -43,33 +43,33 @@ type GeneratorOptions = Required<
     providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
 export class NumberMaskDocComponent implements GeneratorOptions {
-    readonly maskitoParseNumberDemo = import(
+    protected readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-number-demo.md?raw'
     );
 
-    readonly highPrecisionExample1: TuiDocExample = {
+    protected readonly highPrecisionExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-high-precision/mask.ts?raw'
         ),
     };
 
-    readonly separatorsExample2: TuiDocExample = {
+    protected readonly separatorsExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-separators/mask.ts?raw'
         ),
     };
 
-    readonly postfixExample3: TuiDocExample = {
+    protected readonly postfixExample3: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-postfix/mask.ts?raw'),
     };
 
-    readonly decimalZeroPaddingExample4: TuiDocExample = {
+    protected readonly decimalZeroPaddingExample4: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-decimal-zero-padding/mask.ts?raw'
         ),
     };
 
-    readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
+    protected readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
@@ -78,24 +78,29 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         ),
     };
 
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly decimalPseudoSeparatorsOptions = [['.', ',', 'б', 'ю'], ['.'], [',']];
-    readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
+    protected readonly decimalPseudoSeparatorsOptions = [
+        ['.', ',', 'б', 'ю'],
+        ['.'],
+        [','],
+    ];
 
-    precision = 0;
-    max = Number.MAX_SAFE_INTEGER;
-    min = Number.MIN_SAFE_INTEGER;
-    decimalSeparator = '.';
-    decimalZeroPadding = false;
-    decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
-    thousandSeparator = ' ';
-    prefix = '';
-    postfix = '';
+    protected readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
 
-    maskitoOptions: MaskitoOptions = this.calculateMask(this);
+    public precision = 0;
+    public max = Number.MAX_SAFE_INTEGER;
+    public min = Number.MIN_SAFE_INTEGER;
+    public decimalSeparator = '.';
+    public decimalZeroPadding = false;
+    public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
+    public thousandSeparator = ' ';
+    public prefix = '';
+    public postfix = '';
 
-    updateOptions(): void {
+    protected maskitoOptions: MaskitoOptions = this.calculateMask(this);
+
+    protected updateOptions(): void {
         this.maskitoOptions = this.calculateMask(this);
     }
 

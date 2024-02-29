@@ -10,7 +10,7 @@ import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
     name: 'calculateMask',
 })
 export class TestPipe4 implements PipeTransform {
-    transform(postfix: string): MaskitoOptions {
+    public transform(postfix: string): MaskitoOptions {
         const options = maskitoNumberOptionsGenerator({
             postfix,
             precision: 2,
@@ -38,13 +38,13 @@ export class TestPipe4 implements PipeTransform {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample4 {
-    value = '1 year';
+    protected value = '1 year';
 
-    get parsedValue(): number {
+    protected get parsedValue(): number {
         return maskitoParseNumber(this.value);
     }
 
-    readonly pluralize = {
+    protected readonly pluralize = {
         one: ' year',
         few: ' years',
         many: ' years',

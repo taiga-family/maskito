@@ -24,10 +24,10 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     private maskedElement: Maskito | null = null;
 
     @Input()
-    maskito: MaskitoOptions | null = null;
+    public maskito: MaskitoOptions | null = null;
 
     @Input()
-    maskitoElement: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    public maskitoElement: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     constructor() {
         const accessor = inject(DefaultValueAccessor, {self: true, optional: true});
@@ -45,7 +45,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         return this.maskito ?? MASKITO_DEFAULT_OPTIONS;
     }
 
-    async ngOnChanges(): Promise<void> {
+    public async ngOnChanges(): Promise<void> {
         this.maskedElement?.destroy();
 
         const predicate = this.maskitoElement;
@@ -62,7 +62,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         });
     }
 
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         this.maskedElement?.destroy();
     }
 }

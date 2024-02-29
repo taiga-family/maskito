@@ -31,9 +31,9 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverwriteModeDocExample3 {
-    maskitoOptions = mask;
+    protected maskitoOptions = mask;
 
-    initialValue =
+    protected initialValue =
         'This artificial example demonstrates the usage of dynamic mode. ' +
         'If this textarea contains only digits — "replace" mode is enabled. ' +
         'Otherwise, "shift" mode is enabled.';

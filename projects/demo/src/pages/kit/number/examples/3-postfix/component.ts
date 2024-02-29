@@ -31,6 +31,6 @@ import mask, {postfix} from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample3 {
-    value = `97${postfix}`;
-    readonly maskitoOptions = mask;
+    protected value = `97${postfix}`;
+    protected readonly maskitoOptions = mask;
 }

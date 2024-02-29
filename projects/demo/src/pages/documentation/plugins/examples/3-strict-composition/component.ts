@@ -21,6 +21,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PluginsDocExample3 {
-    readonly maskitoOptions = mask;
-    value = '';
+    protected readonly maskitoOptions = mask;
+    protected value = '';
 }

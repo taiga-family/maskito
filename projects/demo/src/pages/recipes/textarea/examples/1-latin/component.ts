@@ -23,6 +23,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextareaDocExample1 {
-    readonly mask = mask;
-    value = '';
+    protected readonly mask = mask;
+    protected value = '';
 }

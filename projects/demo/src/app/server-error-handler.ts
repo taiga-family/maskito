@@ -9,7 +9,7 @@ const KNOWN_ISSUES: string[] = [
 
 @Injectable()
 export class ServerErrorHandler implements ErrorHandler {
-    handleError(error: Error): void {
+    public handleError(error: Error): void {
         if (KNOWN_ISSUES.some(issue => error.message.includes(issue))) {
             return;
         }

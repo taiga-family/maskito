@@ -6,7 +6,7 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
     name: 'maskito',
 })
 export class MaskitoPipe implements PipeTransform {
-    transform(value: unknown, maskitoOptions: MaskitoOptions | null): string {
+    public transform(value: unknown, maskitoOptions: MaskitoOptions | null): string {
         return maskitoTransform(
             String(value ?? ''),
             maskitoOptions ?? MASKITO_DEFAULT_OPTIONS,

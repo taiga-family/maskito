@@ -25,6 +25,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PluginsDocExample2 {
-    maskitoOptions = mask;
-    value = '12345';
+    protected maskitoOptions = mask;
+    protected value = '12345';
 }

@@ -26,22 +26,22 @@ import {PluginsDocExample3} from './examples/3-strict-composition/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PluginsDocPageComponent {
-    readonly transformerDocPage = `/${DemoPath.Transformer}`;
+    protected readonly transformerDocPage = `/${DemoPath.Transformer}`;
 
-    readonly rejectExample: TuiDocExample = {
+    protected readonly rejectExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-reject/mask.ts?raw'),
         'index.less': import('./examples/1-reject/animation.less?raw'),
         'index.ts': import('./examples/1-reject/index.ts?raw'),
     };
 
-    readonly initialCalibrationExample: TuiDocExample = {
+    protected readonly initialCalibrationExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-initial-calibration/mask.ts?raw'
         ),
         'index.ts': import('./examples/2-initial-calibration/index.ts?raw'),
     };
 
-    readonly strictCompositionExample: TuiDocExample = {
+    protected readonly strictCompositionExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-strict-composition/mask.ts?raw'
         ),

@@ -29,28 +29,30 @@ import {PipeDocExample4} from './examples/4-pipe/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularDocPageComponent {
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
 
-    readonly importMaskitoExample = import('./examples/import-maskito.md?raw');
+    protected readonly importMaskitoExample = import('./examples/import-maskito.md?raw');
 
-    readonly basicDirectiveApproach = import(
+    protected readonly basicDirectiveApproach = import(
         './examples/basic-directive-approach.md?raw'
     );
 
-    readonly customInputExample = import('./examples/custom-input-example.md?raw');
+    protected readonly customInputExample = import(
+        './examples/custom-input-example.md?raw'
+    );
 
-    readonly nestedInputExample: TuiDocExample = {
+    protected readonly nestedInputExample: TuiDocExample = {
         TypeScript: import('./examples/1-nested/component.ts?raw'),
         Default: import('./examples/1-nested/template.html?raw'),
         Custom: import('./examples/2-nested/template.html?raw'),
     };
 
-    readonly programmaticallyExample: TuiDocExample = {
+    protected readonly programmaticallyExample: TuiDocExample = {
         TypeScript: import('./examples/3-programmatically/component.ts?raw'),
         HTML: import('./examples/3-programmatically/template.html?raw'),
     };
 
-    readonly pipeExample: TuiDocExample = {
+    protected readonly pipeExample: TuiDocExample = {
         TypeScript: import('./examples/4-pipe/component.ts?raw'),
         HTML: import('./examples/4-pipe/template.html?raw'),
     };

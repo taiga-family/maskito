@@ -21,16 +21,16 @@ import {PhoneKZDocExample2} from './examples/2-kz-phone/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PhoneDocComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly prefixDocPage = `/${DemoPath.Prefix}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
-    readonly usPhoneExample1: TuiDocExample = {
+    protected readonly usPhoneExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-us-phone/mask.ts?raw'
         ),
     };
 
-    readonly kzPhoneExample2: TuiDocExample = {
+    protected readonly kzPhoneExample2: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-kz-phone/mask.ts?raw'
         ),

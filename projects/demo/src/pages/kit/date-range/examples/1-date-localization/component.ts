@@ -41,11 +41,11 @@ export class DateRangeMaskDocExample1 {
         year: 'numeric',
     });
 
-    value = '09/20/2020 – 02/06/2023';
-    readonly filler = 'mm/dd/yyyy – mm/dd/yyyy';
-    readonly mask = mask;
+    protected value = '09/20/2020 – 02/06/2023';
+    protected readonly filler = 'mm/dd/yyyy – mm/dd/yyyy';
+    protected readonly mask = mask;
 
-    get hint(): string {
+    protected get hint(): string {
         return this.value.length < this.filler.length
             ? 'Complete the date range!'
             : this.value

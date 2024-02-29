@@ -31,13 +31,13 @@ export class StackblitzStarterComponent implements OnInit {
     private readonly platformId = inject(PLATFORM_ID);
     private readonly stackblitz = inject(StackblitzService);
 
-    async ngOnInit(): Promise<void> {
+    public async ngOnInit(): Promise<void> {
         if (isPlatformBrowser(this.platformId)) {
             await this.openStackblitz();
         }
     }
 
-    async openStackblitz(): Promise<void> {
+    protected async openStackblitz(): Promise<void> {
         const [ts, css] = await Promise.all(
             [
                 import('../../files/starter.ts?raw'),

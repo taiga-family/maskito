@@ -33,6 +33,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OverwriteModeDocExample2 {
-    readonly maskitoOptions = mask;
-    value = '0000';
+    protected readonly maskitoOptions = mask;
+    protected value = '0000';
 }

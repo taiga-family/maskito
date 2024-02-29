@@ -57,6 +57,6 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneMaskDocExample2 {
-    readonly control = new FormControl('+36 20 123-3122', phoneValidator('HU'));
-    readonly mask = mask;
+    protected readonly control = new FormControl('+36 20 123-3122', phoneValidator('HU'));
+    protected readonly mask = mask;
 }

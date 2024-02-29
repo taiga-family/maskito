@@ -31,19 +31,19 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateMaskDocComponent implements GeneratorOptions {
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly dateLocalization: TuiDocExample = {
+    protected readonly dateLocalization: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-localization/mask.ts?raw'
         ),
     };
 
-    readonly dateMinMax: TuiDocExample = {
+    protected readonly dateMinMax: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
-    readonly modeOptions: MaskitoDateMode[] = [
+    protected readonly modeOptions: MaskitoDateMode[] = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
@@ -53,26 +53,32 @@ export class DateMaskDocComponent implements GeneratorOptions {
         'yyyy',
     ];
 
-    readonly separatorOptions: string[] = ['.', '/', '-'];
-    readonly minMaxOptions = ['0001-01-01', '9999-12-31', '2000-01-01', '2025-05-10'];
-    minStr = this.minMaxOptions[0];
-    maxStr = this.minMaxOptions[1];
+    protected readonly separatorOptions: string[] = ['.', '/', '-'];
+    protected readonly minMaxOptions = [
+        '0001-01-01',
+        '9999-12-31',
+        '2000-01-01',
+        '2025-05-10',
+    ];
 
-    mode: MaskitoDateMode = this.modeOptions[0];
-    separator = this.separatorOptions[0];
+    protected minStr = this.minMaxOptions[0];
+    protected maxStr = this.minMaxOptions[1];
 
-    min = new Date(this.minStr);
-    max = new Date(this.maxStr);
+    public mode: MaskitoDateMode = this.modeOptions[0];
+    public separator = this.separatorOptions[0];
 
-    maskitoOptions: MaskitoOptions = maskitoDateOptionsGenerator(this);
+    public min = new Date(this.minStr);
+    public max = new Date(this.maxStr);
 
-    updateDate(): void {
+    protected maskitoOptions: MaskitoOptions = maskitoDateOptionsGenerator(this);
+
+    protected updateDate(): void {
         this.min = new Date(this.minStr);
         this.max = new Date(this.maxStr);
         this.updateOptions();
     }
 
-    updateOptions(): void {
+    protected updateOptions(): void {
         this.maskitoOptions = maskitoDateOptionsGenerator(this);
     }
 }

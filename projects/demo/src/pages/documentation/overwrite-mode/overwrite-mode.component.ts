@@ -25,17 +25,17 @@ import {OverwriteModeDocExample1} from './examples/shift/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class OverwriteModeDocPageComponent {
-    readonly shiftExample: TuiDocExample = {
+    protected readonly shiftExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/shift/mask.ts?raw'),
     };
 
-    readonly replaceExample: TuiDocExample = {
+    protected readonly replaceExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/replace/mask.ts?raw'),
     };
 
-    readonly dynamicExample: TuiDocExample = {
+    protected readonly dynamicExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw'),
     };
 
-    readonly elementStateDocPage = `/${DemoPath.ElementState}`;
+    protected readonly elementStateDocPage = `/${DemoPath.ElementState}`;
 }

@@ -20,6 +20,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneKZDocExample2 {
-    readonly maskitoOptions = mask;
-    readonly control = new FormControl('');
+    protected readonly maskitoOptions = mask;
+    protected readonly control = new FormControl('');
 }

@@ -14,10 +14,12 @@ import {TextareaDocExample1} from './examples/1-latin/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TextareaDocComponent {
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly maskitoWithTextareaDemo = import('./examples/maskito-with-textarea.md?raw');
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly maskitoWithTextareaDemo = import(
+        './examples/maskito-with-textarea.md?raw'
+    );
 
-    readonly textareaExample1: TuiDocExample = {
+    protected readonly textareaExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-latin/mask.ts?raw'),
     };
 }

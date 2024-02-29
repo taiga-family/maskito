@@ -20,9 +20,9 @@ import {TuiIslandModule, TuiMarkerIconModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class WhatIsMaskitoDocPageComponent {
-    readonly maskitoLibrariesDocPage = `/${DemoPath.MaskitoLibraries}`;
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly angularDocPage = `/${DemoPath.Angular}`;
-    readonly reactDocPage = `/${DemoPath.React}`;
-    readonly vueDocPage = `/${DemoPath.Vue}`;
+    protected readonly maskitoLibrariesDocPage = `/${DemoPath.MaskitoLibraries}`;
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly angularDocPage = `/${DemoPath.Angular}`;
+    protected readonly reactDocPage = `/${DemoPath.React}`;
+    protected readonly vueDocPage = `/${DemoPath.Vue}`;
 }

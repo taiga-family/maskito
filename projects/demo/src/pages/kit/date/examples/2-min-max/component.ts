@@ -33,7 +33,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateMaskDocExample2 {
-    value = '20.01.2023';
-    readonly filler = 'dd.mm.yyyy';
-    readonly mask = mask;
+    protected value = '20.01.2023';
+    protected readonly filler = 'dd.mm.yyyy';
+    protected readonly mask = mask;
 }

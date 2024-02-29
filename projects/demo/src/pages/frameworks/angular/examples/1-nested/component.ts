@@ -12,15 +12,15 @@ import {TuiInputModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedDocExample1 {
-    value = '';
+    protected value = '';
 
-    readonly nameMask: MaskitoOptions = {
+    public readonly nameMask: MaskitoOptions = {
         mask: /^[a-zA-Z\s]+$/,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
     };
 
-    readonly predicate: MaskitoElementPredicate = element =>
+    public readonly predicate: MaskitoElementPredicate = element =>
         element.querySelector<HTMLInputElement>('tui-input input')!;
 }

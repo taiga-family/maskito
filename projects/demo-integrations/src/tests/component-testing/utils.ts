@@ -16,14 +16,14 @@ import {MaskitoOptions} from '@maskito/core';
 })
 export class TestInput {
     @Input()
-    initialValue = '';
+    public initialValue = '';
 
     @Input()
-    maskitoOptions: MaskitoOptions | null = null;
+    public maskitoOptions: MaskitoOptions | null = null;
 
     @Output()
-    input = new EventEmitter();
+    public input = new EventEmitter();
 
     @Input()
-    maxLength = Infinity;
+    public maxLength = Infinity;
 }

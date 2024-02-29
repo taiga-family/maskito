@@ -16,5 +16,5 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     ],
 })
 export class AppComponent {
-    readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
+    protected readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
 }

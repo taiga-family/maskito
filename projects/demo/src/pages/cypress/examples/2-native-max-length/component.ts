@@ -21,11 +21,11 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestDocExample2 {
-    readonly numberMask = maskitoNumberOptionsGenerator({
+    protected readonly numberMask = maskitoNumberOptionsGenerator({
         thousandSeparator: ' ',
     });
 
-    readonly hexColorMask: MaskitoOptions = {
+    protected readonly hexColorMask: MaskitoOptions = {
         mask: /^[A-F\d]*$/gi,
         overwriteMode: 'replace',
         postprocessors: [

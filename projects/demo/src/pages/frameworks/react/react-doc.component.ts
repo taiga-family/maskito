@@ -22,18 +22,18 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ReactDocPageComponent {
-    readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-    readonly useMaskitoBasicUsage = import(
+    protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+    protected readonly useMaskitoBasicUsage = import(
         './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
     );
 
-    readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
+    protected readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
         'index.tsx': import('./examples/2-element-predicate/index.tsx?raw'),
         'awesome-input.tsx': import(
             './examples/2-element-predicate/awesome-input.tsx?raw'
         ),
     };
 
-    readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
-    readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
+    protected readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
+    protected readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
 }

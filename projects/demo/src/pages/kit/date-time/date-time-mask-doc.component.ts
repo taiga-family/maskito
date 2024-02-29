@@ -37,44 +37,50 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocComponent implements GeneratorOptions {
-    readonly dateTimeLocalization: TuiDocExample = {
+    protected readonly dateTimeLocalization: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-time-localization/mask.ts?raw'
         ),
     };
 
-    readonly dateTimeMinMax: TuiDocExample = {
+    protected readonly dateTimeMinMax: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
-    apiPageControl = new FormControl('');
+    protected apiPageControl = new FormControl('');
 
-    readonly dateModeOptions: MaskitoDateMode[] = [
+    protected readonly dateModeOptions: MaskitoDateMode[] = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
     ];
 
-    readonly timeModeOptions: MaskitoTimeMode[] = ['HH:MM', 'HH:MM:SS', 'HH:MM:SS.MSS'];
-    readonly minMaxOptions = [
+    protected readonly timeModeOptions: MaskitoTimeMode[] = [
+        'HH:MM',
+        'HH:MM:SS',
+        'HH:MM:SS.MSS',
+    ];
+
+    protected readonly minMaxOptions = [
         '0001-01-01T00:00:00',
         '9999-12-31T23:59:59',
         '2000-01-01T12:30',
         '2025-05-10T18:30',
     ];
 
-    dateMode: MaskitoDateMode = this.dateModeOptions[0];
-    timeMode: MaskitoTimeMode = this.timeModeOptions[0];
-    dateSeparator = '.';
-    minStr = this.minMaxOptions[0];
-    maxStr = this.minMaxOptions[1];
-    min = new Date(this.minStr);
-    max = new Date(this.maxStr);
+    protected minStr = this.minMaxOptions[0];
+    protected maxStr = this.minMaxOptions[1];
 
-    maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
+    public dateMode: MaskitoDateMode = this.dateModeOptions[0];
+    public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
+    public dateSeparator = '.';
+    public min = new Date(this.minStr);
+    public max = new Date(this.maxStr);
+
+    protected maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 
     @tuiPure
-    getPlaceholder(
+    protected getPlaceholder(
         dateMode: MaskitoDateMode,
         timeMode: MaskitoTimeMode,
         separator: string,
@@ -84,11 +90,11 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
         return `${dateMode.replaceAll('/', separator)}${dateTimeSep}${timeMode}`;
     }
 
-    updateOptions(): void {
+    protected updateOptions(): void {
         this.maskitoOptions = maskitoDateTimeOptionsGenerator(this);
     }
 
-    updateDate(): void {
+    protected updateDate(): void {
         this.min = new Date(this.minStr);
         this.max = new Date(this.maxStr);
         this.updateOptions();

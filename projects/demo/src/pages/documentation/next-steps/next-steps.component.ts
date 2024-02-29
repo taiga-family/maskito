@@ -12,8 +12,8 @@ import {TuiLinkModule} from '@taiga-ui/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NextStepsComponent {
-    readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
-    readonly processorsDocPage = `/${DemoPath.Processors}`;
-    readonly pluginsDocPage = `/${DemoPath.Plugins}`;
-    readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly processorsDocPage = `/${DemoPath.Processors}`;
+    protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
+    protected readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;
 }

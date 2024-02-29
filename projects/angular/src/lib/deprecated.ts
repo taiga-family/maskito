@@ -13,7 +13,7 @@ import {MaskitoPipe} from './maskito.pipe';
 })
 export class MaskitoCVA {
     @Input()
-    maskito?: MaskitoOptions | null;
+    public maskito?: MaskitoOptions | null;
 }
 
 /**

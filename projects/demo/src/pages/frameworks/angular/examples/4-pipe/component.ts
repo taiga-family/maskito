@@ -10,7 +10,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PipeDocExample4 {
-    value = 12345.67;
+    protected value = 12345.67;
 
-    readonly options = maskitoNumberOptionsGenerator({precision: 2});
+    protected readonly options = maskitoNumberOptionsGenerator({precision: 2});
 }

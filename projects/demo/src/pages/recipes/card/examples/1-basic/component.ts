@@ -15,7 +15,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardDocExample1 {
-    readonly cardMask: MaskitoOptions = {
+    protected readonly cardMask: MaskitoOptions = {
         mask: [
             ...new Array(4).fill(/\d/),
             ' ',
@@ -29,13 +29,16 @@ export class CardDocExample1 {
         ],
     };
 
-    readonly expiredMask = maskitoDateOptionsGenerator({mode: 'mm/yy', separator: '/'});
+    protected readonly expiredMask = maskitoDateOptionsGenerator({
+        mode: 'mm/yy',
+        separator: '/',
+    });
 
-    readonly cvvMask: MaskitoOptions = {
+    protected readonly cvvMask: MaskitoOptions = {
         mask: [...new Array(3).fill(/\d/)],
     };
 
-    readonly form = new FormGroup({
+    protected readonly form = new FormGroup({
         cardNumber: new FormControl(''),
         expire: new FormControl(''),
         cvv: new FormControl(''),
