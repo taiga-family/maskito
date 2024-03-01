@@ -1,6 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {TestInput} from '../utils';
+import {SynchronousTestInputComponent} from './synchronous-test-input.component';
 
 describe('@maskito/angular | Predicate', () => {
     const cardMask: MaskitoOptions = {
@@ -15,52 +16,31 @@ describe('@maskito/angular | Predicate', () => {
         ],
     };
 
-    const nameMask: MaskitoOptions = {
-        mask: /^[a-zA-Z\s]+$/,
-        postprocessors: [
-            ({value, selection}) => ({value: value.toUpperCase(), selection}),
-        ],
-    };
+    it('can detect run-time changes', () => {
+        cy.mount(SynchronousTestInputComponent);
+        cy.get('input').should('be.visible').first().as('card');
+        cy.get('input').should('be.visible').eq(1).as('name');
 
-    describe('can detect run-time changes', () => {
-        it('12341234abcd12341234 => 1234 1234 1234 1234', () => {
-            cy.mount(TestInput, {
-                componentProperties: {
-                    maskitoOptions: cardMask,
-                    maskitoElementPredicate: element => element as HTMLInputElement,
-                },
-            });
+        cy.get('@card')
+            .focus()
+            .type('12341234abcd12341234')
+            .should('have.value', '1234 1234 1234 1234');
 
-            cy.get('input')
-                .type('12341234abcd12341234')
-                .should('have.value', '1234 1234 1234 1234');
-        });
-
-        it('12341234abcd12341234 => ABCD', () => {
-            cy.mount(TestInput, {
-                componentProperties: {
-                    maskitoOptions: nameMask,
-                    maskitoElementPredicate: element => element as HTMLInputElement,
-                },
-            });
-
-            cy.get('input').type('12341234abcd12341234').should('have.value', 'ABCD');
-        });
+        cy.get('@name').focus().type('12341234abcd12341234').should('have.value', 'ABCD');
     });
-    describe('supports asynchronous predicate', () => {
-        it('12341234abcd12341234 => 1234 1234 1234 1234', () => {
-            cy.mount(TestInput, {
-                componentProperties: {
-                    maskitoOptions: cardMask,
-                    maskitoElementPredicate: async element =>
-                        Promise.resolve(element as HTMLInputElement),
-                },
-            });
-            cy.get('input').as('card');
-            cy.get('@card')
-                .focus()
-                .type('12341234abcd12341234')
-                .should('have.value', '1234 1234 1234 1234');
+
+    it('supports asynchronous predicate', () => {
+        cy.mount(TestInput, {
+            componentProperties: {
+                maskitoOptions: cardMask,
+                maskitoElementPredicate: async element =>
+                    Promise.resolve(element as HTMLInputElement),
+            },
         });
+        cy.get('input').as('card');
+        cy.get('@card')
+            .focus()
+            .type('12341234abcd12341234')
+            .should('have.value', '1234 1234 1234 1234');
     });
 });
