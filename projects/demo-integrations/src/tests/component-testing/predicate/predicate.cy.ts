@@ -4,18 +4,6 @@ import {TestInput} from '../utils';
 import {MultiTestInputComponent} from './multi-test.component';
 
 describe('@maskito/angular | Predicate', () => {
-    const cardMask: MaskitoOptions = {
-        mask: [
-            ...new Array(4).fill(/\d/),
-            ' ',
-            ...new Array(4).fill(/\d/),
-            ' ',
-            ...new Array(4).fill(/\d/),
-            ' ',
-            ...new Array(4).fill(/\d/),
-        ],
-    };
-
     it('can detect run-time changes', () => {
         cy.mount(MultiTestInputComponent);
         cy.get('input').should('be.visible').first().as('card');
@@ -30,6 +18,18 @@ describe('@maskito/angular | Predicate', () => {
     });
 
     it('supports asynchronous predicate', () => {
+        const cardMask: MaskitoOptions = {
+            mask: [
+                ...new Array(4).fill(/\d/),
+                ' ',
+                ...new Array(4).fill(/\d/),
+                ' ',
+                ...new Array(4).fill(/\d/),
+                ' ',
+                ...new Array(4).fill(/\d/),
+            ],
+        };
+
         cy.mount(TestInput, {
             componentProperties: {
                 maskitoOptions: cardMask,
