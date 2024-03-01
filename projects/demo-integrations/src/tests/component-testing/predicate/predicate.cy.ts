@@ -1,7 +1,7 @@
 import {MaskitoOptions} from '@maskito/core';
 
 import {TestInput} from '../utils';
-import {SynchronousTestInputComponent} from './synchronous-test-input.component';
+import {MultiTestInputComponent} from './multi-test.component';
 
 describe('@maskito/angular | Predicate', () => {
     const cardMask: MaskitoOptions = {
@@ -17,7 +17,7 @@ describe('@maskito/angular | Predicate', () => {
     };
 
     it('can detect run-time changes', () => {
-        cy.mount(SynchronousTestInputComponent);
+        cy.mount(MultiTestInputComponent);
         cy.get('input').should('be.visible').first().as('card');
         cy.get('input').should('be.visible').eq(1).as('name');
 

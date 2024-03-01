@@ -21,7 +21,7 @@ import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SynchronousTestInputComponent {
+export class MultiTestInputComponent {
     value = {
         number: '',
         name: '',
