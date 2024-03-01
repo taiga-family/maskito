@@ -22,12 +22,12 @@ import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MultiTestInputComponent {
-    value = {
+    protected value = {
         number: '',
         name: '',
     };
 
-    readonly cardMask: MaskitoOptions = {
+    protected readonly cardMask: MaskitoOptions = {
         mask: [
             ...new Array(4).fill(/\d/),
             ' ',
@@ -39,16 +39,16 @@ export class MultiTestInputComponent {
         ],
     };
 
-    readonly nameMask: MaskitoOptions = {
+    protected readonly nameMask: MaskitoOptions = {
         mask: /^[a-zA-Z\s]+$/,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
     };
 
-    readonly cardPredicate: MaskitoElementPredicate = element =>
+    protected readonly cardPredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[0];
 
-    readonly namePredicate: MaskitoElementPredicate = element =>
+    protected readonly namePredicate: MaskitoElementPredicate = element =>
         element.querySelectorAll('input')[1];
 }

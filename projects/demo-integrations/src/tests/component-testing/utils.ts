@@ -27,7 +27,8 @@ export class TestInput {
     public maskitoOptions: MaskitoOptions | null = null;
 
     @Input()
-    maskitoElementPredicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    public maskitoElementPredicate: MaskitoElementPredicate =
+        MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     @Output()
     public input = new EventEmitter();
