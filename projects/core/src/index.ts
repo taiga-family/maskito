@@ -1,9 +1,11 @@
+export {MaskitoContentEditable} from './lib/classes';
 export {
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
     MASKITO_DEFAULT_OPTIONS,
 } from './lib/constants';
 export {Maskito} from './lib/mask';
 export {
+    MaskitoElement,
     MaskitoElementPredicate,
     MaskitoMask,
     MaskitoMaskExpression,

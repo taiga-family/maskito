@@ -20,6 +20,7 @@ export const DemoPath = {
     Card: 'recipes/card',
     Phone: 'recipes/phone',
     Textarea: 'recipes/textarea',
+    ContentEditable: 'recipes/contenteditable',
     Prefix: 'recipes/prefix',
     Postfix: 'recipes/postfix',
     Placeholder: 'recipes/placeholder',

@@ -1,0 +1,38 @@
+<tui-doc-page
+    header="ContentEditable"
+    package="Recipes"
+>
+    <section>
+        // TODO: write this docs
+        <p class="tui-space_top-0 tui-space_bottom-4">
+            You can use
+            <strong>Maskito</strong>
+            with
+            <code>HTMLElement contenteditable="true"</code>
+            too. API is the same as for
+            <code>HTMLInputElement</code>
+            .
+        </p>
+
+        <tui-doc-code [code]="maskitoWithContentEditableDemo"></tui-doc-code>
+
+        <p class="tui-space_bottom-0">
+            Learn more in the
+            <a
+                tuiLink
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                "Core Concepts"
+            </a>
+            section.
+        </p>
+    </section>
+
+    <tui-doc-example
+        id="latin"
+        heading="Latin letters and digits"
+        [content]="contenteditableExample1"
+    >
+        <contenteditable-doc-example-1></contenteditable-doc-example-1>
+    </tui-doc-example>
+</tui-doc-page>
