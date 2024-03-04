@@ -1,4 +1,10 @@
-import {CHAR_EM_DASH, CHAR_EN_DASH, CHAR_HYPHEN, CHAR_MINUS} from '../../../../constants';
+import {
+    CHAR_EM_DASH,
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_JP_HYPHEN,
+    CHAR_MINUS,
+} from '../../../../constants';
 import {maskitoParseNumber} from '../parse-number';
 
 describe('maskitoParseNumber', () => {
@@ -62,6 +68,10 @@ describe('maskitoParseNumber', () => {
 
             it('can be em-dash', () => {
                 expect(maskitoParseNumber(`${CHAR_EM_DASH}42`)).toBe(-42);
+            });
+
+            it('can be katakana-hiragana prolonged sound mark', () => {
+                expect(maskitoParseNumber(`${CHAR_JP_HYPHEN}42`)).toBe(-42);
             });
         });
 
