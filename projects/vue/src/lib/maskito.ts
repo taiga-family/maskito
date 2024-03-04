@@ -11,11 +11,13 @@ const predicates = new Map<HTMLElement, MaskitoElementPredicate>();
 
 async function update(
     element: HTMLElement,
-    options: MaskitoOptions & {
-        elementPredicate?: MaskitoElementPredicate;
-    },
+    options:
+        | (MaskitoOptions & {
+              elementPredicate?: MaskitoElementPredicate;
+          })
+        | null,
 ): Promise<void> {
-    const predicate = options.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    const predicate = options?.elementPredicate ?? MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     predicates.set(element, predicate);
 
@@ -26,14 +28,18 @@ async function update(
     }
 
     teardown.get(element)?.destroy();
-    teardown.set(element, new Maskito(predicateResult, options));
+
+    if (options) {
+        teardown.set(element, new Maskito(predicateResult, options));
+    }
 }
 
 export const maskito: ObjectDirective<
     HTMLElement,
-    MaskitoOptions & {
-        elementPredicate?: MaskitoElementPredicate;
-    }
+    | (MaskitoOptions & {
+          elementPredicate?: MaskitoElementPredicate;
+      })
+    | null
 > = {
     unmounted: element => {
         teardown.get(element)?.destroy();
