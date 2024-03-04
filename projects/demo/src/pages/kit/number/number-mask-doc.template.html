@@ -308,6 +308,20 @@
                     empty string (no postfix).
                 </p>
             </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="minusSign"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="minusSign"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A minus symbol.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>\u2212</code>
+                </p>
+            </ng-template>
         </tui-doc-documentation>
     </ng-template>
 </tui-doc-page>
