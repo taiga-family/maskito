@@ -5,7 +5,7 @@ import {openNumberPage} from './utils';
 describe('Properly using custom minus sign', () => {
     describe(`correctly applies ${CHAR_HYPHEN} as minus sign`, () => {
         beforeEach(() => {
-            openNumberPage('minusSign=\u002D&thousandSeparator=_');
+            openNumberPage(`minusSign=${CHAR_HYPHEN}&thousandSeparator=_`);
         });
 
         it(`-32412 => ${CHAR_HYPHEN}32_412`, () => {
