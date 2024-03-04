@@ -12,6 +12,7 @@ import {
 import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
+import {CHAR_MINUS} from 'projects/kit/src/lib/constants';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
@@ -97,6 +98,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     public thousandSeparator = ' ';
     public prefix = '';
     public postfix = '';
+    public minusSign = CHAR_MINUS;
 
     protected maskitoOptions: MaskitoOptions = this.calculateMask(this);
 
