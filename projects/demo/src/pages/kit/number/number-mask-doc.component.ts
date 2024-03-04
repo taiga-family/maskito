@@ -19,6 +19,7 @@ import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
 import {NumberMaskDocExample5} from './examples/5-dynamic-decimal-zero-padding/component';
+import {NumberMaskDocExample6} from './examples/6-custom-minus-sign/components';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
@@ -38,6 +39,7 @@ type GeneratorOptions = Required<
         NumberMaskDocExample3,
         NumberMaskDocExample4,
         NumberMaskDocExample5,
+        NumberMaskDocExample6,
     ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,6 +78,15 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         ),
         [DocExamplePrimaryTab.Angular]: import(
             './examples/5-dynamic-decimal-zero-padding/component.ts?raw'
+        ),
+    };
+
+    protected readonly customMinusSignExample6: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-custom-minus-sign/mask.ts?raw'
+        ),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/6-custom-minus-sign/components.ts?raw'
         ),
     };
 
