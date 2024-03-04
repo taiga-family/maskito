@@ -1,7 +1,6 @@
 import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MASKITO_DEFAULT_OPTIONS,
     MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
@@ -28,10 +27,10 @@ function isThenable<T = unknown>(x: PromiseLike<T> | T): x is PromiseLike<T> {
  * useMaskito({ options: { mask: /^.*$/ }, elementPredicate: () => e.querySelector('input') })
  */
 export const useMaskito = ({
-    options = MASKITO_DEFAULT_OPTIONS,
+    options = null,
     elementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE,
 }: {
-    options?: MaskitoOptions;
+    options?: MaskitoOptions | null;
     elementPredicate?: MaskitoElementPredicate;
 } = {}): RefCallback<HTMLElement> => {
     const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
@@ -70,7 +69,7 @@ export const useMaskito = ({
     }, [hostElement, elementPredicate, latestPredicateRef]);
 
     useIsomorphicLayoutEffect(() => {
-        if (!element) {
+        if (!element || !options) {
             return;
         }
 

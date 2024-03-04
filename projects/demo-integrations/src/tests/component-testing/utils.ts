@@ -12,6 +12,7 @@ import {
     template: `
         <input
             [attr.maxlength]="maxLength"
+            [attr.type]="type"
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             [maskitoElement]="maskitoElementPredicate"
@@ -35,4 +36,7 @@ export class TestInput {
 
     @Input()
     public maxLength = Infinity;
+
+    @Input()
+    public type: HTMLInputElement['type'] = 'text';
 }

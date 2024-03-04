@@ -11,7 +11,6 @@ import {DefaultValueAccessor} from '@angular/forms';
 import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MASKITO_DEFAULT_OPTIONS,
     MaskitoElementPredicate,
     MaskitoOptions,
     maskitoTransform,
@@ -23,11 +22,11 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     private readonly ngZone = inject(NgZone);
     private maskedElement: Maskito | null = null;
 
-    @Input()
-    public maskito: MaskitoOptions | null = null;
+    @Input('maskito')
+    public options: MaskitoOptions | null = null;
 
-    @Input()
-    public maskitoElement: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    @Input('maskitoElement')
+    public elementPredicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     constructor() {
         const accessor = inject(DefaultValueAccessor, {self: true, optional: true});
@@ -36,29 +35,34 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
             const original = accessor.writeValue.bind(accessor);
 
             accessor.writeValue = (value: unknown) => {
-                original(maskitoTransform(String(value ?? ''), this.options));
+                original(
+                    this.options
+                        ? maskitoTransform(String(value ?? ''), this.options)
+                        : value,
+                );
             };
         }
     }
 
-    private get options(): MaskitoOptions {
-        return this.maskito ?? MASKITO_DEFAULT_OPTIONS;
-    }
-
     public async ngOnChanges(): Promise<void> {
+        const {elementPredicate, options} = this;
+
         this.maskedElement?.destroy();
 
-        const predicate = this.maskitoElement;
-        const predicateResult = await predicate(this.elementRef);
+        if (!options) {
+            return;
+        }
 
-        if (this.maskitoElement !== predicate) {
+        const predicateResult = await elementPredicate(this.elementRef);
+
+        if (this.elementPredicate !== elementPredicate) {
             // Ignore the result of the predicate if the
             // maskito element has changed before the predicate was resolved.
             return;
         }
 
         this.ngZone.runOutsideAngular(() => {
-            this.maskedElement = new Maskito(predicateResult, this.options);
+            this.maskedElement = new Maskito(predicateResult, options);
         });
     }
 
