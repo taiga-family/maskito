@@ -4,9 +4,8 @@ import {MaskitoDirective} from '@maskito/angular';
 import {TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {getMaskitoOptions} from './mask';
+import mask from './mask';
 
-const mask = getMaskitoOptions('-');
 @Component({
     standalone: true,
     selector: 'number-mask-doc-example-6',
