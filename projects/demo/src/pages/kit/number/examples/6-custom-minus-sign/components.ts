@@ -30,5 +30,5 @@ const mask = getMaskitoOptions('-');
 })
 export class NumberMaskDocExample6 {
     protected value = '-42';
-    protected options = mask;
+    protected readonly options = mask;
 }
