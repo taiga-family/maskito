@@ -43,6 +43,7 @@ export function maskitoNumberOptionsGenerator({
     decimalZeroPadding = false,
     prefix: unsafePrefix = '',
     postfix = '',
+    minusSign = CHAR_MINUS,
 }: {
     min?: number;
     max?: number;
@@ -53,13 +54,21 @@ export function maskitoNumberOptionsGenerator({
     thousandSeparator?: string;
     prefix?: string;
     postfix?: string;
+    minusSign?: string;
 } = {}): Required<MaskitoOptions> {
-    const pseudoMinuses = [
-        CHAR_HYPHEN,
-        CHAR_EN_DASH,
-        CHAR_EM_DASH,
-        CHAR_JP_HYPHEN,
-    ].filter(char => char !== thousandSeparator && char !== decimalSeparator);
+    const pseudoMinuses: string[] = [
+        ...new Set([
+            CHAR_HYPHEN,
+            CHAR_EN_DASH,
+            CHAR_EM_DASH,
+            CHAR_JP_HYPHEN,
+            CHAR_MINUS,
+            minusSign,
+        ]),
+    ].filter(
+        char =>
+            char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
+    );
     const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
         thousandSeparator,
@@ -79,6 +88,7 @@ export function maskitoNumberOptionsGenerator({
             prefix,
             postfix,
             isNegativeAllowed: min < 0,
+            minusSign,
         }),
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
@@ -88,10 +98,11 @@ export function maskitoNumberOptionsGenerator({
                 pseudoMinuses,
                 prefix,
                 postfix,
+                minusSign,
             }),
             createAffixesFilterPreprocessor({prefix, postfix}),
             createPseudoCharactersPreprocessor({
-                validCharacter: CHAR_MINUS,
+                validCharacter: minusSign,
                 pseudoCharacters: pseudoMinuses,
                 prefix,
                 postfix,
