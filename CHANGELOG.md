@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/taiga-family/maskito/compare/v2.0.2...v2.1.0) (2024-03-04)
+
+### Features
+
+- **kit:** `Date` & `DateRange` & `DateTime` has improved zero-padding support for browser autofill & IME composition
+  ([#1027](https://github.com/taiga-family/maskito/issues/1027))
+  ([77ac01c](https://github.com/taiga-family/maskito/commit/77ac01ca0b5e61d36dc3240a35c3dc93ce5fe93c))
+- **kit:** add full-width numbers support for `Time`, `Date`, `DateTime`, `DateRange`
+  ([#1043](https://github.com/taiga-family/maskito/issues/1043))
+  ([434c9c5](https://github.com/taiga-family/maskito/commit/434c9c5f349ab3c19e11722e95313c5763203b08))
+
+### Bug Fixes
+
+- **kit:** `maskitoParseNumber` should interpret japanese prolonged sound mark as pseudo minus
+  ([#1115](https://github.com/taiga-family/maskito/issues/1115))
+  ([b152698](https://github.com/taiga-family/maskito/commit/b152698fda8ac671286eb5f4a29de62562934fa2))
+
 ### [2.0.2](https://github.com/taiga-family/maskito/compare/v2.0.1...v2.0.2) (2024-02-01)
 
 ### Bug Fixes
