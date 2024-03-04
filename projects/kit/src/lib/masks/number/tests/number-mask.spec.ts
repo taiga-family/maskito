@@ -318,4 +318,52 @@ describe('Number (maskitoTransform)', () => {
             });
         });
     });
+
+    describe('applies `minusSign` property correctly', () => {
+        let options = MASKITO_DEFAULT_OPTIONS;
+
+        describe('correctly applies ⁻ as minus sign', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({minusSign: '⁻'});
+            });
+
+            it('-32412 => ⁻32 412', () => {
+                expect(maskitoTransform('-32412', options)).toBe('⁻32 412');
+            });
+
+            it('\u002D32413 => ⁻32 413', () => {
+                expect(maskitoTransform('\u002D32413', options)).toBe('⁻32 413');
+            });
+
+            it('-32411 => ⁻32 411', () => {
+                expect(maskitoTransform('-32411', options)).toBe('⁻32 411');
+            });
+
+            it('\u201332411 => ⁻32 411', () => {
+                expect(maskitoTransform('\u201332411', options)).toBe('⁻32 411');
+            });
+        });
+
+        describe('correctly applies i as minus sign', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({minusSign: 'i'});
+            });
+
+            it('-32412 => i32 412', () => {
+                expect(maskitoTransform('-32412', options)).toBe('i32 412');
+            });
+
+            it('\u002D32413 => i32 413', () => {
+                expect(maskitoTransform('\u002D32413', options)).toBe('i32 413');
+            });
+
+            it('-32411 => i32 411', () => {
+                expect(maskitoTransform('-32411', options)).toBe('i32 411');
+            });
+
+            it('\u201332411 => i32 411', () => {
+                expect(maskitoTransform('\u201332411', options)).toBe('i32 411');
+            });
+        });
+    });
 });
