@@ -1,7 +1,12 @@
 import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
 import {maskitoParseNumber} from '@maskito/kit';
 
-import {CHAR_NO_BREAK_SPACE, CHAR_ZERO_WIDTH_SPACE} from '../../../constants';
+import {
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_NO_BREAK_SPACE,
+    CHAR_ZERO_WIDTH_SPACE,
+} from '../../../constants';
 import {maskitoNumberOptionsGenerator} from '../number-mask';
 
 describe('Number (maskitoTransform)', () => {
@@ -331,16 +336,16 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoTransform('-32412', options)).toBe('⁻32 412');
             });
 
-            it('\u002D32413 => ⁻32 413', () => {
-                expect(maskitoTransform('\u002D32413', options)).toBe('⁻32 413');
+            it(`${CHAR_HYPHEN}32413 => ⁻32 413`, () => {
+                expect(maskitoTransform(`${CHAR_HYPHEN}32413`, options)).toBe('⁻32 413');
             });
 
             it('-32411 => ⁻32 411', () => {
                 expect(maskitoTransform('-32411', options)).toBe('⁻32 411');
             });
 
-            it('\u201332411 => ⁻32 411', () => {
-                expect(maskitoTransform('\u201332411', options)).toBe('⁻32 411');
+            it(`${CHAR_EN_DASH}32411 => ⁻32 411`, () => {
+                expect(maskitoTransform(`${CHAR_EN_DASH}32411`, options)).toBe('⁻32 411');
             });
         });
 
@@ -353,16 +358,16 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoTransform('-32412', options)).toBe('i32 412');
             });
 
-            it('\u002D32413 => i32 413', () => {
-                expect(maskitoTransform('\u002D32413', options)).toBe('i32 413');
+            it(`${CHAR_HYPHEN}32413 => i32 413`, () => {
+                expect(maskitoTransform(`${CHAR_HYPHEN}32413`, options)).toBe('i32 413');
             });
 
             it('-32411 => i32 411', () => {
                 expect(maskitoTransform('-32411', options)).toBe('i32 411');
             });
 
-            it('\u201332411 => i32 411', () => {
-                expect(maskitoTransform('\u201332411', options)).toBe('i32 411');
+            it(`${CHAR_EN_DASH}32411 => i32 411`, () => {
+                expect(maskitoTransform(`${CHAR_EN_DASH}32411`, options)).toBe('i32 411');
             });
         });
     });
