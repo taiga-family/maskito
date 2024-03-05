@@ -143,6 +143,7 @@ export function maskitoNumberOptionsGenerator({
                 thousandSeparator,
                 prefix,
                 postfix,
+                minusSign,
             }),
             createDecimalZeroPaddingPostprocessor({
                 decimalSeparator,

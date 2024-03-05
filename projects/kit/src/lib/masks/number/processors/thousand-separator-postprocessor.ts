@@ -1,6 +1,5 @@
 import {MaskitoPostprocessor} from '@maskito/core';
 
-import {CHAR_MINUS} from '../../../constants';
 import {extractAffixes, identity} from '../../../utils';
 
 /**
@@ -12,11 +11,13 @@ export function createThousandSeparatorPostprocessor({
     decimalSeparator,
     prefix,
     postfix,
+    minusSign,
 }: {
     thousandSeparator: string;
     decimalSeparator: string;
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPostprocessor {
     if (!thousandSeparator) {
         return identity;
@@ -31,7 +32,7 @@ export function createThousandSeparatorPostprocessor({
         });
 
         const [integerPart, decimalPart = ''] = cleanValue
-            .replace(CHAR_MINUS, '')
+            .replace(minusSign, '')
             .split(decimalSeparator);
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
@@ -83,7 +84,7 @@ export function createThousandSeparatorPostprocessor({
         return {
             value:
                 extractedPrefix +
-                (cleanValue.includes(CHAR_MINUS) ? CHAR_MINUS : '') +
+                (cleanValue.includes(minusSign) ? minusSign : '') +
                 processedIntegerPart +
                 (cleanValue.includes(decimalSeparator) ? decimalSeparator : '') +
                 decimalPart +
