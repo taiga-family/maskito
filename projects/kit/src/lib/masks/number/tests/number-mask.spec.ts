@@ -2,8 +2,11 @@ import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskit
 import {maskitoParseNumber} from '@maskito/kit';
 
 import {
+    CHAR_EM_DASH,
     CHAR_EN_DASH,
     CHAR_HYPHEN,
+    CHAR_JP_HYPHEN,
+    CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
     CHAR_ZERO_WIDTH_SPACE,
 } from '../../../constants';
@@ -325,49 +328,36 @@ describe('Number (maskitoTransform)', () => {
     });
 
     describe('applies `minusSign` property correctly', () => {
-        let options = MASKITO_DEFAULT_OPTIONS;
+        const minuses = [
+            {value: CHAR_HYPHEN, name: 'hyphen'},
+            {value: CHAR_MINUS, name: 'unicode minus sign'},
+            {value: 'i', name: 'i'},
+        ];
 
-        describe('correctly applies ⁻ as minus sign', () => {
-            beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({minusSign: '⁻'});
+        const numbers = ['23', '321', '2 432'];
+
+        const pseudoMinuses = [
+            {value: CHAR_HYPHEN, name: 'hyphen'},
+            {value: CHAR_EN_DASH, name: 'en-dash'},
+            {value: CHAR_EM_DASH, name: 'em-dash'},
+            {value: CHAR_JP_HYPHEN, name: 'japanese prolonged sound mark'},
+            {value: CHAR_MINUS, name: 'unicode minus sign'},
+        ];
+
+        minuses.forEach(minus => {
+            const options = maskitoNumberOptionsGenerator({
+                minusSign: minus.value,
+                thousandSeparator: ' ',
             });
 
-            it('-32412 => ⁻32 412', () => {
-                expect(maskitoTransform('-32412', options)).toBe('⁻32 412');
-            });
-
-            it(`${CHAR_HYPHEN}32413 => ⁻32 413`, () => {
-                expect(maskitoTransform(`${CHAR_HYPHEN}32413`, options)).toBe('⁻32 413');
-            });
-
-            it('-32411 => ⁻32 411', () => {
-                expect(maskitoTransform('-32411', options)).toBe('⁻32 411');
-            });
-
-            it(`${CHAR_EN_DASH}32411 => ⁻32 411`, () => {
-                expect(maskitoTransform(`${CHAR_EN_DASH}32411`, options)).toBe('⁻32 411');
-            });
-        });
-
-        describe('correctly applies i as minus sign', () => {
-            beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({minusSign: 'i'});
-            });
-
-            it('-32412 => i32 412', () => {
-                expect(maskitoTransform('-32412', options)).toBe('i32 412');
-            });
-
-            it(`${CHAR_HYPHEN}32413 => i32 413`, () => {
-                expect(maskitoTransform(`${CHAR_HYPHEN}32413`, options)).toBe('i32 413');
-            });
-
-            it('-32411 => i32 411', () => {
-                expect(maskitoTransform('-32411', options)).toBe('i32 411');
-            });
-
-            it(`${CHAR_EN_DASH}32411 => i32 411`, () => {
-                expect(maskitoTransform(`${CHAR_EN_DASH}32411`, options)).toBe('i32 411');
+            pseudoMinuses.forEach(pseudoMinus => {
+                numbers.forEach(number => {
+                    it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
+                        expect(
+                            maskitoTransform(`${pseudoMinus.value}${number}`, options),
+                        ).toBe(`${minus.value}${number}`);
+                    });
+                });
             });
         });
     });
