@@ -9,10 +9,10 @@ import {
     maskitoNumberOptionsGenerator,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
+import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
 import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
-import {CHAR_MINUS} from 'projects/kit/src/lib/constants';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
@@ -75,9 +75,6 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     protected readonly customMinusSignExample5: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-custom-minus-sign/mask.ts?raw'
-        ),
-        [DocExamplePrimaryTab.Angular]: import(
-            './examples/5-custom-minus-sign/components.ts?raw'
         ),
     };
 
