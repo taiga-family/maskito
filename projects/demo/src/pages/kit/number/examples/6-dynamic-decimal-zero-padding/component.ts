@@ -16,7 +16,7 @@ import {getMaskitoOptions} from './mask';
 
 @Component({
     standalone: true,
-    selector: 'number-mask-doc-example-5',
+    selector: 'number-mask-doc-example-6',
     imports: [
         TuiLabelModule,
         TuiInputModule,
@@ -42,7 +42,7 @@ import {getMaskitoOptions} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample5 {
+export class NumberMaskDocExample6 {
     protected value = '42';
     protected decimalZeroPadding = this.value.includes('.');
 

@@ -18,8 +18,8 @@ import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
-import {NumberMaskDocExample5} from './examples/5-dynamic-decimal-zero-padding/component';
-import {NumberMaskDocExample6} from './examples/6-custom-minus-sign/components';
+import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
+import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
@@ -72,21 +72,21 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
+    protected readonly customMinusSignExample5: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
+            './examples/5-custom-minus-sign/mask.ts?raw'
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/5-dynamic-decimal-zero-padding/component.ts?raw'
+            './examples/5-custom-minus-sign/components.ts?raw'
         ),
     };
 
-    protected readonly customMinusSignExample6: TuiDocExample = {
+    protected readonly dynamicDecimalZeroPaddingExample6: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-custom-minus-sign/mask.ts?raw'
+            './examples/6-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/6-custom-minus-sign/components.ts?raw'
+            './examples/6-dynamic-decimal-zero-padding/component.ts?raw'
         ),
     };
 

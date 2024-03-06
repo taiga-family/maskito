@@ -8,7 +8,7 @@ import mask from './mask';
 
 @Component({
     standalone: true,
-    selector: 'number-mask-doc-example-6',
+    selector: 'number-mask-doc-example-5',
     imports: [
         TuiInputModule,
         TuiTextfieldControllerModule,
@@ -27,7 +27,7 @@ import mask from './mask';
         </tui-input>
     `,
 })
-export class NumberMaskDocExample6 {
+export class NumberMaskDocExample5 {
     protected value = '-42';
     protected readonly options = mask;
 }
