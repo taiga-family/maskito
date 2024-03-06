@@ -56,13 +56,12 @@ export function maskitoNumberOptionsGenerator({
     postfix?: string;
     minusSign?: string;
 } = {}): Required<MaskitoOptions> {
-    const pseudoMinuses: string[] = [
+    const pseudoMinuses = [
         CHAR_HYPHEN,
         CHAR_EN_DASH,
         CHAR_EM_DASH,
         CHAR_JP_HYPHEN,
         CHAR_MINUS,
-        minusSign,
     ].filter(
         char =>
             char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
