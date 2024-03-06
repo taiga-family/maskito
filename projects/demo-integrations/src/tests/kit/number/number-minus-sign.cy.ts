@@ -1,59 +1,45 @@
-import {CHAR_EN_DASH, CHAR_HYPHEN, CHAR_JP_HYPHEN} from 'projects/kit/src/lib/constants';
+import {
+    CHAR_EM_DASH,
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_JP_HYPHEN,
+    CHAR_MINUS,
+} from 'projects/kit/src/lib/constants';
 
 import {openNumberPage} from './utils';
 
 describe('Properly using custom minus sign', () => {
-    describe(`correctly applies ${CHAR_HYPHEN} as minus sign`, () => {
-        beforeEach(() => {
-            openNumberPage(`minusSign=${CHAR_HYPHEN}&thousandSeparator=_`);
-        });
+    const minuses: Array<{value: string; name: string; asQueryParam: string}> = [
+        {value: CHAR_HYPHEN, name: 'hyphen', asQueryParam: '-'},
+        {value: 'i', name: 'i', asQueryParam: 'i'},
+    ];
 
-        it(`-32412 => ${CHAR_HYPHEN}32_412`, () => {
-            cy.get('@input').type('-32412').should('have.value', `${CHAR_HYPHEN}32_412`);
-        });
+    const numbers = ['321', '2_432'];
 
-        it(`${CHAR_HYPHEN}32412 => ${CHAR_HYPHEN}32_412`, () => {
-            cy.get('@input').type('-32412').should('have.value', `${CHAR_HYPHEN}32_412`);
-        });
+    const pseudoMinuses: Array<{value: string; name: string}> = [
+        {value: CHAR_HYPHEN, name: 'hyphen'},
+        {value: CHAR_EN_DASH, name: 'en-dash'},
+        {value: CHAR_EM_DASH, name: 'em-dash'},
+        {value: CHAR_JP_HYPHEN, name: 'japanese prolonged sound mark'},
+        {value: CHAR_MINUS, name: 'unicode minus sign'},
+    ];
 
-        it(`${CHAR_JP_HYPHEN}32412 => ${CHAR_HYPHEN}32_412`, () => {
-            cy.get('@input')
-                .type(`${CHAR_JP_HYPHEN}32412`)
-                .should('have.value', `${CHAR_HYPHEN}32_412`);
-        });
+    minuses.forEach(minus => {
+        if (minus.value === 'i') {
+            pseudoMinuses.push(minus);
+        }
 
-        it(`${CHAR_EN_DASH}32412 => ${CHAR_HYPHEN}32_412`, () => {
-            cy.get('@input')
-                .type(`${CHAR_EN_DASH}32412`)
-                .should('have.value', `${CHAR_HYPHEN}32_412`);
-        });
-    });
-
-    describe('correctly works with decimal, and minus sign is i', () => {
-        beforeEach(() => {
-            openNumberPage('minusSign=i&precision=Infinity&thousandSeparator=_');
-        });
-
-        it('-324,12 => i_324.12', () => {
-            cy.get('@input').type('-324,12').should('have.value', 'i_324.12');
-        });
-
-        it(`${CHAR_HYPHEN}324,12 => i_324.12`, () => {
-            cy.get('@input')
-                .type(`${CHAR_HYPHEN}324,12`)
-                .should('have.value', 'i_324.12');
-        });
-
-        it(`${CHAR_JP_HYPHEN}324,12 => i_324.12`, () => {
-            cy.get('@input')
-                .type(`${CHAR_JP_HYPHEN}324,12`)
-                .should('have.value', 'i_324.12');
-        });
-
-        it(`${CHAR_EN_DASH}324,12 => i_324.12`, () => {
-            cy.get('@input')
-                .type(`${CHAR_EN_DASH}324,12`)
-                .should('have.value', 'i_324.12');
+        pseudoMinuses.forEach(pseudoMinus => {
+            numbers.forEach(number => {
+                it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
+                    openNumberPage(
+                        `precision=Infinity&thousandSeparator=_&minusSign=${minus.asQueryParam}`,
+                    );
+                    cy.get('@input')
+                        .type(`${pseudoMinus.value}${number}`)
+                        .should('have.value', `${minus.value}${number}`);
+                });
+            });
         });
     });
 });
