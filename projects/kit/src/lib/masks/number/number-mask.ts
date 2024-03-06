@@ -134,7 +134,7 @@ export function maskitoNumberOptionsGenerator({
             }),
         ],
         postprocessors: [
-            createMinMaxPostprocessor({decimalSeparator, min, max}),
+            createMinMaxPostprocessor({decimalSeparator, min, max, minusSign}),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor({
