@@ -1,8 +1,10 @@
 import {I18nPluralPipe} from '@angular/common';
-import {ChangeDetectionStrategy, Component, Pipe, PipeTransform} from '@angular/core';
+import type {PipeTransform} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Pipe} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {maskitoInitialCalibrationPlugin, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 
 @Pipe({

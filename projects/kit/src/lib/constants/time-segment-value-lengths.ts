@@ -1,4 +1,4 @@
-import {MaskitoTimeSegments} from '../types';
+import type {MaskitoTimeSegments} from '../types';
 
 export const TIME_SEGMENT_VALUE_LENGTHS: MaskitoTimeSegments<number> = {
     hours: 2,

@@ -1,4 +1,4 @@
-import {ElementState, MaskitoMaskExpression} from '../../../types';
+import type {ElementState, MaskitoMaskExpression} from '../../../types';
 import {guessValidValueByPattern} from './guess-valid-value-by-pattern';
 import {guessValidValueByRegExp} from './guess-valid-value-by-reg-exp';
 import {validateValueWithMask} from './validate-value-with-mask';

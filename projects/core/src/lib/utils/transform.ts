@@ -1,6 +1,6 @@
 import {MaskModel} from '../classes';
 import {MASKITO_DEFAULT_OPTIONS} from '../constants';
-import {ElementState, MaskitoOptions} from '../types';
+import type {ElementState, MaskitoOptions} from '../types';
 import {maskitoPipe} from './pipe';
 
 export function maskitoTransform(value: string, maskitoOptions: MaskitoOptions): string;

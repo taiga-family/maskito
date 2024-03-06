@@ -1,4 +1,4 @@
-import {MaskitoPlugin} from '@maskito/core';
+import type {MaskitoPlugin} from '@maskito/core';
 
 import {clamp} from '../utils';
 

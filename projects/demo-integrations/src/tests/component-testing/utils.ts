@@ -1,10 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
-import {
-    MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MaskitoElementPredicate,
-    MaskitoOptions,
-} from '@maskito/core';
+import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
 
 @Component({
     standalone: true,

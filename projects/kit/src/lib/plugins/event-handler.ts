@@ -1,4 +1,4 @@
-import {MaskitoOptions, MaskitoPlugin} from '@maskito/core';
+import type {MaskitoOptions, MaskitoPlugin} from '@maskito/core';
 
 export function maskitoEventHandler(
     name: string,

@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 import {maskitoWithPlaceholder} from '@maskito/kit';
 
 export default {

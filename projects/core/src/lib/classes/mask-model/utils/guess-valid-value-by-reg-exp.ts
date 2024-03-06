@@ -1,4 +1,4 @@
-import {ElementState} from '../../../types';
+import type {ElementState} from '../../../types';
 
 export function guessValidValueByRegExp(
     {value, selection}: ElementState,

@@ -1,4 +1,4 @@
-import {MaskitoOptions} from './mask-options';
+import type {MaskitoOptions} from './mask-options';
 
 export type MaskitoPlugin = (
     element: HTMLInputElement | HTMLTextAreaElement,

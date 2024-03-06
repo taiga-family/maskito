@@ -1,7 +1,7 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE} from '../../../constants';
-import {MaskitoDateSegments} from '../../../types';
+import type {MaskitoDateSegments} from '../../../types';
 import {
     appendDate,
     clamp,

@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';

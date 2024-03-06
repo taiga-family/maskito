@@ -1,4 +1,4 @@
-import {SelectionRange} from './selection-range';
+import type {SelectionRange} from './selection-range';
 
 export interface ElementState {
     readonly value: string;

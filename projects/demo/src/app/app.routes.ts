@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import type {Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 
 /* eslint-disable @typescript-eslint/promise-function-async */

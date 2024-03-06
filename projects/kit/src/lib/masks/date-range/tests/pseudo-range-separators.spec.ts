@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
 
 import {CHAR_EM_DASH, CHAR_EN_DASH, CHAR_HYPHEN, CHAR_MINUS} from '../../../constants';

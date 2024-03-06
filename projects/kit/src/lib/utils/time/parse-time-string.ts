@@ -1,4 +1,4 @@
-import {MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeSegments} from '../../types';
 
 /**
  * @param timeString can be with/without fixed characters

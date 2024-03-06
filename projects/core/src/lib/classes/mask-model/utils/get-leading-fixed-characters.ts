@@ -1,4 +1,4 @@
-import {ElementState} from '../../../types';
+import type {ElementState} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function getLeadingFixedCharacters(

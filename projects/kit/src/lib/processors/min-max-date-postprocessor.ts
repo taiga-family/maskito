@@ -1,4 +1,4 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {

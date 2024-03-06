@@ -1,4 +1,4 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {CHAR_HYPHEN, CHAR_MINUS} from '../../../constants';
 import {maskitoParseNumber} from '../utils';

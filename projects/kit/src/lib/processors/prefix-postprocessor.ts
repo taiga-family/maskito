@@ -1,4 +1,4 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {identity} from '../utils';
 

@@ -1,18 +1,10 @@
-import {
-    Directive,
-    ElementRef,
-    inject,
-    Input,
-    NgZone,
-    OnChanges,
-    OnDestroy,
-} from '@angular/core';
+import type {OnChanges, OnDestroy} from '@angular/core';
+import {Directive, ElementRef, inject, Input, NgZone} from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
+import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MaskitoElementPredicate,
-    MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
 

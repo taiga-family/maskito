@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '../types';
+import type {MaskitoOptions} from '../types';
 
 export const MASKITO_DEFAULT_OPTIONS: Required<MaskitoOptions> = {
     mask: /^.*$/,

@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {
     createDateSegmentsZeroPaddingPostprocessor,
@@ -8,7 +9,7 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import {MaskitoDateMode} from '../../types';
+import type {MaskitoDateMode} from '../../types';
 
 export function maskitoDateOptionsGenerator({
     mode,

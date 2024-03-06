@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 import {maskitoParseNumber} from '@maskito/kit';
 
 import {CHAR_NO_BREAK_SPACE, CHAR_ZERO_WIDTH_SPACE} from '../../../constants';

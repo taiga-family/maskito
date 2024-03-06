@@ -1,4 +1,4 @@
-import {ElementState} from '../../types';
+import type {ElementState} from '../../types';
 import {getNotEmptySelection} from '../get-not-empty-selection';
 
 describe('getNotEmptySelection', () => {

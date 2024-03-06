@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 import {maskitoDateOptionsGenerator, maskitoWithPlaceholder} from '@maskito/kit';
 import {createOutputSpy} from 'cypress/angular';
 

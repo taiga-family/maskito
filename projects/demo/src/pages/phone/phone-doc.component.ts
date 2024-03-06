@@ -3,11 +3,13 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import type {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
-import {CountryCode, getCountries} from 'libphonenumber-js/core';
+import type {CountryCode} from 'libphonenumber-js/core';
+import {getCountries} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import {PhoneMaskDocExample1} from './examples/1-basic/component';

@@ -1,4 +1,4 @@
-import {ElementState, MaskitoOptions} from '../../../types';
+import type {ElementState, MaskitoOptions} from '../../../types';
 
 export function applyOverwriteMode(
     {value, selection}: ElementState,

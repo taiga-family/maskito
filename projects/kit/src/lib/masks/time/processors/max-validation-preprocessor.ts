@@ -1,7 +1,7 @@
-import {MaskitoPreprocessor} from '@maskito/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../../constants';
-import {MaskitoTimeSegments} from '../../../types';
+import type {MaskitoTimeSegments} from '../../../types';
 import {escapeRegExp} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
