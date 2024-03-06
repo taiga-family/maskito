@@ -17,6 +17,7 @@ import mask from './mask';
     ],
     template: `
         <tui-input
+            [style.max-width.rem]="30"
             [tuiTextfieldLabelOutside]="true"
             [(ngModel)]="value"
         >
