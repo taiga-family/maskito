@@ -1,6 +1,11 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
-import {ElementState, MaskitoOptions, SelectionRange, TypedInputEvent} from './types';
+import type {
+    ElementState,
+    MaskitoOptions,
+    SelectionRange,
+    TypedInputEvent,
+} from './types';
 import {
     areElementValuesEqual,
     EventListener,

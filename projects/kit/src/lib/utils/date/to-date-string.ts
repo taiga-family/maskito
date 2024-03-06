@@ -1,5 +1,5 @@
 import {DATE_TIME_SEPARATOR} from '../../masks/date-time/constants';
-import {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
+import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
 
 export function toDateString(
     {

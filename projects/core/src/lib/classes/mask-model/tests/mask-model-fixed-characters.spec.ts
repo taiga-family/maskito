@@ -1,5 +1,5 @@
 import {MASKITO_DEFAULT_OPTIONS} from '../../../constants';
-import {MaskitoOptions} from '../../../types';
+import type {MaskitoOptions} from '../../../types';
 import {MaskModel} from '../mask-model';
 
 describe('MaskModel | Fixed characters', () => {

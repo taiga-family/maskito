@@ -1,4 +1,4 @@
-import {MaskitoOptions, MaskitoPlugin} from '../types';
+import type {MaskitoOptions, MaskitoPlugin} from '../types';
 import {maskitoUpdateElement} from './dom/update-element';
 import {maskitoTransform} from './transform';
 

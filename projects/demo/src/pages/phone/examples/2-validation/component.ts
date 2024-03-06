@@ -1,17 +1,13 @@
 import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {
-    AbstractControl,
-    FormControl,
-    ReactiveFormsModule,
-    ValidationErrors,
-    ValidatorFn,
-} from '@angular/forms';
+import type {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiValidationError} from '@taiga-ui/cdk';
 import {TuiErrorModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiFieldErrorPipeModule, TuiInputModule} from '@taiga-ui/kit';
-import {CountryCode, isValidPhoneNumber} from 'libphonenumber-js/max';
+import type {CountryCode} from 'libphonenumber-js/max';
+import {isValidPhoneNumber} from 'libphonenumber-js/max';
 
 import mask from './mask';
 

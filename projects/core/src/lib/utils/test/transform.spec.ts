@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '../../types';
+import type {MaskitoOptions} from '../../types';
 import {maskitoTransform} from '../transform';
 
 describe('maskitoTransform', () => {

@@ -1,7 +1,7 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {DATE_SEGMENTS_MAX_VALUES} from '../constants';
-import {MaskitoDateSegments} from '../types';
+import type {MaskitoDateSegments} from '../types';
 import {padWithZeroesUntilValid, parseDateString, toDateString} from '../utils';
 
 export function createDateSegmentsZeroPaddingPostprocessor({

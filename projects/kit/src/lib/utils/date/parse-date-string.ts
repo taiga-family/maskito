@@ -1,4 +1,4 @@
-import {MaskitoDateSegments} from '../../types';
+import type {MaskitoDateSegments} from '../../types';
 
 export function parseDateString(
     dateString: string,

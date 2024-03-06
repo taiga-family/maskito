@@ -1,4 +1,4 @@
-import {MaskitoPreprocessor} from '@maskito/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
 
 import {DATE_TIME_SEPARATOR} from '../masks/date-time/constants';
 

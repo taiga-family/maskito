@@ -1,4 +1,4 @@
-import {AsYouType} from 'libphonenumber-js/core';
+import type {AsYouType} from 'libphonenumber-js/core';
 
 export function getPhoneTemplate(
     formatter: AsYouType,

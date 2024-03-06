@@ -1,4 +1,5 @@
-import {MetadataJson, validatePhoneNumberLength} from 'libphonenumber-js/core';
+import type {MetadataJson} from 'libphonenumber-js/core';
+import {validatePhoneNumberLength} from 'libphonenumber-js/core';
 
 export function cutPhoneByValidLength({
     phone,

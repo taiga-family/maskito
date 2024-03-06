@@ -1,4 +1,4 @@
-import {ElementState} from './element-state';
+import type {ElementState} from './element-state';
 
 export type MaskitoPreprocessor = (
     _: {

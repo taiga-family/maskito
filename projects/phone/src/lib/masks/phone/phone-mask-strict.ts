@@ -1,16 +1,13 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
     maskitoPrefixPostprocessorGenerator,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
-import {
-    AsYouType,
-    CountryCode,
-    getCountryCallingCode,
-    MetadataJson,
-} from 'libphonenumber-js/core';
+import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
+import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
 import {
     cutInitCountryCodePreprocessor,

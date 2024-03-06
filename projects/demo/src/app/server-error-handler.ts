@@ -1,4 +1,5 @@
-import {ErrorHandler, Injectable} from '@angular/core';
+import type {ErrorHandler} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {hasFlag} from 'scripts/helpers/argv';
 
 // TODO

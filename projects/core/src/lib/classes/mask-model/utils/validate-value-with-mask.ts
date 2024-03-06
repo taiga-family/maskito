@@ -1,4 +1,4 @@
-import {MaskitoMaskExpression} from '../../../types';
+import type {MaskitoMaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function validateValueWithMask(

@@ -2,13 +2,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
-import {MaskitoOptions} from '@maskito/core';
-import {
-    MaskitoDateMode,
-    maskitoDateRangeOptionsGenerator,
-    MaskitoDateSegments,
-} from '@maskito/kit';
-import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import type {MaskitoOptions} from '@maskito/core';
+import type {MaskitoDateMode, MaskitoDateSegments} from '@maskito/kit';
+import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
+import type {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';

@@ -1,5 +1,5 @@
 import {Directive, Input, NgModule} from '@angular/core';
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 
 import {MaskitoDirective} from './maskito.directive';
 import {MaskitoPipe} from './maskito.pipe';

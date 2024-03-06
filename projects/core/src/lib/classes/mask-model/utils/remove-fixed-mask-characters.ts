@@ -1,4 +1,4 @@
-import {ElementState, MaskitoMaskExpression} from '../../../types';
+import type {ElementState, MaskitoMaskExpression} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function removeFixedMaskCharacters(
