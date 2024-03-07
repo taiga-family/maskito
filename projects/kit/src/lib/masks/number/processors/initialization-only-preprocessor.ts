@@ -20,12 +20,14 @@ export function createInitializationOnlyPreprocessor({
     pseudoMinuses,
     prefix,
     postfix,
+    minusSign,
 }: {
     decimalSeparator: string;
     decimalPseudoSeparators: readonly string[];
     pseudoMinuses: readonly string[];
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPreprocessor {
     let isInitializationPhase = true;
     const cleanNumberMask = generateMaskExpression({
@@ -37,6 +39,7 @@ export function createInitializationOnlyPreprocessor({
         thousandSeparator: '',
         precision: Infinity,
         isNegativeAllowed: true,
+        minusSign,
     });
 
     return ({elementState, data}) => {

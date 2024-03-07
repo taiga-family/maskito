@@ -1,6 +1,6 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {CHAR_HYPHEN, CHAR_MINUS} from '../../../constants';
+import {CHAR_HYPHEN} from '../../../constants';
 import {maskitoParseNumber} from '../utils';
 
 /**
@@ -11,10 +11,12 @@ export function createMinMaxPostprocessor({
     min,
     max,
     decimalSeparator,
+    minusSign,
 }: {
     min: number;
     max: number;
     decimalSeparator: string;
+    minusSign: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const parsedNumber = maskitoParseNumber(value, decimalSeparator);
@@ -34,7 +36,7 @@ export function createMinMaxPostprocessor({
         if (!Number.isNaN(parsedNumber) && limitedValue !== parsedNumber) {
             const newValue = `${limitedValue}`
                 .replace('.', decimalSeparator)
-                .replace(CHAR_HYPHEN, CHAR_MINUS);
+                .replace(CHAR_HYPHEN, minusSign);
 
             return {
                 value: newValue,

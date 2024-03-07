@@ -9,16 +9,18 @@ import {
     maskitoNumberOptionsGenerator,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
+import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
 import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiNotificationModule} from '@taiga-ui/core';
+import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
-import {NumberMaskDocExample5} from './examples/5-dynamic-decimal-zero-padding/component';
+import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
+import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
@@ -33,11 +35,13 @@ type GeneratorOptions = Required<
         TuiAddonDocModule,
         TuiInputModule,
         TuiNotificationModule,
+        TuiLinkModule,
         NumberMaskDocExample1,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
         NumberMaskDocExample4,
         NumberMaskDocExample5,
+        NumberMaskDocExample6,
     ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -70,12 +74,18 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly dynamicDecimalZeroPaddingExample5: TuiDocExample = {
+    protected readonly customMinusSignExample5: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-dynamic-decimal-zero-padding/mask.ts?raw'
+            './examples/5-custom-minus-sign/mask.ts?raw'
+        ),
+    };
+
+    protected readonly dynamicDecimalZeroPaddingExample6: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/5-dynamic-decimal-zero-padding/component.ts?raw'
+            './examples/6-dynamic-decimal-zero-padding/component.ts?raw'
         ),
     };
 
@@ -98,6 +108,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
     public thousandSeparator = ' ';
     public prefix = '';
     public postfix = '';
+    public minusSign = CHAR_MINUS;
 
     protected maskitoOptions: MaskitoOptions = this.calculateMask(this);
 

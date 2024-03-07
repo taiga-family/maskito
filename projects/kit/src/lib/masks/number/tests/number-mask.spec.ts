@@ -2,7 +2,15 @@ import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 import {maskitoParseNumber} from '@maskito/kit';
 
-import {CHAR_NO_BREAK_SPACE, CHAR_ZERO_WIDTH_SPACE} from '../../../constants';
+import {
+    CHAR_EM_DASH,
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_JP_HYPHEN,
+    CHAR_MINUS,
+    CHAR_NO_BREAK_SPACE,
+    CHAR_ZERO_WIDTH_SPACE,
+} from '../../../constants';
 import {maskitoNumberOptionsGenerator} from '../number-mask';
 
 describe('Number (maskitoTransform)', () => {
@@ -316,6 +324,74 @@ describe('Number (maskitoTransform)', () => {
 
                 maskitoTransform('１２３４５', options);
                 expect(maskitoTransform('１２３４５', options)).toBe('12_345');
+            });
+        });
+    });
+
+    describe('applies `minusSign` property correctly', () => {
+        const minuses = [
+            {value: CHAR_HYPHEN, name: 'hyphen'},
+            {value: CHAR_MINUS, name: 'unicode minus sign'},
+            {value: 'i', name: 'i'},
+        ];
+
+        const numbers = ['23', '321', '2 432'];
+
+        const pseudoMinuses = [
+            {value: CHAR_HYPHEN, name: 'hyphen'},
+            {value: CHAR_EN_DASH, name: 'en-dash'},
+            {value: CHAR_EM_DASH, name: 'em-dash'},
+            {value: CHAR_JP_HYPHEN, name: 'japanese prolonged sound mark'},
+            {value: CHAR_MINUS, name: 'unicode minus sign'},
+        ];
+
+        minuses.forEach(minus => {
+            const options = maskitoNumberOptionsGenerator({
+                minusSign: minus.value,
+                thousandSeparator: ' ',
+            });
+
+            pseudoMinuses.forEach(pseudoMinus => {
+                numbers.forEach(number => {
+                    it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
+                        expect(
+                            maskitoTransform(`${pseudoMinus.value}${number}`, options),
+                        ).toBe(`${minus.value}${number}`);
+                    });
+                });
+            });
+        });
+    });
+
+    describe('custom minus should properly work with min(max) value', () => {
+        let options = MASKITO_DEFAULT_OPTIONS;
+
+        [
+            {value: CHAR_HYPHEN, name: 'hyphen'},
+            {value: CHAR_EN_DASH, name: 'en-dash'},
+            {value: CHAR_EM_DASH, name: 'em-dash'},
+            {value: CHAR_JP_HYPHEN, name: 'japanese prolonged sound mark'},
+            {value: CHAR_MINUS, name: 'unicode minus sign'},
+        ].forEach(minus => {
+            describe(`applies ${minus.name} properly`, () => {
+                beforeEach(() => {
+                    options = maskitoNumberOptionsGenerator({
+                        min: -123,
+                        minusSign: minus.value,
+                    });
+                });
+
+                it(`-94 => ${minus.value}94`, () => {
+                    expect(maskitoTransform(`${minus.value}94`, options)).toBe(
+                        `${minus.value}94`,
+                    );
+                });
+
+                it(`-432 => ${minus.value}123`, () => {
+                    expect(maskitoTransform(`${minus.value}432`, options)).toBe(
+                        `${minus.value}123`,
+                    );
+                });
             });
         });
     });

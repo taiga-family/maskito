@@ -103,9 +103,38 @@
         </tui-doc-example>
 
         <tui-doc-example
+            id="minus-sign"
+            heading="Minus sign"
+            [content]="customMinusSignExample5"
+            [description]="customMinusSignDescription"
+        >
+            <ng-template #customMinusSignDescription>
+                <p>
+                    Use
+                    <code>minusSign</code>
+                    parameter to configure the character which indicates that a number is negative.
+                </p>
+                <p>
+                    In this example
+                    <a
+                        href="https://symbl.cc/en/2010"
+                        rel="noreferrer"
+                        target="_blank"
+                        tuiLink
+                    >
+                        hyphen
+                    </a>
+                    is used as
+                    <code>minusSign</code>
+                </p>
+            </ng-template>
+            <number-mask-doc-example-5></number-mask-doc-example-5>
+        </tui-doc-example>
+
+        <tui-doc-example
             id="dynamic-decimal-zero-padding"
             heading="Dynamic decimal zero padding"
-            [content]="dynamicDecimalZeroPaddingExample5"
+            [content]="dynamicDecimalZeroPaddingExample6"
             [description]="dynamicDecimalZeroPaddingDescription"
         >
             <ng-template #dynamicDecimalZeroPaddingDescription>
@@ -116,7 +145,7 @@
                     and enable it only after user inserts decimal separator.
                 </div>
             </ng-template>
-            <number-mask-doc-example-5></number-mask-doc-example-5>
+            <number-mask-doc-example-6></number-mask-doc-example-6>
         </tui-doc-example>
     </ng-template>
 
@@ -284,6 +313,27 @@
                 <p>
                     <strong>Default:</strong>
                     empty string (no postfix).
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="minusSign"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="minusSign"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A minus symbol.
+
+                <p>
+                    <strong>Default:</strong>
+                    <a
+                        href="https://symbl.cc/en/2212"
+                        rel="noreferrer"
+                        target="_blank"
+                        tuiLink
+                    >
+                        <code>\u2212</code>
+                    </a>
                 </p>
             </ng-template>
         </tui-doc-documentation>
