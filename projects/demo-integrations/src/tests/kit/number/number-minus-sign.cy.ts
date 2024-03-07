@@ -9,10 +9,19 @@ import {
 import {openNumberPage} from './utils';
 
 describe('Properly using custom minus sign', () => {
-    const minuses: Array<{value: string; name: string; asQueryParam: string}> = [
-        {value: CHAR_HYPHEN, name: 'hyphen', asQueryParam: '-'},
-        {value: CHAR_EN_DASH, name: 'en-dash', asQueryParam: '%E2%80%93'},
-        {value: CHAR_EM_DASH, name: 'em-dash', asQueryParam: '%E2%80%94'},
+    const minuses: Array<{value: string; name: string}> = [
+        {
+            value: CHAR_HYPHEN,
+            name: 'hyphen',
+        },
+        {
+            value: CHAR_EN_DASH,
+            name: 'en-dash',
+        },
+        {
+            value: CHAR_EM_DASH,
+            name: 'em-dash',
+        },
     ];
 
     const numbers = ['321', '2_432'];
@@ -30,7 +39,7 @@ describe('Properly using custom minus sign', () => {
             numbers.forEach(number => {
                 it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
                     openNumberPage(
-                        `precision=Infinity&thousandSeparator=_&minusSign=${minus.asQueryParam}`,
+                        `precision=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
                     );
                     cy.get('@input')
                         .type(`${pseudoMinus.value}${number}`)
@@ -61,20 +70,19 @@ describe('Properly using custom minus sign', () => {
 
 describe('custom minus should work properly with min(max) value', () => {
     [
-        {value: CHAR_HYPHEN, name: 'hyphen', asQueryParam: '-'},
-        {value: CHAR_EN_DASH, name: 'en-dash', asQueryParam: '%E2%80%93'},
-        {value: CHAR_EM_DASH, name: 'em-dash', asQueryParam: '%E2%80%94'},
+        {value: CHAR_HYPHEN, name: 'hyphen'},
+        {value: CHAR_EN_DASH, name: 'en-dash'},
+        {value: CHAR_EM_DASH, name: 'em-dash'},
         {
             value: CHAR_JP_HYPHEN,
             name: 'japanese prolonged sound mark',
-            asQueryParam: '%E3%83%BC',
         },
-        {value: CHAR_MINUS, name: 'unicode minus sign', asQueryParam: '%E2%88%92'},
+        {value: CHAR_MINUS, name: 'unicode minus sign'},
     ].forEach(minus => {
         describe(`applies ${minus.name} properly`, () => {
             beforeEach(() => {
                 openNumberPage(
-                    `min=-123&thousandSeparator=_&minusSign=${minus.asQueryParam}`,
+                    `min=-123&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
                 );
             });
 
