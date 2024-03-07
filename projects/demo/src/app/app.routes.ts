@@ -171,6 +171,14 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.ContentEditable,
+        loadComponent: () =>
+            import('../pages/recipes/content-editable/content-editable-doc.component'),
+        data: {
+            title: 'ContentEditable',
+        },
+    },
+    {
         path: DemoPath.Prefix,
         loadComponent: () => import('../pages/recipes/prefix/prefix-doc.component'),
         data: {

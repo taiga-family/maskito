@@ -1,0 +1,61 @@
+<tui-doc-page
+    header="ContentEditable"
+    package="Recipes"
+>
+    <section>
+        <p class="tui-space_top-0 tui-space_bottom-4">
+            You can use
+            <strong>Maskito</strong>
+            with
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/contentEditable"
+                rel="noreferrer"
+                target="_blank"
+                tuiLink
+            >
+                <code>contentEditable</code>
+            </a>
+            too.
+        </p>
+        <p>
+            Just wrap the element with
+            <code>maskitoAdaptContentEditable</code>
+            utility and all other API is the same as for
+            <code>HTMLInputElement</code>
+            /
+            <code>HTMLTextAreaElement</code>
+            .
+        </p>
+
+        <tui-doc-code [code]="maskitoWithContentEditableDemo"></tui-doc-code>
+
+        <p class="tui-space_bottom-0">
+            Learn more in the
+            <a
+                tuiLink
+                [routerLink]="coreConceptsOverviewDocPage"
+            >
+                "Core Concepts"
+            </a>
+            section.
+        </p>
+    </section>
+
+    <tui-doc-example
+        id="time"
+        [content]="contentEditableExample1"
+        [heading]="heading1"
+    >
+        <ng-template #heading1>
+            With built-in
+            <a
+                tuiLink
+                [routerLink]="timeMaskDocPage"
+            >
+                <code>Time</code>
+            </a>
+            mask
+        </ng-template>
+        <content-editable-doc-example-1></content-editable-doc-example-1>
+    </tui-doc-example>
+</tui-doc-page>
