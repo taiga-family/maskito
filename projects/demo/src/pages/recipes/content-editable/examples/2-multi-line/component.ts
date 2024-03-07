@@ -19,7 +19,7 @@ import mask from './mask';
         `
             [contenteditable] {
                 white-space: pre;
-                border: 3px dashed lightgray;
+                border: 3px dashed lightgrey;
                 max-width: 30rem;
                 padding: 1rem;
             }

@@ -18,7 +18,7 @@ import mask from './mask';
     `,
     styles: [
         ':host {font-size: 2.5rem}',
-        '[contenteditable] {border: 3px dashed lightgray}',
+        '[contenteditable] {border: 3px dashed lightgrey}',
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
