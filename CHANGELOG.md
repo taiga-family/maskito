@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/taiga-family/maskito/compare/v2.1.0...v2.2.0) (2024-03-07)
+
+### Features
+
+- **kit:** `Number` supports new configurable parameter `minusSign`
+  ([#1118](https://github.com/taiga-family/maskito/issues/1118))
+  ([a7bec35](https://github.com/taiga-family/maskito/commit/a7bec35f19d7dfa4023ad83fa36a935b2d636fc7))
+
+### Bug Fixes
+
+- totally disable `Maskito` if nullable options are passed inside `@maskito/{angular,react,vue}`
+  ([#1117](https://github.com/taiga-family/maskito/issues/1117))
+  ([8cbadcf](https://github.com/taiga-family/maskito/commit/8cbadcfdf9af283dc687b131361f7bb19a7f9b02))
+
 ## [2.1.0](https://github.com/taiga-family/maskito/compare/v2.0.2...v2.1.0) (2024-03-04)
 
 ### Features
