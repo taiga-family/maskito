@@ -14,7 +14,7 @@ describe('[prefix]="$ " | [postfix]=" per day" (without caret guard)', () => {
                 }),
             },
         });
-        cy.get(' input')
+        cy.get('input')
             .focus()
             .type('{selectAll}{del}')
             .should('have.value', '$  per day')
