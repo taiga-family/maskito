@@ -58,4 +58,18 @@
         </ng-template>
         <content-editable-doc-example-1></content-editable-doc-example-1>
     </tui-doc-example>
+
+    <tui-doc-example
+        id="multi-line"
+        heading="Multi-line support"
+        [content]="contentEditableExample2"
+        [description]="description2"
+    >
+        <ng-template #description2>
+            Use
+            <code>white-space: pre</code>
+            for multi-line mode
+        </ng-template>
+        <content-editable-doc-example-2></content-editable-doc-example-2>
+    </tui-doc-example>
 </tui-doc-page>

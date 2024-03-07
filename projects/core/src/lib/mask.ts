@@ -237,7 +237,11 @@ export class Maskito extends MaskHistory {
             initialState.value.slice(0, initialFrom) +
             initialState.value.slice(initialTo);
 
-        if (newPossibleValue === newElementState.value && !force) {
+        if (
+            newPossibleValue === newElementState.value &&
+            !force &&
+            !this.element.isContentEditable
+        ) {
             return;
         }
 
@@ -285,7 +289,10 @@ export class Maskito extends MaskHistory {
             return event.preventDefault();
         }
 
-        if (newPossibleValue !== newElementState.value) {
+        if (
+            newPossibleValue !== newElementState.value ||
+            this.element.isContentEditable
+        ) {
             event.preventDefault();
 
             this.updateElementState(newElementState, {

@@ -6,11 +6,18 @@ import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule} from '@taiga-ui/core';
 
 import {ContentEditableDocExample1} from './examples/1-time/component';
+import {ContentEditableDocExample2} from './examples/2-multi-line/component';
 
 @Component({
     standalone: true,
     selector: 'content-editable-doc',
-    imports: [TuiAddonDocModule, TuiLinkModule, RouterLink, ContentEditableDocExample1],
+    imports: [
+        TuiAddonDocModule,
+        TuiLinkModule,
+        RouterLink,
+        ContentEditableDocExample1,
+        ContentEditableDocExample2,
+    ],
     templateUrl: './content-editable-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,7 +30,17 @@ export default class ContentEditableDocComponent {
 
     protected readonly contentEditableExample1: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw'),
-        [DocExamplePrimaryTab.JavaScript]: import('./examples/1-time/vanilla-js.ts?raw'),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md?raw'),
         [DocExamplePrimaryTab.Angular]: import('./examples/1-time/component.ts?raw'),
+    };
+
+    protected readonly contentEditableExample2: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-multi-line/mask.ts?raw'
+        ),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md?raw'),
+        [DocExamplePrimaryTab.Angular]: import(
+            './examples/2-multi-line/component.ts?raw'
+        ),
     };
 }

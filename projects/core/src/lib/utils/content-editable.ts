@@ -7,11 +7,12 @@ class ContentEditableAdapter implements TextfieldLike {
     constructor(private readonly element: HTMLElement) {}
 
     public get value(): string {
-        return this.element.textContent || '';
+        return this.element.innerText.replace(/\n\n$/, '\n');
     }
 
     public set value(value) {
-        this.element.textContent = value;
+        // Setting into innerHTML of element with `white-space: pre;` style
+        this.element.innerHTML = value.replace(/\n$/, '\n\n');
     }
 
     public get selectionStart(): number | null {
