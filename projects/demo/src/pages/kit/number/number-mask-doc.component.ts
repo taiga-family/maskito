@@ -10,7 +10,8 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
-import {TuiAddonDocModule, TuiDocExample} from '@taiga-ui/addon-doc';
+import type {TuiDocExample} from '@taiga-ui/addon-doc';
+import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
 
