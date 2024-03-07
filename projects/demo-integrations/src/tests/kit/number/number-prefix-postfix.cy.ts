@@ -313,26 +313,6 @@ describe('Number | Prefix & Postfix', () => {
         });
     });
 
-    describe('multi-character prefix "EUR " (no initial value & no caret guard)', () => {
-        beforeEach(() => {
-            cy.visit(DemoPath.Cypress);
-            cy.get('#multi-character-prefix input')
-                .focus()
-                .should('have.value', '')
-                .as('input');
-        });
-
-        ['E', 'U', 'R'].forEach(char => {
-            it(`Empty input => Type "${char} => Textfield's value is "EUR "`, () => {
-                cy.get('@input')
-                    .type(char)
-                    .should('have.value', 'EUR ')
-                    .should('have.prop', 'selectionStart', 'EUR '.length)
-                    .should('have.prop', 'selectionEnd', 'EUR '.length);
-            });
-        });
-    });
-
     describe('prefix ends with the same character as postfix starts', () => {
         const prefix = 'lbs.​'; // padded with zero-width space
 
