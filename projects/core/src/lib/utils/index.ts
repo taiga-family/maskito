@@ -1,3 +1,4 @@
+export * from './content-editable';
 export * from './dom/event-listener';
 export * from './dom/get-content-editable-selection';
 export * from './dom/history-events';

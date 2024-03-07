@@ -1,8 +1,8 @@
-import {MaskitoContentEditable} from '../classes';
-import type {MaskitoElement, MaskitoElementPredicate} from '../types';
+import type {MaskitoElementPredicate} from '../types';
+import {maskitoAdaptContentEditable} from '../utils';
 
 export const MASKITO_DEFAULT_ELEMENT_PREDICATE: MaskitoElementPredicate = e =>
     e.isContentEditable
-        ? (new MaskitoContentEditable(e) as unknown as MaskitoElement)
+        ? maskitoAdaptContentEditable(e)
         : e.querySelector<HTMLInputElement | HTMLTextAreaElement>('input,textarea') ||
           (e as HTMLInputElement | HTMLTextAreaElement);
