@@ -106,7 +106,13 @@ export class Maskito extends MaskHistory {
                 case 'insertText':
                 case 'insertFromDrop':
                 default:
-                    return this.handleInsert(event, event.data || '');
+                    return this.handleInsert(
+                        event,
+                        event.data ||
+                            // `event.data` for `contentEditable` is always `null` for paste/drop events
+                            event.dataTransfer?.getData('text/plain') ||
+                            '',
+                    );
             }
         });
 

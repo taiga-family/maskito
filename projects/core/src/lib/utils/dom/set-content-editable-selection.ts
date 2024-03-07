@@ -1,6 +1,5 @@
 import type {SelectionRange} from '../../types';
 
-// TODO: add multi-line support later
 export function setContentEditableSelection(
     element: HTMLElement,
     [from, to]: SelectionRange,
