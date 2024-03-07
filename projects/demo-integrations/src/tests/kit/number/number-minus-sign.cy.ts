@@ -11,7 +11,8 @@ import {openNumberPage} from './utils';
 describe('Properly using custom minus sign', () => {
     const minuses: Array<{value: string; name: string; asQueryParam: string}> = [
         {value: CHAR_HYPHEN, name: 'hyphen', asQueryParam: '-'},
-        {value: 'i', name: 'i', asQueryParam: 'i'},
+        {value: CHAR_EN_DASH, name: 'en-dash', asQueryParam: '%E2%80%93'},
+        {value: CHAR_EM_DASH, name: 'em-dash', asQueryParam: '%E2%80%94'},
     ];
 
     const numbers = ['321', '2_432'];
@@ -25,10 +26,6 @@ describe('Properly using custom minus sign', () => {
     ];
 
     minuses.forEach(minus => {
-        if (minus.value === 'i') {
-            pseudoMinuses.push(minus);
-        }
-
         pseudoMinuses.forEach(pseudoMinus => {
             numbers.forEach(number => {
                 it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
@@ -39,6 +36,24 @@ describe('Properly using custom minus sign', () => {
                         .type(`${pseudoMinus.value}${number}`)
                         .should('have.value', `${minus.value}${number}`);
                 });
+            });
+        });
+    });
+
+    describe('can use letters as minus sign', () => {
+        beforeEach(() => {
+            openNumberPage('precision=Infinity&thousandSeparator=_&minusSign=i');
+        });
+
+        it('transforms i into i', () => {
+            cy.get('@input').type('i1234').should('have.value', 'i1_234');
+        });
+
+        pseudoMinuses.forEach(pseudoMinus => {
+            it(`transforms ${pseudoMinus.name} into i`, () => {
+                cy.get('@input')
+                    .type(`${pseudoMinus.value}1234`)
+                    .should('have.value', 'i1_234');
             });
         });
     });
