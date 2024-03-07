@@ -1,4 +1,4 @@
-import {MaskitoElement, TextfieldLike} from '../types';
+import type {MaskitoElement, TextfieldLike} from '../types';
 import {getContentEditableSelection, setContentEditableSelection} from './index';
 
 class ContentEditableAdapter implements TextfieldLike {
