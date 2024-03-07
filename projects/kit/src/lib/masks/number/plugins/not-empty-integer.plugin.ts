@@ -1,4 +1,5 @@
-import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
+import type {MaskitoPlugin} from '@maskito/core';
+import {maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {escapeRegExp, extractAffixes} from '../../../utils';

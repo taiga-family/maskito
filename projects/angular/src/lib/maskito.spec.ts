@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import type {ComponentFixture} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective, MaskitoPipe} from '@maskito/angular';
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 
 describe('Maskito Angular package', () => {
     @Component({

@@ -1,5 +1,7 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
+import type {PipeTransform} from '@angular/core';
+import {Pipe} from '@angular/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 
 @Pipe({
     standalone: true,

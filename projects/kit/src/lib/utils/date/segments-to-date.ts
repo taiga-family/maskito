@@ -1,4 +1,4 @@
-import {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
+import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
 
 export function segmentsToDate(
     parsedDate: Partial<MaskitoDateSegments>,

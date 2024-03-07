@@ -1,4 +1,4 @@
-import {MaskitoPostprocessor, MaskitoPreprocessor} from '../types';
+import type {MaskitoPostprocessor, MaskitoPreprocessor} from '../types';
 
 /**
  * @internal

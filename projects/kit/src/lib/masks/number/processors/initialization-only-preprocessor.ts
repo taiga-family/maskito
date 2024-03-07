@@ -1,4 +1,5 @@
-import {MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
+import {maskitoTransform} from '@maskito/core';
 
 import {clamp, extractAffixes} from '../../../utils';
 import {generateMaskExpression} from '../utils';

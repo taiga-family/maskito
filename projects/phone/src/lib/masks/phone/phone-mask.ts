@@ -1,5 +1,5 @@
-import {MaskitoOptions} from '@maskito/core';
-import {CountryCode, MetadataJson} from 'libphonenumber-js/core';
+import type {MaskitoOptions} from '@maskito/core';
+import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 
 import {maskitoPhoneNonStrictOptionsGenerator} from './phone-mask-non-strict';
 import {maskitoPhoneStrictOptionsGenerator} from './phone-mask-strict';

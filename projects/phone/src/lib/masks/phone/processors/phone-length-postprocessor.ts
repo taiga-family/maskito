@@ -1,5 +1,5 @@
-import {MaskitoPostprocessor} from '@maskito/core';
-import {MetadataJson} from 'libphonenumber-js/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
+import type {MetadataJson} from 'libphonenumber-js/core';
 
 import {cutPhoneByValidLength} from '../utils';
 

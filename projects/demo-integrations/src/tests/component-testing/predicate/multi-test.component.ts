@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 
 @Component({
     standalone: true,

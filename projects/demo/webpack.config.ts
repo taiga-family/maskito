@@ -1,4 +1,5 @@
-import {Configuration, DefinePlugin} from 'webpack';
+import type {Configuration} from 'webpack';
+import {DefinePlugin} from 'webpack';
 import {merge} from 'webpack-merge';
 
 /**

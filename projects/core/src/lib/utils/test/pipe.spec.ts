@@ -1,4 +1,4 @@
-import {ElementState, MaskitoPostprocessor, MaskitoPreprocessor} from '../../types';
+import type {ElementState, MaskitoPostprocessor, MaskitoPreprocessor} from '../../types';
 import {maskitoPipe} from '../pipe';
 
 describe('maskitoPipe', () => {

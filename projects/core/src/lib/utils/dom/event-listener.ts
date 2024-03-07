@@ -1,4 +1,4 @@
-import {TypedInputEvent} from '../../types';
+import type {TypedInputEvent} from '../../types';
 
 export class EventListener {
     private readonly listeners: Array<() => void> = [];

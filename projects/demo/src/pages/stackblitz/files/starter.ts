@@ -1,6 +1,7 @@
 import './styles.css';
 
-import {Maskito, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {Maskito} from '@maskito/core';
 
 const maskitoOptions: MaskitoOptions = {
     mask: /^\d+$/,

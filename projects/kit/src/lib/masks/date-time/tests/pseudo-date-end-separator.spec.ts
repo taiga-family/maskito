@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions, maskitoTransform} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 
 import {DATE_TIME_SEPARATOR} from '../constants';

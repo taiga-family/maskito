@@ -1,5 +1,7 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
-import {AsYouType, CountryCode, MetadataJson} from 'libphonenumber-js/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
+import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
+import {AsYouType} from 'libphonenumber-js/core';
 
 import {
     phoneLengthPostprocessorGenerator,

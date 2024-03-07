@@ -1,4 +1,4 @@
-import {ElementState, SelectionRange} from '../types';
+import type {ElementState, SelectionRange} from '../types';
 
 export function getNotEmptySelection(
     {value, selection}: ElementState,

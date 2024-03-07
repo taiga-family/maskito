@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 
 import {TestInput} from '../utils';
 import {MultiTestInputComponent} from './multi-test.component';

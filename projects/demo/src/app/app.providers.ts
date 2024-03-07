@@ -1,6 +1,8 @@
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {inject, PLATFORM_ID, Provider} from '@angular/core';
+import type {Provider} from '@angular/core';
+import {inject, PLATFORM_ID} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import type {TuiDocSourceCodePathOptions} from '@taiga-ui/addon-doc';
 import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
@@ -10,9 +12,8 @@ import {
     TUI_DOC_SOURCE_CODE,
     TUI_DOC_TITLE,
     tuiDocExampleOptionsProvider,
-    TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import type {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';

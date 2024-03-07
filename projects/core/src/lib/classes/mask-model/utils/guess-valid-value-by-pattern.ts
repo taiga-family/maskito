@@ -1,4 +1,4 @@
-import {ElementState} from '../../../types';
+import type {ElementState} from '../../../types';
 import {getLeadingFixedCharacters} from './get-leading-fixed-characters';
 import {isFixedCharacter} from './is-fixed-character';
 import {validateValueWithMask} from './validate-value-with-mask';

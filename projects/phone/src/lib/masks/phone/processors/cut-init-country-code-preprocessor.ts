@@ -1,10 +1,6 @@
-import {MaskitoPreprocessor} from '@maskito/core';
-import {
-    CountryCode,
-    getCountryCallingCode,
-    MetadataJson,
-    parsePhoneNumber,
-} from 'libphonenumber-js/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
+import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
+import {getCountryCallingCode, parsePhoneNumber} from 'libphonenumber-js/core';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).

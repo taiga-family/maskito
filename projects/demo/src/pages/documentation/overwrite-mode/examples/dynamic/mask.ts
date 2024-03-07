@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 
 const maskitoOptions: MaskitoOptions = {
     mask: /^[^а-яё]+$/i,

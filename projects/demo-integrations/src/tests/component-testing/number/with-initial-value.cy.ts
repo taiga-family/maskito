@@ -1,4 +1,4 @@
-import {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 import {TestInput} from '../utils';

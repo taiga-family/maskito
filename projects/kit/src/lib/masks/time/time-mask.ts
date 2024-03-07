@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
 import {
@@ -6,7 +7,7 @@ import {
     createFullWidthToHalfWidthPreprocessor,
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
-import {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 import {createMaxValidationPreprocessor} from './processors';
 
 export function maskitoTimeOptionsGenerator({

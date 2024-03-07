@@ -1,4 +1,4 @@
-import {ElementState, MaskitoPlugin, TypedInputEvent} from '../types';
+import type {ElementState, MaskitoPlugin, TypedInputEvent} from '../types';
 import {maskitoUpdateElement} from './dom/update-element';
 import {areElementStatesEqual} from './element-states-equality';
 import {maskitoTransform} from './transform';

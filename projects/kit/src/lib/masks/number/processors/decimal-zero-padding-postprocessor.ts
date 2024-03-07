@@ -1,4 +1,4 @@
-import {MaskitoPostprocessor} from '@maskito/core';
+import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {extractAffixes, identity} from '../../../utils';
 import {maskitoParseNumber} from '../utils';

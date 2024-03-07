@@ -1,4 +1,4 @@
-import {MaskitoPreprocessor} from '@maskito/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
 
 export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
     return ({elementState}, actionType) => {

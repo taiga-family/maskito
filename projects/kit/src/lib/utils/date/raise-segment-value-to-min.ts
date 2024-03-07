@@ -1,4 +1,4 @@
-import {MaskitoDateSegments} from '../../types';
+import type {MaskitoDateSegments} from '../../types';
 import {getDateSegmentValueLength} from './date-segment-value-length';
 
 export function raiseSegmentValueToMin(

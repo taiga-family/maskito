@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {CHAR_EN_DASH, CHAR_NO_BREAK_SPACE} from '../../constants';
 import {
@@ -10,7 +11,7 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import {MaskitoDateMode, MaskitoDateSegments} from '../../types';
+import type {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {parseDateRangeString} from '../../utils';
 import {POSSIBLE_DATE_RANGE_SEPARATOR} from './constants';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';

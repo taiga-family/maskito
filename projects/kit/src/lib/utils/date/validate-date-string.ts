@@ -1,5 +1,5 @@
 import {DATE_SEGMENTS_MAX_VALUES} from '../../constants';
-import {MaskitoDateSegments} from '../../types';
+import type {MaskitoDateSegments} from '../../types';
 import {getDateSegmentValueLength} from './date-segment-value-length';
 import {parseDateString} from './parse-date-string';
 import {toDateString} from './to-date-string';

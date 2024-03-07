@@ -1,4 +1,4 @@
-import {MaskitoMask} from '@maskito/core';
+import type {MaskitoMask} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
 

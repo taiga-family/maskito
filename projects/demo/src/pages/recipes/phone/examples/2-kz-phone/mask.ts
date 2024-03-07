@@ -1,4 +1,4 @@
-import {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
+import type {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,

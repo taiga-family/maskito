@@ -1,4 +1,4 @@
-import {ElementState, SelectionRange} from '../types';
+import type {ElementState, SelectionRange} from '../types';
 
 const TRAILING_SPACES_REG = /\s+$/g;
 const LEADING_SPACES_REG = /^\s+/g;

@@ -1,4 +1,4 @@
-import {MaskitoPreprocessor} from '@maskito/core';
+import type {MaskitoPreprocessor} from '@maskito/core';
 
 /**
  * Manage caret-navigation when user "deletes" non-removable digits or separators
