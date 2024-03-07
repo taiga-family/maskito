@@ -1,5 +1,6 @@
 import type {MaskitoElement, TextfieldLike} from '../types';
-import {getContentEditableSelection, setContentEditableSelection} from './index';
+import {getContentEditableSelection} from './dom/get-content-editable-selection';
+import {setContentEditableSelection} from './dom/set-content-editable-selection';
 
 class ContentEditableAdapter implements TextfieldLike {
     public maxLength = Infinity;
