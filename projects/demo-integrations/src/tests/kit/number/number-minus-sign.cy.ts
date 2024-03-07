@@ -43,3 +43,37 @@ describe('Properly using custom minus sign', () => {
         });
     });
 });
+
+describe('custom minus should work properly with min(max) value', () => {
+    [
+        {value: CHAR_HYPHEN, name: 'hyphen', asQueryParam: '-'},
+        {value: CHAR_EN_DASH, name: 'en-dash', asQueryParam: '%E2%80%93'},
+        {value: CHAR_EM_DASH, name: 'em-dash', asQueryParam: '%E2%80%94'},
+        {
+            value: CHAR_JP_HYPHEN,
+            name: 'japanese prolonged sound mark',
+            asQueryParam: '%E3%83%BC',
+        },
+        {value: CHAR_MINUS, name: 'unicode minus sign', asQueryParam: '%E2%88%92'},
+    ].forEach(minus => {
+        describe(`applies ${minus.name} properly`, () => {
+            beforeEach(() => {
+                openNumberPage(
+                    `min=-123&thousandSeparator=_&minusSign=${minus.asQueryParam}`,
+                );
+            });
+
+            it(`-94 => ${minus.value}94`, () => {
+                cy.get('@input')
+                    .type(`${minus.value}94`)
+                    .should('have.value', `${minus.value}94`);
+            });
+
+            it(`-432 => ${minus.value}123`, () => {
+                cy.get('@input')
+                    .type(`${minus.value}432`)
+                    .should('have.value', `${minus.value}123`);
+            });
+        });
+    });
+});
