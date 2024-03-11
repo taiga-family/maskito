@@ -1,6 +1,6 @@
 import {MultiTestComponent} from './multi-test.component';
 
-describe('runtime changes of postfix', () => {
+describe('Number | runtime changes of postfix', () => {
     beforeEach(() => {
         cy.mount(MultiTestComponent);
         cy.get('input').focus().should('have.value', '1 year').as('input');

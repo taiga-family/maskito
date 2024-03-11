@@ -3,7 +3,7 @@ import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/suppo
 
 import {TestInput} from '../utils';
 
-describe('[prefix]="$ " | [postfix]=" per day" (without caret guard)', () => {
+describe('Number | [prefix]="$ " | [postfix]=" per day" (without caret guard)', () => {
     beforeEach(() => {
         cy.mount(TestInput, {
             componentProperties: {

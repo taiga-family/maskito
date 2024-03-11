@@ -2,7 +2,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
-describe('multi-character prefix "EUR " (no initial value & no caret guard)', () => {
+describe('Number | multi-character prefix "EUR " (no initial value & no caret guard)', () => {
     beforeEach(() => {
         cy.mount(TestInput, {
             componentProperties: {
