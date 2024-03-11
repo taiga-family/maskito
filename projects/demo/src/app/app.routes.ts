@@ -217,14 +217,6 @@ export const appRoutes: Routes = [
             title: 'Stackblitz Starter',
         },
     },
-    // TODO: replace this page with Cypress Component Testing after angular13+ update
-    {
-        path: DemoPath.Cypress,
-        loadComponent: () => import('../pages/cypress/cypress.component'),
-        data: {
-            title: 'Cypress tests 🤫',
-        },
-    },
     {
         path: '**',
         redirectTo: DemoPath.WhatIsMaskito,
