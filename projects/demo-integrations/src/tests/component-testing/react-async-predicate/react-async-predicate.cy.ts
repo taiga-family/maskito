@@ -5,10 +5,7 @@ describe('Async predicate works', () => {
         beforeEach(() => {
             cy.clock();
             cy.mount(TestWrapper);
-            cy.get('#async-predicate-2s-resolves')
-                .scrollIntoView()
-                .should('be.visible')
-                .as('input');
+            cy.get('#async-predicate-2s-resolves').should('be.visible').as('input');
         });
 
         it('does not apply mask until `elementPredicate` resolves', () => {
@@ -47,10 +44,7 @@ describe('Async predicate works', () => {
         beforeEach(() => {
             cy.clock();
             cy.mount(TestWrapper);
-            cy.get('#race-condition-check')
-                .scrollIntoView()
-                .should('be.visible')
-                .as('input');
+            cy.get('#race-condition-check').should('be.visible').as('input');
         });
 
         it('does not apply mask until the first (fast valid) `elementPredicate` resolves', () => {
