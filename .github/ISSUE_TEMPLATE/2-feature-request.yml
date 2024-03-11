@@ -11,6 +11,7 @@ body:
       options:
         - '@maskito/core'
         - '@maskito/kit'
+        - '@maskito/phone'
         - '@maskito/angular'
         - '@maskito/react'
         - '@maskito/vue'
