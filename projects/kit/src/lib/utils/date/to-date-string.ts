@@ -12,10 +12,11 @@ export function toDateString(
         milliseconds,
     }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
     dateMode: string,
+    dateTimeSeparator = DATE_TIME_SEPARATOR,
     timeMode?: string,
 ): string {
     const safeYear = dateMode.match(/y/g)?.length === 2 ? year?.slice(-2) : year;
-    const fullMode = dateMode + (timeMode ? DATE_TIME_SEPARATOR + timeMode : '');
+    const fullMode = dateMode + (timeMode ? dateTimeSeparator + timeMode : '');
 
     return fullMode
         .replaceAll(/d+/g, day ?? '')

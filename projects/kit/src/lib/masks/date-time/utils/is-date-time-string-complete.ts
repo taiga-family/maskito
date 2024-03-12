@@ -4,12 +4,13 @@ export function isDateTimeStringComplete(
     dateTimeString: string,
     dateMode: string,
     timeMode: string,
+    dateTimeSeparator = DATE_TIME_SEPARATOR,
 ): boolean {
     return (
         dateTimeString.length >=
-            dateMode.length + timeMode.length + DATE_TIME_SEPARATOR.length &&
+            dateMode.length + timeMode.length + dateTimeSeparator.length &&
         dateTimeString
-            .split(DATE_TIME_SEPARATOR)[0]
+            .split(dateTimeSeparator)[0]
             .split(/\D/)
             .every(segment => !segment.match(/^0+$/))
     );

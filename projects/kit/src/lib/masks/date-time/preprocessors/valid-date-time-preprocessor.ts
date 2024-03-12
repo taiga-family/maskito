@@ -3,15 +3,16 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../../constants';
 import {escapeRegExp, validateDateString} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
-import {DATE_TIME_SEPARATOR} from '../constants';
 import {parseDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
     dateModeTemplate,
     dateSegmentsSeparator,
+    dateTimeSeparator,
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
+    dateTimeSeparator: string;
 }): MaskitoPreprocessor {
     const invalidCharsRegExp = new RegExp(
         `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}${escapeRegExp(
@@ -42,15 +43,17 @@ export function createValidDateTimePreprocessor({
         const [dateString, timeString] = parseDateTimeString(
             newPossibleValue,
             dateModeTemplate,
+            dateTimeSeparator,
         );
         let validatedValue = '';
-        const hasDateTimeSeparator = newPossibleValue.includes(DATE_TIME_SEPARATOR);
+        const hasDateTimeSeparator = newPossibleValue.includes(dateTimeSeparator);
 
         const {validatedDateString, updatedSelection} = validateDateString({
             dateString,
             dateModeTemplate,
             offset: 0,
             selection: [from, to],
+            dateTimeSeparator,
         });
 
         if (dateString && !validatedDateString) {
@@ -66,7 +69,7 @@ export function createValidDateTimePreprocessor({
         const {validatedTimeString, updatedTimeSelection} = validateTimeString({
             timeString,
             paddedMaxValues,
-            offset: validatedValue.length + DATE_TIME_SEPARATOR.length,
+            offset: validatedValue.length + dateTimeSeparator.length,
             selection: [from, to],
         });
 
@@ -77,7 +80,7 @@ export function createValidDateTimePreprocessor({
         to = updatedTimeSelection[1];
 
         validatedValue += hasDateTimeSeparator
-            ? DATE_TIME_SEPARATOR + validatedTimeString
+            ? dateTimeSeparator + validatedTimeString
             : validatedTimeString;
 
         const newData = validatedValue.slice(from, to);

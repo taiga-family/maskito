@@ -12,6 +12,7 @@ import {
 } from '../../../utils';
 import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
+import {DATE_TIME_SEPARATOR} from '../constants';
 import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
 export function createMinMaxDateTimePostprocessor({
@@ -19,18 +20,31 @@ export function createMinMaxDateTimePostprocessor({
     timeMode,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
+    dateTimeSeparator = DATE_TIME_SEPARATOR,
 }: {
     dateModeTemplate: string;
     timeMode: MaskitoTimeMode;
     min?: Date;
     max?: Date;
+    dateTimeSeparator?: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
+        const [dateString, timeString] = parseDateTimeString(
+            value,
+            dateModeTemplate,
+            dateTimeSeparator,
+        );
         const parsedDate = parseDateString(dateString, dateModeTemplate);
         const parsedTime = parseTimeString(timeString);
 
-        if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
+        if (
+            !isDateTimeStringComplete(
+                value,
+                dateModeTemplate,
+                timeMode,
+                dateTimeSeparator,
+            )
+        ) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
             const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
                 ? dateToSegments(clamp(segmentsToDate(fixedDate), min, max))
@@ -44,6 +58,7 @@ export function createMinMaxDateTimePostprocessor({
                     ...parsedTime,
                 },
                 dateModeTemplate,
+                dateTimeSeparator,
                 timeMode,
             );
             const tail = value.slice(fixedValue.length);
@@ -60,6 +75,7 @@ export function createMinMaxDateTimePostprocessor({
         const validatedValue = toDateString(
             dateToSegments(clampedDate),
             dateModeTemplate,
+            dateTimeSeparator,
             timeMode,
         );
 

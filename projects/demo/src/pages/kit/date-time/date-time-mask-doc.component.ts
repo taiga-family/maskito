@@ -9,7 +9,7 @@ import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {DATE_TIME_SEPARATOR, TuiInputModule} from '@taiga-ui/kit';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
 import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
@@ -71,6 +71,7 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
 
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
+    public dateTimeSeparator = DATE_TIME_SEPARATOR;
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
