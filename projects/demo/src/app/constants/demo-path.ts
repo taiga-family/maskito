@@ -26,5 +26,4 @@ export const DemoPath = {
     BrowserSupport: 'browser-support',
     Changelog: 'changelog',
     Stackblitz: 'stackblitz',
-    Cypress: 'cypress',
 } as const;
