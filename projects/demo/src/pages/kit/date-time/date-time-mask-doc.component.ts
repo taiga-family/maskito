@@ -37,19 +37,19 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocComponent implements GeneratorOptions {
-    protected readonly dateTimeLocalization: TuiDocExample = {
+    protected readonly dateTimeLocalizationExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-time-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly dateTimeSeparatorDocExample: TuiDocExample = {
+    protected readonly dateTimeSeparatorExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-date-time-separator/mask.ts?raw'
         ),
     };
 
-    protected readonly dateTimeMinMax: TuiDocExample = {
+    protected readonly dateTimeMinMaxExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-min-max/mask.ts?raw'),
     };
 
