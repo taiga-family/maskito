@@ -1,4 +1,5 @@
 import {DemoPath} from '@demo/constants';
+import {MaskitoTimeMode} from '@maskito/kit';
 
 describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
@@ -8,7 +9,7 @@ describe('DateTime | dateTimeSeparator', () => {
             type: string;
             result: string;
             date: string;
-            timeMode: string;
+            timeMode: MaskitoTimeMode;
         }> = [
             {
                 type: '522004341',
@@ -24,9 +25,9 @@ describe('DateTime | dateTimeSeparator', () => {
             },
             {
                 type: '52200434111111',
-                result: `05.02.2004${dateTimeSeparator}03:41:11:111`,
+                result: `05.02.2004${dateTimeSeparator}03:41:11.111`,
                 date: '05.02.2004',
-                timeMode: 'HH:MM:SS:MSS',
+                timeMode: 'HH:MM:SS.MSS',
             },
         ];
 
@@ -34,7 +35,7 @@ describe('DateTime | dateTimeSeparator', () => {
             dates.forEach(date => {
                 beforeEach(() => {
                     cy.visit(
-                        `/${DemoPath.DateTime}/API?dateTimeSeparator=${encodeURI(dateTimeSeparator)}&timeMode=${date.timeMode}`,
+                        `/${DemoPath.DateTime}/API?dateTimeSeparator=${encodeURIComponent(dateTimeSeparator)}&timeMode=${encodeURIComponent(date.timeMode)}`,
                     );
                     cy.get('#demo-content input')
                         .should('be.visible')
@@ -43,12 +44,12 @@ describe('DateTime | dateTimeSeparator', () => {
                         .as('input');
                 });
 
-                it(`${date.type} => ${date.result} => {backspace} * ${date.timeMode.replaceAll(':', '').length} => ${date.date}`, () => {
+                it(`${date.type} => ${date.result} => {backspace} * ${date.timeMode.replaceAll(/[:.]/g, '').length} => ${date.date}`, () => {
                     cy.get('@input')
                         .type(date.type)
                         .should('have.value', date.result)
                         .type(
-                            `${'{backspace}'.repeat(date.timeMode.replaceAll(':', '').length)}`,
+                            `${'{backspace}'.repeat(date.timeMode.replaceAll(/[:.]/g, '').length)}`,
                         );
 
                     cy.get('@input').should('have.value', '05.02.2004');
