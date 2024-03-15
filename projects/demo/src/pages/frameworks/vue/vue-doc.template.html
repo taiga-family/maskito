@@ -31,21 +31,21 @@
 
         <p>Install libraries</p>
 
-        <tui-doc-code code="npm install &#64;maskito/{core,vue}"></tui-doc-code>
+        <tui-doc-code code="npm install &#64;maskito/{core,vue}" />
 
         <p>
             and use
             <strong>Maskito</strong>
         </p>
 
-        <tui-doc-code [code]="useMaskitoBasicUsage"></tui-doc-code>
+        <tui-doc-code [code]="useMaskitoBasicUsage" />
     </section>
 
     <tui-doc-example
         id="example"
         heading="Above code example in practice"
     >
-        <vue-example-1></vue-example-1>
+        <vue-example-1 />
     </tui-doc-example>
 
     <section class="tui-space_top-12">
@@ -66,7 +66,7 @@
             so that might be sufficient. Use custom predicate if you need custom logic.
         </tui-notification>
 
-        <tui-doc-code [code]="queryNestedInputDemo"></tui-doc-code>
+        <tui-doc-code [code]="queryNestedInputDemo" />
     </section>
 
     <section class="tui-space_top-12">
@@ -74,6 +74,6 @@
 
         <p>Avoid inlining options object, otherwise Maskito will be recreated on every update:</p>
 
-        <tui-doc-code [code]="bestBadPractice"></tui-doc-code>
+        <tui-doc-code [code]="bestBadPractice" />
     </section>
 </tui-doc-page>
