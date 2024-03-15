@@ -43,7 +43,7 @@ export function createDateSegmentsZeroPaddingPostprocessor({
             );
 
             validatedDateStrings.push(
-                toDateString(validatedDateSegments, dateModeTemplate),
+                toDateString(validatedDateSegments, {dateMode: dateModeTemplate}),
             );
         });
 

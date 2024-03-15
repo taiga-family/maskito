@@ -1,5 +1,4 @@
 import {DATE_SEGMENTS_MAX_VALUES} from '../../constants';
-import {DATE_TIME_SEPARATOR} from '../../masks/date-time/constants';
 import type {MaskitoDateSegments} from '../../types';
 import {getDateSegmentValueLength} from './date-segment-value-length';
 import {parseDateString} from './parse-date-string';
@@ -10,13 +9,11 @@ export function validateDateString({
     dateModeTemplate,
     offset,
     selection: [from, to],
-    dateTimeSeparator = DATE_TIME_SEPARATOR,
 }: {
     dateString: string;
     dateModeTemplate: string;
     offset: number;
     selection: [number, number];
-    dateTimeSeparator?: string;
 }): {validatedDateString: string; updatedSelection: [number, number]} {
     const parsedDate = parseDateString(dateString, dateModeTemplate);
     const dateSegments = Object.entries(parsedDate) as Array<
@@ -25,11 +22,9 @@ export function validateDateString({
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};
 
     for (const [segmentName, segmentValue] of dateSegments) {
-        const validatedDate = toDateString(
-            validatedDateSegments,
-            dateModeTemplate,
-            dateTimeSeparator,
-        );
+        const validatedDate = toDateString(validatedDateSegments, {
+            dateMode: dateModeTemplate,
+        });
         const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
 
         const fantomSeparator = validatedDate.length && 1;
@@ -55,11 +50,9 @@ export function validateDateString({
         validatedDateSegments[segmentName] = segmentValue;
     }
 
-    const validatedDateString = toDateString(
-        validatedDateSegments,
-        dateModeTemplate,
-        dateTimeSeparator,
-    );
+    const validatedDateString = toDateString(validatedDateSegments, {
+        dateMode: dateModeTemplate,
+    });
     const addedDateSegmentSeparators = validatedDateString.length - dateString.length;
 
     return {

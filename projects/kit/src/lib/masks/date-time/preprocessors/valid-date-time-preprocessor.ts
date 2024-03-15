@@ -52,7 +52,6 @@ export function createValidDateTimePreprocessor({
             dateModeTemplate,
             offset: 0,
             selection: [from, to],
-            dateTimeSeparator,
         });
 
         if (dateString && !validatedDateString) {
