@@ -34,7 +34,7 @@
             <ng-template #dateTimeSeparatorDescription>
                 Use
                 <code>dateTimeSeparator</code>
-                to separate date and time in a way that suits you.
+                parameter to configure separator between date and time strings.
             </ng-template>
             <date-time-mask-doc-example-2 />
         </tui-doc-example>
@@ -128,11 +128,12 @@
                 [(documentationPropertyValue)]="dateTimeSeparator"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Date time separator
+                Separator between date and time
 
                 <p>
                     <strong>Default:</strong>
                     <code>,&nbsp;</code>
+                    (comma and space)
                 </p>
             </ng-template>
 
