@@ -12,7 +12,6 @@ import {
 } from '../../../utils';
 import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
-import {DATE_TIME_SEPARATOR} from '../constants';
 import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
 export function createMinMaxDateTimePostprocessor({
@@ -20,13 +19,13 @@ export function createMinMaxDateTimePostprocessor({
     timeMode,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
-    dateTimeSeparator = DATE_TIME_SEPARATOR,
+    dateTimeSeparator,
 }: {
     dateModeTemplate: string;
     timeMode: MaskitoTimeMode;
     min?: Date;
     max?: Date;
-    dateTimeSeparator?: string;
+    dateTimeSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [dateString, timeString] = parseDateTimeString(
