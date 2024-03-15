@@ -1,10 +1,13 @@
-import {DATE_TIME_SEPARATOR} from '../constants';
-
 export function parseDateTimeString(
     dateTime: string,
-    dateModeTemplate: string,
-    dateTimeSeparator = DATE_TIME_SEPARATOR,
-): string[] {
+    {
+        dateModeTemplate,
+        dateTimeSeparator,
+    }: {
+        dateModeTemplate: string;
+        dateTimeSeparator: string;
+    },
+): [date: string, time: string] {
     const hasSeparator = dateTime.includes(dateTimeSeparator);
 
     return [

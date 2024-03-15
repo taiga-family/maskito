@@ -71,11 +71,10 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
                 splitFn: value => {
-                    const [dateString, timeString] = parseDateTimeString(
-                        value,
+                    const [dateString, timeString] = parseDateTimeString(value, {
                         dateModeTemplate,
                         dateTimeSeparator,
-                    );
+                    });
 
                     return {dateStrings: [dateString], restPart: timeString};
                 },

@@ -40,11 +40,10 @@ export function createValidDateTimePreprocessor({
         let to = rawTo + data.length;
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
 
-        const [dateString, timeString] = parseDateTimeString(
-            newPossibleValue,
+        const [dateString, timeString] = parseDateTimeString(newPossibleValue, {
             dateModeTemplate,
             dateTimeSeparator,
-        );
+        });
         let validatedValue = '';
         const hasDateTimeSeparator = newPossibleValue.includes(dateTimeSeparator);
 
