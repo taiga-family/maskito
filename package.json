@@ -136,7 +136,7 @@
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "overrides": {
-        "rollup-plugin-typescript2": "0.35.0",
+        "rollup-plugin-typescript2": "0.36.0",
         "highlight.js": "11.5.1",
         "eslint-plugin-prettier": "5.1.3"
     },
