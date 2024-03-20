@@ -1,6 +1,3 @@
 {
-    "extends": "../../tsconfig.build.json",
-    "compilerOptions": {
-        "rootDir": "."
-    }
+    "extends": "../../tsconfig.build.json"
 }
