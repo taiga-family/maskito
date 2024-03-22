@@ -36,12 +36,11 @@ export function createMinMaxDateTimePostprocessor({
         const parsedTime = parseTimeString(timeString);
 
         if (
-            !isDateTimeStringComplete(
-                value,
-                dateModeTemplate,
+            !isDateTimeStringComplete(value, {
+                dateMode: dateModeTemplate,
                 timeMode,
                 dateTimeSeparator,
-            )
+            })
         ) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
             const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)

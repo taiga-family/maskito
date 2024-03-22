@@ -1,10 +1,17 @@
+import {MaskitoTimeMode} from '../../../types';
 import {DATE_TIME_SEPARATOR} from '../constants';
 
 export function isDateTimeStringComplete(
     dateTimeString: string,
-    dateMode: string,
-    timeMode: string,
-    dateTimeSeparator = DATE_TIME_SEPARATOR,
+    {
+        dateMode,
+        timeMode,
+        dateTimeSeparator = DATE_TIME_SEPARATOR,
+    }: {
+        dateMode: string;
+        timeMode: MaskitoTimeMode;
+        dateTimeSeparator?: string;
+    },
 ): boolean {
     return (
         dateTimeString.length >=
