@@ -8,44 +8,40 @@ describe('DateTime | dateTimeSeparator', () => {
     let options = MASKITO_DEFAULT_OPTIONS;
 
     dateTimeSeparators.forEach(dateTimeSeparator => {
-        const dates: Array<{
-            type: string;
-            result: string;
-            date: string;
+        const testCases: Array<{
+            typedDigits: string;
+            formattedDate: string;
             timeMode: MaskitoTimeMode;
         }> = [
             {
-                type: '050220040341',
-                result: `05.02.2004${dateTimeSeparator}03:41`,
-                date: '05.02.2004',
+                typedDigits: '050220040341',
+                formattedDate: `05.02.2004${dateTimeSeparator}03:41`,
                 timeMode: 'HH:MM',
             },
             {
-                type: '05022004034111',
-                result: `05.02.2004${dateTimeSeparator}03:41:11`,
-                date: '05.02.2004',
+                typedDigits: '10062007034111',
+                formattedDate: `10.06.2007${dateTimeSeparator}03:41:11`,
                 timeMode: 'HH:MM:SS',
             },
             {
-                type: '05022004034111111',
-                result: `05.02.2004${dateTimeSeparator}03:41:11.111`,
-                date: '05.02.2004',
+                typedDigits: '15081999034111111',
+                formattedDate: `15.08.1999${dateTimeSeparator}03:41:11.111`,
                 timeMode: 'HH:MM:SS.MSS',
             },
         ];
 
         describe(`correctly applies "${dateTimeSeparator}" as dateTimeSeparator`, () => {
-            dates.forEach(date => {
+            testCases.forEach(({typedDigits, formattedDate, timeMode}) => {
                 beforeEach(() => {
                     options = maskitoDateTimeOptionsGenerator({
                         dateMode: 'dd/mm/yyyy',
-                        timeMode: date.timeMode,
+                        timeMode,
                         dateTimeSeparator,
                     });
                 });
 
-                it(`${date.type} => ${date.result}`, () => {
-                    expect(maskitoTransform(date.type, options)).toBe(date.result);
+                it(`${typedDigits} => ${formattedDate}`, () => {
+                    expect(maskitoTransform(typedDigits, options)).toBe(formattedDate);
                 });
             });
         });
