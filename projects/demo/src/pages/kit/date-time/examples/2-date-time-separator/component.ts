@@ -22,7 +22,7 @@ import mask from './mask';
             [tuiTextfieldFiller]="filler"
             [(ngModel)]="value"
         >
-            Min-max
+            Custom date and time separator
             <input
                 inputmode="decimal"
                 tuiTextfield
@@ -33,7 +33,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocExample2 {
-    protected value = '09-01-2018, 15:30';
-    protected readonly filler = 'dd-mm-yyyy, hh:mm';
+    protected value = '05.02.2004; 10:10';
+    protected readonly filler = 'dd.mm.yyyy; hh:mm';
     protected readonly mask = mask;
 }

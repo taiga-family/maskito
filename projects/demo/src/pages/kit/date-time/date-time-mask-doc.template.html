@@ -26,6 +26,20 @@
         </tui-doc-example>
 
         <tui-doc-example
+            id="date-time-separator"
+            heading="Custom separator between date and time"
+            [content]="dateTimeSeparatorDocExample"
+            [description]="dateTimeSeparatorDescription"
+        >
+            <ng-template #dateTimeSeparatorDescription>
+                Use
+                <code>dateTimeSeparator</code>
+                to set a convenient date and time separator.
+            </ng-template>
+            <date-time-mask-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
             id="min-max"
             heading="Min and max"
             [content]="dateTimeMinMax"
@@ -47,7 +61,7 @@
                 </a>
                 .
             </ng-template>
-            <date-time-mask-doc-example-2 />
+            <date-time-mask-doc-example-3 />
         </tui-doc-example>
     </ng-template>
 
@@ -57,7 +71,7 @@
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
                     [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator)"
+                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
                 >
                     Enter date and time
                     <input
@@ -104,6 +118,21 @@
                     <strong>Default:</strong>
                     <code>.</code>
                     (dot).
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="dateTimeSeparator"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="dateTimeSeparator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Date time separator
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>,&nbsp;</code>
                 </p>
             </ng-template>
 
