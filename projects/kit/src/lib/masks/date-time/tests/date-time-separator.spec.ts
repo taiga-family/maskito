@@ -1,4 +1,5 @@
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '../../../../../../core/src';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+
 import {MaskitoTimeMode} from '../../../types';
 import {maskitoDateTimeOptionsGenerator} from '../date-time-mask';
 
