@@ -13,6 +13,42 @@ export function toDateString(
     }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
     {
         dateMode,
+    }: {
+        dateMode: string;
+    },
+): string;
+export function toDateString(
+    {
+        day,
+        month,
+        year,
+        hours,
+        minutes,
+        seconds,
+        milliseconds,
+    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
+    {
+        dateMode,
+        dateTimeSeparator,
+        timeMode,
+    }: {
+        dateMode: string;
+        dateTimeSeparator: string;
+        timeMode: string;
+    },
+): string;
+export function toDateString(
+    {
+        day,
+        month,
+        year,
+        hours,
+        minutes,
+        seconds,
+        milliseconds,
+    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
+    {
+        dateMode,
         dateTimeSeparator = DATE_TIME_SEPARATOR,
         timeMode,
     }: {
