@@ -1,4 +1,4 @@
-import {MaskitoTimeMode} from '../../../types';
+import type {MaskitoTimeMode} from '../../../types';
 import {DATE_TIME_SEPARATOR} from '../constants';
 
 export function isDateTimeStringComplete(

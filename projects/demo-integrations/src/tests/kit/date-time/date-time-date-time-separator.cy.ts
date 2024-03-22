@@ -1,5 +1,5 @@
 import {DemoPath} from '@demo/constants';
-import {MaskitoTimeMode} from '@maskito/kit';
+import type {MaskitoTimeMode} from '@maskito/kit';
 
 describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
