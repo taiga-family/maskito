@@ -10,7 +10,7 @@ export function isDateTimeStringComplete(
     }: {
         dateMode: string;
         timeMode: MaskitoTimeMode;
-        dateTimeSeparator?: string;
+        dateTimeSeparator: string;
     },
 ): boolean {
     return (
