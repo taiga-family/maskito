@@ -13,20 +13,20 @@ describe('DateTime | dateTimeSeparator', () => {
         }> = [
             {
                 typedDigits: '522004341',
-                formattedDate: `05.02.2004${dateTimeSeparator}03:41`,
-                formattedValue: '05.02.2004',
+                formattedValue: `05.02.2004${dateTimeSeparator}03:41`,
+                formattedDate: '05.02.2004',
                 timeMode: 'HH:MM',
             },
             {
                 typedDigits: '233123434111',
-                formattedDate: `23.03.1234${dateTimeSeparator}03:41:11`,
-                formattedValue: '23.03.1234',
+                formattedValue: `23.03.1234${dateTimeSeparator}03:41:11`,
+                formattedDate: '23.03.1234',
                 timeMode: 'HH:MM:SS',
             },
             {
                 typedDigits: '69200734111111',
-                formattedDate: `06.09.2007${dateTimeSeparator}03:41:11.111`,
-                formattedValue: '06.09.2007',
+                formattedValue: `06.09.2007${dateTimeSeparator}03:41:11.111`,
+                formattedDate: '06.09.2007',
                 timeMode: 'HH:MM:SS.MSS',
             },
         ];
@@ -47,12 +47,12 @@ describe('DateTime | dateTimeSeparator', () => {
                             .as('input');
                     });
 
-                    it(`${typedDigits} => ${formattedDate} => {backspace} * ${timeDigitsCount} => ${formattedValue}`, () => {
+                    it(`${typedDigits} => ${formattedValue} => {backspace} * ${timeDigitsCount} => ${formattedDate}`, () => {
                         cy.get('@input')
                             .type(typedDigits)
-                            .should('have.value', formattedDate)
-                            .type(`${'{backspace}'.repeat(timeDigitsCount)}`)
-                            .should('have.value', formattedValue);
+                            .should('have.value', formattedValue)
+                            .type('{backspace}'.repeat(timeDigitsCount))
+                            .should('have.value', formattedDate);
                     });
                 },
             );
