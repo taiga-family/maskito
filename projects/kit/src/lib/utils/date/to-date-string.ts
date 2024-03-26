@@ -2,36 +2,14 @@ import {DATE_TIME_SEPARATOR} from '../../masks/date-time/constants';
 import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
 
 export function toDateString(
-    {
-        day,
-        month,
-        year,
-        hours,
-        minutes,
-        seconds,
-        milliseconds,
-    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
-    {
-        dateMode,
-    }: {
+    segments: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
+    options: {
         dateMode: string;
     },
 ): string;
 export function toDateString(
-    {
-        day,
-        month,
-        year,
-        hours,
-        minutes,
-        seconds,
-        milliseconds,
-    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
-    {
-        dateMode,
-        dateTimeSeparator,
-        timeMode,
-    }: {
+    segments: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
+    options: {
         dateMode: string;
         dateTimeSeparator: string;
         timeMode: string;
