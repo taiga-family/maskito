@@ -10,28 +10,28 @@ describe('DateTime | dateTimeSeparator', () => {
     dateTimeSeparators.forEach(dateTimeSeparator => {
         const testCases: Array<{
             typedDigits: string;
-            formattedDate: string;
+            formattedValue: string;
             timeMode: MaskitoTimeMode;
         }> = [
             {
                 typedDigits: '050220040341',
-                formattedDate: `05.02.2004${dateTimeSeparator}03:41`,
+                formattedValue: `05.02.2004${dateTimeSeparator}03:41`,
                 timeMode: 'HH:MM',
             },
             {
                 typedDigits: '10062007034111',
-                formattedDate: `10.06.2007${dateTimeSeparator}03:41:11`,
+                formattedValue: `10.06.2007${dateTimeSeparator}03:41:11`,
                 timeMode: 'HH:MM:SS',
             },
             {
                 typedDigits: '15081999034111111',
-                formattedDate: `15.08.1999${dateTimeSeparator}03:41:11.111`,
+                formattedValue: `15.08.1999${dateTimeSeparator}03:41:11.111`,
                 timeMode: 'HH:MM:SS.MSS',
             },
         ];
 
         describe(`correctly applies "${dateTimeSeparator}" as dateTimeSeparator`, () => {
-            testCases.forEach(({typedDigits, formattedDate, timeMode}) => {
+            testCases.forEach(({typedDigits, formattedValue, timeMode}) => {
                 beforeEach(() => {
                     options = maskitoDateTimeOptionsGenerator({
                         dateMode: 'dd/mm/yyyy',
@@ -40,8 +40,8 @@ describe('DateTime | dateTimeSeparator', () => {
                     });
                 });
 
-                it(`${typedDigits} => ${formattedDate}`, () => {
-                    expect(maskitoTransform(typedDigits, options)).toBe(formattedDate);
+                it(`${typedDigits} => ${formattedValue}`, () => {
+                    expect(maskitoTransform(typedDigits, options)).toBe(formattedValue);
                 });
             });
         });
