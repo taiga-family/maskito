@@ -7,12 +7,13 @@ import type {MaskitoDateMode, MaskitoTimeMode} from '@maskito/kit';
 import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {CHAR_NO_BREAK_SPACE, tuiPure} from '@taiga-ui/cdk';
+import {tuiPure} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {DATE_TIME_SEPARATOR, TuiInputModule} from '@taiga-ui/kit';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
-import {DateTimeMaskDocExample2} from './examples/2-min-max/component';
+import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
+import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
@@ -30,19 +31,26 @@ type GeneratorOptions = Required<
         TuiTextfieldControllerModule,
         DateTimeMaskDocExample1,
         DateTimeMaskDocExample2,
+        DateTimeMaskDocExample3,
     ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocComponent implements GeneratorOptions {
-    protected readonly dateTimeLocalization: TuiDocExample = {
+    protected readonly dateTimeLocalizationExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-time-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly dateTimeMinMax: TuiDocExample = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
+    protected readonly dateTimeSeparatorExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-date-time-separator/mask.ts?raw'
+        ),
+    };
+
+    protected readonly dateTimeMinMaxExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-min-max/mask.ts?raw'),
     };
 
     protected apiPageControl = new FormControl('');
@@ -71,6 +79,7 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
 
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
+    public dateTimeSeparator = DATE_TIME_SEPARATOR;
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
@@ -82,10 +91,9 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
         dateMode: MaskitoDateMode,
         timeMode: MaskitoTimeMode,
         separator: string,
+        dateTimeSeparator: string,
     ): string {
-        const dateTimeSep = `,${CHAR_NO_BREAK_SPACE}`;
-
-        return `${dateMode.replaceAll('/', separator)}${dateTimeSep}${timeMode}`;
+        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode}`;
     }
 
     protected updateOptions(): void {

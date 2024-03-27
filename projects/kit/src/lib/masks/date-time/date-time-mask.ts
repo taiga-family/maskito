@@ -11,7 +11,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import type {MaskitoDateMode, MaskitoTimeMode} from '../../types';
-import {DATE_TIME_SEPARATOR, POSSIBLE_DATE_TIME_SEPARATOR} from './constants';
+import {DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
 import {parseDateTimeString} from './utils';
@@ -22,12 +22,14 @@ export function maskitoDateTimeOptionsGenerator({
     dateSeparator = '.',
     min,
     max,
+    dateTimeSeparator = DATE_TIME_SEPARATOR,
 }: {
     dateMode: MaskitoDateMode;
     timeMode: MaskitoTimeMode;
     dateSeparator?: string;
     max?: Date;
     min?: Date;
+    dateTimeSeparator?: string;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
@@ -37,7 +39,7 @@ export function maskitoDateTimeOptionsGenerator({
             ...Array.from(dateModeTemplate).map(char =>
                 char === dateSeparator ? char : /\d/,
             ),
-            ...DATE_TIME_SEPARATOR.split(''),
+            ...dateTimeSeparator.split(''),
             ...Array.from(timeMode).map(char =>
                 TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
             ),
@@ -49,17 +51,19 @@ export function maskitoDateTimeOptionsGenerator({
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
-                firstDateEndSeparator: DATE_TIME_SEPARATOR,
-                pseudoFirstDateEndSeparators: POSSIBLE_DATE_TIME_SEPARATOR,
+                firstDateEndSeparator: dateTimeSeparator,
+                pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
             createZeroPlaceholdersPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
+                dateTimeSeparator,
             }),
             createValidDateTimePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
+                dateTimeSeparator,
             }),
         ],
         postprocessors: [
@@ -67,24 +71,23 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
                 splitFn: value => {
-                    const [dateString, timeString] = parseDateTimeString(
-                        value,
+                    const [dateString, timeString] = parseDateTimeString(value, {
                         dateModeTemplate,
-                    );
+                        dateTimeSeparator,
+                    });
 
                     return {dateStrings: [dateString], restPart: timeString};
                 },
                 uniteFn: ([validatedDateString], initialValue) =>
                     validatedDateString +
-                    (initialValue.includes(DATE_TIME_SEPARATOR)
-                        ? DATE_TIME_SEPARATOR
-                        : ''),
+                    (initialValue.includes(dateTimeSeparator) ? dateTimeSeparator : ''),
             }),
             createMinMaxDateTimePostprocessor({
                 min,
                 max,
                 dateModeTemplate,
                 timeMode,
+                dateTimeSeparator,
             }),
         ],
     };

@@ -19,18 +19,29 @@ export function createMinMaxDateTimePostprocessor({
     timeMode,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
+    dateTimeSeparator,
 }: {
     dateModeTemplate: string;
     timeMode: MaskitoTimeMode;
     min?: Date;
     max?: Date;
+    dateTimeSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
+        const [dateString, timeString] = parseDateTimeString(value, {
+            dateModeTemplate,
+            dateTimeSeparator,
+        });
         const parsedDate = parseDateString(dateString, dateModeTemplate);
         const parsedTime = parseTimeString(timeString);
 
-        if (!isDateTimeStringComplete(value, dateModeTemplate, timeMode)) {
+        if (
+            !isDateTimeStringComplete(value, {
+                dateMode: dateModeTemplate,
+                timeMode,
+                dateTimeSeparator,
+            })
+        ) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
             const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
                 ? dateToSegments(clamp(segmentsToDate(fixedDate), min, max))
@@ -43,8 +54,7 @@ export function createMinMaxDateTimePostprocessor({
                     day,
                     ...parsedTime,
                 },
-                dateModeTemplate,
-                timeMode,
+                {dateMode: dateModeTemplate, dateTimeSeparator, timeMode},
             );
             const tail = value.slice(fixedValue.length);
 
@@ -57,11 +67,11 @@ export function createMinMaxDateTimePostprocessor({
         const date = segmentsToDate(parsedDate, parsedTime);
         const clampedDate = clamp(date, min, max);
 
-        const validatedValue = toDateString(
-            dateToSegments(clampedDate),
-            dateModeTemplate,
+        const validatedValue = toDateString(dateToSegments(clampedDate), {
+            dateMode: dateModeTemplate,
+            dateTimeSeparator,
             timeMode,
-        );
+        });
 
         return {
             selection,

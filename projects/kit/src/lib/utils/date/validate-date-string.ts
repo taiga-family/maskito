@@ -22,7 +22,9 @@ export function validateDateString({
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};
 
     for (const [segmentName, segmentValue] of dateSegments) {
-        const validatedDate = toDateString(validatedDateSegments, dateModeTemplate);
+        const validatedDate = toDateString(validatedDateSegments, {
+            dateMode: dateModeTemplate,
+        });
         const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
 
         const fantomSeparator = validatedDate.length && 1;
@@ -48,7 +50,9 @@ export function validateDateString({
         validatedDateSegments[segmentName] = segmentValue;
     }
 
-    const validatedDateString = toDateString(validatedDateSegments, dateModeTemplate);
+    const validatedDateString = toDateString(validatedDateSegments, {
+        dateMode: dateModeTemplate,
+    });
     const addedDateSegmentSeparators = validatedDateString.length - dateString.length;
 
     return {

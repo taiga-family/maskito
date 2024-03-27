@@ -10,7 +10,7 @@
         <tui-doc-example
             id="localization"
             heading="Localization"
-            [content]="dateTimeLocalization"
+            [content]="dateTimeLocalizationExample"
             [description]="localizationDescription"
         >
             <ng-template #localizationDescription>
@@ -26,9 +26,23 @@
         </tui-doc-example>
 
         <tui-doc-example
+            id="date-time-separator"
+            heading="Custom separator between date and time"
+            [content]="dateTimeSeparatorExample"
+            [description]="dateTimeSeparatorDescription"
+        >
+            <ng-template #dateTimeSeparatorDescription>
+                Use
+                <code>dateTimeSeparator</code>
+                parameter to configure separator between date and time strings.
+            </ng-template>
+            <date-time-mask-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
             id="min-max"
             heading="Min and max"
-            [content]="dateTimeMinMax"
+            [content]="dateTimeMinMaxExample"
             [description]="minMaxDescription"
         >
             <ng-template #minMaxDescription>
@@ -47,7 +61,7 @@
                 </a>
                 .
             </ng-template>
-            <date-time-mask-doc-example-2 />
+            <date-time-mask-doc-example-3 />
         </tui-doc-example>
     </ng-template>
 
@@ -57,7 +71,7 @@
                 <tui-input
                     tuiTextfieldCustomContent="tuiIconCalendarLarge"
                     [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator)"
+                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
                 >
                     Enter date and time
                     <input
@@ -104,6 +118,22 @@
                     <strong>Default:</strong>
                     <code>.</code>
                     (dot).
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="dateTimeSeparator"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="dateTimeSeparator"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separator between date and time
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>,&nbsp;</code>
+                    (comma and space)
                 </p>
             </ng-template>
 

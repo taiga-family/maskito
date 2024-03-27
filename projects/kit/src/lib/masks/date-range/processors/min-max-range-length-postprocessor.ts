@@ -70,7 +70,9 @@ export function createMinMaxRangeLengthPostprocessor({
             value:
                 dateStrings[0] +
                 rangeSeparator +
-                toDateString(dateToSegments(minMaxLengthClampedToDate), dateModeTemplate),
+                toDateString(dateToSegments(minMaxLengthClampedToDate), {
+                    dateMode: dateModeTemplate,
+                }),
         };
     };
 }

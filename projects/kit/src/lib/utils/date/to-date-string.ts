@@ -2,6 +2,20 @@ import {DATE_TIME_SEPARATOR} from '../../masks/date-time/constants';
 import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
 
 export function toDateString(
+    segments: Partial<MaskitoDateSegments>,
+    options: {
+        dateMode: string;
+    },
+): string;
+export function toDateString(
+    segments: Partial<MaskitoDateSegments & MaskitoTimeSegments>,
+    options: {
+        dateMode: string;
+        dateTimeSeparator: string;
+        timeMode: string;
+    },
+): string;
+export function toDateString(
     {
         day,
         month,
@@ -10,12 +24,19 @@ export function toDateString(
         minutes,
         seconds,
         milliseconds,
-    }: Partial<MaskitoDateSegments & Partial<MaskitoTimeSegments>>,
-    dateMode: string,
-    timeMode?: string,
+    }: Partial<MaskitoDateSegments & MaskitoTimeSegments>,
+    {
+        dateMode,
+        dateTimeSeparator = DATE_TIME_SEPARATOR,
+        timeMode,
+    }: {
+        dateMode: string;
+        dateTimeSeparator?: string;
+        timeMode?: string;
+    },
 ): string {
     const safeYear = dateMode.match(/y/g)?.length === 2 ? year?.slice(-2) : year;
-    const fullMode = dateMode + (timeMode ? DATE_TIME_SEPARATOR + timeMode : '');
+    const fullMode = dateMode + (timeMode ? dateTimeSeparator + timeMode : '');
 
     return fullMode
         .replaceAll(/d+/g, day ?? '')

@@ -6,18 +6,20 @@ export function normalizeDatePreprocessor({
     dateModeTemplate,
     dateSegmentsSeparator,
     rangeSeparator = '',
+    dateTimeSeparator = DATE_TIME_SEPARATOR,
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
     rangeSeparator?: string;
+    dateTimeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const separator = rangeSeparator
             ? new RegExp(`${rangeSeparator}|-`)
-            : DATE_TIME_SEPARATOR;
+            : dateTimeSeparator;
         const possibleDates = data.split(separator);
 
-        const dates = data.includes(DATE_TIME_SEPARATOR)
+        const dates = data.includes(dateTimeSeparator)
             ? [possibleDates[0]]
             : possibleDates;
 
@@ -37,8 +39,8 @@ export function normalizeDatePreprocessor({
             return {
                 elementState,
                 data: `${newData}${
-                    data.includes(DATE_TIME_SEPARATOR)
-                        ? DATE_TIME_SEPARATOR + possibleDates[1] || ''
+                    data.includes(dateTimeSeparator)
+                        ? dateTimeSeparator + possibleDates[1] || ''
                         : ''
                 }`,
             };
