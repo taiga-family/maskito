@@ -15,6 +15,7 @@ export interface TypedInputEvent extends InputEvent {
         | 'insertFromDrop'
         | 'insertFromPaste' // Ctrl (Command) + V
         | 'insertLineBreak'
+        | 'insertParagraph'
         | 'insertReplacementText'
         | 'insertText';
 }

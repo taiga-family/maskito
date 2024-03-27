@@ -4,6 +4,7 @@ export {
 } from './lib/constants';
 export {Maskito} from './lib/mask';
 export {
+    MaskitoElement,
     MaskitoElementPredicate,
     MaskitoMask,
     MaskitoMaskExpression,
@@ -13,6 +14,7 @@ export {
     MaskitoPreprocessor,
 } from './lib/types';
 export {
+    maskitoAdaptContentEditable,
     maskitoInitialCalibrationPlugin,
     maskitoPipe,
     maskitoStrictCompositionPlugin,

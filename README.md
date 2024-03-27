@@ -26,7 +26,7 @@ users type values according to predefined format.
 
 - Server Side Rendering and Shadow DOM support.
 
-- You can use it with `HTMLInputElement` and `HTMLTextAreaElement`.
+- You can use it with `HTMLInputElement` or `HTMLTextAreaElement` or even with `[contenteditable]` element.
 
 - **Maskito** core is zero-dependency package. You can mask input in your vanilla JavaScript project. However, we have
   separate packages for Angular, React and Vue as well.

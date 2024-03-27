@@ -1,4 +1,8 @@
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import type {
+    MaskitoElement,
+    MaskitoElementPredicate,
+    MaskitoOptions,
+} from '@maskito/core';
 import {Maskito, MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
 import type {RefCallback} from 'react';
 import {useCallback, useRef, useState} from 'react';
@@ -31,9 +35,7 @@ export const useMaskito = ({
     elementPredicate?: MaskitoElementPredicate;
 } = {}): RefCallback<HTMLElement> => {
     const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
-    const [element, setElement] = useState<HTMLInputElement | HTMLTextAreaElement | null>(
-        null,
-    );
+    const [element, setElement] = useState<MaskitoElement | null>(null);
 
     const onRefChange: RefCallback<HTMLElement> = useCallback(
         (node: HTMLElement | null) => {

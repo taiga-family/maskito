@@ -2,6 +2,7 @@ import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
 import type {
     ElementState,
+    MaskitoElement,
     MaskitoOptions,
     SelectionRange,
     TypedInputEvent,
@@ -35,7 +36,7 @@ export class Maskito extends MaskHistory {
     );
 
     constructor(
-        private readonly element: HTMLInputElement | HTMLTextAreaElement,
+        private readonly element: MaskitoElement,
         private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
@@ -99,12 +100,19 @@ export class Maskito extends MaskHistory {
                 case 'insertCompositionText':
                     return; // will be handled inside `compositionend` event
                 case 'insertLineBreak':
+                case 'insertParagraph':
                     return this.handleEnter(event);
                 case 'insertFromPaste':
                 case 'insertText':
                 case 'insertFromDrop':
                 default:
-                    return this.handleInsert(event, event.data || '');
+                    return this.handleInsert(
+                        event,
+                        event.data ||
+                            // `event.data` for `contentEditable` is always `null` for paste/drop events
+                            event.dataTransfer?.getData('text/plain') ||
+                            '',
+                    );
             }
         });
 
@@ -229,7 +237,11 @@ export class Maskito extends MaskHistory {
             initialState.value.slice(0, initialFrom) +
             initialState.value.slice(initialTo);
 
-        if (newPossibleValue === newElementState.value && !force) {
+        if (
+            newPossibleValue === newElementState.value &&
+            !force &&
+            !this.element.isContentEditable
+        ) {
             return;
         }
 
@@ -277,7 +289,10 @@ export class Maskito extends MaskHistory {
             return event.preventDefault();
         }
 
-        if (newPossibleValue !== newElementState.value) {
+        if (
+            newPossibleValue !== newElementState.value ||
+            this.element.isContentEditable
+        ) {
             event.preventDefault();
 
             this.updateElementState(newElementState, {
@@ -289,7 +304,7 @@ export class Maskito extends MaskHistory {
     }
 
     private handleEnter(event: TypedInputEvent): void {
-        if (this.isTextArea) {
+        if (this.isTextArea || this.element.isContentEditable) {
             this.handleInsert(event, '\n');
         }
     }
