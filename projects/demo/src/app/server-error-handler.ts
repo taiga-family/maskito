@@ -10,12 +10,14 @@ const KNOWN_ISSUES: string[] = [
 
 @Injectable()
 export class ServerErrorHandler implements ErrorHandler {
-    public handleError(error: Error): void {
-        if (KNOWN_ISSUES.some(issue => error.message.includes(issue))) {
+    public handleError(error: Error | string): void {
+        const errorMessage = (typeof error === 'string' ? error : error.message) || '';
+
+        if (KNOWN_ISSUES.some(issue => errorMessage.includes(issue))) {
             return;
         }
 
-        console.error(error);
+        console.error(errorMessage);
 
         if (hasFlag('--ci')) {
             process.exit(1);
