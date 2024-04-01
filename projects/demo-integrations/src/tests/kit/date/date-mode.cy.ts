@@ -58,7 +58,7 @@ describe('Date', () => {
                     .as('input');
             });
 
-            it(' "mm/yy" => 03.20', () => {
+            it('"mm/yy" => 03.20', () => {
                 cy.get('@input')
                     .type('3')
                     .should('have.value', '03')
@@ -70,7 +70,7 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '03.20'.length);
             });
 
-            it(' "mm/yy" => 03.22', () => {
+            it('"mm/yy" => 03.22', () => {
                 cy.get('@input')
                     .type('0')
                     .should('have.value', '0')
@@ -80,6 +80,14 @@ describe('Date', () => {
                     .should('have.value', '03.22')
                     .should('have.prop', 'selectionStart', '03.22'.length)
                     .should('have.prop', 'selectionEnd', '03.22'.length);
+            });
+
+            it('"mm/yy" => 05.04', () => {
+                cy.get('@input')
+                    .type('1.2.')
+                    .should('have.value', '12.')
+                    .type('04')
+                    .should('have.value', '12.04');
             });
         });
 
@@ -116,6 +124,16 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '11.1999'.length)
                     .should('have.prop', 'selectionEnd', '11.1999'.length);
             });
+
+            it('"mm/yyyy" => 05.2004', () => {
+                cy.get('@input')
+                    .type('0.')
+                    .should('have.value', '0')
+                    .type('5')
+                    .should('have.value', '05')
+                    .type('.2004')
+                    .should('have.value', '05.2004');
+            });
         });
 
         describe('yyyy/mm', () => {
@@ -150,6 +168,16 @@ describe('Date', () => {
                     .should('have.value', '1999.11')
                     .should('have.prop', 'selectionStart', '1999.11'.length)
                     .should('have.prop', 'selectionEnd', '1999.11'.length);
+            });
+
+            it('"yyyy/mm" => 20004.05', () => {
+                cy.get('@input')
+                    .type('20.0.4')
+                    .should('have.value', '2004')
+                    .type('.')
+                    .should('have.value', '2004.')
+                    .type('05')
+                    .should('have.value', '2004.05');
             });
         });
 
