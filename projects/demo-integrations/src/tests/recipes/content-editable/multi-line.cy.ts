@@ -18,6 +18,19 @@ describe('ContentEditable | Multi-line support', () => {
         it('Select all + Backspace => Empty', () => {
             cy.get('@element').type('{selectAll}{backspace}').should('have.text', '');
         });
+
+        it('Long multi-line text', () => {
+            cy.get('@element')
+                .clear()
+                .type('a b{enter}cd ef{enter}aa11bb')
+                .should('have.text', 'a b\ncd ef\naabb')
+                .type('{backspace}'.repeat(5))
+                .should('have.text', 'a b\ncd ef')
+                .type('{backspace}'.repeat(2))
+                .should('have.text', 'a b\ncd ')
+                .type('{backspace}'.repeat(4))
+                .should('have.text', 'a b');
+        });
     });
 
     describe('Rejects invalid symbols on EVERY line', () => {
