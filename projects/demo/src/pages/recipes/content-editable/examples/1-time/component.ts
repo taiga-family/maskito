@@ -12,9 +12,8 @@ import mask from './mask';
         <span
             contenteditable="true"
             [maskito]="mask"
-        >
-            12:00
-        </span>
+            [textContent]="initialValue"
+        ></span>
     `,
     styles: [
         ':host {font-size: 2.5rem}',
@@ -23,5 +22,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentEditableDocExample1 {
+    protected initialValue = '12:00';
     protected readonly mask = mask;
 }
