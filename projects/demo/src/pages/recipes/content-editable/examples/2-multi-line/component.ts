@@ -31,5 +31,5 @@ export class ContentEditableDocExample2 {
     protected readonly mask = mask;
     protected initialText = `Hello, world!
 How are you today?
-Do not forget to read description of this example!`;
+Read description of this example!`;
 }

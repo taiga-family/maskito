@@ -16,7 +16,7 @@ import mask from './mask';
         ></span>
     `,
     styles: [
-        ':host {font-size: 2.5rem}',
+        ':host {font-size: 1.75rem}',
         '[contenteditable] {border: 3px dashed lightgrey}',
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
