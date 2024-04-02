@@ -25,10 +25,7 @@ export function normalizeDatePreprocessor({
         if (
             dates.every(
                 date =>
-                    date
-                        .trim()
-                        .split(/\D/)
-                        .filter(str => str).length ===
+                    date.trim().split(/\D/).filter(Boolean).length ===
                     dateModeTemplate.split(dateSegmentsSeparator).length,
             )
         ) {
@@ -57,7 +54,7 @@ function normalizeDateString(
     template: string,
     separator: string,
 ): string {
-    const dateSegments = dateString.split(/\D/).filter(str => str);
+    const dateSegments = dateString.split(/\D/).filter(Boolean);
     const templateSegments = template.split(separator);
     const normalizedSegments = dateSegments.map((segment, index) =>
         index === templateSegments.length - 1
