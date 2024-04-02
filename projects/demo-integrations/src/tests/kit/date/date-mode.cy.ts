@@ -82,7 +82,7 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '03.22'.length);
             });
 
-            it('"mm/yy" => 05.04', () => {
+            it('"mm/yy" => 12.04', () => {
                 cy.get('@input')
                     .type('1.2.')
                     .should('have.value', '12.')
@@ -170,7 +170,7 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '1999.11'.length);
             });
 
-            it('"yyyy/mm" => 20004.05', () => {
+            it('"yyyy/mm" => 2004.05', () => {
                 cy.get('@input')
                     .type('20.0.4')
                     .should('have.value', '2004')
