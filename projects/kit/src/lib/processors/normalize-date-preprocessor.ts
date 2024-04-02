@@ -18,7 +18,6 @@ export function normalizeDatePreprocessor({
             ? new RegExp(`${rangeSeparator}|-`)
             : dateTimeSeparator;
         const possibleDates = data.split(separator);
-
         const dates = data.includes(dateTimeSeparator)
             ? [possibleDates[0]]
             : possibleDates;
@@ -26,7 +25,7 @@ export function normalizeDatePreprocessor({
         if (
             dates.every(
                 date =>
-                    date.trim().split(/\D/).length ===
+                    date.trim().split(/\D/).filter(Boolean).length ===
                     dateModeTemplate.split(dateSegmentsSeparator).length,
             )
         ) {
@@ -55,7 +54,7 @@ function normalizeDateString(
     template: string,
     separator: string,
 ): string {
-    const dateSegments = dateString.split(/\D/);
+    const dateSegments = dateString.split(/\D/).filter(Boolean);
     const templateSegments = template.split(separator);
     const normalizedSegments = dateSegments.map((segment, index) =>
         index === templateSegments.length - 1
