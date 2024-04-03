@@ -1,4 +1,4 @@
-import * as process from 'process';
+import * as process from 'node:process';
 
 import {processLog} from './colored-log';
 

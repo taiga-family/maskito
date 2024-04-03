@@ -1,5 +1,5 @@
-import {readFileSync, writeFileSync} from 'fs';
-import {join} from 'path';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {join} from 'node:path';
 
 import {DemoPath} from '../projects/demo/src/app/constants/demo-path';
 import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
