@@ -1,4 +1,5 @@
-import {readFileSync, writeFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'node:fs';
+
 import {glob} from 'glob';
 
 import {processLog, successLog} from './colored-log';
