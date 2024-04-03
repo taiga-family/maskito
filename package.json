@@ -122,7 +122,7 @@
         "postcss-preset-env": "9.5.4",
         "prettier": "3.2.5",
         "standard-version": "9.5.0",
-        "stylelint": "16.2.1",
+        "stylelint": "16.3.1",
         "ts-jest": "29.1.2",
         "ts-node": "10.9.2",
         "tsutils": "3.21.0",
