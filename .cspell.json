@@ -14,5 +14,6 @@
         "*.{log,svg,snap,png,ogv,yml}",
         "**/package.json",
         "**/tsconfig*.json"
-    ]
+    ],
+    "ignoreWords": ["Acpekt"]
 }
