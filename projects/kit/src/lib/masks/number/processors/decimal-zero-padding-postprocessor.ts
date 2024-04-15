@@ -40,11 +40,9 @@ export function createDecimalZeroPaddingPostprocessor({
         return {
             value:
                 extractedPrefix +
-                (!integerPart && Number(decimalPart) === 0
-                    ? ''
-                    : integerPart +
-                      decimalSeparator +
-                      decimalPart.padEnd(precision, '0')) +
+                integerPart +
+                decimalSeparator +
+                decimalPart.padEnd(precision, '0') +
                 extractedPostfix,
             selection,
         };
