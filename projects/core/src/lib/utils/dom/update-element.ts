@@ -1,4 +1,4 @@
-import type {ElementState} from '../../types';
+import type {ElementState, MaskitoElement} from '../../types';
 
 /**
  * Sets value to element, and dispatches input event
@@ -13,7 +13,7 @@ import type {ElementState} from '../../types';
  * @return void
  */
 export function maskitoUpdateElement(
-    element: HTMLInputElement | HTMLTextAreaElement,
+    element: MaskitoElement,
     valueOrElementState: ElementState | string,
 ): void {
     const initialValue = element.value;
