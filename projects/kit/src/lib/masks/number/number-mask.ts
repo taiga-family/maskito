@@ -32,6 +32,7 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
+import {createClearInputPreprocessor} from './processors/clear-input-preprocessor';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
@@ -130,6 +131,12 @@ export function maskitoNumberOptionsGenerator({
             }),
             createRepeatedDecimalSeparatorPreprocessor({
                 decimalSeparator,
+                prefix,
+                postfix,
+            }),
+            createClearInputPreprocessor({
+                decimalSeparator,
+                decimalZeroPadding,
                 prefix,
                 postfix,
             }),

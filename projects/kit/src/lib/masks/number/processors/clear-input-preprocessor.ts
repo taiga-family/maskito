@@ -1,30 +1,48 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import {ElementState} from 'projects/core/src/lib/types';
 
-export function createClearInputPreprocessor(
-    decimalSeparator: string,
-    decimalZeroPadding: boolean,
-): MaskitoPreprocessor {
+export function createClearInputPreprocessor({
+    decimalSeparator,
+    decimalZeroPadding,
+    prefix,
+    postfix,
+}: {
+    decimalSeparator: string;
+    decimalZeroPadding: boolean;
+    prefix: string;
+    postfix: string;
+}): MaskitoPreprocessor {
     return ({elementState, data}, inputType) => {
         if (inputType === 'deleteBackward' || inputType === 'deleteForward') {
             const [start] = elementState.selection;
+            const startWithoutPrefix = start - prefix.length;
+
             const [integerPart, decimalPart] = getIntegerDecimalParts(
                 elementState,
                 decimalSeparator,
                 decimalZeroPadding,
+                prefix,
+                postfix,
             );
 
-            return start === 0 && !integerPart && Number(decimalPart) === 0
+            return startWithoutPrefix === 0 && !integerPart && Number(decimalPart) === 0
                 ? {
                       elementState: {
-                          value: '',
-                          selection: [0, 0],
+                          value: prefix + postfix,
+                          selection: [start, start],
                       },
                       data,
                   }
                 : {
                       elementState: {
-                          value: integerPart + decimalSeparator + decimalPart,
+                          value:
+                              prefix +
+                              integerPart +
+                              (!decimalZeroPadding || decimalPart === ''
+                                  ? ''
+                                  : decimalSeparator) +
+                              decimalPart +
+                              postfix,
                           selection: [start, start],
                       },
                       data,
@@ -39,17 +57,25 @@ function getIntegerDecimalParts(
     {value, selection}: ElementState,
     decimalSeparator: string,
     decimalZeroPadding: boolean,
+    prefix: string,
+    postfix: string,
 ): [string, string] {
-    const decimalSeparatorIndex = value.indexOf(decimalSeparator);
-    const [start, end] = selection;
+    const cleanValue = value.slice(prefix.length, value.length - postfix.length);
+    const decimalSeparatorIndex = cleanValue.indexOf(decimalSeparator);
+    let [start, end] = selection;
 
-    if (start === end && start === decimalSeparatorIndex) {
-        return value.split(decimalSeparator) as [string, string];
+    start -= prefix.length;
+    end -= prefix.length;
+
+    if (start === end) {
+        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
+
+        return [integerPart, decimalPart];
     }
 
     if (end < decimalSeparatorIndex) {
         const [integerPart, decimalPart = ''] = (
-            value.slice(0, start) + value.slice(end, value.length)
+            cleanValue.slice(0, start) + cleanValue.slice(end, cleanValue.length)
         ).split(decimalSeparator);
 
         return [integerPart, decimalPart];
@@ -57,17 +83,18 @@ function getIntegerDecimalParts(
 
     if (start > decimalSeparatorIndex) {
         const [integerPart, decimalPart] = (
-            value.slice(0, start) +
-            value.slice(end, value.length) +
+            cleanValue.slice(0, start) +
+            cleanValue.slice(end, cleanValue.length) +
             (decimalZeroPadding ? '0'.repeat(end - start) : '')
         ).split(decimalSeparator);
 
         return [integerPart, decimalPart];
     }
 
-    const integerPart = value.slice(0, start);
+    const integerPart = cleanValue.slice(0, start);
     const decimalPart =
-        value.slice(end, value.length) + '0'.repeat(end - decimalSeparatorIndex - 1);
+        cleanValue.slice(end, cleanValue.length) +
+        '0'.repeat(Math.max(end - decimalSeparatorIndex - 1, 0));
 
     return [integerPart, decimalPart];
 }
