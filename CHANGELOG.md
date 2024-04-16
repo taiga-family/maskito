@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/taiga-family/maskito/compare/v2.2.0...v2.3.0) (2024-04-16)
+
+### Features
+
+- **core:** add `contenteditable` support ([#1039](https://github.com/taiga-family/maskito/issues/1039))
+  ([0d5bb31](https://github.com/taiga-family/maskito/commit/0d5bb319225fb61f3ac7643c21208122b4a2a2ae))
+- **kit:** `DateTime` supports configurable parameter `dateTimeSeparator`
+  ([#1143](https://github.com/taiga-family/maskito/issues/1143))
+  ([ec86284](https://github.com/taiga-family/maskito/commit/ec8628467814cff7dfae22668370236f402d8146))
+
+### Bug Fixes
+
+- **kit:** `Date` formatting errors for `mm/yyyy`, `yyyy/mm`, `mm/yy` modes
+  ([#1177](https://github.com/taiga-family/maskito/issues/1177))
+  ([948a350](https://github.com/taiga-family/maskito/commit/948a35098da2233bc78793eb7e83b7c5136becbd))
+
 ## [2.2.0](https://github.com/taiga-family/maskito/compare/v2.1.0...v2.2.0) (2024-03-07)
 
 ### Features
