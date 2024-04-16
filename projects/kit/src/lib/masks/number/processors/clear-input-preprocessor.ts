@@ -6,14 +6,19 @@ export function createClearInputPreprocessor({
     decimalZeroPadding,
     prefix,
     postfix,
+    minusSign,
 }: {
     decimalSeparator: string;
     decimalZeroPadding: boolean;
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}, inputType) => {
-        if (inputType === 'deleteBackward' || inputType === 'deleteForward') {
+        if (
+            (inputType === 'deleteBackward' || inputType === 'deleteForward') &&
+            decimalZeroPadding
+        ) {
             const [start, end] = getSelectionWithoutPrefixPostfix(
                 elementState,
                 prefix,
@@ -22,7 +27,7 @@ export function createClearInputPreprocessor({
 
             const resultStart = start + prefix.length;
 
-            const [integerPart, decimalPart] = getIntegerDecimalParts(
+            const [integerPart, decimalPart = ''] = getIntegerDecimalParts(
                 {
                     selection: [start, end],
                     value: valueWithoutPrefixPostfix(elementState.value, prefix, postfix),
@@ -31,10 +36,12 @@ export function createClearInputPreprocessor({
                 decimalZeroPadding,
             );
 
-            return start === 0 && integerPart === '' && Number(decimalPart) === 0
+            return ((start === 0 && integerPart === '') ||
+                (start === minusSign.length && integerPart === minusSign)) &&
+                !Number(decimalPart)
                 ? {
                       elementState: {
-                          value: prefix + postfix,
+                          value: prefix + integerPart + postfix,
                           selection: [resultStart, resultStart],
                       },
                       data,
@@ -44,9 +51,7 @@ export function createClearInputPreprocessor({
                           value:
                               prefix +
                               integerPart +
-                              (!decimalZeroPadding || decimalPart === ''
-                                  ? ''
-                                  : decimalSeparator) +
+                              decimalSeparator +
                               decimalPart +
                               postfix,
                           selection: [resultStart, resultStart],
@@ -116,7 +121,7 @@ function getIntegerDecimalParts(
 
     const integerPart = value.slice(0, start);
     const decimalPart =
-        value.slice(end, value.length) +
+        value.slice(Math.max(decimalSeparatorIndex + 1, end), value.length) +
         '0'.repeat(Math.max(end - decimalSeparatorIndex - 1, 0));
 
     return [integerPart, decimalPart];

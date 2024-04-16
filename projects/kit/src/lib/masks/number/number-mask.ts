@@ -139,6 +139,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalZeroPadding,
                 prefix,
                 postfix,
+                minusSign,
             }),
         ],
         postprocessors: [
