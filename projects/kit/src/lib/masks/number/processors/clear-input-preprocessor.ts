@@ -18,60 +18,65 @@ export function createClearInputPreprocessor({
 }): MaskitoPreprocessor {
     return ({elementState, data}, inputType) => {
         if (
-            (inputType === 'deleteBackward' || inputType === 'deleteForward') &&
-            decimalZeroPadding
+            !decimalZeroPadding ||
+            !['deleteBackward', 'deleteForward'].includes(inputType)
         ) {
-            const [start, end] = getSelectionWithoutPrefixPostfix(
-                elementState,
-                prefix,
-                postfix,
-            );
-
-            const resultStart = start + prefix.length;
-
-            const [integerPart, decimalPart = ''] = getIntegerDecimalParts(
-                {
-                    selection: [start, end],
-                    value: valueWithoutPrefixPostfix(elementState.value, prefix, postfix),
-                },
-                decimalSeparator,
-                precision,
-            );
-
-            return ((start === 0 && integerPart === '') ||
-                (start === minusSign.length && integerPart === minusSign)) &&
-                !Number(decimalPart)
-                ? {
-                      elementState: {
-                          value: prefix + integerPart + postfix,
-                          selection: [resultStart, resultStart],
-                      },
-                      data,
-                  }
-                : {
-                      elementState: {
-                          value:
-                              prefix +
-                              integerPart +
-                              decimalSeparator +
-                              decimalPart +
-                              postfix,
-                          selection: [resultStart, resultStart],
-                      },
-                      data,
-                  };
+            return {elementState, data};
         }
 
-        return {elementState, data};
+        const [start, end] = getSelectionWithoutPrefixPostfix({
+            elementState,
+            prefix,
+            postfix,
+        });
+
+        const resultStart = start + prefix.length;
+
+        const [integerPart, decimalPart = ''] = getIntegerDecimalParts({
+            elementState: {
+                selection: [start, end],
+                value: valueWithoutPrefixPostfix({
+                    value: elementState.value,
+                    prefix,
+                    postfix,
+                }),
+            },
+            decimalSeparator,
+            precision,
+        });
+
+        return ((start === 0 && integerPart === '') ||
+            (start === minusSign.length && integerPart === minusSign)) &&
+            !Number(decimalPart)
+            ? {
+                  elementState: {
+                      value: prefix + integerPart + postfix,
+                      selection: [resultStart, resultStart],
+                  },
+                  data,
+              }
+            : {
+                  elementState: {
+                      value:
+                          prefix + integerPart + decimalSeparator + decimalPart + postfix,
+                      selection: [resultStart, resultStart],
+                  },
+                  data,
+              };
     };
 }
 
-function getSelectionWithoutPrefixPostfix(
-    {value, selection}: ElementState,
-    prefix: string,
-    postfix: string,
-): SelectionRange {
-    const cleanValue = valueWithoutPrefixPostfix(value, prefix, postfix);
+function getSelectionWithoutPrefixPostfix({
+    elementState,
+    prefix,
+    postfix,
+}: {
+    elementState: ElementState;
+    prefix: string;
+    postfix: string;
+}): SelectionRange {
+    const {value, selection} = elementState;
+    const cleanValue = valueWithoutPrefixPostfix({value, prefix, postfix});
 
     let [start, end] = selection;
 
@@ -81,19 +86,28 @@ function getSelectionWithoutPrefixPostfix(
     return [start, end];
 }
 
-function valueWithoutPrefixPostfix(
-    value: string,
-    prefix: string,
-    postfix: string,
-): string {
+function valueWithoutPrefixPostfix({
+    value,
+    prefix,
+    postfix,
+}: {
+    value: string;
+    prefix: string;
+    postfix: string;
+}): string {
     return value.slice(prefix.length, value.length - postfix.length);
 }
 
-function getIntegerDecimalParts(
-    {value, selection}: ElementState,
-    decimalSeparator: string,
-    precision: number,
-): [string, string] {
+function getIntegerDecimalParts({
+    elementState,
+    decimalSeparator,
+    precision,
+}: {
+    elementState: ElementState;
+    decimalSeparator: string;
+    precision: number;
+}): [string, string] {
+    const {value, selection} = elementState;
     const decimalSeparatorIndex = value.indexOf(decimalSeparator);
     const [start, end] = selection;
 
@@ -103,22 +117,14 @@ function getIntegerDecimalParts(
         return [integerPart, decimalPart];
     }
 
-    if (end < decimalSeparatorIndex) {
+    if (start > decimalSeparatorIndex || end < decimalSeparatorIndex) {
         const [integerPart, decimalPart = ''] = (
-            value.slice(0, start) + value.slice(end, value.length)
-        ).split(decimalSeparator);
-
-        return [integerPart, decimalPart];
-    }
-
-    if (start > decimalSeparatorIndex) {
-        const [integerPart, decimalPart] = (
             value.slice(0, start) + value.slice(end, value.length)
         ).split(decimalSeparator);
 
         return [
             integerPart,
-            decimalPart?.concat('0'.repeat(precision - decimalPart.length)),
+            decimalPart.concat('0'.repeat(precision - decimalPart.length)),
         ];
     }
 
