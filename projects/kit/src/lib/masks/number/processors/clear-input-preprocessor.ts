@@ -1,5 +1,5 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import {ElementState, SelectionRange} from 'projects/core/src/lib/types';
+import type {ElementState, SelectionRange} from 'projects/core/src/lib/types';
 
 export function createClearInputPreprocessor({
     decimalSeparator,

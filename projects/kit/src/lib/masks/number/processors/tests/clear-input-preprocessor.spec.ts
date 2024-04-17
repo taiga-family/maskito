@@ -1,4 +1,4 @@
-import {ElementState, SelectionRange} from '../../../../../../../core/src/lib/types';
+import type {ElementState, SelectionRange} from '../../../../../../../core/src/lib/types';
 import {createClearInputPreprocessor} from '../clear-input-preprocessor';
 
 describe('createClearInputPreprocessor', () => {
