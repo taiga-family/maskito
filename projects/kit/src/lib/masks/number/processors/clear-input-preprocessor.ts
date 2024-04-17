@@ -1,5 +1,4 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import type {ElementState, SelectionRange} from 'projects/core/src/lib/types';
 
 export function createClearInputPreprocessor({
     decimalSeparator,
@@ -24,8 +23,11 @@ export function createClearInputPreprocessor({
             return {elementState, data};
         }
 
+        const {value, selection} = elementState;
+
         const [start, end] = getSelectionWithoutPrefixPostfix({
-            elementState,
+            value,
+            selection: [selection[0], selection[1]],
             prefix,
             postfix,
         });
@@ -33,14 +35,12 @@ export function createClearInputPreprocessor({
         const resultStart = start + prefix.length;
 
         const [integerPart, decimalPart = ''] = getIntegerDecimalParts({
-            elementState: {
-                selection: [start, end],
-                value: valueWithoutPrefixPostfix({
-                    value: elementState.value,
-                    prefix,
-                    postfix,
-                }),
-            },
+            selection: [start, end],
+            value: valueWithoutPrefixPostfix({
+                value: elementState.value,
+                prefix,
+                postfix,
+            }),
             decimalSeparator,
             precision,
         });
@@ -67,15 +67,16 @@ export function createClearInputPreprocessor({
 }
 
 function getSelectionWithoutPrefixPostfix({
-    elementState,
+    value,
+    selection,
     prefix,
     postfix,
 }: {
-    elementState: ElementState;
+    value: string;
+    selection: [number, number];
     prefix: string;
     postfix: string;
-}): SelectionRange {
-    const {value, selection} = elementState;
+}): [number, number] {
     const cleanValue = valueWithoutPrefixPostfix({value, prefix, postfix});
 
     let [start, end] = selection;
@@ -99,15 +100,16 @@ function valueWithoutPrefixPostfix({
 }
 
 function getIntegerDecimalParts({
-    elementState,
+    value,
+    selection,
     decimalSeparator,
     precision,
 }: {
-    elementState: ElementState;
+    value: string;
+    selection: [number, number];
     decimalSeparator: string;
     precision: number;
 }): [string, string] {
-    const {value, selection} = elementState;
     const decimalSeparatorIndex = value.indexOf(decimalSeparator);
     const [start, end] = selection;
 
