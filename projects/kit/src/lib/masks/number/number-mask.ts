@@ -140,6 +140,7 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
                 minusSign,
+                precision,
             }),
         ],
         postprocessors: [
