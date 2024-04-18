@@ -162,6 +162,13 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Other',
+        title: 'Supported <input /> types',
+        route: DemoPath.SupportedInputTypes,
+        keywords:
+            'input, type, text, password, search, tel, url, email, number, date, month',
+    },
+    {
+        section: 'Other',
         title: 'Changelog',
         route: DemoPath.Changelog,
         keywords: 'changelog, release, version, history',

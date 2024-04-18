@@ -210,6 +210,16 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.SupportedInputTypes,
+        loadComponent: () =>
+            import(
+                '../pages/documentation/supported-input-types/supported-input-types.component'
+            ),
+        data: {
+            title: 'Supported <input /> types',
+        },
+    },
+    {
         path: DemoPath.Changelog,
         loadComponent: () =>
             import('../pages/documentation/changelog/changelog.component'),
