@@ -15,5 +15,5 @@
         "**/package.json",
         "**/tsconfig*.json"
     ],
-    "ignoreWords": ["Acpekt"]
+    "ignoreWords": ["Acpekt", "WHATWG"]
 }

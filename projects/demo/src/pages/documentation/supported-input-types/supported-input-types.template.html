@@ -1,0 +1,126 @@
+<tui-doc-page header="Supported <input /> types">
+    <tui-notification status="warning">
+        <strong>Maskito</strong>
+        supports only limited types of
+        <code>HTMLInputElement</code>
+        due to some browser limitations!
+    </tui-notification>
+
+    <section class="tui-space_top-4">
+        <p>
+            <strong>Maskito</strong>
+            accepts only the types whose support the following native properties/methods:
+        </p>
+
+        <ul class="tui-list">
+            <li class="tui-list__item"><code>selectionStart</code></li>
+            <li class="tui-list__item"><code>selectionEnd</code></li>
+            <li class="tui-list__item"><code>setSelectionRange</code></li>
+        </ul>
+
+        <p>
+            According to the
+            <a
+                href="https://html.spec.whatwg.org/multipage/input.html#concept-input-apply"
+                target="_blank"
+                tuiLink
+            >
+                WHATWG forms spec
+            </a>
+            they apply only to inputs of types
+            <code>text</code>
+            ,
+            <code>search</code>
+            ,
+            <code>URL</code>
+            ,
+            <code>tel</code>
+            and
+            <code>password</code>
+            .
+            <br />
+            <strong>All other types will not work properly with Maskito!</strong>
+        </p>
+    </section>
+
+    <p>All examples below are demonstrations to see different supported types in action.</p>
+
+    <tui-doc-example
+        id="text"
+        heading="text"
+        [content]="textTypeExample"
+        [description]="textDescription"
+    >
+        <ng-template #textDescription>
+            <code>{{ getInput('text') }}</code>
+            is the default, the simplest and the most popular type of input-element.
+            <br />
+            Use it if you don't know which type to choose.
+        </ng-template>
+
+        <input-type-text-example />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="tel"
+        heading="tel"
+        [content]="telTypeExample"
+        [description]="telDescription"
+    >
+        <ng-template #telDescription>
+            <code>{{ getInput('tel') }}</code>
+            is a control for entering a telephone number.
+            <br />
+            Displays a telephone keypad in some devices with dynamic keypads.
+        </ng-template>
+
+        <input-type-tel-example />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="password"
+        heading="password"
+        [content]="passwordTypeExample"
+        [description]="passwordDescription"
+    >
+        <ng-template #passwordDescription>
+            <code>{{ getInput('password') }}</code>
+            is a single-line text field whose value is obscured.
+        </ng-template>
+
+        <input-type-password-example />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="url"
+        heading="url"
+        [content]="urlTypeExample"
+        [description]="urlDescription"
+    >
+        <ng-template #urlDescription>
+            <code>{{ getInput('url') }}</code>
+            is a field for entering a URL.
+            <br />
+            Looks like a text input, but has relevant keyboard in supporting browsers and devices with dynamic
+            keyboards.
+        </ng-template>
+
+        <input-type-url-example />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="search"
+        heading="search"
+        [content]="searchTypeExample"
+        [description]="searchDescription"
+    >
+        <ng-template #searchDescription>
+            <code>{{ getInput('search') }}</code>
+            is a single-line text field for entering search strings.
+            <br />
+            Displays a search icon instead of enter key on some devices with dynamic keypads.
+        </ng-template>
+
+        <input-type-search-example />
+    </tui-doc-example>
+</tui-doc-page>

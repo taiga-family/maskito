@@ -109,7 +109,7 @@
         "serve-ip": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "nx serve --open --host 0.0.0.0 --disable-host-check"
+                "command": "nx serve demo --open --host 0.0.0.0 --disable-host-check"
             }
         },
         "serve-ssl": {

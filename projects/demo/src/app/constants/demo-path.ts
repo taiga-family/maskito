@@ -25,6 +25,7 @@ export const DemoPath = {
     Postfix: 'recipes/postfix',
     Placeholder: 'recipes/placeholder',
     BrowserSupport: 'browser-support',
+    SupportedInputTypes: 'supported-input-types',
     Changelog: 'changelog',
     Stackblitz: 'stackblitz',
 } as const;

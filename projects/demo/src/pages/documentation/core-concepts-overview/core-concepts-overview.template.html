@@ -9,7 +9,31 @@
         <ol class="tui-list tui-list_ordered">
             <li class="tui-list__item">
                 native
-                <code>HTMLInputElement</code>
+                <code>
+                    HTMLInputElement
+                    <tui-tooltip
+                        direction="top"
+                        [content]="tooltipContent"
+                    />
+
+                    <ng-template #tooltipContent>
+                        <strong>Maskito</strong>
+                        supports only limited types of
+                        <code>HTMLInputElement</code>
+                        due to some browser limitations!
+
+                        <p class="tui-space_bottom-0">
+                            <a
+                                tuiLink
+                                tuiMode="onDark"
+                                [pseudo]="true"
+                                [routerLink]="supportedInputTypesDocPage"
+                            >
+                                See a full list of supported types
+                            </a>
+                        </p>
+                    </ng-template>
+                </code>
                 or
                 <code>HTMLTextAreaElement</code>
             </li>
