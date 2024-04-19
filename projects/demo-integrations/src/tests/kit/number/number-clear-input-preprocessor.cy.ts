@@ -65,23 +65,20 @@ describe('Number | clearInputPreprocessor', () => {
     it('12|3.14|32 => backspace => 12|.3200', BROWSER_SUPPORTS_REAL_EVENTS, () => {
         cy.get('@input')
             .type('123.1432')
-            .type('{leftArrow}{leftArrow}')
+            .type('{leftArrow}'.repeat(2))
             .should('have.value', '123.1432')
-            .should('have.a.prop', 'selectionStart', 6)
-            .should('have.a.prop', 'selectionEnd', 6)
+            .should('have.a.prop', 'selectionStart', '123.14'.length)
+            .should('have.a.prop', 'selectionEnd', '123.14'.length)
             .realPress([
                 'Shift',
-                'ArrowLeft',
-                'ArrowLeft',
-                'ArrowLeft',
-                'ArrowLeft',
+                ...new Array('3.14'.length).fill('ArrowLeft'),
                 'Backspace',
             ]);
 
         cy.get('@input')
             .should('have.value', '12.3200')
-            .should('have.a.prop', 'selectionStart', 2)
-            .should('have.a.prop', 'selectionEnd', 2);
+            .should('have.a.prop', 'selectionStart', '12'.length)
+            .should('have.a.prop', 'selectionEnd', '12'.length);
     });
 
     it(
@@ -89,41 +86,37 @@ describe('Number | clearInputPreprocessor', () => {
         BROWSER_SUPPORTS_REAL_EVENTS,
         () => {
             cy.get('@input')
-                .type('123123123{moveToStart}{rightArrow}{rightArrow}')
+                .type('123123123')
+                .type('{moveToStart}{rightArrow}{rightArrow}')
                 .should('have.value', '123_123_123.0000')
-                .should('have.a.prop', 'selectionStart', 2)
-                .should('have.a.prop', 'selectionEnd', 2)
+                .should('have.a.prop', 'selectionStart', '12'.length)
+                .should('have.a.prop', 'selectionEnd', '12'.length)
                 .realPress([
                     'Shift',
-                    'ArrowRight',
-                    'ArrowRight',
-                    'ArrowRight',
-                    'ArrowRight',
-                    'ArrowRight',
-                    'ArrowRight',
-                    'ArrowRight',
+                    ...new Array('3_123_1'.length).fill('ArrowRight'),
                     'Backspace',
                 ]);
 
             cy.get('@input')
                 .should('have.value', '1_223.0000')
-                .should('have.a.prop', 'selectionStart', 3)
-                .should('have.a.prop', 'selectionEnd', 3);
+                .should('have.a.prop', 'selectionStart', '1_2'.length)
+                .should('have.a.prop', 'selectionEnd', '1_2'.length);
         },
     );
 
     it('123.|104|3 => backspace => 123.|3000', BROWSER_SUPPORTS_REAL_EVENTS, () => {
         cy.get('@input')
-            .type('123.1043{moveToEnd}{leftArrow}')
+            .type('123.1043')
+            .type('{moveToEnd}{leftArrow}')
             .should('have.value', '123.1043')
-            .should('have.a.prop', 'selectionStart', 7)
-            .should('have.a.prop', 'selectionEnd', 7)
+            .should('have.a.prop', 'selectionStart', '123.104'.length)
+            .should('have.a.prop', 'selectionEnd', '123.104'.length)
             .realPress(['Shift', 'ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'Backspace']);
 
         cy.get('@input')
             .should('have.value', '123.3000')
-            .should('have.a.prop', 'selectionStart', 4)
-            .should('have.a.prop', 'selectionEnd', 4);
+            .should('have.a.prop', 'selectionStart', '123.'.length)
+            .should('have.a.prop', 'selectionEnd', '123.'.length);
     });
 
     it('|12_332.1021| => backspace => empty', () => {
