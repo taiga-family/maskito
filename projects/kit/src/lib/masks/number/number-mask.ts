@@ -22,6 +22,7 @@ import {
 } from './plugins';
 import {
     createAffixesFilterPreprocessor,
+    createClearInputPreprocessor,
     createDecimalZeroPaddingPostprocessor,
     createInitializationOnlyPreprocessor,
     createMinMaxPostprocessor,
@@ -32,7 +33,6 @@ import {
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
 } from './processors';
-import {createClearInputPreprocessor} from './processors/clear-input-preprocessor';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
