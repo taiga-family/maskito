@@ -16,26 +16,23 @@ export function createClearInputPreprocessor({
     precision: number;
 }): MaskitoPreprocessor {
     return ({elementState, data}, inputType) => {
-        if (
-            !decimalZeroPadding ||
-            !['deleteBackward', 'deleteForward'].includes(inputType)
-        ) {
+        if (!decimalZeroPadding || !inputType.includes('delete')) {
             return {elementState, data};
         }
 
         const {value, selection} = elementState;
 
-        const [start, end] = getSelectionWithoutPrefixPostfix({
+        const [from, to] = getSelectionWithoutPrefixPostfix({
             value,
-            selection: [selection[0], selection[1]],
+            selection,
             prefix,
             postfix,
         });
 
-        const resultStart = start + prefix.length;
+        const resultFrom = from + prefix.length;
 
         const [integerPart, decimalPart = ''] = getIntegerDecimalParts({
-            selection: [start, end],
+            selection: [from, to],
             value: valueWithoutPrefixPostfix({
                 value: elementState.value,
                 prefix,
@@ -45,13 +42,13 @@ export function createClearInputPreprocessor({
             precision,
         });
 
-        return ((start === 0 && integerPart === '') ||
-            (start === minusSign.length && integerPart === minusSign)) &&
+        return ((from === 0 && integerPart === '') ||
+            (from === minusSign.length && integerPart === minusSign)) &&
             !Number(decimalPart)
             ? {
                   elementState: {
                       value: prefix + integerPart + postfix,
-                      selection: [resultStart, resultStart],
+                      selection: [resultFrom, resultFrom],
                   },
                   data,
               }
@@ -59,7 +56,7 @@ export function createClearInputPreprocessor({
                   elementState: {
                       value:
                           prefix + integerPart + decimalSeparator + decimalPart + postfix,
-                      selection: [resultStart, resultStart],
+                      selection: [resultFrom, resultFrom],
                   },
                   data,
               };
@@ -73,18 +70,18 @@ function getSelectionWithoutPrefixPostfix({
     postfix,
 }: {
     value: string;
-    selection: [number, number];
+    selection: readonly [number, number];
     prefix: string;
     postfix: string;
 }): [number, number] {
     const cleanValue = valueWithoutPrefixPostfix({value, prefix, postfix});
 
-    let [start, end] = selection;
+    let [from, to] = selection;
 
-    start = start <= prefix.length ? 0 : start - prefix.length;
-    end = end >= value.length - postfix.length ? cleanValue.length : end - prefix.length;
+    from = from <= prefix.length ? 0 : from - prefix.length;
+    to = to >= value.length - postfix.length ? cleanValue.length : to - prefix.length;
 
-    return [start, end];
+    return [from, to];
 }
 
 function valueWithoutPrefixPostfix({
@@ -111,17 +108,17 @@ function getIntegerDecimalParts({
     precision: number;
 }): [string, string] {
     const decimalSeparatorIndex = value.indexOf(decimalSeparator);
-    const [start, end] = selection;
+    const [from, to] = selection;
 
-    if (start === end) {
+    if (from === to) {
         const [integerPart, decimalPart = ''] = value.split(decimalSeparator);
 
         return [integerPart, decimalPart];
     }
 
-    if (start > decimalSeparatorIndex || end < decimalSeparatorIndex) {
+    if (from > decimalSeparatorIndex || to < decimalSeparatorIndex) {
         const [integerPart, decimalPart = ''] = (
-            value.slice(0, start) + value.slice(end, value.length)
+            value.slice(0, from) + value.slice(to, value.length)
         ).split(decimalSeparator);
 
         return [
@@ -130,9 +127,9 @@ function getIntegerDecimalParts({
         ];
     }
 
-    const integerPart = value.slice(0, start);
+    const integerPart = value.slice(0, from);
     const decimalPart = value.slice(
-        Math.max(decimalSeparatorIndex + 1, end),
+        Math.max(decimalSeparatorIndex + 1, to),
         value.length,
     );
 
