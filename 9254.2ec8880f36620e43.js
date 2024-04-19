@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[9254],{9254:s=>{s.exports="import type {MaskitoOptions} from '@maskito/core';\n\nexport default {\n    mask: [/\\d/, /\\d/, /\\d/],\n} as MaskitoOptions;\n"}}]);
