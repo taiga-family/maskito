@@ -9,14 +9,15 @@ export function maskitoWithPlaceholder(
 ): Pick<Required<MaskitoOptions>, 'plugins' | 'postprocessors' | 'preprocessors'> & {
     removePlaceholder: (value: string) => string;
 } {
+    let lastClearValue = '';
     const removePlaceholder = (value: string): string => {
-        for (let i = value.length - 1; i >= 0; i--) {
+        for (let i = value.length - 1; i >= lastClearValue.length; i--) {
             if (value[i] !== placeholder[i]) {
                 return value.slice(0, i + 1);
             }
         }
 
-        return '';
+        return value.slice(0, lastClearValue.length);
     };
     const plugins = [maskitoCaretGuard(value => [0, removePlaceholder(value).length])];
 
@@ -64,7 +65,9 @@ export function maskitoWithPlaceholder(
             },
         ],
         postprocessors: [
-            ({value, selection}, initialElementState) =>
+            ({value, selection}, initialElementState) => {
+                lastClearValue = value;
+
                 /**
                  * If `value` still equals to `initialElementState.value`,
                  * then it means that value is patched programmatically (from Maskito's plugin or externally).
@@ -73,12 +76,13 @@ export function maskitoWithPlaceholder(
                  * For example, developer wants to remove manually placeholder (+ do something else with value) on blur.
                  * Without this condition, placeholder will be unexpectedly added again.
                  */
-                value !== initialElementState.value && (focused || !focusedOnly)
+                return value !== initialElementState.value && (focused || !focusedOnly)
                     ? {
                           value: value + placeholder.slice(value.length),
                           selection,
                       }
-                    : {value, selection},
+                    : {value, selection};
+            },
         ],
     };
 }
