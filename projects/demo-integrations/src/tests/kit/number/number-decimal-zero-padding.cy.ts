@@ -261,4 +261,65 @@ describe('Number | decimalZeroPadding', () => {
                 .should('have.prop', 'selectionEnd', '$42.24'.length);
         });
     });
+
+    describe('conditions for empty textfield', () => {
+        beforeEach(() => {
+            openNumberPage(
+                'thousandSeparator=_&precision=2&decimalZeroPadding=true&minusSign=-',
+            );
+        });
+
+        it('0.42| => Backspace x3 => 0|.00 => Backspace => Empty', () => {
+            cy.get('@input')
+                .type('0.42')
+                .should('have.value', '0.42')
+                .type('{backspace}'.repeat(3))
+                .should('have.value', '0.00')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '');
+        });
+
+        it('-.42| => Backspace x2 => -.|00  => Backspace => -', () => {
+            cy.get('@input')
+                .type('-0.42')
+                .should('have.value', '-0.42')
+                .type('{moveToStart}')
+                .type('{rightArrow}'.repeat(2))
+                .type('{backspace}')
+                .should('have.value', '-.42')
+                .type('{moveToEnd}')
+                .type('{backspace}')
+                .should('have.value', '-.40')
+                .type('{backspace}')
+                .should('have.value', '-.00')
+                .should('have.a.prop', 'selectionStart', 2)
+                .should('have.a.prop', 'selectionEnd', 2)
+                .type('{backspace}')
+                .should('have.value', '-')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1);
+        });
+
+        it('5|.00 => Backspace  => Empty', () => {
+            cy.get('@input')
+                .type('5')
+                .should('have.value', '5.00')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '');
+        });
+
+        it('-5|.00 => Backspace  => -', () => {
+            cy.get('@input')
+                .type('-5')
+                .should('have.value', '-5.00')
+                .should('have.a.prop', 'selectionStart', 2)
+                .should('have.a.prop', 'selectionEnd', 2)
+                .type('{backspace}')
+                .should('have.value', '-');
+        });
+    });
 });
