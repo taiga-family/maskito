@@ -1,3 +1,5 @@
+import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
+
 import {openNumberPage} from './utils';
 
 describe('Number | decimalZeroPadding', () => {
@@ -259,6 +261,172 @@ describe('Number | decimalZeroPadding', () => {
                 .should('have.value', '$42.24kg')
                 .should('have.prop', 'selectionStart', '$42.24'.length)
                 .should('have.prop', 'selectionEnd', '$42.24'.length);
+        });
+    });
+
+    describe('conditions for empty textfield', () => {
+        beforeEach(() => {
+            openNumberPage(
+                'thousandSeparator=_&precision=4&decimalZeroPadding=true&minusSign=-',
+            );
+        });
+
+        it('12|.3014 => backspace * 2 => |.3014 => moveToEnd + backspace => .301|0 => backspace => .30|00 => backspace => .3|000 => backspace => .|0000 => backspace => empty', () => {
+            cy.get('@input')
+                .type('12.3014')
+                .should('have.value', '12.3014')
+                .type('{moveToStart}{rightArrow}{rightArrow}')
+                .should('have.a.prop', 'selectionStart', 2)
+                .should('have.a.prop', 'selectionEnd', 2)
+                .type('{backspace}')
+                .should('have.value', '1.3014')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '.3014')
+                .should('have.a.prop', 'selectionStart', 0)
+                .should('have.a.prop', 'selectionEnd', 0)
+                .type('{moveToEnd}{backspace}')
+                .should('have.value', '.3010')
+                .should('have.a.prop', 'selectionStart', 4)
+                .should('have.a.prop', 'selectionEnd', 4)
+                .type('{backspace}')
+                .should('have.value', '.3000')
+                .should('have.a.prop', 'selectionStart', 3)
+                .should('have.a.prop', 'selectionEnd', 3)
+                .type('{backspace}')
+                .should('have.value', '.3000')
+                .should('have.a.prop', 'selectionStart', 2)
+                .should('have.a.prop', 'selectionEnd', 2)
+                .type('{backspace}')
+                .should('have.value', '.0000')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '')
+                .should('have.a.prop', 'selectionStart', 0)
+                .should('have.a.prop', 'selectionEnd', 0);
+        });
+
+        it('-2|.0000 => backspace => - => backspace => empty', () => {
+            cy.get('@input')
+                .type('-2')
+                .should('have.value', '-2.0000')
+                .should('have.a.prop', 'selectionStart', 2)
+                .should('have.a.prop', 'selectionEnd', 2)
+                .type('{backspace}')
+                .should('have.value', '-')
+                .should('have.a.prop', 'selectionStart', 1)
+                .should('have.a.prop', 'selectionEnd', 1)
+                .type('{backspace}')
+                .should('have.value', '')
+                .should('have.a.prop', 'selectionStart', 0)
+                .should('have.a.prop', 'selectionEnd', 0);
+        });
+    });
+
+    describe('erase selection which includes both integer and decimal parts', () => {
+        beforeEach(() => {
+            openNumberPage(
+                'thousandSeparator=_&precision=5&decimalZeroPadding=true&minusSign=-',
+            );
+        });
+
+        it('12|3.14|320 => backspace => 12|.32000', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+            cy.get('@input')
+                .type('123.1432')
+                .type('{leftArrow}'.repeat(2))
+                .should('have.value', '123.14320')
+                .should('have.a.prop', 'selectionStart', '123.14'.length)
+                .should('have.a.prop', 'selectionEnd', '123.14'.length)
+                .realPress([
+                    'Shift',
+                    ...new Array('3.14'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+            cy.get('@input')
+                .should('have.value', '12.32000')
+                .should('have.a.prop', 'selectionStart', '12'.length)
+                .should('have.a.prop', 'selectionEnd', '12'.length);
+        });
+
+        it('13|4.003|00 => backspace => 13|.00000', () => {
+            cy.get('@input')
+                .type('134.003')
+                .should('have.value', '134.00300')
+                .realPress([
+                    'Shift',
+                    ...new Array('4.003'.length).fill('ArrowLeft'),
+                    'Backspace',
+                ]);
+
+            cy.get('@input')
+                .should('have.value', '13.00000')
+                .should('have.a.prop', 'selectionStart', '13'.length)
+                .should('have.a.prop', 'selectionEnd', '13'.length);
+        });
+
+        it('|12_332.10210| => backspace => empty', () => {
+            cy.get('@input')
+                .type('12332.1021')
+                .should('have.value', '12_332.10210')
+                .type('{selectAll}{backspace}')
+                .should('have.value', '');
+        });
+    });
+
+    describe('erase selection with includes only integer part', () => {
+        beforeEach(() => {
+            openNumberPage(
+                'thousandSeparator=_&precision=4&decimalZeroPadding=true&minusSign=-',
+            );
+        });
+
+        it(
+            '12|3_123_1|23.0000 => backspace => 1_2|23.0000',
+            BROWSER_SUPPORTS_REAL_EVENTS,
+            () => {
+                cy.get('@input')
+                    .type('123123123')
+                    .type('{moveToStart}{rightArrow}{rightArrow}')
+                    .should('have.value', '123_123_123.0000')
+                    .should('have.a.prop', 'selectionStart', '12'.length)
+                    .should('have.a.prop', 'selectionEnd', '12'.length)
+                    .realPress([
+                        'Shift',
+                        ...new Array('3_123_1'.length).fill('ArrowRight'),
+                        'Backspace',
+                    ]);
+
+                cy.get('@input')
+                    .should('have.value', '1_223.0000')
+                    .should('have.a.prop', 'selectionStart', '1_2'.length)
+                    .should('have.a.prop', 'selectionEnd', '1_2'.length);
+            },
+        );
+    });
+
+    describe('erase selection with includes only decimal part', () => {
+        beforeEach(() => {
+            openNumberPage(
+                'thousandSeparator=_&precision=4&decimalZeroPadding=true&minusSign=-',
+            );
+        });
+
+        it('123.|104|3 => backspace => 123.|3000', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+            cy.get('@input')
+                .type('123.1043')
+                .type('{moveToEnd}{leftArrow}')
+                .should('have.value', '123.1043')
+                .should('have.a.prop', 'selectionStart', '123.104'.length)
+                .should('have.a.prop', 'selectionEnd', '123.104'.length)
+                .realPress(['Shift', 'ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'Backspace']);
+
+            cy.get('@input')
+                .should('have.value', '123.3000')
+                .should('have.a.prop', 'selectionStart', '123.'.length)
+                .should('have.a.prop', 'selectionEnd', '123.'.length);
         });
     });
 });
