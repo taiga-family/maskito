@@ -31,6 +31,7 @@ import {
     createRepeatedDecimalSeparatorPreprocessor,
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
+    emptyPostprocessor,
 } from './processors';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
@@ -152,6 +153,7 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
             }),
+            emptyPostprocessor({prefix, postfix, decimalSeparator}),
         ],
         plugins: [
             createLeadingZeroesValidationPlugin({
