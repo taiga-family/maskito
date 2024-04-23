@@ -45,7 +45,7 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## Maintained
 
-Maskito is a part of [Taiga UI](https://github.com/Tinkoff/taiga-ui) libraries family which is backed and used by a
+Maskito is a part of [Taiga UI](https://github.com/taiga-family/taiga-ui) libraries family which is backed and used by a
 large enterprise. This means you can rely on timely support and continuous development.
 
 ## License
