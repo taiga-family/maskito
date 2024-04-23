@@ -28,11 +28,14 @@ export function emptyPostprocessor({
             cleanValue,
             decimalSeparator,
         );
+        const aloneDecimalSeparator =
+            !integerPart && !decimalPart && cleanValue.includes(decimalSeparator);
 
         if (
-            !integerPart &&
-            !Number(decimalPart) &&
-            caretIndex === (minus + extractedPrefix).length
+            (!integerPart &&
+                !Number(decimalPart) &&
+                caretIndex === (minus + extractedPrefix).length) ||
+            aloneDecimalSeparator
         ) {
             return {
                 selection,
