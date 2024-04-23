@@ -1,6 +1,7 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {extractAffixes, identity} from '../../../utils';
+import {toNumberParts} from '../utils';
 
 /**
  * It adds symbol for separating thousands.
@@ -11,13 +12,11 @@ export function createThousandSeparatorPostprocessor({
     decimalSeparator,
     prefix,
     postfix,
-    minusSign,
 }: {
     thousandSeparator: string;
     decimalSeparator: string;
     prefix: string;
     postfix: string;
-    minusSign: string;
 }): MaskitoPostprocessor {
     if (!thousandSeparator) {
         return identity;
@@ -31,9 +30,10 @@ export function createThousandSeparatorPostprocessor({
             postfix,
         });
 
-        const [integerPart, decimalPart = ''] = cleanValue
-            .replace(minusSign, '')
-            .split(decimalSeparator);
+        const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
+            decimalSeparator,
+            thousandSeparator,
+        });
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
@@ -84,7 +84,7 @@ export function createThousandSeparatorPostprocessor({
         return {
             value:
                 extractedPrefix +
-                (cleanValue.includes(minusSign) ? minusSign : '') +
+                minus +
                 processedIntegerPart +
                 (cleanValue.includes(decimalSeparator) ? decimalSeparator : '') +
                 decimalPart +
