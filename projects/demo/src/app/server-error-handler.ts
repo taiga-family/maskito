@@ -5,7 +5,7 @@ import {hasFlag} from 'scripts/helpers/argv';
 // TODO
 const KNOWN_ISSUES: string[] = [
     'requestAnimationFrame is not defined', // hljs
-    'TypeError: Failed to parse URL from assets', // https://github.com/Tinkoff/taiga-ui/issues/4063
+    'TypeError: Failed to parse URL from assets', // https://github.com/taiga-family/taiga-ui/issues/4063
 ];
 
 @Injectable()
