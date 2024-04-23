@@ -1,6 +1,6 @@
 {
     "name": "@maskito/angular",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "description": "The Angular-specific Maskito's library",
     "keywords": [
         "mask",
@@ -38,7 +38,7 @@
     "peerDependencies": {
         "@angular/core": ">=15.0.0",
         "@angular/forms": ">=15.0.0",
-        "@maskito/core": "^2.3.0"
+        "@maskito/core": "^2.3.1"
     },
     "ng-update": {
         "packageGroup": [

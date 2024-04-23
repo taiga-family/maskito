@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/taiga-family/maskito/compare/v2.3.0...v2.3.1) (2024-04-23)
+
+### Bug Fixes
+
+- **kit:** `Number` should drop decimal separator if all digits are erased
+  ([#1211](https://github.com/taiga-family/maskito/issues/1211))
+  ([5836c96](https://github.com/taiga-family/maskito/commit/5836c965d6ce5ad497aaa59118204adc3e8625d8))
+- **kit:** `Number` with `decimalZeroPadding=true` should erase everything on `.00`
+  ([#1207](https://github.com/taiga-family/maskito/issues/1207))
+  ([d72f225](https://github.com/taiga-family/maskito/commit/d72f2257cec1a023aa81bb7de62e9543404630bd))
+- **kit:** `Placeholder` can have now the same character as textfield's value
+  ([#1209](https://github.com/taiga-family/maskito/issues/1209))
+  ([ed06936](https://github.com/taiga-family/maskito/commit/ed06936c41297cbd2e8ed308558914e9ad6c2eda))
+
 ## [2.3.0](https://github.com/taiga-family/maskito/compare/v2.2.0...v2.3.0) (2024-04-16)
 
 ### Features
