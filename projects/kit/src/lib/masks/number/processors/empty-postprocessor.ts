@@ -13,10 +13,12 @@ export function emptyPostprocessor({
     prefix,
     postfix,
     decimalSeparator,
+    thousandSeparator,
 }: {
     prefix: string;
     postfix: string;
     decimalSeparator: string;
+    thousandSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [caretIndex] = selection;
@@ -24,10 +26,10 @@ export function emptyPostprocessor({
             prefix,
             postfix,
         });
-        const {minus, integerPart, decimalPart} = toNumberParts(
-            cleanValue,
+        const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
             decimalSeparator,
-        );
+            thousandSeparator,
+        });
         const aloneDecimalSeparator =
             !integerPart && !decimalPart && cleanValue.includes(decimalSeparator);
 

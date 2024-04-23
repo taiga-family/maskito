@@ -1,12 +1,17 @@
-const EXTRACT_MINUS_RE = /(\D)?(.*)/;
+import {escapeRegExp} from '../../../utils';
 
 export function toNumberParts(
     value: string,
-    decimalSeparator: string,
+    {
+        decimalSeparator,
+        thousandSeparator,
+    }: {decimalSeparator: string; thousandSeparator: string},
 ): {minus: string; integerPart: string; decimalPart: string} {
     const [integerWithMinus = '', decimalPart = ''] = value.split(decimalSeparator);
     const [, minus = '', integerPart = ''] =
-        integerWithMinus.match(EXTRACT_MINUS_RE) || [];
+        integerWithMinus.match(
+            new RegExp(`([^\\d${escapeRegExp(thousandSeparator)}]+)?(.*)`),
+        ) || [];
 
     return {minus, integerPart, decimalPart};
 }
