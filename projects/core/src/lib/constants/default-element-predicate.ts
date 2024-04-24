@@ -1,5 +1,5 @@
 import type {MaskitoElementPredicate} from '../types';
-import {maskitoAdaptContentEditable} from '../utils';
+import {maskitoAdaptContentEditable} from '../utils/content-editable';
 
 export const MASKITO_DEFAULT_ELEMENT_PREDICATE: MaskitoElementPredicate = e =>
     e.isContentEditable
