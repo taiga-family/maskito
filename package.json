@@ -69,12 +69,10 @@
     "lint-staged": {
         "*.{js,ts,html,md,less,json,svg,yml}": [
             "npm run lint -- --fix",
-            "prettier --write",
-            "git add"
+            "prettier --write"
         ],
         "*.less": [
-            "stylelint --fix",
-            "git add"
+            "stylelint --fix"
         ]
     },
     "prettier": "@taiga-ui/prettier-config",
