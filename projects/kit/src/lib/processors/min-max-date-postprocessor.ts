@@ -3,11 +3,11 @@ import type {MaskitoPostprocessor} from '@maskito/core';
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {
     clamp,
-    dateToSegments,
     isDateStringComplete,
     parseDateRangeString,
     parseDateString,
     segmentsToDate,
+    strictDateTimeModeValidation,
     toDateString,
 } from '../utils';
 import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
@@ -53,21 +53,18 @@ export function createMinMaxDatePostprocessor({
             const date = segmentsToDate(parsedDate);
             const clampedDate = clamp(date, min, max);
 
-            if (!strict) {
-                validatedValue += toDateString(
-                    clampedDate.getTime() === max.getTime() ||
-                        clampedDate.getTime() === min.getTime()
-                        ? dateToSegments(clampedDate)
-                        : parsedDate,
-                    {dateMode: dateModeTemplate},
-                );
-
-                continue;
-            }
-
-            validatedValue += toDateString(dateToSegments(clampedDate), {
-                dateMode: dateModeTemplate,
-            });
+            validatedValue += toDateString(
+                strictDateTimeModeValidation({
+                    clampedDate,
+                    min,
+                    max,
+                    strict,
+                    dateSegments: parsedDate,
+                }),
+                {
+                    dateMode: dateModeTemplate,
+                },
+            );
         }
 
         return {
