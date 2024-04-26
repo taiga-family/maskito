@@ -101,6 +101,7 @@ export class DateRangeMaskDocComponent implements GeneratorOptions {
     public maxLength: Partial<MaskitoDateSegments<number>> = {};
     public dateSeparator = '.';
     public rangeSeparator = ' – ';
+    public strict = true;
 
     protected maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 

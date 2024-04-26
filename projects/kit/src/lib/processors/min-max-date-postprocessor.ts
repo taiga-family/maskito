@@ -18,14 +18,14 @@ export function createMinMaxDatePostprocessor({
     max = DEFAULT_MAX_DATE,
     rangeSeparator = '',
     dateSegmentSeparator = '.',
-    strict = true,
+    strict,
 }: {
     dateModeTemplate: string;
     min?: Date;
     max?: Date;
     rangeSeparator?: string;
     dateSegmentSeparator?: string;
-    strict?: boolean;
+    strict: boolean;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithRangeSeparator = rangeSeparator && value.endsWith(rangeSeparator);

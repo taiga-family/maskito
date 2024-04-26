@@ -16,11 +16,13 @@ export function maskitoDateOptionsGenerator({
     separator = '.',
     max,
     min,
+    strict = true,
 }: {
     mode: MaskitoDateMode;
     separator?: string;
     max?: Date;
     min?: Date;
+    strict?: boolean;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(separator);
 
@@ -54,6 +56,7 @@ export function maskitoDateOptionsGenerator({
                 max,
                 dateModeTemplate,
                 dateSegmentSeparator: separator,
+                strict,
             }),
         ],
     };

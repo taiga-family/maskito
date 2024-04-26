@@ -25,6 +25,7 @@ export function maskitoDateRangeOptionsGenerator({
     maxLength,
     dateSeparator = '.',
     rangeSeparator = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`,
+    strict = true,
 }: {
     mode: MaskitoDateMode;
     min?: Date;
@@ -33,6 +34,7 @@ export function maskitoDateRangeOptionsGenerator({
     maxLength?: Partial<MaskitoDateSegments<number>>;
     dateSeparator?: string;
     rangeSeparator?: string;
+    strict?: boolean;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(dateSeparator);
     const dateMask = Array.from(dateModeTemplate).map(char =>
@@ -91,6 +93,7 @@ export function maskitoDateRangeOptionsGenerator({
                 dateModeTemplate,
                 rangeSeparator,
                 dateSegmentSeparator: dateSeparator,
+                strict,
             }),
             createMinMaxRangeLengthPostprocessor({
                 dateModeTemplate,
