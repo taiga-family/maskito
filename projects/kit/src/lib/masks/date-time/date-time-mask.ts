@@ -23,6 +23,7 @@ export function maskitoDateTimeOptionsGenerator({
     min,
     max,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
+    strict = true,
 }: {
     dateMode: MaskitoDateMode;
     timeMode: MaskitoTimeMode;
@@ -30,6 +31,7 @@ export function maskitoDateTimeOptionsGenerator({
     max?: Date;
     min?: Date;
     dateTimeSeparator?: string;
+    strict?: boolean;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
@@ -88,6 +90,7 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 timeMode,
                 dateTimeSeparator,
+                strict,
             }),
         ],
     };
