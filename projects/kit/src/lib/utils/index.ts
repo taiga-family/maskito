@@ -8,6 +8,7 @@ export * from './date/is-date-string-complete';
 export * from './date/parse-date-range-string';
 export * from './date/parse-date-string';
 export * from './date/segments-to-date';
+export * from './date/strict-date-time-mode-validation';
 export * from './date/to-date-string';
 export * from './date/validate-date-string';
 export * from './escape-reg-exp';
