@@ -85,6 +85,16 @@
         <tui-doc-documentation>
             <ng-template
                 documentationPropertyMode="input"
+                documentationPropertyName="strict"
+                documentationPropertyType="boolean"
+                [documentationPropertyValues]="[true, false]"
+                [(documentationPropertyValue)]="strict"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Strict mode
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
                 documentationPropertyName="dateMode"
                 documentationPropertyType="MaskitoDateMode"
                 [documentationPropertyValues]="dateModeOptions"
