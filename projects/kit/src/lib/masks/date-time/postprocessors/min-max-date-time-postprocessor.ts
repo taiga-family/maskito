@@ -43,6 +43,15 @@ export function createMinMaxDateTimePostprocessor({
             })
         ) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
+
+            if (!isDateStringComplete(dateString, dateModeTemplate)) {
+                return {
+                    value,
+                    selection,
+                };
+            }
+
+            const clampedDate = clamp(segmentsToDate(fixedDate), min, max);
             const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
                 ? dateToSegments(clamp(segmentsToDate(fixedDate), min, max))
                 : fixedDate;
@@ -60,7 +69,11 @@ export function createMinMaxDateTimePostprocessor({
 
             return {
                 selection,
-                value: fixedValue + tail,
+                value:
+                    clampedDate.getTime() === min.getTime() ||
+                    clampedDate.getTime() === max.getTime()
+                        ? fixedValue + tail
+                        : value,
             };
         }
 
@@ -75,7 +88,11 @@ export function createMinMaxDateTimePostprocessor({
 
         return {
             selection,
-            value: validatedValue,
+            value:
+                clampedDate.getTime() === min.getTime() ||
+                clampedDate.getTime() === max.getTime()
+                    ? validatedValue
+                    : value,
         };
     };
 }
