@@ -67,12 +67,6 @@ export function maskitoDateRangeOptionsGenerator({
             }),
         ],
         postprocessors: [
-            createDateSegmentsValidationPostprocessor({
-                dateModeTemplate,
-                rangeSeparator,
-                dateSegmentSeparator: dateSeparator,
-                strict,
-            }),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
@@ -93,6 +87,12 @@ export function maskitoDateRangeOptionsGenerator({
                                 : ''),
                         '',
                     ),
+            }),
+            createDateSegmentsValidationPostprocessor({
+                dateModeTemplate,
+                rangeSeparator,
+                dateSegmentSeparator: dateSeparator,
+                strict,
             }),
             createMinMaxDatePostprocessor({
                 min,
