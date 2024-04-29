@@ -61,7 +61,6 @@ export function maskitoDateOptionsGenerator({
                 min,
                 max,
                 dateModeTemplate,
-                dateSegmentSeparator: separator,
             }),
         ],
     };

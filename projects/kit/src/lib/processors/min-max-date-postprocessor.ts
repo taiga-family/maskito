@@ -10,20 +10,17 @@ import {
     segmentsToDate,
     toDateString,
 } from '../utils';
-import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
 
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     rangeSeparator = '',
-    dateSegmentSeparator = '.',
 }: {
     dateModeTemplate: string;
     min?: Date;
     max?: Date;
     rangeSeparator?: string;
-    dateSegmentSeparator?: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithRangeSeparator = rangeSeparator && value.endsWith(rangeSeparator);
@@ -37,23 +34,19 @@ export function createMinMaxDatePostprocessor({
             const parsedDate = parseDateString(dateString, dateModeTemplate);
 
             if (!isDateStringComplete(dateString, dateModeTemplate)) {
-                const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
-
-                const fixedValue = toDateString(fixedDate, {dateMode: dateModeTemplate});
-                const tail = dateString.endsWith(dateSegmentSeparator)
-                    ? dateSegmentSeparator
-                    : '';
-
-                validatedValue += fixedValue + tail;
+                validatedValue += dateString;
                 continue;
             }
 
-            const date = segmentsToDate(parsedDate);
-            const clampedDate = clamp(date, min, max);
+            const clampedDate = clamp(segmentsToDate(parsedDate), min, max);
 
-            validatedValue += toDateString(dateToSegments(clampedDate), {
-                dateMode: dateModeTemplate,
-            });
+            validatedValue +=
+                clampedDate.getTime() === min.getTime() ||
+                clampedDate.getTime() === max.getTime()
+                    ? toDateString(dateToSegments(clampedDate), {
+                          dateMode: dateModeTemplate,
+                      })
+                    : dateString;
         }
 
         return {
