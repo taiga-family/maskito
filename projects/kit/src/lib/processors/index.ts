@@ -1,4 +1,5 @@
 export {createColonConvertPreprocessor} from './colon-convert-preprocessor';
+export {createDateSegmentsValidationPostprocessor} from './date-segments-validation-postprocessor';
 export {createDateSegmentsZeroPaddingPostprocessor} from './date-segments-zero-padding-postprocessor';
 export {createFirstDateEndSeparatorPreprocessor} from './first-date-end-separator-preprocessor';
 export {createFullWidthToHalfWidthPreprocessor} from './fullwidth-to-halfwidth-preprocessor';

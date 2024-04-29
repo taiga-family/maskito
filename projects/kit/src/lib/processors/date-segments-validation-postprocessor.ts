@@ -1,29 +1,23 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
-import {
-    clamp,
-    dateToSegments,
-    isDateStringComplete,
-    parseDateRangeString,
-    parseDateString,
-    segmentsToDate,
-    toDateString,
-} from '../utils';
+import {isDateStringComplete} from '../utils/date/is-date-string-complete';
+import {parseDateRangeString} from '../utils/date/parse-date-range-string';
+import {parseDateString} from '../utils/date/parse-date-string';
 import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
+import {segmentsToDate} from '../utils/date/segments-to-date';
+import {strictDateTimeModeValidation} from '../utils/date/strict-date-time-mode-validation';
+import {toDateString} from '../utils/date/to-date-string';
 
-export function createMinMaxDatePostprocessor({
+export function createDateSegmentsValidationPostprocessor({
     dateModeTemplate,
-    min = DEFAULT_MIN_DATE,
-    max = DEFAULT_MAX_DATE,
     rangeSeparator = '',
     dateSegmentSeparator = '.',
+    strict,
 }: {
     dateModeTemplate: string;
-    min?: Date;
-    max?: Date;
     rangeSeparator?: string;
     dateSegmentSeparator?: string;
+    strict: boolean;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithRangeSeparator = rangeSeparator && value.endsWith(rangeSeparator);
@@ -48,12 +42,16 @@ export function createMinMaxDatePostprocessor({
                 continue;
             }
 
-            const date = segmentsToDate(parsedDate);
-            const clampedDate = clamp(date, min, max);
-
-            validatedValue += toDateString(dateToSegments(clampedDate), {
-                dateMode: dateModeTemplate,
-            });
+            validatedValue += toDateString(
+                strictDateTimeModeValidation({
+                    date: segmentsToDate(parsedDate),
+                    strict,
+                    dateSegments: parsedDate,
+                }),
+                {
+                    dateMode: dateModeTemplate,
+                },
+            );
         }
 
         return {

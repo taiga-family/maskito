@@ -12,7 +12,10 @@ import {
 } from '../../processors';
 import type {MaskitoDateMode, MaskitoTimeMode} from '../../types';
 import {DATE_TIME_SEPARATOR} from './constants';
-import {createMinMaxDateTimePostprocessor} from './postprocessors';
+import {
+    createDateTimeSegmentsValidationPostProcessor,
+    createMinMaxDateTimePostprocessor,
+} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
 import {parseDateTimeString} from './utils';
 
@@ -69,6 +72,12 @@ export function maskitoDateTimeOptionsGenerator({
             }),
         ],
         postprocessors: [
+            createDateTimeSegmentsValidationPostProcessor({
+                dateModeTemplate,
+                timeMode,
+                dateTimeSeparator,
+                strict,
+            }),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
@@ -90,7 +99,6 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 timeMode,
                 dateTimeSeparator,
-                strict,
             }),
         ],
     };

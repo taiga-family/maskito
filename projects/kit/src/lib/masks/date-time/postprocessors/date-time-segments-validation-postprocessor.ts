@@ -1,31 +1,27 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import type {MaskitoTimeMode} from '../../../types';
 import {
-    clamp,
-    dateToSegments,
     isDateStringComplete,
     parseDateString,
     segmentsToDate,
+    strictDateTimeModeValidation,
     toDateString,
 } from '../../../utils';
 import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
 import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
-export function createMinMaxDateTimePostprocessor({
+export function createDateTimeSegmentsValidationPostProcessor({
     dateModeTemplate,
     timeMode,
-    min = DEFAULT_MIN_DATE,
-    max = DEFAULT_MAX_DATE,
     dateTimeSeparator,
+    strict,
 }: {
     dateModeTemplate: string;
     timeMode: MaskitoTimeMode;
-    min?: Date;
-    max?: Date;
     dateTimeSeparator: string;
+    strict: boolean;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [dateString, timeString] = parseDateTimeString(value, {
@@ -43,9 +39,13 @@ export function createMinMaxDateTimePostprocessor({
             })
         ) {
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
-            const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
-                ? dateToSegments(clamp(segmentsToDate(fixedDate), min, max))
-                : fixedDate;
+
+            const {year, month, day} = strictDateTimeModeValidation({
+                date: segmentsToDate(fixedDate),
+                strict,
+                dateSegments: fixedDate,
+                isDateComplete: isDateStringComplete(dateString, dateModeTemplate),
+            });
 
             const fixedValue = toDateString(
                 {
@@ -64,14 +64,19 @@ export function createMinMaxDateTimePostprocessor({
             };
         }
 
-        const date = segmentsToDate(parsedDate, parsedTime);
-        const clampedDate = clamp(date, min, max);
-
-        const validatedValue = toDateString(dateToSegments(clampedDate), {
-            dateMode: dateModeTemplate,
-            dateTimeSeparator,
-            timeMode,
-        });
+        const validatedValue = toDateString(
+            strictDateTimeModeValidation({
+                date: segmentsToDate(parsedDate, parsedTime),
+                strict,
+                dateSegments: parsedDate,
+                timeSegments: parsedTime,
+            }),
+            {
+                dateMode: dateModeTemplate,
+                dateTimeSeparator,
+                timeMode,
+            },
+        );
 
         return {
             selection,
