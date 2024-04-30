@@ -31,13 +31,12 @@ export function createMinMaxDatePostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? rangeSeparator : '';
 
-            const parsedDate = parseDateString(dateString, dateModeTemplate);
-
             if (!isDateStringComplete(dateString, dateModeTemplate)) {
                 validatedValue += dateString;
                 continue;
             }
 
+            const parsedDate = parseDateString(dateString, dateModeTemplate);
             const clampedDate = clamp(segmentsToDate(parsedDate), min, max);
 
             validatedValue +=
