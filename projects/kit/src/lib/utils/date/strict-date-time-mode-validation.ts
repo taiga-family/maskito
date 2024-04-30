@@ -1,4 +1,4 @@
-import {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
+import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
 import {dateToSegments} from './date-to-segments';
 
 export function strictDateTimeModeValidation({
