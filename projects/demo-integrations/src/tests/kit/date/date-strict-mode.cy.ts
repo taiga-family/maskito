@@ -78,7 +78,7 @@ describe('Date | Strict mode', () => {
                 cy.get('@input').type('31042025').should('have.value', '31.04.2025');
             });
 
-            it('29.02.2027 => 10.05.2004', () => {
+            it('29.02.2027 => 10.05.2025', () => {
                 cy.get('@input').type('29022027').should('have.value', '10.05.2025');
             });
         });
