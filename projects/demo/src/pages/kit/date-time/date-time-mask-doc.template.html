@@ -63,6 +63,31 @@
             </ng-template>
             <date-time-mask-doc-example-3 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="strict-mode"
+            heading="Strict and non-strict modes"
+            [content]="strictModeExample"
+            [description]="strict"
+        >
+            <ng-template #strict>
+                <p>
+                    In
+                    <code>strict</code>
+                    mode, if a user tries to enter a non-valid date, the mask will either prevent the user from entering
+                    such a date, or if it is possible to turn it into a valid date, it will change it to a valid date.
+                    Textfield's value
+                    <strong>NEVER</strong>
+                    contains invalid date value.
+                </p>
+                <p>
+                    In
+                    <code>non-strict</code>
+                    mode, textfield sometimes can contains not-valid date (i.e. 31st day for month with only 30 days).
+                </p>
+            </ng-template>
+            <date-time-mask-doc-example-4 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
