@@ -12,6 +12,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
+import {DateMaskDocExample3} from './examples/3-strict-mode/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 
@@ -23,6 +24,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
         TuiLinkModule,
         DateMaskDocExample1,
         DateMaskDocExample2,
+        DateMaskDocExample3,
         TuiInputModule,
         TuiTextfieldControllerModule,
         ReactiveFormsModule,
@@ -43,6 +45,12 @@ export class DateMaskDocComponent implements GeneratorOptions {
 
     protected readonly dateMinMax: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
+    };
+
+    protected readonly strictMode: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-strict-mode/mask.ts?raw'
+        ),
     };
 
     protected readonly modeOptions: MaskitoDateMode[] = [
