@@ -8,24 +8,7 @@ import {
 
 import {openNumberPage} from './utils';
 
-describe('Properly using custom minus sign', () => {
-    const minuses: Array<{value: string; name: string}> = [
-        {
-            value: CHAR_HYPHEN,
-            name: 'hyphen',
-        },
-        {
-            value: CHAR_EN_DASH,
-            name: 'en-dash',
-        },
-        {
-            value: CHAR_EM_DASH,
-            name: 'em-dash',
-        },
-    ];
-
-    const numbers = ['321', '2_432'];
-
+describe('Number | minus sign', () => {
     const pseudoMinuses: Array<{value: string; name: string}> = [
         {value: CHAR_HYPHEN, name: 'hyphen'},
         {value: CHAR_EN_DASH, name: 'en-dash'},
@@ -34,16 +17,35 @@ describe('Properly using custom minus sign', () => {
         {value: CHAR_MINUS, name: 'unicode minus sign'},
     ];
 
-    minuses.forEach(minus => {
-        pseudoMinuses.forEach(pseudoMinus => {
-            numbers.forEach(number => {
-                it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
-                    openNumberPage(
-                        `precision=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
-                    );
-                    cy.get('@input')
-                        .type(`${pseudoMinus.value}${number}`)
-                        .should('have.value', `${minus.value}${number}`);
+    describe('can use hyphen, all kind of dashes and minus interchangeably', () => {
+        const minuses: Array<{value: string; name: string}> = [
+            {
+                value: CHAR_HYPHEN,
+                name: 'hyphen',
+            },
+            {
+                value: CHAR_EN_DASH,
+                name: 'en-dash',
+            },
+            {
+                value: CHAR_EM_DASH,
+                name: 'em-dash',
+            },
+        ];
+
+        const numbers = ['321', '2_432'];
+
+        minuses.forEach(minus => {
+            pseudoMinuses.forEach(pseudoMinus => {
+                numbers.forEach(number => {
+                    it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
+                        openNumberPage(
+                            `precision=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
+                        );
+                        cy.get('@input')
+                            .type(`${pseudoMinus.value}${number}`)
+                            .should('have.value', `${minus.value}${number}`);
+                    });
                 });
             });
         });
