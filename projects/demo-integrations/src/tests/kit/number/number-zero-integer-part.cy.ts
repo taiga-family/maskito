@@ -53,6 +53,28 @@ describe('Number | Zero integer part', () => {
                 .should('have.prop', 'selectionStart', '−0,'.length)
                 .should('have.prop', 'selectionEnd', '−0,'.length);
         });
+
+        it('Textfield with any value => select all => type decimal separator => value is equal "0,"', () => {
+            cy.get('@input')
+                .type(',')
+                .should('have.value', '0,')
+                .type('{selectall}')
+                .type(',')
+                .should('have.value', '0,')
+                .should('have.prop', 'selectionStart', '0,'.length)
+                .should('have.prop', 'selectionEnd', '0,'.length);
+        });
+
+        it('Textfield with any value => Type "." (pseudo decimal separator) => value is equal "0,"', () => {
+            cy.get('@input')
+                .type('1,23')
+                .should('have.value', '1,23')
+                .type('{selectall}')
+                .type('.')
+                .should('have.value', '0,')
+                .should('have.prop', 'selectionStart', '0,'.length)
+                .should('have.prop', 'selectionEnd', '0,'.length);
+        });
     });
 
     describe('value cannot contain many leading zeroes after blur event', () => {

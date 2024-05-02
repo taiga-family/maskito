@@ -27,11 +27,12 @@ export function createNotEmptyIntegerPartPreprocessor({
             prefix,
             postfix,
         });
-        const [from] = selection;
+        const [from, to] = selection;
 
         if (
             precision <= 0 ||
-            cleanValue.includes(decimalSeparator) ||
+            cleanValue.slice(0, from).includes(decimalSeparator) ||
+            cleanValue.slice(to).includes(decimalSeparator) ||
             !data.match(startWithDecimalSepRegExp)
         ) {
             return {elementState, data};
