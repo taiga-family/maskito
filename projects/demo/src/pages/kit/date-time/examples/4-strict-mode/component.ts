@@ -22,7 +22,7 @@ import mask from './mask';
             [tuiTextfieldFiller]="filler"
             [(ngModel)]="value"
         >
-            Min-max
+            Disabled strict mode
             <input
                 inputmode="decimal"
                 tuiTextfield
