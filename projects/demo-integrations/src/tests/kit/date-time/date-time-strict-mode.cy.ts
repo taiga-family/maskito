@@ -1,6 +1,6 @@
 import {DemoPath} from '@demo/constants';
 
-describe('Date | Strict mode', () => {
+describe('DateTime | Strict mode', () => {
     describe('Disabled', () => {
         describe("doesn't fix wrong dates", () => {
             beforeEach(() => {
@@ -88,7 +88,7 @@ describe('Date | Strict mode', () => {
             });
         });
 
-        describe('replaces dates to max, when date greater max 10.05.2025,  18:30', () => {
+        describe('replaces dates to max, when date greater max 10.05.2025, 18:30', () => {
             beforeEach(() => {
                 cy.visit(`/${DemoPath.DateTime}/API?strict=false&max=2025-05-10T18:30`);
                 cy.get('#demo-content input')
