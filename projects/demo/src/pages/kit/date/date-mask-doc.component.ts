@@ -10,6 +10,7 @@ import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
+import {StrictModeDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-description.component';
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
 import {DateMaskDocExample3} from './examples/3-strict-mode/component';
@@ -29,6 +30,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
         TuiTextfieldControllerModule,
         ReactiveFormsModule,
         MaskitoDirective,
+        StrictModeDescriptionComponent,
     ],
     templateUrl: './date-mask-doc.template.html',
     styleUrls: ['./date-mask-doc.style.less'],

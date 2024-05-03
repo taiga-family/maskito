@@ -11,6 +11,7 @@ import {tuiPure} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
+import {StrictModeDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-description.component';
 import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
 import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
 import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
@@ -36,6 +37,7 @@ type GeneratorOptions = Required<
         DateRangeMaskDocExample3,
         DateRangeMaskDocExample4,
         DateRangeMaskDocExample5,
+        StrictModeDescriptionComponent,
     ],
     templateUrl: './date-range-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
