@@ -91,4 +91,41 @@ describe('DateRange | Strict mode', () => {
             });
         });
     });
+
+    describe('Enabled', () => {
+        describe('fixes wrong dates', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.DateRange}/API?strict=true`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it('30.02.2004 => 30.02.2004 - 31.02.2004', () => {
+                cy.get('@input')
+                    .type('30022004')
+                    .should('have.value', '01.03.2004')
+                    .type('31022004')
+                    .should('have.value', '01.03.2004 – 02.03.2004');
+            });
+
+            it('29.02.2003 => 29.02.2003 - 31.04.2004', () => {
+                cy.get('@input')
+                    .type('29022003')
+                    .should('have.value', '01.03.2003')
+                    .type('31042004')
+                    .should('have.value', '01.03.2003 – 01.05.2004');
+            });
+
+            it('31.06.2004 => 31.06.2004 - 31.09.2004', () => {
+                cy.get('@input')
+                    .type('31062004')
+                    .should('have.value', '01.07.2004')
+                    .type('31092004')
+                    .should('have.value', '01.07.2004 – 01.10.2004');
+            });
+        });
+    });
 });

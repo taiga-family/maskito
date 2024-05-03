@@ -28,10 +28,6 @@ describe('Date | Strict mode', () => {
                 cy.get('@input').type('31042004').should('have.value', '31.04.2004');
             });
 
-            it('31.04.2004', () => {
-                cy.get('@input').type('31042004').should('have.value', '31.04.2004');
-            });
-
             it('31.06.2004', () => {
                 cy.get('@input').type('31062004').should('have.value', '31.06.2004');
             });
@@ -80,6 +76,47 @@ describe('Date | Strict mode', () => {
 
             it('29.02.2027 => 10.05.2025', () => {
                 cy.get('@input').type('29022027').should('have.value', '10.05.2025');
+            });
+        });
+    });
+
+    describe('Enabled', () => {
+        describe('fixes wrong dates', () => {
+            beforeEach(() => {
+                cy.visit(`/${DemoPath.Date}/API?strict=true`);
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+            });
+
+            it('30.02.2004', () => {
+                cy.get('@input').type('30022004').should('have.value', '01.03.2004');
+            });
+
+            it('31.02.2004', () => {
+                cy.get('@input').type('31022004').should('have.value', '02.03.2004');
+            });
+
+            it('29.02.2003', () => {
+                cy.get('@input').type('29022003').should('have.value', '01.03.2003');
+            });
+
+            it('31.04.2004', () => {
+                cy.get('@input').type('31042004').should('have.value', '01.05.2004');
+            });
+
+            it('31.06.2004', () => {
+                cy.get('@input').type('31062004').should('have.value', '01.07.2004');
+            });
+
+            it('31.09.2004', () => {
+                cy.get('@input').type('31092004').should('have.value', '01.10.2004');
+            });
+
+            it('31.11.2004', () => {
+                cy.get('@input').type('31112004').should('have.value', '01.12.2004');
             });
         });
     });
