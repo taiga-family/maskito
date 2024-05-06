@@ -139,6 +139,16 @@
 
             <ng-template
                 documentationPropertyMode="input"
+                documentationPropertyName="timeStep"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="timeStep"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Time step
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
                 documentationPropertyName="min"
                 documentationPropertyType="Date"
                 [documentationPropertyValues]="minMaxOptions"

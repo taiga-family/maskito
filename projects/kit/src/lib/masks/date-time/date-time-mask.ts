@@ -1,7 +1,12 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
-import {TIME_FIXED_CHARACTERS} from '../../constants';
+import {
+    DEFAULT_TIME_SEGMENT_MAX_VALUES,
+    DEFAULT_TIME_SEGMENT_MIN_VALUES,
+    TIME_FIXED_CHARACTERS,
+} from '../../constants';
+import {createTimeSegmentsSteppingPlugin} from '../../plugins/time-segments-stepping';
 import {
     createColonConvertPreprocessor,
     createDateSegmentsZeroPaddingPostprocessor,
@@ -23,6 +28,7 @@ export function maskitoDateTimeOptionsGenerator({
     min,
     max,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
+    timeStep = 0,
 }: {
     dateMode: MaskitoDateMode;
     timeMode: MaskitoTimeMode;
@@ -30,8 +36,10 @@ export function maskitoDateTimeOptionsGenerator({
     max?: Date;
     min?: Date;
     dateTimeSeparator?: string;
+    timeStep?: number;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
+    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -88,6 +96,14 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 timeMode,
                 dateTimeSeparator,
+            }),
+        ],
+        plugins: [
+            createTimeSegmentsSteppingPlugin({
+                step: timeStep,
+                fullMode,
+                timeSegmentMaxValues: DEFAULT_TIME_SEGMENT_MAX_VALUES,
+                timeSegmentMinValues: DEFAULT_TIME_SEGMENT_MIN_VALUES,
             }),
         ],
     };

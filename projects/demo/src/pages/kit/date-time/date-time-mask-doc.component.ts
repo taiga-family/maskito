@@ -83,6 +83,7 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
+    public timeStep = 0;
 
     protected maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 
