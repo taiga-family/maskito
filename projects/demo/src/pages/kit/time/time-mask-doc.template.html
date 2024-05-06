@@ -96,6 +96,15 @@
             >
                 Max value for every time segment
             </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="step"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="step"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Step
+            </ng-template>
         </tui-doc-documentation>
     </ng-template>
 </tui-doc-page>
