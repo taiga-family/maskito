@@ -59,6 +59,8 @@ export class TimeMaskDocComponent implements GeneratorOptions {
     public timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
         this.timeSegmentMaxValuesOptions[0];
 
+    public step = 0;
+
     protected maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 
     protected updateOptions(): void {
