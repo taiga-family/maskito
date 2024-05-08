@@ -1,6 +1,7 @@
-import {MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
+import type {MaskitoPlugin} from '@maskito/core';
+import {maskitoUpdateElement} from '@maskito/core';
 
-import {MaskitoTimeSegments} from '../types';
+import type {MaskitoTimeSegments} from '../types';
 
 export function createTimeSegmentsSteppingPlugin({
     step,
