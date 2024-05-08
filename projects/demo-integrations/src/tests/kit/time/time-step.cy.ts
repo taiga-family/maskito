@@ -1,4 +1,5 @@
 import {DemoPath} from '@demo/constants';
+import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
 
 describe('Time', () => {
     describe('Mode', () => {
@@ -76,6 +77,56 @@ describe('Time', () => {
                             '12:{upArrow}{rightArrow}{downArrow}{rightArrow}{downArrow}',
                         )
                         .should('have.value', '12:59');
+                });
+            });
+
+            describe('step = 0', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM&step=0`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('input');
+                });
+
+                it('should be disabled', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                    cy.get('@input').type('1212').realPress('ArrowUp');
+
+                    cy.get('@input')
+                        .should('have.a.prop', 'selectionStart', 0)
+                        .should('have.a.prop', 'selectionEnd', 0)
+                        .realPress('ArrowDown');
+
+                    cy.get('@input')
+                        .should('have.a.prop', 'selectionStart', '12:12'.length)
+                        .should('have.a.prop', 'selectionEnd', '12:12'.length);
+                });
+            });
+
+            describe('step = -2', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM&step=-2`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('input');
+                });
+
+                it('should be disabled', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                    cy.get('@input').type('1212').realPress('ArrowUp');
+
+                    cy.get('@input')
+                        .should('have.a.prop', 'selectionStart', 0)
+                        .should('have.a.prop', 'selectionEnd', 0)
+                        .realPress('ArrowDown');
+
+                    cy.get('@input')
+                        .should('have.a.prop', 'selectionStart', '12:12'.length)
+                        .should('have.a.prop', 'selectionEnd', '12:12'.length);
                 });
             });
         });

@@ -1,4 +1,5 @@
 import {DemoPath} from '@demo/constants';
+import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
 
 describe('DateTime | timeStep', () => {
     describe('yy/mm;HH:MM:SS.MSS', () => {
@@ -106,6 +107,38 @@ describe('DateTime | timeStep', () => {
                     .should('have.value', '22.12;15:37:59.115')
                     .should('have.a.prop', 'selectionStart', 0)
                     .should('have.a.prop', 'selectionEnd', 0);
+            });
+        });
+
+        describe('timeStep = 0', () => {
+            beforeEach(() => {
+                cy.visit(
+                    `/${DemoPath.DateTime}/API?dateTimeSeparator=;&dateMode=yy%2Fmm&timeStep=0&timeMode=HH:MM:SS.MSS`,
+                );
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .as('input');
+
+                cy.get('@input')
+                    .type('1202123456000')
+                    .should('have.value', '12.02;12:34:56.000')
+                    .should('have.a.prop', 'selectionStart', '12.02;12:34:56.000'.length)
+                    .should('have.a.prop', 'selectionEnd', '12.02;12:34:56.000'.length);
+            });
+
+            it('should be disabled', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                cy.get('@input').realPress('ArrowUp');
+
+                cy.get('@input')
+                    .should('have.a.prop', 'selectionStart', 0)
+                    .should('have.a.prop', 'selectionEnd', 0)
+                    .realPress('ArrowDown');
+
+                cy.get('@input')
+                    .should('have.a.prop', 'selectionStart', '12.02;12:34:56.000'.length)
+                    .should('have.a.prop', 'selectionEnd', '12.02;12:34:56.000'.length);
             });
         });
     });
