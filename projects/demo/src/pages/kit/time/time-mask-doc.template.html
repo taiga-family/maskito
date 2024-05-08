@@ -55,6 +55,32 @@
             </ng-template>
             <time-mask-doc-example-2 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="step"
+            heading="Arrows stepping"
+            [content]="stepExample3"
+            [description]="stepDescription"
+        >
+            <ng-template #stepDescription>
+                <p class="tui-space_top-0 tui-space_bottom-1">
+                    Property
+                    <code>step</code>
+                    allows you to increment and decrement time segments by pressing
+                    <code>UpArrow</code>
+                    and
+                    <code>DownArrow</code>
+                    .
+                </p>
+
+                <p class="tui-space_top-0">
+                    When
+                    <code>step > 0</code>
+                    it enables arrows. Otherwise arrows are disabled.
+                </p>
+            </ng-template>
+            <time-mask-doc-example-3 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
