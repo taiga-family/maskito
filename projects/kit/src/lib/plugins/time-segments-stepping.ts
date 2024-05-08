@@ -16,7 +16,7 @@ export function createTimeSegmentsSteppingPlugin({
     const segmentsIndexes = createTimeSegmentsIndexes({fullMode});
 
     return element => {
-        if (step === 0) {
+        if (step <= 0) {
             return;
         }
 
