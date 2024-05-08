@@ -6,9 +6,10 @@ export function toTimeString({
     seconds = '',
     milliseconds = '',
 }: Partial<MaskitoTimeSegments>): string {
-    const mm = minutes && `:${minutes}`;
-    const ss = seconds && `:${seconds}`;
-    const ms = milliseconds && `.${milliseconds}`;
+    const mm = hours ? minutes && `:${minutes}` : minutes;
+    const ss = hours || minutes ? seconds && `:${seconds}` : seconds;
+    const ms =
+        hours || minutes || seconds ? milliseconds && `.${milliseconds}` : milliseconds;
 
     return `${hours}${mm}${ss}${ms}`;
 }

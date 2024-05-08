@@ -9,10 +9,12 @@ export function createValidDateTimePreprocessor({
     dateModeTemplate,
     dateSegmentsSeparator,
     dateTimeSeparator,
+    timeMode,
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
     dateTimeSeparator: string;
+    timeMode: string;
 }): MaskitoPreprocessor {
     const invalidCharsRegExp = new RegExp(
         `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}${escapeRegExp(
@@ -69,6 +71,7 @@ export function createValidDateTimePreprocessor({
             paddedMaxValues,
             offset: validatedValue.length + dateTimeSeparator.length,
             selection: [from, to],
+            timeMode,
         });
 
         if (timeString && !validatedTimeString) {

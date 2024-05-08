@@ -7,6 +7,7 @@ import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
+    timeMode: string,
 ): MaskitoPreprocessor {
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
     const invalidCharsRegExp = new RegExp(
@@ -26,6 +27,7 @@ export function createMaxValidationPreprocessor(
                 paddedMaxValues,
                 offset: 0,
                 selection,
+                timeMode,
             });
 
             return {
@@ -47,6 +49,7 @@ export function createMaxValidationPreprocessor(
             paddedMaxValues,
             offset: 0,
             selection: [from, to],
+            timeMode,
         });
 
         if (newPossibleValue && !validatedTimeString) {

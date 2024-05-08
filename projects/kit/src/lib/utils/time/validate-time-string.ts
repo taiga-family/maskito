@@ -14,13 +14,15 @@ export function validateTimeString({
     paddedMaxValues,
     offset,
     selection: [from, to],
+    timeMode,
 }: {
     timeString: string;
     paddedMaxValues: MaskitoTimeSegments;
     offset: number;
     selection: readonly [number, number];
+    timeMode: string;
 }): {validatedTimeString: string; updatedTimeSelection: [number, number]} {
-    const parsedTime = parseTimeString(timeString);
+    const parsedTime = parseTimeString(timeString, timeMode);
 
     const possibleTimeSegments = Object.entries(parsedTime) as Array<
         [keyof MaskitoTimeSegments, string]

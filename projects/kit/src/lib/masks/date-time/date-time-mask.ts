@@ -64,6 +64,7 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
                 dateTimeSeparator,
+                timeMode,
             }),
         ],
         postprocessors: [

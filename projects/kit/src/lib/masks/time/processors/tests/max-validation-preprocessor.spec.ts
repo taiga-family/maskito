@@ -2,7 +2,10 @@ import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../../constants';
 import {createMaxValidationPreprocessor} from '../max-validation-preprocessor';
 
 describe('createMaxValidationPreprocessor', () => {
-    const processor = createMaxValidationPreprocessor(DEFAULT_TIME_SEGMENT_MAX_VALUES);
+    const processor = createMaxValidationPreprocessor(
+        DEFAULT_TIME_SEGMENT_MAX_VALUES,
+        'HH:MM:SS',
+    );
 
     describe('Paste from clipboard', () => {
         const process = (data: string): string =>
