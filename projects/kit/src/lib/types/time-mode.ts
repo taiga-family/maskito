@@ -3,5 +3,5 @@ export type MaskitoTimeMode =
     | 'HH:MM:SS'
     | 'HH:MM'
     | 'HH'
-    | 'MM:SS.MSS'
+    | 'MM.SS.MSS'
     | 'SS.MSS';

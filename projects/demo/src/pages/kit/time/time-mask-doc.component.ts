@@ -49,7 +49,7 @@ export class TimeMaskDocComponent implements GeneratorOptions {
         'HH:MM:SS',
         'HH:MM:SS.MSS',
         'HH',
-        'MM:SS.MSS',
+        'MM.SS.MSS',
         'SS.MSS',
     ];
 
