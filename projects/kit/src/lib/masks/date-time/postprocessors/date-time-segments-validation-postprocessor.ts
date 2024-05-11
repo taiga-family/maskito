@@ -12,7 +12,7 @@ import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to
 import {parseTimeString} from '../../../utils/time';
 import {isDateTimeStringComplete, parseDateTimeString} from '../utils';
 
-export function createDateTimeSegmentsValidationPostProcessor({
+export function createDateTimeSegmentsValidationPostprocessor({
     dateModeTemplate,
     timeMode,
     dateTimeSeparator,

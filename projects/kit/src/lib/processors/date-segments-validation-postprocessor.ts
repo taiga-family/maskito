@@ -28,12 +28,17 @@ export function createDateSegmentsValidationPostprocessor({
         for (const dateString of dateStrings) {
             validatedValue += validatedValue ? rangeSeparator : '';
 
-            const parsedDate = parseDateString(dateString, dateModeTemplate);
+            const parsedDateSegments = parseDateString(dateString, dateModeTemplate);
 
             if (!isDateStringComplete(dateString, dateModeTemplate)) {
-                const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
+                const fixedDateSegments = raiseSegmentValueToMin(
+                    parsedDateSegments,
+                    dateModeTemplate,
+                );
 
-                const fixedValue = toDateString(fixedDate, {dateMode: dateModeTemplate});
+                const fixedValue = toDateString(fixedDateSegments, {
+                    dateMode: dateModeTemplate,
+                });
                 const tail = dateString.endsWith(dateSegmentSeparator)
                     ? dateSegmentSeparator
                     : '';
@@ -44,9 +49,9 @@ export function createDateSegmentsValidationPostprocessor({
 
             validatedValue += toDateString(
                 strictDateTimeModeValidation({
-                    date: segmentsToDate(parsedDate),
+                    date: segmentsToDate(parsedDateSegments),
                     strict,
-                    dateSegments: parsedDate,
+                    dateSegments: parsedDateSegments,
                 }),
                 {
                     dateMode: dateModeTemplate,
