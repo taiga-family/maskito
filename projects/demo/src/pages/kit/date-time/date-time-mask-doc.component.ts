@@ -11,6 +11,7 @@ import {tuiPure} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {DATE_TIME_SEPARATOR, TuiInputModule} from '@taiga-ui/kit';
 
+import {StrictModeApiDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-api-description.component';
 import {StrictModeDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-description.component';
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
 import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
@@ -36,6 +37,7 @@ type GeneratorOptions = Required<
         DateTimeMaskDocExample3,
         DateTimeMaskDocExample4,
         StrictModeDescriptionComponent,
+        StrictModeApiDescriptionComponent,
     ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
