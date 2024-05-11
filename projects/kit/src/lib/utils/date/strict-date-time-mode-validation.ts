@@ -14,9 +14,7 @@ export function strictDateTimeModeValidation({
     timeSegments?: Partial<MaskitoTimeSegments>;
     isDateComplete?: boolean;
 }): Partial<MaskitoDateSegments & MaskitoTimeSegments> {
-    if (strict) {
-        return isDateComplete ? dateToSegments(date) : {...dateSegments, ...timeSegments};
-    }
-
-    return {...dateSegments, ...timeSegments};
+    return strict && isDateComplete
+        ? dateToSegments(date)
+        : {...dateSegments, ...timeSegments};
 }
