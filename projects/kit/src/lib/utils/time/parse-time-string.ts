@@ -9,11 +9,7 @@ export function parseTimeString(
 ): Partial<MaskitoTimeSegments> {
     const onlyDigits = timeString.replaceAll(/\D+/g, '');
 
-    const sliceIndexes = createSliceIndexes({
-        isStartsWithMilliseconds: timeMode.startsWith('MSS'),
-        isStartsWithMinutes: timeMode.startsWith('MM'),
-        isStartsWithSeconds: timeMode.startsWith('SS'),
-    });
+    const sliceIndexes = createSliceIndexes(timeMode);
 
     const timeSegments = {
         hours: onlyDigits.slice(...sliceIndexes.hours),
@@ -27,19 +23,11 @@ export function parseTimeString(
     );
 }
 
-function createSliceIndexes({
-    isStartsWithMinutes,
-    isStartsWithSeconds,
-    isStartsWithMilliseconds,
-}: {
-    isStartsWithMinutes: boolean;
-    isStartsWithSeconds: boolean;
-    isStartsWithMilliseconds: boolean;
-}): MaskitoTimeSegments<[number, number]> {
+function createSliceIndexes(timeMode: string): MaskitoTimeSegments<[number, number]> {
     const offset =
-        Number(isStartsWithMinutes) * 2 +
-        Number(isStartsWithSeconds) * 4 +
-        Number(isStartsWithMilliseconds) * 6;
+        Number(timeMode.startsWith('MM')) * 2 +
+        Number(timeMode.startsWith('SS')) * 4 +
+        Number(timeMode.startsWith('MSS')) * 6;
 
     const changeSelection = (index: number): number => Math.max(index - offset, 0);
 
