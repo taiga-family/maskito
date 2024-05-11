@@ -10,8 +10,8 @@ import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 
-import {StrictModeApiDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-api-description.component';
-import {StrictModeDescriptionComponent} from '../components/strict-mode-descriptino/strict-mode-description.component';
+import {StrictModeApiDescriptionComponent} from '../components/strict-mode-description/strict-mode-api-description.component';
+import {StrictModeDescriptionComponent} from '../components/strict-mode-description/strict-mode-description.component';
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
 import {DateMaskDocExample3} from './examples/3-strict-mode/component';
