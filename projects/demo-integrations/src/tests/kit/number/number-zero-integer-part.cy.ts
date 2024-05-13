@@ -2,56 +2,132 @@ import {openNumberPage} from './utils';
 
 describe('Number | Zero integer part', () => {
     describe('User types decimal separator when input is empty (decimalSeparator="," && precision=2)', () => {
-        beforeEach(() => {
-            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=2');
+        describe('without prefix / postfix', () => {
+            beforeEach(() => {
+                openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=2');
+            });
+
+            it('Empty input => Type "," (decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type(',')
+                    .should('have.value', '0,')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
+
+            it('Input has only minus sign => Type "," (decimal separator) => value is equal "-0,|"', () => {
+                cy.get('@input')
+                    .type('-,')
+                    .should('have.value', '−0,')
+                    .should('have.prop', 'selectionStart', '−0,'.length)
+                    .should('have.prop', 'selectionEnd', '−0,'.length);
+            });
+
+            it('Empty input => Type "." (pseudo decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type('.')
+                    .should('have.value', '0,')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
+
+            it('Input has only minus sign => Type "." (pseudo decimal separator) => value is equal "-0,|"', () => {
+                cy.get('@input')
+                    .type('-.')
+                    .should('have.value', '−0,')
+                    .should('have.prop', 'selectionStart', '−0,'.length)
+                    .should('have.prop', 'selectionEnd', '−0,'.length);
+            });
+
+            it('Empty input => Type "ю" (pseudo decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type('ю')
+                    .should('have.value', '0,')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
+
+            it('Empty input => Type "ю" (pseudo decimal separator) => value is equal "-0,"', () => {
+                cy.get('@input')
+                    .type('-ю')
+                    .should('have.value', '−0,')
+                    .should('have.prop', 'selectionStart', '−0,'.length)
+                    .should('have.prop', 'selectionEnd', '−0,'.length);
+            });
+
+            it('Textfield with any value => Select all => Type decimal separator => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type(',')
+                    .should('have.value', '0,')
+                    .type('{selectall}')
+                    .type(',')
+                    .should('have.value', '0,')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
+
+            it('Textfield with any value => Select all => Type "." (pseudo decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type('1,23')
+                    .should('have.value', '1,23')
+                    .type('{selectall}')
+                    .type('.')
+                    .should('have.value', '0,')
+                    .should('have.prop', 'selectionStart', '0,'.length)
+                    .should('have.prop', 'selectionEnd', '0,'.length);
+            });
         });
 
-        it('Empty input => Type "," (decimal separator) => value is equal "0,"', () => {
-            cy.get('@input')
-                .type(',')
-                .should('have.value', '0,')
-                .should('have.prop', 'selectionStart', '0,'.length)
-                .should('have.prop', 'selectionEnd', '0,'.length);
-        });
+        describe('With prefix ($) & postfix (%)', () => {
+            beforeEach(() => {
+                openNumberPage(
+                    'thousandSeparator=_&decimalSeparator=,&precision=2&prefix=$&postfix=kg',
+                );
 
-        it('Input has only minus sign => Type "," (decimal separator) => value is equal "-0,|"', () => {
-            cy.get('@input')
-                .type('-,')
-                .should('have.value', '−0,')
-                .should('have.prop', 'selectionStart', '−0,'.length)
-                .should('have.prop', 'selectionEnd', '−0,'.length);
-        });
+                cy.get('@input')
+                    .focused()
+                    .should('have.value', '$kg')
+                    .should('have.prop', 'selectionStart', 1)
+                    .should('have.prop', 'selectionEnd', 1);
+            });
 
-        it('Empty input => Type "." (pseudo decimal separator) => value is equal "0,"', () => {
-            cy.get('@input')
-                .type('.')
-                .should('have.value', '0,')
-                .should('have.prop', 'selectionStart', '0,'.length)
-                .should('have.prop', 'selectionEnd', '0,'.length);
-        });
+            it('Empty value (only prefix & postfix) => Type "," (decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type(',')
+                    .should('have.value', '$0,kg')
+                    .should('have.prop', 'selectionStart', '$0,'.length)
+                    .should('have.prop', 'selectionEnd', '$0,'.length);
+            });
 
-        it('Input has only minus sign => Type "." (pseudo decimal separator) => value is equal "-0,|"', () => {
-            cy.get('@input')
-                .type('-.')
-                .should('have.value', '−0,')
-                .should('have.prop', 'selectionStart', '−0,'.length)
-                .should('have.prop', 'selectionEnd', '−0,'.length);
-        });
+            it('Empty value (only prefix & postfix) => Type "." (pseudo decimal separator) => value is equal "0,"', () => {
+                cy.get('@input')
+                    .type('.')
+                    .should('have.value', '$0,kg')
+                    .should('have.prop', 'selectionStart', '$0,'.length)
+                    .should('have.prop', 'selectionEnd', '$0,'.length);
+            });
 
-        it('Empty input => Type "ю" (pseudo decimal separator) => value is equal "0,"', () => {
-            cy.get('@input')
-                .type('ю')
-                .should('have.value', '0,')
-                .should('have.prop', 'selectionStart', '0,'.length)
-                .should('have.prop', 'selectionEnd', '0,'.length);
-        });
+            it('Textfield with any value => Select all => Type decimal separator => value is equal "$0,kg"', () => {
+                cy.get('@input')
+                    .type('1,23')
+                    .should('have.value', '$1,23kg')
+                    .type('{selectall}')
+                    .type(',')
+                    .should('have.value', '$0,kg')
+                    .should('have.prop', 'selectionStart', '$0,'.length)
+                    .should('have.prop', 'selectionEnd', '$0,'.length);
+            });
 
-        it('Empty input => Type "ю" (pseudo decimal separator) => value is equal "-0,"', () => {
-            cy.get('@input')
-                .type('-ю')
-                .should('have.value', '−0,')
-                .should('have.prop', 'selectionStart', '−0,'.length)
-                .should('have.prop', 'selectionEnd', '−0,'.length);
+            it('Textfield with any value => Select all => Type pseudo decimal separator => value is equal "$0,kg"', () => {
+                cy.get('@input')
+                    .type('1,23')
+                    .should('have.value', '$1,23kg')
+                    .type('{selectall}')
+                    .type('.')
+                    .should('have.value', '$0,kg')
+                    .should('have.prop', 'selectionStart', '$0,'.length)
+                    .should('have.prop', 'selectionEnd', '$0,'.length);
+            });
         });
     });
 
