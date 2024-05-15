@@ -3,6 +3,8 @@ import {maskitoUpdateElement} from '@maskito/core';
 
 import type {MaskitoTimeSegments} from '../types';
 
+const noop = (): void => {};
+
 export function createTimeSegmentsSteppingPlugin({
     step,
     fullMode,
@@ -14,59 +16,57 @@ export function createTimeSegmentsSteppingPlugin({
     timeSegmentMaxValues: MaskitoTimeSegments<number>;
     timeSegmentMinValues: MaskitoTimeSegments<number>;
 }): MaskitoPlugin {
-    const segmentsIndexes = createTimeSegmentsIndexes({fullMode});
+    const segmentsIndexes = createTimeSegmentsIndexes(fullMode);
 
-    return element => {
-        if (step <= 0) {
-            return;
-        }
+    return step <= 0
+        ? noop
+        : element => {
+              const listener = (event: KeyboardEvent): void => {
+                  if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+                      return;
+                  }
 
-        const listener = (event: KeyboardEvent): void => {
-            if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
-                return;
-            }
+                  event.preventDefault();
+                  const selectionStart = element.selectionStart || 0;
+                  const selectedSegment = getSelectedSegment({
+                      segmentsIndexes,
+                      selectionStart,
+                  });
 
-            event.preventDefault();
-            const selectionStart = element.selectionStart || 0;
-            const selectedSegment = getSelectedSegment({
-                segmentsIndexes,
-                selectionStart,
-            });
+                  if (!selectedSegment) {
+                      return;
+                  }
 
-            if (!selectedSegment) {
-                return;
-            }
+                  const segmentSelection = segmentsIndexes.get(
+                      selectedSegment,
+                  ) as number[];
 
-            const segmentSelection = segmentsIndexes.get(selectedSegment) as number[];
+                  const updatedValue = updateSegmentValue({
+                      selection: [
+                          segmentSelection[0],
+                          segmentSelection[segmentSelection.length - 1],
+                      ],
+                      value: element.value,
+                      toAdd: event.key === 'ArrowUp' ? step : -step,
+                      min: timeSegmentMinValues[selectedSegment],
+                      max: timeSegmentMaxValues[selectedSegment],
+                  });
 
-            const updatedValue = updateSegmentValue({
-                selection: [
-                    segmentSelection[0],
-                    segmentSelection[segmentSelection.length - 1],
-                ],
-                value: element.value,
-                toAdd: event.key === 'ArrowUp' ? step : -step,
-                min: timeSegmentMinValues[selectedSegment],
-                max: timeSegmentMaxValues[selectedSegment],
-            });
+                  maskitoUpdateElement(element, {
+                      value: updatedValue,
+                      selection: [selectionStart, selectionStart],
+                  });
+              };
 
-            maskitoUpdateElement(element, {
-                value: updatedValue,
-                selection: [selectionStart, selectionStart],
-            });
-        };
+              element.addEventListener('keydown', listener);
 
-        element.addEventListener('keydown', listener);
-
-        return () => element.removeEventListener('keydown', listener);
-    };
+              return () => element.removeEventListener('keydown', listener);
+          };
 }
 
-function createTimeSegmentsIndexes({
-    fullMode,
-}: {
-    fullMode: string;
-}): Map<keyof MaskitoTimeSegments, number[]> {
+function createTimeSegmentsIndexes(
+    fullMode: string,
+): Map<keyof MaskitoTimeSegments, number[]> {
     return new Map([
         ['hours', createIndexes(fullMode.indexOf('HH'), 'HH'.length)],
         ['minutes', createIndexes(fullMode.indexOf('MM'), 'MM'.length)],
