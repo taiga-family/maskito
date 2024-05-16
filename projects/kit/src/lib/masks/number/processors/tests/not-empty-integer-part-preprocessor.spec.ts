@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {createNotEmptyIntegerPartPreprocessor} from '../not-empty-integer-part-preprocessor';
 
 const EMPTY_ELEMENT_STATE = {

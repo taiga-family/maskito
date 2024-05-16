@@ -1,3 +1,4 @@
+import {describe, expect, it} from '@jest/globals';
 import type {MaskitoPreprocessor} from '@maskito/core';
 
 import {normalizeDatePreprocessor} from '../normalize-date-preprocessor';

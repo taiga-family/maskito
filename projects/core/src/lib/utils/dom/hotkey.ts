@@ -39,7 +39,6 @@ export function isHotkey(
          * "keyboard-layout"-independent than {@link KeyboardEvent#key `key`} or {@link KeyboardEvent#code `code`} properties.
          * @see {@link https://github.com/taiga-family/maskito/issues/315 `KeyboardEvent#code` issue}
          */
-        // eslint-disable-next-line sonar/deprecation
         event.keyCode === hotkeyCode
     );
 }

@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {
     CHAR_EM_DASH,
     CHAR_EN_DASH,

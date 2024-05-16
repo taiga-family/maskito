@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {MASKITO_DEFAULT_OPTIONS} from '../../../constants';
 import type {MaskitoOptions} from '../../../types';
 import {MaskModel} from '../mask-model';

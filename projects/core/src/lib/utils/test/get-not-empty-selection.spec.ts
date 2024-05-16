@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import type {ElementState} from '../../types';
 import {getNotEmptySelection} from '../get-not-empty-selection';
 

@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import type {MaskitoOptions} from '../../types';
 import {maskitoTransform} from '../transform';
 

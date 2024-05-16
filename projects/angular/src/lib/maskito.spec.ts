@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import type {ComponentFixture} from '@angular/core/testing';
 import {TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {beforeEach, describe, expect, it} from '@jest/globals';
 import {MaskitoDirective, MaskitoPipe} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 
