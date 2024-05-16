@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.2](https://github.com/taiga-family/maskito/compare/v2.3.1...v2.3.2) (2024-05-16)
+
+### Bug Fixes
+
+- **kit:** `Number` pads integer part with zero if user selects all and then types decimal separator
+  ([#1220](https://github.com/taiga-family/maskito/issues/1220))
+  ([8371e45](https://github.com/taiga-family/maskito/commit/8371e45767150ebc4db03a2b74c68afd6fe1e593))
+- **phone:** revert mistakenly fixated `libphonenumber-js` peer-dependency to just `>=1.0.0`
+  ([#1234](https://github.com/taiga-family/maskito/issues/1234))
+  ([27ee4a1](https://github.com/taiga-family/maskito/commit/27ee4a1264c0a70a5a06427368b8d18ed0e25bd4))
+- **react:** revert mistakenly fixated `react` & `react-demo` peer-dependencies to just `>=16.8`
+  ([#1231](https://github.com/taiga-family/maskito/issues/1231))
+  ([ae89d6f](https://github.com/taiga-family/maskito/commit/ae89d6ff549dfb21d7db56b26e3c1f3a7044a817))
+- **vue:** revert mistakenly fixated `vue` peer-dependency to just `>=3.0.0`
+  ([#1232](https://github.com/taiga-family/maskito/issues/1232))
+  ([22d84e2](https://github.com/taiga-family/maskito/commit/22d84e2f731ae8798f457466be7c9538d2f40fd9))
+
 ### [2.3.1](https://github.com/taiga-family/maskito/compare/v2.3.0...v2.3.1) (2024-04-23)
 
 ### Bug Fixes
