@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {DEFAULT_DECIMAL_PSEUDO_SEPARATORS} from '../../../../constants';
 import {validateDecimalPseudoSeparators} from '../validate-decimal-pseudo-separators';
 

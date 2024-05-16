@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {getDateSegmentValueLength} from '../date-segment-value-length';
 
 describe('getDateSegmentValueLength', () => {

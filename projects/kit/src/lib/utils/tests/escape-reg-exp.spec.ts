@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {CHAR_HYPHEN, CHAR_MINUS} from '../../constants';
 import {escapeRegExp} from '../escape-reg-exp';
 

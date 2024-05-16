@@ -1,9 +1,9 @@
+import {describe, expect, it} from '@jest/globals';
 import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {maskitoPrefixPostprocessorGenerator} from '../prefix-postprocessor';
 
 type ElementState = ReturnType<MaskitoPostprocessor>;
-
 describe('maskitoPrefixPostprocessorGenerator', () => {
     const EMPTY_INPUT = {value: '', selection: [0, 0] as const};
 

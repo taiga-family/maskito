@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../../constants';
 import {createMaxValidationPreprocessor} from '../max-validation-preprocessor';
 

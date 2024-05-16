@@ -1,12 +1,13 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
-import {maskitoDateOptionsGenerator} from '@maskito/kit';
-
 /**
  * If any of these tests fail,
  * it can mean that browser autofill or composition are not working properly
  * for Date mask
  */
+import {beforeEach, describe, expect, it} from '@jest/globals';
+import type {MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+import {maskitoDateOptionsGenerator} from '@maskito/kit';
+
 describe('Date (maskitoTransform)', () => {
     describe('[mode]="yyyy/mm/dd"', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;

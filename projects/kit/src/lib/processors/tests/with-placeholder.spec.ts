@@ -1,3 +1,4 @@
+import {describe, expect, it} from '@jest/globals';
 import {maskitoPipe} from '@maskito/core';
 import {maskitoWithPlaceholder} from '@maskito/kit';
 

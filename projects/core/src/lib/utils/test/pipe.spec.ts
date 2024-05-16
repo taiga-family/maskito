@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import type {ElementState, MaskitoPostprocessor, MaskitoPreprocessor} from '../../types';
 import {maskitoPipe} from '../pipe';
 

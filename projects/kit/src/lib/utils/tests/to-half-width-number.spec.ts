@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {toHalfWidthNumber} from '../to-half-width-number';
 
 describe('`toHalfWidthNumber` utility converts full width numbers to half width numbers', () => {

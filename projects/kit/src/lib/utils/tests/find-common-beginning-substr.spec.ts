@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {findCommonBeginningSubstr} from '../find-common-beginning-substr';
 
 describe('findCommonBeginningSubstr', () => {

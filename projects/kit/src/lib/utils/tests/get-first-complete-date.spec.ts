@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {getFirstCompleteDate} from '../date/get-first-complete-date';
 
 describe('getFirstCompleteDate', () => {

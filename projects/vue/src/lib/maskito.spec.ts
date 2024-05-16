@@ -1,3 +1,4 @@
+import {describe, expect, it} from '@jest/globals';
 import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskito} from '@maskito/vue';
 import {mount} from '@vue/test-utils';

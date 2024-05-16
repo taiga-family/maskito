@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {getWordSelection} from '../get-word-selection';
 
 describe('getWordSelection', () => {
