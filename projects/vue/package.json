@@ -31,10 +31,10 @@
     "devDependencies": {
         "@vue/test-utils": "2.4.6",
         "@vue/vue3-jest": "29.2.6",
-        "vue": "3.4.22"
+        "vue": "3.4.27"
     },
     "peerDependencies": {
         "@maskito/core": "^2.3.1",
-        "vue": ">=3.0.0"
+        "vue": ">=3.4.27"
     }
 }
