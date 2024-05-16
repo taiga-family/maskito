@@ -15,7 +15,7 @@
         "@maskito/core": "*",
         "@maskito/kit": "*",
         "@ng-web-apis/universal": "3.0.7",
-        "@nguniversal/express-engine": "15.2.1",
+        "@nguniversal/express-engine": "16.2.0",
         "@stackblitz/sdk": "1.10.0",
         "@taiga-ui/addon-doc": "3.79.0",
         "@taiga-ui/addon-mobile": "3.79.0",
@@ -35,6 +35,6 @@
     },
     "devDependencies": {
         "@angular-builders/custom-webpack": "15.0.0",
-        "@nguniversal/builders": "15.2.1"
+        "@nguniversal/builders": "16.2.0"
     }
 }
