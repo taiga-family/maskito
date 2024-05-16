@@ -27,8 +27,8 @@
         "@taiga-ui/testing": "3.75.0",
         "@tinkoff/ng-dompurify": "4.0.0",
         "ngx-markdown": "15.1.2",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
         "rxjs": "7.8.1",
         "tslib": "2.6.2",
         "vue": "3.4.27"
