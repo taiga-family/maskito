@@ -26,7 +26,7 @@ export function createTimeSegmentsSteppingPlugin({
 
                   event.preventDefault();
                   const selectionStart = element.selectionStart || 0;
-                  const selectedSegment = getSelectedSegment({
+                  const selectedSegment = getActiveSegment({
                       segmentsIndexes,
                       selectionStart,
                   });
@@ -35,15 +35,13 @@ export function createTimeSegmentsSteppingPlugin({
                       return;
                   }
 
-                  const segmentSelection = segmentsIndexes.get(
-                      selectedSegment,
-                  ) as number[];
+                  const segmentSelection = segmentsIndexes.get(selectedSegment) as [
+                      number,
+                      number,
+                  ];
 
                   const updatedValue = updateSegmentValue({
-                      selection: [
-                          segmentSelection[0],
-                          segmentSelection[segmentSelection.length - 1],
-                      ],
+                      selection: segmentSelection,
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
                       max: timeSegmentMaxValues[selectedSegment],
@@ -72,20 +70,26 @@ function createTimeSegmentsIndexes(
     ]);
 }
 
-function createIndexes(index: number, count: number): number[] {
-    return index === -1 ? [] : new Array(count + 1).fill(index).map((val, i) => val + i);
+function createIndexes(index: number, segmentLength: number): number[] {
+    return index === -1 ? [] : [index, index + segmentLength];
 }
 
-function getSelectedSegment({
+function getActiveSegment({
     segmentsIndexes,
     selectionStart,
 }: {
     segmentsIndexes: Map<keyof MaskitoTimeSegments, number[]>;
     selectionStart: number;
 }): keyof MaskitoTimeSegments | null {
-    for (const key of segmentsIndexes.keys()) {
-        if (segmentsIndexes.get(key)?.includes(selectionStart)) {
-            return key;
+    for (const segmentName of segmentsIndexes.keys()) {
+        if (!segmentsIndexes.get(segmentName)?.length) {
+            continue;
+        }
+
+        const [from, to] = segmentsIndexes.get(segmentName) as [number, number];
+
+        if (from <= selectionStart && selectionStart <= to) {
+            return segmentName;
         }
     }
 
@@ -103,14 +107,14 @@ function updateSegmentValue({
     toAdd: number;
     max: number;
 }): string {
-    const [start, end] = selection;
-    const segmentValue = Number(value.slice(start, end).padEnd(end - start, '0'));
+    const [from, to] = selection;
+    const segmentValue = Number(value.slice(from, to).padEnd(to - from, '0'));
     const newSegmentValue = mod(segmentValue + toAdd, max + 1);
 
     return (
-        value.slice(0, start) +
-        String(newSegmentValue).padStart(end - start, '0') +
-        value.slice(end, value.length)
+        value.slice(0, from) +
+        String(newSegmentValue).padStart(to - from, '0') +
+        value.slice(to, value.length)
     );
 }
 
