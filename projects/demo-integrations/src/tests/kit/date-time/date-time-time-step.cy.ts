@@ -31,7 +31,8 @@ describe('DateTime | timeStep', () => {
                     .should('have.value', '22.12;22')
                     .should('have.a.prop', 'selectionStart', '22.12;2'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;2'.length)
-                    .type(`{rightArrow}${'{upArrow}'.repeat(12)}`)
+                    .type('{rightArrow}')
+                    .type('{upArrow}'.repeat(12))
                     .should('have.value', '22.12;10')
                     .should('have.a.prop', 'selectionStart', '22.12;10'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;10'.length);
