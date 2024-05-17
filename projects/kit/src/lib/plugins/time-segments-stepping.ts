@@ -35,7 +35,7 @@ export function createTimeSegmentsSteppingPlugin({
                   }
 
                   const updatedValue = updateSegmentValue({
-                      selection: segmentsIndexes.get(selectedSegment) ?? [-1, -1],
+                      selection: segmentsIndexes.get(selectedSegment)!,
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
                       max: DEFAULT_TIME_SEGMENT_MAX_VALUES[selectedSegment],
