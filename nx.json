@@ -1,7 +1,4 @@
 {
-    "affected": {
-        "defaultBase": "origin/main"
-    },
     "workspaceLayout": {
         "libsDir": "projects",
         "appsDir": "projects"
@@ -95,5 +92,7 @@
             "inputs": ["default", "^production"]
         }
     },
-    "parallel": 3
+    "parallel": 3,
+    "useInferencePlugins": false,
+    "defaultBase": "origin/main"
 }
