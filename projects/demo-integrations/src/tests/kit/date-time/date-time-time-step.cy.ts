@@ -60,7 +60,7 @@ describe('DateTime | timeStep', () => {
                     .should('have.a.prop', 'selectionEnd', '22.12;12:36'.length);
             });
 
-            it('type 12:10: => 22.12;12:10:| => type {downArrow}*6 => 22.12;12:10:|54 => type ({rightArrow}{arrowUp}) * 2 => 22.12;12:10:56|', () => {
+            it('changes seconds segment by pressing keyboard arrow up/down', () => {
                 cy.get('@input')
                     .type('12:10:')
                     .should('have.value', '22.12;12:10:')
