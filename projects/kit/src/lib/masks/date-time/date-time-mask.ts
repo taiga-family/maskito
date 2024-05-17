@@ -2,7 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../constants';
-import {createTimeSegmentsSteppingPlugin} from '../../plugins/time-segments-stepping';
+import {createTimeSegmentsSteppingPlugin} from '../../plugins';
 import {
     createColonConvertPreprocessor,
     createDateSegmentsZeroPaddingPostprocessor,
