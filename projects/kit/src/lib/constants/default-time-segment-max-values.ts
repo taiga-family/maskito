@@ -6,10 +6,3 @@ export const DEFAULT_TIME_SEGMENT_MAX_VALUES: MaskitoTimeSegments<number> = {
     seconds: 59,
     milliseconds: 999,
 };
-
-export const DEFAULT_TIME_SEGMENT_MIN_VALUES: MaskitoTimeSegments<number> = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    milliseconds: 0,
-};

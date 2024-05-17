@@ -9,12 +9,10 @@ export function createTimeSegmentsSteppingPlugin({
     step,
     fullMode,
     timeSegmentMaxValues,
-    timeSegmentMinValues,
 }: {
     step: number;
     fullMode: string;
     timeSegmentMaxValues: MaskitoTimeSegments<number>;
-    timeSegmentMinValues: MaskitoTimeSegments<number>;
 }): MaskitoPlugin {
     const segmentsIndexes = createTimeSegmentsIndexes(fullMode);
 
@@ -48,7 +46,6 @@ export function createTimeSegmentsSteppingPlugin({
                       ],
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
-                      min: timeSegmentMinValues[selectedSegment],
                       max: timeSegmentMaxValues[selectedSegment],
                   });
 
@@ -99,18 +96,16 @@ function updateSegmentValue({
     selection,
     value,
     toAdd,
-    min,
     max,
 }: {
     selection: readonly [number, number];
     value: string;
     toAdd: number;
-    min: number;
     max: number;
 }): string {
     const [start, end] = selection;
     const segmentValue = Number(value.slice(start, end).padEnd(end - start, '0'));
-    const newSegmentValue = mod(segmentValue + toAdd - min, max - min + 1) + min;
+    const newSegmentValue = mod(segmentValue + toAdd, max + 1);
 
     return (
         value.slice(0, start) +
