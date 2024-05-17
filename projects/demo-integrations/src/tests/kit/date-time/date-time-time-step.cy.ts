@@ -113,7 +113,7 @@ describe('DateTime | timeStep', () => {
             });
         });
 
-        describe('timeStep = 0', () => {
+        describe('timeStep = 0 (disabled time stepping)', () => {
             beforeEach(() => {
                 cy.visit(
                     `/${DemoPath.DateTime}/API?dateTimeSeparator=;&dateMode=yy%2Fmm&timeStep=0&timeMode=HH:MM:SS.MSS`,
