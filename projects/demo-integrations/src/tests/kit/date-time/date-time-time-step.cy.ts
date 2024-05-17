@@ -82,7 +82,8 @@ describe('DateTime | timeStep', () => {
                     .should('have.value', '22.12;21:32:12.')
                     .should('have.a.prop', 'selectionStart', '22.12;21:32:12.'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;21:32:12.'.length)
-                    .type(`${'{upArrow}{rightArrow}'.repeat(3)}{downArrow}`)
+                    .type('{upArrow}{rightArrow}'.repeat(3))
+                    .type('{downArrow}')
                     .should('have.value', '22.12;21:32:12.002')
                     .should('have.a.prop', 'selectionStart', '22.12;21:32:12.002'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;21:32:12.002'.length);
@@ -94,7 +95,8 @@ describe('DateTime | timeStep', () => {
                     .should('have.value', '22.12;21:32:12.')
                     .should('have.a.prop', 'selectionStart', '22.12;21:32:12.'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;21:32:12.'.length)
-                    .type(`${'{downArrow}{rightArrow}'.repeat(3)}{downArrow}`)
+                    .type('{downArrow}{rightArrow}'.repeat(3))
+                    .type('{downArrow}')
                     .should('have.value', '22.12;21:32:12.996')
                     .should('have.a.prop', 'selectionStart', '22.12;21:32:12.996'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;21:32:12.996'.length);
