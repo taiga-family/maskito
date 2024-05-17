@@ -1,7 +1,6 @@
 import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../constants';
 import type {MaskitoTimeSegments} from '../types';
 
 const noop = (): void => {};
@@ -9,9 +8,11 @@ const noop = (): void => {};
 export function createTimeSegmentsSteppingPlugin({
     step,
     fullMode,
+    timeSegmentMaxValues,
 }: {
     step: number;
     fullMode: string;
+    timeSegmentMaxValues: MaskitoTimeSegments<number>;
 }): MaskitoPlugin {
     const segmentsIndexes = createTimeSegmentsIndexes(fullMode);
 
@@ -38,7 +39,7 @@ export function createTimeSegmentsSteppingPlugin({
                       selection: segmentsIndexes.get(selectedSegment)!,
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
-                      max: DEFAULT_TIME_SEGMENT_MAX_VALUES[selectedSegment],
+                      max: timeSegmentMaxValues[selectedSegment],
                   });
 
                   maskitoUpdateElement(element, {

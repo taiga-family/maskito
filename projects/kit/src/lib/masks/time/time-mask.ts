@@ -40,6 +40,7 @@ export function maskitoTimeOptionsGenerator({
             createTimeSegmentsSteppingPlugin({
                 fullMode: mode,
                 step,
+                timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
             }),
         ],
         overwriteMode: 'replace',

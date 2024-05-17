@@ -1,7 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
-import {TIME_FIXED_CHARACTERS} from '../../constants';
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
 import {createTimeSegmentsSteppingPlugin} from '../../plugins';
 import {
     createColonConvertPreprocessor,
@@ -97,6 +97,7 @@ export function maskitoDateTimeOptionsGenerator({
             createTimeSegmentsSteppingPlugin({
                 step: timeStep,
                 fullMode: `${dateModeTemplate}${dateTimeSeparator}${timeMode}`,
+                timeSegmentMaxValues: DEFAULT_TIME_SEGMENT_MAX_VALUES,
             }),
         ],
     };
