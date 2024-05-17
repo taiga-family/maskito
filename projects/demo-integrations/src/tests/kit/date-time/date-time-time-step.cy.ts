@@ -38,7 +38,7 @@ describe('DateTime | timeStep', () => {
                     .should('have.a.prop', 'selectionEnd', '22.12;10'.length);
             });
 
-            it('type 12: => 22.12;12:| => type {upArrow} => 22.12;12:|01 => type {rightArrow}{upArrow} * 9 => 22.12;12:1|0 => type {rightArrow}{downArrow}*34 => 22.12;12:45|', () => {
+            it('increments/decrements minutes segment by pressing keyboard arrows at different places of the segment', () => {
                 cy.get('@input')
                     .type('12:')
                     .should('have.value', '22.12;12:')
