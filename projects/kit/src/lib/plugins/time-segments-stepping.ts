@@ -1,6 +1,7 @@
 import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../constants';
 import type {MaskitoTimeSegments} from '../types';
 
 const noop = (): void => {};
@@ -8,11 +9,9 @@ const noop = (): void => {};
 export function createTimeSegmentsSteppingPlugin({
     step,
     fullMode,
-    timeSegmentMaxValues,
 }: {
     step: number;
     fullMode: string;
-    timeSegmentMaxValues: MaskitoTimeSegments<number>;
 }): MaskitoPlugin {
     const segmentsIndexes = createTimeSegmentsIndexes(fullMode);
 
@@ -35,16 +34,11 @@ export function createTimeSegmentsSteppingPlugin({
                       return;
                   }
 
-                  const segmentSelection = segmentsIndexes.get(selectedSegment) as [
-                      number,
-                      number,
-                  ];
-
                   const updatedValue = updateSegmentValue({
-                      selection: segmentSelection,
+                      selection: segmentsIndexes.get(selectedSegment) ?? [-1, -1],
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
-                      max: timeSegmentMaxValues[selectedSegment],
+                      max: DEFAULT_TIME_SEGMENT_MAX_VALUES[selectedSegment],
                   });
 
                   maskitoUpdateElement(element, {
@@ -61,32 +55,30 @@ export function createTimeSegmentsSteppingPlugin({
 
 function createTimeSegmentsIndexes(
     fullMode: string,
-): Map<keyof MaskitoTimeSegments, number[]> {
+): Map<keyof MaskitoTimeSegments, readonly [number, number]> {
     return new Map([
-        ['hours', createIndexes(fullMode.indexOf('HH'), 'HH'.length)],
-        ['minutes', createIndexes(fullMode.indexOf('MM'), 'MM'.length)],
-        ['seconds', createIndexes(fullMode.indexOf('SS'), 'SS'.length)],
-        ['milliseconds', createIndexes(fullMode.indexOf('MSS'), 'MSS'.length)],
+        ['hours', getSegmentRange(fullMode, 'HH')],
+        ['minutes', getSegmentRange(fullMode, 'MM')],
+        ['seconds', getSegmentRange(fullMode, 'SS')],
+        ['milliseconds', getSegmentRange(fullMode, 'MSS')],
     ]);
 }
 
-function createIndexes(index: number, segmentLength: number): number[] {
-    return index === -1 ? [] : [index, index + segmentLength];
+function getSegmentRange(mode: string, segment: string): [number, number] {
+    const index = mode.indexOf(segment);
+
+    return index === -1 ? [-1, -1] : [index, index + segment.length];
 }
 
 function getActiveSegment({
     segmentsIndexes,
     selectionStart,
 }: {
-    segmentsIndexes: Map<keyof MaskitoTimeSegments, number[]>;
+    segmentsIndexes: Map<keyof MaskitoTimeSegments, readonly [number, number]>;
     selectionStart: number;
 }): keyof MaskitoTimeSegments | null {
-    for (const segmentName of segmentsIndexes.keys()) {
-        if (!segmentsIndexes.get(segmentName)?.length) {
-            continue;
-        }
-
-        const [from, to] = segmentsIndexes.get(segmentName) as [number, number];
+    for (const [segmentName, segmentRange] of segmentsIndexes.entries()) {
+        const [from, to] = segmentRange;
 
         if (from <= selectionStart && selectionStart <= to) {
             return segmentName;

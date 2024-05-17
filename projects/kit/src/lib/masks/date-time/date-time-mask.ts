@@ -1,7 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
+import {TIME_FIXED_CHARACTERS} from '../../constants';
 import {createTimeSegmentsSteppingPlugin} from '../../plugins/time-segments-stepping';
 import {
     createColonConvertPreprocessor,
@@ -35,7 +35,6 @@ export function maskitoDateTimeOptionsGenerator({
     timeStep?: number;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
-    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -97,8 +96,7 @@ export function maskitoDateTimeOptionsGenerator({
         plugins: [
             createTimeSegmentsSteppingPlugin({
                 step: timeStep,
-                fullMode,
-                timeSegmentMaxValues: DEFAULT_TIME_SEGMENT_MAX_VALUES,
+                fullMode: `${dateModeTemplate}${dateTimeSeparator}${timeMode}`,
             }),
         ],
     };
