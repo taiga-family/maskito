@@ -23,7 +23,7 @@ describe('Time', () => {
                     cy.get('@input').type('2{upArrow}').should('have.value', '21');
                 });
 
-                it('{downArrow} => |23 => 23| => type :{upArrow} => 23:01', () => {
+                it('{downArrow} => |23 => 23| => type {upArrow} => 23:01', () => {
                     cy.get('@input')
                         .type('{downArrow}')
                         .should('have.value', '23')
