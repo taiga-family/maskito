@@ -1,11 +1,11 @@
-import type {MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 
 /**
  * @param timeString can be with/without fixed characters
  */
 export function parseTimeString(
     timeString: string,
-    timeMode: string,
+    timeMode: MaskitoTimeMode,
 ): Partial<MaskitoTimeSegments> {
     const onlyDigits = timeString.replaceAll(/\D+/g, '');
 
