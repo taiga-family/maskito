@@ -1,15 +1,15 @@
 import type {MaskitoTimeSegments} from '../../types';
 
+const LEADING_NON_DIGITS = /^\D*/;
+const TRAILING_NON_DIGITS = /\D*$/;
+
 export function toTimeString({
     hours = '',
     minutes = '',
     seconds = '',
     milliseconds = '',
 }: Partial<MaskitoTimeSegments>): string {
-    const mm = hours ? minutes && `:${minutes}` : minutes;
-    const ss = hours || minutes ? seconds && `:${seconds}` : seconds;
-    const ms =
-        hours || minutes || seconds ? milliseconds && `.${milliseconds}` : milliseconds;
-
-    return `${hours}${mm}${ss}${ms}`;
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`
+        .replace(LEADING_NON_DIGITS, '')
+        .replace(TRAILING_NON_DIGITS, '');
 }
