@@ -2,6 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
+import {createTimeSegmentsSteppingPlugin} from '../../plugins';
 import {
     createColonConvertPreprocessor,
     createFullWidthToHalfWidthPreprocessor,
@@ -13,9 +14,11 @@ import {createMaxValidationPreprocessor} from './processors';
 export function maskitoTimeOptionsGenerator({
     mode,
     timeSegmentMaxValues = {},
+    step = 0,
 }: {
     mode: MaskitoTimeMode;
     timeSegmentMaxValues?: Partial<MaskitoTimeSegments<number>>;
+    step?: number;
 }): Required<MaskitoOptions> {
     const enrichedTimeSegmentMaxValues = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
@@ -32,6 +35,13 @@ export function maskitoTimeOptionsGenerator({
             createColonConvertPreprocessor(),
             createZeroPlaceholdersPreprocessor(),
             createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues, mode),
+        ],
+        plugins: [
+            createTimeSegmentsSteppingPlugin({
+                fullMode: mode,
+                step,
+                timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+            }),
         ],
         overwriteMode: 'replace',
     };

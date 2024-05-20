@@ -12,6 +12,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-twelve-hour-format/component';
+import {TimeMaskDocExample3} from './examples/3-step/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
@@ -26,6 +27,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
         TuiTextfieldControllerModule,
         TimeMaskDocExample1,
         TimeMaskDocExample2,
+        TimeMaskDocExample3,
     ],
     templateUrl: './time-mask-doc.template.html',
     styleUrls: ['./time-mask-doc.style.less'],
@@ -40,6 +42,10 @@ export class TimeMaskDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-twelve-hour-format/mask.ts?raw'
         ),
+    };
+
+    protected readonly stepExample3: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw'),
     };
 
     protected apiPageControl = new FormControl('');
@@ -60,6 +66,8 @@ export class TimeMaskDocComponent implements GeneratorOptions {
     public mode: MaskitoTimeMode = this.modeOptions[0];
     public timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =
         this.timeSegmentMaxValuesOptions[0];
+
+    public step = 0;
 
     protected maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 

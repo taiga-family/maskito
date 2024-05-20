@@ -14,6 +14,7 @@ import {DATE_TIME_SEPARATOR, TuiInputModule} from '@taiga-ui/kit';
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
 import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
 import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
+import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
@@ -32,6 +33,7 @@ type GeneratorOptions = Required<
         DateTimeMaskDocExample1,
         DateTimeMaskDocExample2,
         DateTimeMaskDocExample3,
+        DateTimeMaskDocExample4,
     ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,6 +53,12 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
 
     protected readonly dateTimeMinMaxExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-min-max/mask.ts?raw'),
+    };
+
+    protected readonly dateTimeTimeStepExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/4-time-step/mask.ts?raw'
+        ),
     };
 
     protected apiPageControl = new FormControl('');
@@ -83,6 +91,7 @@ export class DateTimeMaskDocComponent implements GeneratorOptions {
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
+    public timeStep = 0;
 
     protected maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 

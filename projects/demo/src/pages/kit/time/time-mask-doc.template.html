@@ -55,6 +55,32 @@
             </ng-template>
             <time-mask-doc-example-2 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="step"
+            heading="Arrows stepping"
+            [content]="stepExample3"
+            [description]="stepDescription"
+        >
+            <ng-template #stepDescription>
+                <p class="tui-space_top-0 tui-space_bottom-1">
+                    Property
+                    <code>step</code>
+                    allows you to increment/decrement time segments by pressing
+                    <code>ArrowUp</code>
+                    /
+                    <code>ArrowDown</code>
+                    .
+                </p>
+
+                <p class="tui-space_top-0">
+                    Use
+                    <code>step === 0</code>
+                    (default value) to disable this feature.
+                </p>
+            </ng-template>
+            <time-mask-doc-example-3 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -95,6 +121,21 @@
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 Max value for every time segment
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="step"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="step"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                The value by which the keyboard arrows increment/decrement time segments
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (disable stepping)
+                </p>
             </ng-template>
         </tui-doc-documentation>
     </ng-template>
