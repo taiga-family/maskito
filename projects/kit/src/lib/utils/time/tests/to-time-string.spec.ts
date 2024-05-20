@@ -1,3 +1,5 @@
+import {describe, expect, it} from '@jest/globals';
+
 import {toTimeString} from '../to-time-string';
 
 describe('toTimeString', () => {
