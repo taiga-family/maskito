@@ -26,20 +26,20 @@ export function createTimeSegmentsSteppingPlugin({
 
                   event.preventDefault();
                   const selectionStart = element.selectionStart || 0;
-                  const selectedSegment = getActiveSegment({
+                  const activeSegment = getActiveSegment({
                       segmentsIndexes,
                       selectionStart,
                   });
 
-                  if (!selectedSegment) {
+                  if (!activeSegment) {
                       return;
                   }
 
                   const updatedValue = updateSegmentValue({
-                      selection: segmentsIndexes.get(selectedSegment)!,
+                      selection: segmentsIndexes.get(activeSegment)!,
                       value: element.value,
                       toAdd: event.key === 'ArrowUp' ? step : -step,
-                      max: timeSegmentMaxValues[selectedSegment],
+                      max: timeSegmentMaxValues[activeSegment],
                   });
 
                   maskitoUpdateElement(element, {
