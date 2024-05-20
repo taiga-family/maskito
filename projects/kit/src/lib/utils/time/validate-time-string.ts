@@ -1,5 +1,5 @@
 import {TIME_FIXED_CHARACTERS, TIME_SEGMENT_VALUE_LENGTHS} from '../../constants';
-import type {MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 import {escapeRegExp} from '../escape-reg-exp';
 import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
 import {parseTimeString} from './parse-time-string';
@@ -14,13 +14,15 @@ export function validateTimeString({
     paddedMaxValues,
     offset,
     selection: [from, to],
+    timeMode,
 }: {
     timeString: string;
     paddedMaxValues: MaskitoTimeSegments;
     offset: number;
     selection: readonly [number, number];
+    timeMode: MaskitoTimeMode;
 }): {validatedTimeString: string; updatedTimeSelection: [number, number]} {
-    const parsedTime = parseTimeString(timeString);
+    const parsedTime = parseTimeString(timeString, timeMode);
 
     const possibleTimeSegments = Object.entries(parsedTime) as Array<
         [keyof MaskitoTimeSegments, string]

@@ -31,7 +31,7 @@ export function maskitoTimeOptionsGenerator({
             createFullWidthToHalfWidthPreprocessor(),
             createColonConvertPreprocessor(),
             createZeroPlaceholdersPreprocessor(),
-            createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues),
+            createMaxValidationPreprocessor(enrichedTimeSegmentMaxValues, mode),
         ],
         overwriteMode: 'replace',
     };

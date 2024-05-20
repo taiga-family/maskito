@@ -33,7 +33,7 @@ export function createMinMaxDateTimePostprocessor({
             dateTimeSeparator,
         });
         const parsedDate = parseDateString(dateString, dateModeTemplate);
-        const parsedTime = parseTimeString(timeString);
+        const parsedTime = parseTimeString(timeString, timeMode);
 
         if (
             !isDateTimeStringComplete(value, {

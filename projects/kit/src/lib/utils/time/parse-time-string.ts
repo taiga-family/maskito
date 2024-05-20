@@ -1,19 +1,30 @@
-import type {MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+
+const SEGMENT_FULL_NAME: Record<string, keyof MaskitoTimeSegments> = {
+    HH: 'hours',
+    MM: 'minutes',
+    SS: 'seconds',
+    MSS: 'milliseconds',
+};
 
 /**
  * @param timeString can be with/without fixed characters
  */
-export function parseTimeString(timeString: string): Partial<MaskitoTimeSegments> {
+export function parseTimeString(
+    timeString: string,
+    timeMode: MaskitoTimeMode,
+): Partial<MaskitoTimeSegments> {
     const onlyDigits = timeString.replaceAll(/\D+/g, '');
 
-    const timeSegments = {
-        hours: onlyDigits.slice(0, 2),
-        minutes: onlyDigits.slice(2, 4),
-        seconds: onlyDigits.slice(4, 6),
-        milliseconds: onlyDigits.slice(6, 9),
-    };
+    let offset = 0;
 
     return Object.fromEntries(
-        Object.entries(timeSegments).filter(([_, value]) => Boolean(value)),
+        timeMode.split(/\W/).map(segmentAbbr => {
+            const segmentValue = onlyDigits.slice(offset, offset + segmentAbbr.length);
+
+            offset += segmentAbbr.length;
+
+            return [SEGMENT_FULL_NAME[segmentAbbr], segmentValue];
+        }),
     );
 }

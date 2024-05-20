@@ -1,12 +1,13 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
 import {TIME_FIXED_CHARACTERS} from '../../../constants';
-import type {MaskitoTimeSegments} from '../../../types';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../../types';
 import {escapeRegExp} from '../../../utils';
 import {padTimeSegments, validateTimeString} from '../../../utils/time';
 
 export function createMaxValidationPreprocessor(
     timeSegmentMaxValues: MaskitoTimeSegments<number>,
+    timeMode: MaskitoTimeMode,
 ): MaskitoPreprocessor {
     const paddedMaxValues = padTimeSegments(timeSegmentMaxValues);
     const invalidCharsRegExp = new RegExp(
@@ -26,6 +27,7 @@ export function createMaxValidationPreprocessor(
                 paddedMaxValues,
                 offset: 0,
                 selection,
+                timeMode,
             });
 
             return {
@@ -47,6 +49,7 @@ export function createMaxValidationPreprocessor(
             paddedMaxValues,
             offset: 0,
             selection: [from, to],
+            timeMode,
         });
 
         if (newPossibleValue && !validatedTimeString) {
