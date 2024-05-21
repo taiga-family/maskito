@@ -27,6 +27,10 @@ class ContentEditableAdapter implements TextfieldLike {
     public setSelectionRange(from: number | null, to: number | null): void {
         setContentEditableSelection(this.element, [from || 0, to || 0]);
     }
+
+    public select(): void {
+        this.setSelectionRange(0, this.value.length);
+    }
 }
 
 export function maskitoAdaptContentEditable(element: HTMLElement): MaskitoElement {
