@@ -117,7 +117,7 @@
         "lint-staged": "15.2.4",
         "ng-packagr": "15.2.2",
         "nx": "19.0.8",
-        "postcss-preset-env": "9.5.13",
+        "postcss-preset-env": "9.5.14",
         "prettier": "3.2.5",
         "standard-version": "9.5.0",
         "stylelint": "16.5.0",
