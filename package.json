@@ -105,8 +105,8 @@
         "@taiga-ui/prettier-config": "0.11.7",
         "@taiga-ui/stylelint-config": "0.22.1",
         "@taiga-ui/tsconfig": "0.17.0",
-        "@tinkoff/eslint-config": "3.0.0",
-        "@tinkoff/eslint-config-react": "3.0.0",
+        "@tinkoff/eslint-config": "4.0.0",
+        "@tinkoff/eslint-config-react": "4.1.0",
         "@types/jest": "29.5.12",
         "@types/node": "20.12.12",
         "eslint": "8.57.0",
@@ -134,8 +134,7 @@
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "overrides": {
-        "highlight.js": "11.5.1",
-        "eslint-plugin-prettier": "5.1.3"
+        "highlight.js": "11.5.1"
     },
     "standard-version": {
         "scripts": {
