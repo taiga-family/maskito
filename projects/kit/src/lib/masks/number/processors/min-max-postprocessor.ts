@@ -33,7 +33,7 @@ export function createMinMaxPostprocessor({
              */
             parsedNumber > 0 ? Math.min(parsedNumber, max) : Math.max(parsedNumber, min);
 
-        if (!Number.isNaN(parsedNumber) && limitedValue !== parsedNumber) {
+        if (parsedNumber && limitedValue !== parsedNumber) {
             const newValue = `${limitedValue}`
                 .replace('.', decimalSeparator)
                 .replace(CHAR_HYPHEN, minusSign);

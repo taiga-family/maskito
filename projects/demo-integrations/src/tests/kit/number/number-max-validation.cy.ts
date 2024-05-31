@@ -145,4 +145,62 @@ describe('Number | Max validation', () => {
                 .should('have.value', '−6');
         });
     });
+
+    describe('Max = -0.1', () => {
+        beforeEach(() => {
+            openNumberPage('precision=2&minusSign=-&max=-0.1');
+        });
+
+        it('can type -0.5 (via keyboard, 1 character per keydown)', () => {
+            cy.get('@input')
+                .type('-.')
+                .should('have.value', '-0.')
+                .should('have.prop', 'selectionStart', '-0.'.length)
+                .should('have.prop', 'selectionEnd', '-0.'.length)
+                .type('5')
+                .should('have.value', '-0.5')
+                .should('have.prop', 'selectionStart', '-0.5'.length)
+                .should('have.prop', 'selectionEnd', '-0.5'.length);
+        });
+
+        it('keeps -0.10 untouched on blur', () => {
+            cy.get('@input')
+                .type('-0.10')
+                .should('have.value', '-0.10')
+                .blur()
+                .should('have.value', '-0.10');
+        });
+
+        it('replaces 0 with -0.1 on blur', () => {
+            cy.get('@input')
+                .type('0')
+                .should('have.value', '0')
+                .blur()
+                .should('have.value', '-0.1');
+        });
+
+        it('replaces 0.05 with -0.1 on blur', () => {
+            cy.get('@input')
+                .type('-0.05')
+                .should('have.value', '-0.05')
+                .blur()
+                .should('have.value', '-0.1');
+        });
+
+        it('allows to erase the last digit (even if new possible value is more than max) (-0.1| => Backspace => -0.|)', () => {
+            cy.get('@input')
+                .type('-0.1')
+                .should('have.value', '-0.1')
+                .should('have.prop', 'selectionStart', '-0.1'.length)
+                .should('have.prop', 'selectionEnd', '-0.1'.length)
+                .type('{backspace}')
+                .should('have.value', '-0.')
+                .type('{backspace}')
+                .should('have.value', '-0')
+                .type('{backspace}')
+                .should('have.value', '-')
+                .type('{backspace}')
+                .should('have.value', '');
+        });
+    });
 });
