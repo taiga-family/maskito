@@ -108,7 +108,7 @@
         "@tinkoff/eslint-config": "4.0.0",
         "@tinkoff/eslint-config-react": "4.1.0",
         "@types/jest": "29.5.12",
-        "@types/node": "20.13.0",
+        "@types/node": "20.14.0",
         "eslint": "8.57.0",
         "http-server": "14.1.1",
         "husky": "9.0.11",
