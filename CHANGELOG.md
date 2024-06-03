@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/taiga-family/maskito/compare/v2.3.2...v2.4.0) (2024-06-03)
+
+### Features
+
+- **kit:** `Time` & `DateTime` support increment / decrement of time segment via `ArrowUp` / `ArrowDown`
+  ([#1223](https://github.com/taiga-family/maskito/issues/1223))
+  ([af961b8](https://github.com/taiga-family/maskito/commit/af961b84f8765e7d2147c80210e3a8ac6ed30597))
+- **kit:** `Time` supports `SS.MSS` & `MM.SS.MSS` modes ([#1224](https://github.com/taiga-family/maskito/issues/1224))
+  ([7bed4bc](https://github.com/taiga-family/maskito/commit/7bed4bcaac14908e7e445b277f5b4b6e5b0fd281))
+
+### Bug Fixes
+
+- **core:** add `.select()`-method support for `MaskitoElement`
+  ([#1268](https://github.com/taiga-family/maskito/issues/1268))
+  ([51f5934](https://github.com/taiga-family/maskito/commit/51f5934f382b7862a6653412b687c46fd318b0bb))
+- **kit:** `Number` should support float `min`/`max`-parameters in range -1 < x < 1
+  ([#1280](https://github.com/taiga-family/maskito/issues/1280))
+  ([b44013e](https://github.com/taiga-family/maskito/commit/b44013e0a45ffcfa69564f13d634a79d45b4d926))
+
 ### [2.3.2](https://github.com/taiga-family/maskito/compare/v2.3.1...v2.3.2) (2024-05-16)
 
 ### Bug Fixes
