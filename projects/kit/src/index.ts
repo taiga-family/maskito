@@ -4,6 +4,7 @@ export {maskitoDateTimeOptionsGenerator} from './lib/masks/date-time';
 export {maskitoNumberOptionsGenerator, maskitoParseNumber} from './lib/masks/number';
 export {
     maskitoParseTime,
+    maskitoStringifyTime,
     maskitoTimeOptionsGenerator,
     MaskitoTimeParams,
 } from './lib/masks/time';
