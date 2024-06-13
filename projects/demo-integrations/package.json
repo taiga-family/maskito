@@ -2,7 +2,7 @@
     "name": "@maskito/demo-cypress",
     "private": true,
     "devDependencies": {
-        "@nx/cypress": "19.0.8",
+        "@nx/cypress": "19.3.0",
         "cypress": "13.10.0",
         "cypress-real-events": "1.12.0"
     }
