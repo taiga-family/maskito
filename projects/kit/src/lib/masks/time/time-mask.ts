@@ -8,18 +8,14 @@ import {
     createFullWidthToHalfWidthPreprocessor,
     createZeroPlaceholdersPreprocessor,
 } from '../../processors';
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 import {createMaxValidationPreprocessor} from './processors';
+import type {MaskitoTimeParams} from './time-options';
 
 export function maskitoTimeOptionsGenerator({
     mode,
     timeSegmentMaxValues = {},
     step = 0,
-}: {
-    mode: MaskitoTimeMode;
-    timeSegmentMaxValues?: Partial<MaskitoTimeSegments<number>>;
-    step?: number;
-}): Required<MaskitoOptions> {
+}: MaskitoTimeParams): Required<MaskitoOptions> {
     const enrichedTimeSegmentMaxValues = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
         ...timeSegmentMaxValues,
