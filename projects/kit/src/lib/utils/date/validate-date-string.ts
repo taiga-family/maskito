@@ -7,10 +7,12 @@ import {toDateString} from './to-date-string';
 export function validateDateString({
     dateString,
     dateModeTemplate,
+    dateSegmentsSeparator,
     offset,
     selection: [from, to],
 }: {
     dateString: string;
+    dateSegmentsSeparator: string;
     dateModeTemplate: string;
     offset: number;
     selection: [number, number];
@@ -27,7 +29,7 @@ export function validateDateString({
         });
         const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
 
-        const fantomSeparator = validatedDate.length && 1;
+        const fantomSeparator = validatedDate.length && dateSegmentsSeparator.length;
 
         const lastSegmentDigitIndex =
             offset +

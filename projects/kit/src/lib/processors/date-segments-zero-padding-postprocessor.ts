@@ -54,13 +54,19 @@ export function createDateSegmentsZeroPaddingPostprocessor({
                 : '') +
             restPart;
 
-        if (caretShift && validatedValue[to + 1] === dateSegmentSeparator) {
+        if (
+            caretShift &&
+            validatedValue.slice(
+                to + caretShift,
+                to + caretShift + dateSegmentSeparator.length,
+            ) === dateSegmentSeparator
+        ) {
             /**
              * If `caretShift` > 0, it means that time segment was padded with zero.
              * It is only possible if any character insertion happens.
              * If caret is before `dateSegmentSeparator` => it should be moved after `dateSegmentSeparator`.
              */
-            caretShift++;
+            caretShift += dateSegmentSeparator.length;
         }
 
         return {
