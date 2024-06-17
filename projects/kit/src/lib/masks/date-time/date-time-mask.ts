@@ -40,7 +40,7 @@ export function maskitoDateTimeOptionsGenerator({
         ...MASKITO_DEFAULT_OPTIONS,
         mask: [
             ...Array.from(dateModeTemplate).map(char =>
-                char === dateSeparator ? char : /\d/,
+                dateSeparator.includes(char) ? char : /\d/,
             ),
             ...dateTimeSeparator.split(''),
             ...Array.from(timeMode).map(char =>

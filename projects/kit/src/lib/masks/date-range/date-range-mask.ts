@@ -36,7 +36,7 @@ export function maskitoDateRangeOptionsGenerator({
 }): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(dateSeparator);
     const dateMask = Array.from(dateModeTemplate).map(char =>
-        char === dateSeparator ? char : /\d/,
+        dateSeparator.includes(char) ? char : /\d/,
     );
 
     return {

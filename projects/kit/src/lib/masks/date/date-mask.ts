@@ -27,7 +27,7 @@ export function maskitoDateOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: Array.from(dateModeTemplate).map(char =>
-            char === separator ? char : /\d/,
+            separator.includes(char) ? char : /\d/,
         ),
         overwriteMode: 'replace',
         preprocessors: [

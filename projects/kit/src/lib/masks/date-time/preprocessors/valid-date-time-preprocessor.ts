@@ -52,6 +52,7 @@ export function createValidDateTimePreprocessor({
 
         const {validatedDateString, updatedSelection} = validateDateString({
             dateString,
+            dateSegmentsSeparator,
             dateModeTemplate,
             offset: 0,
             selection: [from, to],
