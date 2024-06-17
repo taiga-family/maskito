@@ -79,4 +79,57 @@ describe('Placeholder | US phone', () => {
             .blur()
             .should('have.value', '');
     });
+
+    describe('caret navigation on attempt to erase fixed character', () => {
+        beforeEach(() => {
+            cy.get('@input')
+                .type('2125552')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212) 555-2'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212) 555-2'.length);
+        });
+
+        it('+1 (212) 555-|2___ => Backspace => +1 (212) 555|-2___', () => {
+            cy.get('@input')
+                .type('{leftArrow}{backspace}')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212) 555'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212) 555'.length);
+        });
+
+        it('+1 (212) 555|-2___ => Delete => +1 (212) 555-|2___', () => {
+            cy.get('@input')
+                .type('{leftArrow}'.repeat(2))
+                .should('have.prop', 'selectionStart', '+1 (212) 555'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212) 555'.length)
+                .type('{del}')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212) 555-'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212) 555-'.length);
+        });
+
+        it('+1 (212) |555-2___ => Backspace x2 => +1 (212|) 555-2___', () => {
+            cy.get('@input')
+                .type('{leftArrow}'.repeat('555-2'.length))
+                .type('{backspace}')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212)'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212)'.length)
+                .type('{backspace}')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212'.length);
+        });
+
+        it('+1 (212|) 555-2___ => Delete => +1 (212) |555-2___', () => {
+            cy.get('@input')
+                .type('{leftArrow}'.repeat(') 555-2'.length))
+                .should('have.prop', 'selectionStart', '+1 (212'.length)
+                .should('have.prop', 'selectionEnd', '+1 (212'.length)
+                .type('{del}')
+                .should('have.value', '+1 (212) 555-2___')
+                .should('have.prop', 'selectionStart', '+1 (212) '.length)
+                .should('have.prop', 'selectionEnd', '+1 (212) '.length);
+        });
+    });
 });

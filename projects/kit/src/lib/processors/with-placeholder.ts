@@ -1,4 +1,4 @@
-import type {MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoCaretGuard, maskitoEventHandler} from '../plugins';
@@ -10,6 +10,7 @@ export function maskitoWithPlaceholder(
     removePlaceholder: (value: string) => string;
 } {
     let lastClearValue = '';
+    let action: Parameters<MaskitoPreprocessor>[1] = 'validation';
     const removePlaceholder = (value: string): string => {
         for (let i = value.length - 1; i >= lastClearValue.length; i--) {
             if (value[i] !== placeholder[i]) {
@@ -52,7 +53,8 @@ export function maskitoWithPlaceholder(
         plugins,
         removePlaceholder,
         preprocessors: [
-            ({elementState, data}) => {
+            ({elementState, data}, actionType) => {
+                action = actionType;
                 const {value, selection} = elementState;
 
                 return {
@@ -76,12 +78,24 @@ export function maskitoWithPlaceholder(
                  * For example, developer wants to remove manually placeholder (+ do something else with value) on blur.
                  * Without this condition, placeholder will be unexpectedly added again.
                  */
-                return value !== initialElementState.value && (focused || !focusedOnly)
-                    ? {
-                          value: value + placeholder.slice(value.length),
-                          selection,
-                      }
-                    : {value, selection};
+                const newValue =
+                    value !== initialElementState.value && (focused || !focusedOnly)
+                        ? value + placeholder.slice(value.length)
+                        : value;
+
+                if (
+                    newValue === initialElementState.value &&
+                    action === 'deleteBackward'
+                ) {
+                    const [caretIndex] = initialElementState.selection;
+
+                    return {
+                        value: newValue,
+                        selection: [caretIndex, caretIndex],
+                    };
+                }
+
+                return {value: newValue, selection};
             },
         ],
     };
