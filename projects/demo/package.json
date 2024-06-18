@@ -14,6 +14,7 @@
         "@maskito/angular": "*",
         "@maskito/core": "*",
         "@maskito/kit": "*",
+        "@ng-web-apis/common": "3.0.6",
         "@ng-web-apis/universal": "3.0.7",
         "@nguniversal/express-engine": "15.2.1",
         "@stackblitz/sdk": "1.10.0",
