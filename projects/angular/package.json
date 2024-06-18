@@ -29,7 +29,7 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "dependencies": {
-        "tslib": "2.6.2"
+        "tslib": "2.6.3"
     },
     "devDependencies": {
         "@angular/core": "15.2.10",
