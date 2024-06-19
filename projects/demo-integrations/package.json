@@ -3,7 +3,7 @@
     "private": true,
     "devDependencies": {
         "@nx/cypress": "19.0.8",
-        "cypress": "13.11.0",
+        "cypress": "13.12.0",
         "cypress-real-events": "1.13.0"
     }
 }
