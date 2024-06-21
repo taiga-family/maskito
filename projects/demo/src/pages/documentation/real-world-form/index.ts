@@ -98,7 +98,7 @@ export default class RealWorldForm {
         return maskitoGetCountryFromNumber(this.form.value.phone || '', metadata) || '';
     }
 
-    protected log(smth: any): void {
-        console.info(smth);
+    protected log(something: any): void {
+        console.info(something);
     }
 }
