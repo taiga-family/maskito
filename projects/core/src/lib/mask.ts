@@ -99,6 +99,22 @@ export class Maskito extends MaskHistory {
                     });
                 case 'insertCompositionText':
                     return; // will be handled inside `compositionend` event
+                case 'insertReplacementText':
+                    /**
+                     * According {@link https://www.w3.org/TR/input-events-2 W3C specification}:
+                     * > `insertReplacementText` – insert or replace existing text by means of a spell checker,
+                     * > auto-correct, writing suggestions or similar.
+                     * ___
+                     * Firefox emits `insertReplacementText` event for its suggestion/autofill and for spell checker.
+                     * However, it is impossible to detect which part of the textfield value is going to be replaced
+                     * (`selectionStart` and `selectionEnd` just equal to the last caret position).
+                     * ___
+                     * Chrome does not fire `beforeinput` event for its suggestion/autofill.
+                     * It emits only `input` event with `inputType` and `data` set to `undefined`.
+                     * ___
+                     * All these browser limitations make us to validate the result value later in `input` event.
+                     */
+                    return;
                 case 'insertLineBreak':
                 case 'insertParagraph':
                     return this.handleEnter(event);
