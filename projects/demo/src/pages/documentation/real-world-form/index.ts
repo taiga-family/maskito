@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
@@ -9,6 +9,7 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {
     TuiButtonModule,
     TuiFlagPipeModule,
@@ -44,6 +45,8 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RealWorldForm {
+    private readonly isApple = inject(TUI_IS_APPLE);
+
     protected readonly form = new FormGroup({
         name: new FormControl(''),
         surname: new FormControl(''),
@@ -96,6 +99,10 @@ export default class RealWorldForm {
 
     protected get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.form.value.phone || '', metadata) || '';
+    }
+
+    protected get phoneTextfieldPattern(): string {
+        return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 
     protected log(something: any): void {
