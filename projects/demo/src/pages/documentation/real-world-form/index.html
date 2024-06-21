@@ -1,0 +1,173 @@
+<form
+    #formElement
+    autocomplete="on"
+    class="tui-form"
+    [formGroup]="form"
+    (ngSubmit)="log(form.value); formElement.submit()"
+>
+    <h3 class="tui-form__header tui-form__header_margin-top_none">Real World Form</h3>
+    <div class="tui-form__row tui-form__row_multi-fields">
+        <tui-input
+            formControlName="name"
+            class="tui-form__multi-field"
+        >
+            Name
+            <input
+                autocomplete="name"
+                name="name"
+                placeholder="Only latin letters"
+                tuiTextfield
+                [maskito]="nameMask"
+            />
+        </tui-input>
+        <tui-input
+            formControlName="surname"
+            class="tui-form__multi-field"
+        >
+            Surname
+            <input
+                autocomplete="family-name"
+                name="surname"
+                placeholder="Only CAPITAL latin letters"
+                tuiTextfield
+                [maskito]="surnameMask"
+            />
+        </tui-input>
+    </div>
+
+    <div class="tui-form__row">
+        <tui-input
+            formControlName="phone"
+            [tuiTextfieldCustomContent]="countryIsoCode ? flag : 'tuiIconPhoneLarge'"
+        >
+            Enter phone number
+            <input
+                autocomplete="tel"
+                inputmode="tel"
+                name="phone"
+                tuiTextfield
+                [maskito]="phoneMask"
+            />
+        </tui-input>
+
+        <ng-template #flag>
+            <img
+                width="28"
+                [attr.alt]="countryIsoCode"
+                [src]="countryIsoCode | tuiFlag"
+            />
+        </ng-template>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+        <tui-input
+            formControlName="password"
+            class="tui-form__multi-field"
+            [tuiTextfieldCustomContent]="showHideIcon"
+        >
+            Enter password
+            <input
+                autocomplete="new-password"
+                name="password"
+                placeholder="Only digits and one latin letter"
+                tuiTextfield
+                [maskito]="passwordMask"
+                [type]="showPassword ? 'password' : 'text'"
+            />
+        </tui-input>
+        <tui-input
+            formControlName="repeatedPassword"
+            class="tui-form__multi-field"
+            [tuiTextfieldCustomContent]="showHideIcon"
+        >
+            Repeat password
+            <input
+                autocomplete="new-password"
+                name="repeatPassword"
+                placeholder="Only digits and one latin letter"
+                tuiTextfield
+                [maskito]="passwordMask"
+                [type]="showPassword ? 'password' : 'text'"
+            />
+        </tui-input>
+
+        <ng-template #showHideIcon>
+            <tui-svg
+                class="password-icon"
+                [src]="showPassword ? 'tuiIconEyeLarge' : 'tuiIconEyeOffLarge'"
+                (click)="showPassword = !showPassword"
+            />
+        </ng-template>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+        <tui-input
+            formControlName="transactionDate"
+            tuiTextfieldCustomContent="tuiIconCalendarLarge"
+            class="tui-form__multi-field"
+        >
+            Transaction date
+            <input
+                inputmode="decimal"
+                name="transactionDate"
+                placeholder="dd.mm.yyyy"
+                tuiTextfield
+                [maskito]="transactionDateMask"
+            />
+        </tui-input>
+
+        <tui-input
+            formControlName="transactionAmount"
+            class="tui-form__multi-field"
+        >
+            Transaction amount
+            <input
+                autocomplete="transaction-amount"
+                inputmode="decimal"
+                name="transactionAmount"
+                placeholder="Enter amount"
+                tuiTextfield
+                [maskito]="transactionAmountMask"
+            />
+        </tui-input>
+    </div>
+
+    <div class="tui-form__row">
+        <tui-textarea
+            formControlName="address"
+            [expandable]="true"
+        >
+            Enter address
+
+            <textarea
+                autocomplete="street-address"
+                name="address"
+                placeholder="Only latin letters, digits and some punctuation signs are allowed"
+                tuiTextfield
+                [maskito]="addressMask"
+            ></textarea>
+        </tui-textarea>
+    </div>
+
+    <div class="tui-form__buttons">
+        <button
+            size="l"
+            tuiButton
+            type="submit"
+            class="tui-form__button"
+        >
+            Submit
+        </button>
+
+        <button
+            appearance="flat"
+            size="l"
+            tuiButton
+            type="button"
+            class="tui-form__button"
+            (click)="form.reset()"
+        >
+            Clear all
+        </button>
+    </div>
+</form>
