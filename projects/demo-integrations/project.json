@@ -7,7 +7,7 @@
         "e2e": {
             "executor": "@nx/cypress:cypress",
             "options": {
-                "cypressConfig": "projects/demo-integrations/cypress.config.ts",
+                "cypressConfig": "{projectRoot}/cypress.config.ts",
                 "testingType": "e2e",
                 "devServerTarget": "demo:serve:development"
             }
@@ -15,7 +15,7 @@
         "component-test": {
             "executor": "@nx/cypress:cypress",
             "options": {
-                "cypressConfig": "projects/demo-integrations/cypress.config.ts",
+                "cypressConfig": "{projectRoot}/cypress.config.ts",
                 "testingType": "component",
                 "skipServe": true,
                 "devServerTarget": "demo:build"
