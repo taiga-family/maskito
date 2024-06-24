@@ -60,8 +60,8 @@ jobs:
 
       - name: Run Cypress tests
         run:
-          npm run cy:run -- --spec "**/kit/${{ matrix.project }}/**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER
-          }}"
+          npx nx e2e demo-integrations --spec="**/kit/${{ matrix.project }}/**/*.cy.ts" --baseUrl=${{
+          env.UNIVERSAL_SERVER}}
 
   e2e-recipes:
     if: ${{ !contains(github.head_ref, 'release/') }}
@@ -85,7 +85,7 @@ jobs:
           curl -X GET -I -f "${{ env.UNIVERSAL_SERVER }}"
 
       - name: Run Cypress tests
-        run: npm run cy:run -- --spec "**/recipes/**/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
+        run: npx nx e2e demo-integrations --spec="**/recipes/**/*.cy.ts" --baseUrl=${{ env.UNIVERSAL_SERVER}}
 
   e2e-others:
     if: ${{ !contains(github.head_ref, 'release/') }}
@@ -112,8 +112,8 @@ jobs:
         # Replace with npm run cy:run -- --spec "**/!(kit|recipes)/*.cy.ts" --config baseUrl="${{ env.UNIVERSAL_SERVER }}"
         # After this issue fix: https://github.com/cypress-io/cypress/issues/22407
         run:
-          npm run cy:run -- --spec "**/(angular|react|ssr|addons|others)/**/*.cy.ts" --config baseUrl="${{
-          env.UNIVERSAL_SERVER }}"
+          npx nx e2e demo-integrations --spec="**/(angular|react|ssr|addons|others)/**/*.cy.ts" --baseUrl=${{
+          env.UNIVERSAL_SERVER}}
 
   component-testing:
     if: ${{ !contains(github.head_ref, 'release/') }}
