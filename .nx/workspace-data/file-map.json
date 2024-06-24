@@ -70,608 +70,1108 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "demo-integrations": [
+      "kit": [
         {
-          "file": "projects/demo-integrations/cypress.config.ts",
-          "hash": "4506545618145578160",
-          "deps": [
-            "npm:@nx/angular",
-            "npm:@nx/cypress",
-            "npm:cypress"
-          ]
+          "file": "projects/kit/README.md",
+          "hash": "3831928964907182662"
         },
         {
-          "file": "projects/demo-integrations/package.json",
-          "hash": "7736881834570533641",
-          "deps": [
-            "npm:@nx/cypress",
-            "npm:cypress",
-            "npm:cypress-real-events"
-          ]
+          "file": "projects/kit/jest.config.ts",
+          "hash": "15028081385028870229"
         },
         {
-          "file": "projects/demo-integrations/project.json",
-          "hash": "12450131886029785614"
-        },
-        {
-          "file": "projects/demo-integrations/src/fixtures/example.json",
-          "hash": "15753941481085060538"
-        },
-        {
-          "file": "projects/demo-integrations/src/plugins/index.js",
-          "hash": "14244429710963922201"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/assertions/have-ng-control-value.ts",
-          "hash": "6478673894527932169"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/assertions/index.ts",
-          "hash": "10903326993872186391"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/commands/index.ts",
-          "hash": "11077321319888120729"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/commands/smart-tick.ts",
-          "hash": "9486153098645642571"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/component-index.html",
-          "hash": "7320401235372192637"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/component.ts",
-          "hash": "16091777127559795956",
-          "deps": [
-            "npm:cypress-real-events",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/support/constants/index.ts",
-          "hash": "13793160972820509205"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/constants/real-events-support.ts",
-          "hash": "9974591768659929430"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/e2e.ts",
-          "hash": "12124030570736298064",
-          "deps": [
-            "npm:cypress-real-events"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-basic.cy.ts",
-          "hash": "16560470431597143161",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-non-strict.cy.ts",
-          "hash": "2243193500897909724",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-separator.cy.ts",
-          "hash": "12004451028551255436",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/angular/form-control-changes.cy.ts",
-          "hash": "3832667557630934266",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/angular/disable-mask-on-null.cy.ts",
-          "hash": "9265772408225287274",
+          "file": "projects/kit/package.json",
+          "hash": "16329889678137951511",
           "deps": [
             "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/initial-calibration-plugin/dispatch-event.cy.ts",
-          "hash": "14679171458355482727",
+          "file": "projects/kit/project.json",
+          "hash": "1427979868839062396"
+        },
+        {
+          "file": "projects/kit/src/index.ts",
+          "hash": "8718259006979660"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/date-segment-max-values.ts",
+          "hash": "11231579353265181171"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/default-decimal-pseudo-separators.ts",
+          "hash": "878698784737043954"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/default-min-max-dates.ts",
+          "hash": "12935340700804443470"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/default-time-segment-max-values.ts",
+          "hash": "6021172817420863289"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/index.ts",
+          "hash": "15133457096981859088"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/time-fixed-characters.ts",
+          "hash": "3328886389205605391"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/time-segment-value-lengths.ts",
+          "hash": "1830914674385517118"
+        },
+        {
+          "file": "projects/kit/src/lib/constants/unicode-characters.ts",
+          "hash": "5435740248075586938"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/constants.ts",
+          "hash": "12970986464067702279"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/date-range-mask.ts",
+          "hash": "18324892099034409321",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/index.ts",
+          "hash": "10141479037125728029"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/processors/min-max-range-length-postprocessor.ts",
+          "hash": "8454959720059869817",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/processors/swap-dates-postprocessor.ts",
+          "hash": "3139654369752100929",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/tests/date-segments-zero-padding.spec.ts",
+          "hash": "4700819131988369859",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-range/tests/pseudo-range-separators.spec.ts",
+          "hash": "3137008171874614509",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/constants/date-time-separator.ts",
+          "hash": "13004993923304962737"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/constants/index.ts",
+          "hash": "15475075266596286992"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/date-time-mask.ts",
+          "hash": "13408108140819969456",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/index.ts",
+          "hash": "2932837090366039673"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/postprocessors/index.ts",
+          "hash": "8568302617275748253"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/postprocessors/min-max-date-time-postprocessor.ts",
+          "hash": "5233223513799620999",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/preprocessors/index.ts",
+          "hash": "8303930775306782338"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/preprocessors/valid-date-time-preprocessor.ts",
+          "hash": "12550549271175277479",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/tests/date-segments-zero-padding.spec.ts",
+          "hash": "10812623300731528061",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/tests/date-time-separator.spec.ts",
+          "hash": "16239437900653127926",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/tests/pseudo-date-end-separator.spec.ts",
+          "hash": "2524369912839746474",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/utils/index.ts",
+          "hash": "16540819637648771515"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/utils/is-date-time-string-complete.ts",
+          "hash": "4600563732418383487"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date-time/utils/parse-date-time-string.ts",
+          "hash": "12687821336022903769"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date/date-mask.ts",
+          "hash": "15876847355213681324",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date/index.ts",
+          "hash": "9749447913372360147"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/date/tests/date-mask.spec.ts",
+          "hash": "11079336254396890406",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/index.ts",
+          "hash": "15900261435177864540"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/number-mask.ts",
+          "hash": "16612879046632145462",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/plugins/index.ts",
+          "hash": "1912296353952600318"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/plugins/leading-zeroes-validation.plugin.ts",
+          "hash": "12214578223529491765",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/plugins/min-max.plugin.ts",
+          "hash": "14106902301922871012",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/plugins/not-empty-integer.plugin.ts",
+          "hash": "15631106314202004884",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/affixes-filter-preprocessor.ts",
+          "hash": "16123123995067791136",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/decimal-zero-padding-postprocessor.ts",
+          "hash": "14738552887170487974",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/empty-postprocessor.ts",
+          "hash": "13538090592836991121",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/index.ts",
+          "hash": "16138749483022588902"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/initialization-only-preprocessor.ts",
+          "hash": "7170434203238920945",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/leading-zeroes-validation-postprocessor.ts",
+          "hash": "5742389327857029703",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/min-max-postprocessor.ts",
+          "hash": "2281686688377582643",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/non-removable-chars-deletion-preprocessor.ts",
+          "hash": "7567772471347822747",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/not-empty-integer-part-preprocessor.ts",
+          "hash": "10833518328718968355",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/pseudo-character-preprocessor.ts",
+          "hash": "5377686738071938129",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/repeated-decimal-separator-preprocessor.ts",
+          "hash": "4143197792190449211",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/tests/leading-zeroes-validation-postprocessor.spec.ts",
+          "hash": "3227667926423135586",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/tests/not-empty-integer-part-preprocessor.spec.ts",
+          "hash": "5102921714344115080",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/thousand-separator-postprocessor.ts",
+          "hash": "12255378321066565996",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/processors/zero-precision-preprocessor.ts",
+          "hash": "9690873047262718566",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/tests/number-mask.spec.ts",
+          "hash": "12310822236154537000",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/generate-mask-expression.ts",
+          "hash": "2290885304457042503",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/index.ts",
+          "hash": "1374724919027665374"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/parse-number.ts",
+          "hash": "13750005164197882745"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/stringify-number-without-exp.ts",
+          "hash": "6631846564394798604"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/tests/parse-number.spec.ts",
+          "hash": "9281189253812254219",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/tests/stringify-number-without-exp.spec.ts",
+          "hash": "3282721407624530658",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/tests/to-number-parts.spec.ts",
+          "hash": "5972875279599611019",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/tests/validate-decimal-pseudo-separators.spec.ts",
+          "hash": "8184076895544765703",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/to-number-parts.ts",
+          "hash": "17186859163204045838"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/number/utils/validate-decimal-pseudo-separators.ts",
+          "hash": "18240601802654339065"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/index.ts",
+          "hash": "6666006912810204188"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/processors/index.ts",
+          "hash": "8409218990788498298"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/processors/max-validation-preprocessor.ts",
+          "hash": "3966756951011420100",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/processors/tests/max-validation-preprocessor.spec.ts",
+          "hash": "3950989434611488531",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/time-mask.ts",
+          "hash": "18334085707418077599",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/time-options.ts",
+          "hash": "13374896126737866991"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/utils/index.ts",
+          "hash": "7930926290046349143"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/utils/parse-time.ts",
+          "hash": "6724925303990554405"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/utils/stringify-time.ts",
+          "hash": "242515547886505889"
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/utils/tests/parse-time.spec.ts",
+          "hash": "10766705409218328521",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/masks/time/utils/tests/stringify-time.spec.ts",
+          "hash": "15100265102004464305",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/add-on-focus.ts",
+          "hash": "4736073866681530529",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/caret-guard.ts",
+          "hash": "12927827157223722691",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/event-handler.ts",
+          "hash": "9207508558915612864",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/index.ts",
+          "hash": "13199781934438300778"
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/reject-event.ts",
+          "hash": "989117452328824650",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/remove-on-blur.ts",
+          "hash": "4137036802943350036",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/plugins/time-segments-stepping.ts",
+          "hash": "17648523596276133962",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/colon-convert-preprocessor.ts",
+          "hash": "7529050410200390968",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/date-segments-zero-padding-postprocessor.ts",
+          "hash": "10699275057402130894",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/first-date-end-separator-preprocessor.ts",
+          "hash": "12563017598671674075",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/fullwidth-to-halfwidth-preprocessor.ts",
+          "hash": "1555035407762309940",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/index.ts",
+          "hash": "14867997194869061222"
+        },
+        {
+          "file": "projects/kit/src/lib/processors/min-max-date-postprocessor.ts",
+          "hash": "1629311007350985677",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/normalize-date-preprocessor.ts",
+          "hash": "13623653950922035298",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/postfix-postprocessor.ts",
+          "hash": "12360735656586031324",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/prefix-postprocessor.ts",
+          "hash": "15280956027096155769",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/first-date-end-separator-preprocessor.spec.ts",
+          "hash": "15569280100379207362",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/normalize-date-preprocessor.spec.ts",
+          "hash": "8783104155321827403",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/postfix-postprocessor.spec.ts",
+          "hash": "1154218513516168845",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/prefix-postprocessor.spec.ts",
+          "hash": "13096893250574013894",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/valid-date-preprocessor.spec.ts",
+          "hash": "1771069398624041149",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/tests/with-placeholder.spec.ts",
+          "hash": "6506848459242262586",
+          "deps": [
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/valid-date-preprocessor.ts",
+          "hash": "6869561305767191110",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/with-placeholder.ts",
+          "hash": "15299916612418313116",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/processors/zero-placeholders-preprocessor.ts",
+          "hash": "173714896251474742",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/types/date-mode.ts",
+          "hash": "14229794332388980813"
+        },
+        {
+          "file": "projects/kit/src/lib/types/date-segments.ts",
+          "hash": "6644536114946298310"
+        },
+        {
+          "file": "projects/kit/src/lib/types/index.ts",
+          "hash": "3952710228311117060"
+        },
+        {
+          "file": "projects/kit/src/lib/types/time-mode.ts",
+          "hash": "12072537290696784794"
+        },
+        {
+          "file": "projects/kit/src/lib/types/time-segments.ts",
+          "hash": "6279411688965615690"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/clamp.ts",
+          "hash": "7260716899378911831"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/count-digits.ts",
+          "hash": "14494274189157955061"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/append-date.ts",
+          "hash": "16667177735802205477"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/date-segment-value-length.ts",
+          "hash": "17512958767648562409"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/date-to-segments.ts",
+          "hash": "389587666605100725"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/get-first-complete-date.ts",
+          "hash": "15989269769704788071"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/is-date-string-complete.ts",
+          "hash": "4396040588307630783"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/parse-date-range-string.ts",
+          "hash": "3122431635849232415"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/parse-date-string.ts",
+          "hash": "6630577528290152801"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/raise-segment-value-to-min.ts",
+          "hash": "8482955204921195819"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/segments-to-date.ts",
+          "hash": "14950727209638563003"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/tests/get-date-segment-value-length.spec.ts",
+          "hash": "16748837042308273403",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/tests/parse-date-range-string.spec.ts",
+          "hash": "5153835189613855046",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/to-date-string.ts",
+          "hash": "14797020493110861235"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/date/validate-date-string.ts",
+          "hash": "3919751688987386414"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/escape-reg-exp.ts",
+          "hash": "5742117264254184171"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/extract-affixes.ts",
+          "hash": "1613533410595838549"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/find-common-beginning-substr.ts",
+          "hash": "9412919055663601023"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/identity.ts",
+          "hash": "2804053958952707732"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/index.ts",
+          "hash": "4030218851323171821"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/is-empty.ts",
+          "hash": "6942562655376946481"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/pad-with-zeroes-until-valid.ts",
+          "hash": "2346210738849860027"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/escape-reg-exp.spec.ts",
+          "hash": "15819815873605178796",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/find-common-beginning-substr.spec.ts",
+          "hash": "8015862557521423927",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/get-first-complete-date.spec.ts",
+          "hash": "16307208354348467969",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/is-empty.spec.ts",
+          "hash": "18297868620633479622",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/to-half-width-colon.spec.ts",
+          "hash": "814887361360288413",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/tests/to-half-width-number.spec.ts",
+          "hash": "17911123818765084256",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/index.ts",
+          "hash": "14717968768451120997"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/pad-time-segments.ts",
+          "hash": "13282764487635990139"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/parse-time-string.ts",
+          "hash": "18377022410345008654"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/tests/parse-time-string.spec.ts",
+          "hash": "10300384413932508851",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/tests/to-time-string.spec.ts",
+          "hash": "13897089843011382897",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/to-time-string.ts",
+          "hash": "17182516947933253326"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/time/validate-time-string.ts",
+          "hash": "4693992968756905456"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/to-half-width-colon.ts",
+          "hash": "14944107103329107920"
+        },
+        {
+          "file": "projects/kit/src/lib/utils/to-half-width-number.ts",
+          "hash": "992373432130408687"
+        },
+        {
+          "file": "projects/kit/tsconfig.lib.json",
+          "hash": "10458335522972924276"
+        }
+      ],
+      "vue": [
+        {
+          "file": "projects/vue/README.md",
+          "hash": "6297250154076325326"
+        },
+        {
+          "file": "projects/vue/jest.config.ts",
+          "hash": "17668809579731247746"
+        },
+        {
+          "file": "projects/vue/package.json",
+          "hash": "2193589043738642095",
           "deps": [
             "core",
-            "npm:cypress"
+            "npm:vue",
+            "npm:@vue/test-utils",
+            "npm:@vue/vue3-jest"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/multi-character-date-segment-separator/multi-character-date-segment-separator.cy.ts",
-          "hash": "755747486666807994",
+          "file": "projects/vue/project.json",
+          "hash": "9200902805904333540"
+        },
+        {
+          "file": "projects/vue/src/index.ts",
+          "hash": "10705582546071414983"
+        },
+        {
+          "file": "projects/vue/src/lib/maskito.spec.ts",
+          "hash": "8727978725721025420",
           "deps": [
-            "kit"
+            "npm:@jest/globals",
+            "core",
+            "npm:@vue/test-utils"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/native-max-length/native-maxlength-attribute.cy.ts",
-          "hash": "16201904021135528061",
+          "file": "projects/vue/src/lib/maskito.ts",
+          "hash": "5879484983051242426",
           "deps": [
             "core",
-            "kit"
+            "npm:vue"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/native-select-method/native-select-method.cy.ts",
-          "hash": "10019020533313965594",
-          "deps": [
-            "npm:@angular/core",
-            "angular",
-            "core",
-            "kit"
-          ]
+          "file": "projects/vue/tsconfig.lib.json",
+          "hash": "10458335522972924276"
+        }
+      ],
+      "phone": [
+        {
+          "file": "projects/phone/README.md",
+          "hash": "12153557372126188357"
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/alone-decimal-separator.cy.ts",
-          "hash": "17095155004163791400",
-          "deps": [
-            "kit"
-          ]
+          "file": "projects/phone/jest.config.ts",
+          "hash": "11902629293880585774"
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/mirrored-prefix-postfix.cy.ts",
-          "hash": "4159901900143990020",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/multi-character-prefix.cy.ts",
-          "hash": "3512253158869348233",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/postfix-with-point.cy.ts",
-          "hash": "6807891660053113980",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/multi-test.component.ts",
-          "hash": "3455330547301212731",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "angular",
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/runtime-postfix-changes.cy.ts",
-          "hash": "6386846910735695849"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/with-initial-value.cy.ts",
-          "hash": "15373513058054975104",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-dispatch-input-events.cy.ts",
-          "hash": "1512949627117220451",
+          "file": "projects/phone/package.json",
+          "hash": "2733287192352878591",
           "deps": [
             "core",
             "kit",
-            "npm:cypress"
+            "npm:libphonenumber-js"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-has-same-characters-as-textfield.cy.ts",
-          "hash": "5473234061583690086",
+          "file": "projects/phone/project.json",
+          "hash": "9740331734284396669"
+        },
+        {
+          "file": "projects/phone/src/index.ts",
+          "hash": "14602589990560576490"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/index.ts",
+          "hash": "13110183655960953499"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/constants/index.ts",
+          "hash": "4014434840955851524"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/constants/template-filler.ts",
+          "hash": "16857795605389305658"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/index.ts",
+          "hash": "11259425097024083954"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/phone-mask-non-strict.ts",
+          "hash": "14698678665301389052",
           "deps": [
             "core",
-            "kit"
+            "npm:libphonenumber-js"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/predicate/multi-test.component.ts",
-          "hash": "4888349841303132761",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "angular",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/predicate/predicate.cy.ts",
-          "hash": "4604380130332582320",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/angular-wrapper.tsx",
-          "hash": "8601616241755753455",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-app.tsx",
-          "hash": "8604347470306584133",
+          "file": "projects/phone/src/lib/masks/phone/phone-mask-strict.ts",
+          "hash": "9373318310880990105",
           "deps": [
             "core",
             "kit",
-            "react",
-            "npm:react"
+            "npm:libphonenumber-js"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-async-predicate.cy.ts",
-          "hash": "3100024307269070414"
+          "file": "projects/phone/src/lib/masks/phone/phone-mask.ts",
+          "hash": "16972557600695139105",
+          "deps": [
+            "core",
+            "npm:libphonenumber-js"
+          ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/component-testing/utils.ts",
-          "hash": "7185162019268636910",
+          "file": "projects/phone/src/lib/masks/phone/processors/cut-init-country-code-preprocessor.ts",
+          "hash": "2781222418109565328",
           "deps": [
-            "npm:@angular/core",
-            "angular",
+            "core",
+            "npm:libphonenumber-js"
+          ]
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/processors/index.ts",
+          "hash": "4150664812518655362"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/processors/phone-length-postprocessor.ts",
+          "hash": "18088468818212884898",
+          "deps": [
+            "core",
+            "npm:libphonenumber-js"
+          ]
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/processors/validate-phone-preprocessor.ts",
+          "hash": "10773608991386786286",
+          "deps": [
+            "core",
+            "npm:libphonenumber-js"
+          ]
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/tests/phone-mask.spec.ts",
+          "hash": "10447725948700927636",
+          "deps": [
+            "npm:@jest/globals",
+            "core",
+            "npm:libphonenumber-js"
+          ]
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/utils/cut-phone-by-valid-length.ts",
+          "hash": "1225146420869575865",
+          "deps": [
+            "npm:libphonenumber-js"
+          ]
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/utils/generate-phone-mask.ts",
+          "hash": "9567289671263222831",
+          "deps": [
             "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-basic.cy.ts",
-          "hash": "9923060284933501884",
+          "file": "projects/phone/src/lib/masks/phone/utils/get-country-from-number.ts",
+          "hash": "1375848120322653674",
           "deps": [
-            "demo"
+            "npm:libphonenumber-js"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-custom-range-separator.cy.ts",
-          "hash": "10141115942518839830",
+          "file": "projects/phone/src/lib/masks/phone/utils/get-phone-template.ts",
+          "hash": "4988776535140211168",
           "deps": [
-            "demo"
+            "npm:libphonenumber-js"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-fullwidth-to-halfwidth.cy.ts",
-          "hash": "10761270736779264092",
+          "file": "projects/phone/src/lib/masks/phone/utils/index.ts",
+          "hash": "14447710705741369667"
+        },
+        {
+          "file": "projects/phone/src/lib/masks/phone/utils/select-template.ts",
+          "hash": "9455806603582501086"
+        },
+        {
+          "file": "projects/phone/tsconfig.lib.json",
+          "hash": "10458335522972924276"
+        }
+      ],
+      "angular": [
+        {
+          "file": "projects/angular/README.md",
+          "hash": "2745753669150754913"
+        },
+        {
+          "file": "projects/angular/jest.config.ts",
+          "hash": "5085827865080538725"
+        },
+        {
+          "file": "projects/angular/ng-package.json",
+          "hash": "14094944214481227045"
+        },
+        {
+          "file": "projects/angular/package.json",
+          "hash": "3028558135598819195",
           "deps": [
-            "demo"
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "core",
+            "npm:tslib"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max-length.cy.ts",
-          "hash": "17672922637605634508",
+          "file": "projects/angular/project.json",
+          "hash": "5869892061388042707"
+        },
+        {
+          "file": "projects/angular/src/index.ts",
+          "hash": "6820344230112673658"
+        },
+        {
+          "file": "projects/angular/src/lib/deprecated.ts",
+          "hash": "13561691087115333624",
           "deps": [
-            "demo"
+            "npm:@angular/core",
+            "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max.cy.ts",
-          "hash": "3832364021312659579",
+          "file": "projects/angular/src/lib/maskito.directive.ts",
+          "hash": "15570268801387872661",
           "deps": [
-            "demo"
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-mode.cy.ts",
-          "hash": "14004812118041277235",
+          "file": "projects/angular/src/lib/maskito.pipe.ts",
+          "hash": "16378216344778416937",
           "deps": [
-            "demo"
+            "npm:@angular/core",
+            "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-separator.cy.ts",
-          "hash": "4527715972493359337",
+          "file": "projects/angular/src/lib/maskito.spec.ts",
+          "hash": "18180994467779402430",
           "deps": [
-            "demo"
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "npm:@jest/globals",
+            "core"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-basic.cy.ts",
-          "hash": "11422738093222591064",
+          "file": "projects/angular/src/test-setup.ts",
+          "hash": "17711435995618823417",
           "deps": [
-            "demo"
+            "npm:jest-preset-angular"
           ]
         },
         {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-date-time-separator.cy.ts",
-          "hash": "3981959443436230555",
-          "deps": [
-            "demo",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-fullwidth-to-halfwidth.cy.ts",
-          "hash": "18100225833732858384",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-min-max.cy.ts",
-          "hash": "13354496280947490744",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-mode.cy.ts",
-          "hash": "11044790815506619161",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-separator.cy.ts",
-          "hash": "4728025003314390172",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-time-step.cy.ts",
-          "hash": "1751708397109096734",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-basic.cy.ts",
-          "hash": "17452446256408141974",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-fullwidth-to-halfwidth.cy.ts",
-          "hash": "17412265739274175814",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-min-max.cy.ts",
-          "hash": "16850529406308479096",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-mode.cy.ts",
-          "hash": "7675258951625059834",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-segments-zero-padding.cy.ts",
-          "hash": "6145148145765558965",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-separator.cy.ts",
-          "hash": "9650424327669914204",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-basic.cy.ts",
-          "hash": "10444019302897563905"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-separator.cy.ts",
-          "hash": "4820467201620315580"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-zero-padding.cy.ts",
-          "hash": "38227050558871716"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-examples.cy.ts",
-          "hash": "1568509097055991808",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-fullwidth-to-halfwidth.cy.ts",
-          "hash": "5341196505013290238"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-max-validation.cy.ts",
-          "hash": "10914621396540595288"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-min-validation.cy.ts",
-          "hash": "7396923407061822350"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-minus-sign.cy.ts",
-          "hash": "9016204097223865539",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-precision.cy.ts",
-          "hash": "3175909840096276163"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-prefix-postfix.cy.ts",
-          "hash": "10547082565588090570",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-thousand-separator.cy.ts",
-          "hash": "4628131292056800594"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-zero-integer-part.cy.ts",
-          "hash": "490822086538265788"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/utils.ts",
-          "hash": "17388917249608421688",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-basic.cy.ts",
-          "hash": "10854562075630592721",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-fullwidth-to-halfwidth.cy.ts",
-          "hash": "11692319892224457862",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-mode.cy.ts",
-          "hash": "10184905483708477803",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-step.cy.ts",
-          "hash": "7149530863242209909",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/react/element-predicate.cy.ts",
-          "hash": "7532135315294440901",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/card/card.cy.ts",
-          "hash": "6301468984271172134",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/content-editable/multi-line.cy.ts",
-          "hash": "10775048676176824704",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/content-editable/single-line-time-mask.cy.ts",
-          "hash": "6021694527487846032",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/phone/phone.cy.ts",
-          "hash": "3348371263483828395",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/date.cy.ts",
-          "hash": "1344196394713292847",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/us-phone.cy.ts",
-          "hash": "6171805827272386678",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/сvc-code.cy.ts",
-          "hash": "9126378525187920555",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/plugins/reject.cy.ts",
-          "hash": "17315573636148493049",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/postfix/percentage.cy.ts",
-          "hash": "6608599691337080423",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/postfix/postprocessor.cy.ts",
-          "hash": "9141277064250197115",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/prefix/dynamic-pattern-mask-expression.cy.ts",
-          "hash": "5243635685191009539",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/prefix/postprocessor.cy.ts",
-          "hash": "15362571998674062581",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/textarea/textarea-latin-letters-digits.cy.ts",
-          "hash": "1051372039890279719",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/ssr/ssr.cy.ts",
-          "hash": "16632666468685713841",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/tsconfig.json",
-          "hash": "11566051978826490078"
+          "file": "projects/angular/tsconfig.lib.prod.json",
+          "hash": "13135163489058201652"
         }
       ],
       "core": [
@@ -899,82 +1399,77 @@
           "hash": "10458335522972924276"
         }
       ],
-      "angular": [
+      "react": [
         {
-          "file": "projects/angular/README.md",
-          "hash": "2745753669150754913"
+          "file": "projects/react/.babelrc",
+          "hash": "3362769191121751979"
         },
         {
-          "file": "projects/angular/jest.config.ts",
-          "hash": "5085827865080538725"
+          "file": "projects/react/README.md",
+          "hash": "3517836390584616760"
         },
         {
-          "file": "projects/angular/ng-package.json",
-          "hash": "14094944214481227045"
+          "file": "projects/react/jest.config.ts",
+          "hash": "11819287231724842609"
         },
         {
-          "file": "projects/angular/package.json",
-          "hash": "3028558135598819195",
+          "file": "projects/react/package.json",
+          "hash": "465450964278278894",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
             "core",
-            "npm:tslib"
+            "npm:react",
+            "npm:react-dom",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:react-test-renderer"
           ]
         },
         {
-          "file": "projects/angular/project.json",
-          "hash": "5869892061388042707"
+          "file": "projects/react/project.json",
+          "hash": "17150827731543106231"
         },
         {
-          "file": "projects/angular/src/index.ts",
-          "hash": "6820344230112673658"
+          "file": "projects/react/src/index.ts",
+          "hash": "2322215859405598930"
         },
         {
-          "file": "projects/angular/src/lib/deprecated.ts",
-          "hash": "13561691087115333624",
+          "file": "projects/react/src/lib/tests/elementPredicate.spec.tsx",
+          "hash": "7270555888231946029",
           "deps": [
-            "npm:@angular/core",
-            "core"
+            "core",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event"
           ]
         },
         {
-          "file": "projects/angular/src/lib/maskito.directive.ts",
-          "hash": "15570268801387872661",
+          "file": "projects/react/src/lib/tests/useMaskito.spec.tsx",
+          "hash": "7761891283020057883",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "core"
+            "core",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event"
           ]
         },
         {
-          "file": "projects/angular/src/lib/maskito.pipe.ts",
-          "hash": "16378216344778416937",
+          "file": "projects/react/src/lib/useIsomorphicLayoutEffect.ts",
+          "hash": "9942049867605225952",
           "deps": [
-            "npm:@angular/core",
-            "core"
+            "npm:react"
           ]
         },
         {
-          "file": "projects/angular/src/lib/maskito.spec.ts",
-          "hash": "18180994467779402430",
+          "file": "projects/react/src/lib/useMaskito.ts",
+          "hash": "15825160868950533483",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "npm:@jest/globals",
-            "core"
+            "core",
+            "npm:react"
           ]
         },
         {
-          "file": "projects/angular/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "projects/angular/tsconfig.lib.prod.json",
-          "hash": "13135163489058201652"
+          "file": "projects/react/tsconfig.lib.json",
+          "hash": "15590731338353269541"
         }
       ],
       "demo": [
@@ -3014,1103 +3509,608 @@
           ]
         }
       ],
-      "vue": [
+      "demo-integrations": [
         {
-          "file": "projects/vue/README.md",
-          "hash": "6297250154076325326"
+          "file": "projects/demo-integrations/cypress.config.ts",
+          "hash": "4506545618145578160",
+          "deps": [
+            "npm:@nx/angular",
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
         },
         {
-          "file": "projects/vue/jest.config.ts",
-          "hash": "17668809579731247746"
+          "file": "projects/demo-integrations/package.json",
+          "hash": "7736881834570533641",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress",
+            "npm:cypress-real-events"
+          ]
         },
         {
-          "file": "projects/vue/package.json",
-          "hash": "2193589043738642095",
+          "file": "projects/demo-integrations/project.json",
+          "hash": "12450131886029785614"
+        },
+        {
+          "file": "projects/demo-integrations/src/fixtures/example.json",
+          "hash": "15753941481085060538"
+        },
+        {
+          "file": "projects/demo-integrations/src/plugins/index.js",
+          "hash": "14244429710963922201"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/assertions/have-ng-control-value.ts",
+          "hash": "6478673894527932169"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/assertions/index.ts",
+          "hash": "10903326993872186391"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/commands/index.ts",
+          "hash": "11077321319888120729"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/commands/smart-tick.ts",
+          "hash": "9486153098645642571"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/component-index.html",
+          "hash": "7320401235372192637"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/component.ts",
+          "hash": "16091777127559795956",
+          "deps": [
+            "npm:cypress-real-events",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/support/constants/index.ts",
+          "hash": "13793160972820509205"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/constants/real-events-support.ts",
+          "hash": "9974591768659929430"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/e2e.ts",
+          "hash": "12124030570736298064",
+          "deps": [
+            "npm:cypress-real-events"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-basic.cy.ts",
+          "hash": "16560470431597143161",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-non-strict.cy.ts",
+          "hash": "2243193500897909724",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-separator.cy.ts",
+          "hash": "12004451028551255436",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/angular/form-control-changes.cy.ts",
+          "hash": "3832667557630934266",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/angular/disable-mask-on-null.cy.ts",
+          "hash": "9265772408225287274",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/initial-calibration-plugin/dispatch-event.cy.ts",
+          "hash": "14679171458355482727",
           "deps": [
             "core",
-            "npm:vue",
-            "npm:@vue/test-utils",
-            "npm:@vue/vue3-jest"
+            "npm:cypress"
           ]
         },
         {
-          "file": "projects/vue/project.json",
-          "hash": "9200902805904333540"
-        },
-        {
-          "file": "projects/vue/src/index.ts",
-          "hash": "10705582546071414983"
-        },
-        {
-          "file": "projects/vue/src/lib/maskito.spec.ts",
-          "hash": "8727978725721025420",
+          "file": "projects/demo-integrations/src/tests/component-testing/multi-character-date-segment-separator/multi-character-date-segment-separator.cy.ts",
+          "hash": "755747486666807994",
           "deps": [
-            "npm:@jest/globals",
-            "core",
-            "npm:@vue/test-utils"
+            "kit"
           ]
         },
         {
-          "file": "projects/vue/src/lib/maskito.ts",
-          "hash": "5879484983051242426",
+          "file": "projects/demo-integrations/src/tests/component-testing/native-max-length/native-maxlength-attribute.cy.ts",
+          "hash": "16201904021135528061",
           "deps": [
             "core",
-            "npm:vue"
+            "kit"
           ]
         },
         {
-          "file": "projects/vue/tsconfig.lib.json",
-          "hash": "10458335522972924276"
-        }
-      ],
-      "kit": [
-        {
-          "file": "projects/kit/README.md",
-          "hash": "3831928964907182662"
-        },
-        {
-          "file": "projects/kit/jest.config.ts",
-          "hash": "15028081385028870229"
-        },
-        {
-          "file": "projects/kit/package.json",
-          "hash": "16329889678137951511",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/project.json",
-          "hash": "1427979868839062396"
-        },
-        {
-          "file": "projects/kit/src/index.ts",
-          "hash": "8718259006979660"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/date-segment-max-values.ts",
-          "hash": "11231579353265181171"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/default-decimal-pseudo-separators.ts",
-          "hash": "878698784737043954"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/default-min-max-dates.ts",
-          "hash": "12935340700804443470"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/default-time-segment-max-values.ts",
-          "hash": "6021172817420863289"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/index.ts",
-          "hash": "15133457096981859088"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/time-fixed-characters.ts",
-          "hash": "3328886389205605391"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/time-segment-value-lengths.ts",
-          "hash": "1830914674385517118"
-        },
-        {
-          "file": "projects/kit/src/lib/constants/unicode-characters.ts",
-          "hash": "5435740248075586938"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/constants.ts",
-          "hash": "12970986464067702279"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/date-range-mask.ts",
-          "hash": "18324892099034409321",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/index.ts",
-          "hash": "10141479037125728029"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/processors/min-max-range-length-postprocessor.ts",
-          "hash": "8454959720059869817",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/processors/swap-dates-postprocessor.ts",
-          "hash": "3139654369752100929",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/tests/date-segments-zero-padding.spec.ts",
-          "hash": "4700819131988369859",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-range/tests/pseudo-range-separators.spec.ts",
-          "hash": "3137008171874614509",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/constants/date-time-separator.ts",
-          "hash": "13004993923304962737"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/constants/index.ts",
-          "hash": "15475075266596286992"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/date-time-mask.ts",
-          "hash": "13408108140819969456",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/index.ts",
-          "hash": "2932837090366039673"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/postprocessors/index.ts",
-          "hash": "8568302617275748253"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/postprocessors/min-max-date-time-postprocessor.ts",
-          "hash": "5233223513799620999",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/preprocessors/index.ts",
-          "hash": "8303930775306782338"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/preprocessors/valid-date-time-preprocessor.ts",
-          "hash": "12550549271175277479",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/tests/date-segments-zero-padding.spec.ts",
-          "hash": "10812623300731528061",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/tests/date-time-separator.spec.ts",
-          "hash": "16239437900653127926",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/tests/pseudo-date-end-separator.spec.ts",
-          "hash": "2524369912839746474",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/utils/index.ts",
-          "hash": "16540819637648771515"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/utils/is-date-time-string-complete.ts",
-          "hash": "4600563732418383487"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date-time/utils/parse-date-time-string.ts",
-          "hash": "12687821336022903769"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date/date-mask.ts",
-          "hash": "15876847355213681324",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date/index.ts",
-          "hash": "9749447913372360147"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/date/tests/date-mask.spec.ts",
-          "hash": "11079336254396890406",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/index.ts",
-          "hash": "15900261435177864540"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/number-mask.ts",
-          "hash": "16612879046632145462",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/plugins/index.ts",
-          "hash": "1912296353952600318"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/plugins/leading-zeroes-validation.plugin.ts",
-          "hash": "12214578223529491765",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/plugins/min-max.plugin.ts",
-          "hash": "14106902301922871012",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/plugins/not-empty-integer.plugin.ts",
-          "hash": "15631106314202004884",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/affixes-filter-preprocessor.ts",
-          "hash": "16123123995067791136",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/decimal-zero-padding-postprocessor.ts",
-          "hash": "14738552887170487974",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/empty-postprocessor.ts",
-          "hash": "13538090592836991121",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/index.ts",
-          "hash": "16138749483022588902"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/initialization-only-preprocessor.ts",
-          "hash": "7170434203238920945",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/leading-zeroes-validation-postprocessor.ts",
-          "hash": "5742389327857029703",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/min-max-postprocessor.ts",
-          "hash": "2281686688377582643",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/non-removable-chars-deletion-preprocessor.ts",
-          "hash": "7567772471347822747",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/not-empty-integer-part-preprocessor.ts",
-          "hash": "10833518328718968355",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/pseudo-character-preprocessor.ts",
-          "hash": "5377686738071938129",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/repeated-decimal-separator-preprocessor.ts",
-          "hash": "4143197792190449211",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/tests/leading-zeroes-validation-postprocessor.spec.ts",
-          "hash": "3227667926423135586",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/tests/not-empty-integer-part-preprocessor.spec.ts",
-          "hash": "5102921714344115080",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/thousand-separator-postprocessor.ts",
-          "hash": "12255378321066565996",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/processors/zero-precision-preprocessor.ts",
-          "hash": "9690873047262718566",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/tests/number-mask.spec.ts",
-          "hash": "12310822236154537000",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/generate-mask-expression.ts",
-          "hash": "2290885304457042503",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/index.ts",
-          "hash": "1374724919027665374"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/parse-number.ts",
-          "hash": "13750005164197882745"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/stringify-number-without-exp.ts",
-          "hash": "6631846564394798604"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/tests/parse-number.spec.ts",
-          "hash": "9281189253812254219",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/tests/stringify-number-without-exp.spec.ts",
-          "hash": "3282721407624530658",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/tests/to-number-parts.spec.ts",
-          "hash": "5972875279599611019",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/tests/validate-decimal-pseudo-separators.spec.ts",
-          "hash": "8184076895544765703",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/to-number-parts.ts",
-          "hash": "17186859163204045838"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/number/utils/validate-decimal-pseudo-separators.ts",
-          "hash": "18240601802654339065"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/index.ts",
-          "hash": "6666006912810204188"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/processors/index.ts",
-          "hash": "8409218990788498298"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/processors/max-validation-preprocessor.ts",
-          "hash": "3966756951011420100",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/processors/tests/max-validation-preprocessor.spec.ts",
-          "hash": "3950989434611488531",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/time-mask.ts",
-          "hash": "18334085707418077599",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/time-options.ts",
-          "hash": "13374896126737866991"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/utils/index.ts",
-          "hash": "7930926290046349143"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/utils/parse-time.ts",
-          "hash": "6724925303990554405"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/utils/stringify-time.ts",
-          "hash": "242515547886505889"
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/utils/tests/parse-time.spec.ts",
-          "hash": "10766705409218328521",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/masks/time/utils/tests/stringify-time.spec.ts",
-          "hash": "15100265102004464305",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/add-on-focus.ts",
-          "hash": "4736073866681530529",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/caret-guard.ts",
-          "hash": "12927827157223722691",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/event-handler.ts",
-          "hash": "9207508558915612864",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/index.ts",
-          "hash": "13199781934438300778"
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/reject-event.ts",
-          "hash": "989117452328824650",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/remove-on-blur.ts",
-          "hash": "4137036802943350036",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/plugins/time-segments-stepping.ts",
-          "hash": "17648523596276133962",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/colon-convert-preprocessor.ts",
-          "hash": "7529050410200390968",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/date-segments-zero-padding-postprocessor.ts",
-          "hash": "10699275057402130894",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/first-date-end-separator-preprocessor.ts",
-          "hash": "12563017598671674075",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/fullwidth-to-halfwidth-preprocessor.ts",
-          "hash": "1555035407762309940",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/index.ts",
-          "hash": "14867997194869061222"
-        },
-        {
-          "file": "projects/kit/src/lib/processors/min-max-date-postprocessor.ts",
-          "hash": "1629311007350985677",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/normalize-date-preprocessor.ts",
-          "hash": "13623653950922035298",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/postfix-postprocessor.ts",
-          "hash": "12360735656586031324",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/prefix-postprocessor.ts",
-          "hash": "15280956027096155769",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/first-date-end-separator-preprocessor.spec.ts",
-          "hash": "15569280100379207362",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/normalize-date-preprocessor.spec.ts",
-          "hash": "8783104155321827403",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/postfix-postprocessor.spec.ts",
-          "hash": "1154218513516168845",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/prefix-postprocessor.spec.ts",
-          "hash": "13096893250574013894",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/valid-date-preprocessor.spec.ts",
-          "hash": "1771069398624041149",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/tests/with-placeholder.spec.ts",
-          "hash": "6506848459242262586",
-          "deps": [
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/valid-date-preprocessor.ts",
-          "hash": "6869561305767191110",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/with-placeholder.ts",
-          "hash": "15299916612418313116",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/processors/zero-placeholders-preprocessor.ts",
-          "hash": "173714896251474742",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/types/date-mode.ts",
-          "hash": "14229794332388980813"
-        },
-        {
-          "file": "projects/kit/src/lib/types/date-segments.ts",
-          "hash": "6644536114946298310"
-        },
-        {
-          "file": "projects/kit/src/lib/types/index.ts",
-          "hash": "3952710228311117060"
-        },
-        {
-          "file": "projects/kit/src/lib/types/time-mode.ts",
-          "hash": "12072537290696784794"
-        },
-        {
-          "file": "projects/kit/src/lib/types/time-segments.ts",
-          "hash": "6279411688965615690"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/clamp.ts",
-          "hash": "7260716899378911831"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/count-digits.ts",
-          "hash": "14494274189157955061"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/append-date.ts",
-          "hash": "16667177735802205477"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/date-segment-value-length.ts",
-          "hash": "17512958767648562409"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/date-to-segments.ts",
-          "hash": "389587666605100725"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/get-first-complete-date.ts",
-          "hash": "15989269769704788071"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/is-date-string-complete.ts",
-          "hash": "4396040588307630783"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/parse-date-range-string.ts",
-          "hash": "3122431635849232415"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/parse-date-string.ts",
-          "hash": "6630577528290152801"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/raise-segment-value-to-min.ts",
-          "hash": "8482955204921195819"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/segments-to-date.ts",
-          "hash": "14950727209638563003"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/tests/get-date-segment-value-length.spec.ts",
-          "hash": "16748837042308273403",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/tests/parse-date-range-string.spec.ts",
-          "hash": "5153835189613855046",
-          "deps": [
-            "npm:@jest/globals"
-          ]
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/to-date-string.ts",
-          "hash": "14797020493110861235"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/date/validate-date-string.ts",
-          "hash": "3919751688987386414"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/escape-reg-exp.ts",
-          "hash": "5742117264254184171"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/extract-affixes.ts",
-          "hash": "1613533410595838549"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/find-common-beginning-substr.ts",
-          "hash": "9412919055663601023"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/identity.ts",
-          "hash": "2804053958952707732"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/index.ts",
-          "hash": "4030218851323171821"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/is-empty.ts",
-          "hash": "6942562655376946481"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/pad-with-zeroes-until-valid.ts",
-          "hash": "2346210738849860027"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/tests/escape-reg-exp.spec.ts",
-          "hash": "15819815873605178796",
+          "file": "projects/demo-integrations/src/tests/component-testing/native-select-method/native-select-method.cy.ts",
+          "hash": "10019020533313965594",
           "deps": [
-            "npm:@jest/globals"
+            "npm:@angular/core",
+            "angular",
+            "core",
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/tests/find-common-beginning-substr.spec.ts",
-          "hash": "8015862557521423927",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/alone-decimal-separator.cy.ts",
+          "hash": "17095155004163791400",
           "deps": [
-            "npm:@jest/globals"
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/tests/get-first-complete-date.spec.ts",
-          "hash": "16307208354348467969",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/mirrored-prefix-postfix.cy.ts",
+          "hash": "4159901900143990020",
           "deps": [
-            "npm:@jest/globals"
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/tests/is-empty.spec.ts",
-          "hash": "18297868620633479622",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/multi-character-prefix.cy.ts",
+          "hash": "3512253158869348233",
           "deps": [
-            "npm:@jest/globals"
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/tests/to-half-width-colon.spec.ts",
-          "hash": "814887361360288413",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/postfix-with-point.cy.ts",
+          "hash": "6807891660053113980",
           "deps": [
-            "npm:@jest/globals"
+            "core",
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/tests/to-half-width-number.spec.ts",
-          "hash": "17911123818765084256",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/multi-test.component.ts",
+          "hash": "3455330547301212731",
           "deps": [
-            "npm:@jest/globals"
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "angular",
+            "core",
+            "kit"
           ]
         },
         {
-          "file": "projects/kit/src/lib/utils/time/index.ts",
-          "hash": "14717968768451120997"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/time/pad-time-segments.ts",
-          "hash": "13282764487635990139"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/time/parse-time-string.ts",
-          "hash": "18377022410345008654"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/time/tests/parse-time-string.spec.ts",
-          "hash": "10300384413932508851",
-          "deps": [
-            "npm:@jest/globals"
-          ]
+          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/runtime-postfix-changes.cy.ts",
+          "hash": "6386846910735695849"
         },
         {
-          "file": "projects/kit/src/lib/utils/time/tests/to-time-string.spec.ts",
-          "hash": "13897089843011382897",
+          "file": "projects/demo-integrations/src/tests/component-testing/number/with-initial-value.cy.ts",
+          "hash": "15373513058054975104",
           "deps": [
-            "npm:@jest/globals"
+            "core",
+            "kit"
           ]
-        },
-        {
-          "file": "projects/kit/src/lib/utils/time/to-time-string.ts",
-          "hash": "17182516947933253326"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/time/validate-time-string.ts",
-          "hash": "4693992968756905456"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/to-half-width-colon.ts",
-          "hash": "14944107103329107920"
-        },
-        {
-          "file": "projects/kit/src/lib/utils/to-half-width-number.ts",
-          "hash": "992373432130408687"
-        },
-        {
-          "file": "projects/kit/tsconfig.lib.json",
-          "hash": "10458335522972924276"
-        }
-      ],
-      "phone": [
-        {
-          "file": "projects/phone/README.md",
-          "hash": "12153557372126188357"
-        },
-        {
-          "file": "projects/phone/jest.config.ts",
-          "hash": "11902629293880585774"
         },
         {
-          "file": "projects/phone/package.json",
-          "hash": "2733287192352878591",
+          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-dispatch-input-events.cy.ts",
+          "hash": "1512949627117220451",
           "deps": [
             "core",
             "kit",
-            "npm:libphonenumber-js"
+            "npm:cypress"
           ]
         },
         {
-          "file": "projects/phone/project.json",
-          "hash": "9740331734284396669"
-        },
-        {
-          "file": "projects/phone/src/index.ts",
-          "hash": "14602589990560576490"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/index.ts",
-          "hash": "13110183655960953499"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/constants/index.ts",
-          "hash": "4014434840955851524"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/constants/template-filler.ts",
-          "hash": "16857795605389305658"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/index.ts",
-          "hash": "11259425097024083954"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/phone-mask-non-strict.ts",
-          "hash": "14698678665301389052",
+          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-has-same-characters-as-textfield.cy.ts",
+          "hash": "5473234061583690086",
           "deps": [
             "core",
-            "npm:libphonenumber-js"
+            "kit"
           ]
         },
         {
-          "file": "projects/phone/src/lib/masks/phone/phone-mask-strict.ts",
-          "hash": "9373318310880990105",
+          "file": "projects/demo-integrations/src/tests/component-testing/predicate/multi-test.component.ts",
+          "hash": "4888349841303132761",
           "deps": [
-            "core",
-            "kit",
-            "npm:libphonenumber-js"
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "angular",
+            "core"
           ]
         },
         {
-          "file": "projects/phone/src/lib/masks/phone/phone-mask.ts",
-          "hash": "16972557600695139105",
-          "deps": [
-            "core",
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/processors/cut-init-country-code-preprocessor.ts",
-          "hash": "2781222418109565328",
-          "deps": [
-            "core",
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/processors/index.ts",
-          "hash": "4150664812518655362"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/processors/phone-length-postprocessor.ts",
-          "hash": "18088468818212884898",
-          "deps": [
-            "core",
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/processors/validate-phone-preprocessor.ts",
-          "hash": "10773608991386786286",
-          "deps": [
-            "core",
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/tests/phone-mask.spec.ts",
-          "hash": "10447725948700927636",
-          "deps": [
-            "npm:@jest/globals",
-            "core",
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/utils/cut-phone-by-valid-length.ts",
-          "hash": "1225146420869575865",
-          "deps": [
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/utils/generate-phone-mask.ts",
-          "hash": "9567289671263222831",
+          "file": "projects/demo-integrations/src/tests/component-testing/predicate/predicate.cy.ts",
+          "hash": "4604380130332582320",
           "deps": [
             "core"
           ]
         },
         {
-          "file": "projects/phone/src/lib/masks/phone/utils/get-country-from-number.ts",
-          "hash": "1375848120322653674",
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/angular-wrapper.tsx",
+          "hash": "8601616241755753455",
           "deps": [
-            "npm:libphonenumber-js"
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:react-dom"
           ]
         },
         {
-          "file": "projects/phone/src/lib/masks/phone/utils/get-phone-template.ts",
-          "hash": "4988776535140211168",
-          "deps": [
-            "npm:libphonenumber-js"
-          ]
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/utils/index.ts",
-          "hash": "14447710705741369667"
-        },
-        {
-          "file": "projects/phone/src/lib/masks/phone/utils/select-template.ts",
-          "hash": "9455806603582501086"
-        },
-        {
-          "file": "projects/phone/tsconfig.lib.json",
-          "hash": "10458335522972924276"
-        }
-      ],
-      "react": [
-        {
-          "file": "projects/react/.babelrc",
-          "hash": "3362769191121751979"
-        },
-        {
-          "file": "projects/react/README.md",
-          "hash": "3517836390584616760"
-        },
-        {
-          "file": "projects/react/jest.config.ts",
-          "hash": "11819287231724842609"
-        },
-        {
-          "file": "projects/react/package.json",
-          "hash": "465450964278278894",
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-app.tsx",
+          "hash": "8604347470306584133",
           "deps": [
             "core",
-            "npm:react",
-            "npm:react-dom",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:react-test-renderer"
-          ]
-        },
-        {
-          "file": "projects/react/project.json",
-          "hash": "17150827731543106231"
-        },
-        {
-          "file": "projects/react/src/index.ts",
-          "hash": "2322215859405598930"
-        },
-        {
-          "file": "projects/react/src/lib/tests/elementPredicate.spec.tsx",
-          "hash": "7270555888231946029",
-          "deps": [
-            "core",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event"
-          ]
-        },
-        {
-          "file": "projects/react/src/lib/tests/useMaskito.spec.tsx",
-          "hash": "7761891283020057883",
-          "deps": [
-            "core",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event"
-          ]
-        },
-        {
-          "file": "projects/react/src/lib/useIsomorphicLayoutEffect.ts",
-          "hash": "9942049867605225952",
-          "deps": [
+            "kit",
+            "react",
             "npm:react"
           ]
         },
         {
-          "file": "projects/react/src/lib/useMaskito.ts",
-          "hash": "15825160868950533483",
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-async-predicate.cy.ts",
+          "hash": "3100024307269070414"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/utils.ts",
+          "hash": "7185162019268636910",
           "deps": [
-            "core",
-            "npm:react"
+            "npm:@angular/core",
+            "angular",
+            "core"
           ]
         },
         {
-          "file": "projects/react/tsconfig.lib.json",
-          "hash": "15590731338353269541"
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-basic.cy.ts",
+          "hash": "9923060284933501884",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-custom-range-separator.cy.ts",
+          "hash": "10141115942518839830",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-fullwidth-to-halfwidth.cy.ts",
+          "hash": "10761270736779264092",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max-length.cy.ts",
+          "hash": "17672922637605634508",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max.cy.ts",
+          "hash": "3832364021312659579",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-mode.cy.ts",
+          "hash": "14004812118041277235",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-separator.cy.ts",
+          "hash": "4527715972493359337",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-basic.cy.ts",
+          "hash": "11422738093222591064",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-date-time-separator.cy.ts",
+          "hash": "3981959443436230555",
+          "deps": [
+            "demo",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-fullwidth-to-halfwidth.cy.ts",
+          "hash": "18100225833732858384",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-min-max.cy.ts",
+          "hash": "13354496280947490744",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-mode.cy.ts",
+          "hash": "11044790815506619161",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-separator.cy.ts",
+          "hash": "4728025003314390172",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-time-step.cy.ts",
+          "hash": "1751708397109096734",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-basic.cy.ts",
+          "hash": "17452446256408141974",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-fullwidth-to-halfwidth.cy.ts",
+          "hash": "17412265739274175814",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-min-max.cy.ts",
+          "hash": "16850529406308479096",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-mode.cy.ts",
+          "hash": "7675258951625059834",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-segments-zero-padding.cy.ts",
+          "hash": "6145148145765558965",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-separator.cy.ts",
+          "hash": "9650424327669914204",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-basic.cy.ts",
+          "hash": "10444019302897563905"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-separator.cy.ts",
+          "hash": "4820467201620315580"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-zero-padding.cy.ts",
+          "hash": "38227050558871716"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-examples.cy.ts",
+          "hash": "1568509097055991808",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-fullwidth-to-halfwidth.cy.ts",
+          "hash": "5341196505013290238"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-max-validation.cy.ts",
+          "hash": "10914621396540595288"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-min-validation.cy.ts",
+          "hash": "7396923407061822350"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-minus-sign.cy.ts",
+          "hash": "9016204097223865539",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-precision.cy.ts",
+          "hash": "3175909840096276163"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-prefix-postfix.cy.ts",
+          "hash": "10547082565588090570",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-thousand-separator.cy.ts",
+          "hash": "4628131292056800594"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-zero-integer-part.cy.ts",
+          "hash": "490822086538265788"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/utils.ts",
+          "hash": "17388917249608421688",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-basic.cy.ts",
+          "hash": "10854562075630592721",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-fullwidth-to-halfwidth.cy.ts",
+          "hash": "11692319892224457862",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-mode.cy.ts",
+          "hash": "10184905483708477803",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-step.cy.ts",
+          "hash": "7149530863242209909",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/react/element-predicate.cy.ts",
+          "hash": "7532135315294440901",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/card/card.cy.ts",
+          "hash": "6301468984271172134",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/content-editable/multi-line.cy.ts",
+          "hash": "10775048676176824704",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/content-editable/single-line-time-mask.cy.ts",
+          "hash": "6021694527487846032",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/phone/phone.cy.ts",
+          "hash": "3348371263483828395",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/date.cy.ts",
+          "hash": "1344196394713292847",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/us-phone.cy.ts",
+          "hash": "6171805827272386678",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/сvc-code.cy.ts",
+          "hash": "9126378525187920555",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/plugins/reject.cy.ts",
+          "hash": "17315573636148493049",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/postfix/percentage.cy.ts",
+          "hash": "6608599691337080423",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/postfix/postprocessor.cy.ts",
+          "hash": "9141277064250197115",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/prefix/dynamic-pattern-mask-expression.cy.ts",
+          "hash": "5243635685191009539",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/prefix/postprocessor.cy.ts",
+          "hash": "15362571998674062581",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/textarea/textarea-latin-letters-digits.cy.ts",
+          "hash": "1051372039890279719",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/ssr/ssr.cy.ts",
+          "hash": "16632666468685713841",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/tsconfig.json",
+          "hash": "11566051978826490078"
         }
       ]
     },
