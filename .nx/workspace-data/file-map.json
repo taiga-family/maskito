@@ -215,732 +215,6 @@
           "hash": "10458335522972924276"
         }
       ],
-      "demo-integrations": [
-        {
-          "file": "projects/demo-integrations/cypress.config.ts",
-          "hash": "4506545618145578160",
-          "deps": [
-            "npm:@nx/angular",
-            "npm:@nx/cypress",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/package.json",
-          "hash": "7736881834570533641",
-          "deps": [
-            "npm:@nx/cypress",
-            "npm:cypress",
-            "npm:cypress-real-events"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/project.json",
-          "hash": "12450131886029785614"
-        },
-        {
-          "file": "projects/demo-integrations/src/fixtures/example.json",
-          "hash": "15753941481085060538"
-        },
-        {
-          "file": "projects/demo-integrations/src/plugins/index.js",
-          "hash": "14244429710963922201"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/assertions/have-ng-control-value.ts",
-          "hash": "6478673894527932169"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/assertions/index.ts",
-          "hash": "10903326993872186391"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/commands/index.ts",
-          "hash": "11077321319888120729"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/commands/smart-tick.ts",
-          "hash": "9486153098645642571"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/component-index.html",
-          "hash": "7320401235372192637"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/component.ts",
-          "hash": "16091777127559795956",
-          "deps": [
-            "npm:cypress-real-events",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/support/constants/index.ts",
-          "hash": "13793160972820509205"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/constants/real-events-support.ts",
-          "hash": "9974591768659929430"
-        },
-        {
-          "file": "projects/demo-integrations/src/support/e2e.ts",
-          "hash": "12124030570736298064",
-          "deps": [
-            "npm:cypress-real-events"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-basic.cy.ts",
-          "hash": "16560470431597143161",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-non-strict.cy.ts",
-          "hash": "2243193500897909724",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/addons/phone/phone-separator.cy.ts",
-          "hash": "12004451028551255436",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/angular/form-control-changes.cy.ts",
-          "hash": "3832667557630934266",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/angular/disable-mask-on-null.cy.ts",
-          "hash": "9265772408225287274",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/initial-calibration-plugin/dispatch-event.cy.ts",
-          "hash": "14679171458355482727",
-          "deps": [
-            "core",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/multi-character-date-segment-separator/multi-character-date-segment-separator.cy.ts",
-          "hash": "755747486666807994",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/native-max-length/native-maxlength-attribute.cy.ts",
-          "hash": "16201904021135528061",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/native-select-method/native-select-method.cy.ts",
-          "hash": "10019020533313965594",
-          "deps": [
-            "npm:@angular/core",
-            "angular",
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/alone-decimal-separator.cy.ts",
-          "hash": "17095155004163791400",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/mirrored-prefix-postfix.cy.ts",
-          "hash": "4159901900143990020",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/multi-character-prefix.cy.ts",
-          "hash": "3512253158869348233",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/postfix-with-point.cy.ts",
-          "hash": "6807891660053113980",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/multi-test.component.ts",
-          "hash": "3455330547301212731",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "angular",
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/runtime-postfix-changes.cy.ts",
-          "hash": "6386846910735695849"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/number/with-initial-value.cy.ts",
-          "hash": "15373513058054975104",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-dispatch-input-events.cy.ts",
-          "hash": "1512949627117220451",
-          "deps": [
-            "core",
-            "kit",
-            "npm:cypress"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-has-same-characters-as-textfield.cy.ts",
-          "hash": "5473234061583690086",
-          "deps": [
-            "core",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/predicate/multi-test.component.ts",
-          "hash": "4888349841303132761",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "angular",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/predicate/predicate.cy.ts",
-          "hash": "4604380130332582320",
-          "deps": [
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/angular-wrapper.tsx",
-          "hash": "8601616241755753455",
-          "deps": [
-            "npm:@angular/common",
-            "npm:@angular/core",
-            "npm:react-dom"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-app.tsx",
-          "hash": "8604347470306584133",
-          "deps": [
-            "core",
-            "kit",
-            "react",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-async-predicate.cy.ts",
-          "hash": "3100024307269070414"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/component-testing/utils.ts",
-          "hash": "7185162019268636910",
-          "deps": [
-            "npm:@angular/core",
-            "angular",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-basic.cy.ts",
-          "hash": "9923060284933501884",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-custom-range-separator.cy.ts",
-          "hash": "10141115942518839830",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-fullwidth-to-halfwidth.cy.ts",
-          "hash": "10761270736779264092",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max-length.cy.ts",
-          "hash": "17672922637605634508",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max.cy.ts",
-          "hash": "3832364021312659579",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-mode.cy.ts",
-          "hash": "14004812118041277235",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-separator.cy.ts",
-          "hash": "4527715972493359337",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-basic.cy.ts",
-          "hash": "11422738093222591064",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-date-time-separator.cy.ts",
-          "hash": "3981959443436230555",
-          "deps": [
-            "demo",
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-fullwidth-to-halfwidth.cy.ts",
-          "hash": "18100225833732858384",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-min-max.cy.ts",
-          "hash": "13354496280947490744",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-mode.cy.ts",
-          "hash": "11044790815506619161",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-separator.cy.ts",
-          "hash": "4728025003314390172",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-time-step.cy.ts",
-          "hash": "1751708397109096734",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-basic.cy.ts",
-          "hash": "17452446256408141974",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-fullwidth-to-halfwidth.cy.ts",
-          "hash": "17412265739274175814",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-min-max.cy.ts",
-          "hash": "16850529406308479096",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-mode.cy.ts",
-          "hash": "7675258951625059834",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-segments-zero-padding.cy.ts",
-          "hash": "6145148145765558965",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/date/date-separator.cy.ts",
-          "hash": "9650424327669914204",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-basic.cy.ts",
-          "hash": "10444019302897563905"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-separator.cy.ts",
-          "hash": "4820467201620315580"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-zero-padding.cy.ts",
-          "hash": "38227050558871716"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-examples.cy.ts",
-          "hash": "1568509097055991808",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-fullwidth-to-halfwidth.cy.ts",
-          "hash": "5341196505013290238"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-max-validation.cy.ts",
-          "hash": "10914621396540595288"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-min-validation.cy.ts",
-          "hash": "7396923407061822350"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-minus-sign.cy.ts",
-          "hash": "9016204097223865539",
-          "deps": [
-            "kit"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-precision.cy.ts",
-          "hash": "3175909840096276163"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-prefix-postfix.cy.ts",
-          "hash": "10547082565588090570",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-thousand-separator.cy.ts",
-          "hash": "4628131292056800594"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/number-zero-integer-part.cy.ts",
-          "hash": "490822086538265788"
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/number/utils.ts",
-          "hash": "17388917249608421688",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-basic.cy.ts",
-          "hash": "10854562075630592721",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-fullwidth-to-halfwidth.cy.ts",
-          "hash": "11692319892224457862",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-mode.cy.ts",
-          "hash": "10184905483708477803",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/kit/time/time-step.cy.ts",
-          "hash": "7149530863242209909",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/react/element-predicate.cy.ts",
-          "hash": "7532135315294440901",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/card/card.cy.ts",
-          "hash": "6301468984271172134",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/content-editable/multi-line.cy.ts",
-          "hash": "10775048676176824704",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/content-editable/single-line-time-mask.cy.ts",
-          "hash": "6021694527487846032",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/phone/phone.cy.ts",
-          "hash": "3348371263483828395",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/date.cy.ts",
-          "hash": "1344196394713292847",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/us-phone.cy.ts",
-          "hash": "6171805827272386678",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/placeholder/сvc-code.cy.ts",
-          "hash": "9126378525187920555",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/plugins/reject.cy.ts",
-          "hash": "17315573636148493049",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/postfix/percentage.cy.ts",
-          "hash": "6608599691337080423",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/postfix/postprocessor.cy.ts",
-          "hash": "9141277064250197115",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/prefix/dynamic-pattern-mask-expression.cy.ts",
-          "hash": "5243635685191009539",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/prefix/postprocessor.cy.ts",
-          "hash": "15362571998674062581",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/recipes/textarea/textarea-latin-letters-digits.cy.ts",
-          "hash": "1051372039890279719",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/src/tests/ssr/ssr.cy.ts",
-          "hash": "16632666468685713841",
-          "deps": [
-            "demo"
-          ]
-        },
-        {
-          "file": "projects/demo-integrations/tsconfig.json",
-          "hash": "11566051978826490078"
-        }
-      ],
-      "vue": [
-        {
-          "file": "projects/vue/README.md",
-          "hash": "6297250154076325326"
-        },
-        {
-          "file": "projects/vue/jest.config.ts",
-          "hash": "17668809579731247746"
-        },
-        {
-          "file": "projects/vue/package.json",
-          "hash": "2193589043738642095",
-          "deps": [
-            "core",
-            "npm:vue",
-            "npm:@vue/test-utils",
-            "npm:@vue/vue3-jest"
-          ]
-        },
-        {
-          "file": "projects/vue/project.json",
-          "hash": "9200902805904333540"
-        },
-        {
-          "file": "projects/vue/src/index.ts",
-          "hash": "10705582546071414983"
-        },
-        {
-          "file": "projects/vue/src/lib/maskito.spec.ts",
-          "hash": "8727978725721025420",
-          "deps": [
-            "npm:@jest/globals",
-            "core",
-            "npm:@vue/test-utils"
-          ]
-        },
-        {
-          "file": "projects/vue/src/lib/maskito.ts",
-          "hash": "5879484983051242426",
-          "deps": [
-            "core",
-            "npm:vue"
-          ]
-        },
-        {
-          "file": "projects/vue/tsconfig.lib.json",
-          "hash": "10458335522972924276"
-        }
-      ],
-      "react": [
-        {
-          "file": "projects/react/.babelrc",
-          "hash": "3362769191121751979"
-        },
-        {
-          "file": "projects/react/README.md",
-          "hash": "3517836390584616760"
-        },
-        {
-          "file": "projects/react/jest.config.ts",
-          "hash": "11819287231724842609"
-        },
-        {
-          "file": "projects/react/package.json",
-          "hash": "465450964278278894",
-          "deps": [
-            "core",
-            "npm:react",
-            "npm:react-dom",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:react-test-renderer"
-          ]
-        },
-        {
-          "file": "projects/react/project.json",
-          "hash": "17150827731543106231"
-        },
-        {
-          "file": "projects/react/src/index.ts",
-          "hash": "2322215859405598930"
-        },
-        {
-          "file": "projects/react/src/lib/tests/elementPredicate.spec.tsx",
-          "hash": "7270555888231946029",
-          "deps": [
-            "core",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event"
-          ]
-        },
-        {
-          "file": "projects/react/src/lib/tests/useMaskito.spec.tsx",
-          "hash": "7761891283020057883",
-          "deps": [
-            "core",
-            "npm:@testing-library/react",
-            "npm:@testing-library/user-event"
-          ]
-        },
-        {
-          "file": "projects/react/src/lib/useIsomorphicLayoutEffect.ts",
-          "hash": "9942049867605225952",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "projects/react/src/lib/useMaskito.ts",
-          "hash": "15825160868950533483",
-          "deps": [
-            "core",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "projects/react/tsconfig.lib.json",
-          "hash": "15590731338353269541"
-        }
-      ],
       "demo": [
         {
           "file": "projects/demo/.gitignore",
@@ -2978,6 +2252,732 @@
           ]
         }
       ],
+      "react": [
+        {
+          "file": "projects/react/.babelrc",
+          "hash": "3362769191121751979"
+        },
+        {
+          "file": "projects/react/README.md",
+          "hash": "3517836390584616760"
+        },
+        {
+          "file": "projects/react/jest.config.ts",
+          "hash": "11819287231724842609"
+        },
+        {
+          "file": "projects/react/package.json",
+          "hash": "465450964278278894",
+          "deps": [
+            "core",
+            "npm:react",
+            "npm:react-dom",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:react-test-renderer"
+          ]
+        },
+        {
+          "file": "projects/react/project.json",
+          "hash": "17150827731543106231"
+        },
+        {
+          "file": "projects/react/src/index.ts",
+          "hash": "2322215859405598930"
+        },
+        {
+          "file": "projects/react/src/lib/tests/elementPredicate.spec.tsx",
+          "hash": "7270555888231946029",
+          "deps": [
+            "core",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event"
+          ]
+        },
+        {
+          "file": "projects/react/src/lib/tests/useMaskito.spec.tsx",
+          "hash": "7761891283020057883",
+          "deps": [
+            "core",
+            "npm:@testing-library/react",
+            "npm:@testing-library/user-event"
+          ]
+        },
+        {
+          "file": "projects/react/src/lib/useIsomorphicLayoutEffect.ts",
+          "hash": "9942049867605225952",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "projects/react/src/lib/useMaskito.ts",
+          "hash": "15825160868950533483",
+          "deps": [
+            "core",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "projects/react/tsconfig.lib.json",
+          "hash": "15590731338353269541"
+        }
+      ],
+      "vue": [
+        {
+          "file": "projects/vue/README.md",
+          "hash": "6297250154076325326"
+        },
+        {
+          "file": "projects/vue/jest.config.ts",
+          "hash": "17668809579731247746"
+        },
+        {
+          "file": "projects/vue/package.json",
+          "hash": "2193589043738642095",
+          "deps": [
+            "core",
+            "npm:vue",
+            "npm:@vue/test-utils",
+            "npm:@vue/vue3-jest"
+          ]
+        },
+        {
+          "file": "projects/vue/project.json",
+          "hash": "9200902805904333540"
+        },
+        {
+          "file": "projects/vue/src/index.ts",
+          "hash": "10705582546071414983"
+        },
+        {
+          "file": "projects/vue/src/lib/maskito.spec.ts",
+          "hash": "8727978725721025420",
+          "deps": [
+            "npm:@jest/globals",
+            "core",
+            "npm:@vue/test-utils"
+          ]
+        },
+        {
+          "file": "projects/vue/src/lib/maskito.ts",
+          "hash": "5879484983051242426",
+          "deps": [
+            "core",
+            "npm:vue"
+          ]
+        },
+        {
+          "file": "projects/vue/tsconfig.lib.json",
+          "hash": "10458335522972924276"
+        }
+      ],
+      "demo-integrations": [
+        {
+          "file": "projects/demo-integrations/cypress.config.ts",
+          "hash": "4506545618145578160",
+          "deps": [
+            "npm:@nx/angular",
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/package.json",
+          "hash": "7736881834570533641",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress",
+            "npm:cypress-real-events"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/project.json",
+          "hash": "12450131886029785614"
+        },
+        {
+          "file": "projects/demo-integrations/src/fixtures/example.json",
+          "hash": "15753941481085060538"
+        },
+        {
+          "file": "projects/demo-integrations/src/plugins/index.js",
+          "hash": "14244429710963922201"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/assertions/have-ng-control-value.ts",
+          "hash": "6478673894527932169"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/assertions/index.ts",
+          "hash": "10903326993872186391"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/commands/index.ts",
+          "hash": "11077321319888120729"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/commands/smart-tick.ts",
+          "hash": "9486153098645642571"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/component-index.html",
+          "hash": "7320401235372192637"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/component.ts",
+          "hash": "16091777127559795956",
+          "deps": [
+            "npm:cypress-real-events",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/support/constants/index.ts",
+          "hash": "13793160972820509205"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/constants/real-events-support.ts",
+          "hash": "9974591768659929430"
+        },
+        {
+          "file": "projects/demo-integrations/src/support/e2e.ts",
+          "hash": "12124030570736298064",
+          "deps": [
+            "npm:cypress-real-events"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-basic.cy.ts",
+          "hash": "16560470431597143161",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-non-strict.cy.ts",
+          "hash": "2243193500897909724",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/addons/phone/phone-separator.cy.ts",
+          "hash": "12004451028551255436",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/angular/form-control-changes.cy.ts",
+          "hash": "3832667557630934266",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/angular/disable-mask-on-null.cy.ts",
+          "hash": "9265772408225287274",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/initial-calibration-plugin/dispatch-event.cy.ts",
+          "hash": "14679171458355482727",
+          "deps": [
+            "core",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/multi-character-date-segment-separator/multi-character-date-segment-separator.cy.ts",
+          "hash": "755747486666807994",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/native-max-length/native-maxlength-attribute.cy.ts",
+          "hash": "16201904021135528061",
+          "deps": [
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/native-select-method/native-select-method.cy.ts",
+          "hash": "10019020533313965594",
+          "deps": [
+            "npm:@angular/core",
+            "angular",
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/alone-decimal-separator.cy.ts",
+          "hash": "17095155004163791400",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/mirrored-prefix-postfix.cy.ts",
+          "hash": "4159901900143990020",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/multi-character-prefix.cy.ts",
+          "hash": "3512253158869348233",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/postfix-with-point.cy.ts",
+          "hash": "6807891660053113980",
+          "deps": [
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/multi-test.component.ts",
+          "hash": "3455330547301212731",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "angular",
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/runtime-postfix-changes/runtime-postfix-changes.cy.ts",
+          "hash": "6386846910735695849"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/number/with-initial-value.cy.ts",
+          "hash": "15373513058054975104",
+          "deps": [
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-dispatch-input-events.cy.ts",
+          "hash": "1512949627117220451",
+          "deps": [
+            "core",
+            "kit",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/placeholder/placeholder-has-same-characters-as-textfield.cy.ts",
+          "hash": "5473234061583690086",
+          "deps": [
+            "core",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/predicate/multi-test.component.ts",
+          "hash": "4888349841303132761",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "angular",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/predicate/predicate.cy.ts",
+          "hash": "4604380130332582320",
+          "deps": [
+            "core"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/angular-wrapper.tsx",
+          "hash": "8601616241755753455",
+          "deps": [
+            "npm:@angular/common",
+            "npm:@angular/core",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-app.tsx",
+          "hash": "8604347470306584133",
+          "deps": [
+            "core",
+            "kit",
+            "react",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/react-async-predicate/react-async-predicate.cy.ts",
+          "hash": "3100024307269070414"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/component-testing/utils.ts",
+          "hash": "7185162019268636910",
+          "deps": [
+            "npm:@angular/core",
+            "angular",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-basic.cy.ts",
+          "hash": "9923060284933501884",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-custom-range-separator.cy.ts",
+          "hash": "10141115942518839830",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-fullwidth-to-halfwidth.cy.ts",
+          "hash": "10761270736779264092",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max-length.cy.ts",
+          "hash": "17672922637605634508",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-min-max.cy.ts",
+          "hash": "3832364021312659579",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-mode.cy.ts",
+          "hash": "14004812118041277235",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-range/date-range-separator.cy.ts",
+          "hash": "4527715972493359337",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-basic.cy.ts",
+          "hash": "11422738093222591064",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-date-time-separator.cy.ts",
+          "hash": "3981959443436230555",
+          "deps": [
+            "demo",
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-fullwidth-to-halfwidth.cy.ts",
+          "hash": "18100225833732858384",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-min-max.cy.ts",
+          "hash": "13354496280947490744",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-mode.cy.ts",
+          "hash": "11044790815506619161",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-separator.cy.ts",
+          "hash": "4728025003314390172",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date-time/date-time-time-step.cy.ts",
+          "hash": "1751708397109096734",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-basic.cy.ts",
+          "hash": "17452446256408141974",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-fullwidth-to-halfwidth.cy.ts",
+          "hash": "17412265739274175814",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-min-max.cy.ts",
+          "hash": "16850529406308479096",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-mode.cy.ts",
+          "hash": "7675258951625059834",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-segments-zero-padding.cy.ts",
+          "hash": "6145148145765558965",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/date/date-separator.cy.ts",
+          "hash": "9650424327669914204",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-basic.cy.ts",
+          "hash": "10444019302897563905"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-separator.cy.ts",
+          "hash": "4820467201620315580"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-decimal-zero-padding.cy.ts",
+          "hash": "38227050558871716"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-examples.cy.ts",
+          "hash": "1568509097055991808",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-fullwidth-to-halfwidth.cy.ts",
+          "hash": "5341196505013290238"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-max-validation.cy.ts",
+          "hash": "10914621396540595288"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-min-validation.cy.ts",
+          "hash": "7396923407061822350"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-minus-sign.cy.ts",
+          "hash": "9016204097223865539",
+          "deps": [
+            "kit"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-precision.cy.ts",
+          "hash": "3175909840096276163"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-prefix-postfix.cy.ts",
+          "hash": "10547082565588090570",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-thousand-separator.cy.ts",
+          "hash": "4628131292056800594"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/number-zero-integer-part.cy.ts",
+          "hash": "490822086538265788"
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/number/utils.ts",
+          "hash": "17388917249608421688",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-basic.cy.ts",
+          "hash": "10854562075630592721",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-fullwidth-to-halfwidth.cy.ts",
+          "hash": "11692319892224457862",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-mode.cy.ts",
+          "hash": "10184905483708477803",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/kit/time/time-step.cy.ts",
+          "hash": "7149530863242209909",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/react/element-predicate.cy.ts",
+          "hash": "7532135315294440901",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/card/card.cy.ts",
+          "hash": "6301468984271172134",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/content-editable/multi-line.cy.ts",
+          "hash": "10775048676176824704",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/content-editable/single-line-time-mask.cy.ts",
+          "hash": "6021694527487846032",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/phone/phone.cy.ts",
+          "hash": "3348371263483828395",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/date.cy.ts",
+          "hash": "1344196394713292847",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/us-phone.cy.ts",
+          "hash": "6171805827272386678",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/placeholder/сvc-code.cy.ts",
+          "hash": "9126378525187920555",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/plugins/reject.cy.ts",
+          "hash": "17315573636148493049",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/postfix/percentage.cy.ts",
+          "hash": "6608599691337080423",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/postfix/postprocessor.cy.ts",
+          "hash": "9141277064250197115",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/prefix/dynamic-pattern-mask-expression.cy.ts",
+          "hash": "5243635685191009539",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/prefix/postprocessor.cy.ts",
+          "hash": "15362571998674062581",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/recipes/textarea/textarea-latin-letters-digits.cy.ts",
+          "hash": "1051372039890279719",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/src/tests/ssr/ssr.cy.ts",
+          "hash": "16632666468685713841",
+          "deps": [
+            "demo"
+          ]
+        },
+        {
+          "file": "projects/demo-integrations/tsconfig.json",
+          "hash": "11566051978826490078"
+        }
+      ],
       "core": [
         {
           "file": "projects/core/README.md",
@@ -3201,6 +3201,84 @@
         {
           "file": "projects/core/tsconfig.lib.json",
           "hash": "10458335522972924276"
+        }
+      ],
+      "angular": [
+        {
+          "file": "projects/angular/README.md",
+          "hash": "2745753669150754913"
+        },
+        {
+          "file": "projects/angular/jest.config.ts",
+          "hash": "5085827865080538725"
+        },
+        {
+          "file": "projects/angular/ng-package.json",
+          "hash": "14094944214481227045"
+        },
+        {
+          "file": "projects/angular/package.json",
+          "hash": "3028558135598819195",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "core",
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "projects/angular/project.json",
+          "hash": "5869892061388042707"
+        },
+        {
+          "file": "projects/angular/src/index.ts",
+          "hash": "6820344230112673658"
+        },
+        {
+          "file": "projects/angular/src/lib/deprecated.ts",
+          "hash": "13561691087115333624",
+          "deps": [
+            "npm:@angular/core",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/angular/src/lib/maskito.directive.ts",
+          "hash": "15570268801387872661",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/angular/src/lib/maskito.pipe.ts",
+          "hash": "16378216344778416937",
+          "deps": [
+            "npm:@angular/core",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/angular/src/lib/maskito.spec.ts",
+          "hash": "18180994467779402430",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms",
+            "npm:@jest/globals",
+            "core"
+          ]
+        },
+        {
+          "file": "projects/angular/src/test-setup.ts",
+          "hash": "17711435995618823417",
+          "deps": [
+            "npm:jest-preset-angular"
+          ]
+        },
+        {
+          "file": "projects/angular/tsconfig.lib.prod.json",
+          "hash": "13135163489058201652"
         }
       ],
       "kit": [
@@ -4033,84 +4111,6 @@
         {
           "file": "projects/kit/tsconfig.lib.json",
           "hash": "10458335522972924276"
-        }
-      ],
-      "angular": [
-        {
-          "file": "projects/angular/README.md",
-          "hash": "2745753669150754913"
-        },
-        {
-          "file": "projects/angular/jest.config.ts",
-          "hash": "5085827865080538725"
-        },
-        {
-          "file": "projects/angular/ng-package.json",
-          "hash": "14094944214481227045"
-        },
-        {
-          "file": "projects/angular/package.json",
-          "hash": "3028558135598819195",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "core",
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "projects/angular/project.json",
-          "hash": "5869892061388042707"
-        },
-        {
-          "file": "projects/angular/src/index.ts",
-          "hash": "6820344230112673658"
-        },
-        {
-          "file": "projects/angular/src/lib/deprecated.ts",
-          "hash": "13561691087115333624",
-          "deps": [
-            "npm:@angular/core",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/angular/src/lib/maskito.directive.ts",
-          "hash": "15570268801387872661",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/angular/src/lib/maskito.pipe.ts",
-          "hash": "16378216344778416937",
-          "deps": [
-            "npm:@angular/core",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/angular/src/lib/maskito.spec.ts",
-          "hash": "18180994467779402430",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms",
-            "npm:@jest/globals",
-            "core"
-          ]
-        },
-        {
-          "file": "projects/angular/src/test-setup.ts",
-          "hash": "17711435995618823417",
-          "deps": [
-            "npm:jest-preset-angular"
-          ]
-        },
-        {
-          "file": "projects/angular/tsconfig.lib.prod.json",
-          "hash": "13135163489058201652"
         }
       ]
     },
