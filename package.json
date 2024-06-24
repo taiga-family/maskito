@@ -53,7 +53,7 @@
         "build:prerender": "nx run demo:prerender",
         "*** Cypress ***": "",
         "cy:open": "cypress open --project ./projects/demo-integrations/",
-        "cy:run": "cypress run --project ./projects/demo-integrations/ --browser chrome",
+        "cy:run": "nx e2e demo-integrations",
         "*** Release ***": "",
         "release": "standard-version -a --no-verify",
         "release:patch": "npm run release -- --release-as patch",

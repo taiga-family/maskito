@@ -9,6 +9,8 @@
             "options": {
                 "cypressConfig": "{projectRoot}/cypress.config.ts",
                 "testingType": "e2e",
+                "skipServe": true,
+                "browser": "chrome",
                 "devServerTarget": "demo:serve:development"
             }
         },
