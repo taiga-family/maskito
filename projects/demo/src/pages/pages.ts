@@ -169,6 +169,12 @@ export const DEMO_PAGES: TuiDocPages = [
     },
     {
         section: 'Other',
+        title: 'Maskito in Real World Form',
+        route: DemoPath.RealWorldForm,
+        keywords: 'browser, autofill, showcase, in, action, demo',
+    },
+    {
+        section: 'Other',
         title: 'Changelog',
         route: DemoPath.Changelog,
         keywords: 'changelog, release, version, history',

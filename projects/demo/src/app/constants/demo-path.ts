@@ -26,6 +26,7 @@ export const DemoPath = {
     Placeholder: 'recipes/placeholder',
     BrowserSupport: 'browser-support',
     SupportedInputTypes: 'supported-input-types',
+    RealWorldForm: 'real-world-form',
     Changelog: 'changelog',
     Stackblitz: 'stackblitz',
 } as const;

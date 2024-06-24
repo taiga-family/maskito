@@ -220,6 +220,13 @@ export const appRoutes: Routes = [
         },
     },
     {
+        path: DemoPath.RealWorldForm,
+        loadComponent: () => import('../pages/documentation/real-world-form'),
+        data: {
+            title: 'Maskito in Real World Form',
+        },
+    },
+    {
         path: DemoPath.Changelog,
         loadComponent: () =>
             import('../pages/documentation/changelog/changelog.component'),
