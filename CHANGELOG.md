@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/taiga-family/maskito/compare/v2.4.0...v2.5.0) (2024-06-24)
+
+### Features
+
+- **kit:** new `maskitoParseTime` and `maskitoStringifyTime` utils
+  ([#1302](https://github.com/taiga-family/maskito/issues/1302))
+  ([d0f9b13](https://github.com/taiga-family/maskito/commit/d0f9b1331f3bb18403691ac7c513c31f5123cf78))
+
+### Bug Fixes
+
+- **core:** correct handling of browser autofill/suggestion in Firefox
+  ([#1326](https://github.com/taiga-family/maskito/issues/1326))
+  ([a049207](https://github.com/taiga-family/maskito/commit/a049207b355da72092948a8c556020062fb7c819))
+- **kit:** `Date`, `DateRange`, `DateTime` supports multi-character date segments separator
+  ([#1306](https://github.com/taiga-family/maskito/issues/1306))
+  ([cdf2fae](https://github.com/taiga-family/maskito/commit/cdf2faee4c16cd3963557a511d4ec053e2d41fc0))
+- **kit:** move caret after attempt to erase fixed character in a mask with `Placeholder`
+  ([#1307](https://github.com/taiga-family/maskito/issues/1307))
+  ([87ae431](https://github.com/taiga-family/maskito/commit/87ae431ded798e3c31d6247f965a00c27ddad3f1))
+
 ## [2.4.0](https://github.com/taiga-family/maskito/compare/v2.3.2...v2.4.0) (2024-06-03)
 
 ### Features
