@@ -1,6 +1,5 @@
 import type {MaskitoOptions, MaskitoPlugin} from '../types';
-import {maskitoUpdateElement} from './dom/update-element';
-import {maskitoTransform} from './transform';
+import {maskitoTransform, maskitoUpdateElement} from '../utils';
 
 export function maskitoInitialCalibrationPlugin(
     customOptions?: MaskitoOptions,

@@ -1,7 +1,5 @@
 import type {ElementState, MaskitoPlugin, TypedInputEvent} from '../types';
-import {maskitoUpdateElement} from './dom/update-element';
-import {areElementStatesEqual} from './element-states-equality';
-import {maskitoTransform} from './transform';
+import {areElementStatesEqual, maskitoTransform, maskitoUpdateElement} from '../utils';
 
 export function maskitoStrictCompositionPlugin(): MaskitoPlugin {
     return (element, maskitoOptions) => {
