@@ -9,6 +9,7 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 import {PluginsDocExample1} from './examples/1-reject/component';
 import {PluginsDocExample2} from './examples/2-initial-calibration/component';
 import {PluginsDocExample3} from './examples/3-strict-composition/component';
+import {PluginsDocExample4} from './examples/4-change-event/component';
 
 @Component({
     standalone: true,
@@ -22,6 +23,7 @@ import {PluginsDocExample3} from './examples/3-strict-composition/component';
         PluginsDocExample1,
         PluginsDocExample2,
         PluginsDocExample3,
+        PluginsDocExample4,
     ],
     templateUrl: './plugins.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,6 +47,12 @@ export default class PluginsDocPageComponent {
     protected readonly strictCompositionExample: TuiDocExample = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-strict-composition/mask.ts?raw'
+        ),
+    };
+
+    protected readonly changeEventExample: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/4-change-event/mask.ts?raw'
         ),
     };
 }
