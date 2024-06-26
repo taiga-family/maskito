@@ -8,25 +8,22 @@ export function maskitoChangeEventPlugin(): MaskitoPlugin {
 
         let value = element.value;
 
-        const focusListener = (): void => {
-            value = element.value;
-        };
-        const changeListener = (): void => {
+        const valueListener = (): void => {
             value = element.value;
         };
         const blurListener = (): void => {
             if (element.value !== value) {
-                element.dispatchEvent(new Event('change'));
+                element.dispatchEvent(new Event('change', {bubbles: true}));
             }
         };
 
-        element.addEventListener('focus', focusListener);
-        element.addEventListener('change', changeListener);
+        element.addEventListener('focus', valueListener);
+        element.addEventListener('change', valueListener);
         element.addEventListener('blur', blurListener);
 
         return () => {
-            element.removeEventListener('focus', focusListener);
-            element.removeEventListener('change', changeListener);
+            element.removeEventListener('focus', valueListener);
+            element.removeEventListener('change', valueListener);
             element.removeEventListener('blur', blurListener);
         };
     };
