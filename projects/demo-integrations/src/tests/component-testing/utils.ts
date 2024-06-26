@@ -13,6 +13,7 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             [maskitoElement]="maskitoElementPredicate"
+            (change)="change.emit($event)"
             (input)="input.emit($event)"
         />
     `,
@@ -30,6 +31,9 @@ export class TestInput {
 
     @Output()
     public input = new EventEmitter();
+
+    @Output()
+    public change = new EventEmitter();
 
     @Input()
     public maxLength = Infinity;

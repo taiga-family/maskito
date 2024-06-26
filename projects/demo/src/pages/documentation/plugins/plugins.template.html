@@ -82,5 +82,44 @@
         <plugins-strict-composition-doc-example-3 />
     </tui-doc-example>
 
+    <tui-doc-example
+        id="change-event"
+        heading="Built-in plugin for change event"
+        [content]="changeEventExample"
+        [description]="changeEventDescription"
+    >
+        <ng-template #changeEventDescription>
+            Native
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput_event"
+                target="_blank"
+                tuiLink
+            >
+                <code>beforeinput</code>
+            </a>
+            event default behavior is cancelled to process user entered invalid value. This causes native
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event"
+                target="_blank"
+                tuiLink
+            >
+                <code>change</code>
+            </a>
+            event to
+            <strong>NOT</strong>
+            be dispatched by browser. A
+            <code>change</code>
+            event, as opposed to
+            <code>input</code>
+            , is triggered only when user left the field and value was changed during interaction. If you rely on this
+            behavior, add
+            <code>maskitoChangeEventPlugin</code>
+            to your mask configuration. It will dispatch synthetic
+            <code>change</code>
+            event using the same logic.
+        </ng-template>
+        <plugins-change-event-doc-example-4 />
+    </tui-doc-example>
+
     <next-steps />
 </tui-doc-page>
