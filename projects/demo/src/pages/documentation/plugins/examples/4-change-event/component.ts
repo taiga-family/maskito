@@ -20,6 +20,7 @@ import mask from './mask';
             <input
                 tuiTextfield
                 [maskito]="maskitoOptions"
+                (change)="log($event)"
             />
         </tui-input>
     `,
@@ -28,4 +29,8 @@ import mask from './mask';
 export class PluginsDocExample4 {
     protected readonly maskitoOptions = mask;
     protected value = '';
+
+    protected log(anything: any): void {
+        console.info(anything);
+    }
 }
