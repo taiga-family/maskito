@@ -22,7 +22,7 @@ describe('createMaxValidationPreprocessor', () => {
                 'insert',
             ).data || '';
 
-        it('All time segments valid', () => {
+        it('all time segments valid', () => {
             expect(process('17:43:00')).toBe('17:43:00');
         });
 
@@ -30,7 +30,7 @@ describe('createMaxValidationPreprocessor', () => {
             expect(process('30:30:30')).toBe('');
         });
 
-        it('Invalid time segment for minutes', () => {
+        it('invalid time segment for minutes', () => {
             expect(process('23:70:30')).toBe('');
         });
     });
@@ -48,7 +48,7 @@ describe('createMaxValidationPreprocessor', () => {
                 'validation',
             ).elementState.value;
 
-        it('All time segments valid', () => {
+        it('all time segments valid', () => {
             expect(process('17:43:00')).toBe('17:43:00');
         });
 
@@ -56,7 +56,7 @@ describe('createMaxValidationPreprocessor', () => {
             expect(process('30:30:30')).toBe('');
         });
 
-        it('Invalid time segment for minutes', () => {
+        it('invalid time segment for minutes', () => {
             expect(process('23:70:30')).toBe('');
         });
     });

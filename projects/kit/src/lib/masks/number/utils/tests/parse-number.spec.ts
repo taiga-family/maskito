@@ -138,16 +138,16 @@ describe('maskitoParseNumber', () => {
     });
 
     describe('NaN', () => {
-        it('Empty string => NaN', () => {
+        it('empty string => NaN', () => {
             expect(maskitoParseNumber('')).toBeNaN();
         });
 
-        it('Decimal separator only => NaN', () => {
+        it('decimal separator only => NaN', () => {
             expect(maskitoParseNumber('.')).toBeNaN();
             expect(maskitoParseNumber(',', ',')).toBeNaN();
         });
 
-        it('Negative sign only => NaN', () => {
+        it('negative sign only => NaN', () => {
             expect(maskitoParseNumber('\u2212')).toBeNaN(); // minus
             expect(maskitoParseNumber('-')).toBeNaN();
             expect(maskitoParseNumber('\u2013')).toBeNaN(); // en-dash

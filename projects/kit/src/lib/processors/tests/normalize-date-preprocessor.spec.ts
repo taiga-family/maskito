@@ -13,15 +13,15 @@ describe('normalizeDatePreprocessor', () => {
 
         const check = getCheckFunction(preprocessor);
 
-        it('Empty input => 6.2.2023 – 7.2.2023', () => {
+        it('empty input => 6.2.2023 – 7.2.2023', () => {
             check('6.2.2023 – 7.2.2023', '06.02.2023 – 07.02.2023');
         });
 
-        it('Empty input => 6.2.2023 – 7.2.2023 (basic spaces)', () => {
+        it('empty input => 6.2.2023 – 7.2.2023 (basic spaces)', () => {
             check('6.2.2023 – 7.2.2023', '06.02.2023 – 07.02.2023');
         });
 
-        it('Empty input => 06.2.2023-07.2.2023', () => {
+        it('empty input => 06.2.2023-07.2.2023', () => {
             check('06.2.2023-07.2.2023', '06.02.2023 – 07.02.2023');
         });
     });
@@ -34,15 +34,15 @@ describe('normalizeDatePreprocessor', () => {
 
         const check = getCheckFunction(preprocessor);
 
-        it('Empty input => 6.2.2023', () => {
+        it('empty input => 6.2.2023', () => {
             check('6.2.2023', '06.02.2023');
         });
 
-        it('Empty input => 06.2.2023', () => {
+        it('empty input => 06.2.2023', () => {
             check('06.2.2023', '06.02.2023');
         });
 
-        it('Empty input => 06.2.20', () => {
+        it('empty input => 06.2.20', () => {
             check('06.2.20', '06.02.20');
         });
     });
@@ -55,15 +55,15 @@ describe('normalizeDatePreprocessor', () => {
 
         const check = getCheckFunction(preprocessor);
 
-        it('Empty input => 2/2/22', () => {
+        it('empty input => 2/2/22', () => {
             check('2/2', '02/2');
         });
 
-        it('Empty input => 1.1', () => {
+        it('empty input => 1.1', () => {
             check('1.1', '01/1');
         });
 
-        it('Empty input => 3.12', () => {
+        it('empty input => 3.12', () => {
             check('3.12', '03/12');
         });
     });
@@ -75,19 +75,19 @@ describe('normalizeDatePreprocessor', () => {
         });
         const check = getCheckFunction(preprocessor);
 
-        it('Empty input => 6.2.2023, 12:00', () => {
+        it('empty input => 6.2.2023, 12:00', () => {
             check('6.2.2023, 12:00', '06.02.2023, 12:00');
         });
 
-        it('Empty input => 6.2.2023, 15', () => {
+        it('empty input => 6.2.2023, 15', () => {
             check('6.2.2023, 15', '06.02.2023, 15');
         });
 
-        it('Empty input => 06.2.2023', () => {
+        it('empty input => 06.2.2023', () => {
             check('06.2.2023', '06.02.2023');
         });
 
-        it('Empty input => 6.2.2023', () => {
+        it('empty input => 6.2.2023', () => {
             check('6.2.2022, 15', '06.02.2022, 15');
         });
     });

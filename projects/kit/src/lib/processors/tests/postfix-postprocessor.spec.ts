@@ -12,7 +12,7 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
             expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
         });
 
-        it('Type 99 => 99%', () => {
+        it('type 99 => 99%', () => {
             expect(
                 postprocessor(
                     {value: '99', selection: [2, 2]}, // after changes
@@ -22,7 +22,7 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
             ).toEqual({value: '99%', selection: [2, 2]});
         });
 
-        it('Paste 99% => 99% (no extra percent sign)', () => {
+        it('paste 99% => 99% (no extra percent sign)', () => {
             expect(
                 postprocessor(
                     {value: '99%', selection: [3, 3]}, // after
@@ -40,7 +40,7 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
             expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
         });
 
-        it('Type 100 => 100.00', () => {
+        it('type 100 => 100.00', () => {
             expect(
                 postprocessor(
                     {value: '100', selection: [3, 3]}, // after

@@ -107,7 +107,7 @@ describe('maskitoTransform', () => {
     });
 
     describe('Drop / Browser autofill cases', () => {
-        it('US Phone mask | Drops "+1(21"', () => {
+        it('`US` Phone mask | Drops "+1(21"', () => {
             expect(maskitoTransform('+1(21', usPhoneOptions)).toBe('+1 (21');
         });
     });

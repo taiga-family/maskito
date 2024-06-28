@@ -37,12 +37,12 @@ describe('escapeRegExp', () => {
     });
 
     describe('Symbols which do not require escaping', () => {
-        it('CHAR_MINUS', () => {
+        it('minus', () => {
             expect(escapeRegExp(CHAR_MINUS)).toBe(CHAR_MINUS);
             expect(`${CHAR_MINUS}42`.replace(new RegExp(CHAR_MINUS), '')).toBe('42');
         });
 
-        it('CHAR_HYPHEN', () => {
+        it('hyphen', () => {
             expect(escapeRegExp(CHAR_HYPHEN)).toBe(CHAR_HYPHEN);
             expect(`${CHAR_HYPHEN}42`.replace(new RegExp(CHAR_HYPHEN), '')).toBe('42');
         });

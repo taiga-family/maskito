@@ -1,10 +1,7 @@
-import {
-    MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    MaskitoElementPredicate,
-    maskitoInitialCalibrationPlugin,
-    MaskitoOptions,
-} from '@maskito/core';
-import {render, RenderResult, waitFor} from '@testing-library/react';
+import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {MASKITO_DEFAULT_ELEMENT_PREDICATE, maskitoInitialCalibrationPlugin} from '@maskito/core';
+import type {RenderResult} from '@testing-library/react';
+import {render, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {useMaskito} from '../useMaskito';
@@ -19,7 +16,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
     const correctPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('.real-input')!;
     const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
 
-    function TestComponent({elementPredicate = predicate}) {
+    function TestComponent({elementPredicate = predicate}): JSX.Element {
         const inputRef = useMaskito({options, elementPredicate});
 
         return (
@@ -36,9 +33,9 @@ describe('@maskito/react | `elementPredicate` property', () => {
 
     let testElement: RenderResult;
 
-    const setValue = (user: ReturnType<typeof userEvent.setup>, v: string) =>
+    const setValue = async (user: ReturnType<typeof userEvent.setup>, v: string): Promise<void> =>
         user.type(testElement.getByPlaceholderText('Enter number'), v);
-    const getValue = () => (testElement.getByPlaceholderText('Enter number') as HTMLInputElement).value;
+    const getValue = (): string => (testElement.getByPlaceholderText('Enter number') as HTMLInputElement).value;
 
     afterEach(() => {
         testElement.unmount();
@@ -70,7 +67,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in next micro task', async () => {
             const user = userEvent.setup();
 
-            predicate = host => Promise.resolve(correctPredicate(host));
+            predicate = async host => Promise.resolve(correctPredicate(host));
             testElement = render(<TestComponent />);
 
             await setValue(user, '123blah45');
@@ -83,7 +80,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in next macro task', async () => {
             const user = userEvent.setup();
 
-            predicate = host =>
+            predicate = async host =>
                 new Promise(resolve => {
                     setTimeout(() => resolve(correctPredicate(host)));
                 });
@@ -99,7 +96,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in 100ms', async () => {
             const user = userEvent.setup();
 
-            predicate = host =>
+            predicate = async host =>
                 new Promise(resolve => {
                     setTimeout(() => resolve(correctPredicate(host)), 100);
                 });

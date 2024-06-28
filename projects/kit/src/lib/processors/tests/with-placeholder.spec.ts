@@ -27,7 +27,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
             expect(elementState.value).toBe(valueAfter);
         };
 
-        it('Empty', () => check('', ''));
+        it('empty', () => check('', ''));
         it('2/mm/yyyy => 2', () => check('2d/mm/yyyy', '2'));
         it('26/mm/yyyy => 26', () => check('26/mm/yyyy', '26'));
         it('26/0m/yyyy => 26/0', () => check('26/0m/yyyy', '26/0'));

@@ -85,7 +85,7 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
         expect(selection).toEqual(['−5,42'.length, '−5,42'.length]);
     });
 
-    it('Empty string => Empty string', () => {
+    it('empty string => empty string', () => {
         const {value, selection} = process('', [0, 0]);
 
         expect(value).toBe('');

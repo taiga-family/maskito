@@ -50,12 +50,12 @@ describe('Maskito Angular package', () => {
         fixture.detectChanges();
     });
 
-    it('Null is treated as empty string', () => {
+    it('null is treated as empty string', () => {
         expect(getText()).toBe('');
         expect(getValue()).toBe('');
     });
 
-    it('Formats new control value', () => {
+    it('formats new control value', () => {
         fixture.componentInstance.control.setValue(12345.6789);
         fixture.detectChanges();
 

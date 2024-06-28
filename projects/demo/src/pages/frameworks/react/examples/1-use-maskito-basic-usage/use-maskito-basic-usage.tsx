@@ -1,11 +1,12 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {useMaskito} from '@maskito/react';
+import type {ComponentType} from 'react';
 
 const digitsOnlyMask: MaskitoOptions = {
     mask: /^\d+$/,
 };
 
-export const App = () => {
+export const App: ComponentType = () => {
     const inputRef = useMaskito({options: digitsOnlyMask});
 
     return (
