@@ -173,7 +173,7 @@ describe('maskitoPipe', () => {
     describe('Readonly arguments are passed to all processors', () => {
         const elementState: ElementState = {value: '', selection: [0, 0]};
 
-        it('Preprocessor', () => {
+        it('preprocessor', () => {
             const checkActionType: MaskitoPreprocessor = (data, actionType) => {
                 expect(actionType).toBe('deleteBackward');
 
@@ -186,7 +186,7 @@ describe('maskitoPipe', () => {
             );
         });
 
-        it('Postprocessor', () => {
+        it('postprocessor', () => {
             const initialElementState: ElementState = {
                 value: '27',
                 selection: [2, 7],

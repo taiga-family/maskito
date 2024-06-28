@@ -24,7 +24,7 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
             ).toEqual({value: '$123', selection: [1, 1]});
         });
 
-        it('Paste $123 => $123 (no extra dollar sign)', () => {
+        it('paste $123 => $123 (no extra dollar sign)', () => {
             expect(
                 postprocessor(
                     {value: '$123', selection: [4, 4]}, // after
@@ -77,21 +77,21 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
             const process = (elementState: ElementState): ElementState =>
                 postprocessor(elementState, EMPTY_INPUT);
 
-            it('Empty input => type k (part of prefix) => kg |', () => {
+            it('empty input => type k (part of prefix) => kg |', () => {
                 expect(process({value: 'k', selection: [1, 1]})).toEqual({
                     value: 'kg ',
                     selection: [3, 3],
                 });
             });
 
-            it('Empty input => type g (part of prefix) => kg |', () => {
+            it('empty input => type g (part of prefix) => kg |', () => {
                 expect(process({value: 'g', selection: [1, 1]})).toEqual({
                     value: 'kg ',
                     selection: [3, 3],
                 });
             });
 
-            it('Empty input => type space (part of prefix) => kg |', () => {
+            it('empty input => type space (part of prefix) => kg |', () => {
                 expect(process({value: ' ', selection: [1, 1]})).toEqual({
                     value: 'kg ',
                     selection: [3, 3],

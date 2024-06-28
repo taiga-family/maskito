@@ -20,11 +20,11 @@ describe('FirstDateEndSeparatorPreprocessor', () => {
                 'validation',
             ).elementState.value;
 
-        it('Only complete date (without date end separator)', () => {
+        it('only complete date (without date end separator)', () => {
             expect(preprocess('01.01.2000')).toBe('01.01.2000');
         });
 
-        it('Only complete date + date end separator', () => {
+        it('only complete date + date end separator', () => {
             expect(preprocess('01.01.2000~')).toBe('01.01.2000 ~ ');
         });
 

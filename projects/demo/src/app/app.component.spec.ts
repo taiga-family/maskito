@@ -3,7 +3,7 @@ import type {ComponentFixture} from '@angular/core/testing';
 import {TestBed} from '@angular/core/testing';
 import {Router} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {beforeEach, describe, expect, it, xit} from '@jest/globals';
+import {beforeEach, describe, expect, it} from '@jest/globals';
 
 import {AppBrowserModule} from './app.browser.module';
 import {AppComponent} from './app.component';
@@ -22,12 +22,12 @@ describe('Test dummy', () => {
         fixture.detectChanges();
     });
 
-    it('AppComponent compiles properly', () => {
+    it('appComponent compiles properly', () => {
         expect(fixture.nativeElement.textContent).toContain('Getting started');
         expect(fixture.nativeElement.textContent).toContain('Core concepts');
     });
 
-    xit('Router works', async () => {
+    it.skip('router works', async () => {
         /**
          * Angular 14 regression
          * ___

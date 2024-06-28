@@ -107,11 +107,11 @@ describe('Number (maskitoTransform)', () => {
                 });
             });
 
-            it('Empty textfield => empty textfield', () => {
+            it('empty textfield => empty textfield', () => {
                 expect(maskitoTransform('', options)).toBe('');
             });
 
-            it('Only postfix => Only postfix', () => {
+            it('only postfix => Only postfix', () => {
                 expect(maskitoTransform(' lbs.', options)).toBe(' lbs.');
             });
 
@@ -144,11 +144,11 @@ describe('Number (maskitoTransform)', () => {
                 });
             });
 
-            it('Empty textfield => empty textfield', () => {
+            it('empty textfield => empty textfield', () => {
                 expect(maskitoTransform('', options)).toBe('');
             });
 
-            it('Only postfix => Only postfix', () => {
+            it('only postfix => Only postfix', () => {
                 expect(maskitoTransform(' lbs.', options)).toBe(' lbs.');
             });
 
@@ -185,11 +185,11 @@ describe('Number (maskitoTransform)', () => {
                 });
             });
 
-            it('Empty textfield => empty textfield', () => {
+            it('empty textfield => empty textfield', () => {
                 expect(maskitoTransform('', options)).toBe('');
             });
 
-            it('Only prefix => Only prefix', () => {
+            it('only prefix => Only prefix', () => {
                 expect(maskitoTransform('lbs. ', options)).toBe('lbs. ');
             });
 
@@ -222,11 +222,11 @@ describe('Number (maskitoTransform)', () => {
                 });
             });
 
-            it('Empty textfield => empty textfield', () => {
+            it('empty textfield => empty textfield', () => {
                 expect(maskitoTransform('', options)).toBe('');
             });
 
-            it('Only prefix => Only prefix', () => {
+            it('only prefix => Only prefix', () => {
                 expect(maskitoTransform('lbs. ', options)).toBe('lbs. ');
             });
 
@@ -260,11 +260,11 @@ describe('Number (maskitoTransform)', () => {
                 });
             });
 
-            it('Empty textfield => empty textfield', () => {
+            it('empty textfield => empty textfield', () => {
                 expect(maskitoTransform('', options)).toBe('');
             });
 
-            it('Only prefix => prefix with zero-width space', () => {
+            it('only prefix => prefix with zero-width space', () => {
                 expect(maskitoTransform('lbs.', options)).toBe(
                     `lbs.${CHAR_ZERO_WIDTH_SPACE}`,
                 );

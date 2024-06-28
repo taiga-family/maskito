@@ -20,23 +20,23 @@ describe('createValidDatePreprocessor', () => {
             expect(data).toEqual(expectedValue);
         };
 
-        it('Empty input => 06.02.2023 – 07.02.2023 (non-breaking spaces)', () => {
+        it('empty input => 06.02.2023 – 07.02.2023 (non-breaking spaces)', () => {
             check('06.02.2023 – 07.02.2023', '06.02.2023 – 07.02.2023');
         });
 
-        it('Empty input => 06.02.2023 – 07.02.2023 (basic spaces)', () => {
+        it('empty input => 06.02.2023 – 07.02.2023 (basic spaces)', () => {
             check('06.02.2023 – 07.02.2023', '06.02.202307.02.2023');
         });
 
-        it('Empty input => 06.02.2023–07.02.2023', () => {
+        it('empty input => 06.02.2023–07.02.2023', () => {
             check('06.02.2023–07.02.2023', '06.02.202307.02.2023');
         });
 
-        it('Empty input => 06.02.202307.02.2023', () => {
+        it('empty input => 06.02.202307.02.2023', () => {
             check('06.02.202307.02.2023', '06.02.202307.02.2023');
         });
 
-        it('Empty input => 0602202307022023', () => {
+        it('empty input => 0602202307022023', () => {
             check('0602202307022023', '06.02.202307.02.2023');
         });
     });
