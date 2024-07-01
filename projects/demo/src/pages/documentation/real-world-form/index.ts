@@ -9,9 +9,9 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiButton, TuiFlagPipe} from '@taiga-ui/core';
 import {
+    TUI_IS_APPLE,
     TuiInputModule,
     TuiSvgComponent,
     TuiTextareaModule,

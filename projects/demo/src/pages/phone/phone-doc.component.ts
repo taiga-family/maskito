@@ -6,9 +6,13 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {CHAR_PLUS, TUI_IS_APPLE} from '@taiga-ui/cdk';
+import {CHAR_PLUS} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {
+    TUI_IS_APPLE,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/legacy';
 import type {CountryCode} from 'libphonenumber-js/core';
 import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';

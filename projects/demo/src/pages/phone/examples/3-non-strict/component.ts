@@ -2,9 +2,12 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
-import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {
+    TUI_IS_APPLE,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/legacy';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import mask from './mask';
