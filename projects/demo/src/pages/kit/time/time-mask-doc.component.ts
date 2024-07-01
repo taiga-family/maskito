@@ -5,10 +5,9 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoTimeMode, MaskitoTimeSegments} from '@maskito/kit';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiNotificationModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiNotification} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-twelve-hour-format/component';
@@ -28,7 +27,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
         TimeMaskDocExample1,
         TimeMaskDocExample2,
         TimeMaskDocExample3,
-        TuiNotificationModule,
+        TuiNotification,
     ],
     templateUrl: './time-mask-doc.template.html',
     styleUrls: ['./time-mask-doc.style.less'],
@@ -39,17 +38,17 @@ export class TimeMaskDocComponent implements GeneratorOptions {
         './examples/maskito-parse-stringify-time-demo.md?raw'
     );
 
-    protected readonly modeExample1: TuiDocExample = {
+    protected readonly modeExample1: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw'),
     };
 
-    protected readonly modeExample2: TuiDocExample = {
+    protected readonly modeExample2: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-twelve-hour-format/mask.ts?raw'
         ),
     };
 
-    protected readonly stepExample3: TuiDocExample = {
+    protected readonly stepExample3: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw'),
     };
 

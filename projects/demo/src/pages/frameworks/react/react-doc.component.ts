@@ -3,7 +3,7 @@ import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
 import {ReactExample2} from './examples/2-element-predicate/example.component';
@@ -13,8 +13,8 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
     selector: 'react-doc-page',
     imports: [
         TuiAddonDocModule,
-        TuiNotificationModule,
-        TuiLinkModule,
+        TuiNotification,
+        TuiLink,
         RouterLink,
         ReactExample1,
         ReactExample2,

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoRejectEvent} from '@maskito/kit';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 

@@ -5,11 +5,11 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoDateMode, MaskitoTimeMode} from '@maskito/kit';
 import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
-import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {DATE_TIME_SEPARATOR, TuiInputModule} from '@taiga-ui/kit';
+import {TuiLink} from '@taiga-ui/core';
+import {DATE_TIME_SEPARATOR} from '@taiga-ui/kit';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
 import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
@@ -28,7 +28,7 @@ type GeneratorOptions = Required<
         ReactiveFormsModule,
         TuiAddonDocModule,
         TuiInputModule,
-        TuiLinkModule,
+        TuiLink,
         TuiTextfieldControllerModule,
         DateTimeMaskDocExample1,
         DateTimeMaskDocExample2,
@@ -39,23 +39,35 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocComponent implements GeneratorOptions {
-    protected readonly dateTimeLocalizationExample: TuiDocExample = {
+    protected readonly dateTimeLocalizationExample: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-time-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly dateTimeSeparatorExample: TuiDocExample = {
+    protected readonly dateTimeSeparatorExample: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-date-time-separator/mask.ts?raw'
         ),
     };
 
-    protected readonly dateTimeMinMaxExample: TuiDocExample = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-min-max/mask.ts?raw'),
-    };
+    protected readonly dateTimeMinMaxExample: Record<string, Promise<unknown> | string> =
+        {
+            [DocExamplePrimaryTab.MaskitoOptions]: import(
+                './examples/3-min-max/mask.ts?raw'
+            ),
+        };
 
-    protected readonly dateTimeTimeStepExample: TuiDocExample = {
+    protected readonly dateTimeTimeStepExample: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-time-step/mask.ts?raw'
         ),

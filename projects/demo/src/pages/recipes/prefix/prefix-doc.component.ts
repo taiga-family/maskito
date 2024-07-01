@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {PrefixDocExample1} from './examples/1-pattern-mask/component';
 import {PrefixDocExample2} from './examples/2-postprocessor/component';
@@ -13,8 +12,8 @@ import {PrefixDocExample2} from './examples/2-postprocessor/component';
     selector: 'prefix-doc',
     imports: [
         TuiAddonDocModule,
-        TuiLinkModule,
-        TuiNotificationModule,
+        TuiLink,
+        TuiNotification,
         RouterLink,
         PrefixDocExample1,
         PrefixDocExample2,
@@ -26,13 +25,19 @@ export default class PrefixDocComponent {
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly processorsDocPage = `/${DemoPath.Processors}`;
 
-    protected readonly patternMaskApproachExample1: TuiDocExample = {
+    protected readonly patternMaskApproachExample1: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-pattern-mask/mask.ts?raw'
         ),
     };
 
-    protected readonly postprocessorApproachExample2: TuiDocExample = {
+    protected readonly postprocessorApproachExample2: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-postprocessor/mask.ts?raw'
         ),

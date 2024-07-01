@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {InputPasswordDocExample} from './examples/password/component';
 import {InputSearchDocExample} from './examples/search/component';
@@ -17,8 +16,8 @@ import {InputURLDocExample} from './examples/url/component';
     imports: [
         RouterLink,
         TuiAddonDocModule,
-        TuiLinkModule,
-        TuiNotificationModule,
+        TuiLink,
+        TuiNotification,
         InputTextDocExample,
         InputTelDocExample,
         InputPasswordDocExample,
@@ -29,23 +28,23 @@ import {InputURLDocExample} from './examples/url/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SupportedInputTypesDocPageComponent {
-    protected readonly textTypeExample: TuiDocExample = {
+    protected readonly textTypeExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/text/mask.ts?raw'),
     };
 
-    protected readonly telTypeExample: TuiDocExample = {
+    protected readonly telTypeExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/tel/mask.ts?raw'),
     };
 
-    protected readonly passwordTypeExample: TuiDocExample = {
+    protected readonly passwordTypeExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/password/mask.ts?raw'),
     };
 
-    protected readonly urlTypeExample: TuiDocExample = {
+    protected readonly urlTypeExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/url/mask.ts?raw'),
     };
 
-    protected readonly searchTypeExample: TuiDocExample = {
+    protected readonly searchTypeExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/search/mask.ts?raw'),
     };
 

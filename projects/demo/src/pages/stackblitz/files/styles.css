@@ -1,12 +1,12 @@
 :root {
-    --tui-text-01: rgba(27, 31, 59, 1);
-    --tui-text-03: rgba(27, 31, 59, 0.4);
+    --tui-text-primary: rgba(27, 31, 59, 1);
+    --tui-text-tertiary: rgba(27, 31, 59, 0.4);
 
     --tui-radius-m: 0.75rem;
 
-    --tui-base-01: #fff;
-    --tui-base-03: #ededed;
-    --tui-primary: #526ed3;
+    --tui-background-base: #fff;
+    --tui-background-neutral-1-hover: #ededed;
+    --tui-background-accent-1: #526ed3;
 }
 
 input,
@@ -18,9 +18,9 @@ textarea {
     font-family: 'Roboto', sans-serif;
     border-radius: var(--tui-radius-m);
     box-sizing: border-box;
-    border: 1px solid var(--tui-base-03);
-    color: var(--tui-text-01);
-    background: var(--tui-base-01);
+    border: 1px solid var(--tui-background-neutral-1-hover);
+    color: var(--tui-text-primary);
+    background: var(--tui-background-base);
     outline: none;
     transition:
         box-shadow,
@@ -41,7 +41,7 @@ textarea {
 
 input:focus::placeholder,
 textarea:focus::placeholder {
-    color: var(--tui-text-03);
+    color: var(--tui-text-tertiary);
 }
 
 input:hover,
@@ -52,6 +52,6 @@ textarea:hover {
 input:focus,
 textarea:focus {
     box-shadow: none;
-    border-color: var(--tui-primary);
+    border-color: var(--tui-background-accent-1);
     border-width: 2px;
 }

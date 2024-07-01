@@ -3,14 +3,13 @@
  * But this behaviour can be achieved via vanilla JavaScript too
  * (it just requires more code).
  */
-
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {tuiPure} from '@taiga-ui/cdk';
-import {TuiLabelModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiLabelModule} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {getMaskitoOptions} from './mask';
 

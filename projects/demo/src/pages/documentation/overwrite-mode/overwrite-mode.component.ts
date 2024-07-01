@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule} from '@taiga-ui/core';
+import {TuiLink} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
 import {OverwriteModeDocExample3} from './examples/dynamic/component';
@@ -16,7 +15,7 @@ import {OverwriteModeDocExample1} from './examples/shift/component';
     imports: [
         RouterLink,
         TuiAddonDocModule,
-        TuiLinkModule,
+        TuiLink,
         NextStepsComponent,
         OverwriteModeDocExample1,
         OverwriteModeDocExample2,
@@ -26,15 +25,15 @@ import {OverwriteModeDocExample1} from './examples/shift/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class OverwriteModeDocPageComponent {
-    protected readonly shiftExample: TuiDocExample = {
+    protected readonly shiftExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/shift/mask.ts?raw'),
     };
 
-    protected readonly replaceExample: TuiDocExample = {
+    protected readonly replaceExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/replace/mask.ts?raw'),
     };
 
-    protected readonly dynamicExample: TuiDocExample = {
+    protected readonly dynamicExample: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw'),
     };
 

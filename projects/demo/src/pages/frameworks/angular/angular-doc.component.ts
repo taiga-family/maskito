@@ -2,9 +2,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {NestedDocExample1} from './examples/1-nested/component';
 import {NestedDocExample2} from './examples/2-nested/component';
@@ -18,8 +17,8 @@ import {PipeDocExample4} from './examples/4-pipe/component';
         MaskitoDirective,
         RouterLink,
         TuiAddonDocModule,
-        TuiNotificationModule,
-        TuiLinkModule,
+        TuiNotification,
+        TuiLink,
         NestedDocExample1,
         NestedDocExample2,
         ProgrammaticallyDocExample3,
@@ -42,18 +41,21 @@ export class AngularDocPageComponent {
         './examples/custom-input-example.md?raw'
     );
 
-    protected readonly nestedInputExample: TuiDocExample = {
+    protected readonly nestedInputExample: Record<string, Promise<unknown> | string> = {
         TypeScript: import('./examples/1-nested/component.ts?raw'),
         Default: import('./examples/1-nested/template.html?raw'),
         Custom: import('./examples/2-nested/template.html?raw'),
     };
 
-    protected readonly programmaticallyExample: TuiDocExample = {
+    protected readonly programmaticallyExample: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         TypeScript: import('./examples/3-programmatically/component.ts?raw'),
         HTML: import('./examples/3-programmatically/template.html?raw'),
     };
 
-    protected readonly pipeExample: TuiDocExample = {
+    protected readonly pipeExample: Record<string, Promise<unknown> | string> = {
         TypeScript: import('./examples/4-pipe/component.ts?raw'),
         HTML: import('./examples/4-pipe/template.html?raw'),
     };
