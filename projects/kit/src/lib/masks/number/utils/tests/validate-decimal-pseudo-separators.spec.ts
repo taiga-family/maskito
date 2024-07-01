@@ -10,7 +10,7 @@ describe('validate decimal pseudo separators or return default', () => {
                 decimalSeparator: ',',
                 thousandSeparator: ' ',
             }),
-        ).toEqual(DEFAULT_DECIMAL_PSEUDO_SEPARATORS.filter(char => char !== ','));
+        ).toEqual(DEFAULT_DECIMAL_PSEUDO_SEPARATORS.filter((char) => char !== ','));
     });
 
     it('should exclude decimalSeparator and thousandSeparator from decimalPseudoSeparators', () => {

@@ -8,7 +8,7 @@ describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
     let options = MASKITO_DEFAULT_OPTIONS;
 
-    dateTimeSeparators.forEach(dateTimeSeparator => {
+    dateTimeSeparators.forEach((dateTimeSeparator) => {
         const testCases: Array<{
             typedDigits: string;
             formattedValue: string;

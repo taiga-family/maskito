@@ -10,7 +10,7 @@ createApp({
     value: '123456',
     options: {
       ...maskitoNumberOptionsGenerator(),
-      elementPredicate: host => host.querySelector('input')!,
+      elementPredicate: (host) => host.querySelector('input')!,
     },
   }),
 }).mount('#vue');

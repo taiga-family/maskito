@@ -126,7 +126,7 @@ export class NumberMaskDocComponent implements GeneratorOptions {
                 ...plugins,
                 maskitoAddOnFocusPlugin(prefix + postfix),
                 maskitoRemoveOnBlurPlugin(prefix + postfix),
-                maskitoCaretGuard(value => [
+                maskitoCaretGuard((value) => [
                     prefix.length,
                     value.length - postfix.length,
                 ]),

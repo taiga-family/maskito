@@ -57,7 +57,7 @@ export const useMaskito = ({
         const elementOrPromise = predicate(hostElement);
 
         if (isThenable(elementOrPromise)) {
-            void elementOrPromise.then(el => {
+            void elementOrPromise.then((el) => {
                 if (latestPredicateRef.current === predicate) {
                     setElement(el);
                 }

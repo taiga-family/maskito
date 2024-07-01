@@ -65,7 +65,7 @@ export class NumberMaskDocExample6 {
             this.decimalZeroPadding = this.decimalZeroPadding && !dotWasRemoved;
         } else {
             this.decimalZeroPadding = ['.', ',', 'б', 'ю'].some(
-                sep => data?.includes(sep) || this.value.includes(sep),
+                (sep) => data?.includes(sep) || this.value.includes(sep),
             );
         }
     }

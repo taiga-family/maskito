@@ -6,7 +6,7 @@ describe('Number | Max validation', () => {
             openNumberPage('max=3&precision=4');
         });
 
-        ['0', '1', '2', '3'].forEach(value => {
+        ['0', '1', '2', '3'].forEach((value) => {
             it(`accepts ${value}`, () => {
                 cy.get('@input')
                     .type(value)
@@ -16,7 +16,7 @@ describe('Number | Max validation', () => {
             });
         });
 
-        ['4', '5', '6', '7', '8', '9'].forEach(value => {
+        ['4', '5', '6', '7', '8', '9'].forEach((value) => {
             it(`rejects ${value} (replace it with max value)`, () => {
                 cy.get('@input')
                     .type(value)
@@ -71,7 +71,7 @@ describe('Number | Max validation', () => {
             openNumberPage('max=777');
         });
 
-        ['5', '10', '77', '770', '776', '777'].forEach(value => {
+        ['5', '10', '77', '770', '776', '777'].forEach((value) => {
             it(`accepts ${value}`, () => {
                 cy.get('@input')
                     .type(value)
@@ -81,7 +81,7 @@ describe('Number | Max validation', () => {
             });
         });
 
-        ['778', '779', '7777', '1000'].forEach(value => {
+        ['778', '779', '7777', '1000'].forEach((value) => {
             it(`rejects ${value} (replace it with max value)`, () => {
                 cy.get('@input')
                     .type(value)

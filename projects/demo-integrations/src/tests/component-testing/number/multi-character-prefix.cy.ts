@@ -14,7 +14,7 @@ describe('Number | multi-character prefix "EUR " (no initial value & no caret gu
         cy.get('input').focus().should('have.value', '').as('input');
     });
 
-    ['E', 'U', 'R'].forEach(char => {
+    ['E', 'U', 'R'].forEach((char) => {
         it(`Empty input => Type "${char} => Textfield's value is "EUR "`, () => {
             cy.get('@input')
                 .type(char)

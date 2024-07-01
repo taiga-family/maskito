@@ -7,7 +7,7 @@ import {AppBrowserModule} from './app/app.browser.module';
 document.addEventListener('DOMContentLoaded', () => {
     platformBrowserDynamic()
         .bootstrapModule(AppBrowserModule)
-        .then(ref => {
+        .then((ref) => {
             const windowRef: any = window;
 
             // Ensure Angular destroys itself on hot reloads for Stackblitz

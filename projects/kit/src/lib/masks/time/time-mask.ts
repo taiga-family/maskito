@@ -23,7 +23,7 @@ export function maskitoTimeOptionsGenerator({
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
-        mask: Array.from(mode).map(char =>
+        mask: Array.from(mode).map((char) =>
             TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
         ),
         preprocessors: [

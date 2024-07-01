@@ -4,7 +4,7 @@ import {TestInput} from '../utils';
 
 describe('@maskito/angular | Disable mask if null is passed as options', () => {
     describe('type="email" is not compatible with Maskito (it does not have `setSelectionRange`)', () => {
-        it('should throw error if non-nullable options are passed', done => {
+        it('should throw error if non-nullable options are passed', (done) => {
             const maskitoOptions: MaskitoOptions = {
                 mask: [/[a-z]/, /[a-z]/, '@', /[a-z]/],
             };

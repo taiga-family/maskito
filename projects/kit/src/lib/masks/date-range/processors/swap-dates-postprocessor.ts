@@ -18,7 +18,7 @@ export function createSwapDatesPostprocessor({
         const dateStrings = parseDateRangeString(value, dateModeTemplate, rangeSeparator);
         const isDateRangeComplete =
             dateStrings.length === 2 &&
-            dateStrings.every(date => isDateStringComplete(date, dateModeTemplate));
+            dateStrings.every((date) => isDateStringComplete(date, dateModeTemplate));
         const [from, to] = selection;
         const caretAtTheEnd = from >= value.length;
         const allValueSelected = from === 0 && to >= value.length; // dropping text inside with a pointer
@@ -27,7 +27,7 @@ export function createSwapDatesPostprocessor({
             return {value, selection};
         }
 
-        const [fromDate, toDate] = dateStrings.map(dateString =>
+        const [fromDate, toDate] = dateStrings.map((dateString) =>
             segmentsToDate(parseDateString(dateString, dateModeTemplate)),
         );
 

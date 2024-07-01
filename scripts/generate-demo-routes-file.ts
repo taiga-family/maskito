@@ -29,9 +29,9 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/
     const routes =
         demoPathEnumContent
             .match(/['"`](.*)['"`]/g)
-            ?.map(route => route.replaceAll(/['"`]/g, '')) || [];
+            ?.map((route) => route.replaceAll(/['"`]/g, '')) || [];
 
-    routes.forEach(route => {
+    routes.forEach((route) => {
         if (route.startsWith('kit')) {
             routes.push(`${route}/API`);
         }
@@ -39,7 +39,7 @@ const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/
     routes.push(...EXCEPTIONS);
 
     titleLog('Generated routes:');
-    routes.forEach(route => infoLog(`${SMALL_TAB_SYMBOL}* ${route}`));
+    routes.forEach((route) => infoLog(`${SMALL_TAB_SYMBOL}* ${route}`));
 
     writeFileSync(
         join(process.cwd(), 'projects', 'demo', 'routesFile.txt'),

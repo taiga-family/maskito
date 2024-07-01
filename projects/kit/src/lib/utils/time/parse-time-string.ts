@@ -19,7 +19,7 @@ export function parseTimeString(
     let offset = 0;
 
     return Object.fromEntries(
-        timeMode.split(/\W/).map(segmentAbbr => {
+        timeMode.split(/\W/).map((segmentAbbr) => {
             const segmentValue = onlyDigits.slice(offset, offset + segmentAbbr.length);
 
             offset += segmentAbbr.length;

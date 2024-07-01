@@ -19,6 +19,6 @@ export function isDateTimeStringComplete(
         dateTimeString
             .split(dateTimeSeparator)[0]
             .split(/\D/)
-            .every(segment => !segment.match(/^0+$/))
+            .every((segment) => !segment.match(/^0+$/))
     );
 }

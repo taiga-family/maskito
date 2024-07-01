@@ -24,13 +24,13 @@ export function normalizeDatePreprocessor({
 
         if (
             dates.every(
-                date =>
+                (date) =>
                     date.trim().split(/\D/).filter(Boolean).length ===
                     dateModeTemplate.split(dateSegmentsSeparator).length,
             )
         ) {
             const newData = dates
-                .map(date =>
+                .map((date) =>
                     normalizeDateString(date, dateModeTemplate, dateSegmentsSeparator),
                 )
                 .join(rangeSeparator);

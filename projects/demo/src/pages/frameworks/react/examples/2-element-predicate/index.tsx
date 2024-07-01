@@ -9,7 +9,7 @@ const options = maskitoDateOptionsGenerator({
     mode: 'dd/mm/yyyy',
 });
 
-const elementPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('input.real-input')!;
+const elementPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('input.real-input')!;
 
 export const App: ComponentType = () => {
     const inputRef = useMaskito({options, elementPredicate});

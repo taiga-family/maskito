@@ -8,7 +8,7 @@
  * @example
  * cy.get('tui-input').should('have.ngControlValue', '123')
  * */
-export const haveNgControlValueAssertion: Chai.ChaiPlugin = _chai => {
+export const haveNgControlValueAssertion: Chai.ChaiPlugin = (_chai) => {
     chai.Assertion.addMethod('ngControlValue', function (expectedValue: string) {
         const subject = this._obj[0];
         const windowRef = Cypress.dom.getWindowByElement(subject);

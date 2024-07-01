@@ -35,7 +35,7 @@ export function maskitoDateRangeOptionsGenerator({
     rangeSeparator?: string;
 }): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(dateSeparator);
-    const dateMask = Array.from(dateModeTemplate).map(char =>
+    const dateMask = Array.from(dateModeTemplate).map((char) =>
         dateSeparator.includes(char) ? char : /\d/,
     );
 
@@ -67,7 +67,7 @@ export function maskitoDateRangeOptionsGenerator({
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
-                splitFn: value => ({
+                splitFn: (value) => ({
                     dateStrings: parseDateRangeString(
                         value,
                         dateModeTemplate,

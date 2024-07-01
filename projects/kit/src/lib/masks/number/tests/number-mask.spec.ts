@@ -346,14 +346,14 @@ describe('Number (maskitoTransform)', () => {
             {value: CHAR_MINUS, name: 'unicode minus sign'},
         ];
 
-        minuses.forEach(minus => {
+        minuses.forEach((minus) => {
             const options = maskitoNumberOptionsGenerator({
                 minusSign: minus.value,
                 thousandSeparator: ' ',
             });
 
-            pseudoMinuses.forEach(pseudoMinus => {
-                numbers.forEach(number => {
+            pseudoMinuses.forEach((pseudoMinus) => {
+                numbers.forEach((number) => {
                     it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
                         expect(
                             maskitoTransform(`${pseudoMinus.value}${number}`, options),
@@ -373,7 +373,7 @@ describe('Number (maskitoTransform)', () => {
             {value: CHAR_EM_DASH, name: 'em-dash'},
             {value: CHAR_JP_HYPHEN, name: 'japanese prolonged sound mark'},
             {value: CHAR_MINUS, name: 'unicode minus sign'},
-        ].forEach(minus => {
+        ].forEach((minus) => {
             describe(`applies ${minus.name} properly`, () => {
                 beforeEach(() => {
                     options = maskitoNumberOptionsGenerator({

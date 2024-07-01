@@ -11,12 +11,12 @@ export default {
     ...timeOptions,
     plugins: [
         ...timeOptions.plugins,
-        maskitoEventHandler('blur', element => {
+        maskitoEventHandler('blur', (element) => {
             const [hours, minutes = ''] = element.value.split(':');
 
             maskitoUpdateElement(
                 element,
-                [hours, minutes].map(segment => segment.padEnd(2, '0')).join(':'),
+                [hours, minutes].map((segment) => segment.padEnd(2, '0')).join(':'),
             );
         }),
     ],

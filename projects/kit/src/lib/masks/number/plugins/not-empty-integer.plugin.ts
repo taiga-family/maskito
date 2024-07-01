@@ -20,7 +20,7 @@ export function createNotEmptyIntegerPlugin({
 }): MaskitoPlugin {
     return maskitoEventHandler(
         'blur',
-        element => {
+        (element) => {
             const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(
                 element.value,
                 {prefix, postfix},

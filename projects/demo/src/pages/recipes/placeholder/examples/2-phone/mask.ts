@@ -56,7 +56,7 @@ export default {
     ],
     plugins: [
         ...plugins,
-        maskitoEventHandler('focus', element => {
+        maskitoEventHandler('focus', (element) => {
             const initialValue = element.value || '+1 (';
 
             maskitoUpdateElement(
@@ -64,7 +64,7 @@ export default {
                 initialValue + PLACEHOLDER.slice(initialValue.length),
             );
         }),
-        maskitoEventHandler('blur', element => {
+        maskitoEventHandler('blur', (element) => {
             const cleanValue = removePlaceholder(element.value);
 
             maskitoUpdateElement(element, cleanValue === '+1' ? '' : cleanValue);

@@ -8,7 +8,7 @@ export function maskitoCaretGuard(
         selection: readonly [from: number, to: number],
     ) => [from: number, to: number],
 ): MaskitoPlugin {
-    return element => {
+    return (element) => {
         const document = element.ownerDocument;
         let isPointerDown = 0;
         const onPointerDown = (): number => isPointerDown++;

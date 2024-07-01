@@ -6,7 +6,7 @@ describe('Number | Min validation', () => {
             openNumberPage('min=-100&precision=4');
         });
 
-        ['−1', '−10', '−42', '−100', '0', '1', '5', '99'].forEach(value => {
+        ['−1', '−10', '−42', '−100', '0', '1', '5', '99'].forEach((value) => {
             it(`accepts ${value}`, () => {
                 cy.get('@input')
                     .type(value)
@@ -16,7 +16,7 @@ describe('Number | Min validation', () => {
             });
         });
 
-        ['-101', '-256', '-512'].forEach(value => {
+        ['-101', '-256', '-512'].forEach((value) => {
             it(`rejects ${value} (replace it with min value)`, () => {
                 cy.get('@input')
                     .type(value)

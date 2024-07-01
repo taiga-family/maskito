@@ -21,7 +21,7 @@ describe('Date (maskitoTransform)', () => {
 
         describe('pads digits with zero if date segment exceeds its max possible value', () => {
             describe('pads digit > 1 with zero for months', () => {
-                [0, 1].forEach(digit => {
+                [0, 1].forEach((digit) => {
                     it(`1234/${digit} => 1234/${digit}`, () => {
                         expect(maskitoTransform(`1234${digit}`, options)).toBe(
                             `1234/${digit}`,
@@ -32,7 +32,7 @@ describe('Date (maskitoTransform)', () => {
                     });
                 });
 
-                [2, 3, 4, 5, 6, 7, 8, 9].forEach(digit => {
+                [2, 3, 4, 5, 6, 7, 8, 9].forEach((digit) => {
                     it(`1234/${digit} => 1234/0${digit}`, () => {
                         expect(maskitoTransform(`1234${digit}`, options)).toBe(
                             `1234/0${digit}`,
@@ -45,7 +45,7 @@ describe('Date (maskitoTransform)', () => {
             });
 
             describe('pads digit > 3 with zero for days', () => {
-                [0, 1, 2, 3].forEach(digit => {
+                [0, 1, 2, 3].forEach((digit) => {
                     it(`1234/12/${digit} => 1234/12/${digit}`, () => {
                         expect(maskitoTransform(`123412${digit}`, options)).toBe(
                             `1234/12/${digit}`,
@@ -56,7 +56,7 @@ describe('Date (maskitoTransform)', () => {
                     });
                 });
 
-                [4, 5, 6, 7, 8, 9].forEach(digit => {
+                [4, 5, 6, 7, 8, 9].forEach((digit) => {
                     it(`1234/12/${digit} => 1234/12/0${digit}`, () => {
                         expect(maskitoTransform(`123412${digit}`, options)).toBe(
                             `1234/12/0${digit}`,

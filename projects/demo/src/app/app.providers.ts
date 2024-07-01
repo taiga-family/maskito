@@ -63,7 +63,7 @@ export const APP_PROVIDERS: Provider[] = [
 
             return `${link}/${context.package.toLowerCase()}/src/lib/masks/${(
                 context.header[0].toLowerCase() + context.header.slice(1)
-            ).replaceAll(/[A-Z]/g, m => `-${m.toLowerCase()}`)}`;
+            ).replaceAll(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)}`;
         },
     },
     {
@@ -75,7 +75,7 @@ export const APP_PROVIDERS: Provider[] = [
         useValue: addDefaultTabsProcessor,
     },
     tuiDocExampleOptionsProvider({
-        codeEditorVisibilityHandler: files => {
+        codeEditorVisibilityHandler: (files) => {
             const fileNames = Object.keys(files);
 
             return (

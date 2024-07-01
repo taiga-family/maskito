@@ -22,7 +22,7 @@ export function createFirstDateEndSeparatorPreprocessor({
         const {value, selection} = elementState;
         const firstCompleteDate = getFirstCompleteDate(value, dateModeTemplate);
         const pseudoSeparators = pseudoFirstDateEndSeparators.filter(
-            x => !firstDateEndSeparator.includes(x) && x !== dateSegmentSeparator,
+            (x) => !firstDateEndSeparator.includes(x) && x !== dateSegmentSeparator,
         );
         const pseudoSeparatorsRE = new RegExp(`[${pseudoSeparators.join('')}]`, 'gi');
 

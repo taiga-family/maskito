@@ -15,7 +15,7 @@ function App() {
     <input
       ref={inputRef}
       value={value}
-      onInput={e => setValue(e.currentTarget.value)}
+      onInput={(e) => setValue(e.currentTarget.value)}
     />
   );
 }

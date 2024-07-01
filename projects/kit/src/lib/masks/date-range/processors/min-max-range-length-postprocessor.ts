@@ -37,12 +37,12 @@ export function createMinMaxRangeLengthPostprocessor({
 
         if (
             dateStrings.length !== 2 ||
-            dateStrings.some(date => !isDateStringComplete(date, dateModeTemplate))
+            dateStrings.some((date) => !isDateStringComplete(date, dateModeTemplate))
         ) {
             return {value, selection};
         }
 
-        const [fromDate, toDate] = dateStrings.map(dateString =>
+        const [fromDate, toDate] = dateStrings.map((dateString) =>
             segmentsToDate(parseDateString(dateString, dateModeTemplate)),
         );
 

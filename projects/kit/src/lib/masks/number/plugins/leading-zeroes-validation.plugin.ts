@@ -31,7 +31,7 @@ export function createLeadingZeroesValidationPlugin({
 
     return maskitoEventHandler(
         'blur',
-        element => {
+        (element) => {
             const newValue = dropRepeatedLeadingZeroes(
                 {
                     value: element.value,
