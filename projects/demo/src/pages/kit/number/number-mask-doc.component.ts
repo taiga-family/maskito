@@ -46,7 +46,7 @@ type GeneratorOptions = Required<
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [tuiInputNumberOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
-export class NumberMaskDocComponent implements GeneratorOptions {
+export default class NumberMaskDocComponent implements GeneratorOptions {
     protected readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-number-demo.md?raw'
     );

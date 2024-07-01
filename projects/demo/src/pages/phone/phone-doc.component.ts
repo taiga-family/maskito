@@ -45,7 +45,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
     styleUrls: ['./phone-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneDocComponent implements GeneratorOptions {
+export default class PhoneDocComponent implements GeneratorOptions {
     private readonly isApple = inject(TUI_IS_APPLE);
 
     protected apiPageControl = new FormControl('');
