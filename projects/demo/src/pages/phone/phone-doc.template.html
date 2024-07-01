@@ -113,6 +113,23 @@
                 </p>
             </ng-template>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="focus-blur"
+            heading="Focus & Blur events"
+            [content]="focusBlurEvents"
+            [description]="focusBlurEventDescription"
+        >
+            <phone-doc-example-5 />
+
+            <ng-template #focusBlurEventDescription>
+                Use
+                <code>maskitoAddOnFocusPlugin</code>
+                /
+                <code>maskitoRemoveOnBlurPlugin</code>
+                to mutate textfield's value on focus/blur events.
+            </ng-template>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>

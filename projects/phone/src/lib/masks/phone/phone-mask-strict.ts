@@ -1,11 +1,6 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
-import {
-    maskitoAddOnFocusPlugin,
-    maskitoCaretGuard,
-    maskitoPrefixPostprocessorGenerator,
-    maskitoRemoveOnBlurPlugin,
-} from '@maskito/kit';
+import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
@@ -53,10 +48,6 @@ export function maskitoPhoneStrictOptionsGenerator({
                 from === to ? prefix.length : 0,
                 value.length,
             ]),
-            // TODO: drop `maskitoAddOnFocusPlugin` & `maskitoRemoveOnBlurPlugin`
-            // TODO: Add examples how to enable `maskitoAddOnFocusPlugin` & `maskitoRemoveOnBlurPlugin` on https://maskito.dev/addons/phone
-            maskitoRemoveOnBlurPlugin(prefix),
-            maskitoAddOnFocusPlugin(prefix),
         ],
         postprocessors: [
             maskitoPrefixPostprocessorGenerator(prefix),
