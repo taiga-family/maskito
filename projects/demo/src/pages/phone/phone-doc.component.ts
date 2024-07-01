@@ -2,20 +2,23 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
+import type {MaskitoOptions} from '@maskito/core';
+import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import type {TuiDocExample} from '@taiga-ui/addon-doc';
 import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TUI_IS_APPLE} from '@taiga-ui/cdk';
+import {CHAR_PLUS, TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/kit';
 import type {CountryCode} from 'libphonenumber-js/core';
-import {getCountries} from 'libphonenumber-js/core';
+import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import {PhoneMaskDocExample1} from './examples/1-basic/component';
 import {PhoneMaskDocExample2} from './examples/2-validation/component';
 import {PhoneMaskDocExample3} from './examples/3-non-strict/component';
 import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
+import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
 
@@ -33,6 +36,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
         PhoneMaskDocExample2,
         PhoneMaskDocExample3,
         PhoneMaskDocExample4,
+        PhoneMaskDocExample5,
     ],
     templateUrl: './phone-doc.template.html',
     styleUrls: ['./phone-doc.style.less'],
@@ -74,6 +78,12 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
+    protected readonly focusBlurEvents: TuiDocExample = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/5-focus-blur-events/mask.ts?raw'
+        ),
+    };
+
     public metadata = metadata;
     public strict = true;
     public countryIsoCode: CountryCode = 'RU';
@@ -83,13 +93,30 @@ export class PhoneDocComponent implements GeneratorOptions {
 
     protected separatorVariants = ['-', ' '];
 
-    protected maskitoOptions = maskitoPhoneOptionsGenerator(this);
+    protected maskitoOptions = this.computeOptions();
 
     protected get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 
     protected updateOptions(): void {
-        this.maskitoOptions = maskitoPhoneOptionsGenerator(this);
+        this.maskitoOptions = this.computeOptions();
+    }
+
+    private computeOptions(): Required<MaskitoOptions> {
+        const options = maskitoPhoneOptionsGenerator(this);
+        const code = getCountryCallingCode(this.countryIsoCode, this.metadata);
+        const prefix = `${CHAR_PLUS}${code} `;
+
+        return this.strict
+            ? {
+                  ...options,
+                  plugins: [
+                      ...options.plugins,
+                      maskitoRemoveOnBlurPlugin(prefix),
+                      maskitoAddOnFocusPlugin(prefix),
+                  ],
+              }
+            : options;
     }
 }
