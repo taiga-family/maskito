@@ -11,10 +11,10 @@ import {
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiButton, TuiFlagPipe} from '@taiga-ui/core';
-import {TuiTextareaModule} from '@taiga-ui/kit';
 import {
     TuiInputModule,
     TuiSvgComponent,
+    TuiTextareaModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
 import metadata from 'libphonenumber-js/min/metadata';
