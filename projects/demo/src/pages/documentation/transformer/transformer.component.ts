@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiNotification} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
@@ -7,7 +7,7 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 @Component({
     standalone: true,
     selector: 'transformer-doc-page',
-    imports: [TuiAddonDocModule, TuiNotification, NextStepsComponent],
+    imports: [TuiAddonDoc, TuiNotification, NextStepsComponent],
     templateUrl: './transformer.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

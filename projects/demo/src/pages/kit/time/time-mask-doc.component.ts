@@ -5,7 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoTimeMode, MaskitoTimeSegments} from '@maskito/kit';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
@@ -21,7 +21,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiInputModule,
         TuiTextfieldControllerModule,
         TimeMaskDocExample1,

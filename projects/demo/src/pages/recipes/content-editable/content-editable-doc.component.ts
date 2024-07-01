@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {ContentEditableDocExample1} from './examples/1-time/component';
@@ -11,7 +11,7 @@ import {ContentEditableDocExample2} from './examples/2-multi-line/component';
     standalone: true,
     selector: 'content-editable-doc',
     imports: [
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         RouterLink,
         ContentEditableDocExample1,

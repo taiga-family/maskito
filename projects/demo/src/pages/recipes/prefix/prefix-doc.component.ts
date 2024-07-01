@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {PrefixDocExample1} from './examples/1-pattern-mask/component';
@@ -11,7 +11,7 @@ import {PrefixDocExample2} from './examples/2-postprocessor/component';
     standalone: true,
     selector: 'prefix-doc',
     imports: [
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         TuiNotification,
         RouterLink,

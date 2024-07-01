@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 @Component({
     standalone: true,
     selector: 'element-state-doc-page',
-    imports: [TuiAddonDocModule, TuiLink, RouterLink],
+    imports: [TuiAddonDoc, TuiLink, RouterLink],
     templateUrl: './element-state.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

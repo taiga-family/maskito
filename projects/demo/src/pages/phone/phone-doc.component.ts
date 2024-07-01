@@ -5,7 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS, TUI_IS_APPLE} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
@@ -27,7 +27,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiInputModule,
         TuiLink,
         TuiTextfieldControllerModule,

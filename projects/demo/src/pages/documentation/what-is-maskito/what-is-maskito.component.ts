@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 import {TuiAvatar} from '@taiga-ui/kit';
 import {TuiIslandDirective} from '@taiga-ui/legacy';
@@ -9,7 +9,7 @@ import {TuiIslandDirective} from '@taiga-ui/legacy';
 @Component({
     standalone: true,
     selector: 'what-is-maskito-doc-page',
-    imports: [RouterLink, TuiAddonDocModule, TuiIslandDirective, TuiLink, TuiAvatar],
+    imports: [RouterLink, TuiAddonDoc, TuiIslandDirective, TuiLink, TuiAvatar],
     templateUrl: './what-is-maskito.template.html',
     styleUrls: ['./what-is-maskito.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 import {PlaceholderDocExample1} from './examples/1-cvc-code/component';
@@ -12,7 +12,7 @@ import {PlaceholderDocExample3} from './examples/3-date/component';
     standalone: true,
     selector: 'placeholder-doc',
     imports: [
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         RouterLink,
         PlaceholderDocExample1,

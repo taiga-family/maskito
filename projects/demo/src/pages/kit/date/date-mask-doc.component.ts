@@ -5,7 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoDateMode} from '@maskito/kit';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
@@ -18,7 +18,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     standalone: true,
     selector: 'date-mask-doc',
     imports: [
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         DateMaskDocExample1,
         DateMaskDocExample2,

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
@@ -14,7 +14,7 @@ import {OverwriteModeDocExample1} from './examples/shift/component';
     selector: 'overwrite-mode-doc-page',
     imports: [
         RouterLink,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         NextStepsComponent,
         OverwriteModeDocExample1,

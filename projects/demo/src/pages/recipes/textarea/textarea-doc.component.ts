@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 import {TextareaDocExample1} from './examples/1-latin/component';
@@ -9,7 +9,7 @@ import {TextareaDocExample1} from './examples/1-latin/component';
 @Component({
     standalone: true,
     selector: 'textarea-doc',
-    imports: [TuiAddonDocModule, TuiLink, RouterLink, TextareaDocExample1],
+    imports: [TuiAddonDoc, TuiLink, RouterLink, TextareaDocExample1],
     templateUrl: './textarea-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

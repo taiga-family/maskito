@@ -10,7 +10,7 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
 import {TuiInputModule} from '@taiga-ui/legacy';
@@ -32,7 +32,7 @@ type GeneratorOptions = Required<
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiInputModule,
         TuiNotification,
         TuiLink,

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 import {CardDocExample1} from './examples/1-basic/component';
@@ -9,7 +9,7 @@ import {CardDocExample1} from './examples/1-basic/component';
 @Component({
     standalone: true,
     selector: 'card-doc',
-    imports: [TuiAddonDocModule, TuiLink, RouterLink, CardDocExample1],
+    imports: [TuiAddonDoc, TuiLink, RouterLink, CardDocExample1],
     templateUrl: './card-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

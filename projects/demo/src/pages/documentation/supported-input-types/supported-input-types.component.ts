@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {InputPasswordDocExample} from './examples/password/component';
@@ -15,7 +15,7 @@ import {InputURLDocExample} from './examples/url/component';
     selector: 'supported-input-types-doc-page',
     imports: [
         RouterLink,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiLink,
         TuiNotification,
         InputTextDocExample,

@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 @Component({
     standalone: true,
     selector: 'maskito-libraries-doc-page',
-    imports: [TuiAddonDocModule, TuiNotification, TuiLink, RouterLink],
+    imports: [TuiAddonDoc, TuiNotification, TuiLink, RouterLink],
     templateUrl: './maskito-libraries.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
