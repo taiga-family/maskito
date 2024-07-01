@@ -13,8 +13,8 @@ describe('@maskito/react | `elementPredicate` property', () => {
     };
     let predicate: MaskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
-    const correctPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('.real-input')!;
-    const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
+    const correctPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('.real-input')!;
+    const wrongPredicate: MaskitoElementPredicate = (host) => host.querySelector('input')!;
 
     function TestComponent({elementPredicate = predicate}): JSX.Element {
         const inputRef = useMaskito({options, elementPredicate});
@@ -67,7 +67,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in next micro task', async () => {
             const user = userEvent.setup();
 
-            predicate = async host => Promise.resolve(correctPredicate(host));
+            predicate = async (host) => Promise.resolve(correctPredicate(host));
             testElement = render(<TestComponent />);
 
             await setValue(user, '123blah45');
@@ -80,8 +80,8 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in next macro task', async () => {
             const user = userEvent.setup();
 
-            predicate = async host =>
-                new Promise(resolve => {
+            predicate = async (host) =>
+                new Promise((resolve) => {
                     setTimeout(() => resolve(correctPredicate(host)));
                 });
             testElement = render(<TestComponent />);
@@ -96,8 +96,8 @@ describe('@maskito/react | `elementPredicate` property', () => {
         it('predicate resolves in 100ms', async () => {
             const user = userEvent.setup();
 
-            predicate = async host =>
-                new Promise(resolve => {
+            predicate = async (host) =>
+                new Promise((resolve) => {
                     setTimeout(() => resolve(correctPredicate(host)), 100);
                 });
             testElement = render(<TestComponent />);

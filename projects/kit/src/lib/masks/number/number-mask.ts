@@ -65,7 +65,7 @@ export function maskitoNumberOptionsGenerator({
         CHAR_JP_HYPHEN,
         CHAR_MINUS,
     ].filter(
-        char =>
+        (char) =>
             char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
     );
     const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({

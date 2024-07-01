@@ -45,7 +45,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
                 selection: [0, 0] as const,
             };
 
-            [EMPTY_ELEMENT_STATE, ONLY_PLACEHOLDER_STATE].forEach(initialState => {
+            [EMPTY_ELEMENT_STATE, ONLY_PLACEHOLDER_STATE].forEach((initialState) => {
                 const check = (valueBefore: string, valueAfter: string): void => {
                     const {value} = postprocessor(
                         {

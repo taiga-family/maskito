@@ -10,6 +10,6 @@ export function validateDecimalPseudoSeparators({
     decimalPseudoSeparators?: string[];
 }): string[] {
     return decimalPseudoSeparators.filter(
-        char => char !== thousandSeparator && char !== decimalSeparator,
+        (char) => char !== thousandSeparator && char !== decimalSeparator,
     );
 }

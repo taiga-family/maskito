@@ -20,7 +20,7 @@ describe('Number | With initial value', () => {
             ...numberOptions,
             plugins: [
                 ...numberOptions.plugins,
-                maskitoCaretGuard(value => [
+                maskitoCaretGuard((value) => [
                     prefix.length,
                     value.length - postfix.length,
                 ]),

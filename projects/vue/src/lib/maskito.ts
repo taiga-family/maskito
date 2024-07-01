@@ -37,7 +37,7 @@ export const maskito: ObjectDirective<
       })
     | null
 > = {
-    unmounted: element => {
+    unmounted: (element) => {
         teardown.get(element)?.destroy();
         teardown.delete(element);
         predicates.delete(element);

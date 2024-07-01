@@ -23,13 +23,13 @@ export class TestComponent {
     protected readonly maskitoOptions: MaskitoOptions = {
         mask: /^\d+$/,
         plugins: [
-            maskitoEventHandler('focus', element => element.select(), {once: true}),
+            maskitoEventHandler('focus', (element) => element.select(), {once: true}),
         ],
     };
 }
 
 describe('Native method `.select()` works', () => {
-    ['input', 'textarea'].forEach(selector => {
+    ['input', 'textarea'].forEach((selector) => {
         it(`for <${selector} />`, () => {
             cy.mount(TestComponent);
             cy.get(selector)

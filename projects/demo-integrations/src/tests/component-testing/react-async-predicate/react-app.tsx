@@ -14,23 +14,23 @@ const options: MaskitoOptions = {
     plugins: [...timeOptions.plugins, maskitoInitialCalibrationPlugin()],
 };
 
-const correctPredicate: MaskitoElementPredicate = host => host.querySelector<HTMLInputElement>('.real-input')!;
-const wrongPredicate: MaskitoElementPredicate = host => host.querySelector('input')!;
+const correctPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('.real-input')!;
+const wrongPredicate: MaskitoElementPredicate = (host) => host.querySelector('input')!;
 
-const longCorrectPredicate: MaskitoElementPredicate = async host =>
-    new Promise(resolve => {
+const longCorrectPredicate: MaskitoElementPredicate = async (host) =>
+    new Promise((resolve) => {
         setTimeout(() => {
             resolve(correctPredicate(host));
         }, 2_000);
     });
 
-const longInvalidPredicate: MaskitoElementPredicate = async host =>
-    new Promise(resolve => {
+const longInvalidPredicate: MaskitoElementPredicate = async (host) =>
+    new Promise((resolve) => {
         setTimeout(() => resolve(wrongPredicate(host)), 7_000);
     });
 
-const fastValidPredicate: MaskitoElementPredicate = async host =>
-    new Promise(resolve => {
+const fastValidPredicate: MaskitoElementPredicate = async (host) =>
+    new Promise((resolve) => {
         setTimeout(() => resolve(correctPredicate(host)), 500);
     });
 

@@ -14,8 +14,8 @@ export function bumpMaskitoDeps({
     ignores: string[];
 }): void {
     Object.keys(deps)
-        .filter(key => isMaskitoPackageName(key, ignores))
-        .forEach(key => {
+        .filter((key) => isMaskitoPackageName(key, ignores))
+        .forEach((key) => {
             if (typeof deps[key] === 'string') {
                 deps[key] = isPeerDependency
                     ? (deps[key] as string)?.replace(prevVersion, newVersion)

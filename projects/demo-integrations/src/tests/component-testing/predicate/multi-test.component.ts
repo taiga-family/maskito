@@ -46,9 +46,9 @@ export class MultiTestInputComponent {
         ],
     };
 
-    protected readonly cardPredicate: MaskitoElementPredicate = element =>
+    protected readonly cardPredicate: MaskitoElementPredicate = (element) =>
         element.querySelectorAll('input')[0];
 
-    protected readonly namePredicate: MaskitoElementPredicate = element =>
+    protected readonly namePredicate: MaskitoElementPredicate = (element) =>
         element.querySelectorAll('input')[1];
 }

@@ -1,7 +1,7 @@
 import type {MaskitoPlugin} from '../types';
 
 export function maskitoChangeEventPlugin(): MaskitoPlugin {
-    return element => {
+    return (element) => {
         if (element.isContentEditable) {
             return;
         }

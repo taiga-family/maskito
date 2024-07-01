@@ -14,7 +14,7 @@ declare global {
 }
 
 export const stableMount: typeof mount = (...mountArgs) =>
-    mount(...mountArgs).then(async mountResponse =>
+    mount(...mountArgs).then(async (mountResponse) =>
         mountResponse.fixture.whenStable().then(() => mountResponse),
     );
 

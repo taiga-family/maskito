@@ -39,11 +39,11 @@ export function maskitoDateTimeOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: [
-            ...Array.from(dateModeTemplate).map(char =>
+            ...Array.from(dateModeTemplate).map((char) =>
                 dateSeparator.includes(char) ? char : /\d/,
             ),
             ...dateTimeSeparator.split(''),
-            ...Array.from(timeMode).map(char =>
+            ...Array.from(timeMode).map((char) =>
                 TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
             ),
         ],
@@ -74,7 +74,7 @@ export function maskitoDateTimeOptionsGenerator({
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
-                splitFn: value => {
+                splitFn: (value) => {
                     const [dateString, timeString] = parseDateTimeString(value, {
                         dateModeTemplate,
                         dateTimeSeparator,

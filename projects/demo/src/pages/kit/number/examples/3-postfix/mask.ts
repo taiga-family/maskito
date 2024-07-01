@@ -19,8 +19,8 @@ export default {
     plugins: [
         ...plugins,
         // Forbids caret to be placed after postfix
-        maskitoCaretGuard(value => [0, value.length - 1]),
-        maskitoEventHandler('blur', element => {
+        maskitoCaretGuard((value) => [0, value.length - 1]),
+        maskitoEventHandler('blur', (element) => {
             if (element.value === postfix) {
                 maskitoUpdateElement(element, `0${postfix}`);
             }

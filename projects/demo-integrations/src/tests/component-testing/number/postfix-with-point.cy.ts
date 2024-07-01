@@ -62,7 +62,7 @@ describe('Number | postfix with point', () => {
                     ...numberOptions.plugins,
                     maskitoAddOnFocusPlugin(postfix),
                     maskitoRemoveOnBlurPlugin(postfix),
-                    maskitoCaretGuard(value => [0, value.length - postfix.length]),
+                    maskitoCaretGuard((value) => [0, value.length - postfix.length]),
                 ],
             };
 

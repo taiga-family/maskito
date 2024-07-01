@@ -35,9 +35,9 @@ describe('Number | minus sign', () => {
 
         const numbers = ['321', '2_432'];
 
-        minuses.forEach(minus => {
-            pseudoMinuses.forEach(pseudoMinus => {
-                numbers.forEach(number => {
+        minuses.forEach((minus) => {
+            pseudoMinuses.forEach((pseudoMinus) => {
+                numbers.forEach((number) => {
                     it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
                         openNumberPage(
                             `precision=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
@@ -60,7 +60,7 @@ describe('Number | minus sign', () => {
             cy.get('@input').type('i1234').should('have.value', 'i1_234');
         });
 
-        pseudoMinuses.forEach(pseudoMinus => {
+        pseudoMinuses.forEach((pseudoMinus) => {
             it(`transforms ${pseudoMinus.name} into i`, () => {
                 cy.get('@input')
                     .type(`${pseudoMinus.value}1234`)
@@ -80,7 +80,7 @@ describe('custom minus should work properly with min(max) value', () => {
             name: 'japanese prolonged sound mark',
         },
         {value: CHAR_MINUS, name: 'unicode minus sign'},
-    ].forEach(minus => {
+    ].forEach((minus) => {
         describe(`applies ${minus.name} properly`, () => {
             beforeEach(() => {
                 openNumberPage(

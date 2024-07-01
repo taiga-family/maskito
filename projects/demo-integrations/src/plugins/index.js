@@ -1,6 +1,6 @@
 const {CYPRESS_CONFIG} = require('../../cypress.config');
 
-module.exports = on => {
+module.exports = (on) => {
     on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome') {
             launchOptions.args.push(

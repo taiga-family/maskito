@@ -33,7 +33,7 @@ describe('@maskito/angular | Predicate', () => {
         cy.mount(TestInput, {
             componentProperties: {
                 maskitoOptions: cardMask,
-                maskitoElementPredicate: async element =>
+                maskitoElementPredicate: async (element) =>
                     Promise.resolve(element as HTMLInputElement),
             },
         });

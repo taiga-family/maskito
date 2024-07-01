@@ -30,7 +30,7 @@ describe('Number | precision', () => {
                 .should('have.prop', 'selectionEnd', '0,4242'.length);
         });
 
-        [',', '.', 'б', 'ю'].forEach(separator => {
+        [',', '.', 'б', 'ю'].forEach((separator) => {
             it(`123|456789 => Type ${separator} => 123,4567`, () => {
                 cy.get('@input')
                     .type('123|456789')

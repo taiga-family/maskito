@@ -26,7 +26,7 @@ export function maskitoDateOptionsGenerator({
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
-        mask: Array.from(dateModeTemplate).map(char =>
+        mask: Array.from(dateModeTemplate).map((char) =>
             separator.includes(char) ? char : /\d/,
         ),
         overwriteMode: 'replace',
@@ -46,7 +46,7 @@ export function maskitoDateOptionsGenerator({
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: separator,
-                splitFn: value => ({dateStrings: [value]}),
+                splitFn: (value) => ({dateStrings: [value]}),
                 uniteFn: ([dateString]) => dateString,
             }),
             createMinMaxDatePostprocessor({

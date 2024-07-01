@@ -50,7 +50,7 @@ export class DateRangeMaskDocExample1 {
             ? 'Complete the date range!'
             : this.value
                   .split(' – ')
-                  .map(date => this.usDateFormatter.format(new Date(date)))
+                  .map((date) => this.usDateFormatter.format(new Date(date)))
                   .join(' – ');
     }
 }

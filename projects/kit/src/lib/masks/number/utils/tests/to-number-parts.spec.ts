@@ -10,7 +10,7 @@ import {
 import {toNumberParts} from '../to-number-parts';
 
 describe('toNumberParts', () => {
-    [',', '.'].forEach(decimalSeparator => {
+    [',', '.'].forEach((decimalSeparator) => {
         describe(`decimalSeparator = ${decimalSeparator}`, () => {
             const thousandSeparator = '_';
 
@@ -108,7 +108,7 @@ describe('toNumberParts', () => {
 
     it('different minus signs', () => {
         [CHAR_MINUS, CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH, CHAR_JP_HYPHEN].forEach(
-            minus => {
+            (minus) => {
                 expect(
                     toNumberParts(`${minus}1,234,567.89`, {
                         decimalSeparator: '.',

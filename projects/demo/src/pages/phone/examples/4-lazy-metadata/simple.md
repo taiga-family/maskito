@@ -9,7 +9,7 @@ let maskedInput;
 (async function initMask() {
   const maskitoOptions = maskitoPhoneOptionsGenerator({
     countryIsoCode: 'RU',
-    metadata: await import('libphonenumber-js/min/metadata').then(m => m.default),
+    metadata: await import('libphonenumber-js/min/metadata').then((m) => m.default),
   });
 
   maskedInput = new Maskito(element, maskitoOptions);

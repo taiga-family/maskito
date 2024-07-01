@@ -1,12 +1,12 @@
 import type {MaskitoPlugin} from '@maskito/core';
 
-export const maskitoRejectEvent: MaskitoPlugin = element => {
+export const maskitoRejectEvent: MaskitoPlugin = (element) => {
     const listener = (): void => {
         const value = element.value;
 
         element.addEventListener(
             'beforeinput',
-            event => {
+            (event) => {
                 if (event.defaultPrevented && value === element.value) {
                     element.dispatchEvent(
                         new CustomEvent('maskitoReject', {bubbles: true}),

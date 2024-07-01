@@ -20,6 +20,6 @@ export class YourComponent {
     mask: /^\d+$/,
   };
 
-  readonly predicate: MaskitoElementPredicate = element => element.querySelector('input[id="my-input"]')!;
+  readonly predicate: MaskitoElementPredicate = (element) => element.querySelector('input[id="my-input"]')!;
 }
 ```

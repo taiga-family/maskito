@@ -22,7 +22,7 @@ export function createThousandSeparatorPostprocessor({
         return identity;
     }
 
-    const isAllSpaces = (...chars: string[]): boolean => chars.every(x => /\s/.test(x));
+    const isAllSpaces = (...chars: string[]): boolean => chars.every((x) => /\s/.test(x));
 
     return ({value, selection}) => {
         const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {

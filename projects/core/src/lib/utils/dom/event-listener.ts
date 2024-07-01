@@ -21,6 +21,6 @@ export class EventListener {
     }
 
     public destroy(): void {
-        this.listeners.forEach(stopListen => stopListen());
+        this.listeners.forEach((stopListen) => stopListen());
     }
 }

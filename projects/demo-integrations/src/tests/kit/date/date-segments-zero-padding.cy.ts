@@ -14,7 +14,7 @@ describe('Date | Date segments zero padding (pads digits with zero if date segme
         });
 
         describe('pads digit > 3 with zero for days', () => {
-            [0, 1, 2, 3].forEach(digit => {
+            [0, 1, 2, 3].forEach((digit) => {
                 it(`Type ${digit} => ${digit}`, () => {
                     cy.get('@input')
                         .type(`${digit}`)
@@ -24,7 +24,7 @@ describe('Date | Date segments zero padding (pads digits with zero if date segme
                 });
             });
 
-            [4, 5, 6, 7, 8, 9].forEach(digit => {
+            [4, 5, 6, 7, 8, 9].forEach((digit) => {
                 it(`Type ${digit} => 0${digit}`, () => {
                     cy.get('@input')
                         .type(`${digit}`)
@@ -55,7 +55,7 @@ describe('Date | Date segments zero padding (pads digits with zero if date segme
         });
 
         describe('pads digit > 1 with zero for months', () => {
-            [0, 1].forEach(digit => {
+            [0, 1].forEach((digit) => {
                 it(`Type 01.${digit} => 01.${digit}`, () => {
                     cy.get('@input')
                         .type(`01${digit}`)
@@ -65,7 +65,7 @@ describe('Date | Date segments zero padding (pads digits with zero if date segme
                 });
             });
 
-            [2, 3, 4, 5, 6, 7, 8, 9].forEach(digit => {
+            [2, 3, 4, 5, 6, 7, 8, 9].forEach((digit) => {
                 it(`Type 01.${digit} => 01.0${digit}`, () => {
                     cy.get('@input')
                         .type(`01${digit}`)

@@ -31,7 +31,7 @@ export class Maskito extends MaskHistory {
 
     private readonly postprocessor = maskitoPipe(this.options.postprocessors);
 
-    private readonly teardowns = this.options.plugins.map(plugin =>
+    private readonly teardowns = this.options.plugins.map((plugin) =>
         plugin(this.element, this.options),
     );
 
@@ -42,7 +42,7 @@ export class Maskito extends MaskHistory {
         super();
         this.updateHistory(this.elementState);
 
-        this.eventListener.listen('keydown', event => {
+        this.eventListener.listen('keydown', (event) => {
             if (isRedo(event)) {
                 event.preventDefault();
 
@@ -56,7 +56,7 @@ export class Maskito extends MaskHistory {
             }
         });
 
-        this.eventListener.listen('beforeinput', event => {
+        this.eventListener.listen('beforeinput', (event) => {
             const isForward = event.inputType.includes('Forward');
 
             this.updateHistory(this.elementState);
@@ -164,7 +164,7 @@ export class Maskito extends MaskHistory {
 
     public destroy(): void {
         this.eventListener.destroy();
-        this.teardowns.forEach(teardown => teardown?.());
+        this.teardowns.forEach((teardown) => teardown?.());
     }
 
     protected updateElementState(

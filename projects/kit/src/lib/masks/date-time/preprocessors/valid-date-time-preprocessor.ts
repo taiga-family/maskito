@@ -95,7 +95,7 @@ export function createValidDateTimePreprocessor({
                     validatedValue.slice(0, from) +
                     newData
                         .split(dateSegmentsSeparator)
-                        .map(segment => '0'.repeat(segment.length))
+                        .map((segment) => '0'.repeat(segment.length))
                         .join(dateSegmentsSeparator) +
                     validatedValue.slice(to),
             },

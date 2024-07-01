@@ -17,7 +17,7 @@ export function generatePhoneMask({
             ? template
                   .slice(prefix.length)
                   .split('')
-                  .map(сhar =>
+                  .map((сhar) =>
                       сhar === TEMPLATE_FILLER || /\d/.test(сhar) ? /\d/ : сhar,
                   )
             : new Array(Math.max(value.length - prefix.length, prefix.length)).fill(

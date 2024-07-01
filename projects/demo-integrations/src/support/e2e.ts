@@ -3,10 +3,10 @@ import 'cypress-real-events'; // https://github.com/cypress-io/cypress/issues/28
 import './assertions';
 import './commands';
 
-Cypress.on('window:before:load', win => {
+Cypress.on('window:before:load', (win) => {
     cy.spy(win.console, 'error');
 });
 
 afterEach(() => {
-    cy.window().then(win => expect(win.console.error).to.have.callCount(0));
+    cy.window().then((win) => expect(win.console.error).to.have.callCount(0));
 });

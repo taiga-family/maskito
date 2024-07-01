@@ -4,7 +4,7 @@
  * @returns processed half width number
  */
 export function toHalfWidthNumber(fullWidthNumber: string): string {
-    return fullWidthNumber.replaceAll(/[０-９]/g, s =>
+    return fullWidthNumber.replaceAll(/[０-９]/g, (s) =>
         String.fromCharCode(s.charCodeAt(0) - 0xfee0),
     );
 }

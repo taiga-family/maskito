@@ -18,7 +18,7 @@ export function createTimeSegmentsSteppingPlugin({
 
     return step <= 0
         ? noop
-        : element => {
+        : (element) => {
               const listener = (event: KeyboardEvent): void => {
                   if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
                       return;

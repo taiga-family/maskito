@@ -26,7 +26,7 @@ export function generateMaskExpression({
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
     const digit = '\\d';
     const optionalMinus = isNegativeAllowed
-        ? `[${minusSign}${pseudoMinuses.map(x => `\\${x}`).join('')}]?`
+        ? `[${minusSign}${pseudoMinuses.map((x) => `\\${x}`).join('')}]?`
         : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, '\\s')}]*`
@@ -48,7 +48,7 @@ function computeAllOptionalCharsRegExp(str: string): string {
     return str
         ? `${str
               .split('')
-              .map(char => `${escapeRegExp(char)}?`)
+              .map((char) => `${escapeRegExp(char)}?`)
               .join('')}`
         : '';
 }

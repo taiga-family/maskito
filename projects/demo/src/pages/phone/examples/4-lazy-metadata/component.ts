@@ -40,7 +40,9 @@ export class PhoneMaskDocExample4 implements OnInit {
     public async ngOnInit(): Promise<void> {
         this.mask = maskitoPhoneOptionsGenerator({
             countryIsoCode: 'RU',
-            metadata: await import('libphonenumber-js/min/metadata').then(m => m.default),
+            metadata: await import('libphonenumber-js/min/metadata').then(
+                (m) => m.default,
+            ),
         });
     }
 }

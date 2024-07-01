@@ -5,14 +5,14 @@ const maskitoOptions: MaskitoOptions = {
     plugins: [
         // This plugin dispatches custom event `maskitoReject` when a character that the
         // user has entered is rejected by the mask. You can use it to visualize rejection.
-        element => {
+        (element) => {
             const listener = (): void => {
                 // Save current input value
                 const value = element.value;
 
                 element.addEventListener(
                     'beforeinput',
-                    event => {
+                    (event) => {
                         // If event was prevented and value is the same, then it was rejected
                         if (event.defaultPrevented && value === element.value) {
                             element.dispatchEvent(

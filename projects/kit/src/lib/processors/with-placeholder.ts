@@ -20,14 +20,14 @@ export function maskitoWithPlaceholder(
 
         return value.slice(0, lastClearValue.length);
     };
-    const plugins = [maskitoCaretGuard(value => [0, removePlaceholder(value).length])];
+    const plugins = [maskitoCaretGuard((value) => [0, removePlaceholder(value).length])];
 
     let focused = false;
 
     if (focusedOnly) {
         const focus = maskitoEventHandler(
             'focus',
-            element => {
+            (element) => {
                 focused = true;
                 maskitoUpdateElement(
                     element,
@@ -39,7 +39,7 @@ export function maskitoWithPlaceholder(
 
         const blur = maskitoEventHandler(
             'blur',
-            element => {
+            (element) => {
                 focused = false;
                 maskitoUpdateElement(element, removePlaceholder(element.value));
             },

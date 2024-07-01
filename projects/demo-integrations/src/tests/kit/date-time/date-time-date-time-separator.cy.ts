@@ -4,7 +4,7 @@ import type {MaskitoTimeMode} from '@maskito/kit';
 describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
 
-    dateTimeSeparators.forEach(dateTimeSeparator => {
+    dateTimeSeparators.forEach((dateTimeSeparator) => {
         const testCases: Array<{
             typedDigits: string;
             formattedDate: string;

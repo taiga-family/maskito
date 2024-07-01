@@ -9,7 +9,7 @@ import {VUE_DEFAULT_TAB} from './default-tabs/vue-default-tab';
 
 export const addDefaultTabsProcessor: TuiInjectionTokenType<
     typeof TUI_DOC_EXAMPLE_CONTENT_PROCESSOR
-> = files => {
+> = (files) => {
     const fileNames = Object.keys(files);
 
     return fileNames.length === 1 && fileNames[0] === DocExamplePrimaryTab.MaskitoOptions

@@ -21,7 +21,7 @@ export function createDateSegmentsZeroPaddingPostprocessor({
         const validatedDateStrings: string[] = [];
         let caretShift = 0;
 
-        dateStrings.forEach(dateString => {
+        dateStrings.forEach((dateString) => {
             const parsedDate = parseDateString(dateString, dateModeTemplate);
             const dateSegments = Object.entries(parsedDate) as Array<
                 [keyof MaskitoDateSegments, string]
