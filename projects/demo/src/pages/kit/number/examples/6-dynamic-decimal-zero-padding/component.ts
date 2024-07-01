@@ -8,7 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {tuiPure} from '@taiga-ui/cdk';
-import {TuiLabelModule} from '@taiga-ui/core';
+import {TuiLabel} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {getMaskitoOptions} from './mask';
@@ -17,7 +17,7 @@ import {getMaskitoOptions} from './mask';
     standalone: true,
     selector: 'number-mask-doc-example-6',
     imports: [
-        TuiLabelModule,
+        TuiLabel,
         TuiInputModule,
         TuiTextfieldControllerModule,
         FormsModule,

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiModeModule, TuiNotification, TuiTooltip} from '@taiga-ui/core';
+import {TuiLink, TuiNotification, TuiTooltip} from '@taiga-ui/core';
 import {TuiIslandDirective} from '@taiga-ui/legacy';
 
 @Component({
@@ -13,7 +13,6 @@ import {TuiIslandDirective} from '@taiga-ui/legacy';
         TuiLink,
         TuiNotification,
         TuiIslandDirective,
-        TuiModeModule,
         TuiTooltip,
         RouterLink,
     ],
