@@ -24,6 +24,7 @@
         "@taiga-ui/core": "4.0.0-rc.2",
         "@taiga-ui/icons": "4.0.0-rc.2",
         "@taiga-ui/kit": "4.0.0-rc.2",
+        "@taiga-ui/legacy": "4.0.0-rc.2",
         "@taiga-ui/styles": "4.0.0-rc.2",
         "@taiga-ui/testing": "4.0.0-rc.2",
         "@tinkoff/ng-dompurify": "4.0.0",
