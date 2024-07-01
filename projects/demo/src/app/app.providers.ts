@@ -13,7 +13,7 @@ import {
     TUI_DOC_TITLE,
     tuiDocExampleOptionsProvider,
 } from '@taiga-ui/addon-doc';
-import type {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';

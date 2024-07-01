@@ -4,7 +4,7 @@ import type {OpenOptions, Project} from '@stackblitz/sdk';
 import stackblitz from '@stackblitz/sdk';
 import type {TuiCodeEditor} from '@taiga-ui/addon-doc';
 import {tuiRawLoad, tuiTryParseMarkdownCodeBlock} from '@taiga-ui/addon-doc';
-import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
+import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';
 
