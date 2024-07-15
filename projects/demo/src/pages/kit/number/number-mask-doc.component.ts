@@ -12,8 +12,7 @@ import {
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
-import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
-import {TuiInputModule} from '@taiga-ui/legacy';
+import {TuiInputModule, tuiInputNumberOptionsProvider} from '@taiga-ui/legacy';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
@@ -45,7 +44,7 @@ type GeneratorOptions = Required<
     ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [tuiInputCountOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
+    providers: [tuiInputNumberOptionsProvider({min: Number.MIN_SAFE_INTEGER})],
 })
 export default class NumberMaskDocComponent implements GeneratorOptions {
     protected readonly maskitoParseNumberDemo = import(
