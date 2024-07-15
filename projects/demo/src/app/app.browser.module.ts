@@ -22,7 +22,7 @@ import {AppRoutingModule} from './app.routes';
             loader: HttpClient,
             sanitize: SecurityContext.NONE,
         }),
-        TuiAddonDoc,
+        ...TuiAddonDoc,
         TuiLink,
     ],
     declarations: [AppComponent],
