@@ -10,6 +10,7 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, tuiInputNumberOptionsProvider} from '@taiga-ui/legacy';
@@ -51,36 +52,29 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
         './examples/maskito-parse-number-demo.md?raw'
     );
 
-    protected readonly highPrecisionExample1: Record<string, Promise<unknown> | string> =
-        {
-            [DocExamplePrimaryTab.MaskitoOptions]: import(
-                './examples/1-high-precision/mask.ts?raw'
-            ),
-        };
+    protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/1-high-precision/mask.ts?raw'
+        ),
+    };
 
-    protected readonly separatorsExample2: Record<string, Promise<unknown> | string> = {
+    protected readonly separatorsExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-separators/mask.ts?raw'
         ),
     };
 
-    protected readonly postfixExample3: Record<string, Promise<unknown> | string> = {
+    protected readonly postfixExample3: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-postfix/mask.ts?raw'),
     };
 
-    protected readonly decimalZeroPaddingExample4: Record<
-        string,
-        Promise<unknown> | string
-    > = {
+    protected readonly decimalZeroPaddingExample4: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-decimal-zero-padding/mask.ts?raw'
         ),
     };
 
-    protected readonly customMinusSignExample5: Record<
-        string,
-        Promise<unknown> | string
-    > = {
+    protected readonly customMinusSignExample5: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-custom-minus-sign/mask.ts?raw'
         ),
@@ -88,7 +82,7 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
 
     protected readonly dynamicDecimalZeroPaddingExample6: Record<
         string,
-        Promise<unknown> | string
+        TuiRawLoaderContent
     > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/6-dynamic-decimal-zero-padding/mask.ts?raw'

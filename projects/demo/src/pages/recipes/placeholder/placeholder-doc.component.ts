@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
@@ -28,17 +29,17 @@ export default class PlaceholderDocComponent {
     protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
     protected readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
-    protected readonly cvcExample1: Record<string, Promise<unknown> | string> = {
+    protected readonly cvcExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-cvc-code/mask.ts?raw'
         ),
     };
 
-    protected readonly phoneExample2: Record<string, Promise<unknown> | string> = {
+    protected readonly phoneExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-phone/mask.ts?raw'),
     };
 
-    protected readonly dateExample3: Record<string, Promise<unknown> | string> = {
+    protected readonly dateExample3: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw'),
     };
 }

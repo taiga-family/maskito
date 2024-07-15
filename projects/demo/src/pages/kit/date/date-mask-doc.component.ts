@@ -5,6 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoDateMode} from '@maskito/kit';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
@@ -34,13 +35,13 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
 export default class DateMaskDocComponent implements GeneratorOptions {
     protected apiPageControl = new FormControl('');
 
-    protected readonly dateLocalization: Record<string, Promise<unknown> | string> = {
+    protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly dateMinMax: Record<string, Promise<unknown> | string> = {
+    protected readonly dateMinMax: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 

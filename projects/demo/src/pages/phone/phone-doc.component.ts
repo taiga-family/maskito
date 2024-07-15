@@ -5,6 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';
@@ -50,11 +51,11 @@ export default class PhoneDocComponent implements GeneratorOptions {
 
     protected apiPageControl = new FormControl('');
 
-    protected readonly basic: Record<string, Promise<unknown> | string> = {
+    protected readonly basic: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw'),
     };
 
-    protected readonly validation: Record<string, Promise<unknown> | string> = {
+    protected readonly validation: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-validation/mask.ts?raw'
         ),
@@ -63,7 +64,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly nonStrict: Record<string, Promise<unknown> | string> = {
+    protected readonly nonStrict: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-non-strict/mask.ts?raw'
         ),
@@ -72,7 +73,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly lazyMetadata: Record<string, Promise<unknown> | string> = {
+    protected readonly lazyMetadata: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.Angular]: import(
             './examples/4-lazy-metadata/component.ts?raw'
         ),
@@ -81,7 +82,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly focusBlurEvents: Record<string, Promise<unknown> | string> = {
+    protected readonly focusBlurEvents: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-focus-blur-events/mask.ts?raw'
         ),

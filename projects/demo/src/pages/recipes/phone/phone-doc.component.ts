@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
@@ -18,13 +19,13 @@ export default class PhoneDocComponent {
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly prefixDocPage = `/${DemoPath.Prefix}`;
 
-    protected readonly usPhoneExample1: Record<string, Promise<unknown> | string> = {
+    protected readonly usPhoneExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-us-phone/mask.ts?raw'
         ),
     };
 
-    protected readonly kzPhoneExample2: Record<string, Promise<unknown> | string> = {
+    protected readonly kzPhoneExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-kz-phone/mask.ts?raw'
         ),

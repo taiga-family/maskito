@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
@@ -41,21 +42,18 @@ export default class AngularDocPageComponent {
         './examples/custom-input-example.md?raw'
     );
 
-    protected readonly nestedInputExample: Record<string, Promise<unknown> | string> = {
+    protected readonly nestedInputExample: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/1-nested/component.ts?raw'),
         Default: import('./examples/1-nested/template.html?raw'),
         Custom: import('./examples/2-nested/template.html?raw'),
     };
 
-    protected readonly programmaticallyExample: Record<
-        string,
-        Promise<unknown> | string
-    > = {
+    protected readonly programmaticallyExample: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/3-programmatically/component.ts?raw'),
         HTML: import('./examples/3-programmatically/template.html?raw'),
     };
 
-    protected readonly pipeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly pipeExample: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/4-pipe/component.ts?raw'),
         HTML: import('./examples/4-pipe/template.html?raw'),
     };

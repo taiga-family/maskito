@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
@@ -17,7 +18,7 @@ export default class CardDocComponent {
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly dateMaskDocPage = `/${DemoPath.Date}`;
 
-    protected readonly cardExample1: Record<string, Promise<unknown> | string> = {
+    protected readonly cardExample1: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/1-basic/component.ts?raw'),
         HTML: import('./examples/1-basic/template.html?raw'),
     };

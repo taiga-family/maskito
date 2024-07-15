@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
@@ -28,23 +29,23 @@ import {InputURLDocExample} from './examples/url/component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SupportedInputTypesDocPageComponent {
-    protected readonly textTypeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly textTypeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/text/mask.ts?raw'),
     };
 
-    protected readonly telTypeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly telTypeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/tel/mask.ts?raw'),
     };
 
-    protected readonly passwordTypeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly passwordTypeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/password/mask.ts?raw'),
     };
 
-    protected readonly urlTypeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly urlTypeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/url/mask.ts?raw'),
     };
 
-    protected readonly searchTypeExample: Record<string, Promise<unknown> | string> = {
+    protected readonly searchTypeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/search/mask.ts?raw'),
     };
 

@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
@@ -31,19 +32,13 @@ export default class ContentEditableDocComponent {
         './examples/maskito-with-content-editable.md?raw'
     );
 
-    protected readonly contentEditableExample1: Record<
-        string,
-        Promise<unknown> | string
-    > = {
+    protected readonly contentEditableExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw'),
         [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md?raw'),
         [DocExamplePrimaryTab.Angular]: import('./examples/1-time/component.ts?raw'),
     };
 
-    protected readonly contentEditableExample2: Record<
-        string,
-        Promise<unknown> | string
-    > = {
+    protected readonly contentEditableExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-multi-line/mask.ts?raw'
         ),
