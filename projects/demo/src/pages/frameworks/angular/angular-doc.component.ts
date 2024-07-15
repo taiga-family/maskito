@@ -28,7 +28,7 @@ import {PipeDocExample4} from './examples/4-pipe/component';
     styleUrls: ['./angular-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AngularDocPageComponent {
+export default class AngularDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
 
     protected readonly importMaskitoExample = import('./examples/import-maskito.md?raw');

@@ -33,7 +33,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     styleUrls: ['./time-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocComponent implements GeneratorOptions {
+export default class TimeMaskDocComponent implements GeneratorOptions {
     protected readonly maskitoParseStringifyTimeDemo = import(
         './examples/maskito-parse-stringify-time-demo.md?raw'
     );

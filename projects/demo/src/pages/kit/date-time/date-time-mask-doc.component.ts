@@ -38,7 +38,7 @@ type GeneratorOptions = Required<
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateTimeMaskDocComponent implements GeneratorOptions {
+export default class DateTimeMaskDocComponent implements GeneratorOptions {
     protected readonly dateTimeLocalizationExample: Record<
         string,
         Promise<unknown> | string

@@ -31,7 +31,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     styleUrls: ['./date-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateMaskDocComponent implements GeneratorOptions {
+export default class DateMaskDocComponent implements GeneratorOptions {
     protected apiPageControl = new FormControl('');
 
     protected readonly dateLocalization: Record<string, Promise<unknown> | string> = {
