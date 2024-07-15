@@ -1,3 +1,6 @@
 <tui-doc-page header="Changelog">
-    <markdown [data]="(changelog$ | async) || ''" />
+    <markdown
+        class="t-changelog"
+        [data]="(changelog$ | async) || ''"
+    />
 </tui-doc-page>
