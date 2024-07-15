@@ -87,6 +87,10 @@
             "**/node_modules/**"
         ]
     },
+    "dependencies": {
+        "@taiga-ui/event-plugins": "^4.0.1",
+        "@taiga-ui/legacy": "4.0.0-rc.5"
+    },
     "devDependencies": {
         "@angular-devkit/build-angular": "16.2.14",
         "@angular-devkit/core": "16.2.14",

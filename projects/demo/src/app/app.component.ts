@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DemoPath} from '@demo/constants';
-import {TUI_SANITIZER} from '@taiga-ui/core';
+import {TUI_SANITIZER} from '@taiga-ui/legacy';
 import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
 
 @Component({

@@ -9,14 +9,14 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TUI_IS_APPLE} from '@taiga-ui/cdk';
+import {TuiButton, TuiFlagPipe} from '@taiga-ui/core';
 import {
-    TuiButtonModule,
-    TuiFlagPipeModule,
-    TuiSvgModule,
+    TUI_IS_APPLE,
+    TuiInputModule,
+    TuiSvgComponent,
+    TuiTextareaModule,
     TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextareaModule} from '@taiga-ui/kit';
+} from '@taiga-ui/legacy';
 import metadata from 'libphonenumber-js/min/metadata';
 
 const MONEY_AMOUNT_MASK = maskitoNumberOptionsGenerator({
@@ -33,12 +33,12 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
     imports: [
         ReactiveFormsModule,
         TuiInputModule,
-        TuiButtonModule,
+        TuiButton,
         TuiTextfieldControllerModule,
         TuiTextareaModule,
         MaskitoDirective,
-        TuiFlagPipeModule,
-        TuiSvgModule,
+        TuiFlagPipe,
+        TuiSvgComponent,
     ],
     templateUrl: './index.html',
     styleUrls: ['./index.less'],

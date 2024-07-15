@@ -1,7 +1,7 @@
 import {DemoPath} from '@demo/constants';
-import type {TuiDocPages} from '@taiga-ui/addon-doc';
+import type {TuiDocRoutePages} from '@taiga-ui/addon-doc';
 
-export const DEMO_PAGES: TuiDocPages = [
+export const DEMO_PAGES: TuiDocRoutePages = [
     {
         section: 'Getting started',
         title: 'What is Maskito?',

@@ -2,12 +2,16 @@
     Maskito can be applied on this component, given the predicate
     can properly target native input inside tui-input below
 -->
-<tui-checkbox-labeled
-    class="tui-space_bottom-3"
-    [(ngModel)]="show"
->
+<label tuiLabel>
+    <input
+        tuiCheckbox
+        type="checkbox"
+        class="tui-space_bottom-3"
+        [(ngModel)]="show"
+    />
     Add card holder name
-</tui-checkbox-labeled>
+</label>
+
 <tui-input
     [disabled]="!show"
     [(ngModel)]="value"

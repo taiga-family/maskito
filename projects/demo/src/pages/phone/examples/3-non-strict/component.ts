@@ -2,9 +2,12 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
-import {TUI_IS_APPLE} from '@taiga-ui/cdk';
-import {TuiFlagPipeModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiFlagPipe} from '@taiga-ui/core';
+import {
+    TUI_IS_APPLE,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/legacy';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import mask from './mask';
@@ -17,12 +20,12 @@ import mask from './mask';
         TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
-        TuiFlagPipeModule,
+        TuiFlagPipe,
     ],
     template: `
         <tui-input
             [style.max-width.rem]="30"
-            [tuiTextfieldCustomContent]="countryIsoCode ? flag : 'tuiIconPhoneLarge'"
+            [tuiTextfieldCustomContent]="countryIsoCode ? flag : '@tui.phone'"
             [(ngModel)]="value"
         >
             Non-strict

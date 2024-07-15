@@ -38,7 +38,7 @@
     <div class="tui-form__row">
         <tui-input
             formControlName="phone"
-            [tuiTextfieldCustomContent]="countryIsoCode ? flag : 'tuiIconPhoneLarge'"
+            [tuiTextfieldCustomContent]="countryIsoCode ? flag : '@tui.phone'"
         >
             Enter phone number
             <input
@@ -95,7 +95,7 @@
         <ng-template #showHideIcon>
             <tui-svg
                 class="password-icon"
-                [src]="showPassword ? 'tuiIconEyeLarge' : 'tuiIconEyeOffLarge'"
+                [src]="showPassword ? '@tui.eye' : '@tui.eye-off'"
                 (click)="showPassword = !showPassword"
             />
         </ng-template>
@@ -104,7 +104,7 @@
     <div class="tui-form__row tui-form__row_multi-fields">
         <tui-input
             formControlName="transactionDate"
-            tuiTextfieldCustomContent="tuiIconCalendarLarge"
+            tuiTextfieldCustomContent="@tui.calendar"
             class="tui-form__multi-field"
         >
             Transaction date

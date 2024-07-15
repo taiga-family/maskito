@@ -10,10 +10,10 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
-import {tuiInputCountOptionsProvider, TuiInputModule} from '@taiga-ui/kit';
+import type {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {tuiInputCountOptionsProvider} from '@taiga-ui/kit';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
@@ -32,10 +32,10 @@ type GeneratorOptions = Required<
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiInputModule,
-        TuiNotificationModule,
-        TuiLinkModule,
+        TuiNotification,
+        TuiLink,
         NumberMaskDocExample1,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
@@ -52,35 +52,45 @@ export class NumberMaskDocComponent implements GeneratorOptions {
         './examples/maskito-parse-number-demo.md?raw'
     );
 
-    protected readonly highPrecisionExample1: TuiDocExample = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-high-precision/mask.ts?raw'
-        ),
-    };
+    protected readonly highPrecisionExample1: Record<string, Promise<unknown> | string> =
+        {
+            [DocExamplePrimaryTab.MaskitoOptions]: import(
+                './examples/1-high-precision/mask.ts?raw'
+            ),
+        };
 
-    protected readonly separatorsExample2: TuiDocExample = {
+    protected readonly separatorsExample2: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-separators/mask.ts?raw'
         ),
     };
 
-    protected readonly postfixExample3: TuiDocExample = {
+    protected readonly postfixExample3: Record<string, Promise<unknown> | string> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-postfix/mask.ts?raw'),
     };
 
-    protected readonly decimalZeroPaddingExample4: TuiDocExample = {
+    protected readonly decimalZeroPaddingExample4: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-decimal-zero-padding/mask.ts?raw'
         ),
     };
 
-    protected readonly customMinusSignExample5: TuiDocExample = {
+    protected readonly customMinusSignExample5: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-custom-minus-sign/mask.ts?raw'
         ),
     };
 
-    protected readonly dynamicDecimalZeroPaddingExample6: TuiDocExample = {
+    protected readonly dynamicDecimalZeroPaddingExample6: Record<
+        string,
+        Promise<unknown> | string
+    > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/6-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
