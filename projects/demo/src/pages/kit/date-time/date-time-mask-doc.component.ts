@@ -8,7 +8,6 @@ import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';
-import {DATE_TIME_SEPARATOR} from '@taiga-ui/kit';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
@@ -99,7 +98,7 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
 
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
-    public dateTimeSeparator = DATE_TIME_SEPARATOR;
+    public dateTimeSeparator = ', ';
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
