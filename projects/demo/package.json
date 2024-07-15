@@ -26,6 +26,7 @@
         "@taiga-ui/kit": "4.0.0-rc.5",
         "@taiga-ui/styles": "4.0.0-rc.5",
         "@taiga-ui/testing": "4.0.0-rc.5",
+        "@taiga-ui/legacy": "4.0.0-rc.5",
         "@tinkoff/ng-dompurify": "4.0.0",
         "ngx-markdown": "16.0.0",
         "react": "18.3.1",
