@@ -24,7 +24,7 @@ import mask from './mask';
             Min-max
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

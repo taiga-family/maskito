@@ -16,7 +16,7 @@
                 autocomplete="name"
                 name="name"
                 placeholder="Only latin letters"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="nameMask"
             />
         </tui-input>
@@ -29,7 +29,7 @@
                 autocomplete="family-name"
                 name="surname"
                 placeholder="Only CAPITAL latin letters"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="surnameMask"
             />
         </tui-input>
@@ -45,7 +45,7 @@
                 autocomplete="tel"
                 inputmode="tel"
                 name="phone"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [attr.pattern]="phoneTextfieldPattern"
                 [maskito]="phoneMask"
             />
@@ -71,7 +71,7 @@
                 autocomplete="new-password"
                 name="password"
                 placeholder="Only digits and one latin letter"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="passwordMask"
                 [type]="showPassword ? 'password' : 'text'"
             />
@@ -86,16 +86,16 @@
                 autocomplete="new-password"
                 name="repeatPassword"
                 placeholder="Only digits and one latin letter"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="passwordMask"
                 [type]="showPassword ? 'password' : 'text'"
             />
         </tui-input>
 
         <ng-template #showHideIcon>
-            <tui-svg
+            <tui-icon
                 class="password-icon"
-                [src]="showPassword ? '@tui.eye' : '@tui.eye-off'"
+                [icon]="showPassword ? '@tui.eye' : '@tui.eye-off'"
                 (click)="showPassword = !showPassword"
             />
         </ng-template>
@@ -112,7 +112,7 @@
                 inputmode="decimal"
                 name="transactionDate"
                 placeholder="dd.mm.yyyy"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="transactionDateMask"
             />
         </tui-input>
@@ -127,7 +127,7 @@
                 inputmode="decimal"
                 name="transactionAmount"
                 placeholder="Enter amount"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="transactionAmountMask"
             />
         </tui-input>
@@ -144,7 +144,7 @@
                 autocomplete="street-address"
                 name="address"
                 placeholder="Only latin letters, digits and some punctuation signs are allowed"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="addressMask"
             ></textarea>
         </tui-textarea>

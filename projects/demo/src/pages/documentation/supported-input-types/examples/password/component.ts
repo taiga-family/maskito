@@ -25,7 +25,7 @@ import mask from './mask';
         >
             Enter password
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="password"
                 [maskito]="maskitoOptions"
             />

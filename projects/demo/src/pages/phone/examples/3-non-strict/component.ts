@@ -32,7 +32,7 @@ import mask from './mask';
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [attr.pattern]="pattern"
                 [maskito]="mask"
             />

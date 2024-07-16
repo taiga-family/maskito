@@ -25,7 +25,7 @@ import mask from './mask';
         >
             Enter phone number
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="tel"
                 [maskito]="maskitoOptions"
             />

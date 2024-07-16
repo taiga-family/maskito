@@ -21,7 +21,7 @@ import mask from './mask';
         >
             CVC
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

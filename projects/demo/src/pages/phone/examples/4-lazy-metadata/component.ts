@@ -25,7 +25,7 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

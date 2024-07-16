@@ -32,7 +32,7 @@ import {getMaskitoOptions} from './mask';
             >
                 <input
                     inputmode="decimal"
-                    tuiTextfield
+                    tuiTextfieldLegacy
                     [maskito]="getMaskOptions(decimalZeroPadding)"
                     (beforeinput.capture)="handleBeforeInput($event)"
                 />

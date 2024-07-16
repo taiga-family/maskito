@@ -17,7 +17,7 @@ import mask from './mask';
             Enter price
             <input
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

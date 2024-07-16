@@ -9,11 +9,10 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiButton, TuiFlagPipe} from '@taiga-ui/core';
+import {TuiButton, TuiFlagPipe, TuiIcon} from '@taiga-ui/core';
 import {
     TUI_IS_APPLE,
     TuiInputModule,
-    TuiSvgComponent,
     TuiTextareaModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
@@ -38,7 +37,7 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
         TuiTextareaModule,
         MaskitoDirective,
         TuiFlagPipe,
-        TuiSvgComponent,
+        TuiIcon,
     ],
     templateUrl: './index.html',
     styleUrls: ['./index.less'],

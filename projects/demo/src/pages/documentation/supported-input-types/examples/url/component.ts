@@ -23,7 +23,7 @@ import mask from './mask';
         >
             Enter url
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="url"
                 [maskito]="maskitoOptions"
             />

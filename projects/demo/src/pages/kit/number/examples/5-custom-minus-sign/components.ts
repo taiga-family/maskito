@@ -21,7 +21,7 @@ import mask from './mask';
             [(ngModel)]="value"
         >
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="options"
             />
         </tui-input>

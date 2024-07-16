@@ -18,7 +18,7 @@ import mask from './mask';
             Enter number
 
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
                 (change)="log($event)"
             />

@@ -24,7 +24,7 @@ import mask from './mask';
             Enter time
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="text"
                 [maskito]="maskitoOptions"
             />

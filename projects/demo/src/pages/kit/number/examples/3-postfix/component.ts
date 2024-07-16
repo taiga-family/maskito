@@ -22,7 +22,7 @@ import mask, {postfix} from './mask';
         >
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

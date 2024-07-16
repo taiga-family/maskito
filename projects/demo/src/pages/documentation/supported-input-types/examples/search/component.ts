@@ -23,7 +23,7 @@ import mask from './mask';
         >
             Enter any english word
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="search"
                 [maskito]="maskitoOptions"
             />

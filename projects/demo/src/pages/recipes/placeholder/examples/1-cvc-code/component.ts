@@ -23,7 +23,7 @@ import mask from './mask';
             Enter CVC code
             <input
                 inputmode="numeric"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

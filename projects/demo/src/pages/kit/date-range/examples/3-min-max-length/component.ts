@@ -27,7 +27,7 @@ import mask from './mask';
         >
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

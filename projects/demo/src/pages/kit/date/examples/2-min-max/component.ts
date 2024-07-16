@@ -24,7 +24,7 @@ import mask from './mask';
             Date
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

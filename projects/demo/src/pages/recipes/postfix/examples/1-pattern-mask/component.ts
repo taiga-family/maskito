@@ -17,7 +17,7 @@ import mask from './mask';
             Enter percentage amount
             <input
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

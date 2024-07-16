@@ -23,7 +23,7 @@ import mask from './mask';
             Enter date
             <input
                 inputmode="numeric"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

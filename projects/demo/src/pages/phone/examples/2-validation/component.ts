@@ -42,7 +42,7 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

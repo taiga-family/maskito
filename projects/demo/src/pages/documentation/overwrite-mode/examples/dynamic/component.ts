@@ -22,7 +22,7 @@ import mask from './mask';
             [tuiTextfieldLabelOutside]="true"
         >
             <textarea
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             ></textarea>
         </tui-textarea>

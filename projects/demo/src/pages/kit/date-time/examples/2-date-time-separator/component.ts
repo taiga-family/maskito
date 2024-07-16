@@ -24,7 +24,7 @@ import mask from './mask';
             Custom date and time separator
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>
