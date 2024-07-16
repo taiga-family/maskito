@@ -38,6 +38,7 @@ import mask from './mask';
                     alt="Turkish flag"
                     width="28"
                     [src]="'TR' | tuiFlag"
+                    [style.border-radius.%]="50"
                 />
             </ng-template>
         </tui-input>

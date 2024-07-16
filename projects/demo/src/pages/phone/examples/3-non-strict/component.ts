@@ -43,6 +43,7 @@ import mask from './mask';
                 width="28"
                 [attr.alt]="countryIsoCode"
                 [src]="countryIsoCode | tuiFlag"
+                [style.border-radius.%]="50"
             />
         </ng-template>
     `,

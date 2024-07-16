@@ -34,6 +34,7 @@ import mask from './mask';
                     alt="Flag of the United States"
                     width="28"
                     [src]="'US' | tuiFlag"
+                    [style.border-radius.%]="50"
                 />
             </ng-template>
         </tui-input>
