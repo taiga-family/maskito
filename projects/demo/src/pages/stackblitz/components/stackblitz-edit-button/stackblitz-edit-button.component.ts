@@ -8,7 +8,7 @@ import {TuiButton} from '@taiga-ui/core';
     template: `
         <button
             appearance="flat"
-            icon="assets/icons/stackblitz.svg"
+            iconStart="assets/icons/stackblitz.svg"
             size="s"
             title="Edit on StackBlitz"
             tuiButton
