@@ -13,7 +13,7 @@ describe('Number | Prefix & Postfix', () => {
             cy.get('tr')
                 .contains('[postfix]')
                 .parents('tr')
-                .find('tui-primitive-textfield')
+                .find('input')
                 .type(' per day');
 
             cy.get('@input')

@@ -138,11 +138,7 @@ describe('Number | thousandSeparator', () => {
     });
 
     it('allows to set empty string as thousand separator', () => {
-        cy.get('tr')
-            .contains('[thousandSeparator]')
-            .parents('tr')
-            .find('tui-primitive-textfield')
-            .clear();
+        cy.get('tr').contains('[thousandSeparator]').parents('tr').find('input').clear();
 
         cy.get('@input')
             .type('1000000')
