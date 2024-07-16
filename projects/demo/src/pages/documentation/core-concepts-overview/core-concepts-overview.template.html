@@ -11,9 +11,9 @@
                 native
                 <code>
                     HTMLInputElement
-                    <tui-tooltip
-                        direction="top"
-                        [content]="tooltipContent"
+                    <tui-icon
+                        tuiHintDirection="top"
+                        [tuiTooltip]="tooltipContent"
                     />
 
                     <ng-template #tooltipContent>
@@ -24,6 +24,7 @@
 
                         <p class="tui-space_bottom-0">
                             <a
+                                appearance="icon"
                                 tuiLink
                                 tuiTheme="dark"
                                 [pseudo]="true"

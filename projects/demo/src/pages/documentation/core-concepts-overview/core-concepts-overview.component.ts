@@ -2,8 +2,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
-import {TuiIslandDirective, TuiTooltipModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiTooltip} from '@taiga-ui/kit';
+import {TuiIslandDirective} from '@taiga-ui/legacy';
 
 @Component({
     standalone: true,
@@ -13,8 +14,9 @@ import {TuiIslandDirective, TuiTooltipModule} from '@taiga-ui/legacy';
         TuiLink,
         TuiNotification,
         TuiIslandDirective,
-        TuiTooltipModule,
         RouterLink,
+        TuiIcon,
+        TuiTooltip,
     ],
     templateUrl: './core-concepts-overview.template.html',
     styleUrls: ['./core-concepts-overview.styles.less'],
