@@ -22,12 +22,7 @@ describe('Test dummy', () => {
         fixture.detectChanges();
     });
 
-    /**
-     * TODO
-     * - https://github.com/angular/angular/issues/54096
-     * - https://github.com/thymikee/jest-preset-angular/issues/2582
-     */
-    it.skip('appComponent compiles properly', () => {
+    it('appComponent compiles properly', () => {
         expect(fixture.nativeElement.textContent).toContain('Getting started');
         expect(fixture.nativeElement.textContent).toContain('Core concepts');
     });
