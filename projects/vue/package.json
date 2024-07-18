@@ -1,6 +1,6 @@
 {
     "name": "@maskito/vue",
-    "version": "2.5.0",
+    "version": "3.0.0",
     "description": "The Vue-specific Maskito's library",
     "keywords": [
         "mask",
@@ -34,7 +34,7 @@
         "vue": "3.4.31"
     },
     "peerDependencies": {
-        "@maskito/core": "^2.5.0",
+        "@maskito/core": "^3.0.0",
         "vue": ">=3.0.0"
     }
 }
