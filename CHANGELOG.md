@@ -7,23 +7,22 @@ All notable changes to this project will be documented in this file. See
 
 ### ⚠ BREAKING CHANGES
 
-- **angular:** delete deprecated `MaskitoModule` & `MaskitoCVA` (#1391)
-- **phone:** remove built-in `RemoveOnBlur` / `AddOnFocus` plugins from `@maskito/phone` (#1352)
-- **angular:** bump minimum required Angular version (15+ => 16+) (#1328)
+- **phone:** remove built-in `RemoveOnBlur` / `AddOnFocus` plugins from `@maskito/phone`
+  ([#1352](https://github.com/taiga-family/maskito/issues/1352))
 
-### Features
+  Learn more: https://maskito.dev/addons/phone#focus-blur
 
 - **angular:** bump minimum required Angular version (15+ => 16+)
   ([#1328](https://github.com/taiga-family/maskito/issues/1328))
-  ([a2ed1f8](https://github.com/taiga-family/maskito/commit/a2ed1f8c4c83eea23e7b4cb9c4a355365c48bf51))
+
 - **angular:** delete deprecated `MaskitoModule` & `MaskitoCVA`
   ([#1391](https://github.com/taiga-family/maskito/issues/1391))
-  ([6c388f7](https://github.com/taiga-family/maskito/commit/6c388f76884a0a8aa7ac48a2cc42596e92f28333))
+
+### Features
+
 - **core:** new built-in `maskitoChangeEventPlugin` ([#1338](https://github.com/taiga-family/maskito/issues/1338))
-  ([daa04d2](https://github.com/taiga-family/maskito/commit/daa04d22b267847b382a4fd3bc9f69b2dcb1a971))
-- **phone:** remove built-in `RemoveOnBlur` / `AddOnFocus` plugins from `@maskito/phone`
-  ([#1352](https://github.com/taiga-family/maskito/issues/1352))
-  ([ca4adeb](https://github.com/taiga-family/maskito/commit/ca4adeb6eb5260dc74ed8c39da604577d541ab03))
+
+  Learn more: https://maskito.dev/core-concepts/plugins#change-event
 
 ## [2.5.0](https://github.com/taiga-family/maskito/compare/v2.4.0...v2.5.0) (2024-06-24)
 
