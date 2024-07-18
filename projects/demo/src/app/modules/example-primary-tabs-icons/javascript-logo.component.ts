@@ -1,14 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiSvgComponent} from '@taiga-ui/legacy';
 import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
     standalone: true,
     selector: 'javascript-logo',
-    imports: [TuiSvgComponent],
-    template: `
-        <tui-svg src="assets/icons/javascript.svg"></tui-svg>
-    `,
+    template: '<img src="assets/icons/javascript.svg" />',
+    styles: ['img {display: flex; width: 1.5rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JavaScriptLogoComponent {}
