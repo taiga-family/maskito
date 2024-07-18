@@ -24,6 +24,7 @@
         "@taiga-ui/core": "4.0.0-rc.6",
         "@taiga-ui/icons": "4.0.0-rc.6",
         "@taiga-ui/kit": "4.0.0-rc.6",
+        "@taiga-ui/layout": "4.0.0-rc.6",
         "@taiga-ui/legacy": "4.0.0-rc.6",
         "@taiga-ui/styles": "4.0.0-rc.6",
         "@taiga-ui/testing": "4.0.0-rc.6",
