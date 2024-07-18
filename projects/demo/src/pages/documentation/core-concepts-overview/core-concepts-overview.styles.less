@@ -1,6 +1,6 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 
-.islands-wrapper {
+.cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,13 +9,13 @@
     @media @tui-mobile {
         flex-direction: column;
     }
-}
 
-.island {
-    flex: 1;
-    min-width: 14rem;
+    & [tuiCardLarge] {
+        flex: 1;
+        min-width: 14rem;
 
-    @media @tui-desktop-min {
-        max-width: 40%;
+        @media @tui-desktop-min {
+            max-width: 40%;
+        }
     }
 }

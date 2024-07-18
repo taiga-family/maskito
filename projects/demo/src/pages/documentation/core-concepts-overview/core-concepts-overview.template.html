@@ -75,69 +75,79 @@
             concepts:
         </p>
 
-        <div class="islands-wrapper">
+        <div class="cards">
             <a
-                tuiIsland
-                class="island"
-                [hoverable]="true"
+                tuiCardLarge
+                tuiHeader
+                tuiSurface="elevated"
                 [routerLink]="maskExpressionDocPage"
             >
-                <h3 class="tui-island__title">Mask expression</h3>
-                <p class="tui-island__paragraph">
-                    Learn how to predefine your mask format via mask expression. This section describes different types
-                    of mask expression and explains meaning of "fixed character" term.
-                </p>
+                <h1 tuiTitle>
+                    Mask expression
+                    <span tuiSubtitle>
+                        Learn how to predefine your mask format via mask expression. This section describes
+                        different types of mask expression and explains meaning of "fixed character" term.
+                    </span>
+                </h1>
             </a>
 
             <a
-                tuiIsland
-                class="island"
-                [hoverable]="true"
+                tuiCardLarge
+                tuiHeader
+                tuiSurface="elevated"
                 [routerLink]="processorsDocPage"
             >
-                <h3 class="tui-island__title">Processors</h3>
-                <p class="tui-island__paragraph">Learn about preprocessors and postprocessors.</p>
+                <h1 tuiTitle>
+                    Processors
+                    <span tuiSubtitle>Learn about preprocessors and postprocessors.</span>
+                </h1>
             </a>
 
             <a
-                tuiIsland
-                class="island"
-                [hoverable]="true"
+                tuiCardLarge
+                tuiHeader
+                tuiSurface="elevated"
                 [routerLink]="pluginsDocPage"
             >
-                <h3 class="tui-island__title">Plugins</h3>
-                <p class="tui-island__paragraph">
-                    Learn how you can augment masking with some custom logic bound to the masked HTML element.
-                </p>
+                <h1 tuiTitle>
+                    Plugins
+                    <span tuiSubtitle>
+                        Learn how you can augment masking with some custom logic bound to the masked HTML element.
+                    </span>
+                </h1>
             </a>
 
             <a
-                tuiIsland
-                class="island"
-                [hoverable]="true"
+                tuiCardLarge
+                tuiHeader
+                tuiSurface="elevated"
                 [routerLink]="overwriteModeDocPage"
             >
-                <h3 class="tui-island__title">Overwrite mode</h3>
-                <p class="tui-island__paragraph">
-                    Maskito can behave differently when user inserts new character in the middle of text field value.
-                    Learn how to control this behaviour via
-                    <code>overwriteMode</code>
-                    parameter.
-                </p>
+                <h1 tuiTitle>
+                    Overwrite mode
+                    <span tuiSubtitle>
+                        Maskito can behave differently when user inserts new character in the middle of text field
+                        value. Learn how to control this behaviour via
+                        <code>overwriteMode</code>
+                        parameter.
+                    </span>
+                </h1>
             </a>
 
             <a
-                tuiIsland
-                class="island"
-                [hoverable]="true"
+                tuiCardLarge
+                tuiHeader
+                tuiSurface="elevated"
                 [routerLink]="transformerDocPage"
             >
-                <h3 class="tui-island__title">Transformer</h3>
-                <p class="tui-island__paragraph">
-                    Learn how to correctly programmatically update element's value via
-                    <code>maskitoTransform</code>
-                    .
-                </p>
+                <h1 tuiTitle>
+                    Transformer
+                    <span tuiSubtitle>
+                        Learn how to correctly programmatically update element's value via
+                        <code>maskitoTransform</code>
+                        .
+                    </span>
+                </h1>
             </a>
         </div>
     </section>
