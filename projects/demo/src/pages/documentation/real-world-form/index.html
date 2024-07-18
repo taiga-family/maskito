@@ -16,7 +16,7 @@
                 autocomplete="name"
                 name="name"
                 placeholder="Only latin letters"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="nameMask"
             />
         </tui-input>
@@ -29,7 +29,7 @@
                 autocomplete="family-name"
                 name="surname"
                 placeholder="Only CAPITAL latin letters"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="surnameMask"
             />
         </tui-input>
@@ -38,14 +38,14 @@
     <div class="tui-form__row">
         <tui-input
             formControlName="phone"
-            [tuiTextfieldCustomContent]="countryIsoCode ? flag : 'tuiIconPhoneLarge'"
+            [tuiTextfieldCustomContent]="countryIsoCode ? flag : '@tui.phone'"
         >
             Enter phone number
             <input
                 autocomplete="tel"
                 inputmode="tel"
                 name="phone"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [attr.pattern]="phoneTextfieldPattern"
                 [maskito]="phoneMask"
             />
@@ -56,6 +56,7 @@
                 width="28"
                 [attr.alt]="countryIsoCode"
                 [src]="countryIsoCode | tuiFlag"
+                [style.border-radius.%]="50"
             />
         </ng-template>
     </div>
@@ -71,7 +72,7 @@
                 autocomplete="new-password"
                 name="password"
                 placeholder="Only digits and one latin letter"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="passwordMask"
                 [type]="showPassword ? 'password' : 'text'"
             />
@@ -86,16 +87,16 @@
                 autocomplete="new-password"
                 name="repeatPassword"
                 placeholder="Only digits and one latin letter"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="passwordMask"
                 [type]="showPassword ? 'password' : 'text'"
             />
         </tui-input>
 
         <ng-template #showHideIcon>
-            <tui-svg
+            <tui-icon
                 class="password-icon"
-                [src]="showPassword ? 'tuiIconEyeLarge' : 'tuiIconEyeOffLarge'"
+                [icon]="showPassword ? '@tui.eye' : '@tui.eye-off'"
                 (click)="showPassword = !showPassword"
             />
         </ng-template>
@@ -104,7 +105,7 @@
     <div class="tui-form__row tui-form__row_multi-fields">
         <tui-input
             formControlName="transactionDate"
-            tuiTextfieldCustomContent="tuiIconCalendarLarge"
+            tuiTextfieldCustomContent="@tui.calendar"
             class="tui-form__multi-field"
         >
             Transaction date
@@ -112,7 +113,7 @@
                 inputmode="decimal"
                 name="transactionDate"
                 placeholder="dd.mm.yyyy"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="transactionDateMask"
             />
         </tui-input>
@@ -127,7 +128,7 @@
                 inputmode="decimal"
                 name="transactionAmount"
                 placeholder="Enter amount"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="transactionAmountMask"
             />
         </tui-input>
@@ -144,7 +145,7 @@
                 autocomplete="street-address"
                 name="address"
                 placeholder="Only latin letters, digits and some punctuation signs are allowed"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="addressMask"
             ></textarea>
         </tui-textarea>

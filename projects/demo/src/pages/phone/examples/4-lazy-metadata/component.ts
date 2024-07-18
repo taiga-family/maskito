@@ -4,8 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 @Component({
     standalone: true,
@@ -18,7 +17,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
     ],
     template: `
         <tui-input
-            tuiTextfieldCustomContent="tuiIconPhoneLarge"
+            tuiTextfieldCustomContent="@tui.phone"
             [style.max-width.rem]="30"
             [(ngModel)]="value"
         >
@@ -26,7 +25,7 @@ import {TuiInputModule} from '@taiga-ui/kit';
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
         </tui-input>

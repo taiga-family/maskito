@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
     standalone: true,

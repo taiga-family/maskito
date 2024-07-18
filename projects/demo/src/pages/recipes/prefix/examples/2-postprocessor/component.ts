@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -17,7 +17,7 @@ import mask from './mask';
             Enter price
             <input
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -22,7 +21,7 @@ import mask from './mask';
             [(ngModel)]="value"
         >
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="options"
             />
         </tui-input>

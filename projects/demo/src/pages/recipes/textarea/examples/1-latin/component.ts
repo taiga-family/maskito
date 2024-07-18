@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextareaModule} from '@taiga-ui/kit';
+import {TuiTextareaModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -15,7 +15,7 @@ import mask from './mask';
             <textarea
                 autocomplete="street-address"
                 placeholder="Only latin letters and digits are allowed"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             ></textarea>
         </tui-textarea>

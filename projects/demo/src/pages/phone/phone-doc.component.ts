@@ -5,11 +5,15 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {CHAR_PLUS, TUI_IS_APPLE} from '@taiga-ui/cdk';
-import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {CHAR_PLUS} from '@taiga-ui/cdk';
+import {TuiLink} from '@taiga-ui/core';
+import {
+    TUI_IS_APPLE,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+} from '@taiga-ui/legacy';
 import type {CountryCode} from 'libphonenumber-js/core';
 import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
@@ -28,9 +32,9 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiAddonDocModule,
+        TuiAddonDoc,
         TuiInputModule,
-        TuiLinkModule,
+        TuiLink,
         TuiTextfieldControllerModule,
         PhoneMaskDocExample1,
         PhoneMaskDocExample2,
@@ -42,16 +46,16 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
     styleUrls: ['./phone-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneDocComponent implements GeneratorOptions {
+export default class PhoneDocComponent implements GeneratorOptions {
     private readonly isApple = inject(TUI_IS_APPLE);
 
     protected apiPageControl = new FormControl('');
 
-    protected readonly basic: TuiDocExample = {
+    protected readonly basic: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw'),
     };
 
-    protected readonly validation: TuiDocExample = {
+    protected readonly validation: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-validation/mask.ts?raw'
         ),
@@ -60,7 +64,7 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly nonStrict: TuiDocExample = {
+    protected readonly nonStrict: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-non-strict/mask.ts?raw'
         ),
@@ -69,7 +73,7 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly lazyMetadata: TuiDocExample = {
+    protected readonly lazyMetadata: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.Angular]: import(
             './examples/4-lazy-metadata/component.ts?raw'
         ),
@@ -78,7 +82,7 @@ export class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    protected readonly focusBlurEvents: TuiDocExample = {
+    protected readonly focusBlurEvents: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-focus-blur-events/mask.ts?raw'
         ),

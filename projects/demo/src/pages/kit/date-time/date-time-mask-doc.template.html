@@ -95,14 +95,14 @@
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
                 <tui-input
-                    tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                    tuiTextfieldCustomContent="@tui.calendar"
                     [formControl]="apiPageControl"
                     [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
                 >
                     Enter date and time
                     <input
                         inputmode="numeric"
-                        tuiTextfield
+                        tuiTextfieldLegacy
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>

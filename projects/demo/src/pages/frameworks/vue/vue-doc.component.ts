@@ -1,21 +1,15 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiNotificationModule} from '@taiga-ui/core';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {VueExample1} from './examples/vue-1/component';
 
 @Component({
     standalone: true,
     selector: 'vue-doc-page',
-    imports: [
-        TuiAddonDocModule,
-        TuiNotificationModule,
-        TuiLinkModule,
-        RouterLink,
-        VueExample1,
-    ],
+    imports: [TuiAddonDoc, TuiNotification, TuiLink, RouterLink, VueExample1],
     templateUrl: './vue-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

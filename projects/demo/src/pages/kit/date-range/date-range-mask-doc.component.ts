@@ -5,11 +5,11 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoDateMode, MaskitoDateSegments} from '@maskito/kit';
 import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
-import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiLink} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
 import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
@@ -25,8 +25,8 @@ type GeneratorOptions = Required<
     selector: 'date-range-mask-doc',
     imports: [
         MaskitoDirective,
-        TuiAddonDocModule,
-        TuiLinkModule,
+        TuiAddonDoc,
+        TuiLink,
         TuiInputModule,
         TuiTextfieldControllerModule,
         ReactiveFormsModule,
@@ -38,24 +38,24 @@ type GeneratorOptions = Required<
     templateUrl: './date-range-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateRangeMaskDocComponent implements GeneratorOptions {
-    protected readonly dateLocalizationExample1: TuiDocExample = {
+export default class DateRangeMaskDocComponent implements GeneratorOptions {
+    protected readonly dateLocalizationExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly minMaxExample2: TuiDocExample = {
+    protected readonly minMaxExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
-    protected readonly minMaxLengthExample3: TuiDocExample = {
+    protected readonly minMaxLengthExample3: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/3-min-max-length/mask.ts?raw'
         ),
     };
 
-    protected readonly customRangeExample4: TuiDocExample = {
+    protected readonly customRangeExample4: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-range-separator/mask.ts?raw'
         ),

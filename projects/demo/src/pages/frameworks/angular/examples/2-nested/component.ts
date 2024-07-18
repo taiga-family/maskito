@@ -1,11 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {TuiCheckboxLabeledModule, TuiInputModule} from '@taiga-ui/kit';
+import {TuiLabel} from '@taiga-ui/core';
+import {TuiCheckbox} from '@taiga-ui/kit';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
     standalone: true,
     selector: 'nested-doc-example-2',
-    imports: [FormsModule, TuiInputModule, TuiCheckboxLabeledModule],
+    imports: [FormsModule, TuiInputModule, TuiLabel, TuiCheckbox],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

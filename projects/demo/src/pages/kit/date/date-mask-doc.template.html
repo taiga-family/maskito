@@ -55,14 +55,14 @@
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
                 <tui-input
-                    tuiTextfieldCustomContent="tuiIconCalendarLarge"
+                    tuiTextfieldCustomContent="@tui.calendar"
                     class="input-date"
                     [formControl]="apiPageControl"
                 >
                     Enter date
                     <input
                         inputmode="numeric"
-                        tuiTextfield
+                        tuiTextfieldLegacy
                         [maskito]="maskitoOptions"
                     />
                 </tui-input>

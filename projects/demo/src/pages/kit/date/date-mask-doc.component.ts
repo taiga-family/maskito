@@ -5,10 +5,10 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import type {MaskitoDateMode} from '@maskito/kit';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
-import type {TuiDocExample} from '@taiga-ui/addon-doc';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {TuiLinkModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiLink} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
@@ -19,8 +19,8 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     standalone: true,
     selector: 'date-mask-doc',
     imports: [
-        TuiAddonDocModule,
-        TuiLinkModule,
+        TuiAddonDoc,
+        TuiLink,
         DateMaskDocExample1,
         DateMaskDocExample2,
         TuiInputModule,
@@ -32,16 +32,16 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     styleUrls: ['./date-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateMaskDocComponent implements GeneratorOptions {
+export default class DateMaskDocComponent implements GeneratorOptions {
     protected apiPageControl = new FormControl('');
 
-    protected readonly dateLocalization: TuiDocExample = {
+    protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-localization/mask.ts?raw'
         ),
     };
 
-    protected readonly dateMinMax: TuiDocExample = {
+    protected readonly dateMinMax: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 

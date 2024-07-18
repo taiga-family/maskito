@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipeModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiFlagPipe} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -12,7 +12,7 @@ import mask from './mask';
     imports: [
         MaskitoDirective,
         ReactiveFormsModule,
-        TuiFlagPipeModule,
+        TuiFlagPipe,
         TuiInputModule,
         TuiTextfieldControllerModule,
     ],

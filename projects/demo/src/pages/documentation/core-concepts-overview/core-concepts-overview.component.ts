@@ -1,26 +1,26 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {TuiAddonDocModule} from '@taiga-ui/addon-doc';
-import {
-    TuiLinkModule,
-    TuiModeModule,
-    TuiNotificationModule,
-    TuiTooltipModule,
-} from '@taiga-ui/core';
-import {TuiIslandModule} from '@taiga-ui/kit';
+import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiIcon, TuiLink, TuiNotification, TuiSurface, TuiTitle} from '@taiga-ui/core';
+import {TuiAvatar, TuiTooltip} from '@taiga-ui/kit';
+import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 
 @Component({
     standalone: true,
     selector: 'core-concepts-overview-doc-page',
     imports: [
-        TuiAddonDocModule,
-        TuiLinkModule,
-        TuiNotificationModule,
-        TuiIslandModule,
-        TuiModeModule,
-        TuiTooltipModule,
         RouterLink,
+        TuiAddonDoc,
+        TuiAvatar,
+        TuiCardLarge,
+        TuiHeader,
+        TuiIcon,
+        TuiLink,
+        TuiNotification,
+        TuiSurface,
+        TuiTitle,
+        TuiTooltip,
     ],
     templateUrl: './core-concepts-overview.template.html',
     styleUrls: ['./core-concepts-overview.styles.less'],

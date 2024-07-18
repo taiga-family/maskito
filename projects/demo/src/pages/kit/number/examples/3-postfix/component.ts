@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask, {postfix} from './mask';
 
@@ -23,7 +22,7 @@ import mask, {postfix} from './mask';
         >
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
         </tui-input>

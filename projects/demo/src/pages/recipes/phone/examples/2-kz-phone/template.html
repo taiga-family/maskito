@@ -7,7 +7,7 @@
     <input
         autocomplete="tel"
         inputmode="tel"
-        tuiTextfield
+        tuiTextfieldLegacy
         [maskito]="maskitoOptions"
     />
 </tui-input>
@@ -17,5 +17,6 @@
         alt="Flag of Kazakhstan"
         width="28"
         [src]="'KZ' | tuiFlag"
+        [style.border-radius.%]="50"
     />
 </ng-template>

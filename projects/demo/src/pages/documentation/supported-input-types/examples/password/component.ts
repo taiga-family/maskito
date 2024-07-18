@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiHintModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputPasswordModule} from '@taiga-ui/kit';
+import {TuiHint} from '@taiga-ui/core';
+import {TuiInputPasswordModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -12,7 +12,7 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiHintModule,
+        TuiHint,
         TuiInputPasswordModule,
         TuiTextfieldControllerModule,
     ],
@@ -25,7 +25,7 @@ import mask from './mask';
         >
             Enter password
             <input
-                tuiTextfield
+                tuiTextfieldLegacy
                 type="password"
                 [maskito]="maskitoOptions"
             />

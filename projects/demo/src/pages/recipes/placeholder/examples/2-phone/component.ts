@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipeModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiFlagPipe} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -12,7 +12,7 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiFlagPipeModule,
+        TuiFlagPipe,
         TuiInputModule,
         TuiTextfieldControllerModule,
     ],
@@ -25,7 +25,7 @@ import mask from './mask';
             Enter US phone number
             <input
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="maskitoOptions"
             />
 
@@ -34,6 +34,7 @@ import mask from './mask';
                     alt="Flag of the United States"
                     width="28"
                     [src]="'US' | tuiFlag"
+                    [style.border-radius.%]="50"
                 />
             </ng-template>
         </tui-input>

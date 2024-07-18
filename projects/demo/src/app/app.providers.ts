@@ -13,7 +13,7 @@ import {
     TUI_DOC_TITLE,
     tuiDocExampleOptionsProvider,
 } from '@taiga-ui/addon-doc';
-import type {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
 import {DEMO_PAGES} from '../pages/pages';
@@ -100,7 +100,7 @@ export const APP_PROVIDERS: Provider[] = [
                 lineNumbersLoader: async () =>
                     // SSR ReferenceError: window is not defined
                     isBrowser
-                        ? import('highlightjs-line-numbers.js' as string)
+                        ? import('ngx-highlightjs/line-numbers')
                         : Promise.resolve(),
                 languages: {
                     typescript: async () =>

@@ -1,4 +1,3 @@
-import '@ng-web-apis/universal/mocks';
 import 'zone.js/node';
 
 import {existsSync} from 'node:fs';

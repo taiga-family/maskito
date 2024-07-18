@@ -1,14 +1,11 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiSvgModule} from '@taiga-ui/core';
-import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
+import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
     standalone: true,
     selector: 'react-logo',
-    imports: [TuiSvgModule],
-    template: `
-        <tui-svg src="assets/icons/react.svg"></tui-svg>
-    `,
+    template: '<img src="assets/icons/react.svg" />',
+    styles: ['img {display: flex; width: 1.5rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReactLogoComponent {}

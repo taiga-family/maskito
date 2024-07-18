@@ -3,13 +3,13 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
-import {TuiGroupModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiGroup} from '@taiga-ui/core';
+import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
     standalone: true,
     selector: 'card-doc-example-1',
-    imports: [ReactiveFormsModule, TuiGroupModule, TuiInputModule, MaskitoDirective],
+    imports: [ReactiveFormsModule, TuiGroup, TuiInputModule, MaskitoDirective],
     templateUrl: './template.html',
     styleUrls: ['./style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

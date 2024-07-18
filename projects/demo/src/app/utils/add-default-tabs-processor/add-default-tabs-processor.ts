@@ -1,14 +1,14 @@
 import {DocExamplePrimaryTab} from '@demo/constants';
-import type {TUI_DOC_EXAMPLE_CONTENT_PROCESSOR} from '@taiga-ui/addon-doc';
-import type {TuiInjectionTokenType} from '@taiga-ui/cdk';
+import type {TuiHandler} from '@taiga-ui/cdk';
 
 import {ANGULAR_DEFAULT_TAB} from './default-tabs/angular-default-tab';
 import {JS_DEFAULT_TAB} from './default-tabs/js-default-tab';
 import {REACT_DEFAULT_TAB} from './default-tabs/react-default-tab';
 import {VUE_DEFAULT_TAB} from './default-tabs/vue-default-tab';
 
-export const addDefaultTabsProcessor: TuiInjectionTokenType<
-    typeof TUI_DOC_EXAMPLE_CONTENT_PROCESSOR
+export const addDefaultTabsProcessor: TuiHandler<
+    Record<string, string>,
+    Record<string, string>
 > = (files) => {
     const fileNames = Object.keys(files);
 

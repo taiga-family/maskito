@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipeModule, TuiTextfieldControllerModule} from '@taiga-ui/core';
-import {TuiInputModule} from '@taiga-ui/kit';
+import {TuiFlagPipe} from '@taiga-ui/core';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
@@ -14,7 +14,7 @@ import mask from './mask';
         TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
-        TuiFlagPipeModule,
+        TuiFlagPipe,
     ],
     template: `
         <tui-input
@@ -29,7 +29,7 @@ import mask from './mask';
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfield
+                tuiTextfieldLegacy
                 [maskito]="mask"
             />
 
@@ -38,6 +38,7 @@ import mask from './mask';
                     alt="Turkish flag"
                     width="28"
                     [src]="'TR' | tuiFlag"
+                    [style.border-radius.%]="50"
                 />
             </ng-template>
         </tui-input>
