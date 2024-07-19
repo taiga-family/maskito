@@ -5,20 +5,19 @@ import {Router} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {beforeEach, describe, expect, it} from '@jest/globals';
 
-import {AppBrowserModule} from './app.browser.module';
-import {AppComponent} from './app.component';
+import {App} from './app.component';
+import {APP_CONFIG} from './app.config';
 
 describe('Test dummy', () => {
-    let fixture: ComponentFixture<AppComponent>;
+    let fixture: ComponentFixture<App>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [AppBrowserModule],
-            declarations: [AppComponent],
-            providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+            imports: [App],
+            providers: [...APP_CONFIG.providers, {provide: APP_BASE_HREF, useValue: '/'}],
         });
 
-        fixture = TestBed.createComponent(AppComponent);
+        fixture = TestBed.createComponent(App);
         fixture.detectChanges();
     });
 

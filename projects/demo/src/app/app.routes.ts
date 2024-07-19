@@ -1,12 +1,10 @@
-import {NgModule} from '@angular/core';
 import type {Routes} from '@angular/router';
-import {RouterModule} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {tuiProvideRoutePageTab} from '@taiga-ui/addon-doc';
 
 /* eslint-disable @typescript-eslint/promise-function-async */
 
-export const appRoutes: Routes = [
+export const ROUTES: Routes = [
     // Getting started
     {
         path: DemoPath.WhatIsMaskito,
@@ -185,21 +183,9 @@ export const appRoutes: Routes = [
             import('../pages/stackblitz').then((m) => m.StackblitzStarterComponent),
         title: 'Stackblitz Starter',
     },
-].map(tuiProvideRoutePageTab);
-
-@NgModule({
-    imports: [
-        RouterModule.forRoot(
-            appRoutes.concat({
-                path: '**',
-                redirectTo: DemoPath.WhatIsMaskito,
-            }),
-            {
-                initialNavigation: 'enabledBlocking',
-                scrollPositionRestoration: 'enabled',
-            },
-        ),
-    ],
-    exports: [RouterModule],
-})
-export class AppRoutingModule {}
+]
+    .map(tuiProvideRoutePageTab)
+    .concat({
+        path: '**',
+        redirectTo: DemoPath.WhatIsMaskito,
+    });
