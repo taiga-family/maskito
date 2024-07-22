@@ -8,5 +8,5 @@
     "angularCompilerOptions": {
         "compilationMode": "full"
     },
-    "files": ["./src/typings.d.ts", "./src/main.browser.ts", "./src/polyfills.ts"]
+    "files": ["./src/typings.d.ts", "./src/main.ts", "./src/polyfills.ts"]
 }
