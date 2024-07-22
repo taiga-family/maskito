@@ -1,3 +1,4 @@
+import {ViewportScroller} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {RouterLink} from '@angular/router';
@@ -48,4 +49,8 @@ import {debounceTime, map, startWith} from 'rxjs';
 })
 export class App {
     protected readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
+
+    constructor() {
+        inject(ViewportScroller).setOffset([0, 64]);
+    }
 }
