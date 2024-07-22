@@ -1,10 +1,17 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
 body {
     margin: 0;
 }
 
 html,
 body {
+    .scroll-behavior();
     height: 100%;
+
+    @media (prefers-reduced-motion) {
+        scroll-behavior: auto;
+    }
 }
 
 html {
