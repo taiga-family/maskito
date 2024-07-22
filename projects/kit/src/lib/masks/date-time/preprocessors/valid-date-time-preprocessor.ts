@@ -3,7 +3,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../../constants';
 import type {MaskitoTimeMode} from '../../../types';
 import {escapeRegExp, validateDateString} from '../../../utils';
-import {padTimeSegments, validateTimeString} from '../../../utils/time';
+import {padEndTimeSegments, validateTimeString} from '../../../utils/time';
 import {parseDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
@@ -66,7 +66,7 @@ export function createValidDateTimePreprocessor({
 
         validatedValue += validatedDateString;
 
-        const paddedMaxValues = padTimeSegments(DEFAULT_TIME_SEGMENT_MAX_VALUES);
+        const paddedMaxValues = padEndTimeSegments(DEFAULT_TIME_SEGMENT_MAX_VALUES);
 
         const {validatedTimeString, updatedTimeSelection} = validateTimeString({
             timeString,
