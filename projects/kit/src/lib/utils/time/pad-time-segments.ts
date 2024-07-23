@@ -3,21 +3,24 @@ import type {MaskitoTimeSegments} from '../../types';
 
 export function padTimeSegments(
     timeSegments: MaskitoTimeSegments<number | string>,
+    pad: (segmentValue: string, segmentLength: number) => string,
 ): MaskitoTimeSegments;
 
 export function padTimeSegments(
     timeSegments: Partial<MaskitoTimeSegments<number | string>>,
+    pad: (segmentValue: string, segmentLength: number) => string,
 ): Partial<MaskitoTimeSegments>;
 
 export function padTimeSegments(
     timeSegments: Partial<MaskitoTimeSegments<number | string>>,
+    pad: (segmentValue: string, segmentLength: number) => string,
 ): Partial<MaskitoTimeSegments> {
-    return Object.fromEntries(
+    return Object.fromEntries<string>(
         Object.entries(timeSegments).map(([segmentName, segmentValue]) => [
             segmentName,
-            `${segmentValue}`.padEnd(
+            pad(
+                String(segmentValue),
                 TIME_SEGMENT_VALUE_LENGTHS[segmentName as keyof MaskitoTimeSegments],
-                '0',
             ),
         ]),
     );

@@ -1,6 +1,6 @@
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
 import type {MaskitoTimeSegments} from '../../../types';
-import {padTimeSegments, parseTimeString} from '../../../utils/time';
+import {padEndTimeSegments, parseTimeString} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-options';
 
 /**
@@ -22,7 +22,7 @@ export function maskitoParseTime(
     const msInMinute = (maxValues.seconds + 1) * msInSecond;
     const msInHour = (maxValues.minutes + 1) * msInMinute;
 
-    const parsedTime = padTimeSegments(parseTimeString(maskedTime, mode));
+    const parsedTime = padEndTimeSegments(parseTimeString(maskedTime, mode));
 
     return (
         Number(parsedTime.hours ?? '') * msInHour +

@@ -1,6 +1,6 @@
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
 import type {MaskitoTimeSegments} from '../../../types';
-import {padTimeSegments} from '../../../utils/time';
+import {padStartTimeSegments} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-options';
 
 /**
@@ -34,7 +34,7 @@ export function maskitoStringifyTime(
 
     milliseconds -= seconds * msInSecond;
 
-    const result = padTimeSegments({hours, minutes, seconds, milliseconds});
+    const result = padStartTimeSegments({hours, minutes, seconds, milliseconds});
 
     return mode
         .replaceAll(/H+/g, result.hours)
