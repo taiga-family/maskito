@@ -69,7 +69,7 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
     > = [
         {hours: 23, minutes: 59, seconds: 59, milliseconds: 999},
         {hours: 11},
-        {hours: 9, minutes: 9, seconds: 9, milliseconds: 9},
+        {hours: 5, minutes: 5, seconds: 5, milliseconds: 5},
     ];
 
     public mode: MaskitoTimeMode = this.modeOptions[0];
