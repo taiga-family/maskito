@@ -30,9 +30,9 @@ import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
 type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
 
 const metadataSets: Record<string, MetadataJson> = {
-    'libphonenumber-js/min/metadata': minMetadata,
-    'libphonenumber-js/max/metadata': maxMetadata,
-    'libphonenumber-js/mobile/metadata': mobileMetadata,
+    min: minMetadata,
+    max: maxMetadata,
+    mobile: mobileMetadata,
 } as const;
 
 @Component({
