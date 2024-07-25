@@ -14,6 +14,7 @@ import {
     TUI_DOC_PAGES,
     TUI_DOC_SOURCE_CODE,
     TUI_DOC_TITLE,
+    TUI_DOC_TYPE_REFERENCE_HANDLER,
     tuiDocExampleOptionsProvider,
 } from '@taiga-ui/addon-doc';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
@@ -134,6 +135,23 @@ export const APP_CONFIG: ApplicationConfig = {
                         xml: async () => import('highlight.js/lib/languages/xml'),
                     },
                 };
+            },
+        },
+        {
+            provide: TUI_DOC_TYPE_REFERENCE_HANDLER,
+            useValue: (type: string) => {
+                if (type.toLowerCase().startsWith('maskito')) {
+                    return `https://github.com/search?q=%2F%28enum%7Ctype%7Cinterface%7Cclass%7Cfunction%7Cconst%29+${type}%28%3C%7C%5Cs%29%2F+language%3ATypeScript+repo%3Ataiga-family%2Fmaskito+&type=code`;
+                }
+
+                switch (type) {
+                    case 'Date':
+                        return 'https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date';
+                    case 'MetadataJson':
+                        return 'https://github.com/catamphetamine/libphonenumber-js?tab=readme-ov-file#min-vs-max-vs-mobile-vs-core';
+                    default:
+                        return null;
+                }
             },
         },
     ],

@@ -154,6 +154,28 @@
         <tui-doc-documentation>
             <ng-template
                 documentationPropertyMode="input"
+                documentationPropertyName="metadata"
+                documentationPropertyType="MetadataJson"
+                [documentationPropertyValues]="metadataVariants"
+                [(documentationPropertyValue)]="selectedMetadata"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                List of phone number parsing and formatting rules for all countries.
+
+                <p>
+                    The complete list of those rules is huge, so
+                    <code>libphonenumber-js</code>
+                    provides a way to optimize bundle size by choosing between
+                    <code>max</code>
+                    ,
+                    <code>min</code>
+                    ,
+                    <code>mobile</code>
+                    metadata.
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
                 documentationPropertyName="countryIsoCode"
                 documentationPropertyType="string"
                 [documentationPropertyValues]="countryCodeVariants"
