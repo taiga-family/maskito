@@ -16,7 +16,10 @@ import {
 } from '@taiga-ui/legacy';
 import type {CountryCode} from 'libphonenumber-js/core';
 import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
-import metadata from 'libphonenumber-js/min/metadata';
+import maxMetadata from 'libphonenumber-js/max/metadata';
+import minMetadata from 'libphonenumber-js/min/metadata';
+import mobileMetadata from 'libphonenumber-js/mobile/metadata';
+import type {MetadataJson} from 'libphonenumber-js/types';
 
 import {PhoneMaskDocExample1} from './examples/1-basic/component';
 import {PhoneMaskDocExample2} from './examples/2-validation/component';
@@ -25,6 +28,12 @@ import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
 import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
+
+const metadataSets: Record<string, MetadataJson> = {
+    'libphonenumber-js/min/metadata': minMetadata,
+    'libphonenumber-js/max/metadata': maxMetadata,
+    'libphonenumber-js/mobile/metadata': mobileMetadata,
+} as const;
 
 @Component({
     standalone: true,
@@ -88,16 +97,23 @@ export default class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
-    public metadata = metadata;
     public strict = true;
     public countryIsoCode: CountryCode = 'RU';
     public separator = '-';
+
+    protected metadataVariants = Object.keys(metadataSets);
+
+    protected selectedMetadata = this.metadataVariants[0];
 
     protected countryCodeVariants = getCountries(this.metadata);
 
     protected separatorVariants = ['-', ' '];
 
     protected maskitoOptions = this.computeOptions();
+
+    public get metadata(): MetadataJson {
+        return metadataSets[this.selectedMetadata];
+    }
 
     protected get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
