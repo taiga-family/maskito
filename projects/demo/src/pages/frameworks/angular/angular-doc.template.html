@@ -87,39 +87,37 @@
             heading="Custom input"
             [content]="nestedInputExample"
         >
-            <tui-notification
-                size="m"
-                class="example tui-space_bottom-3"
-            >
-                <div>
-                    Default behavior is enough for
-                    <a
-                        href="https://github.com/taiga-family/taiga-ui"
-                        tuiLink
-                    >
-                        Taiga UI
-                    </a>
-                    inputs
-                </div>
-            </tui-notification>
+            <div [style.width.rem]="20">
+                <tui-notification
+                    size="m"
+                    class="tui-space_bottom-3"
+                >
+                    <div>
+                        Default behavior is enough for
+                        <a
+                            href="https://github.com/taiga-family/taiga-ui"
+                            tuiLink
+                        >
+                            Taiga UI
+                        </a>
+                        inputs
+                    </div>
+                </tui-notification>
 
-            <nested-doc-example-1
-                #example
-                class="example"
-            />
+                <nested-doc-example-1 #example />
 
-            <tui-notification
-                size="m"
-                class="example tui-space_vertical-3"
-            >
-                Custom predicate is required if target input is not the first on in the DOM
-            </tui-notification>
+                <tui-notification
+                    size="m"
+                    class="tui-space_vertical-3"
+                >
+                    Custom predicate is required if target input is not the first on in the DOM
+                </tui-notification>
 
-            <nested-doc-example-2
-                class="example"
-                [maskito]="example.nameMask"
-                [maskitoElement]="example.predicate"
-            />
+                <nested-doc-example-2
+                    [maskito]="example.nameMask"
+                    [maskitoElement]="example.predicate"
+                />
+            </div>
         </tui-doc-example>
 
         <tui-doc-example

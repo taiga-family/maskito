@@ -26,7 +26,6 @@ import {PipeDocExample4} from './examples/4-pipe/component';
         PipeDocExample4,
     ],
     templateUrl: './angular-doc.template.html',
-    styleUrls: ['./angular-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AngularDocPageComponent {
