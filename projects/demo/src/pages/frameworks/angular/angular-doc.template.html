@@ -9,20 +9,23 @@
         in an Angular-way.
 
         <tui-notification
-            status="warning"
+            appearance="warning"
+            size="m"
             class="tui-space_top-6"
         >
-            <strong>Prerequisites</strong>
-            <p class="tui-space_bottom-0">
-                To get the most out of this guide, you should review the topic
-                <a
-                    tuiLink
-                    [routerLink]="coreConceptsOverviewDocPage"
-                >
-                    "Core Concepts"
-                </a>
-                first.
-            </p>
+            <div>
+                <strong>Prerequisites</strong>
+                <p class="tui-space_bottom-0">
+                    To get the most out of this guide, you should review the topic
+                    <a
+                        tuiLink
+                        [routerLink]="coreConceptsOverviewDocPage"
+                    >
+                        "Core Concepts"
+                    </a>
+                    first.
+                </p>
+            </div>
         </tui-notification>
 
         <section class="tui-space_top-12">
@@ -62,12 +65,14 @@
                 to find input element for you, if you do not have a direct access to it.
             </p>
 
-            <tui-notification>
-                By default
-                <strong>maskito</strong>
-                will try to find input/textarea by querying its host:
-                <code>host.querySelector('input,textarea')</code>
-                so that might be sufficient. Use custom predicate if you need custom logic.
+            <tui-notification size="m">
+                <div>
+                    By default
+                    <strong>maskito</strong>
+                    will try to find input/textarea by querying its host:
+                    <code>host.querySelector('input,textarea')</code>
+                    so that might be sufficient. Use custom predicate if you need custom logic.
+                </div>
             </tui-notification>
 
             <tui-doc-code
@@ -82,31 +87,37 @@
             heading="Custom input"
             [content]="nestedInputExample"
         >
-            <tui-notification class="example tui-space_bottom-3">
-                Default behavior is enough for
-                <a
-                    href="https://github.com/taiga-family/taiga-ui"
-                    tuiLink
+            <div [style.width.rem]="20">
+                <tui-notification
+                    size="m"
+                    class="tui-space_bottom-3"
                 >
-                    Taiga UI
-                </a>
-                inputs
-            </tui-notification>
+                    <div>
+                        Default behavior is enough for
+                        <a
+                            href="https://github.com/taiga-family/taiga-ui"
+                            tuiLink
+                        >
+                            Taiga UI
+                        </a>
+                        inputs
+                    </div>
+                </tui-notification>
 
-            <nested-doc-example-1
-                #example
-                class="example"
-            />
+                <nested-doc-example-1 #example />
 
-            <tui-notification class="example tui-space_vertical-3">
-                Custom predicate is required if target input is not the first on in the DOM
-            </tui-notification>
+                <tui-notification
+                    size="m"
+                    class="tui-space_vertical-3"
+                >
+                    Custom predicate is required if target input is not the first on in the DOM
+                </tui-notification>
 
-            <nested-doc-example-2
-                class="example"
-                [maskito]="example.nameMask"
-                [maskitoElement]="example.predicate"
-            />
+                <nested-doc-example-2
+                    [maskito]="example.nameMask"
+                    [maskitoElement]="example.predicate"
+                />
+            </div>
         </tui-doc-example>
 
         <tui-doc-example

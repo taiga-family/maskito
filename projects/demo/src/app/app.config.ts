@@ -1,7 +1,7 @@
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {HttpClient, provideHttpClient} from '@angular/common/http';
+import {provideHttpClient} from '@angular/common/http';
 import type {ApplicationConfig} from '@angular/core';
-import {importProvidersFrom, inject, PLATFORM_ID, SecurityContext} from '@angular/core';
+import {inject, PLATFORM_ID} from '@angular/core';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideRouter, withInMemoryScrolling} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
@@ -19,7 +19,6 @@ import {
 } from '@taiga-ui/addon-doc';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
-import {MarkdownModule} from 'ngx-markdown';
 
 import {DEMO_PAGES} from '../pages/pages';
 import {StackblitzService} from '../pages/stackblitz';
@@ -44,16 +43,6 @@ export const APP_CONFIG: ApplicationConfig = {
             }),
         ),
         provideHttpClient(),
-        /**
-         * TODO: Use standalone approach after update `ngx-markdown` to `17.1.0`
-         * - https://github.com/jfcere/ngx-markdown/releases/tag/v17.1.0
-         */
-        importProvidersFrom(
-            MarkdownModule.forRoot({
-                loader: HttpClient,
-                sanitize: SecurityContext.NONE,
-            }),
-        ),
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy,

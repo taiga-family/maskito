@@ -10,20 +10,23 @@
     </p>
 
     <tui-notification
-        status="warning"
+        appearance="warning"
+        size="m"
         class="tui-space_top-6"
     >
-        <strong>Prerequisites</strong>
-        <p class="tui-space_bottom-0">
-            To get the most out of this guide, you should review the topic
-            <a
-                tuiLink
-                [routerLink]="coreConceptsOverviewDocPage"
-            >
-                "Core Concepts"
-            </a>
-            first.
-        </p>
+        <div>
+            <strong>Prerequisites</strong>
+            <p class="tui-space_bottom-0">
+                To get the most out of this guide, you should review the topic
+                <a
+                    tuiLink
+                    [routerLink]="coreConceptsOverviewDocPage"
+                >
+                    "Core Concepts"
+                </a>
+                first.
+            </p>
+        </div>
     </tui-notification>
 
     <section class="tui-space_top-12">
@@ -58,12 +61,17 @@
             some UI Kit library.
         </p>
 
-        <tui-notification class="tui-space_bottom-4">
-            By default
-            <strong>Maskito</strong>
-            will try to find input/textarea by querying its host:
-            <code>host.querySelector('input,textarea')</code>
-            so that might be sufficient. Use custom predicate if you need custom logic.
+        <tui-notification
+            size="m"
+            class="tui-space_bottom-4"
+        >
+            <div>
+                By default
+                <strong>Maskito</strong>
+                will try to find input/textarea by querying its host:
+                <code>host.querySelector('input,textarea')</code>
+                so that might be sufficient. Use custom predicate if you need custom logic.
+            </div>
         </tui-notification>
 
         <tui-doc-code [code]="queryNestedInputDemo" />

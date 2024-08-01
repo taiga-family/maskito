@@ -46,23 +46,26 @@
                 <tui-doc-code [code]="regExpMaskExpDemo" />
 
                 <tui-notification
-                    status="warning"
+                    appearance="warning"
+                    size="m"
                     class="tui-space_top-3"
                 >
-                    Make sure that mask expression works with any of intermediate states, not just the final value.
+                    <div>
+                        Make sure that mask expression works with any of intermediate states, not just the final value.
 
-                    <p>For example, imagine that you have to create mask for 4-digits PIN code.</p>
+                        <p>For example, imagine that you have to create mask for 4-digits PIN code.</p>
 
-                    <p>
-                        <code>{{ '/^\\d{4}$/' }}</code>
-                        is a wrong mask expression. It does not match intermediate states (you cannot complete 4-digit
-                        string without possibility to type 1-, 2- or 3-digit string).
-                    </p>
+                        <p>
+                            <code>{{ '/^\\d{4}$/' }}</code>
+                            is a wrong mask expression. It does not match intermediate states (you cannot complete
+                            4-digit string without possibility to type 1-, 2- or 3-digit string).
+                        </p>
 
-                    <p>
-                        <code>{{ '/^\\d{0,4}$/' }}</code>
-                        is the right solution for our example.
-                    </p>
+                        <p>
+                            <code>{{ '/^\\d{0,4}$/' }}</code>
+                            is the right solution for our example.
+                        </p>
+                    </div>
                 </tui-notification>
             </li>
             <li class="tui-list__item">
@@ -76,11 +79,16 @@
                     and each regular expression is validator of character at the same index.
                 </p>
 
-                <tui-notification status="info">
-                    <strong>Fixed character</strong>
-                    — a predefined character at a certain position (the same as its index inside mask expression array).
-                    It is automatically added when user forgets to type it. It cannot be erased or replaced with another
-                    character.
+                <tui-notification
+                    appearance="info"
+                    size="m"
+                >
+                    <div>
+                        <strong>Fixed character</strong>
+                        — a predefined character at a certain position (the same as its index inside mask expression
+                        array). It is automatically added when user forgets to type it. It cannot be erased or replaced
+                        with another character.
+                    </div>
                 </tui-notification>
 
                 <p>
@@ -123,31 +131,37 @@
                 </p>
 
                 <tui-notification
-                    status="info"
+                    appearance="info"
+                    size="m"
                     class="tui-space_bottom-3"
                 >
-                    An
-                    <a
-                        tuiLink
-                        [routerLink]="elementStateDocPage"
-                    >
-                        "Element state"
-                    </a>
-                    object with raw value and current selection is passed as an argument to the function.
+                    <div>
+                        An
+                        <a
+                            tuiLink
+                            [routerLink]="elementStateDocPage"
+                        >
+                            "Element state"
+                        </a>
+                        object with raw value and current selection is passed as an argument to the function.
+                    </div>
                 </tui-notification>
 
                 <tui-doc-code [code]="dynamicMaskExpDemo" />
 
                 <tui-notification
-                    status="warning"
+                    appearance="warning"
+                    size="m"
                     class="tui-space_top-6"
                 >
                     <div>
-                        Be careful! It can be not performance-friendly to generate new mask expression on every input
-                        change.
-                    </div>
+                        <div>
+                            Be careful! It can be not performance-friendly to generate new mask expression on every
+                            input change.
+                        </div>
 
-                    <p class="tui-space_bottom-0">Think about optimization and memoization of the such function.</p>
+                        <p class="tui-space_bottom-0">Think about optimization and memoization of the such function.</p>
+                    </div>
                 </tui-notification>
             </li>
         </ul>
