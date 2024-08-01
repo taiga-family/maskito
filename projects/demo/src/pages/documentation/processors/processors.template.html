@@ -53,7 +53,10 @@
         </section>
     </section>
 
-    <tui-notification class="tui-space_bottom-12">
+    <tui-notification
+        size="m"
+        class="tui-space_bottom-12"
+    >
         Before you learn more about processors, you should learn a single prerequisite — meaning of the term
         <a
             tuiLink
@@ -138,38 +141,43 @@
         <p>Postprocessor returns an objects of the same interface as the first argument.</p>
 
         <tui-notification
-            status="warning"
+            appearance="warning"
+            size="m"
             class="tui-space_bottom-4"
         >
-            <p class="tui-space_top-0 tui-space_bottom-0">
-                <strong>With great power comes great responsibility!</strong>
-            </p>
+            <div>
+                <p class="tui-space_top-0 tui-space_bottom-0">
+                    <strong>With great power comes great responsibility!</strong>
+                </p>
 
-            <p class="tui-space_bottom-0">
-                Postprocessor is the final step before input's value update which gives a lot of flexibility. Use
-                postprocessor wisely and return a valid value!
-            </p>
+                <p class="tui-space_bottom-0">
+                    Postprocessor is the final step before input's value update which gives a lot of flexibility. Use
+                    postprocessor wisely and return a valid value!
+                </p>
+            </div>
         </tui-notification>
 
         <tui-doc-code [code]="postprocessorInActionDemo" />
     </section>
 
-    <tui-notification>
-        <strong>Stacking of multiple processors</strong>
+    <tui-notification size="m">
+        <div>
+            <strong>Stacking of multiple processors</strong>
 
-        <p>
-            The
-            <strong>Maskito</strong>
-            team likes code decomposition and promotes it! Don't put all complex logic inside a single processor. Both
-            parameters
-            <code>preprocessors</code>
-            and
-            <code>postprocessors</code>
-            accepts
-            <strong>array</strong>
-            of same type processors. Break your code into the several independent processors so that each processor
-            implements only a single task.
-        </p>
+            <p>
+                The
+                <strong>Maskito</strong>
+                team likes code decomposition and promotes it! Don't put all complex logic inside a single processor.
+                Both parameters
+                <code>preprocessors</code>
+                and
+                <code>postprocessors</code>
+                accepts
+                <strong>array</strong>
+                of same type processors. Break your code into the several independent processors so that each processor
+                implements only a single task.
+            </p>
+        </div>
     </tui-notification>
 
     <next-steps />

@@ -57,16 +57,19 @@
         [code]="maskitoPublicApiDemo"
     />
 
-    <tui-notification status="warning">
+    <tui-notification
+        appearance="warning"
+        size="m"
+    >
         <div>
             <strong>Avoid wasting computation power or memory resources!</strong>
-        </div>
 
-        <p class="tui-space_bottom-0">
-            The only available public method
-            <code>destroy</code>
-            removes all created event listeners. Call it to clean everything up when the work is finished.
-        </p>
+            <p class="tui-space_bottom-0">
+                The only available public method
+                <code>destroy</code>
+                removes all created event listeners. Call it to clean everything up when the work is finished.
+            </p>
+        </div>
     </tui-notification>
 
     <section>

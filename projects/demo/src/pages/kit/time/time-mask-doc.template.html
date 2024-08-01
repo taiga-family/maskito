@@ -7,21 +7,26 @@
         <code>maskitoTimeOptionsGenerator</code>
         to create a mask for time input.
 
-        <tui-notification class="tui-space_top-4">
-            Despite the name of the mask, element's raw value is still string.
+        <tui-notification
+            size="m"
+            class="tui-space_top-4"
+        >
+            <div>
+                Despite the name of the mask, element's raw value is still string.
 
-            <p>
-                Use
-                <code>maskitoParseTime</code>
-                to get milliseconds from masked string.
-            </p>
-            <p>
-                Use
-                <code>maskitoStringifyTime</code>
-                to get the masked string from milliseconds.
-            </p>
+                <p>
+                    Use
+                    <code>maskitoParseTime</code>
+                    to get milliseconds from masked string.
+                </p>
+                <p>
+                    Use
+                    <code>maskitoStringifyTime</code>
+                    to get the masked string from milliseconds.
+                </p>
 
-            <tui-doc-code [code]="maskitoParseStringifyTimeDemo" />
+                <tui-doc-code [code]="maskitoParseStringifyTimeDemo" />
+            </div>
         </tui-notification>
 
         <tui-doc-example

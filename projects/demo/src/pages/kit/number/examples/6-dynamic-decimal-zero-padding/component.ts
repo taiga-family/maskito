@@ -24,7 +24,8 @@ import {getMaskitoOptions} from './mask';
         MaskitoDirective,
     ],
     template: `
-        <label tuiLabel="Enable decimal zero padding by typing dot">
+        <label tuiLabel>
+            Enable decimal zero padding by typing dot
             <tui-input
                 [style.max-width.rem]="30"
                 [tuiTextfieldLabelOutside]="true"
