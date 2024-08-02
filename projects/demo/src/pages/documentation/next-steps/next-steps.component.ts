@@ -6,7 +6,7 @@ import {TuiLink} from '@taiga-ui/core';
 @Component({
     standalone: true,
     selector: 'next-steps',
-    imports: [RouterLinkActive, TuiLink, RouterLink],
+    imports: [RouterLink, RouterLinkActive, TuiLink],
     templateUrl: './next-steps.template.html',
     styles: ['._hidden { display: none }'],
     changeDetection: ChangeDetectionStrategy.OnPush,

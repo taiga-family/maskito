@@ -12,9 +12,9 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        TuiFlagPipe,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        TuiFlagPipe,
     ],
     template: `
         <tui-input

@@ -7,7 +7,7 @@ import {TuiLink, TuiNotification} from '@taiga-ui/core';
 @Component({
     standalone: true,
     selector: 'maskito-libraries-doc-page',
-    imports: [TuiAddonDoc, TuiNotification, TuiLink, RouterLink],
+    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './maskito-libraries.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

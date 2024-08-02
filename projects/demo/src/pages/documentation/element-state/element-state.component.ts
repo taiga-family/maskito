@@ -7,7 +7,7 @@ import {TuiLink} from '@taiga-ui/core';
 @Component({
     standalone: true,
     selector: 'element-state-doc-page',
-    imports: [TuiAddonDoc, TuiLink, RouterLink],
+    imports: [RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './element-state.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

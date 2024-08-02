@@ -9,7 +9,7 @@ import {TuiInputModule} from '@taiga-ui/legacy';
 @Component({
     standalone: true,
     selector: 'card-doc-example-1',
-    imports: [ReactiveFormsModule, TuiGroup, TuiInputModule, MaskitoDirective],
+    imports: [MaskitoDirective, ReactiveFormsModule, TuiGroup, TuiInputModule],
     templateUrl: './template.html',
     styleUrls: ['./style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,

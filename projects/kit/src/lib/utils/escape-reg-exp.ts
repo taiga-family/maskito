@@ -7,5 +7,7 @@ const reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 const reHasRegExpChar = new RegExp(reRegExpChar.source);
 
 export function escapeRegExp(str: string): string {
-    return str && reHasRegExpChar.test(str) ? str.replaceAll(reRegExpChar, '\\$&') : str;
+    return str && reHasRegExpChar.test(str)
+        ? str.replaceAll(reRegExpChar, String.raw`\$&`)
+        : str;
 }

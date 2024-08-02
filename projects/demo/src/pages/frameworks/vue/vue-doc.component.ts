@@ -9,7 +9,7 @@ import {VueExample1} from './examples/vue-1/component';
 @Component({
     standalone: true,
     selector: 'vue-doc-page',
-    imports: [TuiAddonDoc, TuiNotification, TuiLink, RouterLink, VueExample1],
+    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification, VueExample1],
     templateUrl: './vue-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

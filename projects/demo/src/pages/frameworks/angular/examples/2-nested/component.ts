@@ -7,7 +7,7 @@ import {TuiInputModule} from '@taiga-ui/legacy';
 @Component({
     standalone: true,
     selector: 'nested-doc-example-2',
-    imports: [FormsModule, TuiInputModule, TuiLabel, TuiCheckbox],
+    imports: [FormsModule, TuiCheckbox, TuiInputModule, TuiLabel],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

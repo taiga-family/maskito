@@ -5,7 +5,7 @@ import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 @Component({
     standalone: true,
     selector: 'browser-support',
-    imports: [TuiAddonDoc, NgFor, NgIf],
+    imports: [NgFor, NgIf, TuiAddonDoc],
     templateUrl: './browser-support.template.html',
     styles: ['td {width: 18.75rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -7,7 +7,7 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 @Component({
     standalone: true,
     selector: 'transformer-doc-page',
-    imports: [TuiAddonDoc, TuiNotification, NextStepsComponent],
+    imports: [NextStepsComponent, TuiAddonDoc, TuiNotification],
     templateUrl: './transformer.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

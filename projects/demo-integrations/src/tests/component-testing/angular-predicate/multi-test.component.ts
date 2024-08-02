@@ -6,7 +6,7 @@ import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 @Component({
     standalone: true,
     selector: 'synchronous-test-input',
-    imports: [MaskitoDirective, FormsModule],
+    imports: [FormsModule, MaskitoDirective],
     template: `
         <div
             [maskito]="card.matches(':focus') ? cardMask : nameMask"

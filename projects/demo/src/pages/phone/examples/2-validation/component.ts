@@ -24,13 +24,13 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
     standalone: true,
     selector: 'phone-doc-example-2',
     imports: [
+        AsyncPipe,
+        MaskitoDirective,
+        ReactiveFormsModule,
+        TuiError,
+        TuiFieldErrorPipe,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        ReactiveFormsModule,
-        MaskitoDirective,
-        TuiError,
-        AsyncPipe,
-        TuiFieldErrorPipe,
     ],
     template: `
         <tui-input

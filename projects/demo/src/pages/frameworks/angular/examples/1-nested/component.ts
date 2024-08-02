@@ -7,7 +7,7 @@ import {TuiInputModule} from '@taiga-ui/legacy';
 @Component({
     standalone: true,
     selector: 'nested-doc-example-1',
-    imports: [MaskitoDirective, FormsModule, TuiInputModule],
+    imports: [FormsModule, MaskitoDirective, TuiInputModule],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -8,7 +8,7 @@ import mask from './mask';
 @Component({
     standalone: true,
     selector: 'number-mask-doc-example-4',
-    imports: [TuiInputModule, FormsModule, MaskitoDirective],
+    imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `
         <tui-input
             [style.max-width.rem]="30"

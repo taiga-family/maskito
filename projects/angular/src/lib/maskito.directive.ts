@@ -37,23 +37,24 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     }
 
     public async ngOnChanges(): Promise<void> {
-        const {elementPredicate, options} = this;
+        const {elementPredicate, options, maskedElement, elementRef, ngZone} = this;
 
-        this.maskedElement?.destroy();
+        maskedElement?.destroy();
 
         if (!options) {
             return;
         }
 
-        const predicateResult = await elementPredicate(this.elementRef);
+        const predicateResult = await elementPredicate(elementRef);
 
+        // eslint-disable-next-line unicorn/consistent-destructuring
         if (this.elementPredicate !== elementPredicate) {
             // Ignore the result of the predicate if the
             // maskito element has changed before the predicate was resolved.
             return;
         }
 
-        this.ngZone.runOutsideAngular(() => {
+        ngZone.runOutsideAngular(() => {
             this.maskedElement = new Maskito(predicateResult, options);
         });
     }

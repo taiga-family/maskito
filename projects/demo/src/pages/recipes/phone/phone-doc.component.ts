@@ -11,7 +11,7 @@ import {PhoneKZDocExample2} from './examples/2-kz-phone/component';
 @Component({
     standalone: true,
     selector: 'phone-doc',
-    imports: [TuiAddonDoc, TuiLink, RouterLink, PhoneUSDocExample1, PhoneKZDocExample2],
+    imports: [PhoneKZDocExample2, PhoneUSDocExample1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './phone-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
