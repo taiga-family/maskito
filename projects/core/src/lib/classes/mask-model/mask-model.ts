@@ -27,7 +27,7 @@ export class MaskModel implements ElementState {
     }
 
     public addCharacters([from, to]: SelectionRange, newCharacters: string): void {
-        const {value} = this;
+        const {value, maskOptions} = this;
         const maskExpression = this.getMaskExpression({
             value: value.slice(0, from) + newCharacters + value.slice(to),
             selection: [from + newCharacters.length, from + newCharacters.length],
@@ -40,7 +40,7 @@ export class MaskModel implements ElementState {
         const [unmaskedFrom, unmaskedTo] = applyOverwriteMode(
             unmaskedElementState,
             newCharacters,
-            this.maskOptions.overwriteMode,
+            maskOptions.overwriteMode,
         ).selection;
         const newUnmaskedLeadingValuePart =
             unmaskedElementState.value.slice(0, unmaskedFrom) + newCharacters;

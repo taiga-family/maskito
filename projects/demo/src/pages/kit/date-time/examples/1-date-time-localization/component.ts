@@ -9,10 +9,10 @@ import mask from './mask';
     standalone: true,
     selector: 'date-time-mask-doc-example-1',
     imports: [
-        TuiInputModule,
-        TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
     ],
     template: `
         <tui-input

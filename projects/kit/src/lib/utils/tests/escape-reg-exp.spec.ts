@@ -9,7 +9,7 @@ describe('escapeRegExp', () => {
         const escaped = escapeRegExp(rawRegExpStr);
         const testString = '-abb-a.b-';
 
-        expect(escaped).toBe('a\\.b');
+        expect(escaped).toBe(String.raw`a\.b`);
         expect(testString.replace(new RegExp(escaped), '')).toBe('-abb--');
         expect(testString.replace(new RegExp(rawRegExpStr), '')).toBe('--a.b-');
     });
@@ -19,7 +19,7 @@ describe('escapeRegExp', () => {
         const escaped = escapeRegExp(rawRegExpStr);
         const testString = '-10$-10';
 
-        expect(escaped).toBe('10\\$');
+        expect(escaped).toBe(String.raw`10\$`);
         expect(testString.replace(new RegExp(escaped), '')).toBe('--10');
         expect(testString.replace(new RegExp(rawRegExpStr), '')).toBe('-10$-');
     });
@@ -29,7 +29,7 @@ describe('escapeRegExp', () => {
         const escaped = escapeRegExp(rawRegExpStr);
         const testString = '+42';
 
-        expect(escaped).toBe('\\+');
+        expect(escaped).toBe(String.raw`\+`);
         expect(testString.replace(new RegExp(escaped), '')).toBe('42');
         expect(() => testString.replace(new RegExp(rawRegExpStr), '')).toThrow(
             new SyntaxError('Invalid regular expression: /+/: Nothing to repeat'),

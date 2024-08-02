@@ -24,12 +24,12 @@ export function generateMaskExpression({
     minusSign: string;
 }): MaskitoMask {
     const computedPrefix = computeAllOptionalCharsRegExp(prefix);
-    const digit = '\\d';
+    const digit = String.raw`\d`;
     const optionalMinus = isNegativeAllowed
         ? `[${minusSign}${pseudoMinuses.map((x) => `\\${x}`).join('')}]?`
         : '';
     const integerPart = thousandSeparator
-        ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, '\\s')}]*`
+        ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;
     const decimalPart =
         precision > 0

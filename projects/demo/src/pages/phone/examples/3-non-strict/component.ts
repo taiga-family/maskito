@@ -16,11 +16,11 @@ import mask from './mask';
     standalone: true,
     selector: 'phone-doc-example-3',
     imports: [
-        TuiInputModule,
-        TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
         TuiFlagPipe,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
     ],
     template: `
         <tui-input

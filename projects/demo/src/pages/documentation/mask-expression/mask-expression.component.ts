@@ -9,7 +9,7 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 @Component({
     standalone: true,
     selector: 'mask-expression-doc-page',
-    imports: [TuiAddonDoc, TuiLink, TuiNotification, RouterLink, NextStepsComponent],
+    imports: [NextStepsComponent, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './mask-expression.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

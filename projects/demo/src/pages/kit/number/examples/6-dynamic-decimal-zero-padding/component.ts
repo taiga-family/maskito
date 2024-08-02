@@ -17,11 +17,11 @@ import {getMaskitoOptions} from './mask';
     standalone: true,
     selector: 'number-mask-doc-example-6',
     imports: [
-        TuiLabel,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
+        TuiInputModule,
+        TuiLabel,
+        TuiTextfieldControllerModule,
     ],
     template: `
         <label tuiLabel>

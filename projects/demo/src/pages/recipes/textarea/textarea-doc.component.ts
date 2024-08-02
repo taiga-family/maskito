@@ -10,7 +10,7 @@ import {TextareaDocExample1} from './examples/1-latin/component';
 @Component({
     standalone: true,
     selector: 'textarea-doc',
-    imports: [TuiAddonDoc, TuiLink, RouterLink, TextareaDocExample1],
+    imports: [RouterLink, TextareaDocExample1, TuiAddonDoc, TuiLink],
     templateUrl: './textarea-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

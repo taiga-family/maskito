@@ -10,10 +10,10 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
     standalone: true,
     selector: 'phone-doc-example-4',
     imports: [
-        TuiInputModule,
-        TuiTextfieldControllerModule,
         FormsModule,
         MaskitoDirective,
+        TuiInputModule,
+        TuiTextfieldControllerModule,
     ],
     template: `
         <tui-input

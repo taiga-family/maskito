@@ -9,10 +9,10 @@ import mask from './mask';
     standalone: true,
     selector: 'number-mask-doc-example-5',
     imports: [
+        FormsModule,
+        MaskitoDirective,
         TuiInputModule,
         TuiTextfieldControllerModule,
-        MaskitoDirective,
-        FormsModule,
     ],
     template: `
         <tui-input
