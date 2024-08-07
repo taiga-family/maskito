@@ -324,6 +324,7 @@ describe('Number (maskitoTransform)', () => {
                 });
 
                 maskitoTransform('１２３４５', options);
+
                 expect(maskitoTransform('１２３４５', options)).toBe('12_345');
             });
         });
