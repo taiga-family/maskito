@@ -70,16 +70,28 @@ export function maskitoWithPlaceholder(
             ({value, selection}, initialElementState) => {
                 lastClearValue = value;
 
-                /**
-                 * If `value` still equals to `initialElementState.value`,
-                 * then it means that value is patched programmatically (from Maskito's plugin or externally).
-                 * In this case, we don't want to mutate value and automatically add placeholder.
-                 * ___
-                 * For example, developer wants to remove manually placeholder (+ do something else with value) on blur.
-                 * Without this condition, placeholder will be unexpectedly added again.
-                 */
+                const justPlaceholderRemoval =
+                    value +
+                        placeholder.slice(
+                            value.length,
+                            initialElementState.value.length,
+                        ) ===
+                    initialElementState.value;
+
+                if (action === 'validation' && justPlaceholderRemoval) {
+                    /**
+                     * If `value` still equals to `initialElementState.value`,
+                     * then it means that value is patched programmatically (from Maskito's plugin or externally).
+                     * In this case, we don't want to mutate value and automatically add/remove placeholder.
+                     * ___
+                     * For example, developer wants to remove manually placeholder (+ do something else with value) on blur.
+                     * Without this condition, placeholder will be unexpectedly added again.
+                     */
+                    return {selection, value: initialElementState.value};
+                }
+
                 const newValue =
-                    value !== initialElementState.value && (focused || !focusedOnly)
+                    focused || !focusedOnly
                         ? value + placeholder.slice(value.length)
                         : value;
 
