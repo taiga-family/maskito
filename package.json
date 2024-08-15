@@ -142,6 +142,20 @@
         "scripts": {
             "postchangelog": "ts-node ./scripts/postchangelog.ts",
             "postbump": "ts-node ./scripts/postbump.ts"
-        }
+        },
+        "types": [
+            {
+                "type": "feat",
+                "section": "🚀 Features"
+            },
+            {
+                "type": "fix",
+                "section": "🐞 Bug Fixes"
+            },
+            {
+                "type": "deprecate",
+                "section": "⚠️ Deprecations"
+            }
+        ]
     }
 }
