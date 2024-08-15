@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file. See
 - **angular:** delete deprecated `MaskitoModule` & `MaskitoCVA`
   ([#1391](https://github.com/taiga-family/maskito/issues/1391))
 
-### Features
+### 🚀 Features
 
 - **core:** new built-in `maskitoChangeEventPlugin` ([#1338](https://github.com/taiga-family/maskito/issues/1338))
 
@@ -26,13 +26,13 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.5.0](https://github.com/taiga-family/maskito/compare/v2.4.0...v2.5.0) (2024-06-24)
 
-### Features
+### 🚀 Features
 
 - **kit:** new `maskitoParseTime` and `maskitoStringifyTime` utils
   ([#1302](https://github.com/taiga-family/maskito/issues/1302))
   ([d0f9b13](https://github.com/taiga-family/maskito/commit/d0f9b1331f3bb18403691ac7c513c31f5123cf78))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** correct handling of browser autofill/suggestion in Firefox
   ([#1326](https://github.com/taiga-family/maskito/issues/1326))
@@ -46,7 +46,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.4.0](https://github.com/taiga-family/maskito/compare/v2.3.2...v2.4.0) (2024-06-03)
 
-### Features
+### 🚀 Features
 
 - **kit:** `Time` & `DateTime` support increment / decrement of time segment via `ArrowUp` / `ArrowDown`
   ([#1223](https://github.com/taiga-family/maskito/issues/1223))
@@ -54,7 +54,7 @@ All notable changes to this project will be documented in this file. See
 - **kit:** `Time` supports `SS.MSS` & `MM.SS.MSS` modes ([#1224](https://github.com/taiga-family/maskito/issues/1224))
   ([7bed4bc](https://github.com/taiga-family/maskito/commit/7bed4bcaac14908e7e445b277f5b4b6e5b0fd281))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** add `.select()`-method support for `MaskitoElement`
   ([#1268](https://github.com/taiga-family/maskito/issues/1268))
@@ -65,7 +65,7 @@ All notable changes to this project will be documented in this file. See
 
 ### [2.3.2](https://github.com/taiga-family/maskito/compare/v2.3.1...v2.3.2) (2024-05-16)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` pads integer part with zero if user selects all and then types decimal separator
   ([#1220](https://github.com/taiga-family/maskito/issues/1220))
@@ -82,7 +82,7 @@ All notable changes to this project will be documented in this file. See
 
 ### [2.3.1](https://github.com/taiga-family/maskito/compare/v2.3.0...v2.3.1) (2024-04-23)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` should drop decimal separator if all digits are erased
   ([#1211](https://github.com/taiga-family/maskito/issues/1211))
@@ -96,7 +96,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.3.0](https://github.com/taiga-family/maskito/compare/v2.2.0...v2.3.0) (2024-04-16)
 
-### Features
+### 🚀 Features
 
 - **core:** add `contenteditable` support ([#1039](https://github.com/taiga-family/maskito/issues/1039))
   ([0d5bb31](https://github.com/taiga-family/maskito/commit/0d5bb319225fb61f3ac7643c21208122b4a2a2ae))
@@ -104,7 +104,7 @@ All notable changes to this project will be documented in this file. See
   ([#1143](https://github.com/taiga-family/maskito/issues/1143))
   ([ec86284](https://github.com/taiga-family/maskito/commit/ec8628467814cff7dfae22668370236f402d8146))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Date` formatting errors for `mm/yyyy`, `yyyy/mm`, `mm/yy` modes
   ([#1177](https://github.com/taiga-family/maskito/issues/1177))
@@ -112,13 +112,13 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.2.0](https://github.com/taiga-family/maskito/compare/v2.1.0...v2.2.0) (2024-03-07)
 
-### Features
+### 🚀 Features
 
 - **kit:** `Number` supports new configurable parameter `minusSign`
   ([#1118](https://github.com/taiga-family/maskito/issues/1118))
   ([a7bec35](https://github.com/taiga-family/maskito/commit/a7bec35f19d7dfa4023ad83fa36a935b2d636fc7))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - totally disable `Maskito` if nullable options are passed inside `@maskito/{angular,react,vue}`
   ([#1117](https://github.com/taiga-family/maskito/issues/1117))
@@ -126,7 +126,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [2.1.0](https://github.com/taiga-family/maskito/compare/v2.0.2...v2.1.0) (2024-03-04)
 
-### Features
+### 🚀 Features
 
 - **kit:** `Date` & `DateRange` & `DateTime` has improved zero-padding support for browser autofill & IME composition
   ([#1027](https://github.com/taiga-family/maskito/issues/1027))
@@ -135,7 +135,7 @@ All notable changes to this project will be documented in this file. See
   ([#1043](https://github.com/taiga-family/maskito/issues/1043))
   ([434c9c5](https://github.com/taiga-family/maskito/commit/434c9c5f349ab3c19e11722e95313c5763203b08))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `maskitoParseNumber` should interpret japanese prolonged sound mark as pseudo minus
   ([#1115](https://github.com/taiga-family/maskito/issues/1115))
@@ -143,7 +143,7 @@ All notable changes to this project will be documented in this file. See
 
 ### [2.0.2](https://github.com/taiga-family/maskito/compare/v2.0.1...v2.0.2) (2024-02-01)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` with initial value has problems with the first time input
   ([#986](https://github.com/taiga-family/maskito/issues/986))
@@ -154,7 +154,7 @@ All notable changes to this project will be documented in this file. See
 
 ### [2.0.1](https://github.com/taiga-family/maskito/compare/v2.0.0...v2.0.1) (2024-01-31)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** `maskitoUpdateElement` should not dispatch `InputEvent` if value is not changed
   ([#977](https://github.com/taiga-family/maskito/issues/977))
@@ -207,14 +207,14 @@ All notable changes to this project will be documented in this file. See
 
 ## [1.9.0](https://github.com/taiga-family/maskito/compare/v1.8.2...v1.9.0) (2023-11-23)
 
-### Features
+### 🚀 Features
 
 - **phone:** add ability to configure the separator ([#685](https://github.com/taiga-family/maskito/issues/685))
   ([ab6bb11](https://github.com/taiga-family/maskito/commit/ab6bb11b1b40e069d31598b676c04456329aaf64))
 
 ### [1.8.2](https://github.com/taiga-family/maskito/compare/v1.8.1...v1.8.2) (2023-11-16)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `PrefixPostprocessor` has problems with multi-character prefix
   ([#669](https://github.com/taiga-family/maskito/issues/669))
@@ -222,7 +222,7 @@ All notable changes to this project will be documented in this file. See
 
 ### [1.8.1](https://github.com/taiga-family/maskito/compare/v1.8.0...v1.8.1) (2023-10-19)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Date` accept single character date segment during paste
   ([#610](https://github.com/taiga-family/maskito/issues/610))
@@ -230,12 +230,12 @@ All notable changes to this project will be documented in this file. See
 
 ## [1.8.0](https://github.com/taiga-family/maskito/compare/v1.7.0...v1.8.0) (2023-10-18)
 
-### Features
+### 🚀 Features
 
 - **angular:** allow nullable options ([#605](https://github.com/taiga-family/maskito/issues/605))
   ([21eaa7c](https://github.com/taiga-family/maskito/commit/21eaa7c0c0e7d5173c6f070f5222ba6492e196a6))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` has broken zero padding when `decimalSeparator` equals to non-default value
   ([#586](https://github.com/taiga-family/maskito/issues/586))
@@ -243,7 +243,7 @@ All notable changes to this project will be documented in this file. See
 
 ## [1.7.0](https://github.com/taiga-family/maskito/compare/v1.6.0...v1.7.0) (2023-09-15)
 
-### Features
+### 🚀 Features
 
 New `@maskito/phone` library ([#425](https://github.com/taiga-family/maskito/pull/425))
 ([#482](https://github.com/taiga-family/maskito/issues/482))
@@ -252,13 +252,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.6.0](https://github.com/taiga-family/maskito/compare/v1.5.1...v1.6.0) (2023-09-15)
 
-### Features
+### 🚀 Features
 
 - **react:** `elementPredicate` can accept asynchronous predicate
   ([#502](https://github.com/taiga-family/maskito/issues/502))
   ([4bbf758](https://github.com/taiga-family/maskito/commit/4bbf758107ed4b2fdbde5a241f22c0f363c22104))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` should accept all types of spaces as interchangeable characters for `thousandSeparator`
   ([#505](https://github.com/taiga-family/maskito/issues/505))
@@ -266,7 +266,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [1.5.1](https://github.com/taiga-family/maskito/compare/v1.5.0...v1.5.1) (2023-09-08)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **vue:** `elementPredicate` should accept `MaskitoElementPredicateAsync` type
   ([#487](https://github.com/taiga-family/maskito/issues/487))
@@ -274,7 +274,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.5.0](https://github.com/taiga-family/maskito/compare/v1.4.0...v1.5.0) (2023-09-04)
 
-### Features
+### 🚀 Features
 
 - **core:** add IME composition support ([#467](https://github.com/taiga-family/maskito/issues/467))
   ([e7d664b](https://github.com/taiga-family/maskito/commit/e7d664b66a008a742c0a532e341b0e0bb0a0f759))
@@ -282,7 +282,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#392](https://github.com/taiga-family/maskito/issues/392))
   ([355f87f](https://github.com/taiga-family/maskito/commit/355f87fd536758bc2db59f760ed114d28264122a))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `maskitoCaretGuard` doesn't work after focus on `<select />`
   ([#462](https://github.com/taiga-family/maskito/issues/462))
@@ -293,7 +293,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.4.0](https://github.com/taiga-family/maskito/compare/v1.3.0...v1.4.0) (2023-07-27)
 
-### Features
+### 🚀 Features
 
 - **kit:** `Date` & `DateRange` support new modes `yyyy`, `mm/yyyy`, `yyyy/mm`
   ([#384](https://github.com/taiga-family/maskito/issues/384))
@@ -303,13 +303,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.3.0](https://github.com/taiga-family/maskito/compare/v1.2.2...v1.3.0) (2023-07-24)
 
-### Features
+### 🚀 Features
 
 - **kit:** `DateRange` add configurable parameter `rangeSeparator`
   ([#376](https://github.com/taiga-family/maskito/issues/376))
   ([d904842](https://github.com/taiga-family/maskito/commit/d90484214da76f4c73ad925eef5fe391a154c499))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` has problems with run-time updates of postfix
   ([#380](https://github.com/taiga-family/maskito/issues/380))
@@ -317,7 +317,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [1.2.2](https://github.com/taiga-family/maskito/compare/v1.2.1...v1.2.2) (2023-07-19)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `maskitoCaretGuard` should wait for `mouseup` before execution
   ([#372](https://github.com/taiga-family/maskito/issues/372))
@@ -328,7 +328,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [1.2.1](https://github.com/taiga-family/maskito/compare/v1.2.0...v1.2.1) (2023-07-11)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` with `postfix` should be compatible with `decimalZeroPadding`
   ([#364](https://github.com/taiga-family/maskito/issues/364))
@@ -339,13 +339,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.2.0](https://github.com/taiga-family/maskito/compare/v1.1.1...v1.2.0) (2023-07-03)
 
-### Features
+### 🚀 Features
 
 - **kit:** `maskitoCaretGuard`'s function has the 2nd argument with current selection range
   ([#358](https://github.com/taiga-family/maskito/issues/358))
   ([eedc4d6](https://github.com/taiga-family/maskito/commit/eedc4d610efaf36b98a4049f5c5334561b5b21c5))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `maskitoCaretGuard` incorrectly validates the left side of constraints
   ([#356](https://github.com/taiga-family/maskito/issues/356))
@@ -356,7 +356,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [1.1.1](https://github.com/taiga-family/maskito/compare/v1.1.0...v1.1.1) (2023-06-29)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** don't ignore native attribute `maxlength` ([#350](https://github.com/taiga-family/maskito/issues/350))
   ([8504f49](https://github.com/taiga-family/maskito/commit/8504f497152931da06dd745763be2505587f97b4))
@@ -366,7 +366,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [1.1.0](https://github.com/taiga-family/maskito/compare/v1.0.0...v1.1.0) (2023-06-23)
 
-### Features
+### 🚀 Features
 
 - **kit:** `maskitoEventHandler` accepts `AddEventListenerOptions` as the 3d optional argument
   ([#346](https://github.com/taiga-family/maskito/issues/346))
@@ -375,7 +375,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#347](https://github.com/taiga-family/maskito/issues/347))
   ([ef539e1](https://github.com/taiga-family/maskito/commit/ef539e160f601023e513036d704f7daff9689286))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Date` allows to replace the whole selection range with zero
   ([#345](https://github.com/taiga-family/maskito/issues/345))
@@ -394,12 +394,12 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.16.0](https://github.com/taiga-family/maskito/compare/v0.15.0...v0.16.0) (2023-06-20)
 
-### Features
+### 🚀 Features
 
 - **vue:** support async predicate ([#336](https://github.com/taiga-family/maskito/issues/336))
   ([d1452b5](https://github.com/taiga-family/maskito/commit/d1452b5f1b2f8a252dfd05a5c1eb04ba971a1970))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` fails to parse small number on blur (exponential notation problem)
   ([#339](https://github.com/taiga-family/maskito/issues/339))
@@ -407,13 +407,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.15.0](https://github.com/taiga-family/maskito/compare/v0.14.0...v0.15.0) (2023-06-14)
 
-### Features
+### 🚀 Features
 
 - **core:** add new parameters `preprocessors` & `postprocessors` and deprecate `preprocessor` & `postprocessor`
   ([#333](https://github.com/taiga-family/maskito/issues/333))
   ([0137775](https://github.com/taiga-family/maskito/commit/01377751a9875143257930934b1e2a9143b6da03))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `maskitoParseNumber` should return `NaN` for all strings with no digits
   ([#331](https://github.com/taiga-family/maskito/issues/331))
@@ -424,7 +424,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.14.0](https://github.com/taiga-family/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
 
-### Features
+### 🚀 Features
 
 - **angular:** `[maskitoElement]` can accept asynchronous predicate
   ([#316](https://github.com/taiga-family/maskito/issues/316))
@@ -435,7 +435,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.13.0](https://github.com/taiga-family/maskito/compare/v0.12.1...v0.13.0) (2023-06-02)
 
-### Features
+### 🚀 Features
 
 - **core:** better layout-independent way to detect `Undo` and `Redo`
   ([#320](https://github.com/taiga-family/maskito/issues/320))
@@ -445,7 +445,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.12.1](https://github.com/taiga-family/maskito/compare/v0.12.0...v0.12.1) (2023-05-25)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `DateTime` validate min / max if date is complete
   ([#314](https://github.com/taiga-family/maskito/issues/314))
@@ -456,7 +456,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.12.0](https://github.com/taiga-family/maskito/compare/v0.11.1...v0.12.0) (2023-05-19)
 
-### Features
+### 🚀 Features
 
 - **core:** add `plugins` to `MaskitoOptions` ([#305](https://github.com/taiga-family/maskito/issues/305))
   ([b512ae2](https://github.com/taiga-family/maskito/commit/b512ae2c64b2a2c6560e2e5c68d8c72952474c71))
@@ -468,7 +468,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.11.1](https://github.com/taiga-family/maskito/compare/v0.11.0...v0.11.1) (2023-05-11)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** `insertFromDrop` action behaves now in the same way as `insertFromPaste`
   ([#291](https://github.com/taiga-family/maskito/issues/291))
@@ -479,14 +479,14 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.11.0](https://github.com/taiga-family/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
 
-### Features
+### 🚀 Features
 
 - **react:** new library `@maskito/react` ([#273](https://github.com/taiga-family/maskito/issues/273))
   ([4c2f755](https://github.com/taiga-family/maskito/commit/4c2f755bac9513689964af7fdb7f4deec56bfb52))
 
 ## [0.10.0](https://github.com/taiga-family/maskito/compare/v0.9.0...v0.10.0) (2023-04-25)
 
-### Features
+### 🚀 Features
 
 - **kit:** `Number` keeps untouched decimal part if `precision: Infinity`
   ([#253](https://github.com/taiga-family/maskito/issues/253))
@@ -497,7 +497,7 @@ Learn more: https://maskito.dev/addons/phone
 - **kit:** new `maskitoPostfixPostprocessorGenerator` ([#257](https://github.com/taiga-family/maskito/issues/257))
   ([fdc86db](https://github.com/taiga-family/maskito/commit/fdc86dbad368bfc17efd1047b7d68d9622968bb0))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` fails to trim leading zeroes after deleting of leading digit
   ([#268](https://github.com/taiga-family/maskito/issues/268))
@@ -510,12 +510,12 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.9.0](https://github.com/taiga-family/maskito/compare/v0.8.1...v0.9.0) (2023-03-31)
 
-### Features
+### 🚀 Features
 
 - **kit:** new `maskitoPrefixPostprocessorGenerator` ([#235](https://github.com/taiga-family/maskito/issues/235))
   ([50f0d58](https://github.com/taiga-family/maskito/commit/50f0d58ccbfa22d15174d76479a9d642687db099))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **angular:** Jest throws `Class constructor DefaultValueAccessor cannot be invoked without 'new'`
   ([#232](https://github.com/taiga-family/maskito/issues/232))
@@ -523,7 +523,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.8.1](https://github.com/taiga-family/maskito/compare/v0.8.0...v0.8.1) (2023-03-27)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - `@maskito/core` & `@maskito/kit` now include both `UMD` and `ESM` module formats
   ([#227](https://github.com/taiga-family/maskito/issues/227))
@@ -531,13 +531,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.8.0](https://github.com/taiga-family/maskito/compare/v0.7.2...v0.8.0) (2023-03-23)
 
-### Features
+### 🚀 Features
 
 - **kit:** `DateRange` swaps dates if the 2nd date is less than the 1st one
   ([#212](https://github.com/taiga-family/maskito/issues/212))
   ([3efbb42](https://github.com/taiga-family/maskito/commit/3efbb42f2dd5c4e43ff514da7a82abfc7c4b3a38))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** incorrect order of actions during update of native element
   ([#225](https://github.com/taiga-family/maskito/issues/225))
@@ -545,7 +545,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.7.2](https://github.com/taiga-family/maskito/compare/v0.7.1...v0.7.2) (2023-03-23)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **angular:** `@maskito/angular` should not depend on `@maskito/kit`
   ([#221](https://github.com/taiga-family/maskito/issues/221))
@@ -556,7 +556,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.7.1](https://github.com/taiga-family/maskito/compare/v0.7.0...v0.7.1) (2023-03-22)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **angular:** use `@nrwl/angular:package` executor instead of `@nrwl/angular:ng-packagr-lite`
   ([#216](https://github.com/taiga-family/maskito/issues/216))
@@ -567,7 +567,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.7.0](https://github.com/taiga-family/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
 
-### Features
+### 🚀 Features
 
 - **core:** add `deleteSoftLineBackward` & `deleteSoftLineForward` support
   ([#207](https://github.com/taiga-family/maskito/issues/207))
@@ -576,7 +576,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#197](https://github.com/taiga-family/maskito/issues/197))
   ([c85ca23](https://github.com/taiga-family/maskito/commit/c85ca2355cb0b6fcef73f3e7497f7c31fa82c87c))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** `Maskito` losses valid characters on invalid insertion (`overwriteMode: replace`)
   ([#208](https://github.com/taiga-family/maskito/issues/208))
@@ -587,7 +587,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.6.0](https://github.com/taiga-family/maskito/compare/v0.5.0...v0.6.0) (2023-03-15)
 
-### Features
+### 🚀 Features
 
 - **angular:** add CVA and pipe ([#187](https://github.com/taiga-family/maskito/issues/187))
   ([a099257](https://github.com/taiga-family/maskito/commit/a099257a16b569444cdae9276ce66e9a806f531e))
@@ -595,7 +595,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#193](https://github.com/taiga-family/maskito/issues/193))
   ([24b761c](https://github.com/taiga-family/maskito/commit/24b761c84d0947df5e4c78a2114f1de8f6ca20f4))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** show trailing fixed characters + duplicated fixed character on `Drop`
   ([#185](https://github.com/taiga-family/maskito/issues/185))
@@ -609,7 +609,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.5.0](https://github.com/taiga-family/maskito/compare/v0.4.0...v0.5.0) (2023-03-09)
 
-### Features
+### 🚀 Features
 
 - **core:** new utility `maskitoTransform(value, maskitoOptions)`
   ([#177](https://github.com/taiga-family/maskito/issues/177))
@@ -617,7 +617,7 @@ Learn more: https://maskito.dev/addons/phone
 - **kit:** new utility `maskitoParseNumber` ([#178](https://github.com/taiga-family/maskito/issues/178))
   ([fc58141](https://github.com/taiga-family/maskito/commit/fc58141625ecbdc7d804aa382a69b38bf7146fc4))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` mask throws an error on empty string in `thousandSeparator`
   ([#176](https://github.com/taiga-family/maskito/issues/176))
@@ -625,12 +625,12 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.4.0](https://github.com/taiga-family/maskito/compare/v0.3.0...v0.4.0) (2023-03-02)
 
-### Features
+### 🚀 Features
 
 - **angular:** `maskitoElement` add new input ([#164](https://github.com/taiga-family/maskito/issues/164))
   ([407c131](https://github.com/taiga-family/maskito/commit/407c131d2d8f8514173ad7a5e248759e2d4f8abc))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` pads empty integer part when paste from clipboard
   ([#168](https://github.com/taiga-family/maskito/issues/168))
@@ -638,13 +638,13 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.3.0](https://github.com/taiga-family/maskito/compare/v0.2.0...v0.3.0) (2023-03-01)
 
-### Features
+### 🚀 Features
 
 - **angular:** add other maskito packages to `ng-update.packageGroup` of `package.json`
   ([#161](https://github.com/taiga-family/maskito/issues/161))
   ([bdecdaa](https://github.com/taiga-family/maskito/commit/bdecdaa9cac2681e35191cabd2d5d853eb97a09d))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Date`-mask fix wrong year that appears using the min property
   ([#157](https://github.com/taiga-family/maskito/issues/157))
@@ -652,12 +652,12 @@ Learn more: https://maskito.dev/addons/phone
 
 ## [0.2.0](https://github.com/taiga-family/maskito/compare/v0.1.1...v0.2.0) (2023-02-28)
 
-### Features
+### 🚀 Features
 
 - **kit:** new `DateTime` mask ([#146](https://github.com/taiga-family/maskito/issues/146))
   ([6d6b2c1](https://github.com/taiga-family/maskito/commit/6d6b2c17b5c0f62bc804451524cd4b2ce3e50660))
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **kit:** `Number` is now replacing hyphen, en-dash and em-dash with minus sign
   ([#153](https://github.com/taiga-family/maskito/issues/153))
@@ -665,7 +665,7 @@ Learn more: https://maskito.dev/addons/phone
 
 ### [0.1.1](https://github.com/taiga-family/maskito/compare/v0.1.0...v0.1.1) (2023-02-15)
 
-### Bug Fixes
+### 🐞 Bug Fixes
 
 - **core:** `Module parse failed: 'import' and 'export' may appear only with 'sourceType: module'`
   ([#131](https://github.com/taiga-family/maskito/issues/131))
