@@ -172,12 +172,6 @@ export const ROUTES: Routes = [
         title: 'Maskito in Real World Form',
     },
     {
-        path: DemoPath.Changelog,
-        loadComponent: () =>
-            import('../pages/documentation/changelog/changelog.component'),
-        title: 'Changelog',
-    },
-    {
         path: DemoPath.Stackblitz,
         loadComponent: () =>
             import('../pages/stackblitz').then((m) => m.StackblitzStarterComponent),

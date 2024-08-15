@@ -176,7 +176,8 @@ export const DEMO_PAGES: TuiDocRoutePages = [
     {
         section: 'Other',
         title: 'Changelog',
-        route: DemoPath.Changelog,
-        keywords: 'changelog, release, version, history',
+        route: 'https://github.com/taiga-family/maskito/blob/main/CHANGELOG.md',
+        target: '_blank',
+        keywords: 'release, change, changelog, archive, history',
     },
 ];
