@@ -47,6 +47,11 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     });
 
     describe('postprocessors', () => {
+        beforeEach(() => {
+            // Reset side effects from other tests
+            preprocessor({elementState: EMPTY_ELEMENT_STATE, data: ''}, 'validation');
+        });
+
         describe('different initial element state (2nd argument of postprocessor)', () => {
             const ONLY_PLACEHOLDER_STATE = {
                 value: 'dd/mm/yyyy',
