@@ -7,7 +7,7 @@
     "prefix": "app",
     "targets": {
         "build": {
-            "executor": "@angular-builders/custom-webpack:browser",
+            "executor": "@nx/angular:webpack-browser",
             "options": {
                 "customWebpackConfig": {
                     "path": "projects/demo/webpack.config.ts"
@@ -89,19 +89,19 @@
             }
         },
         "serve": {
-            "executor": "@angular-builders/custom-webpack:dev-server",
+            "executor": "@nx/angular:dev-server",
             "options": {
-                "browserTarget": "demo:build",
+                "buildTarget": "demo:build",
                 "port": 3333,
                 "sslCert": ".ssl/localhost.pem",
                 "sslKey": ".ssl/localhost-key.pem"
             },
             "configurations": {
                 "production": {
-                    "browserTarget": "demo:build:production"
+                    "buildTarget": "demo:build:production"
                 },
                 "development": {
-                    "browserTarget": "demo:build:development"
+                    "buildTarget": "demo:build:development"
                 }
             },
             "defaultConfiguration": "development"
@@ -135,7 +135,7 @@
             }
         },
         "server": {
-            "executor": "@angular-builders/custom-webpack:server",
+            "executor": "@nx/angular:webpack-server",
             "options": {
                 "customWebpackConfig": {
                     "path": "projects/demo/webpack.config.ts"
