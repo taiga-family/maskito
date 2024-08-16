@@ -37,6 +37,6 @@ export function removeFixedMaskCharacters(
 
     return {
         value: unmaskedValue,
-        selection: [selection[0]!, selection[1]!],
+        selection: [selection[0], selection[1]],
     };
 }
