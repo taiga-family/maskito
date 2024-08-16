@@ -33,7 +33,10 @@ export function createSwapDatesPostprocessor({
 
         return {
             selection,
-            value: fromDate > toDate ? dateStrings.reverse().join(rangeSeparator) : value,
+            value:
+                fromDate && toDate && fromDate > toDate
+                    ? dateStrings.reverse().join(rangeSeparator)
+                    : value,
         };
     };
 }

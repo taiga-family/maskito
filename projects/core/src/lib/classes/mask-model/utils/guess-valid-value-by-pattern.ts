@@ -20,7 +20,7 @@ export function guessValidValueByPattern(
                 initialElementState,
             );
             const newValidatedChars = validatedCharacters + leadingCharacters;
-            const charConstraint = mask[newValidatedChars.length];
+            const charConstraint = mask[newValidatedChars.length] || '';
 
             if (isFixedCharacter(charConstraint)) {
                 return newValidatedChars + charConstraint;

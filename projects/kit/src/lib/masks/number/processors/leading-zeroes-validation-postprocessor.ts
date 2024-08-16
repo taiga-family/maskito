@@ -55,7 +55,7 @@ export function createLeadingZeroesValidationPostprocessor({
         });
 
         const hasDecimalSeparator = cleanValue.includes(decimalSeparator);
-        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
+        const [integerPart = '', decimalPart = ''] = cleanValue.split(decimalSeparator);
         const zeroTrimmedIntegerPart = trimLeadingZeroes(integerPart);
 
         if (integerPart === zeroTrimmedIntegerPart) {

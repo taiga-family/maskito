@@ -10,7 +10,7 @@ export function getLeadingFixedCharacters(
     let leadingFixedCharacters = '';
 
     for (let i = validatedValuePart.length; i < mask.length; i++) {
-        const charConstraint = mask[i];
+        const charConstraint = mask[i] || '';
         const isInitiallyExisted = initialElementState?.value[i] === charConstraint;
 
         if (
