@@ -34,7 +34,7 @@
         "projects/*"
     ],
     "scripts": {
-        "postinstall": "husky install",
+        "prepare": "husky",
         "*** Workflow ***": "",
         "start": "nx run demo:serve",
         "build": "nx run demo:build:production",
