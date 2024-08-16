@@ -36,7 +36,6 @@
         "vue": "3.4.38"
     },
     "devDependencies": {
-        "@angular-builders/custom-webpack": "16.0.1",
         "@nguniversal/builders": "16.2.0"
     }
 }
