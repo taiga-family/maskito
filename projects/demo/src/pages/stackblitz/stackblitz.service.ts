@@ -13,8 +13,8 @@ export class StackblitzService implements TuiCodeEditor {
     private readonly baseProjectConfigs: Pick<Project, 'dependencies' | 'template'> = {
         template: 'typescript',
         dependencies: {
-            '@maskito/core': '*',
-            '@maskito/kit': '*',
+            '@maskito/core': 'latest',
+            '@maskito/kit': 'latest',
         },
     };
 
