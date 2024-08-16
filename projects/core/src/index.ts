@@ -8,7 +8,7 @@ export {
     maskitoInitialCalibrationPlugin,
     maskitoStrictCompositionPlugin,
 } from './lib/plugins';
-export {
+export type {
     MaskitoElement,
     MaskitoElementPredicate,
     MaskitoMask,

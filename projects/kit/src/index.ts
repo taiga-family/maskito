@@ -6,7 +6,7 @@ export {
     maskitoParseTime,
     maskitoStringifyTime,
     maskitoTimeOptionsGenerator,
-    MaskitoTimeParams,
+    type MaskitoTimeParams,
 } from './lib/masks/time';
 export {
     maskitoAddOnFocusPlugin,
@@ -20,7 +20,7 @@ export {
     maskitoPrefixPostprocessorGenerator,
     maskitoWithPlaceholder,
 } from './lib/processors';
-export {
+export type {
     MaskitoDateMode,
     MaskitoDateSegments,
     MaskitoTimeMode,
