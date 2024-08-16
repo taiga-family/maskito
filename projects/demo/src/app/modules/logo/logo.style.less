@@ -1,8 +1,10 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
 :host {
     display: flex;
     align-items: center;
 
-    :host-context(tui-root._mobile) {
+    @media @tui-mobile {
         font-size: 0;
     }
 }
@@ -23,7 +25,7 @@
 .by {
     margin-left: 0.875rem;
 
-    :host-context(tui-root._mobile) & {
+    @media @tui-mobile {
         display: none;
     }
 }
