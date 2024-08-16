@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import phonePackageJson from '@maskito/phone/package.json';
 import type {OpenOptions, Project} from '@stackblitz/sdk';
 import stackblitz from '@stackblitz/sdk';
 import type {TuiCodeEditor} from '@taiga-ui/addon-doc';
@@ -15,6 +16,8 @@ export class StackblitzService implements TuiCodeEditor {
         dependencies: {
             '@maskito/core': 'latest',
             '@maskito/kit': 'latest',
+            '@maskito/phone': 'latest',
+            'libphonenumber-js': phonePackageJson.peerDependencies['libphonenumber-js'],
         },
     };
 
