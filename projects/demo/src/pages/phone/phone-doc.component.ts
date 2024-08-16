@@ -105,7 +105,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
 
     protected metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
 
-    protected selectedMetadata: MetadataName = this.metadataVariants[0];
+    protected selectedMetadata: MetadataName = this.metadataVariants[0]!;
 
     protected countryCodeVariants = getCountries(this.metadata);
 
