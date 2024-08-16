@@ -55,22 +55,20 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
 
     protected apiPageControl = new FormControl('');
 
-    protected readonly modeOptions: MaskitoTimeMode[] = [
+    protected readonly modeOptions = [
         'HH:MM',
         'HH:MM:SS',
         'HH:MM:SS.MSS',
         'HH',
         'MM.SS.MSS',
         'SS.MSS',
-    ];
+    ] as const satisfies readonly MaskitoTimeMode[];
 
-    protected readonly timeSegmentMaxValuesOptions: Array<
-        Partial<MaskitoTimeSegments<number>>
-    > = [
+    protected readonly timeSegmentMaxValuesOptions = [
         {hours: 23, minutes: 59, seconds: 59, milliseconds: 999},
         {hours: 11},
         {hours: 5, minutes: 5, seconds: 5, milliseconds: 5},
-    ];
+    ] as const satisfies ReadonlyArray<Partial<MaskitoTimeSegments<number>>>;
 
     public mode: MaskitoTimeMode = this.modeOptions[0];
     public timeSegmentMaxValues: Partial<MaskitoTimeSegments<number>> =

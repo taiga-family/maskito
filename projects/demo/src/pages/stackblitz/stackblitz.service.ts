@@ -29,7 +29,7 @@ export class StackblitzService implements TuiCodeEditor {
         id: string,
         files: Record<string, string>,
     ): Promise<void> {
-        const [tsMd, css] = await Promise.all(
+        const [tsMd = '', css = ''] = await Promise.all(
             [import('./files/example.ts.md?raw'), import('./files/styles.css?raw')].map(
                 tuiRawLoad,
             ),
@@ -45,8 +45,8 @@ export class StackblitzService implements TuiCodeEditor {
                         ? '<textarea></textarea>'
                         : '<input />',
                     'styles.css': css,
-                    'index.ts': tuiTryParseMarkdownCodeBlock(tsMd)[0],
-                    'mask.ts': files[DocExamplePrimaryTab.MaskitoOptions],
+                    'index.ts': tuiTryParseMarkdownCodeBlock(tsMd)[0] || '',
+                    'mask.ts': files[DocExamplePrimaryTab.MaskitoOptions] || '',
                 },
             },
             {openFile: 'index.ts,mask.ts'},

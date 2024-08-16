@@ -27,13 +27,15 @@ import {PhoneMaskDocExample3} from './examples/3-non-strict/component';
 import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
 import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
 
-type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
-
-const metadataSets: Record<string, MetadataJson> = {
+const metadataSets = {
     min: minMetadata,
     max: maxMetadata,
     mobile: mobileMetadata,
-} as const;
+} as const satisfies Record<string, MetadataJson>;
+
+type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
+
+type MetadataName = keyof typeof metadataSets;
 
 @Component({
     standalone: true,
@@ -101,9 +103,9 @@ export default class PhoneDocComponent implements GeneratorOptions {
     public countryIsoCode: CountryCode = 'RU';
     public separator = '-';
 
-    protected metadataVariants = Object.keys(metadataSets);
+    protected metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
 
-    protected selectedMetadata = this.metadataVariants[0];
+    protected selectedMetadata: MetadataName = this.metadataVariants[0];
 
     protected countryCodeVariants = getCountries(this.metadata);
 

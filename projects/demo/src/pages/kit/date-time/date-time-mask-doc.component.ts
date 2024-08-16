@@ -64,27 +64,27 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
 
     protected apiPageControl = new FormControl('');
 
-    protected readonly dateModeOptions: MaskitoDateMode[] = [
+    protected readonly dateModeOptions = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
-    ];
+    ] as const satisfies readonly MaskitoDateMode[];
 
-    protected readonly timeModeOptions: MaskitoTimeMode[] = [
+    protected readonly timeModeOptions = [
         'HH:MM',
         'HH:MM:SS',
         'HH:MM:SS.MSS',
-    ];
+    ] as const satisfies readonly MaskitoTimeMode[];
 
     protected readonly minMaxOptions = [
         '0001-01-01T00:00:00',
         '9999-12-31T23:59:59',
         '2000-01-01T12:30',
         '2025-05-10T18:30',
-    ];
+    ] as const;
 
-    protected minStr = this.minMaxOptions[0];
-    protected maxStr = this.minMaxOptions[1];
+    protected minStr: string = this.minMaxOptions[0];
+    protected maxStr: string = this.minMaxOptions[1];
 
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
