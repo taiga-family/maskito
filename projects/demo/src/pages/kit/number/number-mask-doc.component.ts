@@ -106,7 +106,7 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
     public min = Number.MIN_SAFE_INTEGER;
     public decimalSeparator = '.';
     public decimalZeroPadding = false;
-    public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0]!;
+    public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0];
     public thousandSeparator = ' ';
     public prefix = '';
     public postfix = '';
