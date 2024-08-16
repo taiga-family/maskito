@@ -47,7 +47,7 @@ export function maskitoDateOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentSeparator: separator,
                 splitFn: (value) => ({dateStrings: [value]}),
-                uniteFn: ([dateString]) => dateString,
+                uniteFn: ([dateString = '']) => dateString,
             }),
             createMinMaxDatePostprocessor({
                 min,

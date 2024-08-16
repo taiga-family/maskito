@@ -6,7 +6,7 @@
  */
 export function stringifyNumberWithoutExp(value: number): string {
     const valueAsString = String(value);
-    const [numberPart, expPart] = valueAsString.split('e-');
+    const [numberPart = '', expPart] = valueAsString.split('e-');
 
     let valueWithoutExp = valueAsString;
 

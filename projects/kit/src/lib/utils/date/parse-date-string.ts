@@ -23,8 +23,8 @@ export function parseDateString(
         Object.entries(dateSegments)
             .filter(([_, value]) => Boolean(value))
             .sort(([a], [b]) =>
-                fullMode.toLowerCase().indexOf(a[0]) >
-                fullMode.toLowerCase().indexOf(b[0])
+                fullMode.toLowerCase().indexOf(a.slice(0, 1)) >
+                fullMode.toLowerCase().indexOf(b.slice(0, 1))
                     ? 1
                     : -1,
             ),

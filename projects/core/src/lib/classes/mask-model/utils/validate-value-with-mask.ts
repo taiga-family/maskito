@@ -9,7 +9,7 @@ export function validateValueWithMask(
         return (
             value.length === maskExpression.length &&
             Array.from(value).every((char, i) => {
-                const charConstraint = maskExpression[i];
+                const charConstraint = maskExpression[i] || '';
 
                 return isFixedCharacter(charConstraint)
                     ? char === charConstraint

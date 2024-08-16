@@ -14,7 +14,7 @@ export function removeFixedMaskCharacters(
 
     const unmaskedValue = Array.from(initialElementState.value).reduce(
         (rawValue, char, i) => {
-            const charConstraint = mask[i];
+            const charConstraint = mask[i] || '';
 
             if (i === from) {
                 selection.push(rawValue.length);

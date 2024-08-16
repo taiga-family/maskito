@@ -16,8 +16,7 @@ export function isDateTimeStringComplete(
     return (
         dateTimeString.length >=
             dateMode.length + timeMode.length + dateTimeSeparator.length &&
-        dateTimeString
-            .split(dateTimeSeparator)[0]
+        (dateTimeString.split(dateTimeSeparator)[0] || '')
             .split(/\D/)
             .every((segment) => !segment.match(/^0+$/))
     );

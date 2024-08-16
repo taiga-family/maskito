@@ -46,6 +46,10 @@ export function createMinMaxRangeLengthPostprocessor({
             segmentsToDate(parseDateString(dateString, dateModeTemplate)),
         );
 
+        if (!fromDate || !toDate) {
+            return {value, selection};
+        }
+
         const minDistantToDate = appendDate(fromDate, {
             ...minLength,
             // 06.02.2023 - 07.02.2023 => {minLength: {day: 3}} => 06.02.2023 - 08.02.2023
