@@ -45,7 +45,7 @@ export default class DateMaskDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
     };
 
-    protected readonly modeOptions: MaskitoDateMode[] = [
+    protected readonly modeOptions = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
@@ -53,21 +53,21 @@ export default class DateMaskDocComponent implements GeneratorOptions {
         'mm/yyyy',
         'yyyy/mm',
         'yyyy',
-    ];
+    ] as const satisfies readonly MaskitoDateMode[];
 
-    protected readonly separatorOptions: string[] = ['.', '/', '-'];
+    protected readonly separatorOptions = ['.', '/', '-'] as const;
     protected readonly minMaxOptions = [
         '0001-01-01',
         '9999-12-31',
         '2000-01-01',
         '2025-05-10',
-    ];
+    ] as const;
 
-    protected minStr = this.minMaxOptions[0];
-    protected maxStr = this.minMaxOptions[1];
+    protected minStr: string = this.minMaxOptions[0];
+    protected maxStr: string = this.minMaxOptions[1];
 
     public mode: MaskitoDateMode = this.modeOptions[0];
-    public separator = this.separatorOptions[0];
+    public separator: string = this.separatorOptions[0];
 
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
