@@ -23,6 +23,8 @@ module.exports = {
                 '@taiga-ui/experience/strict-tui-doc-example': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
                 '@typescript-eslint/member-ordering': 'off',
+                'consistent-return': 'off',
+                '@typescript-eslint/consistent-return': 'off',
             },
         },
     ],
