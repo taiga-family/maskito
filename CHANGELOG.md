@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/taiga-family/maskito/compare/v3.0.0...v3.0.1) (2024-08-19)
+
+### 🐞 Bug Fixes
+
+- **kit:** `maskitoStringifyTime` was adding `0` on the wrong side
+  ([#1401](https://github.com/taiga-family/maskito/issues/1401))
+  ([b28ee12](https://github.com/taiga-family/maskito/commit/b28ee12f923b86eb3a8c32d17cd401e9222cfc30))
+- **kit:** `Placeholder` should support partial programmatic removal of placeholder's characters
+  ([#1441](https://github.com/taiga-family/maskito/issues/1441))
+  ([146a557](https://github.com/taiga-family/maskito/commit/146a55723ec4a1ac8b9cfba254056b84173326c9))
+- **kit:** `Time` incorrectly validates value if `timeSegmentMaxValues` includes single digit
+  ([#1402](https://github.com/taiga-family/maskito/issues/1402))
+  ([26670f4](https://github.com/taiga-family/maskito/commit/26670f4dbdfb84495ea0faa127868185d7bb0765))
+
 ## [3.0.0](https://github.com/taiga-family/maskito/compare/v2.5.0...v3.0.0) (2024-07-18)
 
 ### ⚠ BREAKING CHANGES
