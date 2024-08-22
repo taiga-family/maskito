@@ -18,13 +18,16 @@ module.exports = {
             },
         },
         {
-            files: ['*.ts'],
+            files: ['*.{ts,tsx}'],
             rules: {
                 '@taiga-ui/experience/strict-tui-doc-example': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
                 '@typescript-eslint/member-ordering': 'off',
                 'consistent-return': 'off',
                 '@typescript-eslint/consistent-return': 'off',
+                'react/display-name': 'off',
+                'react/react-in-jsx-scope': 'off',
+                'sonarjs/sonar-prefer-regexp-exec': 'off',
             },
         },
     ],

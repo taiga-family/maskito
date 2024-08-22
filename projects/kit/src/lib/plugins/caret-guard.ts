@@ -28,8 +28,8 @@ export function maskitoCaretGuard(
                 });
             }
 
-            const start = element.selectionStart || 0;
-            const end = element.selectionEnd || 0;
+            const start = element.selectionStart ?? 0;
+            const end = element.selectionEnd ?? 0;
             const [fromLimit, toLimit] = guard(element.value, [start, end]);
 
             if (fromLimit > start || toLimit < end) {

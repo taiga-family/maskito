@@ -20,7 +20,7 @@ describe('createMaxValidationPreprocessor', () => {
                     data,
                 },
                 'insert',
-            ).data || '';
+            ).data ?? '';
 
         it('all time segments valid', () => {
             expect(process('17:43:00')).toBe('17:43:00');

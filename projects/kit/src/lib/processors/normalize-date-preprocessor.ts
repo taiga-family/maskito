@@ -19,7 +19,7 @@ export function normalizeDatePreprocessor({
             : dateTimeSeparator;
         const possibleDates = data.split(separator);
         const dates = data.includes(dateTimeSeparator)
-            ? [possibleDates[0] || '']
+            ? [possibleDates[0] ?? '']
             : possibleDates;
 
         if (
@@ -59,7 +59,7 @@ function normalizeDateString(
     const normalizedSegments = dateSegments.map((segment, index) =>
         index === templateSegments.length - 1
             ? segment
-            : segment.padStart(templateSegments[index]?.length || 0, '0'),
+            : segment.padStart(templateSegments[index]?.length ?? 0, '0'),
     );
 
     return normalizedSegments.join(separator);

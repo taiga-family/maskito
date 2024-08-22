@@ -124,9 +124,9 @@ export class Maskito extends MaskHistory {
                 default:
                     return this.handleInsert(
                         event,
-                        event.data ||
+                        event.data ??
                             // `event.data` for `contentEditable` is always `null` for paste/drop events
-                            event.dataTransfer?.getData('text/plain') ||
+                            event.dataTransfer?.getData('text/plain') ??
                             '',
                     );
             }
@@ -152,7 +152,7 @@ export class Maskito extends MaskHistory {
 
         return {
             value,
-            selection: [selectionStart || 0, selectionEnd || 0],
+            selection: [selectionStart ?? 0, selectionEnd ?? 0],
         };
     }
 

@@ -26,7 +26,7 @@ export function validatePhonePreprocessorGenerator({
             const formatter = new AsYouType({defaultCountry: countryIsoCode}, metadata);
 
             formatter.input(value);
-            const numberValue = formatter.getNumberValue() || '';
+            const numberValue = formatter.getNumberValue() ?? '';
 
             formatter.reset();
 

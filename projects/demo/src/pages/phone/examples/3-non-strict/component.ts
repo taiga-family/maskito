@@ -56,7 +56,7 @@ export class PhoneMaskDocExample3 {
     protected readonly mask = mask;
 
     protected get countryIsoCode(): string {
-        return maskitoGetCountryFromNumber(this.value, metadata) || '';
+        return maskitoGetCountryFromNumber(this.value, metadata) ?? '';
     }
 
     protected get pattern(): string {
