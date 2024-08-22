@@ -22,14 +22,6 @@ export function guessValidValueByPattern(
             const newValidatedChars = validatedCharacters + leadingCharacters;
             const charConstraint = mask[newValidatedChars.length] || '';
 
-            if (isFixedCharacter(charConstraint)) {
-                return newValidatedChars + charConstraint;
-            }
-
-            if (!char.match(charConstraint)) {
-                return newValidatedChars;
-            }
-
             if (maskedFrom === null && charIndex >= elementState.selection[0]) {
                 maskedFrom = newValidatedChars.length;
             }
@@ -38,7 +30,13 @@ export function guessValidValueByPattern(
                 maskedTo = newValidatedChars.length;
             }
 
-            return newValidatedChars + char;
+            if (isFixedCharacter(charConstraint)) {
+                return newValidatedChars + charConstraint;
+            }
+
+            return char.match(charConstraint)
+                ? newValidatedChars + char
+                : newValidatedChars;
         },
         '',
     );

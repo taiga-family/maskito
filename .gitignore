@@ -46,6 +46,7 @@ Thumbs.db
 
 # cypress
 **/cypress/**/screenshots/**
+projects/demo-integrations/cypress
 
 .nx
 .ssl
