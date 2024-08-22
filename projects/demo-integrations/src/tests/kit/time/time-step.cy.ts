@@ -59,18 +59,18 @@ describe('Time', () => {
                         .should('have.a.prop', 'selectionEnd', 0)
                         .type('{rightArrow}')
                         .should('have.a.prop', 'selectionStart', 1)
-                        .should('have.a.prop', 'selectionStart', 1)
+                        .should('have.a.prop', 'selectionEnd', 1)
                         .type('{upArrow}')
                         .should('have.value', '13')
                         .should('have.a.prop', 'selectionStart', 1)
-                        .should('have.a.prop', 'selectionStart', 1)
+                        .should('have.a.prop', 'selectionEnd', 1)
                         .type('{rightArrow}')
                         .should('have.a.prop', 'selectionStart', 2)
-                        .should('have.a.prop', 'selectionStart', 2)
+                        .should('have.a.prop', 'selectionEnd', 2)
                         .type('{downArrow}')
                         .should('have.value', '12')
                         .should('have.a.prop', 'selectionStart', 2)
-                        .should('have.a.prop', 'selectionStart', 2);
+                        .should('have.a.prop', 'selectionEnd', 2);
                 });
 
                 it('type 12:{upArrow}{rightArrow}{downArrow}{rightArrow}{downArrow} => 12:59', () => {
@@ -78,6 +78,16 @@ describe('Time', () => {
                         .type('12:{upArrow}')
                         .type('{rightArrow}{downArrow}'.repeat(2))
                         .should('have.value', '12:59');
+                });
+
+                it('12|:0 => {upArrow} => 13|:0', () => {
+                    cy.get('@input')
+                        .type('12:0')
+                        .type('{leftArrow}'.repeat(2))
+                        .type('{upArrow}')
+                        .should('have.value', '13:0')
+                        .should('have.a.prop', 'selectionStart', 2)
+                        .should('have.a.prop', 'selectionEnd', 2);
                 });
             });
 
@@ -103,6 +113,40 @@ describe('Time', () => {
                     cy.get('@input')
                         .should('have.a.prop', 'selectionStart', '12:12'.length)
                         .should('have.a.prop', 'selectionEnd', '12:12'.length);
+                });
+            });
+        });
+
+        describe('HH:MM:SS', () => {
+            describe('step = 1', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM:SS&step=1`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('input');
+                });
+
+                it('12|:0 => {upArrow} => 13|:0', () => {
+                    cy.get('@input')
+                        .type('12:0')
+                        .type('{leftArrow}'.repeat(2))
+                        .type('{upArrow}')
+                        .should('have.value', '13:0')
+                        .should('have.a.prop', 'selectionStart', 2)
+                        .should('have.a.prop', 'selectionEnd', 2);
+                });
+
+                it('12:34|:5 => {downArrow} => 12:33|:5 ', () => {
+                    cy.get('@input')
+                        .type('12:34:5')
+                        .type('{leftArrow}'.repeat(2))
+                        .type('{downArrow}')
+                        .should('have.value', '12:33:5')
+                        .should('have.a.prop', 'selectionStart', 5)
+                        .should('have.a.prop', 'selectionEnd', 5);
                 });
             });
         });
