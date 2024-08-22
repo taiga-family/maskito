@@ -14,7 +14,7 @@ export function raiseSegmentValueToMin(
 
             return [
                 key,
-                value.length === segmentLength && value.match(/^0+$/)
+                value.length === segmentLength && /^0+$/.exec(value)
                     ? '1'.padStart(segmentLength, '0')
                     : value,
             ];

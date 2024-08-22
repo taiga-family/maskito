@@ -9,8 +9,8 @@ export function toNumberParts(
 ): {minus: string; integerPart: string; decimalPart: string} {
     const [integerWithMinus = '', decimalPart = ''] = value.split(decimalSeparator);
     const [, minus = '', integerPart = ''] =
-        integerWithMinus.match(
-            new RegExp(`([^\\d${escapeRegExp(thousandSeparator)}]+)?(.*)`),
+        new RegExp(`([^\\d${escapeRegExp(thousandSeparator)}]+)?(.*)`).exec(
+            integerWithMinus,
         ) || [];
 
     return {minus, integerPart, decimalPart};

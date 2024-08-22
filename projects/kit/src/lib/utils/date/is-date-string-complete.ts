@@ -6,5 +6,5 @@ export function isDateStringComplete(
         return false;
     }
 
-    return dateString.split(/\D/).every((segment) => !segment.match(/^0+$/));
+    return dateString.split(/\D/).every((segment) => !/^0+$/.exec(segment));
 }
