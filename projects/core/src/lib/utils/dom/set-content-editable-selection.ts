@@ -9,11 +9,11 @@ export function setContentEditableSelection(
 
     range.setStart(
         element.firstChild || element,
-        Math.min(from, element.textContent?.length || 0),
+        Math.min(from, element.textContent?.length ?? 0),
     );
     range.setEnd(
         element.lastChild || element,
-        Math.min(to, element.textContent?.length || 0),
+        Math.min(to, element.textContent?.length ?? 0),
     );
     const selection = document.getSelection();
 

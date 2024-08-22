@@ -22,7 +22,11 @@ export function maskitoParseNumber(maskedNumber: string, decimalSeparator = '.')
         .replaceAll(new RegExp(`[^\\d${escapedDecimalSeparator}]`, 'g'), '')
         .replace(decimalSeparator, '.');
 
-    return unmaskedNumber
-        ? Number((hasNegativeSign ? CHAR_HYPHEN : '') + unmaskedNumber)
-        : NaN;
+    if (unmaskedNumber) {
+        const sign = hasNegativeSign ? CHAR_HYPHEN : '';
+
+        return Number(`${sign}${unmaskedNumber}`);
+    }
+
+    return NaN;
 }

@@ -25,7 +25,7 @@ export function createTimeSegmentsSteppingPlugin({
                   }
 
                   event.preventDefault();
-                  const selectionStart = element.selectionStart || 0;
+                  const selectionStart = element.selectionStart ?? 0;
                   const activeSegment = getActiveSegment({
                       segmentsIndexes,
                       selectionStart,

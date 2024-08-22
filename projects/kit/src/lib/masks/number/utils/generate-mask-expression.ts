@@ -31,11 +31,12 @@ export function generateMaskExpression({
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;
+    const precisionPart = Number.isFinite(precision) ? precision : '';
     const decimalPart =
         precision > 0
             ? `([${escapeRegExp(decimalSeparator)}${decimalPseudoSeparators
                   .map(escapeRegExp)
-                  .join('')}]${digit}{0,${Number.isFinite(precision) ? precision : ''}})?`
+                  .join('')}]${digit}{0,${precisionPart}})?`
             : '';
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
 

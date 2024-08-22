@@ -57,7 +57,7 @@ export class NumberMaskDocExample6 {
         if (inputType.includes('delete')) {
             const element = target as HTMLInputElement;
             const [from, to] = this.getNotEmptySelection(
-                [element.selectionStart || 0, element.selectionEnd || 0],
+                [element.selectionStart ?? 0, element.selectionEnd ?? 0],
                 inputType.includes('Forward'),
             );
             const dotWasRemoved = this.value.slice(from, to).includes('.');

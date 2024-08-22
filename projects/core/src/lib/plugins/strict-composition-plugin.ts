@@ -9,8 +9,8 @@ export function maskitoStrictCompositionPlugin(): MaskitoPlugin {
             }
 
             const selection = [
-                element.selectionStart || 0,
-                element.selectionEnd || 0,
+                element.selectionStart ?? 0,
+                element.selectionEnd ?? 0,
             ] as const;
             const elementState: ElementState = {
                 selection,

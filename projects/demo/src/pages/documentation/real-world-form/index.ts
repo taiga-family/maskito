@@ -97,7 +97,7 @@ export default class RealWorldForm {
     protected showPassword = false;
 
     protected get countryIsoCode(): string {
-        return maskitoGetCountryFromNumber(this.form.value.phone || '', metadata) || '';
+        return maskitoGetCountryFromNumber(this.form.value.phone ?? '', metadata) ?? '';
     }
 
     protected get phoneTextfieldPattern(): string {
