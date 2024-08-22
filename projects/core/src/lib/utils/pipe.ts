@@ -14,7 +14,7 @@ export function maskitoPipe(
     processors?: readonly MaskitoPostprocessor[],
 ): MaskitoPostprocessor;
 
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-restricted-types */
 /**
  * @internal
  */
