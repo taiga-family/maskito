@@ -8,11 +8,9 @@ import {
 import {escapeRegExp} from '../../../utils';
 
 export function maskitoParseNumber(maskedNumber: string, decimalSeparator = '.'): number {
-    const hasNegativeSign = !!maskedNumber.match(
-        new RegExp(
-            `^\\D*[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}${CHAR_JP_HYPHEN}]`,
-        ),
-    );
+    const hasNegativeSign = !!new RegExp(
+        `^\\D*[${CHAR_MINUS}\\${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}${CHAR_JP_HYPHEN}]`,
+    ).exec(maskedNumber);
     const escapedDecimalSeparator = escapeRegExp(decimalSeparator);
 
     const unmaskedNumber = maskedNumber

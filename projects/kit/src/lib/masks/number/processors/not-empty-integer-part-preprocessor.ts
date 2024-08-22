@@ -40,7 +40,7 @@ export function createNotEmptyIntegerPartPreprocessor({
             return {elementState, data};
         }
 
-        const digitsBeforeCursor = cleanValue.slice(0, cleanFrom).match(/\d+/);
+        const digitsBeforeCursor = /\d+/.exec(cleanValue.slice(0, cleanFrom));
 
         return {
             elementState,

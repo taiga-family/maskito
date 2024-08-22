@@ -18,6 +18,6 @@ export function isDateTimeStringComplete(
             dateMode.length + timeMode.length + dateTimeSeparator.length &&
         (dateTimeString.split(dateTimeSeparator)[0] ?? '')
             .split(/\D/)
-            .every((segment) => !segment.match(/^0+$/))
+            .every((segment) => !/^0+$/.exec(segment))
     );
 }

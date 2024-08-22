@@ -37,7 +37,7 @@ export function getWordSelection(
         .trimEnd()
         .split('')
         .reverse()
-        .findIndex((char) => char.match(SPACE_REG));
+        .findIndex((char) => SPACE_REG.exec(char));
 
     return [
         selectedWordLength !== -1 ? to - trailingSpaces.length - selectedWordLength : 0,

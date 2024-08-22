@@ -22,7 +22,7 @@ export function padWithZeroesUntilValid(
 
     const valueWithoutLastChar = segmentValue.slice(0, paddedMaxValue.length - 1);
 
-    if (valueWithoutLastChar.match(ALL_ZEROES_RE)) {
+    if (ALL_ZEROES_RE.exec(valueWithoutLastChar)) {
         return {validatedSegmentValue: '', prefixedZeroesCount};
     }
 

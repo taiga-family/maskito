@@ -27,7 +27,6 @@ module.exports = {
                 '@typescript-eslint/consistent-return': 'off',
                 'react/display-name': 'off',
                 'react/react-in-jsx-scope': 'off',
-                'sonarjs/sonar-prefer-regexp-exec': 'off',
             },
         },
     ],
