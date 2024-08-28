@@ -4,6 +4,7 @@
     "projectType": "library",
     "sourceRoot": "projects/angular/src",
     "prefix": "maskito",
+    "tags": [],
     "targets": {
         "build": {
             "executor": "@nx/angular:package",
@@ -47,6 +48,5 @@
                 }
             ]
         }
-    },
-    "tags": []
+    }
 }

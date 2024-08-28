@@ -2,9 +2,9 @@
     "name": "demo",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "generators": {},
     "sourceRoot": "projects/demo/src",
     "prefix": "app",
+    "generators": {},
     "targets": {
         "build": {
             "executor": "@nx/angular:webpack-browser",
