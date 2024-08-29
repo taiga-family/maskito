@@ -36,8 +36,8 @@
         "@angular/forms": "16.2.12"
     },
     "peerDependencies": {
-        "@angular/core": ">=16.0.0",
-        "@angular/forms": ">=16.0.0",
+        "@angular/core": ">=16.2.12",
+        "@angular/forms": ">=16.2.12",
         "@maskito/core": "^3.0.1"
     },
     "ng-update": {
