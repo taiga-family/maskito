@@ -136,7 +136,7 @@
         "yarn": "Please use npm instead of yarn to install dependencies"
     },
     "overrides": {
-        "highlight.js": "11.5.1"
+        "highlight.js": "11.10.0"
     },
     "standard-version": {
         "scripts": {
