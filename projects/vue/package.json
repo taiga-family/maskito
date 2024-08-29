@@ -35,6 +35,6 @@
     },
     "peerDependencies": {
         "@maskito/core": "^3.0.1",
-        "vue": ">=3.4.38"
+        "vue": ">=3.0.0"
     }
 }

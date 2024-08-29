@@ -89,8 +89,8 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "16.2.15",
-        "@angular-devkit/core": "18.2.2",
-        "@angular-devkit/schematics": "18.2.2",
+        "@angular-devkit/core": "16.2.15",
+        "@angular-devkit/schematics": "16.2.15",
         "@angular/cli": "16.2.15",
         "@angular/core": "16.2.12",
         "@angular/platform-browser-dynamic": "16.2.12",
