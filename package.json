@@ -1,161 +1,160 @@
 {
-    "name": "maskito",
-    "version": "3.0.1",
-    "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
-    "keywords": [
-        "mask",
-        "inputmask",
-        "input-mask",
-        "text-mask",
-        "input-formatting",
-        "javascript",
-        "typescript",
-        "angular"
+  "name": "maskito",
+  "version": "3.0.1",
+  "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
+  "keywords": [
+    "mask",
+    "inputmask",
+    "input-mask",
+    "text-mask",
+    "input-formatting",
+    "javascript",
+    "typescript",
+    "angular"
+  ],
+  "homepage": "https://maskito.dev",
+  "bugs": "https://github.com/taiga-family/maskito/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taiga-family/maskito.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Nikita Barsukov",
+    "email": "nikita.s.barsukov@gmail.com",
+    "url": "https://github.com/nsbarsukov"
+  },
+  "contributors": [
+    "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
+    "Maksim Ivanov <splincodewd@yandex.ru>",
+    "Vladimir Potekhin <vladimir.potekh@gmail.com>",
+    "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
+  ],
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "*** Workflow ***": "",
+    "start": "nx run demo:serve",
+    "build": "nx run demo:build:production",
+    "test": "nx run-many --target test --all",
+    "*** Format ***": "",
+    "lint": "eslint .",
+    "cspell": "cspell --relative --dot --gitignore .",
+    "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
+    "stylelint": "stylelint '**/*.{less,css}'",
+    "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",
+    "*** SSR ***": "",
+    "serve:dev:ssr": "nx run demo:serve-ssr",
+    "serve:prerender": "http-server dist/demo/browser",
+    "build:prerender": "nx run demo:prerender",
+    "*** Cypress ***": "",
+    "cy:open": "cypress open --project ./projects/demo-integrations/",
+    "cy:run": "nx e2e demo-integrations",
+    "*** Release ***": "",
+    "release": "standard-version -a --no-verify",
+    "release:patch": "npm run release -- --release-as patch",
+    "release:minor": "npm run release -- --release-as minor",
+    "release:major": "npm run release -- --release-as major",
+    "publish": "nx run-many --target build --all --exclude=demo && nx run-many --target publish --all"
+  },
+  "commitlint": {
+    "extends": [
+      "@taiga-ui/commitlint-config"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,html,md,less,json,svg,yml}": [
+      "npm run lint -- --fix",
+      "prettier --write"
     ],
-    "homepage": "https://maskito.dev",
-    "bugs": "https://github.com/taiga-family/maskito/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/taiga-family/maskito.git"
-    },
-    "license": "Apache-2.0",
-    "author": {
-        "name": "Nikita Barsukov",
-        "email": "nikita.s.barsukov@gmail.com",
-        "url": "https://github.com/nsbarsukov"
-    },
-    "contributors": [
-        "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
-        "Maksim Ivanov <splincodewd@yandex.ru>",
-        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
-        "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
+    "*.less": [
+      "stylelint --fix"
+    ]
+  },
+  "prettier": "@taiga-ui/prettier-config",
+  "stylelint": {
+    "extends": [
+      "@taiga-ui/stylelint-config"
     ],
-    "workspaces": [
-        "projects/*"
-    ],
+    "ignoreFiles": [
+      "**/demo/**",
+      "**/dist/**",
+      "**/coverage/**",
+      "**/node_modules/**"
+    ]
+  },
+  "devDependencies": {
+    "@angular-devkit/core": "18.2.1",
+    "@angular-devkit/schematics": "18.2.1",
+    "@angular/build": "^18.2.1",
+    "@angular/cli": "18.2.1",
+    "@angular/core": "18.2.1",
+    "@angular/platform-browser-dynamic": "18.2.1",
+    "@nx/angular": "19.6.4",
+    "@nx/eslint": "19.6.4",
+    "@nx/jest": "19.6.4",
+    "@nx/js": "19.6.4",
+    "@nx/react": "19.6.4",
+    "@nx/rollup": "19.6.4",
+    "@nx/workspace": "19.6.4",
+    "@taiga-ui/commitlint-config": "0.147.9",
+    "@taiga-ui/cspell-config": "0.147.9",
+    "@taiga-ui/eslint-plugin-experience": "0.147.9",
+    "@taiga-ui/prettier-config": "0.147.9",
+    "@taiga-ui/stylelint-config": "0.147.9",
+    "@taiga-ui/tsconfig": "0.147.9",
+    "@tinkoff/eslint-config": "4.1.2",
+    "@tinkoff/eslint-config-react": "4.1.2",
+    "@types/jest": "29.5.12",
+    "@types/node": "22.5.1",
+    "eslint": "8.57.0",
+    "http-server": "14.1.1",
+    "husky": "9.1.5",
+    "jest": "29.7.0",
+    "jest-preset-angular": "14.2.2",
+    "less": "^4.2.0",
+    "lint-staged": "15.2.9",
+    "ng-packagr": "18.2.1",
+    "nx": "19.6.4",
+    "postcss-preset-env": "10.0.2",
+    "prettier": "3.3.3",
+    "standard-version": "9.5.0",
+    "stylelint": "16.9.0",
+    "ts-jest": "29.2.5",
+    "ts-node": "10.9.2",
+    "tsutils": "3.21.0",
+    "typescript": "5.0.4",
+    "webpack": "5.94.0",
+    "webpack-merge": "6.0.1"
+  },
+  "engines": {
+    "node": ">= 20",
+    "npm": ">= 10",
+    "yarn": "Please use npm instead of yarn to install dependencies"
+  },
+  "overrides": {
+    "highlight.js": "11.10.0"
+  },
+  "standard-version": {
     "scripts": {
-        "prepare": "husky",
-        "*** Workflow ***": "",
-        "start": "nx run demo:serve",
-        "build": "nx run demo:build:production",
-        "test": "nx run-many --target test --all",
-        "*** Format ***": "",
-        "lint": "eslint .",
-        "cspell": "cspell --relative --dot --gitignore .",
-        "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
-        "stylelint": "stylelint '**/*.{less,css}'",
-        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",
-        "*** SSR ***": "",
-        "serve:dev:ssr": "nx run demo:serve-ssr",
-        "serve:ssr": "node dist/demo/server/main.js",
-        "serve:prerender": "http-server dist/demo/browser",
-        "build:ssr": "nx run demo:server:production",
-        "build:prerender": "nx run demo:prerender",
-        "*** Cypress ***": "",
-        "cy:open": "cypress open --project ./projects/demo-integrations/",
-        "cy:run": "nx e2e demo-integrations",
-        "*** Release ***": "",
-        "release": "standard-version -a --no-verify",
-        "release:patch": "npm run release -- --release-as patch",
-        "release:minor": "npm run release -- --release-as minor",
-        "release:major": "npm run release -- --release-as major",
-        "publish": "nx run-many --target build --all --exclude=demo && nx run-many --target publish --all"
+      "postchangelog": "ts-node ./scripts/postchangelog.ts",
+      "postbump": "ts-node ./scripts/postbump.ts"
     },
-    "commitlint": {
-        "extends": [
-            "@taiga-ui/commitlint-config"
-        ]
-    },
-    "lint-staged": {
-        "*.{js,ts,html,md,less,json,svg,yml}": [
-            "npm run lint -- --fix",
-            "prettier --write"
-        ],
-        "*.less": [
-            "stylelint --fix"
-        ]
-    },
-    "prettier": "@taiga-ui/prettier-config",
-    "stylelint": {
-        "extends": [
-            "@taiga-ui/stylelint-config"
-        ],
-        "ignoreFiles": [
-            "**/demo/**",
-            "**/dist/**",
-            "**/coverage/**",
-            "**/node_modules/**"
-        ]
-    },
-    "devDependencies": {
-        "@angular-devkit/build-angular": "16.2.15",
-        "@angular-devkit/core": "16.2.15",
-        "@angular-devkit/schematics": "16.2.15",
-        "@angular/cli": "16.2.15",
-        "@angular/core": "16.2.12",
-        "@angular/platform-browser-dynamic": "16.2.12",
-        "@nx/angular": "19.6.4",
-        "@nx/eslint": "19.6.4",
-        "@nx/jest": "19.6.4",
-        "@nx/js": "19.6.4",
-        "@nx/react": "19.6.4",
-        "@nx/rollup": "19.6.4",
-        "@nx/workspace": "19.6.4",
-        "@taiga-ui/commitlint-config": "0.147.9",
-        "@taiga-ui/cspell-config": "0.147.9",
-        "@taiga-ui/eslint-plugin-experience": "0.147.9",
-        "@taiga-ui/prettier-config": "0.147.9",
-        "@taiga-ui/stylelint-config": "0.147.9",
-        "@taiga-ui/tsconfig": "0.147.9",
-        "@tinkoff/eslint-config": "4.1.2",
-        "@tinkoff/eslint-config-react": "4.1.2",
-        "@types/jest": "29.5.12",
-        "@types/node": "22.5.1",
-        "eslint": "8.57.0",
-        "http-server": "14.1.1",
-        "husky": "9.1.5",
-        "jest": "29.7.0",
-        "jest-preset-angular": "14.2.2",
-        "lint-staged": "15.2.9",
-        "ng-packagr": "16.2.3",
-        "nx": "19.6.4",
-        "postcss-preset-env": "10.0.2",
-        "prettier": "3.3.3",
-        "standard-version": "9.5.0",
-        "stylelint": "16.9.0",
-        "ts-jest": "29.2.5",
-        "ts-node": "10.9.2",
-        "tsutils": "3.21.0",
-        "typescript": "5.0.4",
-        "webpack": "5.94.0",
-        "webpack-merge": "6.0.1"
-    },
-    "engines": {
-        "node": ">= 20",
-        "npm": ">= 10",
-        "yarn": "Please use npm instead of yarn to install dependencies"
-    },
-    "overrides": {
-        "highlight.js": "11.10.0"
-    },
-    "standard-version": {
-        "scripts": {
-            "postchangelog": "ts-node ./scripts/postchangelog.ts",
-            "postbump": "ts-node ./scripts/postbump.ts"
-        },
-        "types": [
-            {
-                "type": "feat",
-                "section": "🚀 Features"
-            },
-            {
-                "type": "fix",
-                "section": "🐞 Bug Fixes"
-            },
-            {
-                "type": "deprecate",
-                "section": "⚠️ Deprecations"
-            }
-        ]
-    }
+    "types": [
+      {
+        "type": "feat",
+        "section": "🚀 Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐞 Bug Fixes"
+      },
+      {
+        "type": "deprecate",
+        "section": "⚠️ Deprecations"
+      }
+    ]
+  }
 }
