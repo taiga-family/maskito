@@ -111,8 +111,7 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
     public prefix = '';
     public postfix = '';
     public minusSign = CHAR_MINUS;
-
-    protected maskitoOptions: MaskitoOptions = this.calculateMask(this);
+    public maskitoOptions: MaskitoOptions = this.calculateMask(this);
 
     protected updateOptions(): void {
         this.maskitoOptions = this.calculateMask(this);

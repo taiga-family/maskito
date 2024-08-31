@@ -75,8 +75,7 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
         this.timeSegmentMaxValuesOptions[0];
 
     public step = 0;
-
-    protected maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 
     protected updateOptions(): void {
         this.maskitoOptions = maskitoTimeOptionsGenerator(this);

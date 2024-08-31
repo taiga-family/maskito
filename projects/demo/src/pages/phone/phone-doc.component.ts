@@ -102,16 +102,11 @@ export default class PhoneDocComponent implements GeneratorOptions {
     public strict = true;
     public countryIsoCode: CountryCode = 'RU';
     public separator = '-';
-
-    protected metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
-
-    protected selectedMetadata: MetadataName = this.metadataVariants[0]!;
-
-    protected countryCodeVariants = getCountries(this.metadata);
-
-    protected separatorVariants = ['-', ' '];
-
-    protected maskitoOptions = this.computeOptions();
+    public metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
+    public selectedMetadata: MetadataName = this.metadataVariants[0]!;
+    public countryCodeVariants = getCountries(this.metadata);
+    public separatorVariants = ['-', ' '];
+    public maskitoOptions = this.computeOptions();
 
     public get metadata(): MetadataJson {
         return metadataSets[this.selectedMetadata];
