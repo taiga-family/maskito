@@ -20,4 +20,4 @@ export default {
         /\d/,
         /\d/,
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

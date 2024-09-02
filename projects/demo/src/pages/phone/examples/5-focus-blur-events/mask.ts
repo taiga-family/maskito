@@ -21,4 +21,4 @@ export default {
         maskitoAddOnFocusPlugin(prefix),
         maskitoRemoveOnBlurPlugin(prefix),
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

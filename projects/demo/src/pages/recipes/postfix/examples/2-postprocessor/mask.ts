@@ -20,4 +20,4 @@ export default {
         // Disallow to put caret before the prefix or after the postfix
         maskitoCaretGuard((value) => ['$'.length, value.length - '.00'.length]),
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

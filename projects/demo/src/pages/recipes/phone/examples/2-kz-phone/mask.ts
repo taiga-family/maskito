@@ -42,7 +42,7 @@ export default {
             value.length,
         ]),
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;
 
 // Paste "89123456789" => "+7 (912) 345-67-89"
 function createCompletePhoneInsertionPreprocessor(): MaskitoPreprocessor {

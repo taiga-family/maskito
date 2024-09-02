@@ -27,4 +27,4 @@ export default {
         // Always put it AFTER all other postprocessors
         ...placeholderOptions.postprocessors,
     ],
-} as Required<MaskitoOptions>;
+} satisfies Required<MaskitoOptions>;

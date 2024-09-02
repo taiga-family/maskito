@@ -9,4 +9,4 @@ export default {
     mask: /^\$?\d*$/, // dollar sign or digits
     postprocessors: [maskitoPrefixPostprocessorGenerator('$')],
     plugins: [maskitoAddOnFocusPlugin('$'), maskitoRemoveOnBlurPlugin('$')],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

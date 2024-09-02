@@ -70,4 +70,4 @@ export default {
             maskitoUpdateElement(element, cleanValue === '+1' ? '' : cleanValue);
         }),
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;
