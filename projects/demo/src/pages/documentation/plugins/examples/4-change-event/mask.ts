@@ -12,4 +12,4 @@ export default {
         ...numberOptions.plugins,
         maskitoChangeEventPlugin(), // <--- Enable it
     ],
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

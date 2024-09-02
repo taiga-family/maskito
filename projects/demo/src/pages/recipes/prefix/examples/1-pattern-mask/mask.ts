@@ -6,4 +6,4 @@ export default {
 
         return ['$', ...new Array(digitsCount || 1).fill(/\d/)];
     },
-} as MaskitoOptions;
+} satisfies MaskitoOptions;

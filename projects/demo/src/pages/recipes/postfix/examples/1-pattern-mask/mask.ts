@@ -10,4 +10,4 @@ export default {
 
         return [...digitsMask, '%'];
     },
-} as MaskitoOptions;
+} satisfies MaskitoOptions;
