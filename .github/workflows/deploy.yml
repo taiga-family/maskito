@@ -12,7 +12,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/variables@v1.71.1
       - uses: taiga-family/ci/actions/setup/node@v1.71.1
       - run: npx nx build-gh-pages
-      - uses: JamesIves/github-pages-deploy-action@v4.6.3
+      - uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           branch: gh-pages
           folder: dist/demo/browser
