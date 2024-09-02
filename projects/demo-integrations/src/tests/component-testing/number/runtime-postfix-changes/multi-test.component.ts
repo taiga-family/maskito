@@ -42,14 +42,14 @@ export class TestPipe4 implements PipeTransform {
 export class MultiTestComponent {
     protected value = '1 year';
 
-    protected get parsedValue(): number {
-        return maskitoParseNumber(this.value);
-    }
-
     protected readonly pluralize = {
         one: ' year',
         few: ' years',
         many: ' years',
         other: ' years',
     };
+
+    protected get parsedValue(): number {
+        return maskitoParseNumber(this.value);
+    }
 }

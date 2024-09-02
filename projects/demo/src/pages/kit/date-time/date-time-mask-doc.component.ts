@@ -85,7 +85,6 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
 
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];
-
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
     public dateTimeSeparator = ', ';
@@ -93,8 +92,7 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
     public timeStep = 0;
-
-    protected maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 
     @tuiPure
     protected getPlaceholder(

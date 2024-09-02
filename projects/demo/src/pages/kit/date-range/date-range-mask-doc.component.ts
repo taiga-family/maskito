@@ -93,7 +93,6 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
 
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];
-
     public mode: MaskitoDateMode = this.modeOptions[0];
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
@@ -101,8 +100,7 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
     public maxLength: Partial<MaskitoDateSegments<number>> = {};
     public dateSeparator = '.';
     public rangeSeparator = ' – ';
-
-    protected maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
 
     @tuiPure
     protected getPlaceholder(

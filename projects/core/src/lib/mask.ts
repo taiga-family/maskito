@@ -147,21 +147,6 @@ export class Maskito extends MaskHistory {
         });
     }
 
-    private get elementState(): ElementState {
-        const {value, selectionStart, selectionEnd} = this.element;
-
-        return {
-            value,
-            selection: [selectionStart ?? 0, selectionEnd ?? 0],
-        };
-    }
-
-    private get maxLength(): number {
-        const {maxLength} = this.element;
-
-        return maxLength === -1 ? Infinity : maxLength;
-    }
-
     public destroy(): void {
         this.eventListener.destroy();
         this.teardowns.forEach((teardown) => teardown?.());
@@ -182,6 +167,21 @@ export class Maskito extends MaskHistory {
         if (initialValue !== value) {
             this.dispatchInputEvent(eventInit);
         }
+    }
+
+    private get elementState(): ElementState {
+        const {value, selectionStart, selectionEnd} = this.element;
+
+        return {
+            value,
+            selection: [selectionStart ?? 0, selectionEnd ?? 0],
+        };
+    }
+
+    private get maxLength(): number {
+        const {maxLength} = this.element;
+
+        return maxLength === -1 ? Infinity : maxLength;
     }
 
     private updateSelectionRange([from, to]: SelectionRange): void {
