@@ -1,9 +1,7 @@
 :root {
-    --tui-text-primary: rgba(27, 31, 59, 1);
-    --tui-text-tertiary: rgba(27, 31, 59, 0.4);
-
+    --tui-text-primary: rgb(27 31 59 / 1);
+    --tui-text-tertiary: rgb(27 31 59 / 0.4);
     --tui-radius-m: 0.75rem;
-
     --tui-background-base: #fff;
     --tui-background-neutral-1-hover: #ededed;
     --tui-background-accent-1: #526ed3;
@@ -12,9 +10,9 @@
 input,
 textarea {
     display: block;
-    width: 100%;
-    max-width: 25rem;
-    font-size: 15px;
+    inline-size: 100%;
+    max-inline-size: 25rem;
+    font-size: 0.9375rem;
     font-family: 'Roboto', sans-serif;
     border-radius: var(--tui-radius-m);
     box-sizing: border-box;
@@ -26,16 +24,16 @@ textarea {
         box-shadow,
         background,
         0.2s ease-in-out;
-    box-shadow: 0 0.125rem 0.1875rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.125rem 0.1875rem rgb(0 0 0 / 0.1);
 }
 
 input {
-    min-height: 2.75rem;
-    padding: 0px 1rem 0 1rem;
+    min-block-size: 2.75rem;
+    padding: 0 1rem;
 }
 
 textarea {
-    min-height: 10rem;
+    min-block-size: 10rem;
     padding: 0.5rem;
 }
 
@@ -46,7 +44,7 @@ textarea:focus::placeholder {
 
 input:hover,
 textarea:hover {
-    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.16);
+    box-shadow: 0 0.125rem 0.3125rem rgb(0 0 0 / 0.16);
 }
 
 input:focus,
