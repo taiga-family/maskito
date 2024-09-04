@@ -7,7 +7,7 @@ body {
 html,
 body {
     scroll-behavior: var(--tui-scroll-behavior);
-    height: 100%;
+    block-size: 100%;
 
     @media (prefers-reduced-motion) {
         scroll-behavior: auto;
@@ -27,12 +27,12 @@ markdown {
         // nested list
         color: var(--tui-text-secondary);
 
-        &:before {
+        &::before {
             content: '\2014';
             left: 0;
             top: auto;
-            width: auto;
-            height: auto;
+            inline-size: auto;
+            block-size: auto;
             background-color: transparent;
         }
     }
