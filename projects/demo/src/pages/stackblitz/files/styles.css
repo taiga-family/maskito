@@ -1,6 +1,6 @@
 :root {
-    --tui-text-primary: rgb(27 31 59 / 1);
-    --tui-text-tertiary: rgb(27 31 59 / 0.4);
+    --tui-text-primary: rgb(27 31 59 / 100%);
+    --tui-text-tertiary: rgb(27 31 59 / 40%);
     --tui-radius-m: 0.75rem;
     --tui-background-base: #fff;
     --tui-background-neutral-1-hover: #ededed;
@@ -24,7 +24,7 @@ textarea {
         box-shadow,
         background,
         0.2s ease-in-out;
-    box-shadow: 0 0.125rem 0.1875rem rgb(0 0 0 / 0.1);
+    box-shadow: 0 0.125rem 0.1875rem rgb(0 0 0 / 10%);
 }
 
 input {
@@ -44,7 +44,7 @@ textarea:focus::placeholder {
 
 input:hover,
 textarea:hover {
-    box-shadow: 0 0.125rem 0.3125rem rgb(0 0 0 / 0.16);
+    box-shadow: 0 0.125rem 0.3125rem rgb(0 0 0 / 16%);
 }
 
 input:focus,
