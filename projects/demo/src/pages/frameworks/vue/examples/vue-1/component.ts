@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {maskito} from '@maskito/vue';
 import {createApp} from 'vue';
@@ -7,6 +7,7 @@ import {createApp} from 'vue';
     standalone: true,
     selector: 'vue-example-1',
     template: '<div id="vue"></div>',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VueExample1 {
     constructor() {

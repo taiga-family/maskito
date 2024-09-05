@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
@@ -26,6 +26,7 @@ import mask from './mask';
             />
         </tui-input>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumberMaskDocExample5 {
     protected value = '-42';

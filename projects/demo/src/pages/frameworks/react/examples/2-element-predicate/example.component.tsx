@@ -1,5 +1,5 @@
 import {isPlatformBrowser} from '@angular/common';
-import {Component, ElementRef, inject, PLATFORM_ID} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, inject, PLATFORM_ID} from '@angular/core';
 import {createRoot} from 'react-dom/client';
 
 import {App} from './index';
@@ -8,6 +8,7 @@ import {App} from './index';
     standalone: true,
     selector: 'react-example-2',
     template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         'comment-for-devtools': 'Everything inside this tag is really rendered by `react-dom` library',
     },
