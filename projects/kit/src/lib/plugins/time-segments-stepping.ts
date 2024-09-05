@@ -59,9 +59,9 @@ function createTimeSegmentsIndexes(
 ): Map<keyof MaskitoTimeSegments, readonly [number, number]> {
     return new Map([
         ['hours', getSegmentRange(fullMode, 'HH')],
+        ['milliseconds', getSegmentRange(fullMode, 'MSS')],
         ['minutes', getSegmentRange(fullMode, 'MM')],
         ['seconds', getSegmentRange(fullMode, 'SS')],
-        ['milliseconds', getSegmentRange(fullMode, 'MSS')],
     ]);
 }
 

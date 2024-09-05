@@ -99,8 +99,8 @@ export const APP_CONFIG: ApplicationConfig = {
                 );
             },
             tabTitles: new Map<string, PolymorpheusContent>([
-                [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
                 [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
+                [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
                 [DocExamplePrimaryTab.React, REACT_LOGO],
                 [DocExamplePrimaryTab.Vue, VUE_LOGO],
             ]),

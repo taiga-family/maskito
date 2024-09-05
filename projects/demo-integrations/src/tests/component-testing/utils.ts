@@ -1,4 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
@@ -17,6 +23,7 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
             (input)="input.emit($event)"
         />
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestInput {
     @Input()
@@ -30,10 +37,10 @@ export class TestInput {
         MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     @Output()
-    public input = new EventEmitter();
+    public readonly input = new EventEmitter();
 
     @Output()
-    public change = new EventEmitter();
+    public readonly change = new EventEmitter();
 
     @Input()
     public maxLength = Infinity;

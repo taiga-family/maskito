@@ -1,5 +1,5 @@
 import {AsyncPipe} from '@angular/common';
-import {Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import type {ComponentFixture} from '@angular/core/testing';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
@@ -59,9 +59,9 @@ describe('@maskito/angular | Predicate', () => {
                 });
 
             const invalidPredicate: MaskitoElementPredicate = async (element) =>
-                delay(1_000).then(() => element.querySelectorAll('input')[0]);
+                delay(1_000).then(() => element.querySelectorAll('input')[0]!);
             const validPredicate: MaskitoElementPredicate = async (element) =>
-                delay(1_000).then(() => element.querySelectorAll('input')[1]);
+                delay(1_000).then(() => element.querySelectorAll('input')[1]!);
 
             @Component({
                 standalone: true,
@@ -76,6 +76,7 @@ describe('@maskito/angular | Predicate', () => {
                         <input class="real-input" />
                     </div>
                 `,
+                changeDetection: ChangeDetectionStrategy.OnPush,
             })
             class ComplexTextfield {
                 protected maskitoOptions = maskitoNumberOptionsGenerator();

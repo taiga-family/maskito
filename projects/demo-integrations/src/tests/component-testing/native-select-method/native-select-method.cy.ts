@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoEventHandler} from '@maskito/kit';
@@ -18,6 +18,7 @@ import {maskitoEventHandler} from '@maskito/kit';
             [textContent]="'123'"
         ></div>
     `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestComponent {
     protected readonly maskitoOptions: MaskitoOptions = {
