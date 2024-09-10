@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import type {ComponentFixture} from '@angular/core/testing';
 import {TestBed} from '@angular/core/testing';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
@@ -18,6 +18,8 @@ describe('Maskito Angular package', () => {
                 [maskito]="options"
             />
         `,
+        // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+        changeDetection: ChangeDetectionStrategy.Default,
     })
     class TestComponent {
         public readonly control = new FormControl();
