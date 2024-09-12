@@ -108,7 +108,7 @@
         "@taiga-ui/tsconfig": "0.174.0",
         "@tinkoff/eslint-config": "4.1.2",
         "@tinkoff/eslint-config-react": "4.1.2",
-        "@types/jest": "29.5.12",
+        "@types/jest": "29.5.13",
         "@types/node": "22.5.4",
         "eslint": "8.57.0",
         "http-server": "14.1.1",
