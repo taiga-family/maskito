@@ -1,7 +1,7 @@
 {
     "name": "@maskito/demo",
     "private": true,
-    "dependencies": {
+    "devDependencies": {
         "@angular/animations": "16.2.12",
         "@angular/cdk": "16.2.14",
         "@angular/common": "16.2.12",
@@ -14,8 +14,9 @@
         "@maskito/angular": "*",
         "@maskito/core": "*",
         "@maskito/kit": "*",
-        "@ng-web-apis/common": "4.3.0",
-        "@ng-web-apis/universal": "4.3.0",
+        "@ng-web-apis/common": "4.5.0",
+        "@ng-web-apis/universal": "4.5.0",
+        "@nguniversal/builders": "16.2.0",
         "@nguniversal/express-engine": "16.2.0",
         "@stackblitz/sdk": "1.11.0",
         "@taiga-ui/addon-doc": "4.6.0",
@@ -34,8 +35,5 @@
         "rxjs": "7.8.1",
         "tslib": "2.7.0",
         "vue": "3.5.4"
-    },
-    "devDependencies": {
-        "@nguniversal/builders": "16.2.0"
     }
 }
