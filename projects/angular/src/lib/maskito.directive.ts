@@ -55,6 +55,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         }
 
         ngZone.runOutsideAngular(() => {
+            this.maskedElement?.destroy();
             this.maskedElement = new Maskito(predicateResult, options);
         });
     }
