@@ -102,18 +102,14 @@ describe('@maskito/angular | Predicate', () => {
         });
 
         it('allows to enter letters in both textfield (active predicate is changed; both are still resolving)', () => {
-            cy.smartTick(520).then(() => {
-                fixture.detectChanges(); // ensure predicate is changed to valid one
-            });
+            cy.smartTick(520, {fixture});
 
             cy.get('@hidden').focus().type('12abc3').should('have.value', '12abc3');
             cy.get('@real').focus().type('12abc3').should('have.value', '12abc3');
         });
 
         it('allows to enter letters in both textfield (invalid predicate was resolved AND SKIPPED; valid is still resolving)', () => {
-            cy.smartTick(520).then(() => {
-                fixture.detectChanges(); // ensure predicate is changed to valid one
-            });
+            cy.smartTick(520, {fixture});
             cy.smartTick(500); // invalid predicate was resolved
 
             cy.get('@hidden').focus().type('12abc3').should('have.value', '12abc3');
@@ -121,14 +117,74 @@ describe('@maskito/angular | Predicate', () => {
         });
 
         it('forbids to enter letters only in real textfield (valid and invalid predicates were resolved)', () => {
-            cy.smartTick(520).then(() => {
-                fixture.detectChanges(); // ensure predicate is changed to valid one
-            });
+            cy.smartTick(520, {fixture});
             cy.smartTick(500); // invalid predicate was resolved
             cy.smartTick(500); // valid predicate was resolved
 
             cy.get('@hidden').focus().type('12abc3').should('have.value', '12abc3');
             cy.get('@real').focus().type('12abc3').should('have.value', '123');
+        });
+    });
+
+    describe('[maskitoOptions] are changed before long element predicate is resolved', () => {
+        let fixture!: ComponentFixture<unknown>;
+        const SWITCH_OPTIONS_TIME = 1_000;
+        const PREDICATE_RESOLVING_TIME = 2_000;
+
+        beforeEach(() => {
+            @Component({
+                standalone: true,
+                imports: [MaskitoDirective],
+                template: `
+                    <input
+                        [maskito]="options()"
+                        [maskitoElement]="elementPredicate"
+                    />
+                `,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+            })
+            class TestComponent {
+                private readonly numberOptions = {mask: /^\d+$/};
+                private readonly engLettersOptions = {mask: /^[a-z]+$/i};
+                protected options = signal(this.numberOptions);
+
+                constructor() {
+                    setTimeout(() => {
+                        this.options.set(this.engLettersOptions);
+                    }, SWITCH_OPTIONS_TIME);
+                }
+
+                protected readonly elementPredicate: MaskitoElementPredicate = async (
+                    element,
+                ) =>
+                    new Promise((resolve) => {
+                        setTimeout(
+                            () => resolve(element as HTMLInputElement),
+                            PREDICATE_RESOLVING_TIME,
+                        );
+                    });
+            }
+
+            cy.clock();
+            cy.mount(TestComponent).then((res) => {
+                fixture = res.fixture;
+            });
+        });
+
+        it('can enter any value before no predicate is resolved', () => {
+            cy.get('input').focus().type('12abc3').should('have.value', '12abc3');
+        });
+
+        // TODO: uncomment in this PR https://github.com/taiga-family/maskito/pull/1608
+        it.skip('enabling of the first mask should be skipped if [maskitoOptions] were changed during resolving of element predicate', () => {
+            cy.smartTick(PREDICATE_RESOLVING_TIME, {fixture}); // predicate is resolved only once for digit cases
+            cy.get('input').focus().type('12abc3').should('have.value', '12abc3');
+        });
+
+        // TODO: uncomment in this PR https://github.com/taiga-family/maskito/pull/1608
+        it.skip('only the last mask should be applied if [maskitoOptions] were changed during resolving of element predicates', () => {
+            cy.smartTick(SWITCH_OPTIONS_TIME + PREDICATE_RESOLVING_TIME, {fixture}); // enough time to resolve element predicated for both cases
+            cy.get('input').focus().type('12abc3').should('have.value', 'abc');
         });
     });
 });
