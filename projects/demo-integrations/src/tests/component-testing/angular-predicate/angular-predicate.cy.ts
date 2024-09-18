@@ -175,15 +175,13 @@ describe('@maskito/angular | Predicate', () => {
             cy.get('input').focus().type('12abc3').should('have.value', '12abc3');
         });
 
-        // TODO: uncomment in this PR https://github.com/taiga-family/maskito/pull/1608
-        it.skip('enabling of the first mask should be skipped if [maskitoOptions] were changed during resolving of element predicate', () => {
-            cy.smartTick(PREDICATE_RESOLVING_TIME, {fixture}); // predicate is resolved only once for digit cases
+        it('enabling of the first mask should be skipped if [maskitoOptions] were changed during resolving of element predicate', () => {
+            cy.smartTick(PREDICATE_RESOLVING_TIME, {fixture});
             cy.get('input').focus().type('12abc3').should('have.value', '12abc3');
         });
 
-        // TODO: uncomment in this PR https://github.com/taiga-family/maskito/pull/1608
-        it.skip('only the last mask should be applied if [maskitoOptions] were changed during resolving of element predicates', () => {
-            cy.smartTick(SWITCH_OPTIONS_TIME + PREDICATE_RESOLVING_TIME, {fixture}); // enough time to resolve element predicated for both cases
+        it('only the last mask should be applied if [maskitoOptions] were changed during resolving of element predicates', () => {
+            cy.smartTick(SWITCH_OPTIONS_TIME + PREDICATE_RESOLVING_TIME, {fixture});
             cy.get('input').focus().type('12abc3').should('have.value', 'abc');
         });
     });

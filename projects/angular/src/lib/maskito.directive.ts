@@ -55,6 +55,7 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         }
 
         ngZone.runOutsideAngular(() => {
+            // eslint-disable-next-line unicorn/consistent-destructuring
             this.maskedElement?.destroy();
             this.maskedElement = new Maskito(predicateResult, options);
         });
