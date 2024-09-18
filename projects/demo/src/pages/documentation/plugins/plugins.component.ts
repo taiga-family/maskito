@@ -10,6 +10,7 @@ import {PluginsDocExample1} from './examples/1-reject/component';
 import {PluginsDocExample2} from './examples/2-initial-calibration/component';
 import {PluginsDocExample3} from './examples/3-strict-composition/component';
 import {PluginsDocExample4} from './examples/4-change-event/component';
+import {PluginsDocExample5} from './examples/5-scroll/component';
 
 @Component({
     standalone: true,
@@ -20,6 +21,7 @@ import {PluginsDocExample4} from './examples/4-change-event/component';
         PluginsDocExample2,
         PluginsDocExample3,
         PluginsDocExample4,
+        PluginsDocExample5,
         RouterLink,
         TuiAddonDoc,
         TuiLink,
@@ -54,5 +56,9 @@ export default class PluginsDocPageComponent {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-change-event/mask.ts?raw'
         ),
+    };
+
+    protected readonly scrollExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-scroll/mask.ts?raw'),
     };
 }

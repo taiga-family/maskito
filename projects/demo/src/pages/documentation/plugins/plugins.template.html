@@ -126,5 +126,50 @@
         <plugins-change-event-doc-example-4 />
     </tui-doc-example>
 
+    <tui-doc-example
+        id="scroll"
+        heading="Built-in plugin for scroll narrow textfield"
+        [content]="scrollExample"
+        [description]="scrollDescription"
+    >
+        <ng-template #scrollDescription>
+            <p class="tui-space_top-0">
+                Chromium-based browsers has known
+                <a
+                    href="https://issues.chromium.org/issues/41081857"
+                    target="_blank"
+                    tuiLink
+                >
+                    issue
+                </a>
+                that they does not scroll textfield's element after programmatic changes of caret position. It causes
+                problems for narrow textfields when they are overflown by their value. Unfortunately, there are no
+                silver bullet for it – only some hacky solutions (we put them all inside
+                <code>maskitoScrollPlugin</code>
+                ). Enable this plugin if you have narrow masked textfield value.
+            </p>
+
+            <tui-notification
+                appearance="warning"
+                size="m"
+            >
+                <div>
+                    This plugin sometimes trigger
+                    <strong>fake</strong>
+                    <code>blur</code>
+                    &
+                    <code>focus</code>
+                    events as workaround to mentioned browser restrictions.
+
+                    <p class="tui-space_bottom-0">
+                        <strong>Be careful</strong>
+                        and double check everything especially if you listen to these events from on the textfield!
+                    </p>
+                </div>
+            </tui-notification>
+        </ng-template>
+        <plugins-scroll-doc-example-5 />
+    </tui-doc-example>
+
     <next-steps />
 </tui-doc-page>

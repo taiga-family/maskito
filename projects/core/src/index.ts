@@ -6,6 +6,7 @@ export {Maskito} from './lib/mask';
 export {
     maskitoChangeEventPlugin,
     maskitoInitialCalibrationPlugin,
+    maskitoScrollPlugin,
     maskitoStrictCompositionPlugin,
 } from './lib/plugins';
 export type {
