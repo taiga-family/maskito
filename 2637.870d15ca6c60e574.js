@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[2637],{2637:e=>{e.exports="import {maskitoNumberOptionsGenerator} from '@maskito/kit';\n\nexport default maskitoNumberOptionsGenerator({\n    minusSign: '-',\n    thousandSeparator: '',\n});\n"}}]);
