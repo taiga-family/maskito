@@ -10,6 +10,7 @@ import {NestedDocExample1} from './examples/1-nested/component';
 import {NestedDocExample2} from './examples/2-nested/component';
 import {ProgrammaticallyDocExample3} from './examples/3-programmatically/component';
 import {PipeDocExample4} from './examples/4-pipe/component';
+import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
 
 @Component({
     standalone: true,
@@ -24,6 +25,7 @@ import {PipeDocExample4} from './examples/4-pipe/component';
         TuiAddonDoc,
         TuiLink,
         TuiNotification,
+        UnmaskDocExample5,
     ],
     templateUrl: './angular-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,5 +57,13 @@ export default class AngularDocPageComponent {
     protected readonly pipeExample: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/4-pipe/component.ts?raw'),
         HTML: import('./examples/4-pipe/template.html?raw'),
+    };
+
+    protected readonly customUnmaskHandlerExample: Record<string, TuiRawLoaderContent> = {
+        'index.html': import('./examples/5-custom-unmask-handler/index.html?raw'),
+        'index.ts': import('./examples/5-custom-unmask-handler/index.ts?raw'),
+        'unmask.directive.ts': import(
+            './examples/5-custom-unmask-handler/unmask.directive.ts?raw'
+        ),
     };
 }

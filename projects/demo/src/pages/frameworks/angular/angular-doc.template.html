@@ -142,6 +142,33 @@
         >
             <pipe-doc-example-4 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="unmask"
+            heading="Custom unmask handler"
+            [content]="customUnmaskHandlerExample"
+            [description]="customUnmaskHandlerDescription"
+        >
+            <ng-template #customUnmaskHandlerDescription>
+                According to W3C specification, textfield value should always be only a
+                <code>string</code>
+                -type (not
+                <code>number</code>
+                -type, not
+                <code>object</code>
+                -type or etc.). However, you can sometimes need to store value without mask in Angular form control.
+                This example demonstrates how easily any Angular
+                <a
+                    href="https://angular.dev/api/forms/ControlValueAccessor"
+                    target="_blank"
+                    tuiLink
+                >
+                    Control Value Accessor
+                </a>
+                (default one or any custom one from a third-party UI Kit) can be monkey-patched to achieve this goal.
+            </ng-template>
+            <custom-unmask-handler-doc-example-5 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab="Setup">
