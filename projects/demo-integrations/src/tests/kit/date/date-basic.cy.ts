@@ -127,6 +127,7 @@ describe('Date', () => {
                 cy.get('@input')
                     .type('{moveToStart}')
                     .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                    .trigger('input', {inputType: 'deleteSoftLineForward'})
                     .should('have.value', '')
                     .should('have.prop', 'selectionStart', ''.length)
                     .should('have.prop', 'selectionEnd', ''.length);
@@ -135,6 +136,7 @@ describe('Date', () => {
             it('Type `deleteSoftLineBackward` of `InputEvent` works', () => {
                 cy.get('@input')
                     .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                    .trigger('input', {inputType: 'deleteSoftLineBackward'})
                     .should('have.value', '')
                     .should('have.prop', 'selectionStart', ''.length)
                     .should('have.prop', 'selectionEnd', ''.length);

@@ -48,6 +48,7 @@ describe('Textarea (mask latin letters + digits)', () => {
                 .type('{enter}')
                 .type('UI and Maskito')
                 .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .trigger('input', {inputType: 'deleteSoftLineBackward'})
                 .should('have.value', 'Taiga\n');
         });
 
@@ -58,6 +59,7 @@ describe('Textarea (mask latin letters + digits)', () => {
                 .type('UI and Maskito')
                 .type('{moveToStart}')
                 .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .trigger('input', {inputType: 'deleteSoftLineForward'})
                 .should('have.value', 'UI and Maskito');
         });
     });

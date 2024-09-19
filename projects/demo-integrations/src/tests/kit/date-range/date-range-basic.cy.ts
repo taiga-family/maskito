@@ -152,6 +152,7 @@ describe('DateRange | Basic', () => {
         it('Type `deleteSoftLineBackward` of `InputEvent` works', () => {
             cy.get('@input')
                 .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .trigger('input', {inputType: 'deleteSoftLineBackward'})
                 .should('have.value', '')
                 .should('have.prop', 'selectionStart', ''.length)
                 .should('have.prop', 'selectionEnd', ''.length);
@@ -161,6 +162,7 @@ describe('DateRange | Basic', () => {
             cy.get('@input')
                 .type('{moveToStart}')
                 .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .trigger('input', {inputType: 'deleteSoftLineForward'})
                 .should('have.value', '')
                 .should('have.prop', 'selectionStart', ''.length)
                 .should('have.prop', 'selectionEnd', ''.length);
@@ -170,6 +172,7 @@ describe('DateRange | Basic', () => {
             cy.get('@input')
                 .type('{leftArrow}'.repeat(' 31.12.2022'.length))
                 .trigger('beforeinput', {inputType: 'deleteSoftLineBackward'})
+                .trigger('input', {inputType: 'deleteSoftLineBackward'})
                 .should('have.value', '01.01.0001 – 31.12.2022')
                 .should('have.prop', 'selectionStart', ''.length)
                 .should('have.prop', 'selectionEnd', ''.length);
@@ -179,6 +182,7 @@ describe('DateRange | Basic', () => {
             cy.get('@input')
                 .type('{leftArrow}'.repeat(' 31.12.2022'.length))
                 .trigger('beforeinput', {inputType: 'deleteSoftLineForward'})
+                .trigger('input', {inputType: 'deleteSoftLineForward'})
                 .should('have.value', '20.01.1990')
                 .should('have.prop', 'selectionStart', '20.01.1990'.length)
                 .should('have.prop', 'selectionEnd', '20.01.1990'.length);
