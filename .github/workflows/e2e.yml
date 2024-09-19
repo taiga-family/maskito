@@ -13,12 +13,12 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.78.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.79.0
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/variables@v1.78.0
-      - uses: taiga-family/ci/actions/setup/node@v1.78.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.79.0
+      - uses: taiga-family/ci/actions/setup/node@v1.79.0
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
@@ -44,9 +44,9 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.78.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.78.0
-      - uses: taiga-family/ci/actions/setup/node@v1.78.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.79.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.79.0
+      - uses: taiga-family/ci/actions/setup/node@v1.79.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -70,9 +70,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.78.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.78.0
-      - uses: taiga-family/ci/actions/setup/node@v1.78.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.79.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.79.0
+      - uses: taiga-family/ci/actions/setup/node@v1.79.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -94,9 +94,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.78.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.78.0
-      - uses: taiga-family/ci/actions/setup/node@v1.78.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.79.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.79.0
+      - uses: taiga-family/ci/actions/setup/node@v1.79.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -121,9 +121,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Component Testing
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.78.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.78.0
-      - uses: taiga-family/ci/actions/setup/node@v1.78.0
+      - uses: taiga-family/ci/actions/setup/checkout@v1.79.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.79.0
+      - uses: taiga-family/ci/actions/setup/node@v1.79.0
 
       - name: Run Cypress tests
         run: npx nx component-test demo-integrations --browser=chrome
