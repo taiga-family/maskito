@@ -17,6 +17,7 @@ import {
     TUI_DOC_TYPE_REFERENCE_HANDLER,
     tuiDocExampleOptionsProvider,
 } from '@taiga-ui/addon-doc';
+import {NG_EVENT_PLUGINS} from '@taiga-ui/event-plugins';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
@@ -42,6 +43,7 @@ export const APP_CONFIG: ApplicationConfig = {
                 anchorScrolling: 'enabled',
             }),
         ),
+        NG_EVENT_PLUGINS,
         provideHttpClient(),
         {
             provide: LocationStrategy,
