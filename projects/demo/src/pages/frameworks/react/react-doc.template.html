@@ -124,6 +124,67 @@
         </tui-doc-example>
     </section>
 
+    <section id="form-library-integration">
+        <h2>Integration with third-party library for forms</h2>
+
+        <p>
+            There is not silver bullet how to integrate
+            <strong>Maskito</strong>
+            with
+            <u>any</u>
+            library for form-building. Explore all examples above – the provided knowledge about element predicate,
+            ref merging and
+            <code>OnInput</code>
+             event will help you a lot to achieve it.
+        </p>
+
+        <p>
+            This example demonstrates how to use
+            <strong>Maskito</strong>
+            with popular library
+            <a
+                href="https://react-hook-form.com"
+                target="_blank"
+                tuiLink
+            >
+                react-hook-form
+            </a>
+            .
+        </p>
+
+        <tui-tabs-with-more
+            #tabs
+            class="tabs"
+        >
+            <button
+                *tuiItem
+                tuiTab
+                type="button"
+            >
+                <tui-doc-tab src="assets/icons/react.svg">index.ts</tui-doc-tab>
+            </button>
+            <button
+                *tuiItem
+                tuiTab
+                type="button"
+            >
+                <tui-doc-tab src="assets/icons/typescript.svg">with-maskito-register.ts</tui-doc-tab>
+            </button>
+        </tui-tabs-with-more>
+
+        <ng-container [ngSwitch]="tabs.activeItemIndex">
+            <tui-doc-code
+                *ngSwitchCase="0"
+                [code]="reactHookFormExample['index.tsx']!"
+            />
+
+            <tui-doc-code
+                *ngSwitchCase="1"
+                [code]="reactHookFormExample['with-maskito-register.ts']!"
+            />
+        </ng-container>
+    </section>
+
     <section>
         <h2>Best practices & Anti-Patterns</h2>
 
