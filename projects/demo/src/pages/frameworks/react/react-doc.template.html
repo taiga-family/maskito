@@ -73,6 +73,29 @@
         <tui-doc-code [code]="controlledInputDemo" />
     </section>
 
+    <section id="merge-refs">
+        <h2>Merge Maskito ref with the third-party ref</h2>
+
+        <p>Do you need to use multiple hooks that return refs which both should be attached to the masked textfield?</p>
+
+        <p>
+            <strong>
+                Use
+                <a
+                    href="https://react.dev/reference/react-dom/components/common#ref-callback"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    ref callback
+                </a>
+                !
+            </strong>
+        </p>
+
+        <tui-doc-code [code]="mergeRefDemo" />
+    </section>
+
     <section id="element-predicate">
         <h2>Query nested input element</h2>
 

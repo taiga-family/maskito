@@ -29,6 +29,9 @@ export default class ReactDocPageComponent {
         './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
     );
 
+    protected readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
+    protected readonly mergeRefDemo = import('./examples/merge-ref.md?raw');
+
     protected readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
         'index.tsx': import('./examples/2-element-predicate/index.tsx?raw'),
         'awesome-input.tsx': import(
@@ -36,6 +39,5 @@ export default class ReactDocPageComponent {
         ),
     };
 
-    protected readonly controlledInputDemo = import('./examples/controlled-input.md?raw');
     protected readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
 }
