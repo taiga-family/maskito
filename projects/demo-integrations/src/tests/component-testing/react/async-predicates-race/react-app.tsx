@@ -2,8 +2,10 @@ import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
-import type {ComponentType, InputHTMLAttributes} from 'react';
-import {forwardRef, useEffect, useState} from 'react';
+import type {ComponentType} from 'react';
+import {useEffect, useState} from 'react';
+
+import {AwesomeInput} from '../awesome-input';
 
 const timeOptions = maskitoTimeOptionsGenerator({
     mode: 'HH:MM',
@@ -33,21 +35,6 @@ const fastValidPredicate: MaskitoElementPredicate = async (host) =>
     new Promise((resolve) => {
         setTimeout(() => resolve(correctPredicate(host)), 500);
     });
-
-const hiddenInputStyles = {
-    display: 'none',
-};
-
-export const AwesomeInput = forwardRef<HTMLDivElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => (
-    <div ref={ref}>
-        <input style={hiddenInputStyles} />
-        <input
-            className="real-input"
-            {...props}
-        />
-        <input style={hiddenInputStyles} />
-    </div>
-));
 
 export const App: ComponentType = () => {
     const [useCorrectPredicate, setUseCorrectPredicate] = useState(false);
