@@ -45,8 +45,10 @@ export const useMaskito = ({
     );
 
     const latestPredicateRef = useRef(elementPredicate);
+    const latestOptionsRef = useRef(options);
 
     latestPredicateRef.current = elementPredicate;
+    latestOptionsRef.current = options;
 
     useIsomorphicLayoutEffect(() => {
         if (!hostElement) {
@@ -57,15 +59,20 @@ export const useMaskito = ({
         const elementOrPromise = predicate(hostElement);
 
         if (isThenable(elementOrPromise)) {
+            const tempOptions = options;
+
             void elementOrPromise.then((el) => {
-                if (latestPredicateRef.current === predicate) {
+                if (
+                    latestPredicateRef.current === predicate &&
+                    latestOptionsRef.current === tempOptions
+                ) {
                     setElement(el);
                 }
             });
         } else {
             setElement(elementOrPromise);
         }
-    }, [hostElement, elementPredicate, latestPredicateRef]);
+    }, [hostElement, elementPredicate, latestPredicateRef, options, latestOptionsRef]);
 
     useIsomorphicLayoutEffect(() => {
         if (!element || !options) {
@@ -76,6 +83,7 @@ export const useMaskito = ({
 
         return () => {
             maskedElement.destroy();
+            setElement(null);
         };
     }, [options, element]);
 
