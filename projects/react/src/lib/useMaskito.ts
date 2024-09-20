@@ -55,16 +55,13 @@ export const useMaskito = ({
             return;
         }
 
-        const predicate = elementPredicate;
-        const elementOrPromise = predicate(hostElement);
+        const elementOrPromise = elementPredicate(hostElement);
 
         if (isThenable(elementOrPromise)) {
-            const tempOptions = options;
-
             void elementOrPromise.then((el) => {
                 if (
-                    latestPredicateRef.current === predicate &&
-                    latestOptionsRef.current === tempOptions
+                    latestPredicateRef.current === elementPredicate &&
+                    latestOptionsRef.current === options
                 ) {
                     setElement(el);
                 }
