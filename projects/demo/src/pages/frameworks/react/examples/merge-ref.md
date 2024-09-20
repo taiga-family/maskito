@@ -13,7 +13,7 @@ function App() {
     <input
       ref={(node) => {
         maskitoRef(node);
-        myInputRef.current = node;
+        anyExternalRef.current = node;
       }}
     />
   );
