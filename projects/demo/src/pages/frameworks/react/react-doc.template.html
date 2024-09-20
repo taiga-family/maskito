@@ -12,7 +12,6 @@
     <tui-notification
         appearance="warning"
         size="m"
-        class="tui-space_top-6"
     >
         <div>
             <strong>Prerequisites</strong>
@@ -29,7 +28,7 @@
         </div>
     </tui-notification>
 
-    <section class="tui-space_top-12">
+    <section id="getting-started">
         <h2>Getting Started</h2>
 
         <p>Install libraries</p>
@@ -45,43 +44,12 @@
 
         <p>See the result of above code example in action:</p>
 
-        <tui-doc-example [style.padding-top.px]="0">
+        <tui-doc-example class="no-tabs">
             <react-example-1 />
         </tui-doc-example>
     </section>
 
-    <section class="tui-space_top-12">
-        <h2>Query nested input element</h2>
-
-        <p>
-            Pass a predicate to
-            <code>elementPredicate</code>
-            to find input element for you, if you do not have a direct access to it. For example, you use component from
-            some UI Kit library.
-        </p>
-
-        <tui-notification
-            size="m"
-            class="tui-space_bottom-4"
-        >
-            <div>
-                By default
-                <strong>Maskito</strong>
-                will try to find input/textarea by querying its host:
-                <code>host.querySelector('input,textarea')</code>
-                so that might be sufficient. Use custom predicate if you need custom logic.
-            </div>
-        </tui-notification>
-
-        <tui-doc-example
-            [content]="elementPredicateExample"
-            [style.padding-top.px]="0"
-        >
-            <react-example-2 />
-        </tui-doc-example>
-    </section>
-
-    <section class="tui-space_top-12">
+    <section id="controlled-input">
         <h2>Controlled masked input</h2>
 
         <p>
@@ -105,7 +73,35 @@
         <tui-doc-code [code]="controlledInputDemo" />
     </section>
 
-    <section class="tui-space_top-12">
+    <section id="element-predicate">
+        <h2>Query nested input element</h2>
+
+        <p>
+            Pass a predicate to
+            <code>elementPredicate</code>
+            to find input element for you, if you do not have a direct access to it. For example, you use component from
+            some UI Kit library.
+        </p>
+
+        <tui-notification size="m">
+            <div>
+                By default
+                <strong>Maskito</strong>
+                will try to find input/textarea by querying its host:
+                <code>host.querySelector('input,textarea')</code>
+                so that might be sufficient. Use custom predicate if you need custom logic.
+            </div>
+        </tui-notification>
+
+        <tui-doc-example
+            [content]="elementPredicateExample"
+            [style.padding-top.px]="0"
+        >
+            <react-example-2 />
+        </tui-doc-example>
+    </section>
+
+    <section>
         <h2>Best practices & Anti-Patterns</h2>
 
         <p>
