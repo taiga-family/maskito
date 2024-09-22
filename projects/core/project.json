@@ -35,7 +35,7 @@
         "publish": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "ts-node ./scripts/npm-publish.ts --path ./dist/core --dry-run {args.dry-run}"
+                "command": "npm publish ./dist/{projectName} --ignore-scripts"
             },
             "dependsOn": [
                 {

@@ -2,9 +2,17 @@ import {readFileSync, writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 
 import {DemoPath} from '../projects/demo/src/app/constants/demo-path';
-import {infoLog, SMALL_TAB_SYMBOL, titleLog} from './helpers/colored-log';
 
+const SMALL_TAB_SYMBOL = '  '; // @note: if you use \t then we have big gaps
 const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/API`];
+
+function infoLog(message: string): void {
+    console.info('\x1B[34m%s\x1B[0m', message);
+}
+
+function titleLog(message: string): void {
+    console.info('\x1B[35m', message);
+}
 
 /**
  * This script is required for correct of `nx prerender demo` command.

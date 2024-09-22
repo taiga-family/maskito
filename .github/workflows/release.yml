@@ -1,34 +1,35 @@
-name: Publish Maskito packages
+name: ⚠️ Release
 
 on:
-  push:
-    branches: ['release/*']
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        description: Bump version as requested
+        required: true
+        options:
+          - patch
+          - minor
+          - alpha
+          - major
 
 jobs:
-  publish:
-    name: Publish
+  release:
     runs-on: ubuntu-latest
-    env:
-      NX_SKIP_NX_CACHE: true
+    if: !contains(github.event.head_commit.message , 'chore(release)')
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.84.0
-        with:
-          fetch-depth: 0
       - uses: taiga-family/ci/actions/setup/variables@v1.84.0
       - uses: taiga-family/ci/actions/setup/node@v1.84.0
-      - uses: taiga-family/ci/actions/setup/config/npm@v1.84.0
+      - uses: taiga-family/ci/actions/run/release-it@v1.84.0
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          ref: ${{ github.ref }}
+          mode: ${{ github.event.inputs.mode }}
+          npmToken: ${{ secrets.NPM_TOKEN }}
+          githubToken: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
-      - name: Build publishable libraries
-        run: npx nx run-many --target build --all --exclude=demo
-
-      - name: Publish libraries
-        run: npx nx run-many --target publish --all --exclude=demo
-
-      - name: Get new version
+      - uses: taiga-family/ci/actions/run/read-package-json@v1.84.0
         id: info
-        run: echo "version=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Announce to Telegram
         uses: taiga-family/ci/actions/messenger/telegram/announce@v1.84.0
