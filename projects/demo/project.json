@@ -10,19 +10,19 @@
             "executor": "@nx/angular:webpack-browser",
             "options": {
                 "customWebpackConfig": {
-                    "path": "projects/{projectName}/webpack.config.ts"
+                    "path": "{projectRoot}/webpack.config.ts"
                 },
                 "baseHref": "/",
                 "outputPath": "dist/{projectName}/browser",
-                "index": "projects/{projectName}/src/index.html",
-                "main": "projects/{projectName}/src/main.ts",
-                "polyfills": "projects/{projectName}/src/polyfills.ts",
-                "tsConfig": "projects/{projectName}/tsconfig.app.json",
+                "index": "{projectRoot}/src/index.html",
+                "main": "{projectRoot}/src/main.ts",
+                "polyfills": "{projectRoot}/src/polyfills.ts",
+                "tsConfig": "{projectRoot}/tsconfig.app.json",
                 "aot": false,
                 "assets": [
                     {
                         "glob": "**/*",
-                        "input": "projects/{projectName}/src/assets/",
+                        "input": "{projectRoot}/src/assets/",
                         "output": "./assets/"
                     },
                     {
@@ -35,7 +35,7 @@
                     "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
                     "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
                     "node_modules/@taiga-ui/styles/taiga-ui-global.less",
-                    "projects/{projectName}/src/styles.less"
+                    "{projectRoot}/src/styles.less"
                 ],
                 "scripts": [],
                 "vendorChunk": true,
@@ -50,8 +50,8 @@
                 "production": {
                     "fileReplacements": [
                         {
-                            "replace": "projects/{projectName}/src/environments/environment.ts",
-                            "with": "projects/{projectName}/src/environments/environment.prod.ts"
+                            "replace": "{projectRoot}/src/environments/environment.ts",
+                            "with": "{projectRoot}/src/environments/environment.prod.ts"
                         }
                     ],
                     "optimization": true,
@@ -131,18 +131,18 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/{projectName}/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "server": {
             "executor": "@nx/angular:webpack-server",
             "options": {
                 "customWebpackConfig": {
-                    "path": "projects/{projectName}/webpack.config.ts"
+                    "path": "{projectRoot}/webpack.config.ts"
                 },
                 "outputPath": "dist/{projectName}/server",
-                "main": "projects/{projectName}/server.ts",
-                "tsConfig": "projects/{projectName}/tsconfig.server.json",
+                "main": "{projectRoot}/server.ts",
+                "tsConfig": "{projectRoot}/tsconfig.server.json",
                 "sourceMap": true,
                 "optimization": false
             },
@@ -186,7 +186,7 @@
             "options": {
                 "browserTarget": "{projectName}:build:production",
                 "serverTarget": "{projectName}:server:production",
-                "routesFile": "./projects/{projectName}/routesFile.txt"
+                "routesFile": "./{projectRoot}/routesFile.txt"
             },
             "dependsOn": [
                 {

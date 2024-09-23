@@ -10,11 +10,11 @@
             "executor": "@nx/angular:package",
             "outputs": ["{workspaceRoot}/dist/{projectName}"],
             "options": {
-                "project": "projects/{projectName}/ng-package.json"
+                "project": "{projectRoot}/ng-package.json"
             },
             "configurations": {
                 "production": {
-                    "tsConfig": "projects/{projectName}/tsconfig.lib.prod.json"
+                    "tsConfig": "{projectRoot}/tsconfig.lib.prod.json"
                 },
                 "development": {
                     "tsConfig": "tsconfig.build.json"
@@ -33,7 +33,7 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/{projectName}/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "publish": {

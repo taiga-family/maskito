@@ -10,15 +10,15 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/{projectName}",
-                "tsConfig": "projects/{projectName}/tsconfig.lib.json",
-                "project": "projects/{projectName}/package.json",
-                "entryFile": "projects/{projectName}/src/index.ts",
+                "tsConfig": "{projectRoot}/tsconfig.lib.json",
+                "project": "{projectRoot}/package.json",
+                "entryFile": "{projectRoot}/src/index.ts",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
                 "external": "all",
                 "assets": [
                     {
-                        "glob": "projects/{projectName}/README.md",
+                        "glob": "{projectRoot}/README.md",
                         "input": ".",
                         "output": "."
                     }
@@ -36,14 +36,14 @@
             "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["projects/{projectName}/**/*.{ts,js}"]
+                "lintFilePatterns": ["{projectRoot}/**/*.{ts,js}"]
             }
         },
         "test": {
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/{projectName}/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "publish": {
