@@ -48,7 +48,7 @@ export default class ReactDocPageComponent {
         'index.tsx': import('./examples/3-react-hook-form/index.tsx?raw'),
         'with-maskito-register.ts': import(
             './examples/3-react-hook-form/with-maskito-register.ts?raw'
-            ),
+        ),
     };
 
     protected readonly bestBadPractice = import('./examples/best-bad-practice.md?raw');
