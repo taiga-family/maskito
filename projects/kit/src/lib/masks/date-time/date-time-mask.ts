@@ -8,6 +8,7 @@ import {
     createDateSegmentsZeroPaddingPostprocessor,
     createFirstDateEndSeparatorPreprocessor,
     createFullWidthToHalfWidthPreprocessor,
+    createInvalidTimeSegmentInsertionPreprocessor,
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
@@ -62,6 +63,17 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
                 dateTimeSeparator,
+            }),
+            createInvalidTimeSegmentInsertionPreprocessor({
+                timeMode,
+                parseValue: (x) => {
+                    const [dateString, timeString] = parseDateTimeString(x, {
+                        dateModeTemplate,
+                        dateTimeSeparator,
+                    });
+
+                    return {timeString, restValue: dateString + dateTimeSeparator};
+                },
             }),
             createValidDateTimePreprocessor({
                 dateModeTemplate,
