@@ -1,6 +1,5 @@
 import type {ErrorHandler} from '@angular/core';
 import {Injectable} from '@angular/core';
-import {hasFlag} from 'scripts/helpers/argv';
 
 // TODO
 const KNOWN_ISSUES: string[] = [
@@ -19,7 +18,7 @@ export class ServerErrorHandler implements ErrorHandler {
 
         console.error(errorMessage);
 
-        if (hasFlag('--ci')) {
+        if (process.argv.includes('--ci')) {
             process.exit(1);
         }
     }
