@@ -9,16 +9,16 @@
             "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "project": "projects/kit/package.json",
-                "outputPath": "dist/kit",
-                "entryFile": "projects/kit/src/index.ts",
-                "tsConfig": "projects/kit/tsconfig.lib.json",
+                "project": "projects/{projectName}/package.json",
+                "outputPath": "dist/{projectName}",
+                "entryFile": "projects/{projectName}/src/index.ts",
+                "tsConfig": "projects/{projectName}/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
                 "external": "all",
                 "assets": [
                     {
-                        "glob": "projects/kit/README.md",
+                        "glob": "projects/{projectName}/README.md",
                         "input": ".",
                         "output": "."
                     }
@@ -34,9 +34,9 @@
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/kit"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/kit/jest.config.ts"
+                "jestConfig": "projects/{projectName}/jest.config.ts"
             }
         },
         "publish": {

@@ -9,16 +9,16 @@
             "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/vue",
-                "tsConfig": "projects/vue/tsconfig.lib.json",
-                "project": "projects/vue/package.json",
-                "entryFile": "projects/vue/src/index.ts",
+                "outputPath": "dist/{projectName}",
+                "tsConfig": "projects/{projectName}/tsconfig.lib.json",
+                "project": "projects/{projectName}/package.json",
+                "entryFile": "projects/{projectName}/src/index.ts",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
                 "external": "all",
                 "assets": [
                     {
-                        "glob": "projects/vue/README.md",
+                        "glob": "projects/{projectName}/README.md",
                         "input": ".",
                         "output": "."
                     }
@@ -36,14 +36,14 @@
             "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["projects/vue/**/*.{ts,js}"]
+                "lintFilePatterns": ["projects/{projectName}/**/*.{ts,js}"]
             }
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/projects/vue"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/vue/jest.config.ts"
+                "jestConfig": "projects/{projectName}/jest.config.ts"
             }
         },
         "publish": {
