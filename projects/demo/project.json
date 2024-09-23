@@ -178,7 +178,7 @@
         "generate-routes-file": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "ts-node ./scripts/generate-demo-routes-file.ts"
+                "command": "ts-node {projectRoot}/generate-demo-routes-file.ts"
             }
         },
         "prerender": {
