@@ -1,7 +1,7 @@
 import {readFileSync, writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 
-import {DemoPath} from '../projects/demo/src/app/constants/demo-path';
+import {DemoPath} from './src/app/constants/demo-path';
 
 const SMALL_TAB_SYMBOL = '  '; // @note: if you use \t then we have big gaps
 const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/API`];
