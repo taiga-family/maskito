@@ -10,19 +10,19 @@
             "executor": "@nx/angular:webpack-browser",
             "options": {
                 "customWebpackConfig": {
-                    "path": "projects/demo/webpack.config.ts"
+                    "path": "{projectRoot}/webpack.config.ts"
                 },
                 "baseHref": "/",
-                "outputPath": "dist/demo/browser",
-                "index": "projects/demo/src/index.html",
-                "main": "projects/demo/src/main.ts",
-                "polyfills": "projects/demo/src/polyfills.ts",
-                "tsConfig": "projects/demo/tsconfig.app.json",
+                "outputPath": "dist/{projectName}/browser",
+                "index": "{projectRoot}/src/index.html",
+                "main": "{projectRoot}/src/main.ts",
+                "polyfills": "{projectRoot}/src/polyfills.ts",
+                "tsConfig": "{projectRoot}/tsconfig.app.json",
                 "aot": false,
                 "assets": [
                     {
                         "glob": "**/*",
-                        "input": "projects/demo/src/assets/",
+                        "input": "{projectRoot}/src/assets/",
                         "output": "./assets/"
                     },
                     {
@@ -35,7 +35,7 @@
                     "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
                     "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
                     "node_modules/@taiga-ui/styles/taiga-ui-global.less",
-                    "projects/demo/src/styles.less"
+                    "{projectRoot}/src/styles.less"
                 ],
                 "scripts": [],
                 "vendorChunk": true,
@@ -50,8 +50,8 @@
                 "production": {
                     "fileReplacements": [
                         {
-                            "replace": "projects/demo/src/environments/environment.ts",
-                            "with": "projects/demo/src/environments/environment.prod.ts"
+                            "replace": "{projectRoot}/src/environments/environment.ts",
+                            "with": "{projectRoot}/src/environments/environment.prod.ts"
                         }
                     ],
                     "optimization": true,
@@ -82,26 +82,26 @@
                     "echo 'Github pages require special 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
-                    "nx build demo -c production",
-                    "cp dist/demo/browser/index.html dist/demo/browser/404.html",
-                    "nx run demo:prerender"
+                    "nx build {projectName} -c production",
+                    "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html",
+                    "nx run {projectName}:prerender"
                 ]
             }
         },
         "serve": {
             "executor": "@nx/angular:dev-server",
             "options": {
-                "buildTarget": "demo:build",
+                "buildTarget": "{projectName}:build",
                 "port": 3333,
                 "sslCert": ".ssl/localhost.pem",
                 "sslKey": ".ssl/localhost-key.pem"
             },
             "configurations": {
                 "production": {
-                    "buildTarget": "demo:build:production"
+                    "buildTarget": "{projectName}:build:production"
                 },
                 "development": {
-                    "buildTarget": "demo:build:development"
+                    "buildTarget": "{projectName}:build:development"
                 }
             },
             "defaultConfiguration": "development"
@@ -109,7 +109,7 @@
         "serve-ip": {
             "executor": "nx:run-commands",
             "options": {
-                "command": "nx serve demo --open --host 0.0.0.0 --disable-host-check"
+                "command": "nx serve {projectName} --open --host 0.0.0.0 --disable-host-check"
             }
         },
         "serve-ssl": {
@@ -129,20 +129,20 @@
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/demo"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/demo/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "server": {
             "executor": "@nx/angular:webpack-server",
             "options": {
                 "customWebpackConfig": {
-                    "path": "projects/demo/webpack.config.ts"
+                    "path": "{projectRoot}/webpack.config.ts"
                 },
-                "outputPath": "dist/demo/server",
-                "main": "projects/demo/server.ts",
-                "tsConfig": "projects/demo/tsconfig.server.json",
+                "outputPath": "dist/{projectName}/server",
+                "main": "{projectRoot}/server.ts",
+                "tsConfig": "{projectRoot}/tsconfig.server.json",
                 "sourceMap": true,
                 "optimization": false
             },
@@ -159,18 +159,18 @@
         "serve-ssr": {
             "executor": "@nguniversal/builders:ssr-dev-server",
             "options": {
-                "browserTarget": "demo:build",
-                "serverTarget": "demo:server",
+                "browserTarget": "{projectName}:build",
+                "serverTarget": "{projectName}:server",
                 "port": 3333
             },
             "configurations": {
                 "production": {
-                    "browserTarget": "demo:build:production",
-                    "serverTarget": "demo:server:production"
+                    "browserTarget": "{projectName}:build:production",
+                    "serverTarget": "{projectName}:server:production"
                 },
                 "development": {
-                    "serverTarget": "demo:server:development",
-                    "browserTarget": "demo:build:development"
+                    "serverTarget": "{projectName}:server:development",
+                    "browserTarget": "{projectName}:build:development"
                 }
             },
             "defaultConfiguration": "development"
@@ -184,9 +184,9 @@
         "prerender": {
             "executor": "@nguniversal/builders:prerender",
             "options": {
-                "browserTarget": "demo:build:production",
-                "serverTarget": "demo:server:production",
-                "routesFile": "./projects/demo/routesFile.txt"
+                "browserTarget": "{projectName}:build:production",
+                "serverTarget": "{projectName}:server:production",
+                "routesFile": "./{projectRoot}/routesFile.txt"
             },
             "dependsOn": [
                 {

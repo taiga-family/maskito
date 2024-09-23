@@ -54,8 +54,8 @@
         "*** Cypress ***": "",
         "cy:open": "cypress open --project ./projects/demo-integrations/",
         "cy:run": "nx e2e demo-integrations",
-        "release": "npx syncer && npx nx run-many --target publish --all",
-        "release:local": "npx release-it --no-git.push"
+        "release": "npx nx run-many --target publish --all",
+        "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'"
     },
     "commitlint": {
         "extends": [

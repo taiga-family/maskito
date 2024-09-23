@@ -8,13 +8,13 @@
     "targets": {
         "build": {
             "executor": "@nx/angular:package",
-            "outputs": ["{workspaceRoot}/dist/angular"],
+            "outputs": ["{workspaceRoot}/dist/{projectName}"],
             "options": {
-                "project": "projects/angular/ng-package.json"
+                "project": "{projectRoot}/ng-package.json"
             },
             "configurations": {
                 "production": {
-                    "tsConfig": "projects/angular/tsconfig.lib.prod.json"
+                    "tsConfig": "{projectRoot}/tsconfig.lib.prod.json"
                 },
                 "development": {
                     "tsConfig": "tsconfig.build.json"
@@ -31,9 +31,9 @@
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/angular"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/angular/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "publish": {

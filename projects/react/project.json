@@ -9,17 +9,17 @@
             "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/react",
-                "tsConfig": "projects/react/tsconfig.lib.json",
-                "project": "projects/react/package.json",
-                "entryFile": "projects/react/src/index.ts",
+                "outputPath": "dist/{projectName}",
+                "tsConfig": "{projectRoot}/tsconfig.lib.json",
+                "project": "{projectRoot}/package.json",
+                "entryFile": "{projectRoot}/src/index.ts",
                 "external": "all",
                 "rollupConfig": "@nx/react/plugins/bundle-rollup",
                 "compiler": "babel",
                 "format": ["esm", "cjs"],
                 "assets": [
                     {
-                        "glob": "projects/react/README.md",
+                        "glob": "{projectRoot}/README.md",
                         "input": ".",
                         "output": "."
                     }
@@ -37,14 +37,14 @@
             "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["projects/react/**/*.{ts,tsx,js,jsx}"]
+                "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx,js,jsx}"]
             }
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/projects/react"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/react/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "publish": {

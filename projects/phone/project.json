@@ -9,16 +9,16 @@
             "executor": "@nx/rollup:rollup",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "project": "projects/phone/package.json",
-                "outputPath": "dist/phone",
-                "entryFile": "projects/phone/src/index.ts",
-                "tsConfig": "projects/phone/tsconfig.lib.json",
+                "project": "{projectRoot}/package.json",
+                "outputPath": "dist/{projectName}",
+                "entryFile": "{projectRoot}/src/index.ts",
+                "tsConfig": "{projectRoot}/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
                 "external": "all",
                 "assets": [
                     {
-                        "glob": "projects/phone/README.md",
+                        "glob": "{projectRoot}/README.md",
                         "input": ".",
                         "output": "."
                     }
@@ -34,9 +34,9 @@
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/phone"],
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "projects/phone/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts"
             }
         },
         "publish": {
