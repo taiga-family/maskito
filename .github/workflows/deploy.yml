@@ -2,11 +2,12 @@ name: Deploy
 on:
   workflow_dispatch:
   push:
-    branches: ['release/*']
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'chore(release)')"
     steps:
       - uses: taiga-family/ci/actions/setup/checkout@v1.84.0
       - uses: taiga-family/ci/actions/setup/variables@v1.84.0
