@@ -11,6 +11,8 @@ export function applyOverwriteMode(
     return {
         value,
         selection:
-            computedMode === 'replace' ? [from, from + newCharacters.length] : [from, to],
+            computedMode === 'replace'
+                ? [from, Math.max(from + newCharacters.length, to)]
+                : [from, to],
     };
 }
