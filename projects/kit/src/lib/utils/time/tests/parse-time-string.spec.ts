@@ -33,8 +33,8 @@ describe('parseTimeString', () => {
         });
     });
 
-    it('mm.ss.mss', () => {
-        expect(parseTimeString('12.30.001', 'MM.SS.MSS')).toEqual({
+    it('mm:ss.mss', () => {
+        expect(parseTimeString('12:30.001', 'MM:SS.MSS')).toEqual({
             minutes: '12',
             seconds: '30',
             milliseconds: '001',
