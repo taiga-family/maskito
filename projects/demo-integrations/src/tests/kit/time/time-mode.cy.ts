@@ -413,9 +413,9 @@ describe('Time', () => {
             });
         });
 
-        describe('MM.SS.MSS', () => {
+        describe('MM:SS.MSS', () => {
             beforeEach(() => {
-                cy.visit(`/${DemoPath.Time}/API?mode=MM.SS.MSS`);
+                cy.visit(`/${DemoPath.Time}/API?mode=MM:SS.MSS`);
                 cy.get('#demo-content input')
                     .should('be.visible')
                     .first()
@@ -430,28 +430,28 @@ describe('Time', () => {
                         .type('5959999')
                         .type('{moveToStart}')
                         .type('0')
-                        .should('have.value', '09.59.999')
+                        .should('have.value', '09:59.999')
                         .should('have.prop', 'selectionStart', '0'.length)
                         .should('have.prop', 'selectionEnd', '0'.length)
                         .type('000')
-                        .should('have.value', '00.00.999')
-                        .should('have.prop', 'selectionStart', '00.00.'.length)
-                        .should('have.prop', 'selectionEnd', '00.00.'.length)
+                        .should('have.value', '00:00.999')
+                        .should('have.prop', 'selectionStart', '00:00.'.length)
+                        .should('have.prop', 'selectionEnd', '00:00.'.length)
                         .type('00')
-                        .should('have.value', '00.00.009')
-                        .should('have.prop', 'selectionStart', '00.00.00'.length)
-                        .should('have.prop', 'selectionEnd', '00.00.00'.length);
+                        .should('have.value', '00:00.009')
+                        .should('have.prop', 'selectionStart', '00:00.00'.length)
+                        .should('have.prop', 'selectionEnd', '00:00.00'.length);
                 });
 
                 it('moves cursor behind next character if new character is the same with the next one', () => {
                     cy.get('@input')
-                        .type('59.59.999')
+                        .type('59:59.999')
                         .type('{moveToStart}')
-                        .type('{rightArrow}'.repeat('59.59.'.length))
+                        .type('{rightArrow}'.repeat('59:59.'.length))
                         .type('9')
-                        .should('have.value', '59.59.999')
-                        .should('have.prop', 'selectionStart', '59.59.9'.length)
-                        .should('have.prop', 'selectionEnd', '59.59.9'.length);
+                        .should('have.value', '59:59.999')
+                        .should('have.prop', 'selectionStart', '59:59.9'.length)
+                        .should('have.prop', 'selectionEnd', '59:59.9'.length);
                 });
             });
 
@@ -462,83 +462,83 @@ describe('Time', () => {
                     .should('have.prop', 'selectionStart', '06'.length)
                     .should('have.prop', 'selectionEnd', '06'.length)
                     .type('6')
-                    .should('have.value', '06.06')
-                    .should('have.prop', 'selectionStart', '06.06'.length)
-                    .should('have.prop', 'selectionEnd', '06.06'.length)
+                    .should('have.value', '06:06')
+                    .should('have.prop', 'selectionStart', '06:06'.length)
+                    .should('have.prop', 'selectionEnd', '06:06'.length)
                     .type('999')
-                    .should('have.value', '06.06.999')
-                    .should('have.prop', 'selectionStart', '06.06.999'.length)
-                    .should('have.prop', 'selectionEnd', '06.06.999'.length);
+                    .should('have.value', '06:06.999')
+                    .should('have.prop', 'selectionStart', '06:06.999'.length)
+                    .should('have.prop', 'selectionEnd', '06:06.999'.length);
             });
 
             describe('Select range and press new digit', () => {
                 it(
-                    '|59|.59.999 => Type 2 => 2|0.59.999',
+                    '|59|:59.999 => Type 2 => 2|0:59.999',
                     BROWSER_SUPPORTS_REAL_EVENTS,
                     () => {
                         cy.get('@input')
                             .type('5959999')
-                            .should('have.value', '59.59.999')
+                            .should('have.value', '59:59.999')
                             .realPress([
-                                ...new Array('.59.999'.length).fill('ArrowLeft'),
+                                ...new Array(':59.999'.length).fill('ArrowLeft'),
                                 'Shift',
                                 ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
                             .type('2')
-                            .should('have.value', '20.59.999')
+                            .should('have.value', '20:59.999')
                             .should('have.prop', 'selectionStart', '2'.length)
                             .should('have.prop', 'selectionEnd', '2'.length);
                     },
                 );
 
                 it(
-                    '|59|.59.999 => Type 6 => 06.|59.999',
+                    '|59|:59.999 => Type 6 => 06:|59.999',
                     BROWSER_SUPPORTS_REAL_EVENTS,
                     () => {
                         cy.get('@input')
                             .type('5959999')
-                            .should('have.value', '59.59.999')
+                            .should('have.value', '59:59.999')
                             .realPress([
-                                ...new Array('.59.999'.length).fill('ArrowLeft'),
+                                ...new Array(':59.999'.length).fill('ArrowLeft'),
                                 'Shift',
                                 ...new Array('59'.length).fill('ArrowLeft'),
                             ]);
 
                         cy.get('@input')
                             .type('6')
-                            .should('have.value', '06.59.999')
-                            .should('have.prop', 'selectionStart', '06.'.length)
-                            .should('have.prop', 'selectionEnd', '06.'.length);
+                            .should('have.value', '06:59.999')
+                            .should('have.prop', 'selectionStart', '06:'.length)
+                            .should('have.prop', 'selectionEnd', '06:'.length);
                     },
                 );
             });
 
             describe('accepts time segment separators typed by user', () => {
-                it('59 => Type . => 59.', () => {
+                it('59 => Type : => 59:', () => {
                     cy.get('@input')
                         .type('59')
                         .should('have.value', '59')
-                        .type('.')
-                        .should('have.value', '59.')
-                        .should('have.prop', 'selectionStart', '59.'.length)
-                        .should('have.prop', 'selectionEnd', '59.'.length);
+                        .type(':')
+                        .should('have.value', '59:')
+                        .should('have.prop', 'selectionStart', '59:'.length)
+                        .should('have.prop', 'selectionEnd', '59:'.length);
                 });
 
-                it('59.59 => Type . => 59:59.', () => {
+                it('59:59 => Type . => 59:59.', () => {
                     cy.get('@input')
                         .type('5959')
-                        .should('have.value', '59.59')
+                        .should('have.value', '59:59')
                         .type('.')
-                        .should('have.value', '59.59.')
-                        .should('have.prop', 'selectionStart', '59.59.'.length)
-                        .should('have.prop', 'selectionEnd', '59.59.'.length);
+                        .should('have.value', '59:59.')
+                        .should('have.prop', 'selectionStart', '59:59.'.length)
+                        .should('have.prop', 'selectionEnd', '59:59.'.length);
                 });
             });
 
-            it('type 5959999 => 59.59.999', () => {
-                cy.get('@input').type('5959999').should('have.value', '59.59.999');
+            it('type 5959999 => 59:59.999', () => {
+                cy.get('@input').type('5959999').should('have.value', '59:59.999');
             });
         });
 
