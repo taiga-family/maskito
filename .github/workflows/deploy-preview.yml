@@ -4,7 +4,6 @@ on: pull_request
 
 jobs:
   build_and_preview:
-    if: ${{ !contains(github.head_ref, 'release/') }}
     name: Firebase
     runs-on: ubuntu-latest
     steps:
