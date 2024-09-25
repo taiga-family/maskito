@@ -48,9 +48,9 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
         const predicateResult = await elementPredicate(elementRef);
 
         // eslint-disable-next-line unicorn/consistent-destructuring
-        if (this.elementPredicate !== elementPredicate) {
+        if (this.elementPredicate !== elementPredicate || this.options !== options) {
             // Ignore the result of the predicate if the
-            // maskito element has changed before the predicate was resolved.
+            // maskito element (or its options) has changed before the predicate was resolved.
             return;
         }
 
