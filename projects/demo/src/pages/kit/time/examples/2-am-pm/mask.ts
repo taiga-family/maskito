@@ -2,8 +2,7 @@ import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
 import {maskitoEventHandler, maskitoTimeOptionsGenerator} from '@maskito/kit';
 
 const timeOptions = maskitoTimeOptionsGenerator({
-    mode: 'HH:MM:SS',
-    step: 1,
+    mode: 'HH:MM AA',
 });
 
 export default {
@@ -11,12 +10,9 @@ export default {
     plugins: [
         ...timeOptions.plugins,
         maskitoEventHandler('blur', (element) => {
-            const [hh = '', mm = '', ss = ''] = element.value.split(':');
-
-            maskitoUpdateElement(
-                element,
-                [hh, mm, ss].map((segment) => segment.padEnd(2, '0')).join(':'),
-            );
+            if (element.value.length >= 'HH:MM'.length && !element.value.endsWith('M')) {
+                maskitoUpdateElement(element, `${element.value} AM`);
+            }
         }),
     ],
 } satisfies MaskitoOptions;

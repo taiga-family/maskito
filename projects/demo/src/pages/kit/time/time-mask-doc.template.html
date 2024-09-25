@@ -39,41 +39,31 @@
                 <p class="tui-space_top-0 tui-space_bottom-1">
                     Use
                     <code>mode</code>
-                    property to set time format.
-                </p>
-                <p class="tui-space_top-0">
-                    <strong>Available options</strong>
-                    :
-                    <code>HH:MM</code>
-                    ,
-                    <code>HH:MM:SS</code>
-                    or
-                    <code>HH:MM:SS.MSS</code>
-                    .
+                    property to set time format. See the full list of available mode on
+                    <a
+                        routerLink="/{{ pages.Time }}/API"
+                        tuiLink
+                    >
+                        API page
+                    </a>
+                    of the documentation.
                 </p>
             </ng-template>
             <time-mask-doc-example-1 />
         </tui-doc-example>
 
         <tui-doc-example
-            id="twelve-hours"
-            heading="12-hours format"
-            [content]="modeExample2"
-            [description]="timeSegmentMaxValuesDescription"
+            id="am-pm"
+            heading="AM / PM"
+            [content]="amPmExample2"
+            [description]="amPmDescription"
         >
-            <ng-template #timeSegmentMaxValuesDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Property
-                    <code>timeSegmentMaxValues</code>
-                    allows you to set max value for every time segment.
-                </p>
-
-                <p class="tui-space_top-0">
-                    <strong>Time segments</strong>
-                    are units of the time which form time string. For example,
-                    <code>HH:MM</code>
-                    consists of two time segments: hours and minutes.
-                </p>
+            <ng-template #amPmDescription>
+                Any
+                <code>mode</code>
+                ending with
+                <code>AA</code>
+                is 12-hour time format with meridiem part.
             </ng-template>
             <time-mask-doc-example-2 />
         </tui-doc-example>
@@ -102,6 +92,31 @@
                 </p>
             </ng-template>
             <time-mask-doc-example-3 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="time-segment-min-max"
+            heading="Min / max value for every time segment"
+            [content]="timeSegmentsMinMaxExample4"
+            [description]="timeSegmentMinMaxDescription"
+        >
+            <ng-template #timeSegmentMinMaxDescription>
+                <p class="tui-space_top-0 tui-space_bottom-1">
+                    Property
+                    <code>timeSegmentMinValues</code>
+                    /
+                    <code>timeSegmentMaxValues</code>
+                    allows you to set min/max value for every time segment.
+                </p>
+
+                <p class="tui-space_top-0">
+                    <strong>Time segments</strong>
+                    are units of the time which form time string. For example,
+                    <code>HH:MM</code>
+                    consists of two time segments: hours and minutes.
+                </p>
+            </ng-template>
+            <time-mask-doc-example-4 />
         </tui-doc-example>
     </ng-template>
 
@@ -136,13 +151,45 @@
             </ng-template>
             <ng-template
                 documentationPropertyMode="input"
+                documentationPropertyName="timeSegmentMinValues"
+                documentationPropertyType="MaskitoTimeSegments<number>"
+                [documentationPropertyValues]="timeSegmentMinValuesOptions"
+                [(documentationPropertyValue)]="timeSegmentMinValues"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Minimum value for each time segment
+
+                <p>
+                    <strong>Default:</strong>
+                    <br />
+                    <code>&#123;hours: 0&#125;</code>
+                     / 
+                    <code>&#123;hours: 1&#125;</code>
+                    for
+                    <code>mode</code>
+                    without / with meridiem period
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
                 documentationPropertyName="timeSegmentMaxValues"
                 documentationPropertyType="MaskitoTimeSegments<number>"
                 [documentationPropertyValues]="timeSegmentMaxValuesOptions"
                 [(documentationPropertyValue)]="timeSegmentMaxValues"
                 (documentationPropertyValueChange)="updateOptions()"
             >
-                Max value for every time segment
+                Maximum value for each time segment
+
+                <p>
+                    <strong>Default:</strong>
+                    <br />
+                    <code>&#123;hours: 24&#125;</code>
+                     / 
+                    <code>&#123;hours: 12&#125;</code>
+                    for
+                    <code>mode</code>
+                    without / with meridiem period
+                </p>
             </ng-template>
             <ng-template
                 documentationPropertyMode="input"

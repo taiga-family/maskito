@@ -1,9 +1,11 @@
 import {DemoPath} from '@demo/constants';
 
+import {range} from '../../utils';
+
 describe('Time | [timeSegmentMaxValues] property', () => {
     describe('{hours: 5, minutes: 5, seconds: 5, milliseconds: 5}', () => {
         beforeEach(() => {
-            cy.visit(`/${DemoPath.Time}/API?mode=HH:MM&timeSegmentMaxValues$=2`);
+            cy.visit(`/${DemoPath.Time}/API?mode=HH:MM&timeSegmentMaxValues$=3`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .first()
@@ -152,7 +154,3 @@ describe('Time | [timeSegmentMaxValues] property', () => {
         });
     });
 });
-
-function range(from: number, to: number): number[] {
-    return new Array(to - from + 1).fill(null).map((_, i) => from + i);
-}

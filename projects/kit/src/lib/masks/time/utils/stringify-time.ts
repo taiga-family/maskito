@@ -1,7 +1,7 @@
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
 import type {MaskitoTimeSegments} from '../../../types';
 import {padStartTimeSegments} from '../../../utils/time';
-import type {MaskitoTimeParams} from '../time-options';
+import type {MaskitoTimeParams} from '../time-params';
 
 /**
  * Converts milliseconds to a formatted time string based on the given `options.mode`.

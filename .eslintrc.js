@@ -22,6 +22,7 @@ module.exports = {
             rules: {
                 'react/display-name': 'off',
                 'react/react-in-jsx-scope': 'off',
+                'no-irregular-whitespace': 'off',
             },
         },
     ],

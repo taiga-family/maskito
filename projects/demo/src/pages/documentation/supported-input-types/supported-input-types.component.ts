@@ -50,7 +50,6 @@ export default class SupportedInputTypesDocPageComponent {
     };
 
     protected getInput(type: HTMLInputElement['type']): string {
-        // eslint-disable-next-line no-irregular-whitespace
         return `<input type="${type}" />`;
     }
 }

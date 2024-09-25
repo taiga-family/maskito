@@ -19,12 +19,18 @@ export function parseTimeString(
     let offset = 0;
 
     return Object.fromEntries(
-        timeMode.split(/\W/).map((segmentAbbr) => {
-            const segmentValue = onlyDigits.slice(offset, offset + segmentAbbr.length);
+        timeMode
+            .split(/\W/)
+            .filter((segmentAbbr) => SEGMENT_FULL_NAME[segmentAbbr])
+            .map((segmentAbbr) => {
+                const segmentValue = onlyDigits.slice(
+                    offset,
+                    offset + segmentAbbr.length,
+                );
 
-            offset += segmentAbbr.length;
+                offset += segmentAbbr.length;
 
-            return [SEGMENT_FULL_NAME[segmentAbbr], segmentValue];
-        }),
+                return [SEGMENT_FULL_NAME[segmentAbbr], segmentValue];
+            }),
     );
 }

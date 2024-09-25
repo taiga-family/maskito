@@ -18,7 +18,7 @@ describe('DateTime | Separator', () => {
         it('rejects dot as separator', () => {
             cy.get('@input')
                 .type('1412.')
-                .should('have.value', '14/12')
+                .should('have.value', '14/12/')
                 .type('2000')
                 .should('have.value', '14/12/2000');
         });
@@ -57,7 +57,7 @@ describe('DateTime | Separator', () => {
                 .type('14')
                 .should('have.value', '14')
                 .type('12.')
-                .should('have.value', '14-12');
+                .should('have.value', '14-12-');
         });
     });
 });

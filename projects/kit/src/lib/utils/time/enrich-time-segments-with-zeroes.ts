@@ -48,10 +48,10 @@ export function enrichTimeSegmentsWithZeroes(
         validatedTimeSegments[segmentName] = validatedSegmentValue;
     }
 
-    const [trailingSegmentSeparator = ''] =
-        value.match(TRAILING_TIME_SEGMENT_SEPARATOR_REG) || [];
+    // trailing segment separators or meridiem characters
+    const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || [];
     const validatedTimeString =
-        toTimeString(validatedTimeSegments) + trailingSegmentSeparator;
+        toTimeString(validatedTimeSegments) + trailingNonDigitCharacters;
     const addedDateSegmentSeparators = Math.max(
         validatedTimeString.length - value.length,
         0,

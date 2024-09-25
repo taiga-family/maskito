@@ -20,22 +20,25 @@ export function createFirstDateEndSeparatorPreprocessor({
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
+        const [from, to] = selection;
         const firstCompleteDate = getFirstCompleteDate(value, dateModeTemplate);
         const pseudoSeparators = pseudoFirstDateEndSeparators.filter(
             (x) => !firstDateEndSeparator.includes(x) && x !== dateSegmentSeparator,
         );
         const pseudoSeparatorsRE = new RegExp(`[${pseudoSeparators.join('')}]`, 'gi');
+        const newValue =
+            firstCompleteDate && value.length > firstCompleteDate.length
+                ? firstCompleteDate +
+                  value
+                      .slice(firstCompleteDate.length)
+                      .replace(/^[\D\s]*/, firstDateEndSeparator)
+                : value;
+        const caretShift = newValue.length - value.length;
 
         return {
             elementState: {
-                selection,
-                value:
-                    firstCompleteDate && value.length > firstCompleteDate.length
-                        ? firstCompleteDate +
-                          value
-                              .slice(firstCompleteDate.length)
-                              .replace(/^[\D\s]*/, firstDateEndSeparator)
-                        : value,
+                selection: [from + caretShift, to + caretShift],
+                value: newValue,
             },
             data: data.replace(pseudoSeparatorsRE, firstDateEndSeparator),
         };
