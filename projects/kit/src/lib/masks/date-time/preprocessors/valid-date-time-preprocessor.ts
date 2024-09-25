@@ -1,9 +1,9 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../../constants';
+import {TIME_FIXED_CHARACTERS} from '../../../constants';
 import type {MaskitoTimeMode} from '../../../types';
 import {escapeRegExp, validateDateString} from '../../../utils';
-import {padStartTimeSegments, validateTimeString} from '../../../utils/time';
+import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
 import {parseDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
@@ -66,25 +66,16 @@ export function createValidDateTimePreprocessor({
 
         validatedValue += validatedDateString;
 
-        const paddedMaxValues = padStartTimeSegments(DEFAULT_TIME_SEGMENT_MAX_VALUES);
+        const updatedTimeState = enrichTimeSegmentsWithZeroes(
+            {value: timeString, selection: [from, to]},
+            {mode: timeMode},
+        );
 
-        const {validatedTimeString, updatedTimeSelection} = validateTimeString({
-            timeString,
-            paddedMaxValues,
-            offset: validatedValue.length + dateTimeSeparator.length,
-            selection: [from, to],
-            timeMode,
-        });
-
-        if (timeString && !validatedTimeString) {
-            return {elementState, data: ''}; // prevent changes
-        }
-
-        to = updatedTimeSelection[1];
+        to = updatedTimeState.selection[1];
 
         validatedValue += hasDateTimeSeparator
-            ? dateTimeSeparator + validatedTimeString
-            : validatedTimeString;
+            ? dateTimeSeparator + updatedTimeState.value
+            : updatedTimeState.value;
 
         const newData = validatedValue.slice(from, to);
 

@@ -248,7 +248,7 @@ describe('Time', () => {
                         .should('have.prop', 'selectionEnd', '20:0'.length);
                 });
 
-                it('|23|:59 => Delete => 00:|59', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                it('|23|:59 => Delete => 00|:59', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
