@@ -1,5 +1,8 @@
-name: 🤖 Auto approve validation
-on: pull_request
+name: 🤖 PR suites
+on:
+  pull_request:
+  pull_request_review:
+    types: [submitted]
 
 env:
   PR_JOBS_NAME: '[ "Packages", "Demo", "Firebase", "Lint result", "tests", "E2E result" ]'
@@ -10,10 +13,11 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.85.0
+      - uses: actions/checkout@v4.1.7
       - uses: taiga-family/ci/actions/setup/variables@v1.85.0
       - id: matrix
-        run: echo "value=$PR_JOBS_NAME" >> $GITHUB_OUTPUT
+        if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
+        run: echo "value=$JOBS_NAME" >> $GITHUB_OUTPUT
 
   wait:
     needs: [setup]
@@ -32,7 +36,7 @@ jobs:
     needs: [wait]
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.85.0
+      - uses: actions/checkout@v4.1.7
       - uses: taiga-family/ci/actions/setup/variables@v1.85.0
       - uses: taiga-family/ci/actions/auto/approve/double@v1.85.0
         if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
@@ -40,10 +44,33 @@ jobs:
           token1: ${{ secrets.GITHUB_TOKEN }}
           token2: ${{ secrets.TAIGA_FAMILY_APPROVE_BOT_PAT }}
       - uses: taiga-family/ci/actions/run/merge@v1.85.0
-        if: ${{ env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true' }}
+        if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
+  label-when-approved:
+    name: Label when approved
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'APPROVED'
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: taiga-family/ci/actions/setup/variables@v1.85.0
+      - uses: taiga-family/ci/actions/auto/label-when-approved@v1.85.0
+        with:
+          approvals: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  assign-author:
+    name: PR author as an assignee
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: taiga-family/ci/actions/setup/variables@v1.85.0
+      - uses: toshimaru/auto-author-assign@v2.1.1
+        if: env.IS_OWNER_MODE == 'true'
+        with:
+          repo-token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
+
 concurrency:
-  group: auto-approve-${{ github.head_ref }}
+  group: pr-suites-${{ github.head_ref }}
   cancel-in-progress: true
