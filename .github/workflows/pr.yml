@@ -17,7 +17,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/variables@v1.85.0
       - id: matrix
         if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
-        run: echo "value=$JOBS_NAME" >> $GITHUB_OUTPUT
+        run: echo "value=$PR_JOBS_NAME" >> $GITHUB_OUTPUT
 
   wait:
     needs: [setup]
