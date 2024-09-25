@@ -1,3 +1,16 @@
+### [3.0.3](https://github.com/taiga-family/maskito/compare/v3.0.2...v3.0.3) (2024-09-25)
+
+### 🐞 Bug Fixes
+
+- **angular**: race condition when `[maskitoOptions]` are changed before long element predicate is resolved (#1696)
+  [(9f9bad3)](https://github.com/taiga-family/maskito/commit/9f9bad3036774fa51350c3c8402cf57f15e789d6)
+- **kit**: `Time` has invalid segment separator for `MM:SS.MSS` mode (#1687)
+  [(93972be)](https://github.com/taiga-family/maskito/commit/93972be370e1abf4278497b11f61d3c923ae5caa)
+- **core**: incorrect behavior of `overwriteMode = replace` if selection contains several characters (#1685)
+  [(67c3c10)](https://github.com/taiga-family/maskito/commit/67c3c10704f62efff4c47f1ad802859d54257752)
+- **react**: race condition when `options` are changed before long element predicate is resolved (#1651)
+  [(f2932ce)](https://github.com/taiga-family/maskito/commit/f2932ce10ec80a1080befaee9e5c235bc41a1b16)
+
 ### [3.0.2](https://github.com/taiga-family/maskito/compare/v3.0.1...v3.0.2) (2024-09-20)
 
 ### 🐞 Bug Fixes
