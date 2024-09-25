@@ -17,7 +17,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: taiga-family/ci/actions/setup/checkout@v1.85.0
+      - uses: actions/checkout@v4.1.7
       - uses: taiga-family/ci/actions/setup/variables@v1.85.0
       - uses: taiga-family/ci/actions/setup/node@v1.85.0
       - uses: taiga-family/ci/actions/run/release-it@v1.85.0
@@ -36,7 +36,7 @@ jobs:
           chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
           topicId: ${{ secrets.TAIGA_TELEGRAM_CHAT_THREAD_ID }}
           token: ${{ secrets.TAIGA_TELEGRAM_BOT_TOKEN }}
-          version: ${{ steps.info.outputs.version }}
+          version: v${{ steps.info.outputs.version }}
           textLink: '@maskito/core'
 
 concurrency:
