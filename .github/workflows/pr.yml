@@ -13,7 +13,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: taiga-family/ci/actions/setup/variables@v1.87.0
       - id: matrix
         if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
@@ -36,7 +36,7 @@ jobs:
     needs: [wait]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: taiga-family/ci/actions/setup/variables@v1.87.0
       - uses: taiga-family/ci/actions/auto/approve/double@v1.87.0
         with:
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.review.state == 'APPROVED'
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: taiga-family/ci/actions/setup/variables@v1.87.0
       - uses: taiga-family/ci/actions/auto/label-when-approved@v1.87.0
         with:
@@ -62,7 +62,7 @@ jobs:
     name: PR author as an assignee
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: taiga-family/ci/actions/setup/variables@v1.87.0
       - uses: toshimaru/auto-author-assign@v2.1.1
         if: env.IS_OWNER_MODE == 'true'
