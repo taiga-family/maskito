@@ -2,7 +2,7 @@ name: E2E
 on: [pull_request]
 
 env:
-  CACHE_DIST_KEY: dist-${{ github.head_ref }}-${{ github.ref }}-${{ github.sha }}
+  CACHE_DIST_KEY: dist-${{ github.ref }}-${{ github.sha }}
   CYPRESS_CACHE_FOLDER: ./node_modules/cache-cypress
   UNIVERSAL_SERVER: http://localhost:4000
   STATIC_SERVER: http://localhost:8080
@@ -131,5 +131,5 @@ jobs:
       - run: echo "Success"
 
 concurrency:
-  group: e2e-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
