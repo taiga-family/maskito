@@ -21,14 +21,13 @@ export function createMeridiemSteppingPlugin(meridiemStartIndex: number): Maskit
 
             event.preventDefault();
 
-            /* eslint-disable no-nested-ternary */
+            // eslint-disable-next-line no-nested-ternary
             const meridiemMainCharacter = value.includes('A')
                 ? 'P'
-                : value.includes('P')
+                : value.includes('P') || event.key === 'ArrowUp'
                   ? 'A'
-                  : event.key === 'ArrowDown'
-                    ? 'P'
-                    : 'A';
+                  : 'P';
+
             const newMeridiem = `${CHAR_NO_BREAK_SPACE}${meridiemMainCharacter}M`;
 
             maskitoUpdateElement(element, {
