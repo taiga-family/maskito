@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.87.5
-      - uses: taiga-family/ci/actions/setup/node@v1.87.5
+      - uses: taiga-family/ci/actions/setup/variables@v1.87.6
+      - uses: taiga-family/ci/actions/setup/node@v1.87.6
 
       - name: Run tests
         run: npx nx run-many --target test --all --coverage
