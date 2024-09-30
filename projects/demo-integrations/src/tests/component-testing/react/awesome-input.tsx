@@ -1,4 +1,5 @@
-import {forwardRef, type InputHTMLAttributes} from 'react';
+import type {InputHTMLAttributes} from 'react';
+import {forwardRef} from 'react';
 
 const hiddenInputStyles = {
     display: 'none',
