@@ -1,8 +1,6 @@
 name: 🤖 PR auto merge
 on:
   pull_request:
-    branches:
-      - renovate/**
 
 env:
   PR_JOBS_NAME: '[ "Packages", "Demo", "Firebase", "Lint result", "tests", "E2E result" ]'
