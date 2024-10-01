@@ -22,8 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.91.0
-      - uses: taiga-family/ci/actions/setup/node@v1.91.0
+        with:
+          persist-credentials: false
+      - uses: taiga-family/ci/actions/setup/variables@v1.87.8
+      - uses: taiga-family/ci/actions/setup/node@v1.87.8
       - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
       - uses: taiga-family/ci/actions/auto/push@v1.91.0
         with:
@@ -33,8 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.91.0
-      - uses: taiga-family/ci/actions/setup/node@v1.91.0
+        with:
+          persist-credentials: false
+      - uses: taiga-family/ci/actions/setup/variables@v1.87.8
+      - uses: taiga-family/ci/actions/setup/node@v1.87.8
       - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
       - uses: taiga-family/ci/actions/auto/push@v1.91.0
         with:
@@ -44,8 +48,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.91.0
-      - uses: taiga-family/ci/actions/setup/node@v1.91.0
+        with:
+          persist-credentials: false
+      - uses: taiga-family/ci/actions/setup/variables@v1.87.8
+      - uses: taiga-family/ci/actions/setup/node@v1.87.8
       - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
       - uses: taiga-family/ci/actions/auto/push@v1.91.0
         with:
