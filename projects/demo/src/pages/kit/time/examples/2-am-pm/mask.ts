@@ -1,4 +1,5 @@
-import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
+import {maskitoUpdateElement} from '@maskito/core';
 import {maskitoEventHandler, maskitoTimeOptionsGenerator} from '@maskito/kit';
 
 const timeOptions = maskitoTimeOptionsGenerator({
