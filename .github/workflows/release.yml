@@ -21,6 +21,7 @@ jobs:
       - uses: taiga-family/ci/actions/setup/variables@v1.91.0
       - uses: taiga-family/ci/actions/setup/node@v1.91.0
       - uses: taiga-family/ci/actions/run/release-it@v1.91.0
+        id: release-it
         with:
           ref: ${{ github.ref }}
           mode: ${{ github.event.inputs.mode }}
@@ -31,6 +32,7 @@ jobs:
         id: info
 
       - name: Announce to Telegram
+        if: steps.release-it.outputs.released == 'true'
         uses: taiga-family/ci/actions/messenger/telegram/announce@v1.91.0
         with:
           chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
