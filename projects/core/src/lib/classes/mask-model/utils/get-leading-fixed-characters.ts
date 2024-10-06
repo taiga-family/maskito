@@ -2,7 +2,7 @@ import type {ElementState} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function getLeadingFixedCharacters(
-    mask: Array<RegExp | string>,
+    mask: ReadonlyArray<RegExp | string>,
     validatedValuePart: string,
     newCharacter: string,
     initialElementState: ElementState | null,

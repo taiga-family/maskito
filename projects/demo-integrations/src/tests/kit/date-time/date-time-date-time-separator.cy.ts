@@ -5,7 +5,7 @@ describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
 
     dateTimeSeparators.forEach((dateTimeSeparator) => {
-        const testCases: Array<{
+        const testCases: ReadonlyArray<{
             typedDigits: string;
             formattedDate: string;
             formattedValue: string;

@@ -9,7 +9,7 @@ import {
 import {openNumberPage} from './utils';
 
 describe('Number | minus sign', () => {
-    const pseudoMinuses: Array<{value: string; name: string}> = [
+    const pseudoMinuses: ReadonlyArray<{value: string; name: string}> = [
         {value: CHAR_HYPHEN, name: 'hyphen'},
         {value: CHAR_EN_DASH, name: 'en-dash'},
         {value: CHAR_EM_DASH, name: 'em-dash'},
@@ -18,7 +18,7 @@ describe('Number | minus sign', () => {
     ];
 
     describe('can use hyphen, all kind of dashes and minus interchangeably', () => {
-        const minuses: Array<{value: string; name: string}> = [
+        const minuses: ReadonlyArray<{value: string; name: string}> = [
             {
                 value: CHAR_HYPHEN,
                 name: 'hyphen',

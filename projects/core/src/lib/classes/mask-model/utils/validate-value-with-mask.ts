@@ -1,11 +1,12 @@
 import type {MaskitoMaskExpression} from '../../../types';
+import {isArray} from '../../../utils';
 import {isFixedCharacter} from './is-fixed-character';
 
 export function validateValueWithMask(
     value: string,
     maskExpression: MaskitoMaskExpression,
 ): boolean {
-    if (Array.isArray(maskExpression)) {
+    if (isArray(maskExpression)) {
         return (
             value.length === maskExpression.length &&
             Array.from(value).every((char, i) => {

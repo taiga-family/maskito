@@ -80,16 +80,13 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
         '2025-05-10',
     ] as const;
 
-    protected readonly minLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
-        {day: 3},
-        {day: 15},
-    ];
+    protected readonly minLengthOptions: ReadonlyArray<
+        Partial<MaskitoDateSegments<number>>
+    > = [{day: 3}, {day: 15}];
 
-    protected readonly maxLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
-        {day: 5},
-        {month: 1},
-        {year: 1},
-    ];
+    protected readonly maxLengthOptions: ReadonlyArray<
+        Partial<MaskitoDateSegments<number>>
+    > = [{day: 5}, {month: 1}, {year: 1}];
 
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];

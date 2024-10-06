@@ -9,7 +9,7 @@ describe('DateTime | dateTimeSeparator', () => {
     let options = MASKITO_DEFAULT_OPTIONS;
 
     dateTimeSeparators.forEach((dateTimeSeparator) => {
-        const testCases: Array<{
+        const testCases: ReadonlyArray<{
             typedDigits: string;
             formattedValue: string;
             timeMode: MaskitoTimeMode;

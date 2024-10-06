@@ -18,7 +18,7 @@ export function validateDateString({
     selection: [number, number];
 }): {validatedDateString: string; updatedSelection: [number, number]} {
     const parsedDate = parseDateString(dateString, dateModeTemplate);
-    const dateSegments = Object.entries(parsedDate) as Array<
+    const dateSegments = Object.entries(parsedDate) as ReadonlyArray<
         [keyof MaskitoDateSegments, string]
     >;
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};

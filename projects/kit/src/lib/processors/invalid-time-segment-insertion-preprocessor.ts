@@ -41,7 +41,7 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
         const {timeString, restValue = ''} = parseValue(newPossibleValue);
         const timeSegments = Object.entries(
             parseTimeString(timeString, timeMode),
-        ) as Array<[keyof MaskitoTimeSegments, string]>;
+        ) as ReadonlyArray<[keyof MaskitoTimeSegments, string]>;
 
         let offset = restValue.length;
 

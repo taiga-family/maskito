@@ -5,7 +5,7 @@ import {validateValueWithMask} from './validate-value-with-mask';
 
 export function guessValidValueByPattern(
     elementState: ElementState,
-    mask: Array<RegExp | string>,
+    mask: ReadonlyArray<RegExp | string>,
     initialElementState: ElementState | null,
 ): ElementState {
     let maskedFrom: number | null = null;

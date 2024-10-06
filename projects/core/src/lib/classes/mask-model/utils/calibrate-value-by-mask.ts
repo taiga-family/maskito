@@ -1,4 +1,5 @@
 import type {ElementState, MaskitoMaskExpression} from '../../../types';
+import {isArray} from '../../../utils';
 import {guessValidValueByPattern} from './guess-valid-value-by-pattern';
 import {guessValidValueByRegExp} from './guess-valid-value-by-reg-exp';
 import {validateValueWithMask} from './validate-value-with-mask';
@@ -12,12 +13,12 @@ export function calibrateValueByMask(
         return elementState;
     }
 
-    const {value, selection} = Array.isArray(mask)
+    const {value, selection} = isArray(mask)
         ? guessValidValueByPattern(elementState, mask, initialElementState)
         : guessValidValueByRegExp(elementState, mask);
 
     return {
         selection,
-        value: Array.isArray(mask) ? value.slice(0, mask.length) : value,
+        value: isArray(mask) ? value.slice(0, mask.length) : value,
     };
 }
