@@ -18,7 +18,7 @@ jobs:
         run: npx nx run-many --target test --all --coverage
 
       - name: Archive coverage artifacts
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4.4.1
         with:
           name: coverage-${{ github.workflow }}-${{ github.run_id }}
           path: coverage
