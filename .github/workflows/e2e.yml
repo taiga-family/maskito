@@ -12,7 +12,7 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
         with:
           fetch-depth: 10
 
@@ -42,7 +42,7 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
       - uses: taiga-family/ci/actions/setup/variables@v1.93.2
       - uses: taiga-family/ci/actions/setup/node@v1.93.2
 
@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
       - uses: taiga-family/ci/actions/setup/variables@v1.93.2
       - uses: taiga-family/ci/actions/setup/node@v1.93.2
 
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
       - uses: taiga-family/ci/actions/setup/variables@v1.93.2
       - uses: taiga-family/ci/actions/setup/node@v1.93.2
 
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Component Testing
     steps:
-      - uses: actions/checkout@v4.2.0
+      - uses: actions/checkout@v4.2.1
       - uses: taiga-family/ci/actions/setup/variables@v1.93.2
       - uses: taiga-family/ci/actions/setup/node@v1.93.2
 
