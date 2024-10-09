@@ -110,4 +110,44 @@ describe('MaskModel | Fixed characters', () => {
             });
         });
     });
+
+    describe('Attempt to insert invalid characters for `overwriteMode: replace`', () => {
+        describe('mask expression contains leading characters – ["$", /d/, /d/]', () => {
+            const options: Required<MaskitoOptions> = {
+                ...MASKITO_DEFAULT_OPTIONS,
+                mask: ['$', /\d/, /\d/],
+                overwriteMode: 'replace',
+            };
+
+            it('$1|2 => Type A => $1|2', () => {
+                const value = '$12';
+                const selection = [2, 2] as const;
+                const maskModel = new MaskModel({value, selection}, options);
+
+                expect(() => maskModel.addCharacters(selection, 'q')).toThrow();
+                expect(maskModel.value).toBe(value);
+                expect(maskModel.selection).toEqual(selection);
+            });
+
+            it('$|12 => Type $ => $|12', () => {
+                const value = '$12';
+                const selection = [1, 1] as const;
+                const maskModel = new MaskModel({value, selection}, options);
+
+                expect(() => maskModel.addCharacters(selection, '$')).toThrow();
+                expect(maskModel.value).toBe(value);
+                expect(maskModel.selection).toEqual(selection);
+            });
+
+            it('$|12 => Type X => $|12', () => {
+                const value = '$12';
+                const selection = [1, 1] as const;
+                const maskModel = new MaskModel({value, selection}, options);
+
+                expect(() => maskModel.addCharacters(selection, 'X')).toThrow();
+                expect(maskModel.value).toBe(value);
+                expect(maskModel.selection).toEqual(selection);
+            });
+        });
+    });
 });
