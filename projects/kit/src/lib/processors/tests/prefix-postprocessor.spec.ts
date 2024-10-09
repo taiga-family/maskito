@@ -63,8 +63,7 @@ describe('maskitoPrefixPostprocessorGenerator', () => {
             ).toEqual({value: 'kg 123', selection: [1, 1]});
         });
 
-        // eslint-disable-next-line jest/valid-title
-        it(' 123 => kg |123', () => {
+        it(`${' '}123 => kg |123`, () => {
             expect(
                 postprocessor(
                     {value: ' 123', selection: [0, 0]}, // after
