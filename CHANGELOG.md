@@ -1,3 +1,25 @@
+### [3.1.0](https://github.com/taiga-family/maskito/compare/v3.0.3...v3.1.0) (2024-10-09)
+
+### 🚀 Features
+
+- **kit**: `Time` & `DateTime` support `AM` / `PM` formats (#1708)
+  [(98ce35e)](https://github.com/taiga-family/maskito/commit/98ce35e8fd3318a750959d840f36caaf427fe8f0)
+- **kit**: simplify some code logic for `Time` mask (#1688)
+  [(8c608b8)](https://github.com/taiga-family/maskito/commit/8c608b8cb5eaeca1166b78c6691d38303eb67c6c)
+
+### 🐞 Bug Fixes
+
+- **core**: `overwriteMode: replace` has incorrect behavior on attempt to insert invalid characters (#1772)
+  [(5aeb074)](https://github.com/taiga-family/maskito/commit/5aeb0741fa82ad6e43e862059a17b2e78ee9831b)
+- **deps**: update dependency libphonenumber-js to v1.11.11 (#1760)
+  [(b8781fb)](https://github.com/taiga-family/maskito/commit/b8781fbe9a2cbacee0d53d5e143687f83b5c3773)
+- **deps**: update dependency vue to v3.5.11 (#1754)
+  [(47f12a3)](https://github.com/taiga-family/maskito/commit/47f12a3ecc16b7f9d79ba31632abc3e1af80b516)
+- **deps**: update dependency @types/react to v18.3.11 (#1751)
+  [(86328e6)](https://github.com/taiga-family/maskito/commit/86328e6b2b76049958f215cfe6551d63f8d3ffcc)
+- **deps**: update dependency libphonenumber-js to v1.11.10 (#1747)
+  [(37a4d8c)](https://github.com/taiga-family/maskito/commit/37a4d8cc374e1f03878692ccc44379b3d92acafe)
+
 ### [3.0.3](https://github.com/taiga-family/maskito/compare/v3.0.2...v3.0.3) (2024-09-25)
 
 ### 🐞 Bug Fixes
