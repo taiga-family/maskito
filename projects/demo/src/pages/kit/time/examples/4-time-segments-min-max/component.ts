@@ -11,12 +11,10 @@ import mask from './mask';
     selector: 'time-mask-doc-example-4',
     imports: [FormsModule, MaskitoDirective, TuiSegmented, TuiTextfield],
     template: `
-        <!-- TODO: remove (input)="(0)" (Taiga UI CD bug) -->
         <tui-textfield
             filler="HH:MM"
             [style.max-width.rem]="20"
             [tuiTextfieldCleaner]="false"
-            (input)="(0)"
         >
             <input
                 inputmode="decimal"
