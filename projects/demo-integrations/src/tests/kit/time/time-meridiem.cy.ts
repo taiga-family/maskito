@@ -179,6 +179,53 @@ describe('Time | modes with meridiem', () => {
             });
         });
 
+        describe('press any characters (except part of meridiem ones) when cursor is placed near already existing meridiem', () => {
+            beforeEach(() => {
+                cy.get('@textfield')
+                    .type('1234a')
+                    .should('have.value', '12:34 AM')
+                    .should('have.prop', 'selectionStart', '12:34 AM'.length)
+                    .should('have.prop', 'selectionEnd', '12:34 AM'.length);
+            });
+
+            it('12:34 AM| => Press 1 => Nothing changed', () => {
+                cy.get('@textfield')
+                    .type('{moveToEnd}')
+                    .type('1')
+                    .should('have.value', '12:34 AM')
+                    .should('have.prop', 'selectionStart', '12:34 AM'.length)
+                    .should('have.prop', 'selectionEnd', '12:34 AM'.length);
+            });
+
+            it('12:34 A|M => Press 1 => Nothing changed', () => {
+                cy.get('@textfield')
+                    .type('{moveToEnd}{leftArrow}')
+                    .type('1')
+                    .should('have.value', '12:34 AM')
+                    .should('have.prop', 'selectionStart', '12:34 A'.length)
+                    .should('have.prop', 'selectionEnd', '12:34 A'.length);
+            });
+
+            it('12:34 A|M => Press T => Nothing changed', () => {
+                cy.get('@textfield')
+                    .type('{moveToEnd}{leftArrow}')
+                    .type('t')
+                    .should('have.value', '12:34 AM')
+                    .should('have.prop', 'selectionStart', '12:34 A'.length)
+                    .should('have.prop', 'selectionEnd', '12:34 A'.length);
+            });
+
+            it('12:34 |AM => Press T => Nothing changed', () => {
+                cy.get('@textfield')
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(2))
+                    .type('t')
+                    .should('have.value', '12:34 AM')
+                    .should('have.prop', 'selectionStart', '12:34 '.length)
+                    .should('have.prop', 'selectionEnd', '12:34 '.length);
+            });
+        });
+
         describe('hour segment bounds', () => {
             it('cannot be less than 01 (rejects zero as the 2nd hour segment)', () => {
                 cy.get('@textfield')
