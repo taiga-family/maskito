@@ -15,6 +15,7 @@ import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/compo
 import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
 import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
 import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
+import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
@@ -28,6 +29,7 @@ type GeneratorOptions = Required<
         DateTimeMaskDocExample2,
         DateTimeMaskDocExample3,
         DateTimeMaskDocExample4,
+        DateTimeMaskDocExample5,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -62,6 +64,10 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
         ),
     };
 
+    protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-am-pm/mask.ts?raw'),
+    };
+
     protected apiPageControl = new FormControl('');
 
     protected readonly dateModeOptions = [
@@ -72,8 +78,11 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
 
     protected readonly timeModeOptions = [
         'HH:MM',
+        'HH:MM AA',
         'HH:MM:SS',
+        'HH:MM:SS AA',
         'HH:MM:SS.MSS',
+        'HH:MM:SS.MSS AA',
     ] as const satisfies readonly MaskitoTimeMode[];
 
     protected readonly minMaxOptions = [

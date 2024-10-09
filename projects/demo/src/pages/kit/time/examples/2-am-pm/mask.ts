@@ -3,8 +3,7 @@ import {maskitoUpdateElement} from '@maskito/core';
 import {maskitoEventHandler, maskitoTimeOptionsGenerator} from '@maskito/kit';
 
 const timeOptions = maskitoTimeOptionsGenerator({
-    mode: 'HH:MM',
-    timeSegmentMaxValues: {hours: 12},
+    mode: 'HH:MM AA',
 });
 
 export default {
@@ -12,12 +11,9 @@ export default {
     plugins: [
         ...timeOptions.plugins,
         maskitoEventHandler('blur', (element) => {
-            const [hours = '', minutes = ''] = element.value.split(':');
-
-            maskitoUpdateElement(
-                element,
-                [hours, minutes].map((segment) => segment.padEnd(2, '0')).join(':'),
-            );
+            if (element.value.length >= 'HH:MM'.length && !element.value.endsWith('M')) {
+                maskitoUpdateElement(element, `${element.value} AM`);
+            }
         }),
     ],
 } satisfies MaskitoOptions;

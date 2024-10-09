@@ -1,18 +1,27 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
-import {createTimeSegmentsSteppingPlugin} from '../../plugins';
+import {
+    DEFAULT_TIME_SEGMENT_MAX_VALUES,
+    DEFAULT_TIME_SEGMENT_MIN_VALUES,
+} from '../../constants';
+import {
+    createMeridiemSteppingPlugin,
+    createTimeSegmentsSteppingPlugin,
+} from '../../plugins';
 import {
     createColonConvertPreprocessor,
     createDateSegmentsZeroPaddingPostprocessor,
     createFirstDateEndSeparatorPreprocessor,
     createFullWidthToHalfWidthPreprocessor,
     createInvalidTimeSegmentInsertionPreprocessor,
+    createMeridiemPostprocessor,
+    createMeridiemPreprocessor,
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import type {MaskitoDateMode, MaskitoTimeMode} from '../../types';
+import type {MaskitoDateMode, MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+import {createTimeMaskExpression} from '../../utils/time';
 import {DATE_TIME_SEPARATOR} from './constants';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
@@ -35,7 +44,17 @@ export function maskitoDateTimeOptionsGenerator({
     dateTimeSeparator?: string;
     timeStep?: number;
 }): Required<MaskitoOptions> {
+    const hasMeridiem = timeMode.includes('AA');
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
+    const timeSegmentMaxValues: MaskitoTimeSegments<number> = {
+        ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
+        ...(hasMeridiem ? {hours: 12} : {}),
+    };
+    const timeSegmentMinValues: MaskitoTimeSegments<number> = {
+        ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
+        ...(hasMeridiem ? {hours: 1} : {}),
+    };
+    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
@@ -44,9 +63,7 @@ export function maskitoDateTimeOptionsGenerator({
                 dateSeparator.includes(char) ? char : /\d/,
             ),
             ...dateTimeSeparator.split(''),
-            ...Array.from(timeMode).map((char) =>
-                TIME_FIXED_CHARACTERS.includes(char) ? char : /\d/,
-            ),
+            ...createTimeMaskExpression(timeMode),
         ],
         overwriteMode: 'replace',
         preprocessors: [
@@ -59,6 +76,7 @@ export function maskitoDateTimeOptionsGenerator({
                 pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
             createZeroPlaceholdersPreprocessor(),
+            createMeridiemPreprocessor(timeMode),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSegmentsSeparator: dateSeparator,
@@ -66,6 +84,8 @@ export function maskitoDateTimeOptionsGenerator({
             }),
             createInvalidTimeSegmentInsertionPreprocessor({
                 timeMode,
+                timeSegmentMinValues,
+                timeSegmentMaxValues,
                 parseValue: (x) => {
                     const [dateString, timeString] = parseDateTimeString(x, {
                         dateModeTemplate,
@@ -80,9 +100,11 @@ export function maskitoDateTimeOptionsGenerator({
                 dateSegmentsSeparator: dateSeparator,
                 dateTimeSeparator,
                 timeMode,
+                timeSegmentMaxValues,
             }),
         ],
         postprocessors: [
+            createMeridiemPostprocessor(timeMode),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
@@ -109,9 +131,10 @@ export function maskitoDateTimeOptionsGenerator({
         plugins: [
             createTimeSegmentsSteppingPlugin({
                 step: timeStep,
-                fullMode: `${dateModeTemplate}${dateTimeSeparator}${timeMode}`,
+                fullMode,
                 timeSegmentMaxValues: DEFAULT_TIME_SEGMENT_MAX_VALUES,
             }),
+            createMeridiemSteppingPlugin(fullMode.indexOf(' AA')),
         ],
     };
 }

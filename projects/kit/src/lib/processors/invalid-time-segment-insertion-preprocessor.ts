@@ -3,11 +3,12 @@ import type {MaskitoTimeMode, MaskitoTimeSegments} from '@maskito/kit';
 
 import {
     DEFAULT_TIME_SEGMENT_MAX_VALUES,
+    DEFAULT_TIME_SEGMENT_MIN_VALUES,
     TIME_FIXED_CHARACTERS,
     TIME_SEGMENT_VALUE_LENGTHS,
 } from '../constants';
-import {escapeRegExp} from '../utils';
-import {padStartTimeSegments, parseTimeString} from '../utils/time';
+import {clamp, escapeRegExp} from '../utils';
+import {parseTimeString} from '../utils/time';
 
 /**
  * Prevent insertion if any time segment will become invalid
@@ -16,14 +17,15 @@ import {padStartTimeSegments, parseTimeString} from '../utils/time';
  */
 export function createInvalidTimeSegmentInsertionPreprocessor({
     timeMode,
+    timeSegmentMinValues = DEFAULT_TIME_SEGMENT_MIN_VALUES,
     timeSegmentMaxValues = DEFAULT_TIME_SEGMENT_MAX_VALUES,
     parseValue = (x) => ({timeString: x}),
 }: {
     timeMode: MaskitoTimeMode;
+    timeSegmentMinValues?: MaskitoTimeSegments<number>;
     timeSegmentMaxValues?: MaskitoTimeSegments<number>;
     parseValue?: (value: string) => {timeString: string; restValue?: string};
 }): MaskitoPreprocessor {
-    const paddedMaxValues = padStartTimeSegments(timeSegmentMaxValues);
     const invalidCharsRegExp = new RegExp(
         `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]+`,
     );
@@ -45,21 +47,24 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
 
         let offset = restValue.length;
 
-        for (const [segmentName, segmentValue] of timeSegments) {
-            const maxSegmentValue = paddedMaxValues[segmentName];
+        for (const [segmentName, stringifiedSegmentValue] of timeSegments) {
+            const minSegmentValue = timeSegmentMinValues[segmentName];
+            const maxSegmentValue = timeSegmentMaxValues[segmentName];
+            const segmentValue = Number(stringifiedSegmentValue);
+
             const lastSegmentDigitIndex =
                 offset + TIME_SEGMENT_VALUE_LENGTHS[segmentName];
 
             if (
                 lastSegmentDigitIndex >= from &&
                 lastSegmentDigitIndex <= to &&
-                Number(segmentValue) > Number(maxSegmentValue)
+                segmentValue !== clamp(segmentValue, minSegmentValue, maxSegmentValue)
             ) {
                 return {elementState, data: ''}; // prevent insertion
             }
 
             offset +=
-                segmentValue.length +
+                stringifiedSegmentValue.length +
                 // any time segment separator
                 1;
         }

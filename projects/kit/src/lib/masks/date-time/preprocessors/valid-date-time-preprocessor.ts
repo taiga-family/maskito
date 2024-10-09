@@ -1,8 +1,7 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {TIME_FIXED_CHARACTERS} from '../../../constants';
-import type {MaskitoTimeMode} from '../../../types';
-import {escapeRegExp, validateDateString} from '../../../utils';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../../types';
+import {validateDateString} from '../../../utils';
 import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
 import {parseDateTimeString} from '../utils';
 
@@ -11,18 +10,14 @@ export function createValidDateTimePreprocessor({
     dateSegmentsSeparator,
     dateTimeSeparator,
     timeMode,
+    timeSegmentMaxValues,
 }: {
     dateModeTemplate: string;
     dateSegmentsSeparator: string;
     dateTimeSeparator: string;
     timeMode: MaskitoTimeMode;
+    timeSegmentMaxValues: MaskitoTimeSegments<number>;
 }): MaskitoPreprocessor {
-    const invalidCharsRegExp = new RegExp(
-        `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}${escapeRegExp(
-            dateSegmentsSeparator,
-        )}]+`,
-    );
-
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 
@@ -33,10 +28,10 @@ export function createValidDateTimePreprocessor({
             };
         }
 
-        const newCharacters = data.replace(invalidCharsRegExp, '');
+        const newCharacters = data.replaceAll(/\D/g, '');
 
         if (!newCharacters) {
-            return {elementState, data: ''};
+            return {elementState, data};
         }
 
         const [from, rawTo] = selection;
@@ -68,7 +63,7 @@ export function createValidDateTimePreprocessor({
 
         const updatedTimeState = enrichTimeSegmentsWithZeroes(
             {value: timeString, selection: [from, to]},
-            {mode: timeMode},
+            {mode: timeMode, timeSegmentMaxValues},
         );
 
         to = updatedTimeState.selection[1];

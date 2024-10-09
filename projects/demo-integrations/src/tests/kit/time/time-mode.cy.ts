@@ -394,7 +394,7 @@ describe('Time', () => {
 
             describe('max hours 11', () => {
                 beforeEach(() => {
-                    cy.visit(`/${DemoPath.Time}/API?mode=HH&timeSegmentMaxValues$=1`);
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH&timeSegmentMaxValues$=2`);
                     cy.get('#demo-content input')
                         .should('be.visible')
                         .first()

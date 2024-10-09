@@ -13,6 +13,10 @@ export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
         const zeroes = value.slice(from, to).replaceAll(/\d/g, '0');
         const newValue = value.slice(0, from) + zeroes + value.slice(to);
 
+        if (!zeroes.replaceAll(/\D/g, '')) {
+            return {elementState};
+        }
+
         if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
             return {
                 elementState: {selection, value: newValue},

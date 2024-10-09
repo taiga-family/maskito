@@ -1,7 +1,7 @@
 import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
-import type {MaskitoTimeSegments} from '../types';
+import type {MaskitoTimeSegments} from '../../types';
 
 const noop = (): void => {};
 
