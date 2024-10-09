@@ -15,7 +15,6 @@ export function maskitoPhoneOptionsGenerator({
     strict?: boolean;
     separator?: string;
 }): Required<MaskitoOptions> {
-    // eslint-disable-next-line sonarjs/no-selector-parameter
     return strict && countryIsoCode
         ? maskitoPhoneStrictOptionsGenerator({countryIsoCode, metadata, separator})
         : maskitoPhoneNonStrictOptionsGenerator({
