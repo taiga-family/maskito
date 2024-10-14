@@ -28,10 +28,7 @@ export function createMinMaxDateTimePostprocessor({
     dateTimeSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const [dateString, timeString] = parseDateTimeString(value, {
-            dateModeTemplate,
-            dateTimeSeparator,
-        });
+        const [dateString, timeString] = parseDateTimeString(value, dateModeTemplate);
         const parsedDate = parseDateString(dateString, dateModeTemplate);
         const parsedTime = parseTimeString(timeString, timeMode);
 
