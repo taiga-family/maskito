@@ -94,5 +94,6 @@
     },
     "parallel": 3,
     "useInferencePlugins": false,
-    "defaultBase": "origin/main"
+    "defaultBase": "origin/main",
+    "useLegacyCache": true
 }
