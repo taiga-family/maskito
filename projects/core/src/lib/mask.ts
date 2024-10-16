@@ -210,7 +210,13 @@ export class Maskito extends MaskHistory {
     }
 
     private updateValue(value: string): void {
-        this.element.value = value;
+        /**
+         * Don't "disturb" unnecessarily `value`-setter
+         * (i.e. it breaks React controlled input behavior)
+         */
+        if (this.element.value !== value || this.element.isContentEditable) {
+            this.element.value = value;
+        }
     }
 
     private ensureValueFitsMask(): void {
