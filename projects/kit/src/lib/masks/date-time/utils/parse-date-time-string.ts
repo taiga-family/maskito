@@ -10,7 +10,7 @@ export function parseDateTimeString(
         '',
     ).length;
     const [date = ''] =
-        new RegExp(`(\\d\\D?){0,${dateDigitsCount - 1}}\\d?`).exec(dateTime) || [];
+        new RegExp(`(\\d[^\\d]*){0,${dateDigitsCount - 1}}\\d?`).exec(dateTime) || [];
     const [dateTimeSeparator = ''] =
         LEADING_NON_DIGIT_RE.exec(dateTime.slice(date.length)) || [];
 
