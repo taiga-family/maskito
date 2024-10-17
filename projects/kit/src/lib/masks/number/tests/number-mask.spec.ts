@@ -397,4 +397,12 @@ describe('Number (maskitoTransform)', () => {
             });
         });
     });
+
+    it('autofill value with extra leading and trailing whitespace (thousand separator is equal to whitespace too)', () => {
+        const options = maskitoNumberOptionsGenerator({
+            thousandSeparator: ' ',
+        });
+
+        expect(maskitoTransform('    123456    ', options)).toBe('123 456');
+    });
 });

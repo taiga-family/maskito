@@ -1,6 +1,6 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {extractAffixes, identity} from '../../../utils';
+import {clamp, extractAffixes, identity} from '../../../utils';
 import {toNumberParts} from '../utils';
 
 /**
@@ -24,35 +24,35 @@ export function createThousandSeparatorPostprocessor({
 
     const isAllSpaces = (...chars: string[]): boolean => chars.every((x) => /\s/.test(x));
 
-    return ({value, selection}) => {
+    return (elementState) => {
+        const [initialFrom, initialTo] = elementState.selection;
+        const {value, selection} = trimState(elementState, thousandSeparator);
+        let [from, to] = selection;
+
         const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
             prefix,
             postfix,
         });
-
         const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
             decimalSeparator,
             thousandSeparator,
         });
-        const [initialFrom, initialTo] = selection;
-        let [from, to] = selection;
 
         const processedIntegerPart = Array.from(integerPart).reduceRight(
             (formattedValuePart, char, i) => {
                 const isLeadingThousandSeparator = !i && char === thousandSeparator;
                 const isPositionForSeparator =
                     !isLeadingThousandSeparator &&
-                    formattedValuePart.length &&
+                    Boolean(formattedValuePart.length) &&
                     (formattedValuePart.length + 1) % 4 === 0;
+                const isSeparator =
+                    char === thousandSeparator || isAllSpaces(char, thousandSeparator);
 
-                if (
-                    isPositionForSeparator &&
-                    (char === thousandSeparator || isAllSpaces(char, thousandSeparator))
-                ) {
+                if (isPositionForSeparator && isSeparator) {
                     return thousandSeparator + formattedValuePart;
                 }
 
-                if (char === thousandSeparator && !isPositionForSeparator) {
+                if (!isPositionForSeparator && isSeparator) {
                     if (i && i <= initialFrom) {
                         from--;
                     }
@@ -91,5 +91,34 @@ export function createThousandSeparatorPostprocessor({
                 extractedPostfix,
             selection: [from, to],
         };
+    };
+}
+
+function trimState(
+    {
+        value,
+        selection,
+    }: {
+        value: string;
+        selection: readonly [number, number];
+    },
+    trimChar: string,
+): {value: string; selection: readonly [number, number]} {
+    const trimCharRE = trimChar.replaceAll(/\s/g, String.raw`\s`);
+    const leadingThousandSepatorsRE = new RegExp(`^${trimCharRE}*`);
+    const trailingThousandSepatorsRE = new RegExp(`${trimCharRE}*$`);
+
+    const [from, to] = selection;
+    const cleanValue = value
+        .replace(leadingThousandSepatorsRE, '')
+        .replace(trailingThousandSepatorsRE, '');
+    const [deletedLeadingCharacters = ''] = value.match(leadingThousandSepatorsRE) || [];
+
+    return {
+        value: cleanValue,
+        selection: [
+            clamp(from - deletedLeadingCharacters.length, 0, cleanValue.length),
+            clamp(to - deletedLeadingCharacters.length, 0, cleanValue.length),
+        ],
     };
 }
