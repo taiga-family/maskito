@@ -12,10 +12,10 @@ import {toNumberParts} from '../to-number-parts';
 describe('toNumberParts', () => {
     [',', '.'].forEach((decimalSeparator) => {
         describe(`decimalSeparator = ${decimalSeparator}`, () => {
-            const thousandSeparator = '_';
+            const minusSign = '-';
 
             it('empty string => empty parts', () => {
-                expect(toNumberParts('', {decimalSeparator, thousandSeparator})).toEqual({
+                expect(toNumberParts('', {decimalSeparator, minusSign})).toEqual({
                     minus: '',
                     integerPart: '',
                     decimalPart: '',
@@ -26,7 +26,7 @@ describe('toNumberParts', () => {
                 expect(
                     toNumberParts(`123${decimalSeparator}45`, {
                         decimalSeparator,
-                        thousandSeparator,
+                        minusSign,
                     }),
                 ).toEqual({
                     minus: '',
@@ -39,7 +39,7 @@ describe('toNumberParts', () => {
                 expect(
                     toNumberParts(`-123${decimalSeparator}45`, {
                         decimalSeparator,
-                        thousandSeparator,
+                        minusSign,
                     }),
                 ).toEqual({
                     minus: '-',
@@ -49,9 +49,7 @@ describe('toNumberParts', () => {
             });
 
             it('123 => {minus: "", integerPart: "123", decimalPart: ""}', () => {
-                expect(
-                    toNumberParts('123', {decimalSeparator, thousandSeparator}),
-                ).toEqual({
+                expect(toNumberParts('123', {decimalSeparator, minusSign})).toEqual({
                     minus: '',
                     integerPart: '123',
                     decimalPart: '',
@@ -59,9 +57,7 @@ describe('toNumberParts', () => {
             });
 
             it('-123 => {minus: "-", integerPart: "123", decimalPart: ""}', () => {
-                expect(
-                    toNumberParts('-123', {decimalSeparator, thousandSeparator}),
-                ).toEqual({
+                expect(toNumberParts('-123', {decimalSeparator, minusSign})).toEqual({
                     minus: '-',
                     integerPart: '123',
                     decimalPart: '',
@@ -72,7 +68,7 @@ describe('toNumberParts', () => {
                 expect(
                     toNumberParts(`${decimalSeparator}45`, {
                         decimalSeparator,
-                        thousandSeparator,
+                        minusSign,
                     }),
                 ).toEqual({
                     minus: '',
@@ -85,7 +81,7 @@ describe('toNumberParts', () => {
                 expect(
                     toNumberParts(`-${decimalSeparator}45`, {
                         decimalSeparator,
-                        thousandSeparator,
+                        minusSign,
                     }),
                 ).toEqual({
                     minus: '-',
@@ -95,13 +91,11 @@ describe('toNumberParts', () => {
             });
 
             it('- => {minus: "-", integerPart: "", decimalPart: ""}', () => {
-                expect(toNumberParts('-', {decimalSeparator, thousandSeparator})).toEqual(
-                    {
-                        minus: '-',
-                        integerPart: '',
-                        decimalPart: '',
-                    },
-                );
+                expect(toNumberParts('-', {decimalSeparator, minusSign})).toEqual({
+                    minus: '-',
+                    integerPart: '',
+                    decimalPart: '',
+                });
             });
         });
     });
@@ -112,7 +106,7 @@ describe('toNumberParts', () => {
                 expect(
                     toNumberParts(`${minus}1,234,567.89`, {
                         decimalSeparator: '.',
-                        thousandSeparator: ',',
+                        minusSign: minus,
                     }),
                 ).toEqual({
                     minus,
@@ -129,10 +123,10 @@ describe('toNumberParts', () => {
 
         it('only thousand separator sign', () => {
             expect(
-                toNumberParts(thousandSeparator, {decimalSeparator, thousandSeparator}),
+                toNumberParts(thousandSeparator, {decimalSeparator, minusSign: '-'}),
             ).toEqual({
                 minus: '',
-                integerPart: thousandSeparator,
+                integerPart: '',
                 decimalPart: '',
             });
         });
@@ -141,7 +135,7 @@ describe('toNumberParts', () => {
             expect(
                 toNumberParts(`-${thousandSeparator}`, {
                     decimalSeparator,
-                    thousandSeparator,
+                    minusSign: '-',
                 }),
             ).toEqual({
                 minus: '-',
@@ -154,7 +148,7 @@ describe('toNumberParts', () => {
             expect(
                 toNumberParts(`-1${thousandSeparator}234.45`, {
                     decimalSeparator,
-                    thousandSeparator,
+                    minusSign: '-',
                 }),
             ).toEqual({
                 minus: '-',
@@ -167,7 +161,7 @@ describe('toNumberParts', () => {
             expect(
                 toNumberParts(`-${thousandSeparator}234.45`, {
                     decimalSeparator,
-                    thousandSeparator,
+                    minusSign: '-',
                 }),
             ).toEqual({
                 minus: '-',

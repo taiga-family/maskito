@@ -1,11 +1,11 @@
 import {openNumberPage} from './utils';
 
 describe('Number | thousandSeparator', () => {
-    beforeEach(() => {
-        openNumberPage('thousandSeparator=-');
-    });
-
     describe('adds thousand separator after pressing new digit', () => {
+        beforeEach(() => {
+            openNumberPage('thousandSeparator=-');
+        });
+
         const tests = [
             // [Typed value, Masked value]
             ['1', '1'],
@@ -30,6 +30,7 @@ describe('Number | thousandSeparator', () => {
 
     describe('move thousand separator after deleting a digit (initial: 1-000-000)', () => {
         beforeEach(() => {
+            openNumberPage('thousandSeparator=-');
             cy.get('@input').type('1000000');
         });
 
@@ -55,6 +56,10 @@ describe('Number | thousandSeparator', () => {
     });
 
     describe('Editing somewhere in the middle of a value (NOT the last character)', () => {
+        beforeEach(() => {
+            openNumberPage('thousandSeparator=-');
+        });
+
         it('1-00|0-000 => Backspace => 10|0-000 => Type "5" => 1-05|0-000', () => {
             cy.get('@input')
                 .type('1000000')
@@ -138,6 +143,8 @@ describe('Number | thousandSeparator', () => {
     });
 
     it('allows to set empty string as thousand separator', () => {
+        openNumberPage('thousandSeparator=-');
+
         cy.get('tr').contains('[thousandSeparator]').parents('tr').find('input').clear();
 
         cy.get('@input')
@@ -145,5 +152,59 @@ describe('Number | thousandSeparator', () => {
             .should('have.value', '1000000')
             .should('have.prop', 'selectionStart', '1000000'.length)
             .should('have.prop', 'selectionEnd', '1000000'.length);
+    });
+
+    describe('prevent insertion of extra spaces (thousand separator is equal to non-breaking space) on invalid positions', () => {
+        beforeEach(() => openNumberPage());
+
+        it('paste value with extra leading and trailing spaces', () => {
+            cy.get('@input')
+                .paste('    123456    ')
+                .should('have.value', '123 456')
+                .should('have.prop', 'selectionStart', '123 456'.length)
+                .should('have.prop', 'selectionEnd', '123 456'.length);
+        });
+
+        it('|123 => Press space => |123', () => {
+            cy.get('@input')
+                .type('123')
+                .type('{moveToStart}')
+                .type(' ')
+                .should('have.value', '123')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('1|23 => Press space => 1|23', () => {
+            cy.get('@input')
+                .type('123')
+                .type('{moveToStart}')
+                .type('{rightArrow}')
+                .type(' ')
+                .should('have.value', '123')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1);
+        });
+
+        it('12|3 => Press space => 12|3', () => {
+            cy.get('@input')
+                .type('123')
+                .type('{moveToStart}')
+                .type('{rightArrow}'.repeat(2))
+                .type(' ')
+                .should('have.value', '123')
+                .should('have.prop', 'selectionStart', 2)
+                .should('have.prop', 'selectionEnd', 2);
+        });
+
+        it('123| => Press space => 123|', () => {
+            cy.get('@input')
+                .type('123')
+                .type('{moveToEnd}')
+                .type(' ')
+                .should('have.value', '123')
+                .should('have.prop', 'selectionStart', 3)
+                .should('have.prop', 'selectionEnd', 3);
+        });
     });
 });

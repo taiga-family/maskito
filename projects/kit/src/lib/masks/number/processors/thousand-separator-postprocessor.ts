@@ -12,11 +12,13 @@ export function createThousandSeparatorPostprocessor({
     decimalSeparator,
     prefix,
     postfix,
+    minusSign,
 }: {
     thousandSeparator: string;
     decimalSeparator: string;
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPostprocessor {
     if (!thousandSeparator) {
         return identity;
@@ -25,6 +27,9 @@ export function createThousandSeparatorPostprocessor({
     const isAllSpaces = (...chars: string[]): boolean => chars.every((x) => /\s/.test(x));
 
     return ({value, selection}) => {
+        const [initialFrom, initialTo] = selection;
+        let [from, to] = selection;
+
         const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
             prefix,
             postfix,
@@ -32,27 +37,41 @@ export function createThousandSeparatorPostprocessor({
 
         const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
             decimalSeparator,
-            thousandSeparator,
+            minusSign,
         });
-        const [initialFrom, initialTo] = selection;
-        let [from, to] = selection;
+        const deletedChars =
+            cleanValue.length -
+            (
+                minus +
+                integerPart +
+                (cleanValue.includes(decimalSeparator)
+                    ? decimalSeparator + decimalPart
+                    : '')
+            ).length;
+
+        if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
+            from -= deletedChars;
+        }
+
+        if (deletedChars > 0 && initialTo && initialTo <= deletedChars) {
+            to -= deletedChars;
+        }
 
         const processedIntegerPart = Array.from(integerPart).reduceRight(
             (formattedValuePart, char, i) => {
                 const isLeadingThousandSeparator = !i && char === thousandSeparator;
                 const isPositionForSeparator =
                     !isLeadingThousandSeparator &&
-                    formattedValuePart.length &&
+                    Boolean(formattedValuePart.length) &&
                     (formattedValuePart.length + 1) % 4 === 0;
+                const isSeparator =
+                    char === thousandSeparator || isAllSpaces(char, thousandSeparator);
 
-                if (
-                    isPositionForSeparator &&
-                    (char === thousandSeparator || isAllSpaces(char, thousandSeparator))
-                ) {
+                if (isPositionForSeparator && isSeparator) {
                     return thousandSeparator + formattedValuePart;
                 }
 
-                if (char === thousandSeparator && !isPositionForSeparator) {
+                if (!isPositionForSeparator && isSeparator) {
                     if (i && i <= initialFrom) {
                         from--;
                     }
