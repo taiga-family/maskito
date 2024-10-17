@@ -42,13 +42,17 @@ describe('Number | should drop decimal separator if all digits are erased', () =
                     .type(`{moveToStart}${'{rightArrow}'.repeat(minusSign.length)}`)
                     .type('{del}')
                     .should('have.value', minusSign)
+                    .should('have.prop', 'selectionStart', minusSign.length)
+                    .should('have.prop', 'selectionEnd', minusSign.length)
                     // and then repeat everything in reversed order
                     .type('0.12')
                     .type(`{moveToStart}${'{rightArrow}'.repeat(minusSign.length)}`)
                     .type('{del}')
                     .type('{moveToEnd}')
                     .type('{backspace}'.repeat(2))
-                    .should('have.value', minusSign);
+                    .should('have.value', minusSign)
+                    .should('have.prop', 'selectionStart', minusSign.length)
+                    .should('have.prop', 'selectionEnd', minusSign.length);
             });
         });
     });

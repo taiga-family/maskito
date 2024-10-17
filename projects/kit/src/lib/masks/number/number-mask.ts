@@ -144,6 +144,7 @@ export function maskitoNumberOptionsGenerator({
                 thousandSeparator,
                 prefix,
                 postfix,
+                minusSign,
             }),
             createDecimalZeroPaddingPostprocessor({
                 decimalSeparator,
@@ -152,7 +153,12 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
             }),
-            emptyPostprocessor({prefix, postfix, decimalSeparator, thousandSeparator}),
+            emptyPostprocessor({
+                prefix,
+                postfix,
+                decimalSeparator,
+                minusSign,
+            }),
         ],
         plugins: [
             createLeadingZeroesValidationPlugin({

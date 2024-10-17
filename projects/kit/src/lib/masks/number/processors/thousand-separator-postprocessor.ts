@@ -1,6 +1,6 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {clamp, extractAffixes, identity} from '../../../utils';
+import {extractAffixes, identity} from '../../../utils';
 import {toNumberParts} from '../utils';
 
 /**
@@ -12,11 +12,13 @@ export function createThousandSeparatorPostprocessor({
     decimalSeparator,
     prefix,
     postfix,
+    minusSign,
 }: {
     thousandSeparator: string;
     decimalSeparator: string;
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPostprocessor {
     if (!thousandSeparator) {
         return identity;
@@ -24,19 +26,36 @@ export function createThousandSeparatorPostprocessor({
 
     const isAllSpaces = (...chars: string[]): boolean => chars.every((x) => /\s/.test(x));
 
-    return (elementState) => {
-        const [initialFrom, initialTo] = elementState.selection;
-        const {value, selection} = trimState(elementState, thousandSeparator);
+    return ({value, selection}) => {
+        const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
         const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
             prefix,
             postfix,
         });
+
         const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
             decimalSeparator,
-            thousandSeparator,
+            minusSign,
         });
+        const deletedChars =
+            cleanValue.length -
+            (
+                minus +
+                integerPart +
+                (cleanValue.includes(decimalSeparator)
+                    ? decimalSeparator + decimalPart
+                    : '')
+            ).length;
+
+        if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
+            from -= deletedChars;
+        }
+
+        if (deletedChars > 0 && initialTo && initialTo <= deletedChars) {
+            to -= deletedChars;
+        }
 
         const processedIntegerPart = Array.from(integerPart).reduceRight(
             (formattedValuePart, char, i) => {
@@ -91,34 +110,5 @@ export function createThousandSeparatorPostprocessor({
                 extractedPostfix,
             selection: [from, to],
         };
-    };
-}
-
-function trimState(
-    {
-        value,
-        selection,
-    }: {
-        value: string;
-        selection: readonly [number, number];
-    },
-    trimChar: string,
-): {value: string; selection: readonly [number, number]} {
-    const trimCharRE = trimChar.replaceAll(/\s/g, String.raw`\s`);
-    const leadingThousandSepatorsRE = new RegExp(`^${trimCharRE}*`);
-    const trailingThousandSepatorsRE = new RegExp(`${trimCharRE}*$`);
-
-    const [from, to] = selection;
-    const cleanValue = value
-        .replace(leadingThousandSepatorsRE, '')
-        .replace(trailingThousandSepatorsRE, '');
-    const [deletedLeadingCharacters = ''] = value.match(leadingThousandSepatorsRE) || [];
-
-    return {
-        value: cleanValue,
-        selection: [
-            clamp(from - deletedLeadingCharacters.length, 0, cleanValue.length),
-            clamp(to - deletedLeadingCharacters.length, 0, cleanValue.length),
-        ],
     };
 }

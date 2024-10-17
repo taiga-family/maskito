@@ -2,14 +2,12 @@ import {escapeRegExp} from '../../../utils';
 
 export function toNumberParts(
     value: string,
-    {
-        decimalSeparator,
-        thousandSeparator,
-    }: {decimalSeparator: string; thousandSeparator: string},
+    {decimalSeparator, minusSign}: {decimalSeparator: string; minusSign: string},
 ): {minus: string; integerPart: string; decimalPart: string} {
     const [integerWithMinus = '', decimalPart = ''] = value.split(decimalSeparator);
+    const escapedMinus = escapeRegExp(minusSign);
     const [, minus = '', integerPart = ''] =
-        new RegExp(`([^\\d${escapeRegExp(thousandSeparator)}]+)?(.*)`).exec(
+        new RegExp(`^(?:[^\\d${escapedMinus}])?(${escapedMinus})?(.*)`).exec(
             integerWithMinus,
         ) || [];
 

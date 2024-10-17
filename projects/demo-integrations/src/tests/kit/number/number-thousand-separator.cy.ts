@@ -168,14 +168,25 @@ describe('Number | thousandSeparator', () => {
         it('|123 => Press space => |123', () => {
             cy.get('@input')
                 .type('123')
-                .type('{moveToStart}{rightArrow}')
+                .type('{moveToStart}')
+                .type(' ')
+                .should('have.value', '123')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('1|23 => Press space => 1|23', () => {
+            cy.get('@input')
+                .type('123')
+                .type('{moveToStart}')
+                .type('{rightArrow}')
                 .type(' ')
                 .should('have.value', '123')
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1);
         });
 
-        it('1|23 => Press space => 1|23', () => {
+        it('12|3 => Press space => 12|3', () => {
             cy.get('@input')
                 .type('123')
                 .type('{moveToStart}')
@@ -184,17 +195,6 @@ describe('Number | thousandSeparator', () => {
                 .should('have.value', '123')
                 .should('have.prop', 'selectionStart', 2)
                 .should('have.prop', 'selectionEnd', 2);
-        });
-
-        it('12|3 => Press space => 12|3', () => {
-            cy.get('@input')
-                .type('123')
-                .type('{moveToStart}')
-                .type('{rightArrow}'.repeat(3))
-                .type(' ')
-                .should('have.value', '123')
-                .should('have.prop', 'selectionStart', 3)
-                .should('have.prop', 'selectionEnd', 3);
         });
 
         it('123| => Press space => 123|', () => {
