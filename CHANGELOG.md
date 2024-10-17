@@ -1,3 +1,12 @@
+### [3.1.1](https://github.com/taiga-family/maskito/compare/v3.1.0...v3.1.1) (2024-10-17)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Number` fails to prevent user insertion of extra spaces on invalid positions (#1789)
+  [(a40445c)](https://github.com/taiga-family/maskito/commit/a40445cf4d852328a9310a55cf38801e17525476)
+- **kit**: `DateTime` fails to process value without any separators (paste from clipboard) (#1779)
+  [(1733422)](https://github.com/taiga-family/maskito/commit/1733422b803fda3de9b40a9fa675ef6bb8b5195e)
+
 ### [3.1.0](https://github.com/taiga-family/maskito/compare/v3.0.3...v3.1.0) (2024-10-09)
 
 ### 🚀 Features
