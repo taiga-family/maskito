@@ -87,10 +87,10 @@ export function maskitoDateTimeOptionsGenerator({
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
                 parseValue: (x) => {
-                    const [dateString, timeString] = parseDateTimeString(x, {
+                    const [dateString, timeString] = parseDateTimeString(
+                        x,
                         dateModeTemplate,
-                        dateTimeSeparator,
-                    });
+                    );
 
                     return {timeString, restValue: dateString + dateTimeSeparator};
                 },
@@ -109,10 +109,10 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
                 splitFn: (value) => {
-                    const [dateString, timeString] = parseDateTimeString(value, {
+                    const [dateString, timeString] = parseDateTimeString(
+                        value,
                         dateModeTemplate,
-                        dateTimeSeparator,
-                    });
+                    );
 
                     return {dateStrings: [dateString], restPart: timeString};
                 },

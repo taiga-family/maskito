@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import {paste} from './paste';
 import {smartTick} from './smart-tick';
 
 declare global {
@@ -9,6 +10,8 @@ declare global {
                 durationMs: number,
                 options?: Parameters<typeof smartTick>[2],
             ): Chainable<Subject>;
+
+            paste(value: string): Chainable<Subject>;
         }
     }
 }
@@ -18,3 +21,4 @@ Cypress.Commands.add(
     {prevSubject: ['optional', 'element', 'window', 'document']},
     smartTick,
 );
+Cypress.Commands.add('paste', {prevSubject: 'element'}, paste);

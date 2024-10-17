@@ -353,4 +353,38 @@ describe('DateTime | Basic', () => {
             );
         });
     });
+
+    describe('Paste', () => {
+        it('value without segment separators', () => {
+            cy.get('@input')
+                .paste('02112018, 16:20')
+                .should('have.value', '02.11.2018, 16:20')
+                .should('have.prop', 'selectionStart', '02.11.2018, 16:20'.length)
+                .should('have.prop', 'selectionEnd', '02.11.2018, 16:20'.length);
+        });
+
+        it('value without separator between date and time', () => {
+            cy.get('@input')
+                .paste('02.11.201816:20')
+                .should('have.value', '02.11.2018, 16:20')
+                .should('have.prop', 'selectionStart', '02.11.2018, 16:20'.length)
+                .should('have.prop', 'selectionEnd', '02.11.2018, 16:20'.length);
+        });
+
+        it('value with incomplete separator between date and time', () => {
+            cy.get('@input')
+                .paste('02.11.2018,16:20')
+                .should('have.value', '02.11.2018, 16:20')
+                .should('have.prop', 'selectionStart', '02.11.2018, 16:20'.length)
+                .should('have.prop', 'selectionEnd', '02.11.2018, 16:20'.length);
+        });
+
+        it('value without any separators', () => {
+            cy.get('@input')
+                .paste('021120181620')
+                .should('have.value', '02.11.2018, 16:20')
+                .should('have.prop', 'selectionStart', '02.11.2018, 16:20'.length)
+                .should('have.prop', 'selectionEnd', '02.11.2018, 16:20'.length);
+        });
+    });
 });
