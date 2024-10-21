@@ -87,11 +87,11 @@ export function createThousandSeparatorPostprocessor({
                     return char + formattedValuePart;
                 }
 
-                if (i <= initialFrom) {
+                if (i < initialFrom) {
                     from++;
                 }
 
-                if (i <= initialTo) {
+                if (i < initialTo) {
                     to++;
                 }
 
