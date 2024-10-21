@@ -2,6 +2,7 @@ name: '🚀 - Feature Request'
 title: '🚀 - '
 description: Suggest a feature for Maskito
 labels: ['feature']
+type: Feature
 
 body:
   - type: dropdown

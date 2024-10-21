@@ -2,6 +2,7 @@ name: '🐞 - Bug Report'
 title: '🐞 - '
 description: Report a bug in the Maskito
 labels: ['bug']
+type: Bug
 
 body:
   - type: dropdown
