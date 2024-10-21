@@ -267,27 +267,27 @@ describe('DateTime | time modes with meridiem', () => {
         });
 
         describe('toggle meridiem value on ArrowUp / ArrowDown', () => {
-            describe('Initial value === "<any date>12:34|"', () => {
-                const beforeMeridiemValue = '01.01.2000, 12:34';
+            describe('Initial value === "<any date>12:34 |"', () => {
+                const beforeMeridiemValue = '01.01.2000, 12:34 ';
 
                 beforeEach(() => {
                     cy.get('@textfield')
-                        .type('01.01.2000 1234')
+                        .type('01.01.2000 1234 ')
                         .should('have.value', beforeMeridiemValue);
                 });
 
-                it('↑ --- 12:34| AM', () => {
+                it('↑ --- 12:34 |AM', () => {
                     cy.get('@textfield')
                         .type('{upArrow}')
-                        .should('have.value', `${beforeMeridiemValue} AM`)
+                        .should('have.value', `${beforeMeridiemValue}AM`)
                         .should('have.prop', 'selectionStart', beforeMeridiemValue.length)
                         .should('have.prop', 'selectionEnd', beforeMeridiemValue.length);
                 });
 
-                it('↓ --- 12:34| PM', () => {
+                it('↓ --- 12:34 |PM', () => {
                     cy.get('@textfield')
                         .type('{downArrow}')
-                        .should('have.value', `${beforeMeridiemValue} PM`)
+                        .should('have.value', `${beforeMeridiemValue}PM`)
                         .should('have.prop', 'selectionStart', beforeMeridiemValue.length)
                         .should('have.prop', 'selectionEnd', beforeMeridiemValue.length);
                 });
@@ -306,7 +306,6 @@ describe('DateTime | time modes with meridiem', () => {
                 });
 
                 [
-                    `${beforeTimeValue}12:34`.length,
                     `${beforeTimeValue}12:34 `.length,
                     `${beforeTimeValue}12:34 A`.length,
                     `${beforeTimeValue}12:34 AM`.length,
@@ -353,7 +352,6 @@ describe('DateTime | time modes with meridiem', () => {
                 });
 
                 [
-                    `${beforeTimeValue}01:01`.length,
                     `${beforeTimeValue}01:01 `.length,
                     `${beforeTimeValue}01:01 P`.length,
                     `${beforeTimeValue}01:01 PM`.length,
@@ -387,8 +385,8 @@ describe('DateTime | time modes with meridiem', () => {
                 });
             });
 
-            describe('do nothing for partially completed time string', () => {
-                it('Empty textfield --- ↑↓ --- Empty textfield', () => {
+            describe('do nothing when caret is put after any time segment', () => {
+                it('Empty time part --- ↑↓ --- Empty time part', () => {
                     cy.get('@textfield')
                         .type('01.01.2000 ')
                         .should('have.value', '01.01.2000, ')
@@ -398,7 +396,7 @@ describe('DateTime | time modes with meridiem', () => {
                         .should('have.value', '01.01.2000, ');
                 });
 
-                ['1', '12', '12:', '12:3'].forEach((textfieldValue) => {
+                ['1', '12', '12:', '12:3', '12:34'].forEach((textfieldValue) => {
                     it(`${textfieldValue} --- ↑↓ --- ${textfieldValue}`, () => {
                         cy.get('@textfield')
                             .type(`01.01.2000 ${textfieldValue}`)

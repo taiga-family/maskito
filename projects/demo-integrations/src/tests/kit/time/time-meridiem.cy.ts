@@ -281,25 +281,25 @@ describe('Time | modes with meridiem', () => {
         });
 
         describe('toggle meridiem value on ArrowUp / ArrowDown', () => {
-            describe('Initial value === "12:34|"', () => {
+            describe('Initial value === "12:34 |"', () => {
                 beforeEach(() => {
-                    cy.get('@textfield').type('1234');
+                    cy.get('@textfield').type('1234 ');
                 });
 
-                it('↑ --- 12:34| AM', () => {
+                it('↑ --- 12:34 |AM', () => {
                     cy.get('@textfield')
                         .type('{upArrow}')
                         .should('have.value', '12:34 AM')
-                        .should('have.prop', 'selectionStart', '12:34'.length)
-                        .should('have.prop', 'selectionEnd', '12:34'.length);
+                        .should('have.prop', 'selectionStart', '12:34 '.length)
+                        .should('have.prop', 'selectionEnd', '12:34 '.length);
                 });
 
-                it('↓ --- 12:34| PM', () => {
+                it('↓ --- 12:34 |PM', () => {
                     cy.get('@textfield')
                         .type('{downArrow}')
                         .should('have.value', '12:34 PM')
-                        .should('have.prop', 'selectionStart', '12:34'.length)
-                        .should('have.prop', 'selectionEnd', '12:34'.length);
+                        .should('have.prop', 'selectionStart', '12:34 '.length)
+                        .should('have.prop', 'selectionEnd', '12:34 '.length);
                 });
             });
 
@@ -314,39 +314,36 @@ describe('Time | modes with meridiem', () => {
                         .type('{moveToStart}');
                 });
 
-                [
-                    '12:34'.length,
-                    '12:34 '.length,
-                    '12:34 A'.length,
-                    '12:34 AM'.length,
-                ].forEach((initialCaretIndex) => {
-                    const initialValueWithCaretLabel = withCaretLabel(
-                        initialValue,
-                        initialCaretIndex,
-                    );
-                    const toggledValueWithCaretLabel = withCaretLabel(
-                        toggledValue,
-                        initialCaretIndex,
-                    );
+                ['12:34 '.length, '12:34 A'.length, '12:34 AM'.length].forEach(
+                    (initialCaretIndex) => {
+                        const initialValueWithCaretLabel = withCaretLabel(
+                            initialValue,
+                            initialCaretIndex,
+                        );
+                        const toggledValueWithCaretLabel = withCaretLabel(
+                            toggledValue,
+                            initialCaretIndex,
+                        );
 
-                    it(`${initialValueWithCaretLabel} --- ↑ --- ${toggledValueWithCaretLabel}`, () => {
-                        cy.get('@textfield')
-                            .type('{rightArrow}'.repeat(initialCaretIndex))
-                            .type('{upArrow}')
-                            .should('have.value', toggledValue)
-                            .should('have.prop', 'selectionStart', initialCaretIndex)
-                            .should('have.prop', 'selectionEnd', initialCaretIndex);
-                    });
+                        it(`${initialValueWithCaretLabel} --- ↑ --- ${toggledValueWithCaretLabel}`, () => {
+                            cy.get('@textfield')
+                                .type('{rightArrow}'.repeat(initialCaretIndex))
+                                .type('{upArrow}')
+                                .should('have.value', toggledValue)
+                                .should('have.prop', 'selectionStart', initialCaretIndex)
+                                .should('have.prop', 'selectionEnd', initialCaretIndex);
+                        });
 
-                    it(`${initialValueWithCaretLabel} --- ↓ --- ${toggledValueWithCaretLabel}`, () => {
-                        cy.get('@textfield')
-                            .type('{rightArrow}'.repeat(initialCaretIndex))
-                            .type('{downArrow}')
-                            .should('have.value', toggledValue)
-                            .should('have.prop', 'selectionStart', initialCaretIndex)
-                            .should('have.prop', 'selectionEnd', initialCaretIndex);
-                    });
-                });
+                        it(`${initialValueWithCaretLabel} --- ↓ --- ${toggledValueWithCaretLabel}`, () => {
+                            cy.get('@textfield')
+                                .type('{rightArrow}'.repeat(initialCaretIndex))
+                                .type('{downArrow}')
+                                .should('have.value', toggledValue)
+                                .should('have.prop', 'selectionStart', initialCaretIndex)
+                                .should('have.prop', 'selectionEnd', initialCaretIndex);
+                        });
+                    },
+                );
             });
 
             describe('Initial value === "01:01 PM"', () => {
@@ -360,42 +357,39 @@ describe('Time | modes with meridiem', () => {
                         .type('{moveToStart}');
                 });
 
-                [
-                    '01:01'.length,
-                    '01:01 '.length,
-                    '01:01 P'.length,
-                    '01:01 PM'.length,
-                ].forEach((initialCaretIndex) => {
-                    const initialValueWithCaretLabel = withCaretLabel(
-                        initialValue,
-                        initialCaretIndex,
-                    );
-                    const toggledValueWithCaretLabel = withCaretLabel(
-                        toggledValue,
-                        initialCaretIndex,
-                    );
+                ['01:01 '.length, '01:01 P'.length, '01:01 PM'.length].forEach(
+                    (initialCaretIndex) => {
+                        const initialValueWithCaretLabel = withCaretLabel(
+                            initialValue,
+                            initialCaretIndex,
+                        );
+                        const toggledValueWithCaretLabel = withCaretLabel(
+                            toggledValue,
+                            initialCaretIndex,
+                        );
 
-                    it(`${initialValueWithCaretLabel} --- ↑ --- ${toggledValueWithCaretLabel}`, () => {
-                        cy.get('@textfield')
-                            .type('{rightArrow}'.repeat(initialCaretIndex))
-                            .type('{upArrow}')
-                            .should('have.value', toggledValue)
-                            .should('have.prop', 'selectionStart', initialCaretIndex)
-                            .should('have.prop', 'selectionEnd', initialCaretIndex);
-                    });
+                        it(`${initialValueWithCaretLabel} --- ↑ --- ${toggledValueWithCaretLabel}`, () => {
+                            cy.get('@textfield')
+                                .type('{rightArrow}'.repeat(initialCaretIndex))
+                                .type('{upArrow}')
+                                .should('have.value', toggledValue)
+                                .should('have.prop', 'selectionStart', initialCaretIndex)
+                                .should('have.prop', 'selectionEnd', initialCaretIndex);
+                        });
 
-                    it(`${initialValueWithCaretLabel} --- ↓ --- ${toggledValueWithCaretLabel}`, () => {
-                        cy.get('@textfield')
-                            .type('{rightArrow}'.repeat(initialCaretIndex))
-                            .type('{downArrow}')
-                            .should('have.value', toggledValue)
-                            .should('have.prop', 'selectionStart', initialCaretIndex)
-                            .should('have.prop', 'selectionEnd', initialCaretIndex);
-                    });
-                });
+                        it(`${initialValueWithCaretLabel} --- ↓ --- ${toggledValueWithCaretLabel}`, () => {
+                            cy.get('@textfield')
+                                .type('{rightArrow}'.repeat(initialCaretIndex))
+                                .type('{downArrow}')
+                                .should('have.value', toggledValue)
+                                .should('have.prop', 'selectionStart', initialCaretIndex)
+                                .should('have.prop', 'selectionEnd', initialCaretIndex);
+                        });
+                    },
+                );
             });
 
-            describe('do nothing for partially completed time string', () => {
+            describe('do nothing when caret is put after any time segment', () => {
                 it('Empty textfield --- ↑↓ --- Empty textfield', () => {
                     cy.get('@textfield')
                         .should('have.value', '')
@@ -405,7 +399,7 @@ describe('Time | modes with meridiem', () => {
                         .should('have.value', '');
                 });
 
-                ['1', '12', '12:', '12:3'].forEach((textfieldValue) => {
+                ['1', '12', '12:', '12:3', '12:34'].forEach((textfieldValue) => {
                     it(`${textfieldValue} --- ↑↓ --- ${textfieldValue}`, () => {
                         cy.get('@textfield')
                             .type(textfieldValue)
