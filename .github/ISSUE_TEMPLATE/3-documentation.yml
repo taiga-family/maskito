@@ -2,6 +2,7 @@ name: '📚 - Documentation'
 title: '📚 - '
 description: Report an issue in Maskito's documentation
 labels: ['documentation']
+type: Documentation
 
 body:
   - type: input
