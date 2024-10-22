@@ -1,6 +1,6 @@
 {
     "name": "maskito",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
     "keywords": [
         "mask",

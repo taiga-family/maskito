@@ -1,3 +1,12 @@
+### [3.1.2](https://github.com/taiga-family/maskito/compare/v3.1.1...v3.1.2) (2024-10-22)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Time` & `DateTime` has conflicts between `step` & `AM/PM` features (#1791)
+  [(805f70b)](https://github.com/taiga-family/maskito/commit/805f70b74e04fb3b8613f89d84e771c734438dab)
+- **kit**: `Number` incorrectly shift caret for 1st time insertion into textfield with initial value (#1792)
+  [(0049d91)](https://github.com/taiga-family/maskito/commit/0049d91a0a498977bb5f4cba9fbf9f02cb74dae9)
+
 ### [3.1.1](https://github.com/taiga-family/maskito/compare/v3.1.0...v3.1.1) (2024-10-17)
 
 ### 🐞 Bug Fixes
