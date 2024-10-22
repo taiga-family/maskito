@@ -1,6 +1,8 @@
 import {DemoPath} from '@demo/constants';
 import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
 
+import {withCaretLabel} from '../../utils';
+
 describe('Time', () => {
     describe('Mode', () => {
         describe('HH:MM', () => {
@@ -113,6 +115,150 @@ describe('Time', () => {
                     cy.get('@input')
                         .should('have.a.prop', 'selectionStart', '12:12'.length)
                         .should('have.a.prop', 'selectionEnd', '12:12'.length);
+                });
+            });
+        });
+
+        describe('HH:MM AA', () => {
+            describe('step = 1', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM%20AA&step=1`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('textfield');
+                });
+
+                describe('time segment digits stepping', () => {
+                    [
+                        {value: '12:34 AM', caretIndex: 0, newValue: '00:34 AM'},
+                        {value: '12:34 AM', caretIndex: '1'.length, newValue: '00:34 AM'},
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12'.length,
+                            newValue: '00:34 AM',
+                        },
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:'.length,
+                            newValue: '12:35 AM',
+                        },
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:3'.length,
+                            newValue: '12:35 AM',
+                        },
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:34'.length,
+                            newValue: '12:35 AM',
+                        },
+                    ].forEach(({value, caretIndex, newValue}) => {
+                        it(`${withCaretLabel(value, caretIndex)} --- ↑ --- ${withCaretLabel(newValue, caretIndex)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                                .type('{upArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', caretIndex)
+                                .should('have.a.prop', 'selectionEnd', caretIndex);
+                        });
+                    });
+
+                    [
+                        {value: '12:34 PM', caretIndex: 0, newValue: '11:34 PM'},
+                        {value: '12:34 PM', caretIndex: '1'.length, newValue: '11:34 PM'},
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12'.length,
+                            newValue: '11:34 PM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:'.length,
+                            newValue: '12:33 PM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:3'.length,
+                            newValue: '12:33 PM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:34'.length,
+                            newValue: '12:33 PM',
+                        },
+                    ].forEach(({value, caretIndex, newValue}) => {
+                        it(`${withCaretLabel(value, caretIndex)} --- ↓ --- ${withCaretLabel(newValue, caretIndex)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                                .type('{downArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', caretIndex)
+                                .should('have.a.prop', 'selectionEnd', caretIndex);
+                        });
+                    });
+                });
+
+                describe('meridiem switching', () => {
+                    [
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:34 '.length,
+                            newValue: '12:34 PM',
+                        },
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:34 A'.length,
+                            newValue: '12:34 PM',
+                        },
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '12:34 AM'.length,
+                            newValue: '12:34 PM',
+                        },
+                    ].forEach(({value, caretIndex, newValue}) => {
+                        it(`${withCaretLabel(value, caretIndex)} --- ↑ --- ${withCaretLabel(newValue, caretIndex)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                                .type('{upArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', caretIndex)
+                                .should('have.a.prop', 'selectionEnd', caretIndex);
+                        });
+                    });
+
+                    [
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:34 '.length,
+                            newValue: '12:34 AM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:34 P'.length,
+                            newValue: '12:34 AM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12:34 PM'.length,
+                            newValue: '12:34 AM',
+                        },
+                    ].forEach(({value, caretIndex, newValue}) => {
+                        it(`${withCaretLabel(value, caretIndex)} --- ↓ --- ${withCaretLabel(newValue, caretIndex)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                                .type('{downArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', caretIndex)
+                                .should('have.a.prop', 'selectionEnd', caretIndex);
+                        });
+                    });
                 });
             });
         });
