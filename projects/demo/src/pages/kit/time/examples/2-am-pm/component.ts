@@ -23,7 +23,6 @@ import mask from './mask';
         >
             Enter 12-hour time format
             <input
-                inputmode="decimal"
                 tuiTextfieldLegacy
                 [maskito]="mask"
             />
