@@ -12,6 +12,10 @@ export function maskitoSelectionChangeHandler(
         };
 
         const listener = (): void => {
+            if (!element.matches(':focus')) {
+                return;
+            }
+
             if (isPointerDown) {
                 return document.addEventListener('mouseup', listener, {
                     once: true,

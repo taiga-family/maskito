@@ -10,10 +10,6 @@ export function maskitoCaretGuard(
     ) => [from: number, to: number],
 ): MaskitoPlugin {
     return maskitoSelectionChangeHandler((element) => {
-        if (!element.matches(':focus')) {
-            return;
-        }
-
         const start = element.selectionStart ?? 0;
         const end = element.selectionEnd ?? 0;
         const [fromLimit, toLimit] = guard(element.value, [start, end]);
