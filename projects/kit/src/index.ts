@@ -14,6 +14,7 @@ export {
     maskitoEventHandler,
     maskitoRejectEvent,
     maskitoRemoveOnBlurPlugin,
+    maskitoSelectionChangeHandler,
 } from './lib/plugins';
 export {
     maskitoPostfixPostprocessorGenerator,
