@@ -15,5 +15,16 @@ export default {
                 maskitoUpdateElement(element, `${element.value} AM`);
             }
         }),
+        (element) => {
+            const listener = (): void => {
+                element.inputMode =
+                    element.selectionStart! >= 'HH:MM'.length ? 'text' : 'decimal';
+            };
+
+            element.ownerDocument.addEventListener('selectionchange', listener);
+
+            return () =>
+                element.ownerDocument.removeEventListener('selectionchange', listener);
+        },
     ],
 } satisfies MaskitoOptions;
