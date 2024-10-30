@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[6080],{6080:e=>{e.exports="import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';\n\nexport default maskitoDateTimeOptionsGenerator({\n    dateMode: 'dd/mm/yyyy',\n    timeMode: 'HH:MM AA',\n    dateSeparator: '/',\n});\n"}}]);
