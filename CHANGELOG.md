@@ -1,3 +1,10 @@
+### [3.2.0](https://github.com/taiga-family/maskito/compare/v3.1.2...v3.2.0) (2024-10-29)
+
+### 🚀 Features
+
+- **kit**: new `maskitoSelectionChangeHandler` plugin (#1794)
+  [(c6e9a4d)](https://github.com/taiga-family/maskito/commit/c6e9a4d9b1a2e75bc44aaecbda840b84f786d065)
+
 ### [3.1.2](https://github.com/taiga-family/maskito/compare/v3.1.1...v3.1.2) (2024-10-22)
 
 ### 🐞 Bug Fixes
