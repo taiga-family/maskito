@@ -15,7 +15,9 @@ export function normalizeDatePreprocessor({
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const dateSegments = data.split(/\D/).filter(Boolean);
-        const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
+        const templateSegments = dateModeTemplate
+            .split(dateSegmentsSeparator)
+            .filter(Boolean);
         const includesTime = data.includes(dateTimeSeparator);
 
         let newData = '';
@@ -26,7 +28,8 @@ export function normalizeDatePreprocessor({
         for (let index = 0; index < dateSegments.length; index++) {
             const segment = dateSegments[index]!;
             const template = templateSegments[index % templateSegments.length];
-            const isLastSegment =
+            const isLastSegment = index === dateSegments.length - 1;
+            const isLastFromTemplate =
                 index % templateSegments.length === templateSegments.length - 1;
 
             if (index >= templateSegments.length && includesTime) {
@@ -35,7 +38,7 @@ export function normalizeDatePreprocessor({
             }
 
             if (template) {
-                if (isLastSegment) {
+                if (isLastFromTemplate || isLastSegment) {
                     dateParts.push(segment);
                     dates.push(dateParts.join(dateSegmentsSeparator));
                     dateParts = [];
