@@ -15,12 +15,10 @@ export function normalizeDatePreprocessor({
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const dateSegments = data.split(/\D/).filter(Boolean);
-        const templateSegments = dateModeTemplate
-            .split(dateSegmentsSeparator)
-            .filter(Boolean);
+        const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
         const includesTime = data.includes(dateTimeSeparator);
 
-        let newData = '';
+        let newData = data;
         const dates: string[] = [];
         let dateParts: string[] = [];
         const timeParts: string[] = [];
@@ -28,8 +26,7 @@ export function normalizeDatePreprocessor({
         for (let index = 0; index < dateSegments.length; index++) {
             const segment = dateSegments[index]!;
             const template = templateSegments[index % templateSegments.length];
-            const isLastSegment = index === dateSegments.length - 1;
-            const isLastFromTemplate =
+            const isLastTemplateSegment =
                 index % templateSegments.length === templateSegments.length - 1;
 
             if (index >= templateSegments.length && includesTime) {
@@ -37,8 +34,8 @@ export function normalizeDatePreprocessor({
                 continue;
             }
 
-            if (template) {
-                if (isLastFromTemplate || isLastSegment) {
+            if (template && template.length === segment.length) {
+                if (isLastTemplateSegment) {
                     dateParts.push(segment);
                     dates.push(dateParts.join(dateSegmentsSeparator));
                     dateParts = [];
@@ -50,7 +47,7 @@ export function normalizeDatePreprocessor({
 
         if (dates.length === 1 && timeParts.length > 0) {
             newData = `${dates[0]}${dateTimeSeparator}${timeParts.join(':')}`;
-        } else {
+        } else if (dates.length === 2) {
             newData = dates.join(rangeSeparator);
         }
 
