@@ -14,53 +14,50 @@ export function normalizeDatePreprocessor({
     dateTimeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
-        const separator = rangeSeparator
-            ? new RegExp(`${rangeSeparator}|-`)
-            : dateTimeSeparator;
-        const possibleDates = data.split(separator);
-        const dates = data.includes(dateTimeSeparator)
-            ? [possibleDates[0] ?? '']
-            : possibleDates;
+        const dateSegments = data.split(/\D/).filter(Boolean);
+        const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
+        const includesTime = data.includes(dateTimeSeparator);
 
-        if (
-            dates.every(
-                (date) =>
-                    date.trim().split(/\D/).filter(Boolean).length ===
-                    dateModeTemplate.split(dateSegmentsSeparator).length,
-            )
-        ) {
-            const newData = dates
-                .map((date) =>
-                    normalizeDateString(date, dateModeTemplate, dateSegmentsSeparator),
-                )
-                .join(rangeSeparator);
+        let newData = '';
+        const dates: string[] = [];
+        let dateParts: string[] = [];
+        const timeParts: string[] = [];
 
-            return {
-                elementState,
-                data: `${newData}${
-                    data.includes(dateTimeSeparator)
-                        ? dateTimeSeparator + possibleDates[1] || ''
-                        : ''
-                }`,
-            };
+        for (let index = 0; index < dateSegments.length; index++) {
+            const segment = dateSegments[index]!;
+            const template = templateSegments[index % templateSegments.length];
+            const isLastSegment =
+                index % templateSegments.length === templateSegments.length - 1;
+
+            if (index >= templateSegments.length && includesTime) {
+                timeParts.push(segment);
+                continue;
+            }
+
+            if (template) {
+                if (isLastSegment) {
+                    dateParts.push(segment);
+                    dates.push(dateParts.join(dateSegmentsSeparator));
+                    dateParts = [];
+                } else {
+                    dateParts.push(normalizeDateSegment(segment, template));
+                }
+            }
         }
 
-        return {elementState, data};
+        if (dates.length === 1 && timeParts.length > 0) {
+            newData = `${dates[0]}${dateTimeSeparator}${timeParts.join(':')}`;
+        } else {
+            newData = dates.join(rangeSeparator);
+        }
+
+        return {elementState, data: newData};
     };
 }
 
-function normalizeDateString(
-    dateString: string,
-    template: string,
-    separator: string,
+function normalizeDateSegment(
+    dateSegment: string,
+    templateSegment: string | undefined,
 ): string {
-    const dateSegments = dateString.split(/\D/).filter(Boolean);
-    const templateSegments = template.split(separator);
-    const normalizedSegments = dateSegments.map((segment, index) =>
-        index === templateSegments.length - 1
-            ? segment
-            : segment.padStart(templateSegments[index]?.length ?? 0, '0'),
-    );
-
-    return normalizedSegments.join(separator);
+    return dateSegment.padStart(templateSegment?.length ?? 0, '0');
 }
