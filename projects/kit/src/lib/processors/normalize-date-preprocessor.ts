@@ -34,7 +34,7 @@ export function normalizeDatePreprocessor({
                 continue;
             }
 
-            if (template && template.length === segment.length) {
+            if (template) {
                 if (isLastTemplateSegment) {
                     dateParts.push(segment);
                     dates.push(dateParts.join(dateSegmentsSeparator));
@@ -45,10 +45,12 @@ export function normalizeDatePreprocessor({
             }
         }
 
-        if (dates.length === 1 && timeParts.length > 0) {
-            newData = `${dates[0]}${dateTimeSeparator}${timeParts.join(':')}`;
-        } else if (dates.length === 2) {
-            newData = dates.join(rangeSeparator);
+        if (dates.length > 0 && dateParts.length === 0) {
+            if (timeParts.length > 0) {
+                newData = `${dates[0]}${dateTimeSeparator}${timeParts.join(':')}`;
+            } else {
+                newData = dates.join(rangeSeparator);
+            }
         }
 
         return {elementState, data: newData};
