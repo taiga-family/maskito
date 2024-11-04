@@ -26,7 +26,7 @@ export function normalizeDatePreprocessor({
         }
 
         const dates = dateSegments.reduce<string[]>((dates, segment, index) => {
-            const template = templateSegments[index % templateSegments.length];
+            const template = templateSegments[index % templateSegments.length] ?? '';
             const dateIndex = Math.trunc(index / templateSegments.length);
             const isLastDateSegment =
                 index % templateSegments.length === templateSegments.length - 1;
@@ -37,7 +37,7 @@ export function normalizeDatePreprocessor({
 
             dates[dateIndex] += isLastDateSegment
                 ? segment
-                : `${segment.padStart(template?.length ?? 0, '0')}${dateSegmentsSeparator}`;
+                : `${segment.padStart(template.length, '0')}${dateSegmentsSeparator}`;
 
             return dates;
         }, []);
