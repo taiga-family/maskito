@@ -23,10 +23,6 @@ export function normalizeDatePreprocessor({
             includesTime ? templateSegments.length : Infinity,
         );
 
-        const timeSegments = dateTimeSegments.slice(
-            includesTime ? templateSegments.length : Infinity,
-        );
-
         if (!dateSegments.length || dateSegments.length % templateSegments.length !== 0) {
             return {elementState, data};
         }
@@ -51,7 +47,7 @@ export function normalizeDatePreprocessor({
         return {
             elementState,
             data: includesTime
-                ? `${dates[0]}${dateTimeSeparator}${timeSegments.join(':')}`
+                ? `${dates[0]}${data.slice(data.indexOf(dateTimeSeparator))}`
                 : dates.join(rangeSeparator),
         };
     };
