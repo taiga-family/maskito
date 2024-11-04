@@ -14,14 +14,12 @@ export function normalizeDatePreprocessor({
     dateTimeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
-        const dateTimeSegments = data.split(/\D/).filter(Boolean);
         const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
         const includesTime = data.includes(dateTimeSeparator);
-
-        const dateSegments = dateTimeSegments.slice(
-            0,
-            includesTime ? templateSegments.length : Infinity,
-        );
+        const dateSegments = data
+            .split(/\D/)
+            .filter(Boolean)
+            .slice(0, includesTime ? templateSegments.length : Infinity);
 
         if (!dateSegments.length || dateSegments.length % templateSegments.length !== 0) {
             return {elementState, data};
