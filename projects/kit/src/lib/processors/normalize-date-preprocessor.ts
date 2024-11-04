@@ -17,9 +17,9 @@ export function normalizeDatePreprocessor({
         const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
         const includesTime = data.includes(dateTimeSeparator);
         const dateSegments = data
+            .slice(0, includesTime ? data.indexOf(dateTimeSeparator) : Infinity)
             .split(/\D/)
-            .filter(Boolean)
-            .slice(0, includesTime ? templateSegments.length : Infinity);
+            .filter(Boolean);
 
         if (!dateSegments.length || dateSegments.length % templateSegments.length !== 0) {
             return {elementState, data};
