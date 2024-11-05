@@ -64,15 +64,6 @@ export class Maskito extends MaskHistory {
             this.updateHistory(this.elementState);
 
             switch (event.inputType) {
-                // historyUndo/historyRedo will not be triggered if value was modified programmatically
-                case 'historyUndo':
-                    event.preventDefault();
-
-                    return this.undo();
-                case 'historyRedo':
-                    event.preventDefault();
-
-                    return this.redo();
                 case 'deleteByCut':
                 case 'deleteContentBackward':
                 case 'deleteContentForward':
@@ -81,26 +72,38 @@ export class Maskito extends MaskHistory {
                         isForward,
                         selection: getNotEmptySelection(this.elementState, isForward),
                     });
-                case 'deleteWordForward':
-                case 'deleteWordBackward':
-                    return this.handleDelete({
-                        event,
-                        isForward,
-                        selection: getWordSelection(this.elementState, isForward),
-                        force: true,
-                    });
-                case 'deleteSoftLineBackward':
-                case 'deleteSoftLineForward':
                 case 'deleteHardLineBackward':
                 case 'deleteHardLineForward':
+                case 'deleteSoftLineBackward':
+                case 'deleteSoftLineForward':
                     return this.handleDelete({
                         event,
                         isForward,
                         selection: getLineSelection(this.elementState, isForward),
                         force: true,
                     });
+                case 'deleteWordBackward':
+                case 'deleteWordForward':
+                    return this.handleDelete({
+                        event,
+                        isForward,
+                        selection: getWordSelection(this.elementState, isForward),
+                        force: true,
+                    });
+                case 'historyRedo':
+                    event.preventDefault();
+
+                    return this.redo();
+                // historyUndo/historyRedo will not be triggered if value was modified programmatically
+                case 'historyUndo':
+                    event.preventDefault();
+
+                    return this.undo();
                 case 'insertCompositionText':
                     return; // will be handled inside `compositionend` event
+                case 'insertLineBreak':
+                case 'insertParagraph':
+                    return this.handleEnter(event);
                 case 'insertReplacementText':
                     /**
                      * According {@link https://www.w3.org/TR/input-events-2 W3C specification}:
@@ -117,12 +120,9 @@ export class Maskito extends MaskHistory {
                      * All these browser limitations make us to validate the result value later in `input` event.
                      */
                     return;
-                case 'insertLineBreak':
-                case 'insertParagraph':
-                    return this.handleEnter(event);
+                case 'insertFromDrop':
                 case 'insertFromPaste':
                 case 'insertText':
-                case 'insertFromDrop':
                 default:
                     return this.handleInsert(
                         event,
