@@ -48,6 +48,7 @@ export function maskitoAdaptContentEditable(element: HTMLElement): MaskitoElemen
                 ? nativeProperty.bind(target)
                 : nativeProperty;
         },
+        // eslint-disable-next-line @typescript-eslint/max-params
         set(target, prop: keyof HTMLElement, val, receiver) {
             return Reflect.set(prop in adapter ? adapter : target, prop, val, receiver);
         },
