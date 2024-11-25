@@ -103,6 +103,7 @@ export default class DateTimeMaskDocComponent implements GeneratorOptions {
     public timeStep = 0;
     public maskitoOptions: MaskitoOptions = maskitoDateTimeOptionsGenerator(this);
 
+    // eslint-disable-next-line @typescript-eslint/max-params
     @tuiPure
     protected getPlaceholder(
         dateMode: MaskitoDateMode,
