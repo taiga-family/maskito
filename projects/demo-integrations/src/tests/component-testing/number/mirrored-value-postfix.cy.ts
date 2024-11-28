@@ -16,7 +16,7 @@ describe('Number | [postfix]=" EUR" (no initial value & no caret guard)', () => 
         cy.get('input').focus().should('have.value', '').as('input');
     });
 
-    it('Empty input => Paste "11.22 " => Textfield\'s value is "11.22 EUR"', () => {
+    it('Empty input => Paste "11.22 " => 11.22 |EUR', () => {
         cy.get('input')
             .paste('11.22 ')
             .should('have.value', '11.22 EUR')
