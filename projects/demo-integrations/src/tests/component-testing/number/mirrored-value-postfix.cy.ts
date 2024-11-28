@@ -24,7 +24,7 @@ describe('Number | [postfix]=" EUR" (no initial value & no caret guard)', () => 
             .should('have.prop', 'selectionEnd', '11.22 '.length);
     });
 
-    it('Empty input => Paste "11.22  " => Textfield\'s value is "11.22 EUR"', () => {
+    it('Empty input => Paste "11.22  " (with two trailing spaces) => 11.22 |EUR', () => {
         cy.get('input')
             .paste('11.22  ')
             .should('have.value', '11.22 EUR')
