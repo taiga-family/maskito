@@ -1,5 +1,4 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '@maskito/kit';
 
 import {
     DEFAULT_TIME_SEGMENT_MAX_VALUES,
@@ -7,6 +6,7 @@ import {
     TIME_FIXED_CHARACTERS,
     TIME_SEGMENT_VALUE_LENGTHS,
 } from '../constants';
+import type {MaskitoTimeMode, MaskitoTimeSegments} from '../types';
 import {clamp, escapeRegExp} from '../utils';
 import {parseTimeString} from '../utils/time';
 
