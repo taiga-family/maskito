@@ -14,7 +14,15 @@ export function extractAffixes(
     const [extractedPrefix = ''] = value.match(prefixRegExp) ?? [];
     const [extractedPostfix = ''] = value.match(postfixRegExp) ?? [];
 
-    const cleanValue = value.replace(prefixRegExp, '').replace(postfixRegExp, '');
-
-    return {extractedPrefix, extractedPostfix, cleanValue};
+    return {
+        extractedPrefix,
+        extractedPostfix,
+        cleanValue:
+            extractedPrefix || extractedPostfix
+                ? value.slice(
+                      extractedPrefix.length,
+                      extractedPostfix.length ? -extractedPostfix.length : Infinity,
+                  )
+                : value,
+    };
 }

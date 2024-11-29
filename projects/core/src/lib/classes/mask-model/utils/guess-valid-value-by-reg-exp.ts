@@ -22,5 +22,11 @@ export function guessValidValueByRegExp(
         return newPossibleValue.match(maskRegExp) ? newPossibleValue : validatedValuePart;
     }, '');
 
-    return {value: validatedValue, selection: [newFrom, newTo]};
+    return {
+        value: validatedValue,
+        selection: [
+            Math.min(newFrom, validatedValue.length),
+            Math.min(newTo, validatedValue.length),
+        ],
+    };
 }
