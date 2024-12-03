@@ -71,6 +71,9 @@
             "stylelint --fix"
         ]
     },
+    "browserslist": [
+        "extends @taiga-ui/browserslist-config"
+    ],
     "prettier": "@taiga-ui/prettier-config",
     "stylelint": {
         "extends": [
@@ -97,6 +100,7 @@
         "@nx/rollup": "20.1.4",
         "@nx/workspace": "20.1.4",
         "@taiga-ui/auto-changelog-config": "0.235.1",
+        "@taiga-ui/browserslist-config": "0.235.1",
         "@taiga-ui/commitlint-config": "0.235.1",
         "@taiga-ui/cspell-config": "0.235.1",
         "@taiga-ui/eslint-plugin-experience": "0.235.1",
