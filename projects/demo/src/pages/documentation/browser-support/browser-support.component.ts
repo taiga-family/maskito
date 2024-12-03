@@ -12,19 +12,21 @@ import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 })
 export default class BrowserSupportComponent {
     protected readonly desktopBrowsers = [
-        {name: 'Google Chrome', version: '74+'},
-        {name: 'Mozilla Firefox', version: '87+'},
-        {name: 'Safari', version: '12.1+'},
-        {name: 'Opera', version: '62+'},
-        {name: 'Edge (Chromium)', version: '74+'},
+        {name: 'Google Chrome', version: '88+'},
+        {name: 'Mozilla Firefox', version: '120+'},
+        {name: 'Safari', version: '13.1+'},
+        {name: 'Opera', version: '74+'},
+        {name: 'Edge', version: '88+'},
+        {name: 'Yandex Browser', version: '21.2+'},
         {name: 'Microsoft Internet Explorer', version: null},
-        {name: 'Edge (EdgeHTML)', version: null},
     ] as const;
 
     protected readonly mobileBrowsers = [
-        {name: 'Google Chrome', version: '90+'},
-        {name: 'Mozilla Firefox', version: '99+'},
-        {name: 'Safari', version: '12.2+'},
-        {name: 'Opera', version: '64+'},
+        {name: 'Google Chrome', version: '88+'},
+        {name: 'Mozilla Firefox', version: '120+'},
+        {name: 'Safari', version: '13.4+'},
+        {name: 'Opera', version: '63+'},
+        {name: 'Samsung Mobile', version: '15+'},
+        {name: 'Yandex Browser', version: '21.2+'},
     ];
 }
