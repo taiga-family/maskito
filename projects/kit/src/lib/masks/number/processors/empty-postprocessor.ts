@@ -31,7 +31,10 @@ export function emptyPostprocessor({
             minusSign,
         });
         const aloneDecimalSeparator =
-            !integerPart && !decimalPart && cleanValue.includes(decimalSeparator);
+            !integerPart &&
+            !decimalPart &&
+            Boolean(decimalSeparator) &&
+            cleanValue.includes(decimalSeparator);
 
         if (
             (!integerPart &&

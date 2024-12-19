@@ -126,6 +126,7 @@ export function maskitoNumberOptionsGenerator({
             createZeroPrecisionPreprocessor({
                 precision,
                 decimalSeparator,
+                thousandSeparator,
                 prefix,
                 postfix,
             }),
@@ -136,11 +137,16 @@ export function maskitoNumberOptionsGenerator({
             }),
         ],
         postprocessors: [
-            createMinMaxPostprocessor({decimalSeparator, min, max, minusSign}),
+            createMinMaxPostprocessor({
+                min,
+                max,
+                minusSign,
+                decimalSeparator: precision ? decimalSeparator : '',
+            }),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor({
-                decimalSeparator,
+                decimalSeparator: precision ? decimalSeparator : '',
                 thousandSeparator,
                 prefix,
                 postfix,
@@ -156,7 +162,7 @@ export function maskitoNumberOptionsGenerator({
             emptyPostprocessor({
                 prefix,
                 postfix,
-                decimalSeparator,
+                decimalSeparator: precision ? decimalSeparator : '',
                 minusSign,
             }),
         ],
