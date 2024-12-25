@@ -9,19 +9,17 @@ import {escapeRegExp, extractAffixes, identity} from '../../../utils';
 export function createZeroPrecisionPreprocessor({
     precision,
     decimalSeparator,
-    thousandSeparator,
     prefix,
     postfix,
 }: {
     precision: number;
     decimalSeparator: string;
-    thousandSeparator: string;
     prefix: string;
     postfix: string;
 }): MaskitoPreprocessor {
     if (
         precision > 0 ||
-        thousandSeparator === decimalSeparator // all separators should be treated only as thousand separators
+        !decimalSeparator // all separators should be treated only as thousand separators
     ) {
         return identity;
     }

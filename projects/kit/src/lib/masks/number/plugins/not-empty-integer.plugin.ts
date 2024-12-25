@@ -2,7 +2,7 @@ import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
-import {escapeRegExp, extractAffixes} from '../../../utils';
+import {escapeRegExp, extractAffixes, noop} from '../../../utils';
 
 /**
  * It pads EMPTY integer part with zero if decimal parts exists.
@@ -18,6 +18,10 @@ export function createNotEmptyIntegerPlugin({
     prefix: string;
     postfix: string;
 }): MaskitoPlugin {
+    if (!decimalSeparator) {
+        return noop;
+    }
+
     return maskitoEventHandler(
         'blur',
         (element) => {

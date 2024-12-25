@@ -2,8 +2,7 @@ import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import type {MaskitoTimeSegments} from '../../types';
-
-const noop = (): void => {};
+import {noop} from '../../utils';
 
 export function createTimeSegmentsSteppingPlugin({
     step,
