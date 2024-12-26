@@ -2,10 +2,11 @@ import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import {ANY_MERIDIEM_CHARACTER_RE, CHAR_NO_BREAK_SPACE} from '../../constants';
+import {noop} from '../../utils';
 
 export function createMeridiemSteppingPlugin(meridiemStartIndex: number): MaskitoPlugin {
     if (meridiemStartIndex < 0) {
-        return () => {};
+        return noop;
     }
 
     return (element) => {

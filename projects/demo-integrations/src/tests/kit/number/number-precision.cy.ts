@@ -48,20 +48,41 @@ describe('Number | precision', () => {
     });
 
     describe('rejects decimal separator if `precision` is equal to 0', () => {
-        beforeEach(() => {
-            openNumberPage('decimalSeparator=,&precision=0');
-        });
-
         it('empty input => Type "," => Empty input', () => {
+            openNumberPage('decimalSeparator=,&precision=0');
             cy.get('@input').type(',').should('have.value', '');
         });
 
         it('Type "5," => "5"', () => {
+            openNumberPage('decimalSeparator=,&precision=0');
+
             cy.get('@input')
                 .type('5,')
                 .should('have.value', '5')
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1);
+        });
+
+        describe('dont rejects thousand separator if it is equal to decimal separator (for precision=0 value of decimal separator does not matter)', () => {
+            it('simple typing', () => {
+                openNumberPage('precision=0&thousandSeparator=.&decimalSeparator=.');
+
+                cy.get('@input')
+                    .type('1234')
+                    .should('have.value', '1.234')
+                    .should('have.prop', 'selectionStart', '1.234'.length)
+                    .should('have.prop', 'selectionEnd', '1.234'.length);
+            });
+
+            it('paste from clipboard', () => {
+                openNumberPage('precision=0&thousandSeparator=.&decimalSeparator=.');
+
+                cy.get('@input')
+                    .paste('1.234')
+                    .should('have.value', '1.234')
+                    .should('have.prop', 'selectionStart', '1.234'.length)
+                    .should('have.prop', 'selectionEnd', '1.234'.length);
+            });
         });
     });
 

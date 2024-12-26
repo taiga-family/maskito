@@ -78,6 +78,18 @@ export function maskitoNumberOptionsGenerator({
             ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
             : unsafePrefix;
 
+    const initializationOnlyPreprocessor = createInitializationOnlyPreprocessor({
+        decimalSeparator,
+        decimalPseudoSeparators: validatedDecimalPseudoSeparators,
+        pseudoMinuses,
+        prefix,
+        postfix,
+        minusSign,
+    });
+
+    decimalSeparator =
+        precision <= 0 && decimalSeparator === thousandSeparator ? '' : decimalSeparator;
+
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: generateMaskExpression({
@@ -91,14 +103,7 @@ export function maskitoNumberOptionsGenerator({
         }),
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
-            createInitializationOnlyPreprocessor({
-                decimalSeparator,
-                decimalPseudoSeparators: validatedDecimalPseudoSeparators,
-                pseudoMinuses,
-                prefix,
-                postfix,
-                minusSign,
-            }),
+            initializationOnlyPreprocessor,
             createAffixesFilterPreprocessor({prefix, postfix}),
             createPseudoCharactersPreprocessor({
                 validCharacter: minusSign,
