@@ -1,3 +1,19 @@
+### [3.2.1](https://github.com/taiga-family/maskito/compare/v3.2.0...v3.2.1) (2024-12-26)
+
+### 🚀 Features
+
+- **kit**: remove circular import (#1861)
+  [(15ff0b8)](https://github.com/taiga-family/maskito/commit/15ff0b8558bc954ac6eda07bdb13d087fc2f3491)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Number` should ignore `[decimalSeparator]` value if `[precision]=0` (#1908)
+  [(19effe2)](https://github.com/taiga-family/maskito/commit/19effe2c7218646335b2f08c53a1ed3c3f0d89a1)
+- **kit**: `Number` + postfix (with leading space) adds unnecessary spaces on paste value with trailing spaces (#1865)
+  [(c37b1d6)](https://github.com/taiga-family/maskito/commit/c37b1d636fefee1cba17b4aa07ccdd30edc5ff66)
+- **kit**: `DateRange` should accept single character date segment paste even if date and range separators are equal
+  (#1796) [(be6a4c3)](https://github.com/taiga-family/maskito/commit/be6a4c3c57132cf320ec462372fd8536dca4781a)
+
 ### [3.2.0](https://github.com/taiga-family/maskito/compare/v3.1.2...v3.2.0) (2024-10-29)
 
 ### 🚀 Features
