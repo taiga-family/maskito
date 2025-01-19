@@ -11,17 +11,19 @@ import {
 } from '../../processors';
 import type {MaskitoDateMode} from '../../types';
 
+export interface MaskitoDateParams {
+    mode: MaskitoDateMode;
+    separator?: string;
+    max?: Date;
+    min?: Date;
+}
+
 export function maskitoDateOptionsGenerator({
     mode,
     separator = '.',
     max,
     min,
-}: {
-    mode: MaskitoDateMode;
-    separator?: string;
-    max?: Date;
-    min?: Date;
-}): Required<MaskitoOptions> {
+}: MaskitoDateParams): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(separator);
 
     return {
