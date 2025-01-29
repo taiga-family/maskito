@@ -1,6 +1,6 @@
 {
     "name": "@maskito/react",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "description": "The React-specific Maskito's library",
     "keywords": [
         "mask",
@@ -30,16 +30,16 @@
         "Georgiy Lunin <nextzeddicus@gmail.com>"
     ],
     "devDependencies": {
-        "@testing-library/react": "16.0.1",
-        "@testing-library/user-event": "14.5.2",
-        "@types/react": "18.3.11",
-        "@types/react-dom": "18.3.1",
-        "react": "18.3.1",
-        "react-dom": "18.3.1",
-        "react-test-renderer": "18.3.1"
+        "@testing-library/react": "16.2.0",
+        "@testing-library/user-event": "14.6.0",
+        "@types/react": "18.3.18",
+        "@types/react-dom": "18.3.5",
+        "react": "19.0.0",
+        "react-dom": "19.0.0",
+        "react-test-renderer": "19.0.0"
     },
     "peerDependencies": {
-        "@maskito/core": "^3.2.0",
+        "@maskito/core": "^3.2.1",
         "react": ">=16.8",
         "react-dom": ">=16.8"
     }

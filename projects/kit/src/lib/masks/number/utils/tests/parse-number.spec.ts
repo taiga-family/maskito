@@ -54,6 +54,16 @@ describe('maskitoParseNumber', () => {
         });
     });
 
+    describe('decimal separator is empty string', () => {
+        it('thousand separator is point', () => {
+            expect(maskitoParseNumber('123.456.789', '')).toBe(123456789);
+        });
+
+        it('thousand separator is empty string', () => {
+            expect(maskitoParseNumber('123456', '')).toBe(123456);
+        });
+    });
+
     describe('negative numbers', () => {
         describe('minus sign', () => {
             it('can be minus', () => {

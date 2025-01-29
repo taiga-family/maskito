@@ -17,7 +17,10 @@ export function createZeroPrecisionPreprocessor({
     prefix: string;
     postfix: string;
 }): MaskitoPreprocessor {
-    if (precision > 0) {
+    if (
+        precision > 0 ||
+        !decimalSeparator // all separators should be treated only as thousand separators
+    ) {
         return identity;
     }
 

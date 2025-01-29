@@ -39,14 +39,14 @@ export function createThousandSeparatorPostprocessor({
             decimalSeparator,
             minusSign,
         });
+        const hasDecimalSeparator =
+            decimalSeparator && cleanValue.includes(decimalSeparator);
         const deletedChars =
             cleanValue.length -
             (
                 minus +
                 integerPart +
-                (cleanValue.includes(decimalSeparator)
-                    ? decimalSeparator + decimalPart
-                    : '')
+                (hasDecimalSeparator ? decimalSeparator + decimalPart : '')
             ).length;
 
         if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
@@ -105,7 +105,7 @@ export function createThousandSeparatorPostprocessor({
                 extractedPrefix +
                 minus +
                 processedIntegerPart +
-                (cleanValue.includes(decimalSeparator) ? decimalSeparator : '') +
+                (hasDecimalSeparator ? decimalSeparator : '') +
                 decimalPart +
                 extractedPostfix,
             selection: [from, to],

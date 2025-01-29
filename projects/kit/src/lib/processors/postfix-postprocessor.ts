@@ -26,7 +26,7 @@ export function maskitoPostfixPostprocessorGenerator(
                   '',
               );
               const postfixWasModified =
-                  initialElementState.selection[1] >= initialValueBeforePostfix.length;
+                  initialElementState.selection[1] > initialValueBeforePostfix.length;
               const alreadyExistedValueBeforePostfix = findCommonBeginningSubstr(
                   initialValueBeforePostfix,
                   value,

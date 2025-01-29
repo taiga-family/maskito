@@ -18,7 +18,7 @@ export function maskitoParseNumber(maskedNumber: string, decimalSeparator = '.')
         .replaceAll(new RegExp(`${escapedDecimalSeparator}(?!\\d)`, 'g'), '')
         // drop all non-digit characters except decimal separator
         .replaceAll(new RegExp(`[^\\d${escapedDecimalSeparator}]`, 'g'), '')
-        .replace(decimalSeparator, '.');
+        .replace(decimalSeparator, decimalSeparator && '.');
 
     if (unmaskedNumber) {
         const sign = hasNegativeSign ? CHAR_HYPHEN : '';

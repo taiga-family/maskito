@@ -12,5 +12,15 @@
         ],
         "executionMode": "branch",
         "fileFilters": ["package-lock.json"]
-    }
+    },
+    "packageRules": [
+        {
+            "matchPackageNames": ["/^@nx.*/", "/^nx$/"],
+            "enabled": false
+        },
+        {
+            "matchPackageNames": ["jest-preset-angular"],
+            "enabled": false
+        }
+    ]
 }

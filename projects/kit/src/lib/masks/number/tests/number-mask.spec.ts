@@ -405,4 +405,14 @@ describe('Number (maskitoTransform)', () => {
 
         expect(maskitoTransform('    123456    ', options)).toBe('123 456');
     });
+
+    it('[thousandSeparator] is equal to [decimalSeparator] when [precision]=0', () => {
+        const options = maskitoNumberOptionsGenerator({
+            thousandSeparator: '.',
+            decimalSeparator: '.', // default value
+            precision: 0, // default value
+        });
+
+        expect(maskitoTransform('123.456', options)).toBe('123.456');
+    });
 });

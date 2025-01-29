@@ -27,12 +27,15 @@ export function maskitoSelectionChangeHandler(
         };
 
         document.addEventListener('selectionchange', listener, {passive: true});
+        // Safari does not fire `selectionchange` on focus after programmatic update of textfield value
+        element.addEventListener('focus', listener, {passive: true});
         element.addEventListener('mousedown', onPointerDown, {passive: true});
         document.addEventListener('mouseup', onPointerUp, {passive: true});
 
         return () => {
             document.removeEventListener('selectionchange', listener);
-            document.removeEventListener('mousedown', onPointerDown);
+            element.removeEventListener('focus', listener);
+            element.removeEventListener('mousedown', onPointerDown);
             document.removeEventListener('mouseup', onPointerUp);
         };
     };

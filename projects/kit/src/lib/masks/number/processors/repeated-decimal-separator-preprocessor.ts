@@ -1,6 +1,6 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp, extractAffixes} from '../../../utils';
+import {escapeRegExp, extractAffixes, identity} from '../../../utils';
 
 /**
  * It rejects new typed decimal separator if it already exists in text field.
@@ -16,6 +16,10 @@ export function createRepeatedDecimalSeparatorPreprocessor({
     prefix: string;
     postfix: string;
 }): MaskitoPreprocessor {
+    if (!decimalSeparator) {
+        return identity;
+    }
+
     return ({elementState, data}) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
