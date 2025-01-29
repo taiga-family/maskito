@@ -47,10 +47,10 @@ export default class DateMaskDocComponent implements GeneratorOptions {
 
     protected readonly modeOptions = [
         'dd/mm/yyyy',
-        'mm/dd',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
         'dd/mm',
+        'mm/dd',
         'mm/yy',
         'mm/yyyy',
         'yyyy/mm',
