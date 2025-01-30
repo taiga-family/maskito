@@ -245,6 +245,14 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '05.05'.length)
                     .should('have.prop', 'selectionEnd', '05.05'.length);
             });
+
+            it('dd/mm" => 01.05', () => {
+                cy.get('@input')
+                    .type('3104')
+                    .should('have.value', '01.05')
+                    .should('have.prop', 'selectionStart', '01.05'.length)
+                    .should('have.prop', 'selectionEnd', '01.05'.length);
+            });
         });
 
         describe('mm/dd', () => {
@@ -287,6 +295,14 @@ describe('Date', () => {
                     .should('have.value', '09.09')
                     .should('have.prop', 'selectionStart', '09.09'.length)
                     .should('have.prop', 'selectionEnd', '09.09'.length);
+            });
+
+            it('dd/mm" => 05.01', () => {
+                cy.get('@input')
+                    .type('431')
+                    .should('have.value', '05.01')
+                    .should('have.prop', 'selectionStart', '05.01'.length)
+                    .should('have.prop', 'selectionEnd', '05.01'.length);
             });
         });
     });

@@ -10,8 +10,9 @@ import {
     segmentsToDate,
     toDateString,
 } from '../utils';
-import {isCalendarDate} from '../utils/date/is-calendar-date';
 import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
+
+const LEAP_YEAR = '1972';
 
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
@@ -49,17 +50,17 @@ export function createMinMaxDatePostprocessor({
                 continue;
             }
 
-            if (isCalendarDate(dateModeTemplate, dateSegmentSeparator)) {
-                const date = segmentsToDate(parsedDate);
-
-                const clampedDate = clamp(date, min, max);
-
-                validatedValue += toDateString(dateToSegments(clampedDate), {
-                    dateMode: dateModeTemplate,
-                });
-            } else {
-                validatedValue += dateString;
+            if (!parsedDate.year) {
+                parsedDate.year = LEAP_YEAR;
             }
+
+            const date = segmentsToDate(parsedDate);
+
+            const clampedDate = clamp(date, min, max);
+
+            validatedValue += toDateString(dateToSegments(clampedDate), {
+                dateMode: dateModeTemplate,
+            });
         }
 
         return {
