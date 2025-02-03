@@ -50,11 +50,7 @@ export function createMinMaxDatePostprocessor({
                 continue;
             }
 
-            if (!parsedDate.year) {
-                parsedDate.year = LEAP_YEAR;
-            }
-
-            const date = segmentsToDate(parsedDate);
+            const date = segmentsToDate({year: LEAP_YEAR, ...parsedDate});
 
             const clampedDate = clamp(date, min, max);
 
