@@ -12,6 +12,8 @@ import {
 } from '../utils';
 import {raiseSegmentValueToMin} from '../utils/date/raise-segment-value-to-min';
 
+const LEAP_YEAR = '1972';
+
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
     min = DEFAULT_MIN_DATE,
@@ -48,7 +50,8 @@ export function createMinMaxDatePostprocessor({
                 continue;
             }
 
-            const date = segmentsToDate(parsedDate);
+            const date = segmentsToDate({year: LEAP_YEAR, ...parsedDate});
+
             const clampedDate = clamp(date, min, max);
 
             validatedValue += toDateString(dateToSegments(clampedDate), {

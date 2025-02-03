@@ -49,6 +49,8 @@ export default class DateMaskDocComponent implements GeneratorOptions {
         'dd/mm/yyyy',
         'mm/dd/yyyy',
         'yyyy/mm/dd',
+        'dd/mm',
+        'mm/dd',
         'mm/yy',
         'mm/yyyy',
         'yyyy/mm',
