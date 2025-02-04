@@ -4,6 +4,6 @@
     "devDependencies": {
         "@nx/cypress": "20.1.4",
         "cypress": "13.17.0",
-        "cypress-real-events": "1.13.0"
+        "cypress-real-events": "1.14.0"
     }
 }
