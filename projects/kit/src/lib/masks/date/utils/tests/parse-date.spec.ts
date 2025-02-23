@@ -1,7 +1,7 @@
 import type {MaskitoDateParams} from '../../date-mask';
 import {maskitoParseDate} from '../parse-date';
 
-describe('Parse Date', () => {
+describe('maskitoParseDate', () => {
     describe('mode = mm/dd/yyyy, separator = default', () => {
         let params: MaskitoDateParams;
 
