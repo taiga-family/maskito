@@ -122,7 +122,7 @@
         "nx": "20.1.4",
         "postcss-preset-env": "10.1.4",
         "standard-version": "9.5.0",
-        "ts-jest": "29.2.5",
+        "ts-jest": "29.2.6",
         "ts-node": "10.9.2",
         "tsutils": "3.21.0",
         "typescript": "5.0.4",
