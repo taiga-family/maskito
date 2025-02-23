@@ -1,3 +1,4 @@
+import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../constants';
 import {parseDateString} from '../../utils';
 import type {MaskitoDateParams} from './date-mask';
 
@@ -11,10 +12,10 @@ export function maskitoParseDate(
     const month = Number(dateSegments.month);
     const day = Number(dateSegments.day) ?? 1;
 
-    let parsedDateTime = new Date(year, month, day).getTime();
+    const parsedDateTime = new Date(year, month, day).getTime();
 
-    parsedDateTime = max ? Math.min(max.getTime(), parsedDateTime) : parsedDateTime;
-    parsedDateTime = min ? Math.max(min.getTime(), parsedDateTime) : parsedDateTime;
+    const minTime = (min ?? DEFAULT_MIN_DATE).getTime();
+    const maxTime = (max ?? DEFAULT_MAX_DATE).getTime();
 
-    return new Date(parsedDateTime);
+    return new Date(Math.min(Math.max(parsedDateTime, minTime), maxTime));
 }
