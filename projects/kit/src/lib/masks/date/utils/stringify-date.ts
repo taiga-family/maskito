@@ -15,9 +15,9 @@ export function maskitoStringifyDate(
 
     return toDateString(
         {
-            day: validatedDate.getDate().toString(),
-            month: (validatedDate.getMonth() + 1).toString(),
-            year: validatedDate.getFullYear().toString(),
+            day: validatedDate.getDate().toString().padStart(2, '0'),
+            month: (validatedDate.getMonth() + 1).toString().padStart(2, '0'),
+            year: validatedDate.getFullYear().toString().padStart(4, '0'),
         },
         {dateMode: separator ? mode.replaceAll('/', separator) : mode},
     );
