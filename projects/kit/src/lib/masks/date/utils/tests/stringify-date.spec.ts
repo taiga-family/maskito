@@ -1,5 +1,5 @@
 import type {MaskitoDateMode} from '../../../../types';
-import type {MaskitoDateParams} from '../../date-mask';
+import type {MaskitoDateParams} from '../../date-params';
 import {maskitoStringifyDate} from '../stringify-date';
 
 describe('maskitoStringifyDate', () => {

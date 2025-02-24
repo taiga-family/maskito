@@ -1,5 +1,6 @@
 export {
     maskitoDateOptionsGenerator,
+    type MaskitoDateParams,
     maskitoParseDate,
     maskitoStringifyDate,
 } from './lib/masks/date';

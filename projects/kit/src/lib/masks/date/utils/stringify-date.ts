@@ -1,6 +1,6 @@
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import {toDateString} from '../../../utils';
-import type {MaskitoDateParams} from '../date-mask';
+import type {MaskitoDateParams} from '../date-params';
 
 export function maskitoStringifyDate(
     date: Date,
