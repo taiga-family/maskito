@@ -1,4 +1,4 @@
-import type {MaskitoDateParams} from '../../date-mask';
+import type {MaskitoDateParams} from '../../date-params';
 import {maskitoParseDate} from '../parse-date';
 
 describe('maskitoParseDate', () => {
