@@ -87,7 +87,7 @@ describe('maskitoParseDate', () => {
             expect(parsedDate.getTime()).toBe(params.min?.getTime());
         });
 
-        it('should return max date on 01:31', () => {
+        it('should return max date on 02:31', () => {
             const parsedDate = maskitoParseDate('02:30', params);
 
             expect(parsedDate.getTime()).toBe(params.max?.getTime());
