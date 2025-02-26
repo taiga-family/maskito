@@ -4,9 +4,9 @@ import type {MaskitoDateParams} from '../date-params';
 
 export function maskitoStringifyDate(
     date: Date,
-    {mode, separator, min, max}: MaskitoDateParams,
+    {mode, separator, min = DEFAULT_MIN_DATE, max = DEFAULT_MAX_DATE}: MaskitoDateParams,
 ): string {
-    const validatedDate = clamp(date, min ?? DEFAULT_MIN_DATE, max ?? DEFAULT_MAX_DATE);
+    const validatedDate = clamp(date, min, max);
 
     const segmentsLength = getDateSegmentValueLength(mode);
 
