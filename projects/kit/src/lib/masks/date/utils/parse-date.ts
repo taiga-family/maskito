@@ -4,11 +4,11 @@ import type {MaskitoDateParams} from '../date-params';
 
 export function maskitoParseDate(
     value: string,
-    {mode, min, max}: MaskitoDateParams,
+    {mode, min = DEFAULT_MIN_DATE, max = DEFAULT_MAX_DATE}: MaskitoDateParams,
 ): Date {
     const dateSegments = parseDateString(value, mode);
 
     const parsedDate = segmentsToDate(dateSegments);
 
-    return clamp<Date>(parsedDate, min ?? DEFAULT_MIN_DATE, max ?? DEFAULT_MAX_DATE);
+    return clamp<Date>(parsedDate, min, max);
 }
