@@ -1,24 +1,24 @@
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
-import {toDateString} from '../../../utils';
+import {clamp, getDateSegmentValueLength, toDateString} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
 
 export function maskitoStringifyDate(
     date: Date,
     {mode, separator, min, max}: MaskitoDateParams,
 ): string {
-    const validatedDate = new Date(
-        Math.max(
-            Math.min(date.getTime(), (max ?? DEFAULT_MAX_DATE).getTime()),
-            (min ?? DEFAULT_MIN_DATE).getTime(),
-        ),
-    );
+    const validatedDate = clamp(date, min ?? DEFAULT_MIN_DATE, max ?? DEFAULT_MAX_DATE);
 
-    return toDateString(
-        {
-            day: validatedDate.getDate().toString().padStart(2, '0'),
-            month: (validatedDate.getMonth() + 1).toString().padStart(2, '0'),
-            year: validatedDate.getFullYear().toString().padStart(4, '0'),
-        },
-        {dateMode: separator ? mode.replaceAll('/', separator) : mode},
-    );
+    const segmentsLength = getDateSegmentValueLength(mode);
+
+    const segments = {
+        day: validatedDate.getDate().toString().padStart(segmentsLength.day, '0'),
+        month: (validatedDate.getMonth() + 1)
+            .toString()
+            .padStart(segmentsLength.month, '0'),
+        year: validatedDate.getFullYear().toString().padStart(segmentsLength.year, '0'),
+    };
+
+    return toDateString(segments, {
+        dateMode: separator ? mode.replaceAll('/', separator) : mode,
+    });
 }

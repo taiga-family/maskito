@@ -1,5 +1,5 @@
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
-import {parseDateString, segmentsToDate} from '../../../utils';
+import {clamp, parseDateString, segmentsToDate} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
 
 export function maskitoParseDate(
@@ -8,10 +8,7 @@ export function maskitoParseDate(
 ): Date {
     const dateSegments = parseDateString(value, mode);
 
-    const parsedDateTime = segmentsToDate(dateSegments).getTime();
+    const parsedDate = segmentsToDate(dateSegments);
 
-    const minTime = (min ?? DEFAULT_MIN_DATE).getTime();
-    const maxTime = (max ?? DEFAULT_MAX_DATE).getTime();
-
-    return new Date(Math.min(Math.max(parsedDateTime, minTime), maxTime));
+    return clamp<Date>(parsedDate, min ?? DEFAULT_MIN_DATE, max ?? DEFAULT_MAX_DATE);
 }
