@@ -7,7 +7,7 @@ import type {MaskitoDateMode} from '@maskito/kit';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
@@ -26,6 +26,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
         TuiAddonDoc,
         TuiInputModule,
         TuiLink,
+        TuiNotification,
         TuiTextfieldControllerModule,
     ],
     templateUrl: './date-mask-doc.template.html',
@@ -34,6 +35,10 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
 })
 export default class DateMaskDocComponent implements GeneratorOptions {
     protected apiPageControl = new FormControl('');
+
+    protected readonly maskitoParseStringifyDateDemo = import(
+        './examples/maskito-parse-stringify-date-demo.md?raw'
+    );
 
     protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
