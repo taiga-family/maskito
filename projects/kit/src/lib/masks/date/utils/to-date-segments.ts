@@ -1,4 +1,4 @@
-import type {MaskitoDateSegments} from 'projects/kit/src/lib/types';
+import type {MaskitoDateSegments} from '../../../types';
 
 const formatter = Intl.DateTimeFormat('en-US', {
     month: '2-digit',
