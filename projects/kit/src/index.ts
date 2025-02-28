@@ -1,4 +1,9 @@
-export {maskitoDateOptionsGenerator} from './lib/masks/date';
+export {
+    maskitoDateOptionsGenerator,
+    type MaskitoDateParams,
+    maskitoParseDate,
+    maskitoStringifyDate,
+} from './lib/masks/date';
 export {maskitoDateRangeOptionsGenerator} from './lib/masks/date-range';
 export {maskitoDateTimeOptionsGenerator} from './lib/masks/date-time';
 export {maskitoNumberOptionsGenerator, maskitoParseNumber} from './lib/masks/number';

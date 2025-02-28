@@ -9,19 +9,14 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import type {MaskitoDateMode} from '../../types';
+import type {MaskitoDateParams} from './date-params';
 
 export function maskitoDateOptionsGenerator({
     mode,
     separator = '.',
     max,
     min,
-}: {
-    mode: MaskitoDateMode;
-    separator?: string;
-    max?: Date;
-    min?: Date;
-}): Required<MaskitoOptions> {
+}: MaskitoDateParams): Required<MaskitoOptions> {
     const dateModeTemplate = mode.split('/').join(separator);
 
     return {
