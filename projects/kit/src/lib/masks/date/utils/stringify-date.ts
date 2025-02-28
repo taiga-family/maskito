@@ -1,6 +1,7 @@
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
-import {clamp, getDateSegmentValueLength, toDateString} from '../../../utils';
+import {clamp, toDateString} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
+import {toDateSegments} from './to-date-segments';
 
 export function maskitoStringifyDate(
     date: Date,
@@ -8,15 +9,7 @@ export function maskitoStringifyDate(
 ): string {
     const validatedDate = clamp(date, min, max);
 
-    const segmentsLength = getDateSegmentValueLength(mode);
-
-    const segments = {
-        day: validatedDate.getDate().toString().padStart(segmentsLength.day, '0'),
-        month: (validatedDate.getMonth() + 1)
-            .toString()
-            .padStart(segmentsLength.month, '0'),
-        year: validatedDate.getFullYear().toString().padStart(segmentsLength.year, '0'),
-    };
+    const segments = toDateSegments(validatedDate);
 
     return toDateString(segments, {
         dateMode: separator ? mode.replaceAll('/', separator) : mode,
