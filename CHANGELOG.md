@@ -1,3 +1,17 @@
+### [3.3.0](https://github.com/taiga-family/maskito/compare/v3.2.1...v3.3.0) (2025-02-28)
+
+### 🚀 Features
+
+- **kit**: new `maskitoParseDate` and `maskitoStringifyDate` helpers (#1973)
+  [(208a4ab)](https://github.com/taiga-family/maskito/commit/208a4abc8018b368d3154ebc26a81504b6abec3d)
+- **kit**: `Date` supports `dd/mm` and `mm/dd` modes (#1939)
+  [(bc290af)](https://github.com/taiga-family/maskito/commit/bc290affdcdc1cd6e088a32a60dc5e74fd00a1d8)
+
+### 🐞 Bug Fixes
+
+- **kit**: `SelectionChangeHandler` does not work for Safari after programmatic update of textfield value (#1930)
+  [(34c11d0)](https://github.com/taiga-family/maskito/commit/34c11d0ee88b861ab21d54113aff21f3091a053f)
+
 ### [3.2.1](https://github.com/taiga-family/maskito/compare/v3.2.0...v3.2.1) (2024-12-26)
 
 ### 🚀 Features
