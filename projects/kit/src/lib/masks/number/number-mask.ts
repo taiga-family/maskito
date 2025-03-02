@@ -15,6 +15,7 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
+import type {MaskitoNumberParams} from './number-params';
 import {
     createLeadingZeroesValidationPlugin,
     createMinMaxPlugin,
@@ -46,18 +47,7 @@ export function maskitoNumberOptionsGenerator({
     prefix: unsafePrefix = '',
     postfix = '',
     minusSign = CHAR_MINUS,
-}: {
-    min?: number;
-    max?: number;
-    precision?: number;
-    decimalSeparator?: string;
-    decimalPseudoSeparators?: string[]; // TODO v4: => readonly string[]
-    decimalZeroPadding?: boolean;
-    thousandSeparator?: string;
-    prefix?: string;
-    postfix?: string;
-    minusSign?: string;
-} = {}): Required<MaskitoOptions> {
+}: MaskitoNumberParams = {}): Required<MaskitoOptions> {
     const pseudoMinuses = [
         CHAR_HYPHEN,
         CHAR_EN_DASH,
