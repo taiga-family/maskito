@@ -3,13 +3,15 @@
     "version": "3.3.0",
     "description": "The main zero-dependency and framework-agnostic Maskito's package to create an input mask",
     "keywords": [
+        "input",
         "mask",
         "inputmask",
         "input-mask",
         "text-mask",
         "input-formatting",
         "javascript",
-        "typescript"
+        "typescript",
+        "react",
     ],
     "homepage": "https://maskito.dev",
     "bugs": "https://github.com/taiga-family/maskito/issues",
