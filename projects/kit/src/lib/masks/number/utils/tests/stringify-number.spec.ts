@@ -35,6 +35,7 @@ describe('maskitoStringifyNumber', () => {
             expect(
                 maskitoStringifyNumber(1000000.42, {
                     precision: 2,
+                    thousandSeparator: ' ',
                     decimalSeparator: '.',
                 }),
             ).toBe('1000000.42');
