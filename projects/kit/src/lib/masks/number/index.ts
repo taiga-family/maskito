@@ -1,2 +1,3 @@
 export {maskitoNumberOptionsGenerator} from './number-mask';
-export {maskitoParseNumber} from './utils';
+export type {MaskitoNumberParams} from './number-params';
+export {maskitoParseNumber, maskitoStringifyNumber} from './utils';
