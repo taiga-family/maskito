@@ -41,7 +41,6 @@ export function maskitoPhoneNonStrictOptionsGenerator({
                 ? ['+', /\d/]
                 : generatePhoneMask({value, template: currentTemplate, prefix});
         },
-        postprocessors: [phoneLengthPostprocessorGenerator(metadata)],
         preprocessors: [
             validatePhonePreprocessorGenerator({
                 prefix,
@@ -49,5 +48,6 @@ export function maskitoPhoneNonStrictOptionsGenerator({
                 metadata,
             }),
         ],
+        postprocessors: [phoneLengthPostprocessorGenerator(metadata)],
     };
 }

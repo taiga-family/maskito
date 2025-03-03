@@ -49,13 +49,13 @@ export function maskitoPhoneStrictOptionsGenerator({
                 value.length,
             ]),
         ],
-        postprocessors: [
-            maskitoPrefixPostprocessorGenerator(prefix),
-            phoneLengthPostprocessorGenerator(metadata),
-        ],
         preprocessors: [
             cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
             validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+        ],
+        postprocessors: [
+            maskitoPrefixPostprocessorGenerator(prefix),
+            phoneLengthPostprocessorGenerator(metadata),
         ],
     };
 }
