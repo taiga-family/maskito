@@ -4,7 +4,12 @@ import {join} from 'node:path';
 import {DemoPath} from './src/app/constants/demo-path';
 
 const SMALL_TAB_SYMBOL = '  '; // @note: if you use \t then we have big gaps
-const EXCEPTIONS = ['/', `${DemoPath.Angular}/Setup`, `${DemoPath.PhonePackage}/API`];
+const EXCEPTIONS = [
+    '/',
+    `${DemoPath.Angular}/Setup`,
+    `${DemoPath.PhonePackage}/API`,
+    `${DemoPath.Plugins}/Built-in_core_plugins`,
+];
 
 function infoLog(message: string): void {
     console.info('\x1B[34m%s\x1B[0m', message);
