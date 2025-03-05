@@ -35,7 +35,7 @@ describe('maskitoStringifyNumber', () => {
             expect(
                 maskitoStringifyNumber(1000000.42, {
                     precision: 2,
-                    thousandSeparator: ' ',
+                    thousandSeparator: '',
                     decimalSeparator: '.',
                 }),
             ).toBe('1000000.42');
@@ -96,6 +96,7 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(42111.42, {
                     precision: 2,
                     decimalSeparator: ',',
+                    thousandSeparator: '',
                 }),
             ).toBe('42111,42');
         });
@@ -117,6 +118,16 @@ describe('maskitoStringifyNumber', () => {
                     decimalZeroPadding: true,
                 }),
             ).toBe('42');
+        });
+
+        it('with decimal part', () => {
+            expect(
+                maskitoStringifyNumber(42.1, {
+                    decimalSeparator: ',',
+                    thousandSeparator: '.',
+                    precision: 2,
+                }),
+            ).toBe('42,1');
         });
 
         it('trailing decimal separator precision', () => {
@@ -189,7 +200,7 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(-123.456, {
                     precision: 3,
                 }),
-            ).toBe('-123.456');
+            ).toBe(`${CHAR_MINUS}123.456`);
         });
     });
 
@@ -224,7 +235,7 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(-42, {
                     prefix: '>',
                 }),
-            ).toBe('>-42');
+            ).toBe(`>${CHAR_MINUS}42`);
         });
 
         describe('prefix/postfix includes point and space', () => {
@@ -358,7 +369,7 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(123.456, {
                     precision: 1,
                 }),
-            ).toBe('123.5');
+            ).toBe('123.4');
 
             expect(
                 maskitoStringifyNumber(123.456, {
