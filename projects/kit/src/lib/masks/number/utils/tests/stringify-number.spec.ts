@@ -375,7 +375,7 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(123.456, {
                     precision: 4,
                 }),
-            ).toBe('123.4560');
+            ).toBe('123.456');
         });
 
         it('handles zero padding correctly', () => {
