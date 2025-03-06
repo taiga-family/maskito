@@ -9,9 +9,9 @@ import {TuiLink, TuiSurface, TuiTextfield, TuiTitle} from '@taiga-ui/core';
 import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
-import {PluginsDocExample2} from './examples/2-initial-calibration/component';
-import {PluginsDocExample3} from './examples/3-strict-composition/component';
-import {PluginsDocExample4} from './examples/4-change-event/component';
+import {PluginsDocExample2} from './examples/1-initial-calibration/component';
+import {PluginsDocExample3} from './examples/2-strict-composition/component';
+import {PluginsDocExample4} from './examples/3-change-event/component';
 import documentationMask from './examples/pads-zero-plugin';
 
 @Component({
@@ -40,6 +40,7 @@ import documentationMask from './examples/pads-zero-plugin';
 export default class PluginsDocPageComponent {
     protected readonly transformerDocPage = `/${DemoPath.Transformer}`;
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly kitPluginsDocPage = `/${DemoPath.KitPlugins}`;
     protected readonly documentationMask = documentationMask;
 
     protected readonly oversimplifiedNumberMask = import(
@@ -50,20 +51,20 @@ export default class PluginsDocPageComponent {
 
     protected readonly initialCalibrationExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-initial-calibration/mask.ts?raw'
+            './examples/1-initial-calibration/mask.ts?raw'
         ),
-        'index.ts': import('./examples/2-initial-calibration/index.ts?raw'),
+        'index.ts': import('./examples/1-initial-calibration/index.ts?raw'),
     };
 
     protected readonly strictCompositionExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-strict-composition/mask.ts?raw'
+            './examples/2-strict-composition/mask.ts?raw'
         ),
     };
 
     protected readonly changeEventExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-change-event/mask.ts?raw'
+            './examples/3-change-event/mask.ts?raw'
         ),
     };
 }

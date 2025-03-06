@@ -1,14 +1,13 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {maskitoRejectEvent} from '@maskito/kit';
 import {TuiInputModule} from '@taiga-ui/legacy';
 
 import mask from './mask';
 
 @Component({
     standalone: true,
-    selector: 'plugins-reject-doc-example-1',
+    selector: 'kit-plugins-doc-example-4',
     imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `
         <tui-input
@@ -30,8 +29,8 @@ import mask from './mask';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PluginsDocExample1 {
-    protected maskitoOptions = {...mask, plugins: [maskitoRejectEvent]};
+export class KitPluginsDocExample4 {
+    protected maskitoOptions = mask;
 
     protected value = '';
 
