@@ -1,130 +1,236 @@
 <tui-doc-page header="Plugins">
-    <p class="tui-space_top-0">
-        <strong>Plugins</strong>
-        are functions that are called with input/textarea element and mask options as arguments upon mask
-        initialization. They can optionally return cleanup logic and allow you to extend mask with arbitrary additional
-        behavior.
-    </p>
+    <ng-template pageTab="Documentation">
+        <p class="tui-space_top-0">
+            <strong>Plugins</strong>
+            are functions that are called with input/textarea element and mask options as arguments upon mask
+            initialization. They can optionally return cleanup logic and allow you to extend mask with arbitrary
+            additional behavior.
+        </p>
 
-    <tui-doc-example
-        id="reject"
-        heading="Visualize rejected characters"
-        [content]="rejectExample"
-    >
-        <tui-notification
-            size="m"
-            class="tui-space_bottom-3"
-        >
-            <div>
-                This plugin is available as
-                <code>maskitoRejectEvent</code>
-                in
-                <code>&#64;maskito/kit</code>
-            </div>
-        </tui-notification>
-        <plugins-reject-doc-example-1 />
-    </tui-doc-example>
+        <section class="tui-space_top-8">
+            <h2>Create Your Own Plugin</h2>
 
-    <tui-doc-example
-        id="initial-calibration"
-        heading="Built-in initial calibration plugin"
-        [content]="initialCalibrationExample"
-        [description]="initialCalibrationDescription"
-    >
-        <ng-template #initialCalibrationDescription>
-            <strong>Maskito</strong>
-            libraries were created to prevent
-            <u>only user</u>
-            from typing invalid value. However, sometimes you (developer) need to enable mask but you not sure that you
-            programmatically patched textfield with valid value. In this case you can use
-            <a
-                tuiLink
-                [routerLink]="transformerDocPage"
-            >
-                <code>maskitoTransform</code>
-            </a>
-            or just add
-            <code>maskitoInitialCalibrationPlugin</code>
-            to mask options.
-        </ng-template>
-        <plugins-initial-calibration-doc-example-2 />
-    </tui-doc-example>
+            <p>Let's explore this concept by solving an oversimplified task.</p>
 
-    <tui-doc-example
-        id="strict-composition"
-        heading="Built-in plugin for composition event"
-        [content]="strictCompositionExample"
-        [description]="strictCompositionDescription"
-    >
-        <ng-template #strictCompositionDescription>
-            <p class="tui-space_top-0">
-                By default,
-                <strong>Maskito</strong>
-                does not break IME Composition and waits until
+            <p>
+                Imagine that you've created a mask to allow users entering only number with decimal part. If you
+                explored documentation section
                 <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event"
-                    rel="noreferrer"
+                    tuiLink
+                    [routerLink]="maskExpressionDocPage"
+                >
+                    "Mask expression"
+                </a>
+                , it is piece of cake for you – everything is achieved by a base knowledge of
+                <code>RegExp</code>
+                and a few code lines:
+            </p>
+
+            <tui-doc-code [code]="oversimplifiedNumberMask" />
+
+            <p>
+                It works fine, users and your boss are
+                <strong>almost</strong>
+                completely satisfied. The last desired detail - no empty integer part on blur.
+            </p>
+
+            <p>For example, imagine that you have the such textfield:</p>
+
+            <tui-textfield [style.max-width.rem]="20">
+                <label tuiLabel>Enter number</label>
+                <input
+                    ngModel="1.23"
+                    tuiTextfield
+                    [readOnly]="true"
+                />
+            </tui-textfield>
+
+            <p>
+                User sets caret before point => press
+                <kbd>Backspace</kbd>
+                => blur textfield. The result is following:
+            </p>
+
+            <tui-textfield [style.max-width.rem]="20">
+                <label tuiLabel>Enter number</label>
+                <input
+                    ngModel=".23"
+                    tuiTextfield
+                    [readOnly]="true"
+                />
+            </tui-textfield>
+
+            <p>
+                Looks not perfect, right? You need to "send signal" for users that the such incomplete value will be
+                interpreted as
+                <code>0.23</code>
+                in your system. One way to do it – pads leading point with zero on blur event. Let's use the plugin for
+                achieve it!
+            </p>
+
+            <tui-doc-code [code]="padsZeroPlugin" />
+
+            <p>
+                <strong>Good job!</strong>
+                Now, you are ready to create your own plugin. Explore the result in action (the created mask is applied
+                to the textfield below):
+            </p>
+
+            <tui-textfield
+                [style.max-width.rem]="20"
+                [tuiTextfieldCleaner]="false"
+            >
+                <label tuiLabel>Enter number</label>
+                <input
+                    ngModel="1.23"
+                    tuiTextfield
+                    [maskito]="documentationMask"
+                />
+            </tui-textfield>
+        </section>
+
+        <section class="tui-space_top-8">
+            <h2 class="tui-space_top-8">Explore built-in plugins</h2>
+
+            <div class="cards">
+                <a
+                    routerLink="Built-in_core_plugins"
+                    tuiCardLarge
+                    tuiHeader
+                    tuiSurface="elevated"
+                >
+                    <h3 tuiTitle>
+                        &#64;maskito/core
+                        <span
+                            tuiSubtitle
+                            class="tui-space_top-2"
+                        >
+                            <ul class="tui-list">
+                                <li class="tui-list__item">maskitoInitialCalibrationPlugin</li>
+                                <li class="tui-list__item">maskitoStrictCompositionPlugin</li>
+                                <li class="tui-list__item">maskitoChangeEventPlugin</li>
+                            </ul>
+                        </span>
+                    </h3>
+                </a>
+
+                <a
+                    tuiCardLarge
+                    tuiHeader
+                    tuiSurface="elevated"
+                >
+                    <h3 tuiTitle>
+                        &#64;maskito/kit
+
+                        <span tuiSubtitle>(coming soon)</span>
+                    </h3>
+                </a>
+            </div>
+        </section>
+
+        <next-steps />
+    </ng-template>
+
+    <ng-template pageTab="Built-in core plugins">
+        <tui-doc-example
+            id="initial-calibration"
+            heading="For initial calibration"
+            [content]="initialCalibrationExample"
+            [description]="initialCalibrationDescription"
+        >
+            <ng-template #initialCalibrationDescription>
+                <strong>Maskito</strong>
+                libraries were created to prevent
+                <u>only user</u>
+                from typing invalid value. However, sometimes you (developer) need to enable mask but you not sure that
+                you programmatically patched textfield with valid value. In this case you can use
+                <a
+                    tuiLink
+                    [routerLink]="transformerDocPage"
+                >
+                    <code>maskitoTransform</code>
+                </a>
+                or just add
+                <code>maskitoInitialCalibrationPlugin</code>
+                to mask options.
+            </ng-template>
+            <plugins-initial-calibration-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="strict-composition"
+            heading="For composition event"
+            [content]="strictCompositionExample"
+            [description]="strictCompositionDescription"
+        >
+            <ng-template #strictCompositionDescription>
+                <p class="tui-space_top-0">
+                    By default,
+                    <strong>Maskito</strong>
+                    does not break IME Composition and waits until
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event"
+                        rel="noreferrer"
+                        target="_blank"
+                        tuiLink
+                    >
+                        <code>compositionend</code>
+                    </a>
+                    fires to begin calibration of the textfield's value. It is especially important for East Asian
+                    languages such as Chinese, Japanese, Korean, and other languages with complex characters.
+                </p>
+
+                <p>
+                    However, sometimes this behaviour is not desired and you can want to enable mask validation on every
+                    keystroke (to be like a classic not-composition input). For example, some Android devices with
+                    enabled system autocomplete can interpret user's input as part of composition event – waiting for
+                    <code>compositionend</code>
+                    can be not required for some cases (e.g. entering of numbers or your application is not used by East
+                    Asian clients). For this cases, you can use
+                    <code>maskitoStrictCompositionPlugin</code>
+                    . It applies mask's constraints on ANY intermediate value of IME composition.
+                </p>
+            </ng-template>
+            <plugins-strict-composition-doc-example-3 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="change-event"
+            heading="For change event"
+            [content]="changeEventExample"
+            [description]="changeEventDescription"
+        >
+            <ng-template #changeEventDescription>
+                Native
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput_event"
                     target="_blank"
                     tuiLink
                 >
-                    <code>compositionend</code>
+                    <code>beforeinput</code>
                 </a>
-                fires to begin calibration of the textfield's value. It is especially important for East Asian languages
-                such as Chinese, Japanese, Korean, and other languages with complex characters.
-            </p>
-
-            <p>
-                However, sometimes this behaviour is not desired and you can want to enable mask validation on every
-                keystroke (to be like a classic not-composition input). For example, some Android devices with enabled
-                system autocomplete can interpret user's input as part of composition event – waiting for
-                <code>compositionend</code>
-                can be not required for some cases (e.g. entering of numbers or your application is not used by East
-                Asian clients). For this cases, you can use
-                <code>maskitoStrictCompositionPlugin</code>
-                . It applies mask's constraints on ANY intermediate value of IME composition.
-            </p>
-        </ng-template>
-        <plugins-strict-composition-doc-example-3 />
-    </tui-doc-example>
-
-    <tui-doc-example
-        id="change-event"
-        heading="Built-in plugin for change event"
-        [content]="changeEventExample"
-        [description]="changeEventDescription"
-    >
-        <ng-template #changeEventDescription>
-            Native
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/Element/beforeinput_event"
-                target="_blank"
-                tuiLink
-            >
-                <code>beforeinput</code>
-            </a>
-            event default behavior is cancelled to process user entered invalid value. This causes native
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event"
-                target="_blank"
-                tuiLink
-            >
+                event default behavior is cancelled to process user entered invalid value. This causes native
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event"
+                    target="_blank"
+                    tuiLink
+                >
+                    <code>change</code>
+                </a>
+                event to
+                <strong>NOT</strong>
+                be dispatched by browser. A
                 <code>change</code>
-            </a>
-            event to
-            <strong>NOT</strong>
-            be dispatched by browser. A
-            <code>change</code>
-            event, as opposed to
-            <code>input</code>
-            , is triggered only when user left the field and value was changed during interaction. If you rely on this
-            behavior, add
-            <code>maskitoChangeEventPlugin</code>
-            to your mask configuration. It will dispatch synthetic
-            <code>change</code>
-            event using the same logic.
-        </ng-template>
-        <plugins-change-event-doc-example-4 />
-    </tui-doc-example>
-
-    <next-steps />
+                event, as opposed to
+                <code>input</code>
+                , is triggered only when user left the field and value was changed during interaction. If you rely on
+                this behavior, add
+                <code>maskitoChangeEventPlugin</code>
+                to your mask configuration. It will dispatch synthetic
+                <code>change</code>
+                event using the same logic.
+            </ng-template>
+            <plugins-change-event-doc-example-4 />
+        </tui-doc-example>
+    </ng-template>
 </tui-doc-page>

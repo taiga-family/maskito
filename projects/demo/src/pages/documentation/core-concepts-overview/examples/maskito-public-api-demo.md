@@ -1,5 +1,5 @@
 ```ts
-import {Maskito} from '@maskito/core';
+import {Maskito, maskitoInitialCalibrationPlugin} from '@maskito/core';
 
 const maskedInput = new Maskito(element, {
   mask: /^\d+$/,
@@ -9,6 +9,7 @@ const maskedInput = new Maskito(element, {
       // ...
     },
   ],
+  plugins: [myCustomPlugin, maskitoInitialCalibrationPlugin()],
   overwriteMode: 'shift',
 });
 

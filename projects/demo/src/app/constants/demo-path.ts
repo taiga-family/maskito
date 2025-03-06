@@ -16,6 +16,7 @@ export const DemoPath = {
     Date: 'kit/date',
     DateRange: 'kit/date-range',
     DateTime: 'kit/date-time',
+    KitPlugins: 'kit/plugins',
     PhonePackage: 'addons/phone',
     Card: 'recipes/card',
     Phone: 'recipes/phone',

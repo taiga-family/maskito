@@ -1,41 +1,52 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import {MaskitoDirective} from '@maskito/angular';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiLink, TuiSurface, TuiTextfield, TuiTitle} from '@taiga-ui/core';
+import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
-import {PluginsDocExample1} from './examples/1-reject/component';
 import {PluginsDocExample2} from './examples/2-initial-calibration/component';
 import {PluginsDocExample3} from './examples/3-strict-composition/component';
 import {PluginsDocExample4} from './examples/4-change-event/component';
+import documentationMask from './examples/pads-zero-plugin';
 
 @Component({
     standalone: true,
     selector: 'plugins-mode-doc-page',
     imports: [
+        FormsModule,
+        MaskitoDirective,
         NextStepsComponent,
-        PluginsDocExample1,
         PluginsDocExample2,
         PluginsDocExample3,
         PluginsDocExample4,
         RouterLink,
         TuiAddonDoc,
+        TuiCardLarge,
+        TuiHeader,
         TuiLink,
-        TuiNotification,
+        TuiSurface,
+        TuiTextfield,
+        TuiTitle,
     ],
     templateUrl: './plugins.template.html',
+    styleUrls: ['./plugins.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PluginsDocPageComponent {
     protected readonly transformerDocPage = `/${DemoPath.Transformer}`;
+    protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
+    protected readonly documentationMask = documentationMask;
 
-    protected readonly rejectExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-reject/mask.ts?raw'),
-        'index.less': import('./examples/1-reject/animation.less?raw'),
-        'index.ts': import('./examples/1-reject/index.ts?raw'),
-    };
+    protected readonly oversimplifiedNumberMask = import(
+        './examples/oversimplified-number-mask.md?raw'
+    );
+
+    protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw');
 
     protected readonly initialCalibrationExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(

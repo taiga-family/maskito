@@ -1,0 +1,16 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    & [tuiCardLarge] {
+        flex: 1;
+        min-inline-size: 20rem;
+
+        @media @tui-desktop-min {
+            max-inline-size: 40%;
+        }
+    }
+}

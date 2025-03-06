@@ -102,6 +102,11 @@ export const ROUTES: Routes = [
             import('../pages/kit/date-range/date-range-mask-doc.component'),
         title: 'DateRange',
     },
+    {
+        path: DemoPath.KitPlugins,
+        loadComponent: () => import('../pages/kit/plugins/kit-plugins-doc.component'),
+        title: 'Plugins | @maskito/kit',
+    },
     // Recipes
     {
         path: DemoPath.DateTime,

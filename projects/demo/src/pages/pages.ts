@@ -106,6 +106,13 @@ export const DEMO_PAGES: TuiDocRoutePages = [
         keywords:
             'date, day, month, year, mask, time, date-time, hour, minute, second, kit, generator',
     },
+    // TODO: reveal it later
+    // {
+    //     section: 'Kit',
+    //     title: 'Plugins',
+    //     route: DemoPath.KitPlugins,
+    //     keywords: 'reject, caret, guard, event, handler, focus, blur, selection',
+    // },
     {
         section: 'Addons',
         title: '@maskito/phone',
