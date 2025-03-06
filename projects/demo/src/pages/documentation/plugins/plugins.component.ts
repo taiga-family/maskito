@@ -48,12 +48,6 @@ export default class PluginsDocPageComponent {
 
     protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw');
 
-    protected readonly rejectExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-reject/mask.ts?raw'),
-        'index.less': import('./examples/1-reject/animation.less?raw'),
-        'index.ts': import('./examples/1-reject/index.ts?raw'),
-    };
-
     protected readonly initialCalibrationExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-initial-calibration/mask.ts?raw'

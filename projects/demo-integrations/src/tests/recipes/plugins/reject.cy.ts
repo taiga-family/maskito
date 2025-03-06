@@ -5,7 +5,7 @@ describe('Plugins | Reject', () => {
     const rejected = 'reject-0';
 
     beforeEach(() => {
-        cy.visit(DemoPath.Plugins);
+        cy.visit(DemoPath.KitPlugins);
         cy.get('#reject input')
             .should('be.visible')
             .first()
