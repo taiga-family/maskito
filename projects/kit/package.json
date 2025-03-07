@@ -3,10 +3,13 @@
     "version": "3.3.0",
     "description": "The optional framework-agnostic Maskito's package with ready-to-use masks",
     "keywords": [
+        "input",
         "mask",
         "inputmask",
         "input-mask",
         "text-mask",
+        "format",
+        "input-format",
         "input-formatting",
         "javascript",
         "typescript"
