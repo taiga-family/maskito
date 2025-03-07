@@ -8,10 +8,11 @@
         "inputmask",
         "input-mask",
         "text-mask",
+        "format",
+        "input-format",
         "input-formatting",
         "javascript",
-        "typescript",
-        "react",
+        "typescript"
     ],
     "homepage": "https://maskito.dev",
     "bugs": "https://github.com/taiga-family/maskito/issues",

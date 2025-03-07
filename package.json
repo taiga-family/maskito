@@ -2,18 +2,7 @@
     "name": "maskito",
     "version": "3.3.0",
     "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
-    "keywords": [
-        "input",
-        "mask",
-        "inputmask",
-        "input-mask",
-        "text-mask",
-        "input-formatting",
-        "javascript",
-        "typescript",
-        "angular",
-        "react"
-    ],
+    "keywords": [],
     "homepage": "https://maskito.dev",
     "bugs": "https://github.com/taiga-family/maskito/issues",
     "repository": {

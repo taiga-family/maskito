@@ -3,10 +3,13 @@
     "version": "3.3.0",
     "description": "The Angular-specific Maskito's library",
     "keywords": [
+        "input",
         "mask",
         "inputmask",
         "input-mask",
         "text-mask",
+        "format",
+        "input-format",
         "input-formatting",
         "angular"
     ],
