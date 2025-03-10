@@ -1,3 +1,15 @@
+### [3.4.0](https://github.com/taiga-family/maskito/compare/v3.3.0...v3.4.0) (2025-03-10)
+
+### 🚀 Features
+
+- **kit**: new `maskitoStringifyNumber` helper (#1987)
+  [(cbfd4bc)](https://github.com/taiga-family/maskito/commit/cbfd4bc4bb6ca56bf12667bb3626c55ae1b04c48)
+
+### 🐞 Bug Fixes
+
+- **phone**: `Phone` should accept incomplete phone number of selected country (even with `strict=true`) (#1982)
+  [(965d735)](https://github.com/taiga-family/maskito/commit/965d7358ad39888d3844c121dd6934ee66cdc541)
+
 ### [3.3.0](https://github.com/taiga-family/maskito/compare/v3.2.1...v3.3.0) (2025-02-28)
 
 ### 🚀 Features
