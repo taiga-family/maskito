@@ -1,14 +1,121 @@
 <tui-doc-page
     header="Plugins"
     package="KIT"
+    path="kit/src/lib/plugins"
 >
+    The page contains list of officially supported plugins by
+    <strong>Maskito</strong>
+    team.
+
+    <tui-notification
+        size="m"
+        class="tui-space_top-4"
+    >
+        If you wish to develop your own plugin, read
+        <a
+            tuiLink
+            [routerLink]="pluginsDocPage"
+        >
+            documentation page about plugins
+        </a>
+        .
+    </tui-notification>
+
+    <tui-doc-example
+        id="selection-change-handler"
+        heading="Selection Change Handler"
+        [content]="selectionChangeHandlerExample"
+        [description]="selectionChangeHandlerDescription"
+    >
+        <ng-template #selectionChangeHandlerDescription>
+            Plugin
+            <code>maskitoSelectionChangeHandler</code>
+            accepts callback and invokes it on every change of caret position.
+
+            <p>
+                This examples demonstrates how dynamically switch native mobile keyboard to enter different parts of
+                time string:
+                <code>numeric</code>
+                - to enter digit time segments,
+                <code>text</code>
+                – to enter meridiem part (AM / PM).
+            </p>
+        </ng-template>
+        <tui-notification
+            *ngIf="!isMobile"
+            appearance="warning"
+            size="m"
+            class="tui-space_bottom-4"
+            [style.max-width.rem]="20"
+        >
+            Use real mobile device to see how it works!
+        </tui-notification>
+
+        <kit-plugins-doc-example-1 />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="caret-huard"
+        heading="Caret Guard"
+        [content]="caretGuardExample"
+        [description]="caretGuardDescription"
+    >
+        <ng-template #caretGuardDescription>
+            Plugin
+            <code>maskitoCaretGuard</code>
+            is specific instance of
+            <code>maskitoSelectionChangeHandler</code>
+            - it also accepts callback which is triggered on every caret position change. It is used to limit the
+            boundaries for caret position.
+
+            <p>
+                Callback should return array with 2 numbers: the first one – caret cannot be placed
+                <strong>before</strong>
+                this index, the last one – caret cannot be placed
+                <strong>after</strong>
+                this index.
+            </p>
+
+            <p>It can be especially useful for textfields with non-editable affixes.</p>
+        </ng-template>
+        <kit-plugins-doc-example-2 />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="event-handlers"
+        heading="Event handlers"
+        [content]="eventHandlersExample"
+        [description]="eventHandlersDescription"
+    >
+        <ng-template #eventHandlersDescription>
+            Add/remove non-editable prefix on focus/blur is so common task that we even created
+            <code>maskitoAddOnFocusPlugin</code>
+            /
+            <code>maskitoRemoveOnBlurPlugin</code>
+            plugins.
+
+            <p>
+                If you need more complex logic for these (or other) events – use
+                <code>maskitoEventHandler</code>
+                .
+            </p>
+        </ng-template>
+        <kit-plugins-doc-example-3 />
+    </tui-doc-example>
+
     <tui-doc-example
         id="reject"
         heading="Visualize rejected characters"
         [content]="rejectExample"
+        [description]="rejectDescription"
     >
-        <plugins-reject-doc-example-1 />
+        <ng-template #rejectDescription>
+            Plugin
+            <code>maskitoRejectEvent</code>
+            dispatches custom event
+            <code>maskitoReject</code>
+            when a character that the user has entered is rejected by the mask. You can use it to visualize rejection.
+        </ng-template>
+        <kit-plugins-doc-example-4 />
     </tui-doc-example>
-
-    <!-- TODO-->
 </tui-doc-page>

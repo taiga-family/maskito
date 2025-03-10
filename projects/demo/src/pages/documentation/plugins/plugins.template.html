@@ -118,11 +118,23 @@
                     tuiCardLarge
                     tuiHeader
                     tuiSurface="elevated"
+                    [routerLink]="kitPluginsDocPage"
                 >
                     <h3 tuiTitle>
                         &#64;maskito/kit
 
-                        <span tuiSubtitle>(coming soon)</span>
+                        <span
+                            tuiSubtitle
+                            class="tui-space_top-2"
+                        >
+                            <ul class="tui-list">
+                                <li class="tui-list__item">maskitoSelectionChangeHandler, maskitoCaretGuard</li>
+                                <li class="tui-list__item">
+                                    maskitoEventHandler, maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin
+                                </li>
+                                <li class="tui-list__item">maskitoRejectEvent</li>
+                            </ul>
+                        </span>
                     </h3>
                 </a>
             </div>
