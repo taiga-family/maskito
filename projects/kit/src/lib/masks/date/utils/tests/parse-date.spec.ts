@@ -39,7 +39,7 @@ describe('maskitoParseDate', () => {
             params = {
                 mode: 'mm/dd/yyyy',
                 min: new Date('2004-02-05T00:00:00.000'),
-                max: new Date('2024-01-01T00:00:00.000'),
+                max: new Date('2024-01-03T00:00:00.000'),
             };
         });
 
@@ -76,7 +76,7 @@ describe('maskitoParseDate', () => {
         it('should return date on 01/02/2024', () => {
             const parsedDate = maskitoParseDate('01/02/2024', params);
 
-            expect(parsedDate?.getTime()).toBe(Date.parse('2024-02-01T00:00:00.000'));
+            expect(parsedDate?.getTime()).toBe(Date.parse('2024-01-02T00:00:00.000'));
         });
     });
 
