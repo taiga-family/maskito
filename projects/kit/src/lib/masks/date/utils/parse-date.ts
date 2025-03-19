@@ -9,7 +9,7 @@ export function maskitoParseDate(
     if (value.length < mode.length) {
         return null;
     }
-    
+
     const dateSegments = parseDateString(value, mode);
 
     const parsedDate = segmentsToDate(dateSegments);
