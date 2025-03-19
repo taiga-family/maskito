@@ -32,6 +32,54 @@ describe('maskitoParseDate', () => {
         });
     });
 
+    describe('incomplete, mode = mm/dd/yyyy, separator = default', () => {
+        let params: MaskitoDateParams;
+
+        beforeEach(() => {
+            params = {
+                mode: 'mm/dd/yyyy',
+                min: new Date('2004-02-05T00:00:00.000'),
+                max: new Date('2024-01-01T00:00:00.000'),
+            };
+        });
+
+        it('should return null, 04/mm/yyyy', () => {
+            const parsedDate = maskitoParseDate('04', params);
+
+            expect(parsedDate).toBe(null);
+        });
+
+        it('should return null 02/04/yyyy', () => {
+            const parsedDate = maskitoParseDate('02/04', params);
+
+            expect(parsedDate).toBe(null);
+        });
+
+        it('should return null 01/02/2yyy', () => {
+            const parsedDate = maskitoParseDate('01/02/2', params);
+
+            expect(parsedDate).toBe(null);
+        });
+
+        it('should return null 01/02/20yy', () => {
+            const parsedDate = maskitoParseDate('01/02/20', params);
+
+            expect(parsedDate).toBe(null);
+        });
+
+        it('should return null 01/02/202y', () => {
+            const parsedDate = maskitoParseDate('01/02/202', params);
+
+            expect(parsedDate).toBe(null);
+        });
+
+        it('should return date on 01/02/2024', () => {
+            const parsedDate = maskitoParseDate('01/02/2024', params);
+
+            expect(parsedDate.getTime()).toBe(Date.parse('2024-02-01T00:00:00.000'));
+        });
+    });
+
     describe('mode = mm/dd/yyyy, separator = -', () => {
         let params: MaskitoDateParams;
 
