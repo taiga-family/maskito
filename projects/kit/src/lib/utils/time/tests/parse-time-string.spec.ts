@@ -47,4 +47,11 @@ describe('parseTimeString', () => {
             milliseconds: '999',
         });
     });
+
+    it('mm:ss', () => {
+        expect(parseTimeString('25:55', 'MM:SS')).toEqual({
+            minutes: '25',
+            seconds: '55',
+        });
+    });
 });

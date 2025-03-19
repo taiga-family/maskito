@@ -108,6 +108,18 @@ describe('maskitoParseTime', () => {
             ],
         ],
         [
+            'MM:SS',
+            [
+                {text: '', ms: 0},
+                {text: '1', ms: 600000},
+                {text: '10', ms: 600000},
+                {text: '12', ms: 720000},
+                {text: '12:', ms: 720000},
+                {text: '12:3', ms: 750000},
+                {text: '12:30', ms: 750000},
+            ],
+        ],
+        [
             'SS.MSS',
             [
                 {text: '', ms: 0},

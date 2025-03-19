@@ -51,6 +51,15 @@ describe('maskitoStringifyTime', () => {
             ],
         ],
         [
+            'MM:SS',
+            [
+                {ms: 0, text: '00:00'},
+                {ms: 60000, text: '01:00'},
+                {ms: 600000, text: '10:00'},
+                {ms: 750000, text: '12:30'},
+            ],
+        ],
+        [
             'SS.MSS',
             [
                 {ms: 0, text: '00.000'},

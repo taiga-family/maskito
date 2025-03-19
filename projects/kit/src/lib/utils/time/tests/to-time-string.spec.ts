@@ -132,4 +132,33 @@ describe('toTimeString', () => {
             ).toBe('02.91');
         });
     });
+
+    describe('MM:SS', () => {
+        it('12:11', () => {
+            expect(
+                toTimeString({
+                    minutes: '12',
+                    seconds: '11',
+                }),
+            ).toBe('12:11');
+        });
+
+        it('01:09', () => {
+            expect(
+                toTimeString({
+                    minutes: '01',
+                    seconds: '09',
+                }),
+            ).toBe('01:09');
+        });
+
+        it('02:55', () => {
+            expect(
+                toTimeString({
+                    minutes: '02',
+                    seconds: '55',
+                }),
+            ).toBe('02:55');
+        });
+    });
 });

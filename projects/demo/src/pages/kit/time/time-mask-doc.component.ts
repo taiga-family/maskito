@@ -77,6 +77,7 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
         'HH AA',
         'MM:SS.MSS',
         'SS.MSS',
+        'MM:SS',
     ] as const satisfies readonly MaskitoTimeMode[];
 
     protected readonly timeSegmentMaxValuesOptions = [
