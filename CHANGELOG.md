@@ -1,3 +1,15 @@
+### [3.5.0](https://github.com/taiga-family/maskito/compare/v3.4.0...v3.5.0) (2025-03-21)
+
+### 🚀 Features
+
+- **kit**: `Time` supports `MM:SS` mode (#2008)
+  [(b93ad1e)](https://github.com/taiga-family/maskito/commit/b93ad1ecc71f608dd68de01b43487153b8e89d95)
+
+### 🐞 Bug Fixes
+
+- **kit**: `maskitoParseDate` should return `null` for incompleted date string (#2009)
+  [(9eec35b)](https://github.com/taiga-family/maskito/commit/9eec35b878411a79fec84986cbea94fbdc9f24d8)
+
 ### [3.4.0](https://github.com/taiga-family/maskito/compare/v3.3.0...v3.4.0) (2025-03-10)
 
 ### 🚀 Features
