@@ -3,7 +3,7 @@ import {maskitoChangeEventPlugin} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 const numberOptions = maskitoNumberOptionsGenerator({
-    precision: 2,
+    maximumFractionDigits: 2,
 });
 
 export default {

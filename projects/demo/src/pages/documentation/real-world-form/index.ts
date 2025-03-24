@@ -21,7 +21,7 @@ import metadata from 'libphonenumber-js/min/metadata';
 const MONEY_AMOUNT_MASK = maskitoNumberOptionsGenerator({
     min: 0,
     prefix: '$ ',
-    precision: 2,
+    maximumFractionDigits: 2,
 });
 
 const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;

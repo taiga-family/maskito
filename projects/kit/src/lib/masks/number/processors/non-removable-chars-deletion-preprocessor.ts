@@ -2,29 +2,29 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 
 /**
  * Manage caret-navigation when user "deletes" non-removable digits or separators
- * @example 1,|42 => Backspace => 1|,42 (only if `decimalZeroPadding` is `true`)
- * @example 1|,42 => Delete => 1,|42 (only if `decimalZeroPadding` is `true`)
- * @example 0,|00 => Delete => 0,0|0 (only if `decimalZeroPadding` is `true`)
+ * @example 1,|42 => Backspace => 1|,42 (only if `minimumFractionDigits` is `>0`)
+ * @example 1|,42 => Delete => 1,|42 (only if `minimumFractionDigits` is `>0`)
+ * @example 0,|00 => Delete => 0,0|0 (only if `minimumFractionDigits` is `>0`)
  * @example 1 |000 => Backspace => 1| 000 (always)
  */
 export function createNonRemovableCharsDeletionPreprocessor({
     decimalSeparator,
     thousandSeparator,
-    decimalZeroPadding,
+    minimumFractionDigits,
 }: {
     decimalSeparator: string;
     thousandSeparator: string;
-    decimalZeroPadding: boolean;
+    minimumFractionDigits: number;
 }): MaskitoPreprocessor {
     return ({elementState, data}, actionType) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
         const selectedCharacters = value.slice(from, to);
-        const nonRemovableSeparators = decimalZeroPadding
+        const nonRemovableSeparators = minimumFractionDigits
             ? [decimalSeparator, thousandSeparator]
             : [thousandSeparator];
         const areNonRemovableZeroesSelected =
-            decimalZeroPadding &&
+            Boolean(minimumFractionDigits) &&
             from > value.indexOf(decimalSeparator) &&
             Boolean(selectedCharacters.match(/^0+$/gi));
 

@@ -3,8 +3,8 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 export function getMaskitoOptions(decimalZeroPadding: boolean): MaskitoOptions {
     return maskitoNumberOptionsGenerator({
-        decimalZeroPadding,
-        precision: 2,
+        minimumFractionDigits: decimalZeroPadding ? 2 : 0,
+        maximumFractionDigits: 2,
         decimalSeparator: '.',
         min: 0,
     });

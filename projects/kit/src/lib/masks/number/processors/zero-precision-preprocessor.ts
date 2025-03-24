@@ -3,22 +3,22 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import {escapeRegExp, extractAffixes, identity} from '../../../utils';
 
 /**
- * It drops decimal part if precision is zero.
- * @example User pastes '123.45' (but precision is zero) => 123
+ * It drops decimal part if `maximumFractionDigits` is zero.
+ * @example User pastes '123.45' (but `maximumFractionDigits` is zero) => 123
  */
 export function createZeroPrecisionPreprocessor({
-    precision,
+    maximumFractionDigits,
     decimalSeparator,
     prefix,
     postfix,
 }: {
-    precision: number;
+    maximumFractionDigits: number;
     decimalSeparator: string;
     prefix: string;
     postfix: string;
 }): MaskitoPreprocessor {
     if (
-        precision > 0 ||
+        maximumFractionDigits > 0 ||
         !decimalSeparator // all separators should be treated only as thousand separators
     ) {
         return identity;

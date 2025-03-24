@@ -15,14 +15,14 @@ import {
 import {maskitoNumberOptionsGenerator} from '../number-mask';
 
 describe('Number (maskitoTransform)', () => {
-    describe('`precision` is `0`', () => {
+    describe('`maximumFractionDigits` is `0`', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
             options = maskitoNumberOptionsGenerator({
                 decimalSeparator: ',',
                 decimalPseudoSeparators: ['.'],
-                precision: 0,
+                maximumFractionDigits: 0,
             });
         });
 
@@ -47,7 +47,7 @@ describe('Number (maskitoTransform)', () => {
                 decimalSeparator: ',',
                 decimalPseudoSeparators: ['.', ','],
                 thousandSeparator: '.',
-                precision: 2,
+                maximumFractionDigits: 2,
             });
         });
 
@@ -86,8 +86,8 @@ describe('Number (maskitoTransform)', () => {
                 decimalSeparator: ',',
                 thousandSeparator: '.',
                 decimalPseudoSeparators: ['.', ','],
-                precision: 2,
-                decimalZeroPadding: true,
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
             });
         });
 
@@ -99,11 +99,11 @@ describe('Number (maskitoTransform)', () => {
     describe('`postfix` contains point and space (` lbs.`)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
-        describe('precision: 2', () => {
+        describe('maximumFractionDigits: 2', () => {
             beforeEach(() => {
                 options = maskitoNumberOptionsGenerator({
                     postfix: ' lbs.',
-                    precision: 2,
+                    maximumFractionDigits: 2,
                 });
             });
 
@@ -136,11 +136,11 @@ describe('Number (maskitoTransform)', () => {
             });
         });
 
-        describe('precision: 0', () => {
+        describe('maximumFractionDigits: 0', () => {
             beforeEach(() => {
                 options = maskitoNumberOptionsGenerator({
                     postfix: ' lbs.',
-                    precision: 0,
+                    maximumFractionDigits: 0,
                 });
             });
 
@@ -177,11 +177,11 @@ describe('Number (maskitoTransform)', () => {
     describe('`prefix` contains point and space (`lbs. `)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
-        describe('precision: 2', () => {
+        describe('maximumFractionDigits: 2', () => {
             beforeEach(() => {
                 options = maskitoNumberOptionsGenerator({
                     prefix: 'lbs. ',
-                    precision: 2,
+                    maximumFractionDigits: 2,
                 });
             });
 
@@ -214,11 +214,11 @@ describe('Number (maskitoTransform)', () => {
             });
         });
 
-        describe('precision: 0', () => {
+        describe('maximumFractionDigits: 0', () => {
             beforeEach(() => {
                 options = maskitoNumberOptionsGenerator({
                     prefix: 'lbs. ',
-                    precision: 0,
+                    maximumFractionDigits: 0,
                 });
             });
 
@@ -256,7 +256,7 @@ describe('Number (maskitoTransform)', () => {
                 options = maskitoNumberOptionsGenerator({
                     prefix: 'lbs.',
                     decimalSeparator: '.',
-                    precision: 2,
+                    maximumFractionDigits: 2,
                 });
             });
 
@@ -406,11 +406,11 @@ describe('Number (maskitoTransform)', () => {
         expect(maskitoTransform('    123456    ', options)).toBe('123 456');
     });
 
-    it('[thousandSeparator] is equal to [decimalSeparator] when [precision]=0', () => {
+    it('[thousandSeparator] is equal to [decimalSeparator] when [maximumFractionDigits]=0', () => {
         const options = maskitoNumberOptionsGenerator({
             thousandSeparator: '.',
             decimalSeparator: '.', // default value
-            precision: 0, // default value
+            maximumFractionDigits: 0, // default value
         });
 
         expect(maskitoTransform('123.456', options)).toBe('123.456');

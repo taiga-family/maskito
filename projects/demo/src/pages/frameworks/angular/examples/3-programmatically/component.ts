@@ -13,7 +13,9 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 export class ProgrammaticallyDocExample3 {
     protected readonly control = new FormControl('');
 
-    protected readonly maskito = maskitoNumberOptionsGenerator({precision: 2});
+    protected readonly maskito = maskitoNumberOptionsGenerator({
+        maximumFractionDigits: 2,
+    });
 
     protected setValue(): void {
         this.control.setValue(

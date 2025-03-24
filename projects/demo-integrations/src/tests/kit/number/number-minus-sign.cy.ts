@@ -40,7 +40,7 @@ describe('Number | minus sign', () => {
                 numbers.forEach((number) => {
                     it(`transforms ${pseudoMinus.name} into ${minus.name}`, () => {
                         openNumberPage(
-                            `precision=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
+                            `maximumFractionDigits=Infinity&thousandSeparator=_&minusSign=${encodeURIComponent(minus.value)}`,
                         );
                         cy.get('@input')
                             .type(`${pseudoMinus.value}${number}`)
@@ -53,7 +53,9 @@ describe('Number | minus sign', () => {
 
     describe('can use letters as minus sign', () => {
         beforeEach(() => {
-            openNumberPage('precision=Infinity&thousandSeparator=_&minusSign=i');
+            openNumberPage(
+                'maximumFractionDigits=Infinity&thousandSeparator=_&minusSign=i',
+            );
         });
 
         it('transforms i into i', () => {

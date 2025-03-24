@@ -12,5 +12,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 export class PipeDocExample4 {
     protected value = 12345.67;
 
-    protected readonly options = maskitoNumberOptionsGenerator({precision: 2});
+    protected readonly options = maskitoNumberOptionsGenerator({
+        maximumFractionDigits: 2,
+    });
 }

@@ -6,7 +6,7 @@ describe('Number | Prefix & Postfix', () => {
     describe('[prefix]="$" | [postfix]=" per day"', () => {
         beforeEach(() => {
             cy.visit(
-                `/${DemoPath.Number}/API?decimalSeparator=.&thousandSeparator=_&precision=2&prefix=$`,
+                `/${DemoPath.Number}/API?decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&prefix=$`,
             );
             cy.get('#demo-content input').should('be.visible').first().as('input');
 
@@ -82,7 +82,7 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', '$0.45'.length);
         });
 
-        it('precision works', () => {
+        it('[maximumFractionDigits] works', () => {
             cy.get('@input')
                 .type('.12345678')
                 .should('have.value', '$0.12 per day')
@@ -226,7 +226,7 @@ describe('Number | Prefix & Postfix', () => {
         const prefix = 'lbs.​'; // padded with zero-width space
 
         beforeEach(() => {
-            openNumberPage('prefix=lbs.&precision=2');
+            openNumberPage('prefix=lbs.&maximumFractionDigits=2');
 
             cy.get('@input')
                 .focus()
