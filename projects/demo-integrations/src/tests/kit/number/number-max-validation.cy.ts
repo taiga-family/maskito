@@ -3,7 +3,7 @@ import {openNumberPage} from './utils';
 describe('Number | Max validation', () => {
     describe('Max = 3', () => {
         beforeEach(() => {
-            openNumberPage('max=3&precision=4');
+            openNumberPage('max=3&maximumFractionDigits=4');
         });
 
         ['0', '1', '2', '3'].forEach((value) => {
@@ -148,7 +148,7 @@ describe('Number | Max validation', () => {
 
     describe('Max = -0.1', () => {
         beforeEach(() => {
-            openNumberPage('precision=2&minusSign=-&max=-0.1');
+            openNumberPage('maximumFractionDigits=2&minusSign=-&max=-0.1');
         });
 
         it('can type -0.5 (via keyboard, 1 character per keydown)', () => {

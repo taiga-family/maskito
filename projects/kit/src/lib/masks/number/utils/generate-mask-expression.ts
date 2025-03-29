@@ -5,7 +5,7 @@ import {escapeRegExp} from '../../../utils';
 export function generateMaskExpression({
     decimalSeparator,
     isNegativeAllowed,
-    precision,
+    maximumFractionDigits,
     thousandSeparator,
     prefix,
     postfix,
@@ -15,7 +15,7 @@ export function generateMaskExpression({
 }: {
     decimalSeparator: string;
     isNegativeAllowed: boolean;
-    precision: number;
+    maximumFractionDigits: number;
     thousandSeparator: string;
     prefix: string;
     postfix: string;
@@ -31,9 +31,11 @@ export function generateMaskExpression({
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;
-    const precisionPart = Number.isFinite(precision) ? precision : '';
+    const precisionPart = Number.isFinite(maximumFractionDigits)
+        ? maximumFractionDigits
+        : '';
     const decimalPart =
-        precision > 0
+        maximumFractionDigits > 0
             ? `([${escapeRegExp(decimalSeparator)}${decimalPseudoSeparators
                   .map(escapeRegExp)
                   .join('')}]${digit}{0,${precisionPart}})?`

@@ -20,7 +20,7 @@ export class UnmaskDocExample5 {
     protected value = 1000.42;
 
     protected readonly maskito = maskitoNumberOptionsGenerator({
-        precision: 2,
+        maximumFractionDigits: 2,
         thousandSeparator: ',',
         decimalSeparator: '.',
     });

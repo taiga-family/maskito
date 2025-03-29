@@ -4,7 +4,9 @@ import {openNumberPage} from './utils';
 describe('Number | Decimal separator (symbol used to separate the integer part from the fractional part)', () => {
     describe('Decimal separator is a comma (default)', () => {
         beforeEach(() => {
-            openNumberPage('decimalSeparator=,&thousandSeparator=_&precision=2');
+            openNumberPage(
+                'decimalSeparator=,&thousandSeparator=_&maximumFractionDigits=2',
+            );
         });
 
         it('accepts comma (as the last character)', () => {
@@ -82,7 +84,9 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
 
     describe('Decimal separator is a dot', () => {
         beforeEach(() => {
-            openNumberPage('decimalSeparator=.&precision=2&decimalPseudoSeparators$=2');
+            openNumberPage(
+                'decimalSeparator=.&maximumFractionDigits=2&decimalPseudoSeparators$=2',
+            );
         });
 
         it('accepts dot (as the last character)', () => {
@@ -132,7 +136,9 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
 
     describe('Attempt to enter decimal separator when it already exists in text field', () => {
         beforeEach(() => {
-            openNumberPage('decimalSeparator=,&thousandSeparator=_&precision=2');
+            openNumberPage(
+                'decimalSeparator=,&thousandSeparator=_&maximumFractionDigits=2',
+            );
         });
 
         it('1|23,45 => Press comma (decimal separator) => 1|23,45 (no changes)', () => {

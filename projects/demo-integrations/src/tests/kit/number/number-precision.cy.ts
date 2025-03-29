@@ -1,9 +1,9 @@
 import {openNumberPage} from './utils';
 
-describe('Number | precision', () => {
-    describe('forbids to type more fractional digits than `precision` (it is equal to 4)', () => {
+describe('Number | maximumFractionDigits', () => {
+    describe('forbids to type more fractional digits than `maximumFractionDigits` (it is equal to 4)', () => {
         beforeEach(() => {
-            openNumberPage('decimalSeparator=,&precision=4');
+            openNumberPage('decimalSeparator=,&maximumFractionDigits=4');
         });
 
         it('Empty input => Type 0,123456789 => 0,1234', () => {
@@ -47,14 +47,14 @@ describe('Number | precision', () => {
         });
     });
 
-    describe('rejects decimal separator if `precision` is equal to 0', () => {
+    describe('rejects decimal separator if `maximumFractionDigits` is equal to 0', () => {
         it('empty input => Type "," => Empty input', () => {
-            openNumberPage('decimalSeparator=,&precision=0');
+            openNumberPage('decimalSeparator=,&maximumFractionDigits=0');
             cy.get('@input').type(',').should('have.value', '');
         });
 
         it('Type "5," => "5"', () => {
-            openNumberPage('decimalSeparator=,&precision=0');
+            openNumberPage('decimalSeparator=,&maximumFractionDigits=0');
 
             cy.get('@input')
                 .type('5,')
@@ -63,9 +63,11 @@ describe('Number | precision', () => {
                 .should('have.prop', 'selectionEnd', 1);
         });
 
-        describe('dont rejects thousand separator if it is equal to decimal separator (for precision=0 value of decimal separator does not matter)', () => {
+        describe('dont rejects thousand separator if it is equal to decimal separator (for maximumFractionDigits=0 value of decimal separator does not matter)', () => {
             it('simple typing', () => {
-                openNumberPage('precision=0&thousandSeparator=.&decimalSeparator=.');
+                openNumberPage(
+                    'maximumFractionDigits=0&thousandSeparator=.&decimalSeparator=.',
+                );
 
                 cy.get('@input')
                     .type('1234')
@@ -75,7 +77,9 @@ describe('Number | precision', () => {
             });
 
             it('paste from clipboard', () => {
-                openNumberPage('precision=0&thousandSeparator=.&decimalSeparator=.');
+                openNumberPage(
+                    'maximumFractionDigits=0&thousandSeparator=.&decimalSeparator=.',
+                );
 
                 cy.get('@input')
                     .paste('1.234')
@@ -86,9 +90,9 @@ describe('Number | precision', () => {
         });
     });
 
-    describe('keeps untouched decimal part if `precision: Infinity`', () => {
+    describe('keeps untouched decimal part if `maximumFractionDigits: Infinity`', () => {
         it('0,123456789', () => {
-            openNumberPage('decimalSeparator=,&precision=Infinity');
+            openNumberPage('decimalSeparator=,&maximumFractionDigits=Infinity');
 
             cy.get('@input')
                 .type('0,123456789')
@@ -98,7 +102,7 @@ describe('Number | precision', () => {
         });
 
         it('0,0000000001', () => {
-            openNumberPage('decimalSeparator=,&precision=Infinity');
+            openNumberPage('decimalSeparator=,&maximumFractionDigits=Infinity');
 
             cy.get('@input')
                 .type('0,0000000001') // 1e-10

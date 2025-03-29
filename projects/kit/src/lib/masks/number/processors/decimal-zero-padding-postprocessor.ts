@@ -4,24 +4,22 @@ import {extractAffixes, identity} from '../../../utils';
 import {maskitoParseNumber} from '../utils';
 
 /**
- * If `decimalZeroPadding` is `true`, it pads decimal part with zeroes
- * (until number of digits after decimalSeparator is equal to the `precision`).
- * @example 1,42 => (`precision` is equal to 4) => 1,4200.
+ * If `minimumFractionDigits` is `>0`, it pads decimal part with zeroes
+ * (until number of digits after decimalSeparator is equal to the `minimumFractionDigits`).
+ * @example 1,42 => (`minimumFractionDigits` is equal to 4) => 1,4200.
  */
 export function createDecimalZeroPaddingPostprocessor({
     decimalSeparator,
-    precision,
-    decimalZeroPadding,
+    minimumFractionDigits,
     prefix,
     postfix,
 }: {
     decimalSeparator: string;
-    decimalZeroPadding: boolean;
-    precision: number;
+    minimumFractionDigits: number;
     prefix: string;
     postfix: string;
 }): MaskitoPostprocessor {
-    if (precision <= 0 || !decimalZeroPadding) {
+    if (!minimumFractionDigits) {
         return identity;
     }
 
@@ -42,7 +40,7 @@ export function createDecimalZeroPaddingPostprocessor({
                 extractedPrefix +
                 integerPart +
                 decimalSeparator +
-                decimalPart.padEnd(precision, '0') +
+                decimalPart.padEnd(minimumFractionDigits, '0') +
                 extractedPostfix,
             selection,
         };

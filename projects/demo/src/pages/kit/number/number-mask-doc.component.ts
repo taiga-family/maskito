@@ -100,18 +100,27 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
         [','],
     ];
 
-    protected readonly precisionOptions: number[] = [0, 1, 2, 5, 10, Infinity];
+    protected readonly maximumFractionDigitsOptions: number[] = [
+        0,
+        1,
+        2,
+        5,
+        10,
+        Infinity,
+    ];
 
-    public precision = 0;
+    public precision = 0; // TODO(v4): delete
     public max = Number.MAX_SAFE_INTEGER;
     public min = Number.MIN_SAFE_INTEGER;
     public decimalSeparator = '.';
-    public decimalZeroPadding = false;
+    public decimalZeroPadding = false; // TODO(v4): delete
     public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0]!;
     public thousandSeparator = ' ';
     public prefix = '';
     public postfix = '';
     public minusSign = CHAR_MINUS;
+    public minimumFractionDigits = 0;
+    public maximumFractionDigits = 0;
     public maskitoOptions: MaskitoOptions = this.calculateMask(this);
 
     protected updateOptions(): void {

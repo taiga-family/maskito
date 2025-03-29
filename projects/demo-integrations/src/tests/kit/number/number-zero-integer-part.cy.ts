@@ -1,10 +1,12 @@
 import {openNumberPage} from './utils';
 
 describe('Number | Zero integer part', () => {
-    describe('User types decimal separator when input is empty (decimalSeparator="," && precision=2)', () => {
+    describe('User types decimal separator when input is empty (decimalSeparator="," && maximumFractionDigits=2)', () => {
         describe('without prefix / postfix', () => {
             beforeEach(() => {
-                openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=2');
+                openNumberPage(
+                    'thousandSeparator=_&decimalSeparator=,&maximumFractionDigits=2',
+                );
             });
 
             it('Empty input => Type "," (decimal separator) => value is equal "0,"', () => {
@@ -81,7 +83,7 @@ describe('Number | Zero integer part', () => {
         describe('With prefix ($) & postfix (%)', () => {
             beforeEach(() => {
                 openNumberPage(
-                    'thousandSeparator=_&decimalSeparator=,&precision=2&prefix=$&postfix=kg',
+                    'thousandSeparator=_&decimalSeparator=,&maximumFractionDigits=2&prefix=$&postfix=kg',
                 );
 
                 cy.get('@input')
@@ -132,8 +134,8 @@ describe('Number | Zero integer part', () => {
     });
 
     describe('value cannot contain many leading zeroes after blur event', () => {
-        it('precision = 2 & positive number', () => {
-            openNumberPage('thousandSeparator=_&precision=2');
+        it('maximumFractionDigits = 2 & positive number', () => {
+            openNumberPage('thousandSeparator=_&maximumFractionDigits=2');
 
             cy.get('@input')
                 .type('0000000')
@@ -144,8 +146,8 @@ describe('Number | Zero integer part', () => {
                 .should('have.value', '0');
         });
 
-        it('precision = 2 & negative number', () => {
-            openNumberPage('thousandSeparator=_&precision=2');
+        it('maximumFractionDigits = 2 & negative number', () => {
+            openNumberPage('thousandSeparator=_&maximumFractionDigits=2');
 
             cy.get('@input')
                 .type('-00000006')
@@ -156,8 +158,8 @@ describe('Number | Zero integer part', () => {
                 .should('have.value', '−6');
         });
 
-        it('precision = 0', () => {
-            openNumberPage('thousandSeparator=_&precision=0');
+        it('maximumFractionDigits = 0', () => {
+            openNumberPage('thousandSeparator=_&maximumFractionDigits=0');
 
             cy.get('@input')
                 .type('0000000')
@@ -169,7 +171,7 @@ describe('Number | Zero integer part', () => {
         });
 
         it('1|-000-000 => Backspace => blur => 0', () => {
-            openNumberPage('thousandSeparator=_&precision=2');
+            openNumberPage('thousandSeparator=_&maximumFractionDigits=2');
 
             cy.get('@input')
                 .type('1000000')
@@ -184,7 +186,9 @@ describe('Number | Zero integer part', () => {
         });
 
         it('remove leading zeroes (on blur only!) when decimal separator is removed (positive number)', () => {
-            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=5');
+            openNumberPage(
+                'thousandSeparator=_&decimalSeparator=,&maximumFractionDigits=5',
+            );
 
             cy.get('@input')
                 .type('0,0005')
@@ -199,7 +203,9 @@ describe('Number | Zero integer part', () => {
         });
 
         it('remove leading zeroes (on blur only!) when decimal separator is removed (negative number)', () => {
-            openNumberPage('thousandSeparator=_&decimalSeparator=,&precision=5');
+            openNumberPage(
+                'thousandSeparator=_&decimalSeparator=,&maximumFractionDigits=5',
+            );
 
             cy.get('@input')
                 .type('-0,0005')
@@ -217,7 +223,7 @@ describe('Number | Zero integer part', () => {
     describe('pads empty integer part with zero on blur (if decimal part exists)', () => {
         describe('Without prefix', () => {
             it('Positive number & decimal separator is comma', () => {
-                openNumberPage('decimalSeparator=,&precision=2');
+                openNumberPage('decimalSeparator=,&maximumFractionDigits=2');
 
                 cy.get('@input')
                     .type('1,23')
@@ -231,7 +237,7 @@ describe('Number | Zero integer part', () => {
             });
 
             it('Negative number & decimal separator is dot', () => {
-                openNumberPage('decimalSeparator=.&precision=2');
+                openNumberPage('decimalSeparator=.&maximumFractionDigits=2');
 
                 cy.get('@input')
                     .type('-1.23')
@@ -248,7 +254,7 @@ describe('Number | Zero integer part', () => {
 
         describe('With prefix', () => {
             it('Positive number & decimal separator is dot', () => {
-                openNumberPage('decimalSeparator=.&precision=2&prefix=$');
+                openNumberPage('decimalSeparator=.&maximumFractionDigits=2&prefix=$');
 
                 cy.get('@input')
                     .type('1.23')
@@ -263,7 +269,7 @@ describe('Number | Zero integer part', () => {
             });
 
             it('Negative number & decimal separator is comma', () => {
-                openNumberPage('decimalSeparator=,&prefix=>&precision=2');
+                openNumberPage('decimalSeparator=,&prefix=>&maximumFractionDigits=2');
 
                 cy.get('@input')
                     .type('-1,23')

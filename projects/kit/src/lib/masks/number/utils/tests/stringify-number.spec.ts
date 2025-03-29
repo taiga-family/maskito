@@ -14,7 +14,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is space', () => {
             expect(
                 maskitoStringifyNumber(1000000.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: '.',
                     thousandSeparator: ' ',
                 }),
@@ -24,7 +24,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is hyphen', () => {
             expect(
                 maskitoStringifyNumber(1000000.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: '.',
                     thousandSeparator: '-',
                 }),
@@ -34,7 +34,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is empty string', () => {
             expect(
                 maskitoStringifyNumber(1000000.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     thousandSeparator: '',
                     decimalSeparator: '.',
                 }),
@@ -49,22 +49,22 @@ describe('maskitoStringifyNumber', () => {
             ).toBe('1,000,000');
         });
 
-        it('trailing decimal separator', () => {
+        it('trailing decimal separator (minimumFractionDigits > maximumFractionDigits => maximumFractionDigits has more priority)', () => {
             expect(
                 maskitoStringifyNumber(0, {
-                    precision: 0,
+                    maximumFractionDigits: 0,
                     decimalSeparator: '.',
-                    decimalZeroPadding: true,
+                    minimumFractionDigits: 2,
                 }),
             ).toBe('0');
         });
 
-        it('trailing decimal separator precision', () => {
+        it('trailing decimal separator maximumFractionDigits', () => {
             expect(
                 maskitoStringifyNumber(0, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: '.',
-                    decimalZeroPadding: true,
+                    minimumFractionDigits: 2,
                 }),
             ).toBe('0.00');
         });
@@ -74,7 +74,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is space', () => {
             expect(
                 maskitoStringifyNumber(42111.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: ',',
                     thousandSeparator: ' ',
                 }),
@@ -84,7 +84,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is hyphen', () => {
             expect(
                 maskitoStringifyNumber(42111.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: ',',
                     thousandSeparator: '-',
                 }),
@@ -94,7 +94,7 @@ describe('maskitoStringifyNumber', () => {
         it('thousand separator is empty string', () => {
             expect(
                 maskitoStringifyNumber(42111.42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: ',',
                     thousandSeparator: '',
                 }),
@@ -110,12 +110,12 @@ describe('maskitoStringifyNumber', () => {
             ).toBe('42.111');
         });
 
-        it('trailing decimal separator', () => {
+        it('trailing decimal separator (minimumFractionDigits > maximumFractionDigits => maximumFractionDigits has more priority)', () => {
             expect(
                 maskitoStringifyNumber(42, {
-                    precision: 0,
+                    maximumFractionDigits: 0,
                     decimalSeparator: ',',
-                    decimalZeroPadding: true,
+                    minimumFractionDigits: 2,
                 }),
             ).toBe('42');
         });
@@ -125,17 +125,17 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(42.1, {
                     decimalSeparator: ',',
                     thousandSeparator: '.',
-                    precision: 2,
+                    maximumFractionDigits: 2,
                 }),
             ).toBe('42,1');
         });
 
-        it('trailing decimal separator precision', () => {
+        it('zero-padded fraction part', () => {
             expect(
                 maskitoStringifyNumber(42, {
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     decimalSeparator: ',',
-                    decimalZeroPadding: true,
+                    minimumFractionDigits: 2,
                 }),
             ).toBe('42,00');
         });
@@ -198,7 +198,7 @@ describe('maskitoStringifyNumber', () => {
         it('stringifies negative number with decimal part', () => {
             expect(
                 maskitoStringifyNumber(-123.456, {
-                    precision: 3,
+                    maximumFractionDigits: 3,
                 }),
             ).toBe(`${CHAR_MINUS}123.456`);
         });
@@ -257,14 +257,14 @@ describe('maskitoStringifyNumber', () => {
             it('stringifies DECIMAL number with postfix " lbs."', () => {
                 expect(
                     maskitoStringifyNumber(0.42, {
-                        precision: 2,
+                        maximumFractionDigits: 2,
                         postfix: ' lbs.',
                     }),
                 ).toBe('0.42 lbs.');
 
                 expect(
                     maskitoStringifyNumber(1000.42, {
-                        precision: 2,
+                        maximumFractionDigits: 2,
                         thousandSeparator: ' ',
                         postfix: ' lbs.',
                     }),
@@ -272,8 +272,8 @@ describe('maskitoStringifyNumber', () => {
 
                 expect(
                     maskitoStringifyNumber(1000, {
-                        precision: 0,
-                        decimalZeroPadding: true,
+                        maximumFractionDigits: 0,
+                        minimumFractionDigits: 2,
                         thousandSeparator: ' ',
                         postfix: ' lbs.',
                     }),
@@ -298,14 +298,14 @@ describe('maskitoStringifyNumber', () => {
             it('stringifies DECIMAL number with prefix "lbs. "', () => {
                 expect(
                     maskitoStringifyNumber(0.42, {
-                        precision: 2,
+                        maximumFractionDigits: 2,
                         prefix: 'lbs. ',
                     }),
                 ).toBe('lbs. 0.42');
 
                 expect(
                     maskitoStringifyNumber(1000.42, {
-                        precision: 2,
+                        maximumFractionDigits: 2,
                         thousandSeparator: ' ',
                         prefix: 'lbs. ',
                     }),
@@ -355,25 +355,25 @@ describe('maskitoStringifyNumber', () => {
         });
     });
 
-    describe('Decimal precision handling', () => {
-        it('handles zero precision correctly', () => {
+    describe('[maximumFractionDigits] handling', () => {
+        it('handles zero maximumFractionDigits correctly', () => {
             expect(
                 maskitoStringifyNumber(123.456, {
-                    precision: 0,
+                    maximumFractionDigits: 0,
                 }),
             ).toBe('123');
         });
 
-        it('handles custom precision correctly', () => {
+        it('handles custom maximumFractionDigits correctly', () => {
             expect(
                 maskitoStringifyNumber(123.456, {
-                    precision: 1,
+                    maximumFractionDigits: 1,
                 }),
             ).toBe('123.4');
 
             expect(
                 maskitoStringifyNumber(123.456, {
-                    precision: 4,
+                    maximumFractionDigits: 4,
                 }),
             ).toBe('123.456');
         });
@@ -381,15 +381,15 @@ describe('maskitoStringifyNumber', () => {
         it('handles zero padding correctly', () => {
             expect(
                 maskitoStringifyNumber(123, {
-                    precision: 2,
-                    decimalZeroPadding: true,
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
                 }),
             ).toBe('123.00');
 
             expect(
                 maskitoStringifyNumber(123, {
-                    precision: 0,
-                    decimalZeroPadding: false,
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
                 }),
             ).toBe('123');
         });

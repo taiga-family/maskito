@@ -15,7 +15,7 @@ export class TestPipe4 implements PipeTransform {
     public transform(postfix: string): MaskitoOptions {
         const options = maskitoNumberOptionsGenerator({
             postfix,
-            precision: 2,
+            maximumFractionDigits: 2,
             thousandSeparator: ' ',
         });
 

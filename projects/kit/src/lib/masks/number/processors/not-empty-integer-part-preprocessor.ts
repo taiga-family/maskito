@@ -8,12 +8,12 @@ import {clamp, escapeRegExp, extractAffixes} from '../../../utils';
  */
 export function createNotEmptyIntegerPartPreprocessor({
     decimalSeparator,
-    precision,
+    maximumFractionDigits,
     prefix,
     postfix,
 }: {
     decimalSeparator: string;
-    precision: number;
+    maximumFractionDigits: number;
     prefix: string;
     postfix: string;
 }): MaskitoPreprocessor {
@@ -32,7 +32,7 @@ export function createNotEmptyIntegerPartPreprocessor({
         const cleanTo = clamp(to - extractedPrefix.length, 0, cleanValue.length);
 
         if (
-            precision <= 0 ||
+            maximumFractionDigits <= 0 ||
             cleanValue.slice(0, cleanFrom).includes(decimalSeparator) ||
             cleanValue.slice(cleanTo).includes(decimalSeparator) ||
             !data.match(startWithDecimalSepRegExp)

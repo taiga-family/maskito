@@ -9,7 +9,7 @@ describe('maskitoChangeEventPlugin', () => {
     const numberMask = maskitoNumberOptionsGenerator({
         thousandSeparator: ' ',
         decimalSeparator: '.',
-        precision: 2,
+        maximumFractionDigits: 2,
     });
     const maskitoOptions: MaskitoOptions = {
         ...numberMask,

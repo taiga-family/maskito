@@ -7,7 +7,7 @@ describe('Number | should drop decimal separator if all digits are erased', () =
         cy.mount(TestInput, {
             componentProperties: {
                 maskitoOptions: maskitoNumberOptionsGenerator({
-                    precision: 2,
+                    maximumFractionDigits: 2,
                     minusSign: '-',
                 }),
             },
