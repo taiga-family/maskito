@@ -33,7 +33,7 @@
         "Georgiy Lunin <nextzeddicus@gmail.com>"
     ],
     "devDependencies": {
-        "@testing-library/react": "16.2.0",
+        "@testing-library/react": "16.3.0",
         "@testing-library/user-event": "14.6.1",
         "@types/react": "18.3.20",
         "@types/react-dom": "18.3.6",
