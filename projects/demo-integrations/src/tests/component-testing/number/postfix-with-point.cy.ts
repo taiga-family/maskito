@@ -14,7 +14,7 @@ describe('Number | postfix with point', () => {
             const maskitoOptions = maskitoNumberOptionsGenerator({
                 postfix: ' lbs.',
                 thousandSeparator: ' ',
-                precision: 2,
+                maximumFractionDigits: 2,
             });
 
             it('Empty => Type 5 => 5 lbs.', () => {

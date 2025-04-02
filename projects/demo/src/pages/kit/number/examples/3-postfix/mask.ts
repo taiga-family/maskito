@@ -11,7 +11,7 @@ const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator({
     postfix,
     min: 0,
     max: 100,
-    precision: 2,
+    maximumFractionDigits: 2,
 });
 
 export default {

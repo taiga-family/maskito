@@ -2,7 +2,7 @@ import {openNumberPage} from './utils';
 
 describe('Number | Basic', () => {
     beforeEach(() => {
-        openNumberPage('thousandSeparator=_&precision=2');
+        openNumberPage('thousandSeparator=_&maximumFractionDigits=2');
     });
 
     describe('Invalid characters', () => {

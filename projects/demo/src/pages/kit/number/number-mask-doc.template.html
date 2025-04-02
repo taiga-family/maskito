@@ -28,11 +28,11 @@
             id="high-precision"
             heading="High precision"
             [content]="highPrecisionExample1"
-            [description]="precisionDescription"
+            [description]="maximumFractionDigitsDescription"
         >
-            <ng-template #precisionDescription>
+            <ng-template #maximumFractionDigitsDescription>
                 Use
-                <code>precision</code>
+                <code>maximumFractionDigits</code>
                 parameter to configure the number of digits after decimal separator.
             </ng-template>
             <number-mask-doc-example-1 />
@@ -95,8 +95,8 @@
         >
             <ng-template #decimalZeroPaddingDescription>
                 <p class="tui-space_top-0">
-                    Set
-                    <code>decimalZeroPadding: true</code>
+                    Use
+                    <code>minimumFractionDigits</code>
                     to always show trailing zeroes.
                 </p>
                 <p>
@@ -146,9 +146,8 @@
             <ng-template #dynamicDecimalZeroPaddingDescription>
                 <div>You can change options on the fly to build complex logic.</div>
                 <div>
-                    This example shows how to initially disable
-                    <code>decimalZeroPadding</code>
-                    and enable it only after user inserts decimal separator.
+                    This example shows how to initially disable decimal zero padding and enable it only after user
+                    inserts decimal separator.
                 </div>
             </ng-template>
             <number-mask-doc-example-6 />
@@ -174,30 +173,6 @@
         <tui-doc-documentation>
             <ng-template
                 documentationPropertyMode="input"
-                documentationPropertyName="precision"
-                documentationPropertyType="number"
-                [documentationPropertyValues]="precisionOptions"
-                [(documentationPropertyValue)]="precision"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                A number of digits after
-                <code>decimalSeparator</code>
-                .
-
-                <p>
-                    Use
-                    <code>Infinity</code>
-                    for an untouched decimal part.
-                </p>
-
-                <p>
-                    <strong>Default:</strong>
-                    <code>0</code>
-                    (decimal part is forbidden).
-                </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
                 documentationPropertyName="decimalSeparator"
                 documentationPropertyType="string"
                 [(documentationPropertyValue)]="decimalSeparator"
@@ -207,9 +182,10 @@
 
                 <p>
                     <strong>Default:</strong>
-                    dot.
+                    point.
                 </p>
             </ng-template>
+
             <ng-template
                 documentationPropertyMode="input"
                 documentationPropertyName="decimalPseudoSeparators"
@@ -228,27 +204,7 @@
                     .
                 </p>
             </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="decimalZeroPadding"
-                documentationPropertyType="boolean"
-                [(documentationPropertyValue)]="decimalZeroPadding"
-                (documentationPropertyValueChange)="updateOptions()"
-            >
-                If number of digits after
-                <code>decimalSeparator</code>
-                is
-                <strong>always equal</strong>
-                to the
-                <code>precision</code>
-                .
 
-                <p>
-                    <strong>Default:</strong>
-                    <code>false</code>
-                    (number of digits can be less than precision) .
-                </p>
-            </ng-template>
             <ng-template
                 documentationPropertyMode="input"
                 documentationPropertyName="thousandSeparator"
@@ -263,6 +219,55 @@
                     non-breaking space.
                 </p>
             </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="minimumFractionDigits"
+                documentationPropertyType="number"
+                [(documentationPropertyValue)]="minimumFractionDigits"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                <p>The minimum number of fraction digits to use.</p>
+
+                <p>
+                    A value with a smaller number of fraction digits than this number will be right-padded with zeros
+                    (to the specified length).
+                </p>
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    .
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="maximumFractionDigits"
+                documentationPropertyType="number"
+                [documentationPropertyValues]="maximumFractionDigitsOptions"
+                [(documentationPropertyValue)]="maximumFractionDigits"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                <p>
+                    The maximum number of digits after
+                    <code>decimalSeparator</code>
+                    .
+                </p>
+
+                <p>
+                    Use
+                    <code>Infinity</code>
+                    for an untouched decimal part.
+                </p>
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (decimal part is forbidden).
+                </p>
+            </ng-template>
+
             <ng-template
                 documentationPropertyMode="input"
                 documentationPropertyName="min"
@@ -340,6 +345,66 @@
                     >
                         <code>\u2212</code>
                     </a>
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="precision"
+                documentationPropertyType="number​"
+                [documentationPropertyDeprecated]="true"
+            >
+                <strong>
+                    Use
+                    <code>[maximumFractionDigits]</code>
+                    instead!
+                </strong>
+
+                <p>
+                    A number of digits after
+                    <code>decimalSeparator</code>
+                    .
+                </p>
+
+                <p>
+                    Use
+                    <code>Infinity</code>
+                    for an untouched decimal part.
+                </p>
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (decimal part is forbidden).
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="decimalZeroPadding"
+                documentationPropertyType="boolean​"
+                [documentationPropertyDeprecated]="true"
+            >
+                <strong>
+                    Use
+                    <code>[minimumFractionDigits]</code>
+                    instead!
+                </strong>
+
+                <p>
+                    If number of digits after
+                    <code>decimalSeparator</code>
+                    is
+                    <strong>always equal</strong>
+                    to the
+                    <code>precision</code>
+                    .
+                </p>
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>false</code>
+                    (number of digits can be less than precision) .
                 </p>
             </ng-template>
         </tui-doc-documentation>

@@ -8,10 +8,10 @@ const EMPTY_ELEMENT_STATE = {
 };
 
 describe('createNotEmptyIntegerPartPreprocessor', () => {
-    describe('precision === 2', () => {
+    describe('maximumFractionDigits === 2', () => {
         const preprocessor = createNotEmptyIntegerPartPreprocessor({
             decimalSeparator: ',',
-            precision: 2,
+            maximumFractionDigits: 2,
             prefix: '',
             postfix: '',
         });

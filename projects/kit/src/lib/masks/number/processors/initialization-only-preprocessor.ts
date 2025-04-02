@@ -37,7 +37,7 @@ export function createInitializationOnlyPreprocessor({
         prefix: '',
         postfix: '',
         thousandSeparator: '',
-        precision: Infinity,
+        maximumFractionDigits: Infinity,
         isNegativeAllowed: true,
         minusSign,
     });

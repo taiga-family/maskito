@@ -3,7 +3,7 @@ import {openNumberPage} from './utils';
 describe('Number | Min validation', () => {
     describe('Min = -100', () => {
         beforeEach(() => {
-            openNumberPage('min=-100&precision=4');
+            openNumberPage('min=-100&maximumFractionDigits=4');
         });
 
         ['−1', '−10', '−42', '−100', '0', '1', '5', '99'].forEach((value) => {
@@ -68,7 +68,7 @@ describe('Number | Min validation', () => {
 
     describe('Min = 5', () => {
         beforeEach(() => {
-            openNumberPage('min=5&precision=4');
+            openNumberPage('min=5&maximumFractionDigits=4');
         });
 
         it('can type 10 (via keyboard, 1 character per keydown)', () => {
@@ -109,7 +109,7 @@ describe('Number | Min validation', () => {
 
     describe('Min = 0.1', () => {
         beforeEach(() => {
-            openNumberPage('min=0.1&precision=2');
+            openNumberPage('min=0.1&maximumFractionDigits=2');
         });
 
         it('can type 0.5 (via keyboard, 1 character per keydown)', () => {

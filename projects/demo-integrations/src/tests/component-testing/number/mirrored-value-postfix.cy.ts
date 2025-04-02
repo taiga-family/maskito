@@ -9,7 +9,7 @@ describe('Number | [postfix]=" EUR" (no initial value & no caret guard)', () => 
                 initialValue: '',
                 maskitoOptions: maskitoNumberOptionsGenerator({
                     postfix: ' EUR',
-                    precision: 2,
+                    maximumFractionDigits: 2,
                 }),
             },
         });
