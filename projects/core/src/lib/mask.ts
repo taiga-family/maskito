@@ -1,5 +1,6 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
+import {createDoubleSpacePlugin} from './plugins';
 import type {
     ElementState,
     MaskitoElement,
@@ -19,6 +20,8 @@ import {
     maskitoTransform,
 } from './utils';
 
+const BUILT_IN_PLUGINS = [createDoubleSpacePlugin()];
+
 export class Maskito extends MaskHistory {
     private readonly isTextArea = this.element.nodeName === 'TEXTAREA';
     private readonly eventListener = new EventListener(this.element);
@@ -33,9 +36,9 @@ export class Maskito extends MaskHistory {
 
     private readonly postprocessor = maskitoPipe(this.options.postprocessors);
 
-    private readonly teardowns = this.options.plugins.map((plugin) =>
-        plugin(this.element, this.options),
-    );
+    private readonly teardowns = this.options.plugins
+        .concat(BUILT_IN_PLUGINS)
+        .map((plugin) => plugin(this.element, this.options));
 
     constructor(
         private readonly element: MaskitoElement,
