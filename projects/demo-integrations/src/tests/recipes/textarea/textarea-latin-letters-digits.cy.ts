@@ -114,4 +114,13 @@ describe('Textarea (mask latin letters + digits)', () => {
             .should('have.prop', 'selectionStart', 0)
             .should('have.prop', 'selectionEnd', 0);
     });
+
+    it('allows to paste dot with following space after Backspace', () => {
+        cy.get('@textArea')
+            .type('123')
+            .type('#') // rejected by mask
+            .type('{backspace}')
+            .paste('. ')
+            .should('have.value', '12. ');
+    });
 });

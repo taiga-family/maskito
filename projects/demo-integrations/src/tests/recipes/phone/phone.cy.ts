@@ -778,4 +778,17 @@ describe('Phone', () => {
                 .should('have.prop', 'selectionEnd', '+7 (77'.length);
         });
     });
+
+    it('pressing double space twice does not delete character', () => {
+        cy.get('@input')
+            .type('1234567890')
+            .should('have.value', '+7 (123) 456-78-90')
+            .should('have.prop', 'selectionStart', '+7 (123) 456-78-90'.length)
+            .should('have.prop', 'selectionEnd', '+7 (123) 456-78-90'.length)
+            .type(' ')
+            .type(' ')
+            .should('have.value', '+7 (123) 456-78-90')
+            .should('have.prop', 'selectionStart', '+7 (123) 456-78-90'.length)
+            .should('have.prop', 'selectionEnd', '+7 (123) 456-78-90'.length);
+    });
 });
