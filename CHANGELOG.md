@@ -1,3 +1,15 @@
+### [3.6.0](https://github.com/taiga-family/maskito/compare/v3.5.0...v3.6.0) (2025-04-08)
+
+### 🚀 Features
+
+- **kit**: `Number` supports new properties `minimumFractionDigits` & `maximumFractionDigits` (#2022)
+  [(8719b9e)](https://github.com/taiga-family/maskito/commit/8719b9e30d6463deff4aed213cba774189ddd305)
+
+### 🐞 Bug Fixes
+
+- **core**: double space bar removes characters (#2040)
+  [(ccbebd8)](https://github.com/taiga-family/maskito/commit/ccbebd878ae7ba92da0a8d25d5b9d0b5c3ed3bcf)
+
 ### [3.5.0](https://github.com/taiga-family/maskito/compare/v3.4.0...v3.5.0) (2025-03-21)
 
 ### 🚀 Features
