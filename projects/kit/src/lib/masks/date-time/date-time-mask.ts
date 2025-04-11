@@ -20,9 +20,10 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import type {MaskitoDateMode, MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeSegments} from '../../types';
 import {createTimeMaskExpression} from '../../utils/time';
 import {DATE_TIME_SEPARATOR} from './constants';
+import type {MaskitoDateTimeParams} from './date-time-params';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
 import {parseDateTimeString} from './utils';
@@ -35,15 +36,7 @@ export function maskitoDateTimeOptionsGenerator({
     max,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     timeStep = 0,
-}: {
-    dateMode: MaskitoDateMode;
-    timeMode: MaskitoTimeMode;
-    dateSeparator?: string;
-    max?: Date;
-    min?: Date;
-    dateTimeSeparator?: string;
-    timeStep?: number;
-}): Required<MaskitoOptions> {
+}: MaskitoDateTimeParams): Required<MaskitoOptions> {
     const hasMeridiem = timeMode.includes('AA');
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
     const timeSegmentMaxValues: MaskitoTimeSegments<number> = {
