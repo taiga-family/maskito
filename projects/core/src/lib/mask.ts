@@ -306,7 +306,7 @@ export class Maskito extends MaskHistory {
             return event.preventDefault();
         }
 
-        const [from, to] = elementState.selection;
+        const [from, to] = initialElementState.selection;
         const newPossibleValue =
             initialElementState.value.slice(0, from) +
             data +
