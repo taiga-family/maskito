@@ -34,7 +34,7 @@
         "cspell": "cspell --relative --dot --gitignore .",
         "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
         "stylelint": "stylelint '**/*.{less,css}'",
-        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json",
+        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json",
         "*** SSR ***": "",
         "serve:dev:ssr": "nx run demo:serve-ssr",
         "serve:ssr": "node dist/demo/server/main.js",

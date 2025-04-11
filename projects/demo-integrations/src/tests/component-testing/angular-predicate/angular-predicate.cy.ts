@@ -2,7 +2,11 @@ import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import type {ComponentFixture} from '@angular/core/testing';
 import {MaskitoDirective} from '@maskito/angular';
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import type {
+    MaskitoElement,
+    MaskitoElementPredicate,
+    MaskitoOptions,
+} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 import {TestInput} from '../utils';
@@ -38,8 +42,8 @@ describe('@maskito/angular | Predicate', () => {
         cy.mount(TestInput, {
             componentProperties: {
                 maskitoOptions: cardMask,
-                maskitoElementPredicate: async (element) =>
-                    Promise.resolve(element as HTMLInputElement),
+                maskitoElementPredicate: async (element: HTMLElement) =>
+                    Promise.resolve(element as MaskitoElement),
             },
         });
         cy.get('input').as('card');
