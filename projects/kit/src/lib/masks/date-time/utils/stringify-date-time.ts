@@ -24,15 +24,17 @@ export function maskitoStringifyDateTime(
         min,
         max,
     });
-    const timeString = maskitoStringifyTime(
-        validatedDate.getHours() * 3600000 +
-            validatedDate.getMinutes() * 60000 +
-            validatedDate.getSeconds() * 1000 +
-            validatedDate.getMilliseconds(),
-        {
-            mode: timeMode,
-        },
-    );
 
-    return `${dateString}${dateTimeSeparator}${timeString}`;
+    const extractedTime =
+        Number(validatedDate) -
+        Number(
+            new Date(
+                validatedDate.getFullYear(),
+                validatedDate.getMonth(),
+                validatedDate.getDate(),
+            ),
+        );
+    const timeString = maskitoStringifyTime(extractedTime, {mode: timeMode});
+
+    return dateString + dateTimeSeparator + timeString;
 }

@@ -15,27 +15,16 @@ export function maskitoParseDateTime(
         dateTimeSeparator = DATE_TIME_SEPARATOR,
     }: MaskitoDateTimeParams,
 ): Date | null {
-    const modeLength = dateMode.length + dateTimeSeparator.length + timeMode.length;
+    const [dateSegment = '', timeSegment = ''] = value.split(dateTimeSeparator);
 
-    if (value.length !== modeLength) {
-        return null;
-    }
-
-    const [dateSegment, timeSegment] = value.split(dateTimeSeparator);
-
-    if (!dateSegment || !timeSegment) {
+    if (timeSegment.length !== timeMode.length) {
         return null;
     }
 
     const date = maskitoParseDate(dateSegment, {mode: dateMode});
-
-    if (!date) {
-        return null;
-    }
-
     const time = maskitoParseTime(timeSegment, {mode: timeMode});
 
-    if (time === null || time === undefined) {
+    if (!date) {
         return null;
     }
 
