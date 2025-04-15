@@ -8,7 +8,7 @@ describe('maskitoParseDateTime', () => {
 
     it('returns null for incomplete date-time string', () => {
         expect(
-            maskitoParseDateTime('02/11/a2018', {dateMode, timeMode, dateTimeSeparator}),
+            maskitoParseDateTime('02/11/2018', {dateMode, timeMode, dateTimeSeparator}),
         ).toBeNull();
         expect(
             maskitoParseDateTime('16:20', {dateMode, timeMode, dateTimeSeparator}),
@@ -60,9 +60,9 @@ describe('maskitoParseDateTime', () => {
         ).toEqual(DEFAULT_MIN_DATE);
 
         expect(
-            maskitoParseDateTime('31/12/9999, 00:00', {
+            maskitoParseDateTime('31/12/9999, 23:59:59.999', {
                 dateMode,
-                timeMode,
+                timeMode: 'HH:MM:SS.MSS',
                 dateTimeSeparator,
             }),
         ).toEqual(DEFAULT_MAX_DATE);
