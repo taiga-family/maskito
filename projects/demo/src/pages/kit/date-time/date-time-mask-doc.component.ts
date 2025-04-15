@@ -8,7 +8,7 @@ import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {tuiPure} from '@taiga-ui/cdk';
-import {TuiLink} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
@@ -35,12 +35,17 @@ type GeneratorOptions = Required<
         TuiAddonDoc,
         TuiInputModule,
         TuiLink,
+        TuiNotification,
         TuiTextfieldControllerModule,
     ],
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DateTimeMaskDocComponent implements GeneratorOptions {
+    protected readonly maskitoParseStringifyDateTimeDemo = import(
+        './examples/maskito-parse-stringify-date-time-demo.md?raw'
+    );
+
     protected readonly dateTimeLocalizationExample: Record<string, TuiRawLoaderContent> =
         {
             [DocExamplePrimaryTab.MaskitoOptions]: import(
