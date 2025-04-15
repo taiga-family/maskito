@@ -1,3 +1,15 @@
+### [3.7.0](https://github.com/taiga-family/maskito/compare/v3.6.0...v3.7.0) (2025-04-15)
+
+### 🚀 Features
+
+- **kit**: new `maskitoParseDateTime` and `maskitoStringifyDateTime` helpers (#2055)
+  [(5028084)](https://github.com/taiga-family/maskito/commit/5028084f9be876cf8b1dc2607956cd4906285c43)
+
+### 🐞 Bug Fixes
+
+- **core**: add possibility to overwrites `selection` property in processors (#2053)
+  [(de354f4)](https://github.com/taiga-family/maskito/commit/de354f4fbeed7a632e23c0e1d00809effbb0229b)
+
 ### [3.6.0](https://github.com/taiga-family/maskito/compare/v3.5.0...v3.6.0) (2025-04-08)
 
 ### 🚀 Features
