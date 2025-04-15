@@ -7,6 +7,28 @@
         <code>maskitoDateTimeOptionsGenerator</code>
         to create a mask to input both date and time.
 
+        <tui-notification
+            size="m"
+            class="tui-space_top-4"
+        >
+            <div>
+                Despite the name of the mask, element's raw value is still string.
+
+                <p>
+                    Use
+                    <code>maskitoParseDateTime</code>
+                    to get date from masked string.
+                </p>
+                <p>
+                    Use
+                    <code>maskitoStringifyDateTime</code>
+                    to get the masked string from date.
+                </p>
+
+                <tui-doc-code [code]="maskitoParseStringifyDateTimeDemo" />
+            </div>
+        </tui-notification>
+
         <tui-doc-example
             id="localization"
             heading="Localization"
