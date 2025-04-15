@@ -26,7 +26,7 @@ import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
-import {parseDateTimeString} from './utils';
+import {splitDateTimeString} from './utils';
 
 export function maskitoDateTimeOptionsGenerator({
     dateMode,
@@ -80,7 +80,7 @@ export function maskitoDateTimeOptionsGenerator({
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
                 parseValue: (x) => {
-                    const [dateString, timeString] = parseDateTimeString(
+                    const [dateString, timeString] = splitDateTimeString(
                         x,
                         dateModeTemplate,
                     );
@@ -102,7 +102,7 @@ export function maskitoDateTimeOptionsGenerator({
                 dateModeTemplate,
                 dateSegmentSeparator: dateSeparator,
                 splitFn: (value) => {
-                    const [dateString, timeString] = parseDateTimeString(
+                    const [dateString, timeString] = splitDateTimeString(
                         value,
                         dateModeTemplate,
                     );
