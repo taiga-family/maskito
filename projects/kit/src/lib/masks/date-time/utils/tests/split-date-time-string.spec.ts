@@ -1,9 +1,9 @@
-import {parseDateTimeString} from '../parse-date-time-string';
+import {splitDateTimeString} from '../split-date-time-string';
 
-describe('parseDateTimeString', () => {
+describe('splitDateTimeString', () => {
     describe('dd.mm.yyyy', () => {
-        const parse = (value: string): [string, string] =>
-            parseDateTimeString(value, 'dd.mm.yyyy');
+        const split = (value: string): [string, string] =>
+            splitDateTimeString(value, 'dd.mm.yyyy');
 
         (
             [
@@ -28,14 +28,14 @@ describe('parseDateTimeString', () => {
             ] as const
         ).forEach(({input, output}) => {
             it(`${input} -> ${JSON.stringify(output)}`, () => {
-                expect(parse(input)).toEqual(output);
+                expect(split(input)).toEqual(output);
             });
         });
     });
 
     describe('dd. mm. yyyy (date segment separator consists of space and dot)', () => {
         const parse = (value: string): [string, string] =>
-            parseDateTimeString(value, 'dd. mm. yyyy');
+            splitDateTimeString(value, 'dd. mm. yyyy');
 
         (
             [

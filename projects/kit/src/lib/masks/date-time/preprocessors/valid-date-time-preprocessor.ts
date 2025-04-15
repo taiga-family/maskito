@@ -3,7 +3,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../../types';
 import {validateDateString} from '../../../utils';
 import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
-import {parseDateTimeString} from '../utils';
+import {splitDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
     dateModeTemplate,
@@ -38,7 +38,7 @@ export function createValidDateTimePreprocessor({
         let to = rawTo + data.length;
         const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
 
-        const [dateString, timeString] = parseDateTimeString(
+        const [dateString, timeString] = splitDateTimeString(
             newPossibleValue,
             dateModeTemplate,
         );

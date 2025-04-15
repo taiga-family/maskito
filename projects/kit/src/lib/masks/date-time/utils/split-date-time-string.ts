@@ -1,7 +1,7 @@
 const NON_DIGIT_PLACEHOLDER_RE = /[^dmy]/g;
 const LEADING_NON_DIGIT_RE = /^\D*/;
 
-export function parseDateTimeString(
+export function splitDateTimeString(
     dateTime: string,
     dateModeTemplate: string,
 ): [date: string, time: string] {
