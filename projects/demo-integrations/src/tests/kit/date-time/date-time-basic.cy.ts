@@ -351,6 +351,23 @@ describe('DateTime | Basic', () => {
                         .should('have.prop', 'selectionEnd', '01.01.2000, 2'.length);
                 },
             );
+
+            it(
+                '01.01.2000, 1|2|:30 => Press 5 => 01.01.2000, 15:|30',
+                BROWSER_SUPPORTS_REAL_EVENTS,
+                () => {
+                    cy.get('@input')
+                        .type('010120001230')
+                        .type('{leftArrow}'.repeat(':30'.length))
+                        .realPress(['Shift', 'ArrowLeft']);
+
+                    cy.get('@input')
+                        .type('5')
+                        .should('have.value', '01.01.2000, 15:30')
+                        .should('have.prop', 'selectionStart', '01.01.2000, 15:'.length)
+                        .should('have.prop', 'selectionEnd', '01.01.2000, 15:'.length);
+                },
+            );
         });
     });
 

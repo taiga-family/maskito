@@ -312,6 +312,22 @@ describe('Time', () => {
                         .should('have.prop', 'selectionStart', '2'.length)
                         .should('have.prop', 'selectionEnd', '2'.length);
                 });
+
+                it('1|2|:34 => Press 9 => 19:|34', BROWSER_SUPPORTS_REAL_EVENTS, () => {
+                    cy.get('@input')
+                        .type('1234')
+                        .realPress([
+                            ...new Array(':34'.length).fill('ArrowLeft'),
+                            'Shift',
+                            'ArrowLeft',
+                        ]);
+
+                    cy.get('@input')
+                        .type('9')
+                        .should('have.value', '19:34')
+                        .should('have.prop', 'selectionStart', '19:'.length)
+                        .should('have.prop', 'selectionEnd', '19:'.length);
+                });
             });
         });
 

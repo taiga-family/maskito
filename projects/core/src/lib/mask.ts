@@ -9,6 +9,7 @@ import type {
     TypedInputEvent,
 } from './types';
 import {
+    areElementStatesEqual,
     areElementValuesEqual,
     EventListener,
     getLineSelection,
@@ -265,12 +266,15 @@ export class Maskito extends MaskHistory {
         maskModel.deleteCharacters([from, to]);
 
         const newElementState = this.postprocessor(maskModel, initialState);
-        const newPossibleValue =
-            initialState.value.slice(0, initialFrom) +
-            initialState.value.slice(initialTo);
+        const newPossibleState: ElementState = {
+            value:
+                initialState.value.slice(0, initialFrom) +
+                initialState.value.slice(initialTo),
+            selection: [initialFrom, initialFrom],
+        };
 
         if (
-            newPossibleValue === newElementState.value &&
+            areElementStatesEqual(newPossibleState, newElementState) &&
             !force &&
             !this.element.isContentEditable
         ) {
@@ -307,22 +311,28 @@ export class Maskito extends MaskHistory {
         }
 
         const [from, to] = initialElementState.selection;
-        const newPossibleValue =
-            initialElementState.value.slice(0, from) +
-            data +
-            initialElementState.value.slice(to);
+        const newPossibleState: ElementState = {
+            value:
+                initialElementState.value.slice(0, from) +
+                data +
+                initialElementState.value.slice(to),
+            selection: [from + data.length, from + data.length],
+        };
         const newElementState = this.postprocessor(maskModel, initialElementState);
 
         if (newElementState.value.length > maxLength) {
             return event.preventDefault();
         }
 
-        if (newPossibleValue !== newElementState.value || element.isContentEditable) {
+        if (
+            !areElementStatesEqual(newPossibleState, newElementState) ||
+            element.isContentEditable
+        ) {
             this.upcomingElementState = newElementState;
 
             if (
                 options.overwriteMode === 'replace' &&
-                newPossibleValue.length > maxLength
+                newPossibleState.value.length > maxLength
             ) {
                 /**
                  * Browsers know nothing about Maskito and its `overwriteMode`.
