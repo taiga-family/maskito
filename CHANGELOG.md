@@ -1,3 +1,10 @@
+### [3.7.1](https://github.com/taiga-family/maskito/compare/v3.7.0...v3.7.1) (2025-04-16)
+
+### 🐞 Bug Fixes
+
+- **core**: updated selection range (even if textfield value is untouched) should not be ignored (#2069)
+  [(9276117)](https://github.com/taiga-family/maskito/commit/927611775e8d23eb89663150cd84e7981b12d2e7)
+
 ### [3.7.0](https://github.com/taiga-family/maskito/compare/v3.6.0...v3.7.0) (2025-04-15)
 
 ### 🚀 Features
