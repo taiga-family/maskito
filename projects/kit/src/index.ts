@@ -5,7 +5,12 @@ export {
     maskitoStringifyDate,
 } from './lib/masks/date';
 export {maskitoDateRangeOptionsGenerator} from './lib/masks/date-range';
-export {maskitoDateTimeOptionsGenerator} from './lib/masks/date-time';
+export {
+    maskitoDateTimeOptionsGenerator,
+    type MaskitoDateTimeParams,
+    maskitoParseDateTime,
+    maskitoStringifyDateTime,
+} from './lib/masks/date-time';
 export {
     maskitoNumberOptionsGenerator,
     type MaskitoNumberParams,
