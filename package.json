@@ -110,7 +110,7 @@
         "lint-staged": "15.5.1",
         "ng-packagr": "16.2.3",
         "nx": "20.1.4",
-        "postcss-preset-env": "10.1.5",
+        "postcss-preset-env": "10.1.6",
         "standard-version": "9.5.0",
         "ts-jest": "29.3.2",
         "ts-node": "10.9.2",
