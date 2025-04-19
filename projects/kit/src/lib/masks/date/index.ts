@@ -1,3 +1,3 @@
-export {maskitoDateOptionsGenerator} from './date-mask';
-export type {MaskitoDateParams} from './date-params';
-export {maskitoParseDate, maskitoStringifyDate} from './utils';
+export * from './date-mask';
+export * from './date-params';
+export * from './utils';

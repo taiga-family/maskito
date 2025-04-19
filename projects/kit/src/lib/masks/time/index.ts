@@ -1,3 +1,3 @@
-export {maskitoTimeOptionsGenerator} from './time-mask';
-export type {MaskitoTimeParams} from './time-params';
-export {maskitoParseTime, maskitoStringifyTime} from './utils';
+export * from './time-mask';
+export * from './time-params';
+export * from './utils';
