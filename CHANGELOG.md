@@ -1,3 +1,10 @@
+### [3.7.2](https://github.com/taiga-family/maskito/compare/v3.7.1...v3.7.2) (2025-04-22)
+
+### 🐞 Bug Fixes
+
+- **kit**: missing export of `maskitoParseDateTime` & `maskitoStringifyDateTime` utilities (#2074)
+  [(6aa34aa)](https://github.com/taiga-family/maskito/commit/6aa34aa610cf140248bc7a691beb5aaba1f0e0cd)
+
 ### [3.7.1](https://github.com/taiga-family/maskito/compare/v3.7.0...v3.7.1) (2025-04-16)
 
 ### 🐞 Bug Fixes
