@@ -1,14 +1,18 @@
-import {DemoPath} from '@demo/constants';
+import {
+    CHAR_EM_DASH,
+    CHAR_EN_DASH,
+    CHAR_HYPHEN,
+    CHAR_MINUS,
+} from 'projects/kit/src/lib/constants';
 
 import {openNumberPage} from './utils';
 
 describe('Number | Prefix & Postfix', () => {
     describe('[prefix]="$" | [postfix]=" per day"', () => {
         beforeEach(() => {
-            cy.visit(
-                `/${DemoPath.Number}/API?decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&prefix=$`,
+            openNumberPage(
+                'decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&prefix=$',
             );
-            cy.get('#demo-content input').should('be.visible').first().as('input');
 
             cy.get('tr')
                 .contains('[postfix]')
@@ -270,6 +274,88 @@ describe('Number | Prefix & Postfix', () => {
                 .blur()
                 .wait(100) // to be sure that value is not changed even in case of some async validation
                 .should('have.value', `${prefix}0.42`);
+        });
+    });
+
+    describe('non-erasable minus (as [prefix]) for [max] <= 0', () => {
+        beforeEach(() => {
+            openNumberPage(`prefix=${encodeURIComponent(CHAR_MINUS)}&max=0`);
+        });
+
+        it('shows minus sign on focus', () => {
+            cy.get('@input').focus().should('have.value', CHAR_MINUS);
+        });
+
+        it('hides minus sign on blur', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', CHAR_MINUS)
+                .blur()
+                .should('have.value', '');
+        });
+
+        it('forbids to enter more minuses', () => {
+            cy.get('@input')
+                .focus()
+                .type(CHAR_MINUS + CHAR_HYPHEN + CHAR_EN_DASH + CHAR_EM_DASH)
+                .should('have.value', CHAR_MINUS);
+        });
+
+        it('allows to enter 123 => Textfield value is -123', () => {
+            cy.get('@input').focus().type('123').should('have.value', `${CHAR_MINUS}123`);
+        });
+
+        it('Enter 123 and blur', () => {
+            cy.get('@input')
+                .focus()
+                .type('123')
+                .blur()
+                .should('have.value', `${CHAR_MINUS}123`);
+        });
+
+        describe('forbids all attempts to erase minus sign', () => {
+            it('Select all + Backspace', () => {
+                cy.get('@input')
+                    .focus()
+                    .type('{selectAll}{backspace}')
+                    .should('have.value', CHAR_MINUS)
+                    .type('123')
+                    .should('have.value', `${CHAR_MINUS}123`)
+                    .type('{selectAll}{backspace}')
+                    .should('have.value', CHAR_MINUS);
+            });
+
+            it('Select all + Delete', () => {
+                cy.get('@input')
+                    .focus()
+                    .type('{selectAll}{del}')
+                    .should('have.value', CHAR_MINUS)
+                    .type('123')
+                    .should('have.value', `${CHAR_MINUS}123`)
+                    .type('{selectAll}{del}')
+                    .should('have.value', CHAR_MINUS);
+            });
+
+            it('Backspace', () => {
+                cy.get('@input')
+                    .focus()
+                    .type('123')
+                    .should('have.value', `${CHAR_MINUS}123`)
+                    .type('{backspace}'.repeat(10))
+                    .should('have.value', CHAR_MINUS);
+            });
+        });
+
+        it('Impossible to move caret before minus sign', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', CHAR_MINUS)
+                .type('{moveToStart}')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1)
+                .type('{leftArrow}')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1);
         });
     });
 });
