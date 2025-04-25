@@ -1,6 +1,6 @@
 import {MaskitoPattern} from '@maskito/angular';
 
-describe('@maskito/angular | MaskitoPatternDirective', () => {
+describe('@maskito/angular | MaskitoPattern', () => {
     it('set regex over provided MaskitoOptions mask', () => {
         cy.mount('<input [maskitoPattern]="pattern" />', {
             imports: [MaskitoPattern],
