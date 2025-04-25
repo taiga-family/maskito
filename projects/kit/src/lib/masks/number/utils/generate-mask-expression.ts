@@ -1,33 +1,36 @@
 import type {MaskitoMask} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
 
 export function generateMaskExpression({
+    decimalPseudoSeparators,
     decimalSeparator,
-    isNegativeAllowed,
     maximumFractionDigits,
-    thousandSeparator,
-    prefix,
-    postfix,
-    decimalPseudoSeparators = [],
-    pseudoMinuses = [],
+    min,
     minusSign,
-}: {
-    decimalSeparator: string;
-    isNegativeAllowed: boolean;
-    maximumFractionDigits: number;
-    thousandSeparator: string;
-    prefix: string;
-    postfix: string;
-    decimalPseudoSeparators?: readonly string[];
-    pseudoMinuses?: readonly string[];
-    minusSign: string;
-}): MaskitoMask {
-    const computedPrefix = computeAllOptionalCharsRegExp(prefix);
+    postfix,
+    prefix,
+    pseudoMinuses,
+    thousandSeparator,
+}: Pick<
+    Required<MaskitoNumberParams>,
+    | 'decimalPseudoSeparators'
+    | 'decimalSeparator'
+    | 'maximumFractionDigits'
+    | 'min'
+    | 'minusSign'
+    | 'postfix'
+    | 'prefix'
+    | 'thousandSeparator'
+> & {pseudoMinuses: readonly string[]}): MaskitoMask {
+    const computedPrefix =
+        min < 0 && [minusSign, ...pseudoMinuses].includes(prefix)
+            ? ''
+            : computeAllOptionalCharsRegExp(prefix);
     const digit = String.raw`\d`;
-    const optionalMinus = isNegativeAllowed
-        ? `[${minusSign}${pseudoMinuses.map((x) => `\\${x}`).join('')}]?`
-        : '';
+    const optionalMinus =
+        min < 0 ? `[${minusSign}${pseudoMinuses.map((x) => `\\${x}`).join('')}]?` : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;

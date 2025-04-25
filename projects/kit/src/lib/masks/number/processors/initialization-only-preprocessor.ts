@@ -2,6 +2,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import {maskitoTransform} from '@maskito/core';
 
 import {clamp, extractAffixes} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
 import {generateMaskExpression} from '../utils';
 
 /**
@@ -15,20 +16,16 @@ import {generateMaskExpression} from '../utils';
  * ```
  */
 export function createInitializationOnlyPreprocessor({
-    decimalSeparator,
     decimalPseudoSeparators,
-    pseudoMinuses,
-    prefix,
-    postfix,
+    decimalSeparator,
     minusSign,
-}: {
-    decimalSeparator: string;
-    decimalPseudoSeparators: readonly string[];
-    pseudoMinuses: readonly string[];
-    prefix: string;
-    postfix: string;
-    minusSign: string;
-}): MaskitoPreprocessor {
+    postfix,
+    prefix,
+    pseudoMinuses,
+}: Pick<
+    Required<MaskitoNumberParams>,
+    'decimalPseudoSeparators' | 'decimalSeparator' | 'minusSign' | 'postfix' | 'prefix'
+> & {pseudoMinuses: readonly string[]}): MaskitoPreprocessor {
     let isInitializationPhase = true;
     const cleanNumberMask = generateMaskExpression({
         decimalSeparator,
@@ -38,7 +35,7 @@ export function createInitializationOnlyPreprocessor({
         postfix: '',
         thousandSeparator: '',
         maximumFractionDigits: Infinity,
-        isNegativeAllowed: true,
+        min: Number.MIN_SAFE_INTEGER,
         minusSign,
     });
 

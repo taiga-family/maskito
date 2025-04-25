@@ -89,11 +89,13 @@ export function maskitoNumberOptionsGenerator({
         mask: generateMaskExpression({
             decimalSeparator,
             maximumFractionDigits,
-            thousandSeparator,
-            prefix,
-            postfix,
-            isNegativeAllowed: min < 0,
+            min,
             minusSign,
+            postfix,
+            prefix,
+            pseudoMinuses,
+            thousandSeparator,
+            decimalPseudoSeparators: validatedDecimalPseudoSeparators,
         }),
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
