@@ -78,6 +78,14 @@ describe('Native attribute maxlength works', () => {
                     .should('have.prop', 'selectionStart', 0)
                     .should('have.prop', 'selectionEnd', 0);
             });
+
+            it('Empty input => Paste 123456789 => 123|', () => {
+                cy.get('@input')
+                    .paste('123456789')
+                    .should('have.value', '123')
+                    .should('have.prop', 'selectionStart', '123'.length)
+                    .should('have.prop', 'selectionEnd', '123'.length);
+            });
         });
     });
 
