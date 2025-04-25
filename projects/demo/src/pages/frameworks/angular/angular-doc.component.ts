@@ -11,6 +11,7 @@ import {NestedDocExample2} from './examples/2-nested/component';
 import {ProgrammaticallyDocExample3} from './examples/3-programmatically/component';
 import {PipeDocExample4} from './examples/4-pipe/component';
 import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
+import {PatternDocExample6} from './examples/6-pattern/component';
 
 @Component({
     standalone: true,
@@ -19,6 +20,7 @@ import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
         MaskitoDirective,
         NestedDocExample1,
         NestedDocExample2,
+        PatternDocExample6,
         PipeDocExample4,
         ProgrammaticallyDocExample3,
         RouterLink,
@@ -65,5 +67,11 @@ export default class AngularDocPageComponent {
         'unmask.directive.ts': import(
             './examples/5-custom-unmask-handler/unmask.directive.ts?raw'
         ),
+    };
+
+    protected readonly patternDirectiveExample: Record<string, TuiRawLoaderContent> = {
+        TypeScript: import('./examples/6-pattern/component.ts?raw'),
+        HTML: import('./examples/6-pattern/template.html?raw'),
+        Binding: import('./examples/7-pattern/template.html?raw'),
     };
 }

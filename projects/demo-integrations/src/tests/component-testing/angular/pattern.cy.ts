@@ -1,18 +1,19 @@
-import {TestInputWithPattern} from './input-pattern.component';
+import {MaskitoPattern} from '@maskito/angular';
 
 describe('@maskito/angular | MaskitoPatternDirective', () => {
     it('set regex over provided MaskitoOptions mask', () => {
-        cy.mount(TestInputWithPattern, {
+        cy.mount('<input [maskitoPattern]="pattern" />', {
+            imports: [MaskitoPattern],
             componentProperties: {
                 pattern: /^\d{0,4}$/,
             },
         });
-
         cy.get('input').type('a12bc').should('have.value', '12');
     });
 
     it('set regex from string input', () => {
-        cy.mount(TestInputWithPattern, {
+        cy.mount('<input [maskitoPattern]="pattern" />', {
+            imports: [MaskitoPattern],
             componentProperties: {
                 pattern: '^a[0-9]*$',
             },
