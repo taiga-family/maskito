@@ -72,6 +72,5 @@ export default class AngularDocPageComponent {
     protected readonly patternDirectiveExample: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/6-pattern/component.ts?raw'),
         HTML: import('./examples/6-pattern/template.html?raw'),
-        Binding: import('./examples/7-pattern/template.html?raw'),
     };
 }

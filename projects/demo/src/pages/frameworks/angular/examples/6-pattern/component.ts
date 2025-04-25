@@ -10,5 +10,8 @@ import {MaskitoPattern} from '@maskito/angular';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PatternDocExample6 {
-    protected value = '';
+    protected name = '';
+    protected cvc = '';
+
+    protected regExp = /^[a-zA-Z\s]+$/;
 }

@@ -12,11 +12,8 @@ describe('@maskito/angular | MaskitoPatternDirective', () => {
     });
 
     it('set regex from string input', () => {
-        cy.mount('<input [maskitoPattern]="pattern" />', {
+        cy.mount('<input maskitoPattern="a[1-4]*" />', {
             imports: [MaskitoPattern],
-            componentProperties: {
-                pattern: '^a[0-9]*$',
-            },
         });
 
         cy.get('input').type('a12bc34').should('have.value', 'a1234');

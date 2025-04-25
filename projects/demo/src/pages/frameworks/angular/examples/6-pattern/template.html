@@ -1,5 +1,11 @@
 <input
-    maskitoPattern="[a-zA-Z\s]+"
     placeholder="Name on the card"
-    [(ngModel)]="value"
+    [maskitoPattern]="regExp"
+    [(ngModel)]="name"
+/>
+
+<input
+    maskitoPattern="\d{0,3}"
+    placeholder="CVC"
+    [(ngModel)]="cvc"
 />
