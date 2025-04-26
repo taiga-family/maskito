@@ -9,6 +9,7 @@ import {MaskitoDirective} from './maskito.directive';
 })
 export class MaskitoPattern {
     private readonly maskitoDirective = inject(MaskitoDirective, {self: true});
+
     @Input('maskitoPattern')
     public set regExpStr(pattern: RegExp | string) {
         this.maskitoDirective.options = {
