@@ -318,14 +318,12 @@ export class Maskito extends MaskHistory {
                 initialElementState.value.slice(to),
             selection: [from + data.length, from + data.length],
         };
-        const newElementState = this.postprocessor(maskModel, initialElementState);
-
-        if (newElementState.value.length > maxLength) {
-            return event.preventDefault();
-        }
+        const newElementState = this.clampState(
+            this.postprocessor(maskModel, initialElementState),
+        );
 
         if (
-            !areElementStatesEqual(newPossibleState, newElementState) ||
+            !areElementStatesEqual(this.clampState(newPossibleState), newElementState) ||
             element.isContentEditable
         ) {
             this.upcomingElementState = newElementState;
@@ -348,5 +346,15 @@ export class Maskito extends MaskHistory {
         if (this.isTextArea || this.element.isContentEditable) {
             this.handleInsert(event, '\n');
         }
+    }
+
+    private clampState({value, selection}: ElementState): ElementState {
+        const [from, to] = selection;
+        const max = this.maxLength;
+
+        return {
+            value: value.slice(0, max),
+            selection: [Math.min(from, max), Math.min(to, max)],
+        };
     }
 }
