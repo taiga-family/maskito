@@ -54,16 +54,16 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '27.09'.length);
             });
 
-            it('3| => Type 7 => no value changes', () => {
+            it('3| => Type 7 => 03.07|', () => {
                 cy.get('@input')
                     .type('3')
                     .should('have.value', '3')
                     .should('have.prop', 'selectionStart', '3'.length)
                     .should('have.prop', 'selectionEnd', '3'.length)
                     .type('7')
-                    .should('have.value', '3')
-                    .should('have.prop', 'selectionStart', '3'.length)
-                    .should('have.prop', 'selectionEnd', '3'.length);
+                    .should('have.value', '03.07')
+                    .should('have.prop', 'selectionStart', '03.07'.length)
+                    .should('have.prop', 'selectionEnd', '03.07'.length);
             });
 
             it('year less than 100', () => {
