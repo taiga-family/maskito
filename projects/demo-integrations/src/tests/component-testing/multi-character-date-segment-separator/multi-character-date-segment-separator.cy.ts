@@ -71,8 +71,12 @@ describe('Multi character date segment separator', () => {
                     .should('have.value', `${initialValue}09. 09. 9`);
             });
 
-            it('Type 35 => 3 (prevent to enter impossible day date segment)', () => {
-                cy.get('input').type('35').should('have.value', `${initialValue}3`);
+            it('Type 35 => 03.05 (pads every digit with zero to prevent invalid date segments)', () => {
+                cy.get('input')
+                    .type('3')
+                    .should('have.value', `${initialValue}3`)
+                    .type('5')
+                    .should('have.value', `${initialValue}03. 05`);
             });
 
             it('Type 31.15 => 31.1 (prevent to enter impossible month date segment)', () => {
