@@ -3,6 +3,7 @@ import type {MaskitoDateSegments} from '../../types';
 export function parseDateString(
     dateString: string,
     fullMode: string,
+    includeEmpty = false,
 ): Partial<MaskitoDateSegments> {
     const cleanMode = fullMode.replaceAll(/[^dmy]/g, '');
     const onlyDigitsDate = dateString.replaceAll(/\D+/g, '');
@@ -21,7 +22,7 @@ export function parseDateString(
 
     return Object.fromEntries(
         Object.entries(dateSegments)
-            .filter(([_, value]) => Boolean(value))
+            .filter(([_, value]) => includeEmpty || Boolean(value))
             .sort(([a], [b]) =>
                 fullMode.toLowerCase().indexOf(a.slice(0, 1)) >
                 fullMode.toLowerCase().indexOf(b.slice(0, 1))
