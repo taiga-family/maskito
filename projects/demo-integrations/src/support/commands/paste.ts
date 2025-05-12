@@ -13,6 +13,7 @@ export function paste<T extends Cypress.PrevSubjectMap['element']>(
         | HTMLInputElement
         | HTMLTextAreaElement;
     const {value, selectionStart, selectionEnd} = element;
+    const maxLength = element.maxLength === -1 ? Infinity : element.maxLength;
 
     Cypress.log({
         displayName: 'paste',
@@ -35,7 +36,11 @@ export function paste<T extends Cypress.PrevSubjectMap['element']>(
         })
         .invoke(
             'val',
-            value.slice(0, selectionStart ?? 0) + data + value.slice(selectionEnd ?? 0),
+            (
+                value.slice(0, selectionStart ?? 0) +
+                data +
+                value.slice(selectionEnd ?? 0)
+            ).slice(0, maxLength),
         )
         .trigger('input', {
             inputType,
