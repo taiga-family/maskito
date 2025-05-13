@@ -48,12 +48,12 @@ describe('Placeholder | Date', () => {
             .should('have.prop', 'selectionEnd', '09/09/9'.length);
     });
 
-    it('Type 39 => 3d/mm/yyyy', () => {
+    it('Type 39 => 03/09/yyyy', () => {
         cy.get('@input')
             .type('39')
-            .should('have.value', '3d/mm/yyyy')
-            .should('have.prop', 'selectionStart', 1)
-            .should('have.prop', 'selectionEnd', 1);
+            .should('have.value', '03/09/yyyy')
+            .should('have.prop', 'selectionStart', '03/09'.length)
+            .should('have.prop', 'selectionEnd', '03/09'.length);
     });
 
     it('Type 31/13 => 31/1m/yyyy', () => {

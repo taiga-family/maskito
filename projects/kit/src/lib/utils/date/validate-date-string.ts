@@ -1,6 +1,7 @@
 import {DATE_SEGMENTS_MAX_VALUES} from '../../constants';
 import type {MaskitoDateSegments} from '../../types';
 import {getDateSegmentValueLength} from './date-segment-value-length';
+import {getDateSegmentsOrder} from './get-date-segments-order';
 import {parseDateString} from './parse-date-string';
 import {toDateString} from './to-date-string';
 
@@ -21,9 +22,11 @@ export function validateDateString({
     const dateSegments = Object.entries(parsedDate) as Array<
         [keyof MaskitoDateSegments, string]
     >;
+    const segmentsOrder = getDateSegmentsOrder(dateModeTemplate);
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};
 
-    for (const [segmentName, segmentValue] of dateSegments) {
+    for (let i = 0; i < dateSegments.length; i++) {
+        const [segmentName, segmentValue] = dateSegments[i]!;
         const validatedDate = toDateString(validatedDateSegments, {
             dateMode: dateModeTemplate,
         });
@@ -40,8 +43,20 @@ export function validateDateString({
             lastSegmentDigitIndex >= from && lastSegmentDigitIndex === to;
 
         if (isLastSegmentDigitAdded && Number(segmentValue) > Number(maxSegmentValue)) {
-            // 3|1.10.2010 => Type 9 => 3|1.10.2010
-            return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
+            const nextSegment = segmentsOrder[segmentsOrder.indexOf(segmentName) + 1];
+
+            if (!nextSegment || nextSegment === 'year') {
+                // 31.1|0.2010 => Type 9 => 31.1|0.2010
+                return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
+            }
+
+            validatedDateSegments[segmentName] =
+                `0${segmentValue.slice(0, lastSegmentDigitIndex)}`;
+            dateSegments[i + 1] = [
+                nextSegment,
+                segmentValue.slice(-1) + (dateSegments[i + 1]?.[1] ?? '').slice(1),
+            ];
+            continue;
         }
 
         if (isLastSegmentDigitAdded && Number(segmentValue) < 1) {
