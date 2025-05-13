@@ -1,3 +1,19 @@
+### [3.8.0](https://github.com/taiga-family/maskito/compare/v3.7.2...v3.8.0) (2025-05-13)
+
+### 🚀 Features
+
+- **angular**: new `MaskitoPattern` directive (#2081)
+  [(c3f7142)](https://github.com/taiga-family/maskito/commit/c3f7142245b603af9136541de9d181189e01a7a3)
+
+### 🐞 Bug Fixes
+
+- **kit**: update the first digit zero-padding logic for date-related mask (#2117)
+  [(b5b2598)](https://github.com/taiga-family/maskito/commit/b5b2598f455f3ad3438c3bd89b81009aca82f17c)
+- **core**: incorrect handle of paste event for `&lt;input /&gt;` with `maxlength` attribute (#2090)
+  [(e20e50b)](https://github.com/taiga-family/maskito/commit/e20e50bb92aca9d70bc483f9fc66904264a64c35)
+- **kit**: `Number` should support non-erasable minus (as `prefix`) for `max &lt;= 0` (#2087)
+  [(3910914)](https://github.com/taiga-family/maskito/commit/39109144075d58734d1545be888cbd03c5b6286e)
+
 ### [3.7.2](https://github.com/taiga-family/maskito/compare/v3.7.1...v3.7.2) (2025-04-22)
 
 ### 🐞 Bug Fixes
