@@ -7,6 +7,7 @@ import {Maskito, MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
 import type {RefCallback} from 'react';
 import {useCallback, useRef, useState} from 'react';
 
+import {adaptReactControlledElement} from './adaptControlledElement';
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
 
 function isThenable<T = unknown>(x: PromiseLike<T> | T): x is PromiseLike<T> {
@@ -76,7 +77,7 @@ export const useMaskito = ({
             return;
         }
 
-        const maskedElement = new Maskito(element, options);
+        const maskedElement = new Maskito(adaptReactControlledElement(element), options);
 
         return () => {
             maskedElement.destroy();
