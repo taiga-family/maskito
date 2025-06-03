@@ -121,7 +121,8 @@ jobs:
       - uses: taiga-family/ci/actions/setup/node@v1.127.0
 
       - name: Run Cypress tests
-        run: npx nx component-test demo-integrations --browser=chrome
+        run:
+          npx nx component-test demo-integrations --browser=chrome && npx nx ct-react demo-integrations --browser=chrome
 
   result:
     needs: [build-demo, e2e-kit, e2e-recipes, e2e-others, component-testing]

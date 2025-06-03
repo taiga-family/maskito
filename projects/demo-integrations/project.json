@@ -23,6 +23,14 @@
                 "skipServe": true,
                 "devServerTarget": "demo:build"
             }
+        },
+        "ct-react": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "cypressConfig": "{projectRoot}/cypress-react.config.ts",
+                "testingType": "component",
+                "skipServe": true
+            }
         }
     }
 }

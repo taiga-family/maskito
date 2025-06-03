@@ -1,10 +1,11 @@
-import {TestWrapper} from './angular-wrapper';
-import {PREDICATE_RESOLVING_TIME, SWITCH_OPTIONS_TIME} from './react-app';
+import {mount} from 'cypress/react';
+
+import {App, PREDICATE_RESOLVING_TIME, SWITCH_OPTIONS_TIME} from './react-app';
 
 describe('React async predicate + maskitoOptions race', () => {
     beforeEach(() => {
         cy.clock();
-        cy.mount(TestWrapper);
+        mount(<App />);
         cy.get('.real-input').should('be.visible').as('textfield');
     });
 

@@ -90,6 +90,10 @@
         "component-test": {
             "cache": true,
             "inputs": ["default", "^production"]
+        },
+        "ct-react": {
+            "cache": true,
+            "inputs": ["default", "^production"]
         }
     },
     "parallel": 3,
