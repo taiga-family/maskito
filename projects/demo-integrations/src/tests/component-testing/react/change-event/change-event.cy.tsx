@@ -35,12 +35,12 @@ describe('React synthetic "onChange" event', () => {
             cy.get('@handler').should('not.have.been.called');
         });
 
-        it('type partially valid value (mask corrects it and patch textfield) => onChange is dispatched ONCE', () => {
+        it('type partially valid value (mask corrects it and patches textfield) => onChange is dispatched ONCE', () => {
             cy.get('input').type(',').should('have.value', '0.');
             cy.get('@handler').should('have.been.calledOnceWith', '0.');
         });
 
-        it('paste partially valid value (mask corrects it and patch textfield) => onChange is dispatched ONCE', () => {
+        it('paste partially valid value (mask corrects it and patches textfield) => onChange is dispatched ONCE', () => {
             cy.get('input').paste('123456,78').should('have.value', '123 456.78');
             cy.get('@handler').should('have.been.calledOnceWith', '123 456.78');
         });
@@ -90,17 +90,17 @@ describe('React synthetic "onChange" event', () => {
             cy.get('@handler').should('not.have.been.called');
         });
 
-        it('type partially valid value (mask corrects it and patch textfield) => onChange is dispatched', () => {
+        it('type partially valid value (mask corrects it and patches textfield) => onChange is dispatched', () => {
             cy.get('input').type('Nikit').should('have.value', 'NikiT');
             cy.get('@handler').should('have.been.calledWith', 'NikiT');
         });
 
-        it('type partially valid value (state action corrects it and patch textfield) => onChange is dispatched with initial value', () => {
+        it('type partially valid value (state action corrects it and patches textfield) => onChange is dispatched with initial value', () => {
             cy.get('input').type('n').should('have.value', 'N');
             cy.get('@handler').should('have.been.calledWith', 'n');
         });
 
-        it('paste partially valid value (mask+state action correct it and patch textfield) => onChange is dispatched ONCE', () => {
+        it('paste partially valid value (mask+state action correct it and patches textfield) => onChange is dispatched ONCE', () => {
             cy.get('input').paste('nikita').should('have.value', 'NikiTa');
             cy.get('@handler').should('have.been.calledOnceWith', 'nikiTa');
         });
@@ -140,7 +140,7 @@ describe('React synthetic "onChange" event', () => {
             cy.get('@handler').should('have.been.calledWith', 'T');
         });
 
-        it('type partially valid value (mask corrects it and patch textfield) => textfield value is still empty', () => {
+        it('type partially valid value (mask corrects it and patches textfield) => textfield value is still empty', () => {
             cy.get('input').type('t').should('have.value', '');
             cy.get('@handler').should('have.been.calledWith', 'T');
         });
