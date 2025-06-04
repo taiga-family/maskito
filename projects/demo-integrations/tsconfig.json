@@ -4,6 +4,6 @@
         "typeRoots": ["../../node_modules/@types", "../../node_modules/cypress/types"],
         "types": ["cypress", "node", "cypress-real-events"]
     },
-    "include": ["cypress.config.ts", "**/*.ts", "**/*.d.ts"],
+    "include": ["cypress.config.ts", "cypress-react.config.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts"],
     "exclude": []
 }

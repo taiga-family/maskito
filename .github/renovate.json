@@ -15,7 +15,7 @@
     },
     "packageRules": [
         {
-            "matchPackageNames": ["/^@nx.*/", "/^nx$/"],
+            "matchPackageNames": ["/^@nx.*/", "/^nx$/", "cypress"],
             "enabled": false
         },
         {

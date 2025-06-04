@@ -1,10 +1,12 @@
-import {TestWrapper} from './angular-wrapper';
+import {mount} from 'cypress/react';
+
+import {App} from './react-app';
 
 describe('Async predicate works', () => {
     describe('Basic async predicate (it returns promise which resolves in 2s)', () => {
         beforeEach(() => {
             cy.clock();
-            cy.mount(TestWrapper);
+            mount(<App />);
             cy.get('#async-predicate-2s-resolves').should('be.visible').as('input');
         });
 
@@ -43,13 +45,12 @@ describe('Async predicate works', () => {
     describe('race condition check', () => {
         beforeEach(() => {
             cy.clock();
-            cy.mount(TestWrapper);
+            mount(<App />);
             cy.get('#race-condition-check').should('be.visible').as('input');
         });
 
         it('does not apply mask until the first (fast valid) `elementPredicate` resolves', () => {
-            const typedText =
-                'UseEffect will be triggered in 2s and predicate will resolve only in 0.5 seconds';
+            const typedText = 'UseEffect will be triggered in 2s and predicate will resolve only in 0.5 seconds';
 
             cy.get('@input').type(typedText);
 
