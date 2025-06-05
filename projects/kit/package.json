@@ -1,6 +1,6 @@
 {
     "name": "@maskito/kit",
-    "version": "3.8.0",
+    "version": "3.9.0",
     "description": "The optional framework-agnostic Maskito's package with ready-to-use masks",
     "keywords": [
         "input",
@@ -33,6 +33,6 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "peerDependencies": {
-        "@maskito/core": "^3.8.0"
+        "@maskito/core": "^3.9.0"
     }
 }

@@ -1,3 +1,15 @@
+### [3.9.0](https://github.com/taiga-family/maskito/compare/v3.8.0...v3.9.0) (2025-06-05)
+
+### 🚀 Features
+
+- **react**: add support for React-specific `onChange` event handler (#2153)
+  [(e941847)](https://github.com/taiga-family/maskito/commit/e941847990662835343c4e25d3f2b2e64ab54345)
+
+### 🐞 Bug Fixes
+
+- **core**: do not unnecessarily trigger element's `value` setter on every keystroke (#2152)
+  [(fd3449b)](https://github.com/taiga-family/maskito/commit/fd3449b69f88dbcab5b06b03ff19273b511bcd64)
+
 ### [3.8.0](https://github.com/taiga-family/maskito/compare/v3.7.2...v3.8.0) (2025-05-13)
 
 ### 🚀 Features
