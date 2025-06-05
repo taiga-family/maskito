@@ -35,7 +35,7 @@
         "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
     ],
     "devDependencies": {
-        "libphonenumber-js": "1.12.8"
+        "libphonenumber-js": "1.12.9"
     },
     "peerDependencies": {
         "@maskito/core": "^3.8.0",
