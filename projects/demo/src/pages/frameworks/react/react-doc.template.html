@@ -55,11 +55,13 @@
         <p>
             <strong>Maskito</strong>
             core is developed as framework-agnostic library. It does not depend on any JS-framework's peculiarities. It
-            uses only native browser API. That is why you should use native
+            uses only native browser API. That is why we
+            <u>strongly recommends</u>
+            use native
             <code>onInput</code>
             instead of React-specific
             <code>onChange</code>
-            event. Do not worry, both events works similarly! Read more about it in the
+            event handler. Do not worry, both events works similarly! Read more about it in the
             <a
                 href="https://react.dev/reference/react-dom/components/input#props"
                 rel="noreferrer"
@@ -69,6 +71,19 @@
                 official React documentation.
             </a>
         </p>
+
+        <tui-notification
+            size="m"
+            class="tui-space_bottom-4"
+        >
+            React-specific
+            <code>onChange</code>
+            is supported by
+            <strong>Maskito</strong>
+            too but usage of
+            <code>onInput</code>
+            handler is a more robust solution!
+        </tui-notification>
 
         <tui-doc-code [code]="controlledInputDemo" />
     </section>
