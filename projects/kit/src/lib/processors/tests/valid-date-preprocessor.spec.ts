@@ -11,6 +11,7 @@ describe('createValidDatePreprocessor', () => {
         });
         const EMPTY_INPUT = {value: '', selection: [0, 0] as [number, number]};
 
+        /* eslint-disable jest/prefer-ending-with-an-expect */
         const check = (insertedCharacters: string, expectedValue: string): void => {
             const {data} = preprocessor(
                 {elementState: EMPTY_INPUT, data: insertedCharacters},

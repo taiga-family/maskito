@@ -30,6 +30,7 @@ describe('MaskModel | Fixed characters', () => {
             ],
         };
 
+        /* eslint-disable jest/prefer-ending-with-an-expect */
         const check = ({
             initialValue,
             addedCharacters,

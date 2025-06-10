@@ -11,6 +11,7 @@ describe('normalizeDatePreprocessor', () => {
             rangeSeparator: ' – ',
         });
 
+        /* eslint-disable jest/prefer-ending-with-an-expect */
         const check = getCheckFunction(preprocessor);
 
         it('empty input => 6.2.2023 – 7.2.2023', () => {

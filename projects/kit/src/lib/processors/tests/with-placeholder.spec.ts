@@ -12,6 +12,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     };
 
     describe('preprocessors', () => {
+        /* eslint-disable jest/prefer-ending-with-an-expect */
         const check = (valueBefore: string, valueAfter: string): void => {
             const {elementState} = preprocessor(
                 {

@@ -173,6 +173,7 @@ describe('maskitoPipe', () => {
     describe('Readonly arguments are passed to all processors', () => {
         const elementState: ElementState = {value: '', selection: [0, 0]};
 
+        /* eslint-disable jest/prefer-ending-with-an-expect */
         it('preprocessor', () => {
             const checkActionType: MaskitoPreprocessor = (data, actionType) => {
                 expect(actionType).toBe('deleteBackward');
