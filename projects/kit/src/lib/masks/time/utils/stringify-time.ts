@@ -17,14 +17,22 @@ export function maskitoStringifyTime(
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
         ...timeSegmentMaxValues,
     };
+    const isMeridiem = mode.includes('AA');
+    let isPM = false;
 
     const msInSecond = maxValues.milliseconds + 1;
     const msInMinute = (maxValues.seconds + 1) * msInSecond;
     const msInHour = (maxValues.minutes + 1) * msInMinute;
 
-    const hours = Math.trunc(milliseconds / msInHour);
+    let hours = Math.trunc(milliseconds / msInHour);
 
     milliseconds -= hours * msInHour;
+
+    if (isMeridiem) {
+        isPM = hours >= 12;
+        hours %= 12;
+        hours = hours === 0 ? 12 : hours;
+    }
 
     const minutes = Math.trunc(milliseconds / msInMinute);
 
@@ -36,9 +44,15 @@ export function maskitoStringifyTime(
 
     const result = padStartTimeSegments({hours, minutes, seconds, milliseconds});
 
-    return mode
+    let formatted = mode
         .replaceAll(/H+/g, result.hours)
         .replaceAll('MSS', result.milliseconds)
         .replaceAll(/M+/g, result.minutes)
         .replaceAll(/S+/g, result.seconds);
+
+    if (isMeridiem) {
+        formatted = formatted.replace(/AA/, isPM ? 'PM' : 'AM');
+    }
+
+    return formatted;
 }
