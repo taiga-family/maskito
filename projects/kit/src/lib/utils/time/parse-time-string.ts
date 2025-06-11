@@ -14,9 +14,6 @@ export function parseTimeString(
     timeString: string,
     timeMode: MaskitoTimeMode,
 ): Partial<MaskitoTimeSegments> {
-    const isAM = timeString.includes('AM');
-    const isPM = timeString.includes('PM');
-
     const onlyDigits = timeString.replaceAll(/\D+/g, '');
 
     let offset = 0;
@@ -37,16 +34,12 @@ export function parseTimeString(
             }),
     );
 
-    const hourNum = Number(result.hours);
+    const hours = Number(result.hours);
 
-    if (Number.isFinite(hourNum)) {
-        if (isPM && hourNum < 12) {
-            result.hours = String(hourNum + 12);
-        }
-
-        if (isAM && hourNum === 12) {
-            result.hours = '00';
-        }
+    if (timeMode.includes('AA') && Number.isFinite(hours)) {
+        result.hours = timeString.includes('PM')
+            ? String(hours < 12 ? hours + 12 : hours)
+            : result.hours.replace('12', '00');
     }
 
     return result;
