@@ -1,6 +1,6 @@
 import {MaskHistory, MaskModel} from './classes';
 import {MASKITO_DEFAULT_OPTIONS} from './constants';
-import {createDoubleSpacePlugin} from './plugins';
+import {createBrokenDefaultPlugin, createDoubleSpacePlugin} from './plugins';
 import type {
     ElementState,
     MaskitoElement,
@@ -21,7 +21,7 @@ import {
     maskitoTransform,
 } from './utils';
 
-const BUILT_IN_PLUGINS = [createDoubleSpacePlugin()];
+const BUILT_IN_PLUGINS = [createDoubleSpacePlugin(), createBrokenDefaultPlugin()];
 
 export class Maskito extends MaskHistory {
     private readonly isTextArea = this.element.nodeName === 'TEXTAREA';
@@ -92,7 +92,6 @@ export class Maskito extends MaskHistory {
                         event,
                         isForward,
                         selection: getWordSelection(this.elementState, isForward),
-                        force: true,
                     });
                 case 'historyRedo':
                     event.preventDefault();
@@ -141,10 +140,14 @@ export class Maskito extends MaskHistory {
         this.eventListener.listen(
             'input',
             () => {
-                if (this.upcomingElementState) {
+                if (
+                    this.upcomingElementState &&
+                    !areElementStatesEqual(this.upcomingElementState, this.elementState)
+                ) {
                     this.updateElementState(this.upcomingElementState);
-                    this.upcomingElementState = null;
                 }
+
+                this.upcomingElementState = null;
             },
             {capture: true},
         );
@@ -247,7 +250,6 @@ export class Maskito extends MaskHistory {
         event,
         selection,
         isForward,
-        force = false,
     }: {
         event: TypedInputEvent;
         selection: SelectionRange;
@@ -258,7 +260,6 @@ export class Maskito extends MaskHistory {
             value: this.elementState.value,
             selection,
         };
-        const [initialFrom, initialTo] = initialState.selection;
         const {elementState} = this.preprocessor(
             {
                 elementState: initialState,
@@ -272,20 +273,6 @@ export class Maskito extends MaskHistory {
         maskModel.deleteCharacters([from, to]);
 
         const newElementState = this.postprocessor(maskModel, initialState);
-        const newPossibleState: ElementState = {
-            value:
-                initialState.value.slice(0, initialFrom) +
-                initialState.value.slice(initialTo),
-            selection: [initialFrom, initialFrom],
-        };
-
-        if (
-            areElementStatesEqual(newPossibleState, newElementState) &&
-            !force &&
-            !this.element.isContentEditable
-        ) {
-            return;
-        }
 
         if (
             areElementValuesEqual(initialState, elementState, maskModel, newElementState)
@@ -300,7 +287,7 @@ export class Maskito extends MaskHistory {
     }
 
     private handleInsert(event: TypedInputEvent, data: string): void {
-        const {options, maxLength, element, elementState: initialElementState} = this;
+        const {options, maxLength, elementState: initialElementState} = this;
         const {elementState, data: insertedText = data} = this.preprocessor(
             {
                 data,
@@ -324,27 +311,25 @@ export class Maskito extends MaskHistory {
                 initialElementState.value.slice(to),
             selection: [from + data.length, from + data.length],
         };
-        const newElementState = this.clampState(
+
+        this.upcomingElementState = this.clampState(
             this.postprocessor(maskModel, initialElementState),
         );
 
         if (
-            !areElementStatesEqual(this.clampState(newPossibleState), newElementState) ||
-            element.isContentEditable
+            !areElementStatesEqual(
+                this.clampState(newPossibleState),
+                this.upcomingElementState,
+            ) &&
+            options.overwriteMode === 'replace' &&
+            newPossibleState.value.length > maxLength
         ) {
-            this.upcomingElementState = newElementState;
-
-            if (
-                options.overwriteMode === 'replace' &&
-                newPossibleState.value.length > maxLength
-            ) {
-                /**
-                 * Browsers know nothing about Maskito and its `overwriteMode`.
-                 * When textfield value length is already equal to attribute `maxlength`,
-                 * pressing any key (even with valid value) does not emit `input` event.
-                 */
-                this.dispatchInputEvent({inputType: 'insertText', data});
-            }
+            /**
+             * Browsers know nothing about Maskito and its `overwriteMode`.
+             * When textfield value length is already equal to attribute `maxlength`,
+             * pressing any key (even with valid value) does not emit `input` event.
+             */
+            this.dispatchInputEvent({inputType: 'insertText', data});
         }
     }
 
