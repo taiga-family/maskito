@@ -43,7 +43,7 @@
         "build:prerender": "nx run demo:prerender",
         "*** Cypress ***": "",
         "cy:open": "cypress open --project ./projects/demo-integrations/",
-        "cy:run": "nx e2e demo-integrations && nx component-test demo-integrations & && nx ct-react demo-integrations",
+        "cy:run": "nx e2e demo-integrations && nx component-test demo-integrations && nx ct-react demo-integrations",
         "release": "npx nx run-many --target publish --all",
         "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'"
     },
