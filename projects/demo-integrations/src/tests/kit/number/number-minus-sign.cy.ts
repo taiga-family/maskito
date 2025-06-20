@@ -82,6 +82,7 @@ describe('custom minus should work properly with min(max) value', () => {
             name: 'japanese prolonged sound mark',
         },
         {value: CHAR_MINUS, name: 'unicode minus sign'},
+        {value: 'x', name: 'x'},
     ].forEach((minus) => {
         describe(`applies ${minus.name} properly`, () => {
             beforeEach(() => {

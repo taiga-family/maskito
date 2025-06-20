@@ -34,33 +34,41 @@ describe('maskitoParseNumber', () => {
 
     describe('decimal separator is comma', () => {
         it('thousand separator is space', () => {
-            expect(maskitoParseNumber('42 111,42', ',')).toBe(42111.42);
+            expect(maskitoParseNumber('42 111,42', {decimalSeparator: ','})).toBe(
+                42111.42,
+            );
         });
 
         it('thousand separator is hyphen', () => {
-            expect(maskitoParseNumber('42-111,42', ',')).toBe(42111.42);
+            expect(maskitoParseNumber('42-111,42', {decimalSeparator: ','})).toBe(
+                42111.42,
+            );
         });
 
         it('thousand separator is empty string', () => {
-            expect(maskitoParseNumber('42111,42', ',')).toBe(42111.42);
+            expect(maskitoParseNumber('42111,42', {decimalSeparator: ','})).toBe(
+                42111.42,
+            );
         });
 
         it('empty decimal part & thousand separator is dot', () => {
-            expect(maskitoParseNumber('42.111', ',')).toBe(42111);
+            expect(maskitoParseNumber('42.111', {decimalSeparator: ','})).toBe(42111);
         });
 
         it('trailing decimal separator', () => {
-            expect(maskitoParseNumber('42,', ',')).toBe(42);
+            expect(maskitoParseNumber('42,', {decimalSeparator: ','})).toBe(42);
         });
     });
 
     describe('decimal separator is empty string', () => {
         it('thousand separator is point', () => {
-            expect(maskitoParseNumber('123.456.789', '')).toBe(123456789);
+            expect(maskitoParseNumber('123.456.789', {decimalSeparator: ''})).toBe(
+                123456789,
+            );
         });
 
         it('thousand separator is empty string', () => {
-            expect(maskitoParseNumber('123456', '')).toBe(123456);
+            expect(maskitoParseNumber('123456', {decimalSeparator: ''})).toBe(123456);
         });
     });
 
@@ -84,6 +92,11 @@ describe('maskitoParseNumber', () => {
 
             it('can be katakana-hiragana prolonged sound mark', () => {
                 expect(maskitoParseNumber(`${CHAR_JP_HYPHEN}42`)).toBe(-42);
+            });
+
+            it('can be any custom character', () => {
+                expect(maskitoParseNumber('x42', {minusSign: 'x'})).toBe(-42);
+                expect(maskitoParseNumber('!42', {minusSign: '!'})).toBe(-42);
             });
         });
 
@@ -158,10 +171,10 @@ describe('maskitoParseNumber', () => {
         });
 
         it('negative sign only => NaN', () => {
-            expect(maskitoParseNumber('\u2212')).toBeNaN(); // minus
-            expect(maskitoParseNumber('-')).toBeNaN();
-            expect(maskitoParseNumber('\u2013')).toBeNaN(); // en-dash
-            expect(maskitoParseNumber('\u2014')).toBeNaN(); // em-dash
+            expect(maskitoParseNumber(CHAR_MINUS)).toBeNaN();
+            expect(maskitoParseNumber(CHAR_HYPHEN)).toBeNaN();
+            expect(maskitoParseNumber(CHAR_EN_DASH)).toBeNaN();
+            expect(maskitoParseNumber(CHAR_EM_DASH)).toBeNaN();
         });
     });
 });

@@ -48,7 +48,7 @@ type GeneratorOptions = Required<
 })
 export default class NumberMaskDocComponent implements GeneratorOptions {
     protected readonly maskitoParseNumberDemo = import(
-        './examples/maskito-parse-number-demo.md?raw'
+        './examples/maskito-parse-stringify-number-demo.md?raw'
     );
 
     protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
