@@ -36,6 +36,14 @@ import {
 } from './processors';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
+export const DEFAULT_PSEUDO_MINUSES = [
+    CHAR_HYPHEN,
+    CHAR_EN_DASH,
+    CHAR_EM_DASH,
+    CHAR_JP_HYPHEN,
+    CHAR_MINUS,
+];
+
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
     min = Number.MIN_SAFE_INTEGER,
@@ -50,13 +58,7 @@ export function maskitoNumberOptionsGenerator({
     maximumFractionDigits = precision,
     minimumFractionDigits = decimalZeroPadding ? maximumFractionDigits : 0,
 }: MaskitoNumberParams = {}): Required<MaskitoOptions> {
-    const pseudoMinuses = [
-        CHAR_HYPHEN,
-        CHAR_EN_DASH,
-        CHAR_EM_DASH,
-        CHAR_JP_HYPHEN,
-        CHAR_MINUS,
-    ].filter(
+    const pseudoMinuses = DEFAULT_PSEUDO_MINUSES.filter(
         (char) =>
             char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
     );
@@ -151,6 +153,7 @@ export function maskitoNumberOptionsGenerator({
                 decimalSeparator,
                 prefix,
                 postfix,
+                minusSign,
                 minimumFractionDigits: Math.min(
                     minimumFractionDigits,
                     maximumFractionDigits,
@@ -175,7 +178,7 @@ export function maskitoNumberOptionsGenerator({
                 prefix,
                 postfix,
             }),
-            createMinMaxPlugin({min, max, decimalSeparator}),
+            createMinMaxPlugin({min, max, decimalSeparator, minusSign}),
         ],
         overwriteMode:
             minimumFractionDigits > 0
