@@ -47,5 +47,5 @@ export function maskitoStringifyTime(
         .replaceAll('MSS', result.milliseconds)
         .replaceAll(/M+/g, result.minutes)
         .replaceAll(/S+/g, result.seconds)
-        .replace(/AA/, hours >= 12 ? 'PM' : 'AM');
+        .replace('AA', hours >= 12 ? 'PM' : 'AM');
 }
