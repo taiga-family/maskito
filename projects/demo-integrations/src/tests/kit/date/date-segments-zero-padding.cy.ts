@@ -130,6 +130,27 @@ describe('Date | Date segments zero padding (pads digits with zero if date segme
         });
     });
 
+    describe('[mode]="mm/dd/yyyy"', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?mode=mm%2Fdd%2Fyyyy&separator=/`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        describe('handles month value exceeding maximum', () => {
+            it('Type 13 => 01/3', () => {
+                cy.get('@input')
+                    .type('13')
+                    .should('have.value', '01/3')
+                    .should('have.prop', 'selectionStart', '01/3'.length)
+                    .should('have.prop', 'selectionEnd', '01/3'.length);
+            });
+        });
+    });
+
     describe('[mode]="yyyy/mm/dd"', () => {
         beforeEach(() => {
             cy.visit(
