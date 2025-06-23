@@ -1,3 +1,12 @@
+### [3.9.1](https://github.com/taiga-family/maskito/compare/v3.9.0...v3.9.1) (2025-06-23)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Number` with custom `minusSign` has broken `min`/`max` behavior (#2164)
+  [(52ed25d)](https://github.com/taiga-family/maskito/commit/52ed25debaa2838a0b360983a508a3d627c78277)
+- **core**: Android with Microsoft SwiftKey Keyboard ignores `preventDefault()` for `beforeinput` event on backspace
+  (#2163) [(722d9af)](https://github.com/taiga-family/maskito/commit/722d9afc265df8392613c770759df3bb8955e08e)
+
 ### [3.9.0](https://github.com/taiga-family/maskito/compare/v3.8.0...v3.9.0) (2025-06-05)
 
 ### 🚀 Features
