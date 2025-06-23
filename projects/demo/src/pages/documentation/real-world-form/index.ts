@@ -100,6 +100,7 @@ export default class RealWorldForm {
         return maskitoGetCountryFromNumber(this.form.value.phone ?? '', metadata) ?? '';
     }
 
+    // TODO: delete after bumping Safari support to 18+
     protected get phoneTextfieldPattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
     }
