@@ -112,6 +112,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         return metadataSets[this.selectedMetadata];
     }
 
+    // TODO: delete after bumping Safari support to 18+
     protected get pattern(): string {
         return this.isApple ? '+[0-9-]{1,20}' : '';
     }
