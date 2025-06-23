@@ -13,11 +13,13 @@ export function createDecimalZeroPaddingPostprocessor({
     minimumFractionDigits,
     prefix,
     postfix,
+    minusSign,
 }: {
     decimalSeparator: string;
     minimumFractionDigits: number;
     prefix: string;
     postfix: string;
+    minusSign: string;
 }): MaskitoPostprocessor {
     if (!minimumFractionDigits) {
         return identity;
@@ -29,7 +31,7 @@ export function createDecimalZeroPaddingPostprocessor({
             postfix,
         });
 
-        if (Number.isNaN(maskitoParseNumber(cleanValue, decimalSeparator))) {
+        if (Number.isNaN(maskitoParseNumber(cleanValue, {decimalSeparator, minusSign}))) {
             return {value, selection};
         }
 
