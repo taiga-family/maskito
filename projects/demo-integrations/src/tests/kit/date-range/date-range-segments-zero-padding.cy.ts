@@ -52,6 +52,35 @@ describe('DateRange | Date segments zero padding (pads digits with zero if date 
         });
     });
 
+    describe('[mode]="mm/dd/yyyy"', () => {
+        const mode = encodeURIComponent('mm/dd/yyyy');
+        const dateSeparator = encodeURIComponent('/');
+        const FIRST_DATE = '01/01/2000';
+
+        beforeEach(() => {
+            cy.visit(
+                `/${DemoPath.DateRange}/API?mode=${mode}&dateSeparator=${dateSeparator}&rangeSeparator=-`,
+            );
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .type('01012000')
+                .should('have.value', FIRST_DATE)
+                .as('input');
+        });
+
+        describe('handles month value exceeding maximum', () => {
+            it('{firstDate} => Type 13 => {firstDate}-01/3', () => {
+                cy.get('@input')
+                    .type('13')
+                    .should('have.value', `${FIRST_DATE}-01/3`)
+                    .should('have.prop', 'selectionStart', `${FIRST_DATE}-01/3`.length)
+                    .should('have.prop', 'selectionEnd', `${FIRST_DATE}-01/3`.length);
+            });
+        });
+    });
+
     describe('[mode]="yyyy/mm/dd"', () => {
         const mode = encodeURIComponent('yyyy/mm/dd');
         const dateSeparator = encodeURIComponent('/');

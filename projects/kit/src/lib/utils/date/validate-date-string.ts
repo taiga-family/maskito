@@ -50,8 +50,7 @@ export function validateDateString({
                 return {validatedDateString: '', updatedSelection: [from, to]}; // prevent changes
             }
 
-            validatedDateSegments[segmentName] =
-                `0${segmentValue.slice(0, lastSegmentDigitIndex)}`;
+            validatedDateSegments[segmentName] = `0${segmentValue.slice(0, -1)}`;
             dateSegments[i + 1] = [
                 nextSegment,
                 segmentValue.slice(-1) + (dateSegments[i + 1]?.[1] ?? '').slice(1),
