@@ -15,7 +15,7 @@ describe('DateTime | timeStep', () => {
                     .as('input');
 
                 cy.get('@input')
-                    .type('2212.')
+                    .type('2212;')
                     .should('have.value', '22.12;')
                     .should('have.a.prop', 'selectionStart', '22.12;'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;'.length);

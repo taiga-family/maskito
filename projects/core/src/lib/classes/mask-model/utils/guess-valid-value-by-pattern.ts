@@ -34,9 +34,13 @@ export function guessValidValueByPattern(
                 return newValidatedChars + charConstraint;
             }
 
-            return char.match(charConstraint)
-                ? newValidatedChars + char
-                : newValidatedChars;
+            if (char.match(charConstraint)) {
+                return newValidatedChars + char;
+            }
+
+            return leadingCharacters.startsWith(char)
+                ? newValidatedChars
+                : validatedCharacters;
         },
         '',
     );
