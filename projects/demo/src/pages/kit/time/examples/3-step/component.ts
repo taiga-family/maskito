@@ -16,8 +16,8 @@ import mask from './mask';
     ],
     template: `
         <tui-input
-            tuiTextfieldCustomContent="@tui.clock"
             tuiTextfieldFiller="hh:mm:ss"
+            tuiTextfieldIcon="@tui.clock"
             [style.max-width.rem]="20"
             [tuiTextfieldLabelOutside]="true"
             [(ngModel)]="value"

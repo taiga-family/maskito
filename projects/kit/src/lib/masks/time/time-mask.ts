@@ -15,6 +15,8 @@ import {
     createMeridiemPostprocessor,
     createMeridiemPreprocessor,
     createZeroPlaceholdersPreprocessor,
+    maskitoPostfixPostprocessorGenerator,
+    maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
 import type {MaskitoTimeSegments} from '../../types';
 import {createTimeMaskExpression, enrichTimeSegmentsWithZeroes} from '../../utils/time';
@@ -25,6 +27,8 @@ export function maskitoTimeOptionsGenerator({
     timeSegmentMaxValues = {},
     timeSegmentMinValues = {},
     step = 0,
+    prefix = '',
+    postfix = '',
 }: MaskitoTimeParams): Required<MaskitoOptions> {
     const hasMeridiem = mode.includes('AA');
     const enrichedTimeSegmentMaxValues: MaskitoTimeSegments<number> = {
@@ -37,13 +41,16 @@ export function maskitoTimeOptionsGenerator({
         ...(hasMeridiem ? {hours: 1} : {}),
         ...timeSegmentMinValues,
     };
+    const maskExpression = [...prefix, ...createTimeMaskExpression(mode)];
 
     return {
-        mask: createTimeMaskExpression(mode),
+        mask: postfix
+            ? ({value}) => cutExpression(maskExpression, value).concat(...postfix)
+            : maskExpression,
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
             createColonConvertPreprocessor(),
-            createZeroPlaceholdersPreprocessor(),
+            createZeroPlaceholdersPreprocessor(postfix),
             createMeridiemPreprocessor(mode),
             createInvalidTimeSegmentInsertionPreprocessor({
                 timeMode: mode,
@@ -58,6 +65,8 @@ export function maskitoTimeOptionsGenerator({
                     mode,
                     timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
                 }),
+            maskitoPrefixPostprocessorGenerator(prefix),
+            maskitoPostfixPostprocessorGenerator(postfix),
         ],
         plugins: [
             createTimeSegmentsSteppingPlugin({
@@ -69,4 +78,19 @@ export function maskitoTimeOptionsGenerator({
         ],
         overwriteMode: 'replace',
     };
+}
+
+function cutExpression(
+    expression: Array<RegExp | string>,
+    value: string,
+): Array<RegExp | string> {
+    let digitsCount =
+        Math.min(
+            value.replaceAll(/\D/g, '').length,
+            expression.filter((x) => typeof x !== 'string').length,
+        ) || 1;
+    const afterLastDigit =
+        expression.findIndex((x) => typeof x !== 'string' && !--digitsCount) + 1;
+
+    return expression.slice(0, afterLastDigit);
 }

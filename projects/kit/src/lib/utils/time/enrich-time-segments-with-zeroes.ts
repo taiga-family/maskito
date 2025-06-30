@@ -53,7 +53,7 @@ export function enrichTimeSegmentsWithZeroes(
     const validatedTimeString =
         toTimeString(validatedTimeSegments) + trailingNonDigitCharacters;
     const addedDateSegmentSeparators = Math.max(
-        validatedTimeString.length - value.length,
+        validatedTimeString.length - value.length - paddedZeroes,
         0,
     );
     let newFrom = from + paddedZeroes + addedDateSegmentSeparators;

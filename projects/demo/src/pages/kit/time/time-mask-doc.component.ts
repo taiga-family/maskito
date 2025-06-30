@@ -14,7 +14,8 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-am-pm/component';
 import {TimeMaskDocExample3} from './examples/3-step/component';
-import {TimeMaskDocExample4} from './examples/4-time-segments-min-max/component';
+import {TimeMaskDocExample4} from './examples/4-affixes/component';
+import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
 
 type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
@@ -29,6 +30,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
         TimeMaskDocExample2,
         TimeMaskDocExample3,
         TimeMaskDocExample4,
+        TimeMaskDocExample5,
         TuiAddonDoc,
         TuiInputModule,
         TuiLink,
@@ -58,9 +60,13 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw'),
     };
 
-    protected readonly timeSegmentsMinMaxExample4: Record<string, TuiRawLoaderContent> = {
+    protected readonly affixesExample4: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-affixes/mask.ts?raw'),
+    };
+
+    protected readonly timeSegmentsMinMaxExample5: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-time-segments-min-max/mask.ts?raw'
+            './examples/5-time-segments-min-max/mask.ts?raw'
         ),
     };
 
@@ -95,6 +101,8 @@ export default class TimeMaskDocComponent implements GeneratorOptions {
     public mode: MaskitoTimeMode = this.modeOptions[0];
     public timeSegmentMinValues = this.timeSegmentMinValuesOptions[0];
     public timeSegmentMaxValues = this.timeSegmentMaxValuesOptions[0];
+    public prefix = '';
+    public postfix = '';
 
     public step = 0;
     public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
