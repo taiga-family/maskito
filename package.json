@@ -128,9 +128,6 @@
         "prepend": true,
         "template": "templates/note.hbs"
     },
-    "overrides": {
-        "highlight.js": "11.11.1"
-    },
     "syncer": {
         "includePaths": [
             "./projects",
