@@ -10,46 +10,53 @@ import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 
 export class MaskModel implements ElementState {
+    private readonly unmaskInitialState: ElementState = {value: '', selection: [0, 0]};
+
     public value = '';
     public selection: SelectionRange = [0, 0];
 
     constructor(
-        private readonly initialElementState: ElementState,
+        initialElementState: ElementState,
         private readonly maskOptions: Required<MaskitoOptions>,
     ) {
-        const {value, selection} = calibrateValueByMask(
-            this.initialElementState,
-            this.getMaskExpression(this.initialElementState),
-        );
+        const expression = this.getMaskExpression(initialElementState);
+        const {value, selection} = calibrateValueByMask(initialElementState, expression);
 
+        this.unmaskInitialState = removeFixedMaskCharacters(
+            {value, selection},
+            expression,
+        );
         this.value = value;
         this.selection = selection;
     }
 
-    public addCharacters([from, to]: SelectionRange, newCharacters: string): void {
-        const {value, maskOptions} = this;
+    public addCharacters(newCharacters: string): void {
+        const {value, selection, maskOptions} = this;
+        const initialElementState = {value, selection} as const;
+        const {
+            selection: [from, to],
+        } = applyOverwriteMode(
+            initialElementState,
+            newCharacters,
+            maskOptions.overwriteMode,
+        );
         const maskExpression = this.getMaskExpression({
             value: value.slice(0, from) + newCharacters + value.slice(to),
             selection: [from + newCharacters.length, from + newCharacters.length],
         });
-        const initialElementState = {value, selection: [from, to]} as const;
-        const unmaskedElementState = removeFixedMaskCharacters(
-            initialElementState,
-            maskExpression,
-        );
         const [unmaskedFrom, unmaskedTo] = applyOverwriteMode(
-            unmaskedElementState,
+            this.unmaskInitialState,
             newCharacters,
             maskOptions.overwriteMode,
         ).selection;
         const newUnmaskedLeadingValuePart =
-            unmaskedElementState.value.slice(0, unmaskedFrom) + newCharacters;
+            this.unmaskInitialState.value.slice(0, unmaskedFrom) + newCharacters;
         const newCaretIndex = newUnmaskedLeadingValuePart.length;
         const maskedElementState = calibrateValueByMask(
             {
                 value:
                     newUnmaskedLeadingValuePart +
-                    unmaskedElementState.value.slice(unmaskedTo),
+                    this.unmaskInitialState.value.slice(unmaskedTo),
                 selection: [newCaretIndex, newCaretIndex],
             },
             maskExpression,
@@ -79,7 +86,9 @@ export class MaskModel implements ElementState {
         this.selection = maskedElementState.selection;
     }
 
-    public deleteCharacters([from, to]: SelectionRange): void {
+    public deleteCharacters(): void {
+        const [from, to] = this.selection;
+
         if (from === to || !to) {
             return;
         }
@@ -90,14 +99,10 @@ export class MaskModel implements ElementState {
             selection: [from, from],
         });
         const initialElementState = {value, selection: [from, to]} as const;
-        const unmaskedElementState = removeFixedMaskCharacters(
-            initialElementState,
-            maskExpression,
-        );
-        const [unmaskedFrom, unmaskedTo] = unmaskedElementState.selection;
+        const [unmaskedFrom, unmaskedTo] = this.unmaskInitialState.selection;
         const newUnmaskedValue =
-            unmaskedElementState.value.slice(0, unmaskedFrom) +
-            unmaskedElementState.value.slice(unmaskedTo);
+            this.unmaskInitialState.value.slice(0, unmaskedFrom) +
+            this.unmaskInitialState.value.slice(unmaskedTo);
 
         const maskedElementState = calibrateValueByMask(
             {value: newUnmaskedValue, selection: [unmaskedFrom, unmaskedFrom]},

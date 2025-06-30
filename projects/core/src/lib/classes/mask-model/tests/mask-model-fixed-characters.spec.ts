@@ -52,7 +52,7 @@ describe('MaskModel | Fixed characters', () => {
             );
 
             try {
-                maskModel.addCharacters(selection, addedCharacters);
+                maskModel.addCharacters(addedCharacters);
             } finally {
                 expect(maskModel.value).toBe(expectedNewValue);
                 expect(maskModel.selection).toEqual([
@@ -124,7 +124,7 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [2, 2] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, 'q')).toThrow();
+                expect(() => maskModel.addCharacters('q')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
@@ -134,7 +134,7 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [1, 1] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, '$')).toThrow();
+                expect(() => maskModel.addCharacters('$')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
@@ -144,10 +144,104 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [1, 1] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, 'X')).toThrow();
+                expect(() => maskModel.addCharacters('X')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
+        });
+    });
+
+    describe('Dynamic mask expression + trailing fixed character', () => {
+        const postfix = 'left';
+        const timeMask: ReadonlyArray<RegExp | string> = [/\d/, /\d/, ':', /\d/, /\d/];
+        const timeWithPostfixMask: Required<MaskitoOptions> = {
+            ...MASKITO_DEFAULT_OPTIONS,
+            mask: ({value}) => {
+                let digitsCount = Math.min(value.replaceAll(/\D/g, '').length, 4);
+                const afterLastDigit =
+                    timeMask.findIndex((x) => typeof x !== 'string' && !--digitsCount) +
+                    1;
+
+                return afterLastDigit
+                    ? timeMask.slice(0, afterLastDigit).concat(...postfix)
+                    : [];
+            },
+            overwriteMode: 'replace',
+        };
+
+        it('adds trailing postfix on enter of digit inside empty textfield', () => {
+            const maskModel = new MaskModel(
+                {
+                    selection: [0, 0],
+                    value: '',
+                },
+                timeWithPostfixMask,
+            );
+
+            maskModel.addCharacters('1');
+
+            expect(maskModel.value).toBe('1left');
+            expect(maskModel.selection).toEqual([1, 1]);
+        });
+
+        it('adds trailing postfix on paste of many digits inside empty textfield', () => {
+            const maskModel = new MaskModel(
+                {
+                    selection: [0, 0],
+                    value: '',
+                },
+                timeWithPostfixMask,
+            );
+
+            maskModel.addCharacters('123');
+
+            expect(maskModel.value).toBe('12:3left');
+            expect(maskModel.selection).toEqual(['12:3'.length, '12:3'.length]);
+        });
+
+        it('edits digit in the middle', () => {
+            const maskModel = new MaskModel(
+                {
+                    selection: [1, 1],
+                    value: '12:3left',
+                },
+                timeWithPostfixMask,
+            );
+
+            maskModel.addCharacters('4');
+
+            expect(maskModel.value).toBe('14:3left');
+            expect(maskModel.selection).toEqual([3, 3]);
+        });
+
+        it('erases the last digit without losing trailing fixed characters', () => {
+            const maskModel = new MaskModel(
+                {
+                    selection: [3, 4],
+                    value: '12:3left',
+                },
+                timeWithPostfixMask,
+            );
+
+            maskModel.deleteCharacters();
+
+            expect(maskModel.value).toBe('12left');
+            expect(maskModel.selection).toEqual([2, 2]);
+        });
+
+        it('erases the digit in the middle without losing trailing fixed character', () => {
+            const maskModel = new MaskModel(
+                {
+                    selection: [3, 4],
+                    value: '12:34 left',
+                },
+                timeWithPostfixMask,
+            );
+
+            maskModel.deleteCharacters();
+
+            expect(maskModel.value).toBe('12:4left');
+            expect(maskModel.selection).toEqual([3, 3]);
         });
     });
 
@@ -166,7 +260,7 @@ describe('MaskModel | Fixed characters', () => {
             dateMask,
         );
 
-        expect(() => maskModel.addCharacters(selection, '#')).toThrow();
+        expect(() => maskModel.addCharacters('#')).toThrow();
         expect(maskModel.value).toBe('12');
         expect(maskModel.selection).toEqual(selection);
     });
