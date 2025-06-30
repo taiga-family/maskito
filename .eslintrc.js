@@ -25,5 +25,16 @@ module.exports = {
                 'no-irregular-whitespace': 'off',
             },
         },
+        {
+            files: ['*.spec.ts'],
+            rules: {
+                'jest/prefer-ending-with-an-expect': [
+                    'error',
+                    {
+                        assertFunctionNames: ['expect', 'check'],
+                    },
+                ],
+            },
+        },
     ],
 };
