@@ -100,18 +100,20 @@ describe('toNumberParts', () => {
         });
     });
 
-    it('different minus signs', () => {
+    describe('different minus signs', () => {
         [CHAR_MINUS, CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH, CHAR_JP_HYPHEN].forEach(
             (minus) => {
-                expect(
-                    toNumberParts(`${minus}1,234,567.89`, {
-                        decimalSeparator: '.',
-                        minusSign: minus,
-                    }),
-                ).toEqual({
-                    minus,
-                    integerPart: '1,234,567',
-                    decimalPart: '89',
+                it(`${minus}`, () => {
+                    expect(
+                        toNumberParts(`${minus}1,234,567.89`, {
+                            decimalSeparator: '.',
+                            minusSign: minus,
+                        }),
+                    ).toEqual({
+                        minus,
+                        integerPart: '1,234,567',
+                        decimalPart: '89',
+                    });
                 });
             },
         );
