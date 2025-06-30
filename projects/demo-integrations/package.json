@@ -4,7 +4,7 @@
     "devDependencies": {
         "@nx/cypress": "20.1.4",
         "@nx/vite": "20.1.4",
-        "@vitejs/plugin-react": "4.5.1",
+        "@vitejs/plugin-react": "4.6.0",
         "cypress": "13.17.0",
         "cypress-real-events": "1.14.0"
     }
