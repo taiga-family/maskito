@@ -38,7 +38,7 @@ describe('DateTime | time modes with meridiem', () => {
                     .should('have.prop', 'selectionEnd', '01.01.2000, 12:34 AM'.length);
             });
 
-            it('<any date>12:34| => Type lowercase `p` => <any date>12:34 AM', () => {
+            it('<any date>12:34| => Type lowercase `p` => <any date>12:34 PM', () => {
                 cy.get('@textfield')
                     .type('01.01.20001234p')
                     .should('have.value', '01.01.2000, 12:34 PM')
@@ -46,7 +46,7 @@ describe('DateTime | time modes with meridiem', () => {
                     .should('have.prop', 'selectionEnd', '01.01.2000, 12:34 PM'.length);
             });
 
-            it('<any date>12:34| => Type uppercase `P` => <any date>12:34 AM', () => {
+            it('<any date>12:34| => Type uppercase `P` => <any date>12:34 PM', () => {
                 cy.get('@textfield')
                     .type('01.01.20001234P')
                     .should('have.value', '01.01.2000, 12:34 PM')
@@ -54,20 +54,20 @@ describe('DateTime | time modes with meridiem', () => {
                     .should('have.prop', 'selectionEnd', '01.01.2000, 12:34 PM'.length);
             });
 
-            it('<any date>12:34| => Type lowercase `m` => <any date>12:34', () => {
+            it('<any date>12:34| => Type lowercase `m` => <any date>12:34|', () => {
                 cy.get('@textfield')
                     .type('01.01.20001234m')
-                    .should('have.value', '01.01.2000, 12:34 ')
-                    .should('have.prop', 'selectionStart', '01.01.2000, 12:34 '.length)
-                    .should('have.prop', 'selectionEnd', '01.01.2000, 12:34 '.length);
+                    .should('have.value', '01.01.2000, 12:34')
+                    .should('have.prop', 'selectionStart', '01.01.2000, 12:34'.length)
+                    .should('have.prop', 'selectionEnd', '01.01.2000, 12:34'.length);
             });
 
-            it('<any date>12:34| => Type uppercase `M` => <any date>12:34', () => {
+            it('<any date>12:34| => Type uppercase `M` => <any date>12:34|', () => {
                 cy.get('@textfield')
                     .type('01.01.20001234M')
-                    .should('have.value', '01.01.2000, 12:34 ')
-                    .should('have.prop', 'selectionStart', '01.01.2000, 12:34 '.length)
-                    .should('have.prop', 'selectionEnd', '01.01.2000, 12:34 '.length);
+                    .should('have.value', '01.01.2000, 12:34')
+                    .should('have.prop', 'selectionStart', '01.01.2000, 12:34'.length)
+                    .should('have.prop', 'selectionEnd', '01.01.2000, 12:34'.length);
             });
         });
 
@@ -272,7 +272,7 @@ describe('DateTime | time modes with meridiem', () => {
 
                 beforeEach(() => {
                     cy.get('@textfield')
-                        .type('01.01.2000 1234 ')
+                        .type('01.01.2000 1234 ')
                         .should('have.value', beforeMeridiemValue);
                 });
 

@@ -57,17 +57,17 @@ describe('Time | modes with meridiem', () => {
             it('12:34| => Type lowercase `m` => 12:34', () => {
                 cy.get('@textfield')
                     .type('1234m')
-                    .should('have.value', '12:34 ')
-                    .should('have.prop', 'selectionStart', '12:34 '.length)
-                    .should('have.prop', 'selectionEnd', '12:34 '.length);
+                    .should('have.value', '12:34')
+                    .should('have.prop', 'selectionStart', '12:34'.length)
+                    .should('have.prop', 'selectionEnd', '12:34'.length);
             });
 
             it('12:34| => Type uppercase `M` => 12:34', () => {
                 cy.get('@textfield')
                     .type('1234M')
-                    .should('have.value', '12:34 ')
-                    .should('have.prop', 'selectionStart', '12:34 '.length)
-                    .should('have.prop', 'selectionEnd', '12:34 '.length);
+                    .should('have.value', '12:34')
+                    .should('have.prop', 'selectionStart', '12:34'.length)
+                    .should('have.prop', 'selectionEnd', '12:34'.length);
             });
         });
 
@@ -283,7 +283,7 @@ describe('Time | modes with meridiem', () => {
         describe('toggle meridiem value on ArrowUp / ArrowDown', () => {
             describe('Initial value === "12:34 |"', () => {
                 beforeEach(() => {
-                    cy.get('@textfield').type('1234 ');
+                    cy.get('@textfield').type('1234 ');
                 });
 
                 it('↑ --- 12:34 |AM', () => {

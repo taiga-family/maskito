@@ -150,4 +150,24 @@ describe('MaskModel | Fixed characters', () => {
             });
         });
     });
+
+    it('attempt to enter invalid character at the position of fixed character', () => {
+        const dateMask: Required<MaskitoOptions> = {
+            ...MASKITO_DEFAULT_OPTIONS,
+            mask: [/\d/, /\d/, '.', /\d/, /\d/],
+        };
+
+        const selection = [2, 2] as const;
+        const maskModel = new MaskModel(
+            {
+                selection,
+                value: '12',
+            },
+            dateMask,
+        );
+
+        expect(() => maskModel.addCharacters(selection, '#')).toThrow();
+        expect(maskModel.value).toBe('12');
+        expect(maskModel.selection).toEqual(selection);
+    });
 });
