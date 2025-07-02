@@ -26,8 +26,12 @@ export class MaskModel implements ElementState {
         this.selection = selection;
     }
 
-    public addCharacters([from, to]: SelectionRange, newCharacters: string): void {
-        const {value, maskOptions} = this;
+    public addCharacters(newCharacters: string): void {
+        const {
+            value,
+            maskOptions,
+            selection: [from, to],
+        } = this;
         const maskExpression = this.getMaskExpression({
             value: value.slice(0, from) + newCharacters + value.slice(to),
             selection: [from + newCharacters.length, from + newCharacters.length],
@@ -79,7 +83,9 @@ export class MaskModel implements ElementState {
         this.selection = maskedElementState.selection;
     }
 
-    public deleteCharacters([from, to]: SelectionRange): void {
+    public deleteCharacters(): void {
+        const [from, to] = this.selection;
+
         if (from === to || !to) {
             return;
         }

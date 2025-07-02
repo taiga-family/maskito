@@ -52,7 +52,7 @@ describe('MaskModel | Fixed characters', () => {
             );
 
             try {
-                maskModel.addCharacters(selection, addedCharacters);
+                maskModel.addCharacters(addedCharacters);
             } finally {
                 expect(maskModel.value).toBe(expectedNewValue);
                 expect(maskModel.selection).toEqual([
@@ -124,7 +124,7 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [2, 2] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, 'q')).toThrow();
+                expect(() => maskModel.addCharacters('q')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
@@ -134,7 +134,7 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [1, 1] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, '$')).toThrow();
+                expect(() => maskModel.addCharacters('$')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
@@ -144,7 +144,7 @@ describe('MaskModel | Fixed characters', () => {
                 const selection = [1, 1] as const;
                 const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters(selection, 'X')).toThrow();
+                expect(() => maskModel.addCharacters('X')).toThrow();
                 expect(maskModel.value).toBe(value);
                 expect(maskModel.selection).toEqual(selection);
             });
