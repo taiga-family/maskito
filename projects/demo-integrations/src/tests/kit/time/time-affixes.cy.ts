@@ -4,7 +4,11 @@ describe('Time | Prefix & Postfix', () => {
     describe('[postfix]=" left" + WITH caret guard', () => {
         beforeEach(() => {
             cy.visit(DemoPath.Time);
-            cy.get('#affixes input').should('be.visible').first().focus().as('textfield');
+            cy.get('#affixes input')
+                .first()
+                .should('have.value', '05:00 left')
+                .focus()
+                .as('textfield');
         });
 
         it('basic typing works', () => {
@@ -20,6 +24,9 @@ describe('Time | Prefix & Postfix', () => {
             cy.get('@textfield')
                 .type('{moveToStart}')
                 .type('{rightArrow}'.repeat(2))
+                .should('have.value', '05:00 left')
+                .should('have.prop', 'selectionStart', '05'.length)
+                .should('have.prop', 'selectionEnd', '05'.length)
                 .type('{backspace}')
                 .should('have.value', '00:00 left')
                 .should('have.prop', 'selectionStart', 1)
@@ -56,6 +63,7 @@ describe('Time | Prefix & Postfix', () => {
             cy.get('@textfield')
                 .type('{moveToStart}')
                 .type('{rightArrow}'.repeat(3))
+                .should('have.value', '05:00 left')
                 .should('have.prop', 'selectionStart', '05:'.length)
                 .should('have.prop', 'selectionEnd', '05:'.length)
                 .type('{backspace}')
@@ -68,6 +76,7 @@ describe('Time | Prefix & Postfix', () => {
             cy.get('@textfield')
                 .type('{moveToStart}')
                 .type('{rightArrow}'.repeat(2))
+                .should('have.value', '05:00 left')
                 .should('have.prop', 'selectionStart', '05'.length)
                 .should('have.prop', 'selectionEnd', '05'.length)
                 .type('{del}')
@@ -123,7 +132,7 @@ describe('Time | Prefix & Postfix', () => {
 
     describe('[postfix]="left" + WITHOUT caret guard', () => {
         beforeEach(() => {
-            cy.visit(`${DemoPath.Time}/API?mode=HH:MM&postfix=left`);
+            cy.visit(`${DemoPath.Time}/API?mode=HH:MM:SS&postfix=left`);
             cy.get('#demo-content input')
                 .should('be.visible')
                 .should('have.value', '')
@@ -134,18 +143,18 @@ describe('Time | Prefix & Postfix', () => {
 
         it('basic typing works', () => {
             cy.get('@textfield')
-                .type('1234')
-                .should('have.value', '12:34left')
-                .should('have.prop', 'selectionStart', '12:34'.length)
-                .should('have.prop', 'selectionEnd', '12:34'.length);
+                .type('123456')
+                .should('have.value', '12:34:56left')
+                .should('have.prop', 'selectionStart', '12:34:56'.length)
+                .should('have.prop', 'selectionEnd', '12:34:56'.length);
         });
 
         it('replaces deleted character by zero', () => {
             cy.get('@textfield')
-                .type('1234')
-                .type('{leftArrow}'.repeat(':34'.length))
+                .type('123456')
+                .type('{leftArrow}'.repeat(':34:56'.length))
                 .type('{backspace}')
-                .should('have.value', '10:34left')
+                .should('have.value', '10:34:56left')
                 .should('have.prop', 'selectionStart', 1)
                 .should('have.prop', 'selectionEnd', 1);
         });
@@ -166,10 +175,18 @@ describe('Time | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', '09:07'.length);
         });
 
+        it('zero-padding for seconds segment works', () => {
+            cy.get('@textfield')
+                .type('976')
+                .should('have.value', '09:07:06left')
+                .should('have.prop', 'selectionStart', '09:07:06'.length)
+                .should('have.prop', 'selectionEnd', '09:07:06'.length);
+        });
+
         it('replaceAll + delete => only non-removable postfix', () => {
             cy.get('@textfield')
-                .type('1234')
-                .should('have.value', '12:34left')
+                .type('123456')
+                .should('have.value', '12:34:56left')
                 .type('{selectAll}{backspace}')
                 .should('have.value', 'left')
                 .should('have.prop', 'selectionStart', 0)
@@ -178,14 +195,14 @@ describe('Time | Prefix & Postfix', () => {
 
         it('move caret left on attempt to remove colon by Backspace', () => {
             cy.get('@textfield')
-                .type('1234')
-                .type('{leftArrow}'.repeat('34'.length))
-                .should('have.prop', 'selectionStart', '12:'.length)
-                .should('have.prop', 'selectionEnd', '12:'.length)
+                .type('123456')
+                .type('{leftArrow}'.repeat('56'.length))
+                .should('have.prop', 'selectionStart', '12:34:'.length)
+                .should('have.prop', 'selectionEnd', '12:34:'.length)
                 .type('{backspace}')
-                .should('have.value', '12:34left')
-                .should('have.prop', 'selectionStart', '12'.length)
-                .should('have.prop', 'selectionEnd', '12'.length);
+                .should('have.value', '12:34:56left')
+                .should('have.prop', 'selectionStart', '12:34'.length)
+                .should('have.prop', 'selectionEnd', '12:34'.length);
         });
 
         it('move caret right on attempt to remove colon by Delete', () => {
@@ -202,11 +219,11 @@ describe('Time | Prefix & Postfix', () => {
 
         it('allows to delete last digit without zero placeholder', () => {
             cy.get('@textfield')
-                .type('1234')
-                .should('have.value', '12:34left')
-                .should('have.prop', 'selectionStart', '12:34'.length)
-                .should('have.prop', 'selectionEnd', '12:34'.length)
-                .type('{backspace}')
+                .type('123456')
+                .should('have.value', '12:34:56left')
+                .should('have.prop', 'selectionStart', '12:34:56'.length)
+                .should('have.prop', 'selectionEnd', '12:34:56'.length)
+                .type('{backspace}'.repeat(3))
                 .should('have.value', '12:3left')
                 .should('have.prop', 'selectionStart', '12:3'.length)
                 .should('have.prop', 'selectionEnd', '12:3'.length)
