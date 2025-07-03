@@ -268,15 +268,16 @@ export class Maskito extends MaskHistory {
             isForward ? 'deleteForward' : 'deleteBackward',
         );
         const maskModel = new MaskModel(elementState, this.options);
-        const [from, to] = elementState.selection;
 
-        maskModel.deleteCharacters([from, to]);
+        maskModel.deleteCharacters();
 
         const newElementState = this.postprocessor(maskModel, initialState);
 
         if (
             areElementValuesEqual(initialState, elementState, maskModel, newElementState)
         ) {
+            const [from, to] = elementState.selection;
+
             event.preventDefault();
 
             // User presses Backspace/Delete for the fixed value
@@ -298,7 +299,7 @@ export class Maskito extends MaskHistory {
         const maskModel = new MaskModel(elementState, options);
 
         try {
-            maskModel.addCharacters(elementState.selection, insertedText);
+            maskModel.addCharacters(insertedText);
         } catch {
             return event.preventDefault();
         }

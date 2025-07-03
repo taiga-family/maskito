@@ -21,6 +21,10 @@ export function createValidDatePreprocessor({
             };
         }
 
+        if (!data.replaceAll(/\D/g, '')) {
+            return {elementState, data};
+        }
+
         const newCharacters = data.replaceAll(
             new RegExp(
                 `[^\\d${escapeRegExp(dateSegmentsSeparator)}${rangeSeparator}]`,
@@ -28,10 +32,6 @@ export function createValidDatePreprocessor({
             ),
             '',
         );
-
-        if (!newCharacters) {
-            return {elementState, data: ''};
-        }
 
         const [from, rawTo] = selection;
         let to = rawTo + data.length;

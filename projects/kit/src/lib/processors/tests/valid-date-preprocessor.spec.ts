@@ -40,4 +40,25 @@ describe('createValidDatePreprocessor', () => {
             check('0602202307022023', '06.02.202307.02.2023');
         });
     });
+
+    it('ignores range separator', () => {
+        const rangeSeparator = ' – ';
+        const processor = createValidDatePreprocessor({
+            rangeSeparator,
+            dateModeTemplate: 'dd.mm.yyyy',
+            dateSegmentsSeparator: '.',
+        });
+
+        const initialState = {
+            value: '06.02.2023',
+            selection: ['06.02.2023'.length, '06.02.2023'.length] as const,
+        };
+        const {elementState, data} = processor(
+            {elementState: initialState, data: rangeSeparator},
+            'insert',
+        );
+
+        expect(elementState).toEqual(initialState);
+        expect(data).toBe(rangeSeparator);
+    });
 });
