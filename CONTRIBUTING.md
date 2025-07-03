@@ -24,12 +24,6 @@ npm run test
 npm run cy:run
 ```
 
-4. (WebStorm only users) This repository contains packages for different JavaScript-frameworks. WebStorm cannot
-   correctly distinguish between `Angular` and `Vue` templates. It causes
-   [issue](https://youtrack.jetbrains.com/issue/WEB-61340/WebStorm-Bundled-Vue-plugin-overrides-bundled-Angular-plugin-for-Angular-components)
-   with code completion and syntax highlighting. To fix the issue disable bundled `Vue` plugin in
-   `Settings -> Plugins -> Vue.js -> Disable`.
-
 ## Pull Request Process
 
 1. We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) in our commit messages, i.e.
