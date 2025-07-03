@@ -80,6 +80,20 @@ export function maskitoTimeOptionsGenerator({
     };
 }
 
+/**
+ * Without cutting, the mask expression removes postfix on the last digit deletion
+ * ___
+ * Case 1 (static pattern mask expression)
+ * Mask expression is [/\d/, /\d/, ':', /\d/, /\d/, ' left']
+ * 12:34| left => Press Backspace => 12:3|
+ * Mask correctly removes postfix because it's fixed characters after not yet inserted 4th digit.
+ * ___
+ * Case 2 (dynamic pattern mask expression)
+ * Mask expression is [/\d/, /\d/, ':', /\d/, /\d/, ' left'] & textfield contains `12:34 left`
+ * 12:34| left => Press Backspace => Mask expression becomes [/\d/, /\d/, ':', /\d/, ' left']  => 12:3| left
+ * Mask correctly does not remove postfix because it's trailing fixed characters
+ * and all non-fixed characters were already inserted.
+ */
 function cutExpression(
     expression: Array<RegExp | string>,
     value: string,
