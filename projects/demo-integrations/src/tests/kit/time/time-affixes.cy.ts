@@ -224,4 +224,120 @@ describe('Time | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', 0);
         });
     });
+
+    describe('[prefix]="Timeout"', () => {
+        beforeEach(() => {
+            cy.visit(`${DemoPath.Time}/API?mode=HH:MM:SS.MSS&prefix=Timeout`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .should('have.value', '')
+                .first()
+                .focus()
+                .as('textfield');
+        });
+
+        it('basic typing works', () => {
+            cy.get('@textfield')
+                .type('123456789')
+                .should('have.value', 'Timeout12:34:56.789')
+                .should('have.prop', 'selectionStart', 'Timeout12:34:56.789'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:34:56.789'.length);
+        });
+
+        it('replaces deleted character by zero', () => {
+            cy.get('@textfield')
+                .type('1234')
+                .type('{leftArrow}'.repeat(':34'.length))
+                .type('{backspace}')
+                .should('have.value', 'Timeout10:34')
+                .should('have.prop', 'selectionStart', 'Timeout1'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout1'.length);
+        });
+
+        it('zero-padding for hour segment works', () => {
+            cy.get('@textfield')
+                .type('9')
+                .should('have.value', 'Timeout09')
+                .should('have.prop', 'selectionStart', 'Timeout09'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout09'.length);
+        });
+
+        it('zero-padding for minutes segment works', () => {
+            cy.get('@textfield')
+                .type('97')
+                .should('have.value', 'Timeout09:07')
+                .should('have.prop', 'selectionStart', 'Timeout09:07'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout09:07'.length);
+        });
+
+        it('zero-padding for second segment works', () => {
+            cy.get('@textfield')
+                .type('976')
+                .should('have.value', 'Timeout09:07:06')
+                .should('have.prop', 'selectionStart', 'Timeout09:07:06'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout09:07:06'.length);
+        });
+
+        it('replaceAll + delete => only non-removable postfix', () => {
+            cy.get('@textfield')
+                .type('123456789')
+                .should('have.value', 'Timeout12:34:56.789')
+                .type('{selectAll}{backspace}')
+                .should('have.value', 'Timeout')
+                .should('have.prop', 'selectionStart', 'Timeout'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout'.length);
+        });
+
+        it('move caret left on attempt to remove colon by Backspace', () => {
+            cy.get('@textfield')
+                .type('1234')
+                .type('{leftArrow}'.repeat('34'.length))
+                .should('have.prop', 'selectionStart', 'Timeout12:'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:'.length)
+                .type('{backspace}')
+                .should('have.value', 'Timeout12:34')
+                .should('have.prop', 'selectionStart', 'Timeout12'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12'.length);
+        });
+
+        it('move caret right on attempt to remove colon by Delete', () => {
+            cy.get('@textfield')
+                .type('1234')
+                .type('{leftArrow}'.repeat(':34'.length))
+                .should('have.prop', 'selectionStart', 'Timeout12'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12'.length)
+                .type('{del}')
+                .should('have.value', 'Timeout12:34')
+                .should('have.prop', 'selectionStart', 'Timeout12:'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:'.length);
+        });
+
+        it('allows to delete last digit without zero placeholder', () => {
+            cy.get('@textfield')
+                .type('123456789')
+                .should('have.value', 'Timeout12:34:56.789')
+                .should('have.prop', 'selectionStart', 'Timeout12:34:56.789'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:34:56.789'.length)
+                .type('{backspace}')
+                .should('have.value', 'Timeout12:34:56.78')
+                .should('have.prop', 'selectionStart', 'Timeout12:34:56.78'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:34:56.78'.length)
+                .type('{backspace}'.repeat(2))
+                .should('have.value', 'Timeout12:34:56')
+                .should('have.prop', 'selectionStart', 'Timeout12:34:56'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:34:56'.length)
+                .type('{backspace}'.repeat(3))
+                .should('have.value', 'Timeout12:3')
+                .should('have.prop', 'selectionStart', 'Timeout12:3'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout12:3'.length)
+                .type('{backspace}'.repeat(3))
+                .should('have.value', 'Timeout')
+                .should('have.prop', 'selectionStart', 'Timeout'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout'.length)
+                .type('{backspace}'.repeat(5))
+                .should('have.value', 'Timeout')
+                .should('have.prop', 'selectionStart', 'Timeout'.length)
+                .should('have.prop', 'selectionEnd', 'Timeout'.length);
+        });
+    });
 });
