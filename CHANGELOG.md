@@ -1,3 +1,19 @@
+### [3.10.0](https://github.com/taiga-family/maskito/compare/v3.9.1...v3.10.0) (2025-07-04)
+
+### 🚀 Features
+
+- **kit**: `Time` supports `prefix` & `postfix` parameters (#2185)
+  [(2cc7462)](https://github.com/taiga-family/maskito/commit/2cc7462583a2fe372d0cad312fb5f0d90ca0fe8e)
+
+### 🐞 Bug Fixes
+
+- **core**: invalid behavior of dynamic mask expression with trailing fixed characters (#2184)
+  [(cecf9d6)](https://github.com/taiga-family/maskito/commit/cecf9d69468e56de8ff4f39af7ebc07d5a686fe8)
+- **core**: do not insert fixed character on attempt to enter invalid character at its position (#2181)
+  [(7a51702)](https://github.com/taiga-family/maskito/commit/7a51702361237a41cd9bbdcdbb8e46d0bfa2e4bc)
+- **kit**: date-related mask with month-first mode has incorrect zero-padding logic (#2166)
+  [(26294e8)](https://github.com/taiga-family/maskito/commit/26294e8250591c727f99ccec563e8492df7c1068)
+
 ### [3.9.1](https://github.com/taiga-family/maskito/compare/v3.9.0...v3.9.1) (2025-06-23)
 
 ### 🐞 Bug Fixes
