@@ -95,9 +95,25 @@
         </tui-doc-example>
 
         <tui-doc-example
+            id="affixes"
+            heading="Affixes"
+            [content]="affixesExample4"
+            [description]="affixesDescription"
+        >
+            <ng-template #affixesDescription>
+                Use
+                <code>prefix</code>
+                /
+                <code>postfix</code>
+                parameters to set non-removable text before / after the time.
+            </ng-template>
+            <time-mask-doc-example-4 />
+        </tui-doc-example>
+
+        <tui-doc-example
             id="time-segment-min-max"
             heading="Min / max value for every time segment"
-            [content]="timeSegmentsMinMaxExample4"
+            [content]="timeSegmentsMinMaxExample5"
             [description]="timeSegmentMinMaxDescription"
         >
             <ng-template #timeSegmentMinMaxDescription>
@@ -116,7 +132,7 @@
                     consists of two time segments: hours and minutes.
                 </p>
             </ng-template>
-            <time-mask-doc-example-4 />
+            <time-mask-doc-example-5 />
         </tui-doc-example>
     </ng-template>
 
@@ -127,7 +143,7 @@
                     tuiTextfieldCustomContent="@tui.clock"
                     class="input-time"
                     [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="mode.toLowerCase()"
+                    [tuiTextfieldFiller]="prefix || postfix ? '' : mode.toLowerCase()"
                 >
                     Enter time
                     <input
@@ -204,6 +220,40 @@
                     <strong>Default:</strong>
                     <code>0</code>
                     (disable stepping)
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="prefix"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="prefix"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Uneditable text
+                <strong>before</strong>
+                time
+
+                <p>
+                    <strong>Default:</strong>
+                    empty string (no prefix).
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="postfix"
+                documentationPropertyType="string"
+                [(documentationPropertyValue)]="postfix"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Uneditable text
+                <strong>after</strong>
+                time
+
+                <p>
+                    <strong>Default:</strong>
+                    empty string (no postfix).
                 </p>
             </ng-template>
         </tui-doc-documentation>

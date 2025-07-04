@@ -1,6 +1,9 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
+export function createZeroPlaceholdersPreprocessor(postfix = ''): MaskitoPreprocessor {
+    const isLastChar = (value: string, [_, to]: readonly [number, number]): boolean =>
+        to >= value.length - postfix.length;
+
     return ({elementState}, actionType) => {
         const {value, selection} = elementState;
 
@@ -33,8 +36,4 @@ export function createZeroPlaceholdersPreprocessor(): MaskitoPreprocessor {
             },
         };
     };
-}
-
-function isLastChar(value: string, [_, to]: readonly [number, number]): boolean {
-    return to === value.length;
 }

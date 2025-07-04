@@ -8,7 +8,7 @@ import mask from './mask';
 
 @Component({
     standalone: true,
-    selector: 'time-mask-doc-example-4',
+    selector: 'time-mask-doc-example-5',
     imports: [FormsModule, MaskitoDirective, TuiSegmented, TuiTextfield],
     template: `
         <tui-textfield
@@ -31,7 +31,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample4 {
+export class TimeMaskDocExample5 {
     protected value = '03:30';
     protected readonly mask = mask;
 }

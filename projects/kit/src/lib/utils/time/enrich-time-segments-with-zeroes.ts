@@ -48,12 +48,14 @@ export function enrichTimeSegmentsWithZeroes(
         validatedTimeSegments[segmentName] = validatedSegmentValue;
     }
 
-    // trailing segment separators or meridiem characters
-    const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || [];
+    const [leadingNonDigitCharacters = ''] = value.match(/^\D+(?=\d)/g) || []; // prefix
+    const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || []; // trailing segment separators / meridiem characters / postfix
     const validatedTimeString =
-        toTimeString(validatedTimeSegments) + trailingNonDigitCharacters;
+        leadingNonDigitCharacters +
+        toTimeString(validatedTimeSegments) +
+        trailingNonDigitCharacters;
     const addedDateSegmentSeparators = Math.max(
-        validatedTimeString.length - value.length,
+        validatedTimeString.length - value.length - paddedZeroes,
         0,
     );
     let newFrom = from + paddedZeroes + addedDateSegmentSeparators;

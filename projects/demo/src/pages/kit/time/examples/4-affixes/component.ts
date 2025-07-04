@@ -7,7 +7,7 @@ import mask from './mask';
 
 @Component({
     standalone: true,
-    selector: 'time-mask-doc-example-1',
+    selector: 'time-mask-doc-example-4',
     imports: [
         FormsModule,
         MaskitoDirective,
@@ -16,22 +16,21 @@ import mask from './mask';
     ],
     template: `
         <tui-input
-            tuiTextfieldFiller="hh:mm:ss"
-            tuiTextfieldIcon="@tui.clock"
+            tuiTextfieldIcon="@tui.timer"
             [style.max-width.rem]="20"
             [(ngModel)]="value"
         >
-            Enter 24-hour time format
+            Timer (minutes)
             <input
-                inputmode="decimal"
+                inputmode="numeric"
                 tuiTextfieldLegacy
-                [maskito]="mask"
+                [maskito]="maskitoOptions"
             />
         </tui-input>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample1 {
-    protected readonly mask = mask;
-    protected value = '23:59:59';
+export class TimeMaskDocExample4 {
+    protected value = '05:00 left';
+    protected readonly maskitoOptions = mask;
 }
