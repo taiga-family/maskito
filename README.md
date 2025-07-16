@@ -4,7 +4,7 @@
 [![All packages CI](https://github.com/taiga-family/maskito/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/taiga-family/maskito/actions/workflows/build.yml)
 
 <p align="center">
-    <img src="projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" height="120px">
+    <img src="projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" width="120px">
 </p>
 
 <p align="center">
