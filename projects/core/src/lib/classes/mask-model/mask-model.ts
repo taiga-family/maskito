@@ -63,17 +63,20 @@ export class MaskModel implements ElementState {
             initialElementState,
         );
         const prevLeadingPart = value.slice(0, from);
-        const newLeadingValuePart = calibrateValueByMask(
+        const newLeadingPartState = calibrateValueByMask(
             {
                 value: newUnmaskedLeadingValuePart,
                 selection: [newCaretIndex, newCaretIndex],
             },
             maskExpression,
             initialElementState,
-        ).value;
+        );
+
         const isInvalidCharsInsertion =
-            prevLeadingPart === newLeadingValuePart ||
-            newLeadingValuePart.length < prevLeadingPart.length;
+            newLeadingPartState.value === prevLeadingPart ||
+            (newLeadingPartState.value.length < prevLeadingPart.length &&
+                removeFixedMaskCharacters(newLeadingPartState, maskExpression).value ===
+                    this.unmaskInitialState.value.slice(0, unmaskedFrom));
 
         if (
             isInvalidCharsInsertion ||
