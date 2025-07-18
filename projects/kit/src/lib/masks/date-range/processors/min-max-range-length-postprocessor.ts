@@ -50,17 +50,9 @@ export function createMinMaxRangeLengthPostprocessor({
             return {value, selection};
         }
 
-        const minDistantToDate = appendDate(fromDate, {
-            ...minLength,
-            // 06.02.2023 - 07.02.2023 => {minLength: {day: 3}} => 06.02.2023 - 08.02.2023
-            // "from"-day is included in the range
-            day: minLength?.day && minLength.day - 1,
-        });
+        const minDistantToDate = appendDate(fromDate, minLength);
         const maxDistantToDate = !isEmpty(maxLength)
-            ? appendDate(fromDate, {
-                  ...maxLength,
-                  day: maxLength?.day && maxLength.day - 1, // "from"-day is included in the range
-              })
+            ? appendDate(fromDate, maxLength)
             : max;
 
         const minLengthClampedToDate = clamp(toDate, minDistantToDate, max);
