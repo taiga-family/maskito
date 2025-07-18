@@ -1,7 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {MASKITO_DEFAULT_OPTIONS} from '../../../constants';
-import type {MaskitoOptions} from '../../../types';
+import type {MaskitoMask, MaskitoOptions} from '../../../types';
 import {MaskModel} from '../mask-model';
 
 describe('MaskModel | Fixed characters', () => {
@@ -112,41 +112,52 @@ describe('MaskModel | Fixed characters', () => {
     });
 
     describe('Attempt to insert invalid characters for `overwriteMode: replace`', () => {
-        describe('mask expression contains leading characters – ["$", /d/, /d/]', () => {
-            const options: Required<MaskitoOptions> = {
-                ...MASKITO_DEFAULT_OPTIONS,
-                mask: ['$', /\d/, /\d/],
-                overwriteMode: 'replace',
-            };
+        const testCases: Record<string, MaskitoMask> = {
+            '["$", /d/, /d/]': ['$', /\d/, /\d/],
+            'dynamic mask': ({value}) => {
+                const digitsCount = value.replaceAll(/\D/g, '').length;
 
-            it('$1|2 => Type A => $1|2', () => {
-                const value = '$12';
-                const selection = [2, 2] as const;
-                const maskModel = new MaskModel({value, selection}, options);
+                return ['$', ...new Array(digitsCount || 1).fill(/\d/)];
+            },
+        };
 
-                expect(() => maskModel.addCharacters('q')).toThrow();
-                expect(maskModel.value).toBe(value);
-                expect(maskModel.selection).toEqual(selection);
-            });
+        Object.entries(testCases).forEach(([title, mask]) => {
+            describe(`mask expression contains leading characters – ${title}`, () => {
+                const options: Required<MaskitoOptions> = {
+                    ...MASKITO_DEFAULT_OPTIONS,
+                    mask,
+                    overwriteMode: 'replace',
+                };
 
-            it('$|12 => Type $ => $|12', () => {
-                const value = '$12';
-                const selection = [1, 1] as const;
-                const maskModel = new MaskModel({value, selection}, options);
+                it('$1|2 => Type A => $1|2', () => {
+                    const value = '$12';
+                    const selection = [2, 2] as const;
+                    const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters('$')).toThrow();
-                expect(maskModel.value).toBe(value);
-                expect(maskModel.selection).toEqual(selection);
-            });
+                    expect(() => maskModel.addCharacters('q')).toThrow();
+                    expect(maskModel.value).toBe(value);
+                    expect(maskModel.selection).toEqual(selection);
+                });
 
-            it('$|12 => Type X => $|12', () => {
-                const value = '$12';
-                const selection = [1, 1] as const;
-                const maskModel = new MaskModel({value, selection}, options);
+                it('$|12 => Type $ => $|12', () => {
+                    const value = '$12';
+                    const selection = [1, 1] as const;
+                    const maskModel = new MaskModel({value, selection}, options);
 
-                expect(() => maskModel.addCharacters('X')).toThrow();
-                expect(maskModel.value).toBe(value);
-                expect(maskModel.selection).toEqual(selection);
+                    expect(() => maskModel.addCharacters('$')).toThrow();
+                    expect(maskModel.value).toBe(value);
+                    expect(maskModel.selection).toEqual(selection);
+                });
+
+                it('$|12 => Type X => $|12', () => {
+                    const value = '$12';
+                    const selection = [1, 1] as const;
+                    const maskModel = new MaskModel({value, selection}, options);
+
+                    expect(() => maskModel.addCharacters('X')).toThrow();
+                    expect(maskModel.value).toBe(value);
+                    expect(maskModel.selection).toEqual(selection);
+                });
             });
         });
     });
@@ -263,5 +274,26 @@ describe('MaskModel | Fixed characters', () => {
         expect(() => maskModel.addCharacters('#')).toThrow();
         expect(maskModel.value).toBe('12');
         expect(maskModel.selection).toEqual(selection);
+    });
+
+    it('accepts valid character at the position of fixed character', () => {
+        const dateMask: Required<MaskitoOptions> = {
+            ...MASKITO_DEFAULT_OPTIONS,
+            mask: [/\d/, /\d/, ':', /\d/, /\d/],
+        };
+
+        const selection = [2, 2] as const;
+        const maskModel = new MaskModel(
+            {
+                selection,
+                value: '12',
+            },
+            dateMask,
+        );
+
+        maskModel.addCharacters(':');
+
+        expect(maskModel.value).toBe('12:');
+        expect(maskModel.selection).toEqual(['12:'.length, '12:'.length]);
     });
 });
