@@ -1,3 +1,10 @@
+### [3.10.1](https://github.com/taiga-family/maskito/compare/v3.10.0...v3.10.1) (2025-07-18)
+
+### 🐞 Bug Fixes
+
+- **core**: dynamic mask switching to mask without fixed character fails on new character insertion (#2207)
+  [(50e68d4)](https://github.com/taiga-family/maskito/commit/50e68d4bb8f6e5330bda76c67806514a7fa53294)
+
 ### [3.10.0](https://github.com/taiga-family/maskito/compare/v3.9.1...v3.10.0) (2025-07-04)
 
 ### 🚀 Features
