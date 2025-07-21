@@ -16,8 +16,8 @@ jobs:
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/variables@v1.134.0
-      - uses: taiga-family/ci/actions/setup/node@v1.134.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.135.0
+      - uses: taiga-family/ci/actions/setup/node@v1.135.0
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
@@ -43,8 +43,8 @@ jobs:
     name: Kit / ${{ matrix.project }}
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.134.0
-      - uses: taiga-family/ci/actions/setup/node@v1.134.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.135.0
+      - uses: taiga-family/ci/actions/setup/node@v1.135.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -68,8 +68,8 @@ jobs:
     name: Recipes
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.134.0
-      - uses: taiga-family/ci/actions/setup/node@v1.134.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.135.0
+      - uses: taiga-family/ci/actions/setup/node@v1.135.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -91,8 +91,8 @@ jobs:
     name: Others
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.134.0
-      - uses: taiga-family/ci/actions/setup/node@v1.134.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.135.0
+      - uses: taiga-family/ci/actions/setup/node@v1.135.0
 
       - name: Download demo build from cache
         uses: actions/cache@v4
@@ -117,8 +117,8 @@ jobs:
     name: Component Testing
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.134.0
-      - uses: taiga-family/ci/actions/setup/node@v1.134.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.135.0
+      - uses: taiga-family/ci/actions/setup/node@v1.135.0
 
       - name: Run Cypress tests
         run:
