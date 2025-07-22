@@ -11,6 +11,7 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
 
 @Component({
     standalone: true,
+    selector: 'test-input',
     imports: [MaskitoDirective],
     template: `
         <input

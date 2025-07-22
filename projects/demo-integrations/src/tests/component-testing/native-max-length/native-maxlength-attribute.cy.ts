@@ -1,3 +1,4 @@
+import {ChangeDetectionStrategy, Component, ElementRef, inject} from '@angular/core';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
@@ -135,6 +136,91 @@ describe('Native attribute maxlength works', () => {
                 .type('{leftArrow}'.repeat(3))
                 .type('09')
                 .should('have.value', '123096');
+        });
+    });
+
+    describe('with oversimplified Number mask', () => {
+        beforeEach(() => {
+            const maskitoOptions: MaskitoOptions = {
+                mask: /^\d*$/,
+            };
+
+            cy.mount(TestInput, {
+                componentProperties: {
+                    maskitoOptions,
+                    maxLength: 4,
+                },
+            });
+        });
+
+        it('Press 4 (no more!) digits and click on cleaner => Empty textfield', () => {
+            cy.get('input').type('1234').type('{selectAll}');
+            cy.document().then((doc) => doc.execCommand('delete'));
+            cy.get('input').should('have.value', '');
+        });
+
+        it('Press >4 digits and click on cleaner => Empty textfield', () => {
+            cy.get('input').type('123456').type('{selectAll}');
+            cy.document().then((doc) => doc.execCommand('delete'));
+            cy.get('input').should('have.value', '');
+        });
+    });
+
+    describe('with Number mask', () => {
+        beforeEach(() => {
+            const inputYearMask: MaskitoOptions = maskitoNumberOptionsGenerator({
+                min: 0,
+                max: 9999,
+                thousandSeparator: '',
+            });
+
+            @Component({
+                standalone: true,
+                imports: [TestInput],
+                template: `
+                    <test-input
+                        [maskitoOptions]="mask"
+                        [maxLength]="4"
+                    />
+                    <button
+                        id="cleaner"
+                        (click)="clear()"
+                    >
+                        Cleaner
+                    </button>
+                `,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+            })
+            class Sandbox {
+                private readonly el = inject(ElementRef).nativeElement;
+                protected readonly mask = inputYearMask;
+
+                protected clear(): void {
+                    const input = this.el.querySelector('input');
+
+                    input.select();
+                    input.ownerDocument.execCommand('delete');
+                }
+            }
+
+            cy.mount(Sandbox);
+            cy.get('input[maxlength="4"]')
+                .should('have.prop', 'maxlength', 4)
+                .as('input');
+        });
+
+        it('Press 4 (no more!) digits and click on cleaner => Empty textfield', () => {
+            cy.get('@input').type('1234');
+            cy.get('#cleaner').click();
+
+            cy.get('@input').should('have.value', '');
+        });
+
+        it('Press >4 digits and click on cleaner => Empty textfield', () => {
+            cy.get('@input').type('123456789');
+            cy.get('#cleaner').click();
+
+            cy.get('@input').should('have.value', '');
         });
     });
 });

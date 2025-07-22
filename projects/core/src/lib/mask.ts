@@ -289,6 +289,7 @@ export class Maskito extends MaskHistory {
 
     private handleInsert(event: TypedInputEvent, data: string): void {
         const {options, maxLength, elementState: initialElementState} = this;
+        const [from, to] = initialElementState.selection;
         const {elementState, data: insertedText = data} = this.preprocessor(
             {
                 data,
@@ -304,33 +305,33 @@ export class Maskito extends MaskHistory {
             return event.preventDefault();
         }
 
-        const [from, to] = initialElementState.selection;
-        const newPossibleState: ElementState = {
-            value:
-                initialElementState.value.slice(0, from) +
-                data +
-                initialElementState.value.slice(to),
-            selection: [from + data.length, from + data.length],
-        };
-
         this.upcomingElementState = this.clampState(
             this.postprocessor(maskModel, initialElementState),
         );
 
-        if (
-            !areElementStatesEqual(
-                this.clampState(newPossibleState),
-                this.upcomingElementState,
-            ) &&
-            options.overwriteMode === 'replace' &&
-            newPossibleState.value.length > maxLength
-        ) {
-            /**
-             * Browsers know nothing about Maskito and its `overwriteMode`.
-             * When textfield value length is already equal to attribute `maxlength`,
-             * pressing any key (even with valid value) does not emit `input` event.
-             */
-            this.dispatchInputEvent({inputType: 'insertText', data});
+        /**
+         * When textfield value length is already equal to attribute `maxlength`,
+         * pressing any key (even with valid value) does not emit `input` event
+         * (except to the case when user replaces some characters by selection).
+         */
+        const noInputEventDispatch =
+            initialElementState.value.length >= maxLength && from === to;
+
+        if (noInputEventDispatch) {
+            if (
+                options.overwriteMode === 'replace' &&
+                !areElementStatesEqual(this.upcomingElementState, initialElementState)
+            ) {
+                this.dispatchInputEvent({inputType: 'insertText', data});
+            } else {
+                /**
+                 * This `beforeinput` event will not be followed by `input` event –
+                 * clear computed state to avoid any possible side effect
+                 * for new possible `input` event without preceding `beforeinput` event
+                 * (e.g. browser autofill, `document.execCommand('delete')` etc.)
+                 */
+                this.upcomingElementState = null;
+            }
         }
     }
 
