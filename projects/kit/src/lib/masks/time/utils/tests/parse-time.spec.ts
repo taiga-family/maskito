@@ -33,6 +33,18 @@ describe('maskitoParseTime', () => {
             ],
         ],
         [
+            'HH:MM:SS.MSS AA',
+            [
+                {text: '', ms: 0},
+                {text: '12:00:00.000 AM', ms: 0},
+                {text: '01:00:00.000 AM', ms: 3600000},
+                {text: '11:59:59.999 AM', ms: 43199999},
+                {text: '12:00:00.000 PM', ms: 43200000},
+                {text: '01:00:00.000 PM', ms: 46800000},
+                {text: '11:59:59.999 PM', ms: 86399999},
+            ],
+        ],
+        [
             'HH:MM:SS',
             [
                 {text: '', ms: 0},
@@ -54,6 +66,18 @@ describe('maskitoParseTime', () => {
             ],
         ],
         [
+            'HH:MM:SS AA',
+            [
+                {text: '', ms: 0},
+                {text: '12:00:00 AM', ms: 0},
+                {text: '01:00:00 AM', ms: 3600000},
+                {text: '11:59:59 AM', ms: 43199000},
+                {text: '12:00:00 PM', ms: 43200000},
+                {text: '01:00:00 PM', ms: 46800000},
+                {text: '11:59:59 PM', ms: 86399000},
+            ],
+        ],
+        [
             'HH:MM',
             [
                 {text: '', ms: 0},
@@ -71,6 +95,18 @@ describe('maskitoParseTime', () => {
             ],
         ],
         [
+            'HH:MM AA',
+            [
+                {text: '', ms: 0},
+                {text: '12:00 AM', ms: 0},
+                {text: '01:00 AM', ms: 3600000},
+                {text: '11:59 AM', ms: 43140000},
+                {text: '12:00 PM', ms: 43200000},
+                {text: '01:00 PM', ms: 46800000},
+                {text: '11:59 PM', ms: 86340000},
+            ],
+        ],
+        [
             'HH',
             [
                 {text: '', ms: 0},
@@ -81,6 +117,18 @@ describe('maskitoParseTime', () => {
                 {text: '12', ms: 43200000},
 
                 {text: '23', ms: 82800000},
+            ],
+        ],
+        [
+            'HH AA',
+            [
+                {text: '', ms: 0},
+                {text: '12 AM', ms: 0},
+                {text: '01 AM', ms: 3600000},
+                {text: '11 AM', ms: 39600000},
+                {text: '12 PM', ms: 43200000},
+                {text: '01 PM', ms: 46800000},
+                {text: '11 PM', ms: 82800000},
             ],
         ],
         [
