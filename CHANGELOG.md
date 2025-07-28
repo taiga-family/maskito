@@ -1,3 +1,10 @@
+### [3.10.2](https://github.com/taiga-family/maskito/compare/v3.10.1...v3.10.2) (2025-07-28)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Number` with `input[maxlength]` is incompatible with `document.execCommand('delete')` (#2217)
+  [(2604d2c)](https://github.com/taiga-family/maskito/commit/2604d2ce8dc60e16f464a3fc4328f907bef58d55)
+
 ### [3.10.1](https://github.com/taiga-family/maskito/compare/v3.10.0...v3.10.1) (2025-07-18)
 
 ### 🐞 Bug Fixes
