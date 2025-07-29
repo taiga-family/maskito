@@ -68,6 +68,15 @@ describe('maskitoStringifyNumber', () => {
                 }),
             ).toBe('0.00');
         });
+
+        it('number with exponential notation', () => {
+            expect(maskitoStringifyNumber(0.000000012, {maximumFractionDigits: 10})).toBe(
+                '0.000000012',
+            );
+            expect(
+                maskitoStringifyNumber(1.2e-8, {maximumFractionDigits: 10, prefix: '$'}),
+            ).toBe('$0.000000012');
+        });
     });
 
     describe('decimal separator is comma', () => {

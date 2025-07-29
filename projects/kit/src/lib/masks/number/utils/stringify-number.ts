@@ -3,6 +3,7 @@ import {maskitoTransform} from '@maskito/core';
 import {clamp} from '../../../utils';
 import {maskitoNumberOptionsGenerator} from '../number-mask';
 import type {MaskitoNumberParams} from '../number-params';
+import {stringifyNumberWithoutExp} from './stringify-number-without-exp';
 
 export function maskitoStringifyNumber(
     number: number,
@@ -18,7 +19,10 @@ export function maskitoStringifyNumber(
         decimalSeparator = '.',
     } = params;
 
-    const value = clamp(number, min, max).toString().replace('.', decimalSeparator);
+    const value = stringifyNumberWithoutExp(clamp(number, min, max)).replace(
+        '.',
+        decimalSeparator,
+    );
 
     return maskitoTransform(value, maskitoNumberOptionsGenerator(params));
 }
