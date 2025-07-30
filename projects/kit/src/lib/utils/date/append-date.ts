@@ -40,7 +40,9 @@ export function appendDate(
         days += getMonthDaysCount(months, isLeapYear(years));
     }
 
-    return new Date(years, months, days - 1); // "from"-day is included in the range
+    days = day >= 0 ? days - 1 : days + 1; // "from"-day is included in the range
+
+    return new Date(years, months, days);
 }
 
 function getMonthDaysCount(month: number, isLeapYear: boolean): number {

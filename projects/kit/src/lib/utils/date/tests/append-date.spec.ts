@@ -86,7 +86,7 @@ describe('appendDate', () => {
 
         expect(result.getFullYear()).toBe(2000);
         expect(result.getMonth()).toBe(6);
-        expect(result.getDate()).toBe(9);
+        expect(result.getDate()).toBe(11);
     });
 
     it('year: 2000, month: 6, day: 31, if {day: 17} was passed', () => {
@@ -116,17 +116,17 @@ describe('appendDate', () => {
     it('year: 1999, month: 11, day: 30, if {day: -197} was passed', () => {
         const result = appendDate(y2000m6d15, {day: -197});
 
-        expect(result.getFullYear()).toBe(1999);
-        expect(result.getMonth()).toBe(11);
-        expect(result.getDate()).toBe(30);
+        expect(result.getFullYear()).toBe(2000);
+        expect(result.getMonth()).toBe(0);
+        expect(result.getDate()).toBe(1);
     });
 
     it('year: 2000, month: 5, day: 29, if {day: -15} was passed', () => {
         const result = appendDate(y2000m6d15, {day: -15});
 
         expect(result.getFullYear()).toBe(2000);
-        expect(result.getMonth()).toBe(5);
-        expect(result.getDate()).toBe(29);
+        expect(result.getMonth()).toBe(6);
+        expect(result.getDate()).toBe(1);
     });
 
     it('year: 2000, month: 2, day: 28, if {month: -4, day: 14} was passed', () => {
@@ -140,9 +140,9 @@ describe('appendDate', () => {
     it('year: 1999, month: 11, day: 30, if {month: -6, day: -15} was passed', () => {
         const result = appendDate(y2000m6d15, {month: -6, day: -15});
 
-        expect(result.getFullYear()).toBe(1999);
-        expect(result.getMonth()).toBe(11);
-        expect(result.getDate()).toBe(30);
+        expect(result.getFullYear()).toBe(2000);
+        expect(result.getMonth()).toBe(0);
+        expect(result.getDate()).toBe(1);
     });
 
     it('capped day when moving forward', () => {
