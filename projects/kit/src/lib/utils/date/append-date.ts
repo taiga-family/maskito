@@ -40,7 +40,10 @@ export function appendDate(
         days += getMonthDaysCount(months, isLeapYear(years));
     }
 
-    days = day >= 0 ? days - 1 : days + 1; // "from"-day is included in the range
+    days =
+        day < 0 || (day === 0 && isLeapYear(initialYear) && (month < 0 || year < 0))
+            ? days + 1 // add one day when moving days backward, or months or years backward for leap year
+            : days - 1; // "from"-day is included in the range
 
     return new Date(years, months, days);
 }
