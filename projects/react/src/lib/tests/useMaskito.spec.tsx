@@ -30,7 +30,7 @@ describe('Maskito React package', () => {
         return (
             <input
                 ref={inputRef}
-                onChange={(e) => onChangeHandler && onChangeHandler(e.target.value)}
+                onChange={(e) => onChangeHandler?.(e.target.value)}
             />
         );
     }
