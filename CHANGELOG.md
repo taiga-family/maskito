@@ -1,3 +1,12 @@
+### [3.10.3](https://github.com/taiga-family/maskito/compare/v3.10.2...v3.10.3) (2025-08-06)
+
+### 🐞 Bug Fixes
+
+- **kit**: `DateRange` + `minLength` / `maxLength` has incorrect limits (#2210)
+  [(e8917e0)](https://github.com/taiga-family/maskito/commit/e8917e0a124b26ffc9806f74c5c70016084f5280)
+- **kit**: `maskitoStringifyNumber` fails to stringify number with exponential notation (#2224)
+  [(9fe0b08)](https://github.com/taiga-family/maskito/commit/9fe0b080b2703a72674a25b8ce352486cc274663)
+
 ### [3.10.2](https://github.com/taiga-family/maskito/compare/v3.10.1...v3.10.2) (2025-07-28)
 
 ### 🐞 Bug Fixes

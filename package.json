@@ -1,6 +1,6 @@
 {
     "name": "maskito",
-    "version": "3.10.2",
+    "version": "3.10.3",
     "description": "Collection of libraries to create an input mask which ensures that user types value according to predefined format",
     "homepage": "https://maskito.dev",
     "bugs": "https://github.com/taiga-family/maskito/issues",
