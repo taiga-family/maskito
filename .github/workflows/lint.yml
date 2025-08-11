@@ -5,7 +5,7 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
       - uses: taiga-family/ci/actions/setup/node@v1.139.0
       - run: npm run typecheck
@@ -13,7 +13,7 @@ jobs:
   cspell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
       - uses: taiga-family/ci/actions/setup/node@v1.139.0
       - run: npm run cspell -- --no-progress
@@ -21,7 +21,7 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
@@ -34,7 +34,7 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
@@ -47,7 +47,7 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0

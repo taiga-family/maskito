@@ -11,7 +11,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
       - id: matrix
         run: echo "value=$PR_JOBS_NAME" >> $GITHUB_OUTPUT
@@ -33,7 +33,7 @@ jobs:
     needs: [wait]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
       - uses: taiga-family/ci/actions/setup/variables@v1.139.0
       - uses: taiga-family/ci/actions/auto/approve/double@v1.139.0
         if: env.IS_TAIGA_FAMILY_BOT_PR_AUTHOR == 'true'
