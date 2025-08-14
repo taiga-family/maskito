@@ -51,5 +51,5 @@ input:focus,
 textarea:focus {
     box-shadow: none;
     border-color: var(--tui-background-accent-1);
-    border-width: 2px;
+    border-width: 0.125rem;
 }
