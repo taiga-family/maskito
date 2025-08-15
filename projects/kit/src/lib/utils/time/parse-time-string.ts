@@ -18,7 +18,7 @@ export function parseTimeString(
 
     let offset = 0;
 
-    return Object.fromEntries(
+    const result = Object.fromEntries(
         timeMode
             .split(/\W/)
             .filter((segmentAbbr) => SEGMENT_FULL_NAME[segmentAbbr])
@@ -33,4 +33,14 @@ export function parseTimeString(
                 return [SEGMENT_FULL_NAME[segmentAbbr], segmentValue];
             }),
     );
+
+    const hours = Number(result.hours);
+
+    if (timeMode.includes('AA') && Number.isFinite(hours)) {
+        result.hours = timeString.includes('PM')
+            ? String(hours < 12 ? hours + 12 : hours)
+            : result.hours.replace('12', '00');
+    }
+
+    return result;
 }
