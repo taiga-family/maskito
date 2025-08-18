@@ -1,5 +1,14 @@
 import type {OnChanges, OnDestroy} from '@angular/core';
-import {Directive, ElementRef, inject, Input, NgZone} from '@angular/core';
+import {
+    Directive,
+    effect,
+    ElementRef,
+    inject,
+    Input,
+    NgZone,
+    signal,
+    untracked,
+} from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {
@@ -14,9 +23,35 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
     private readonly ngZone = inject(NgZone);
     private maskedElement: Maskito | null = null;
 
-    private optionsInternal: MaskitoOptions | null = null;
-    private elementPredicateInternal: MaskitoElementPredicate =
-        MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    // TODO(v4): delete excessive setters/getters
+    private readonly optionsInternal = signal<MaskitoOptions | null>(null);
+    private readonly elementPredicateInternal = signal<MaskitoElementPredicate>(
+        MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    );
+
+    protected readonly initEffect = effect(async () => {
+        const elementPredicate = this.elementPredicateInternal();
+        const options = this.optionsInternal();
+        const {maskedElement, elementRef, ngZone} = this;
+
+        maskedElement?.destroy();
+
+        if (!options) {
+            return;
+        }
+
+        const predicateResult = await elementPredicate(elementRef);
+
+        if (this.elementPredicate !== elementPredicate || this.options !== options) {
+            // Ignore the result of the predicate if the
+            // maskito element (or its options) has changed before the predicate was resolved.
+            return;
+        }
+
+        ngZone.runOutsideAngular(() => {
+            this.maskedElement = new Maskito(predicateResult, options);
+        });
+    });
 
     constructor() {
         const accessor = inject(DefaultValueAccessor, {self: true, optional: true});
@@ -25,78 +60,39 @@ export class MaskitoDirective implements OnDestroy, OnChanges {
             const original = accessor.writeValue.bind(accessor);
 
             accessor.writeValue = (value: unknown) => {
+                const options = untracked(this.optionsInternal);
+
                 original(
-                    this.optionsInternal
-                        ? maskitoTransform(String(value ?? ''), this.optionsInternal)
-                        : value,
+                    options ? maskitoTransform(String(value ?? ''), options) : value,
                 );
             };
         }
     }
 
     @Input('maskito')
-    public get options(): MaskitoOptions | null {
-        return this.optionsInternal;
+    public set options(value: MaskitoOptions | null) {
+        this.optionsInternal.set(value);
     }
 
     @Input('maskitoElement')
-    public get elementPredicate(): MaskitoElementPredicate {
-        return this.elementPredicateInternal;
-    }
-
-    public set options(value: MaskitoOptions | null) {
-        if (this.optionsInternal === value) {
-            return;
-        }
-
-        this.optionsInternal = value;
-        void this.setup();
-    }
-
     public set elementPredicate(value: MaskitoElementPredicate) {
-        if (this.elementPredicateInternal === value) {
-            return;
-        }
+        this.elementPredicateInternal.set(value);
+    }
 
-        this.elementPredicateInternal = value;
-        void this.setup();
+    public get options(): MaskitoOptions | null {
+        return this.optionsInternal();
+    }
+
+    public get elementPredicate(): MaskitoElementPredicate {
+        return this.elementPredicateInternal();
     }
 
     // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     public async ngOnChanges(): Promise<void> {
-        /**
-         * no-op for backwards compatibility.
-         */
+        // TODO(v4): delete
     }
 
     public ngOnDestroy(): void {
         this.maskedElement?.destroy();
-    }
-
-    private async setup(): Promise<void> {
-        const options = this.optionsInternal;
-        const elementPredicate = this.elementPredicateInternal;
-
-        this.maskedElement?.destroy();
-        this.maskedElement = null;
-
-        if (!options) {
-            return;
-        }
-
-        const predicateResult = await elementPredicate(this.elementRef);
-
-        if (
-            this.elementPredicateInternal !== elementPredicate ||
-            this.optionsInternal !== options
-        ) {
-            // Ignore the result of the predicate if the
-            // maskito element (or its options) has changed before the predicate was resolved.
-            return;
-        }
-
-        this.ngZone.runOutsideAngular(() => {
-            this.maskedElement = new Maskito(predicateResult, options);
-        });
     }
 }
