@@ -23,9 +23,18 @@ export function maskitoParseTime(
     const msInHour = (maxValues.minutes + 1) * msInMinute;
 
     const parsedTime = padEndTimeSegments(parseTimeString(maskedTime, mode));
+    let hours = Number(parsedTime.hours ?? '');
+
+    if (mode.includes('AA') && Number.isFinite(hours)) {
+        if (maskedTime.includes('PM')) {
+            hours = hours < 12 ? hours + 12 : hours;
+        } else {
+            hours = hours === 12 ? 0 : hours;
+        }
+    }
 
     return (
-        Number(parsedTime.hours ?? '') * msInHour +
+        hours * msInHour +
         Number(parsedTime.minutes ?? '') * msInMinute +
         Number(parsedTime.seconds ?? '') * msInSecond +
         Number(parsedTime.milliseconds ?? '')
