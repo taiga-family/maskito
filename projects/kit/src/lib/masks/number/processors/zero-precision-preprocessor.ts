@@ -1,22 +1,27 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp, extractAffixes, identity} from '../../../utils';
+import {escapeRegExp, identity} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * It drops decimal part if `maximumFractionDigits` is zero.
  * @example User pastes '123.45' (but `maximumFractionDigits` is zero) => 123
  */
-export function createZeroPrecisionPreprocessor({
-    maximumFractionDigits,
-    decimalSeparator,
-    prefix,
-    postfix,
-}: {
-    maximumFractionDigits: number;
-    decimalSeparator: string;
-    prefix: string;
-    postfix: string;
-}): MaskitoPreprocessor {
+export function createZeroPrecisionPreprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'maximumFractionDigits'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+    >,
+): MaskitoPreprocessor {
+    const {maximumFractionDigits, decimalSeparator} = params;
+
     if (
         maximumFractionDigits > 0 ||
         !decimalSeparator // all separators should be treated only as thousand separators
@@ -28,15 +33,16 @@ export function createZeroPrecisionPreprocessor({
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
-        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
+        const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
         const [from, to] = selection;
-        const newValue =
-            extractedPrefix +
-            cleanValue.replace(decimalPartRegExp, '') +
-            extractedPostfix;
+        const onlyNumber = fromNumberParts(numberParts, params).replace(
+            decimalPartRegExp,
+            '',
+        );
+        const newValue = fromNumberParts(
+            {...toNumberParts(onlyNumber, params), prefix, postfix},
+            params,
+        );
 
         return {
             elementState: {

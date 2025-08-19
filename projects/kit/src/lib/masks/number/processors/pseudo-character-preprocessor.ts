@@ -1,6 +1,7 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {extractAffixes} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * It replaces pseudo characters with valid one.
@@ -10,30 +11,40 @@ import {extractAffixes} from '../../../utils';
 export function createPseudoCharactersPreprocessor({
     validCharacter,
     pseudoCharacters,
-    prefix,
-    postfix,
-}: {
+    ...params
+}: Pick<
+    Required<MaskitoNumberParams>,
+    | 'decimalPseudoSeparators'
+    | 'decimalSeparator'
+    | 'minusPseudoSigns'
+    | 'minusSign'
+    | 'postfix'
+    | 'prefix'
+> & {
     validCharacter: string;
-    pseudoCharacters: string[];
-    prefix: string;
-    postfix: string;
+    pseudoCharacters: readonly string[];
 }): MaskitoPreprocessor {
     const pseudoCharactersRegExp = new RegExp(`[${pseudoCharacters.join('')}]`, 'gi');
 
     return ({elementState, data}) => {
         const {value, selection} = elementState;
-        const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
+        const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
+        const onlyNumber = fromNumberParts(numberParts, params).replace(
+            pseudoCharactersRegExp,
+            validCharacter,
+        );
 
         return {
             elementState: {
                 selection,
-                value:
-                    extractedPrefix +
-                    cleanValue.replace(pseudoCharactersRegExp, validCharacter) +
-                    extractedPostfix,
+                value: fromNumberParts(
+                    {
+                        ...toNumberParts(onlyNumber, params),
+                        prefix,
+                        postfix,
+                    },
+                    params,
+                ),
             },
             data: data.replace(pseudoCharactersRegExp, validCharacter),
         };

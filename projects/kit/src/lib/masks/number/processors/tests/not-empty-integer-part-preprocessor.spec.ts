@@ -1,4 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
+import type {MaskitoNumberParams} from '@maskito/kit';
 
 import {createNotEmptyIntegerPartPreprocessor} from '../not-empty-integer-part-preprocessor';
 
@@ -7,13 +8,20 @@ const EMPTY_ELEMENT_STATE = {
     selection: [0, 0] as const,
 };
 
+const DEFAULT_PARAMS = {
+    prefix: '',
+    postfix: '',
+    minusPseudoSigns: [],
+    decimalPseudoSeparators: [','] as string[], // TODO(v5): remove `as string[]`
+} as const satisfies MaskitoNumberParams;
+
 describe('createNotEmptyIntegerPartPreprocessor', () => {
     describe('maximumFractionDigits === 2', () => {
         const preprocessor = createNotEmptyIntegerPartPreprocessor({
+            ...DEFAULT_PARAMS,
             decimalSeparator: ',',
             maximumFractionDigits: 2,
-            prefix: '',
-            postfix: '',
+            minusSign: '-',
         });
 
         it('should pad integer part with zero if user inserts "a,"', () => {

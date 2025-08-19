@@ -1,9 +1,8 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import {maskitoTransform} from '@maskito/core';
 
-import {clamp, extractAffixes} from '../../../utils';
 import type {MaskitoNumberParams} from '../number-params';
-import {generateMaskExpression} from '../utils';
+import {fromNumberParts, generateMaskExpression, toNumberParts} from '../utils';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).
@@ -15,28 +14,25 @@ import {generateMaskExpression} from '../utils';
  * maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' years'});
  * ```
  */
-export function createInitializationOnlyPreprocessor({
-    decimalPseudoSeparators,
-    decimalSeparator,
-    minusSign,
-    postfix,
-    prefix,
-    pseudoMinuses,
-}: Pick<
-    Required<MaskitoNumberParams>,
-    'decimalPseudoSeparators' | 'decimalSeparator' | 'minusSign' | 'postfix' | 'prefix'
-> & {pseudoMinuses: readonly string[]}): MaskitoPreprocessor {
+export function createInitializationOnlyPreprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+    >,
+): MaskitoPreprocessor {
     let isInitializationPhase = true;
     const cleanNumberMask = generateMaskExpression({
-        decimalSeparator,
-        decimalPseudoSeparators,
-        pseudoMinuses,
+        ...params,
         prefix: '',
         postfix: '',
         thousandSeparator: '',
         maximumFractionDigits: Infinity,
         min: Number.MIN_SAFE_INTEGER,
-        minusSign,
     });
 
     return ({elementState, data}) => {
@@ -48,31 +44,35 @@ export function createInitializationOnlyPreprocessor({
 
         const {value, selection} = elementState;
         const [from, to] = selection;
-        const {extractedPrefix, cleanValue, extractedPostfix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
+        const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
+        const onlyNumber = fromNumberParts(numberParts, params);
         const cleanState = maskitoTransform(
             {
                 selection: [
-                    Math.max(from - extractedPrefix.length, 0),
-                    clamp(to - extractedPrefix.length, 0, cleanValue.length),
+                    Math.max(from - prefix.length, 0),
+                    Math.max(to - prefix.length, 0),
                 ],
-                value: cleanValue,
+                value: onlyNumber,
             },
             {
                 mask: cleanNumberMask,
             },
         );
-        const [cleanFrom, cleanTo] = cleanState.selection;
+        const deleted =
+            onlyNumber.slice(0, Math.max(to - prefix.length, 0)).length -
+            cleanState.value.slice(0, cleanState.selection[1]).length;
 
         return {
             elementState: {
-                selection: [
-                    cleanFrom + extractedPrefix.length,
-                    cleanTo + extractedPrefix.length,
-                ],
-                value: extractedPrefix + cleanState.value + extractedPostfix,
+                selection: [from - deleted, to - deleted],
+                value: fromNumberParts(
+                    {
+                        ...toNumberParts(cleanState.value, params),
+                        prefix,
+                        postfix,
+                    },
+                    params,
+                ),
             },
             data,
         };

@@ -1,25 +1,27 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {extractAffixes, identity} from '../../../utils';
-import {toNumberParts} from '../utils';
+import {identity} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * It adds symbol for separating thousands.
  * @example 1000000 => (thousandSeparator is equal to space) => 1 000 000.
  */
-export function createThousandSeparatorPostprocessor({
-    thousandSeparator,
-    decimalSeparator,
-    prefix,
-    postfix,
-    minusSign,
-}: {
-    thousandSeparator: string;
-    decimalSeparator: string;
-    prefix: string;
-    postfix: string;
-    minusSign: string;
-}): MaskitoPostprocessor {
+export function createThousandSeparatorPostprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+        | 'thousandSeparator'
+    >,
+): MaskitoPostprocessor {
+    const {thousandSeparator} = params;
+
     if (!thousandSeparator) {
         return identity;
     }
@@ -30,23 +32,15 @@ export function createThousandSeparatorPostprocessor({
         const [initialFrom, initialTo] = selection;
         let [from, to] = selection;
 
-        const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
-
-        const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
-            decimalSeparator,
-            minusSign,
-        });
-        const hasDecimalSeparator =
-            decimalSeparator && cleanValue.includes(decimalSeparator);
+        const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
+            toNumberParts(value, params);
         const deletedChars =
-            cleanValue.length -
+            fromNumberParts({minus, integerPart, decimalSeparator, decimalPart}, params)
+                .length -
             (
                 minus +
                 integerPart +
-                (hasDecimalSeparator ? decimalSeparator + decimalPart : '')
+                (decimalSeparator ? decimalSeparator + decimalPart : '')
             ).length;
 
         if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
@@ -72,11 +66,11 @@ export function createThousandSeparatorPostprocessor({
                 }
 
                 if (!isPositionForSeparator && isSeparator) {
-                    if (i && i <= initialFrom) {
+                    if (from && i <= initialFrom) {
                         from--;
                     }
 
-                    if (i && i <= initialTo) {
+                    if (to && i <= initialTo) {
                         to--;
                     }
 
@@ -101,13 +95,17 @@ export function createThousandSeparatorPostprocessor({
         );
 
         return {
-            value:
-                extractedPrefix +
-                minus +
-                processedIntegerPart +
-                (hasDecimalSeparator ? decimalSeparator : '') +
-                decimalPart +
-                extractedPostfix,
+            value: fromNumberParts(
+                {
+                    prefix,
+                    minus,
+                    integerPart: processedIntegerPart,
+                    decimalSeparator,
+                    decimalPart,
+                    postfix,
+                },
+                params,
+            ),
             selection: [from, to],
         };
     };
