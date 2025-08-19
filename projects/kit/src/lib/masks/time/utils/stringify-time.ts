@@ -18,7 +18,7 @@ export function maskitoStringifyTime(
         ...timeSegmentMaxValues,
     };
 
-    const hasMeridiem = mode?.includes('AA');
+    const hasMeridiem = mode.includes('AA');
     const msInSecond = maxValues.milliseconds + 1;
     const msInMinute = (maxValues.seconds + 1) * msInSecond;
     const msInHour = (maxValues.minutes + 1) * msInMinute;
