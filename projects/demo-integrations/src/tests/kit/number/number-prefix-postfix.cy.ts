@@ -358,4 +358,18 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.prop', 'selectionEnd', 1);
         });
     });
+
+    describe('postfix consists of many characters `lbs_per_day`', () => {
+        it('Paste 100 + incompleted postfix', () => {
+            openNumberPage('postfix=lbs_per_day');
+
+            cy.get('@input')
+                .focus()
+                .should('have.value', 'lbs_per_day')
+                .paste('100lbs')
+                .should('have.value', '100lbs_per_day')
+                .should('have.prop', 'selectionStart', '100'.length)
+                .should('have.prop', 'selectionEnd', '100'.length);
+        });
+    });
 });

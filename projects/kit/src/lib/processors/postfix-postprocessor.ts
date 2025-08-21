@@ -5,7 +5,15 @@ import {escapeRegExp, findCommonBeginningSubstr, identity} from '../utils';
 export function maskitoPostfixPostprocessorGenerator(
     postfix: string,
 ): MaskitoPostprocessor {
-    const postfixRE = new RegExp(`${escapeRegExp(postfix)}$`);
+    const completedPostfixRE = new RegExp(`${escapeRegExp(postfix)}$`);
+    const incompletePostfixRE = new RegExp(
+        postfix &&
+            `(${postfix
+                .split('')
+                .map(escapeRegExp)
+                // eslint-disable-next-line
+                .reduce((acc, _, i, arr) => `${acc}|${arr.slice(0, i + 1).join('')}`)})$`,
+    );
 
     return postfix
         ? ({value, selection}, initialElementState) => {
@@ -15,14 +23,14 @@ export function maskitoPostfixPostprocessorGenerator(
               }
 
               if (
-                  !value.endsWith(postfix) &&
+                  !value.match(incompletePostfixRE) &&
                   !initialElementState.value.endsWith(postfix)
               ) {
                   return {selection, value: value + postfix};
               }
 
               const initialValueBeforePostfix = initialElementState.value.replace(
-                  postfixRE,
+                  completedPostfixRE,
                   '',
               );
               const postfixWasModified =

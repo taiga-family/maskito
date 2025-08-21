@@ -39,10 +39,11 @@ export class TestPipe4 implements PipeTransform {
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MultiTestComponent {
+export class Sandbox {
     protected value = '1 year';
 
     protected readonly pluralize = {
+        '=NaN': '',
         one: ' year',
         few: ' years',
         many: ' years',
