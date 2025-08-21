@@ -3,7 +3,7 @@ import {createOutputSpy} from 'cypress/angular';
 
 import {TestInput} from '../utils';
 
-describe('Ensure cy.paste() emitates required browser features', () => {
+describe('Ensure cy.paste() emulates required browser features', () => {
     const maskitoOptions = {
         mask: /^\d+$/g,
     };
@@ -98,7 +98,7 @@ describe('Ensure cy.paste() emitates required browser features', () => {
             cy.get('@beforeinputEvent').should('have.been.calledOnceWith', '');
         });
 
-        it('is already updated in `input` event`', () => {
+        it('is already updated in `input` event', () => {
             cy.get('input').paste('123');
             cy.get('@inputEvent').should('have.been.calledOnceWith', '123');
         });
