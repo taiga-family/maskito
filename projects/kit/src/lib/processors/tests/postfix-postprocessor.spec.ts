@@ -34,39 +34,60 @@ describe('maskitoPostfixPostprocessorGenerator', () => {
     });
 
     describe('postfix consists of many characters', () => {
-        const postprocessor = maskitoPostfixPostprocessorGenerator('.00');
+        describe('postfix=.00', () => {
+            const postprocessor = maskitoPostfixPostprocessorGenerator('.00');
 
-        it('does not add postfix if input was initially empty', () => {
-            expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
+            it('does not add postfix if input was initially empty', () => {
+                expect(postprocessor(EMPTY_INPUT, EMPTY_INPUT)).toEqual(EMPTY_INPUT);
+            });
+
+            it('type 100 => 100.00', () => {
+                expect(
+                    postprocessor(
+                        {value: '100', selection: [3, 3]}, // after
+                        EMPTY_INPUT, // before
+                    ),
+                ).toEqual({value: '100.00', selection: [3, 3]});
+            });
+
+            it('100.0 => 100.00', () => {
+                expect(
+                    postprocessor(
+                        {value: '100.0', selection: [5, 5]}, // after
+                        // attempt to delete character from postfix
+                        {value: '100.00', selection: [6, 6]}, // before
+                    ),
+                ).toEqual({value: '100.00', selection: [5, 5]});
+            });
+
+            it('100. => 100.00', () => {
+                expect(
+                    postprocessor(
+                        {value: '100.', selection: [4, 4]}, // after
+                        // attempt to delete many characters from postfix
+                        {value: '100.00', selection: [6, 6]}, // before
+                    ),
+                ).toEqual({value: '100.00', selection: [4, 4]});
+            });
         });
 
-        it('type 100 => 100.00', () => {
-            expect(
-                postprocessor(
-                    {value: '100', selection: [3, 3]}, // after
-                    EMPTY_INPUT, // before
-                ),
-            ).toEqual({value: '100.00', selection: [3, 3]});
-        });
+        describe('postfix=_lbs_per_day', () => {
+            const postprocessor = maskitoPostfixPostprocessorGenerator('_lbs_per_day');
 
-        it('100.0 => 100.00', () => {
-            expect(
-                postprocessor(
-                    {value: '100.0', selection: [5, 5]}, // after
-                    // attempt to delete character from postfix
-                    {value: '100.00', selection: [6, 6]}, // before
-                ),
-            ).toEqual({value: '100.00', selection: [5, 5]});
-        });
-
-        it('100. => 100.00', () => {
-            expect(
-                postprocessor(
-                    {value: '100.', selection: [4, 4]}, // after
-                    // attempt to delete many characters from postfix
-                    {value: '100.00', selection: [6, 6]}, // before
-                ),
-            ).toEqual({value: '100.00', selection: [4, 4]});
+            it('paste 100 + partially filled postfix => 100_lbs_per_day', () => {
+                expect(
+                    postprocessor(
+                        {
+                            value: '100_lbs',
+                            selection: ['100_lbs'.length, '100_lbs'.length],
+                        },
+                        EMPTY_INPUT,
+                    ),
+                ).toEqual({
+                    value: '100_lbs_per_day',
+                    selection: ['100_lbs'.length, '100_lbs'.length],
+                });
+            });
         });
     });
 
