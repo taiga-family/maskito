@@ -20,6 +20,7 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
             [attr.value]="initialValue"
             [maskito]="maskitoOptions"
             [maskitoElement]="maskitoElementPredicate"
+            (beforeinput)="beforeinput.emit($event)"
             (change)="change.emit($event)"
             (input)="input.emit($event)"
         />
@@ -36,6 +37,9 @@ export class TestInput {
     @Input()
     public maskitoElementPredicate: MaskitoElementPredicate =
         MASKITO_DEFAULT_ELEMENT_PREDICATE;
+
+    @Output()
+    public readonly beforeinput = new EventEmitter();
 
     @Output()
     public readonly input = new EventEmitter();
