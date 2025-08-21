@@ -3,7 +3,7 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoDateMode, MaskitoTimeMode} from '@maskito/kit';
+import type {MaskitoDateMode, MaskitoDateTimeParams, MaskitoTimeMode} from '@maskito/kit';
 import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
@@ -16,10 +16,6 @@ import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/componen
 import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
 import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
 import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
-
-type GeneratorOptions = Required<
-    NonNullable<Parameters<typeof maskitoDateTimeOptionsGenerator>[0]>
->;
 
 @Component({
     standalone: true,
@@ -41,7 +37,7 @@ type GeneratorOptions = Required<
     templateUrl: './date-time-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DateTimeMaskDocComponent implements GeneratorOptions {
+export default class DateTimeMaskDocComponent implements Required<MaskitoDateTimeParams> {
     protected readonly maskitoParseStringifyDateTimeDemo = import(
         './examples/maskito-parse-stringify-date-time-demo.md?raw'
     );

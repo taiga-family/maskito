@@ -4,7 +4,7 @@ import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '@maskito/kit';
+import type {MaskitoTimeMode, MaskitoTimeParams, MaskitoTimeSegments} from '@maskito/kit';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
@@ -16,8 +16,6 @@ import {TimeMaskDocExample2} from './examples/2-am-pm/component';
 import {TimeMaskDocExample3} from './examples/3-step/component';
 import {TimeMaskDocExample4} from './examples/4-affixes/component';
 import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
-
-type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[0]>;
 
 @Component({
     standalone: true,
@@ -41,7 +39,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoTimeOptionsGenerator>[
     styleUrls: ['./time-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class TimeMaskDocComponent implements GeneratorOptions {
+export default class TimeMaskDocComponent implements Required<MaskitoTimeParams> {
     protected pages = DemoPath;
 
     protected readonly maskitoParseStringifyTimeDemo = import(

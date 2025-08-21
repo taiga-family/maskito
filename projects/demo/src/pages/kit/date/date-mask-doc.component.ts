@@ -3,7 +3,7 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoDateMode} from '@maskito/kit';
+import type {MaskitoDateMode, MaskitoDateParams} from '@maskito/kit';
 import {maskitoDateOptionsGenerator} from '@maskito/kit';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
@@ -12,8 +12,6 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
-
-type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[0]>;
 
 @Component({
     standalone: true,
@@ -33,7 +31,7 @@ type GeneratorOptions = Required<Parameters<typeof maskitoDateOptionsGenerator>[
     styleUrls: ['./date-mask-doc.style.less'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DateMaskDocComponent implements GeneratorOptions {
+export default class DateMaskDocComponent implements Required<MaskitoDateParams> {
     protected apiPageControl = new FormControl('');
 
     protected readonly maskitoParseStringifyDateDemo = import(
