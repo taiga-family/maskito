@@ -8,12 +8,13 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
 } from '../../../../constants';
+import {DEFAULT_PSEUDO_MINUSES} from '../../number-mask';
 import {toNumberParts} from '../number-parts';
 
 const DEFAULT_PARAMS = {
     prefix: '',
     postfix: '',
-    minusPseudoSigns: [],
+    minusPseudoSigns: DEFAULT_PSEUDO_MINUSES,
     decimalSeparator: '.',
     minusSign: '-',
     decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
@@ -278,6 +279,56 @@ describe('toNumberParts', () => {
             decimalSeparator: '.',
             prefix: '',
             postfix: '',
+        });
+    });
+
+    it('postfix contains point & value ends with decimal point too', () => {
+        expect(
+            toNumberParts('123.lbs.', {
+                ...DEFAULT_PARAMS,
+                postfix: 'lbs.',
+            }),
+        ).toEqual({
+            minus: '',
+            integerPart: '123',
+            decimalPart: '',
+            decimalSeparator: '.',
+            prefix: '',
+            postfix: 'lbs.',
+        });
+    });
+
+    describe('prefix & minus can be swapped', () => {
+        it('>-123 => {prefix: ">", minus: "-"}', () => {
+            expect(
+                toNumberParts('>-123', {
+                    ...DEFAULT_PARAMS,
+                    prefix: '>',
+                }),
+            ).toEqual({
+                minus: '-',
+                integerPart: '123',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '>',
+                postfix: '',
+            });
+        });
+
+        it('-$123 => {prefix: ["-", "$"], minus: "-"}', () => {
+            expect(
+                toNumberParts('-$123', {
+                    ...DEFAULT_PARAMS,
+                    prefix: ['-', '$'],
+                }),
+            ).toEqual({
+                minus: '-',
+                integerPart: '123',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '$',
+                postfix: '',
+            });
         });
     });
 });

@@ -11,6 +11,7 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
+import {DEFAULT_PSEUDO_MINUSES} from '@maskito/kit/src/lib/masks/number';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
@@ -22,8 +23,6 @@ import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
 import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
 import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
-
-type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
 
 @Component({
     standalone: true,
@@ -45,7 +44,7 @@ type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class NumberMaskDocComponent implements GeneratorParams {
+export default class NumberMaskDocComponent implements Required<MaskitoNumberParams> {
     protected readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-stringify-number-demo.md?raw'
     );
@@ -108,6 +107,14 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         Infinity,
     ];
 
+    protected readonly prefixOptions: Array<string | readonly [string, string]> = [
+        '$',
+        '€',
+        '£',
+        '>',
+        [CHAR_MINUS, '$'],
+    ];
+
     public precision = 0; // TODO(v4): delete
     public max = Number.MAX_SAFE_INTEGER;
     public min = Number.MIN_SAFE_INTEGER;
@@ -115,20 +122,48 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     public decimalZeroPadding = false; // TODO(v4): delete
     public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0]!;
     public thousandSeparator = ' ';
-    public prefix = '';
+    public prefix: string | readonly [string, string] = '';
     public postfix = '';
     public minusSign = CHAR_MINUS;
     public minimumFractionDigits = 0;
     public maximumFractionDigits = 0;
     public maskitoOptions: MaskitoOptions = this.calculateMask(this);
+    public minusPseudoSigns = DEFAULT_PSEUDO_MINUSES;
 
     protected updateOptions(): void {
         this.maskitoOptions = this.calculateMask(this);
     }
 
-    private calculateMask(options: GeneratorParams): MaskitoOptions {
-        const {prefix, postfix} = options;
-        const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
+    private get computedPrefix(): string | readonly [string, string] {
+        return typeof this.prefix === 'string'
+            ? this.prefix
+            : (this.prefix.map((x) =>
+                  this.minusPseudoSigns.includes(x) ? this.minusSign : x,
+              ) as unknown as readonly [string, string]);
+    }
+
+    private calculateMask(params: Required<MaskitoNumberParams>): MaskitoOptions {
+        const {
+            postfix,
+            minusSign,
+            thousandSeparator,
+            decimalSeparator,
+            minusPseudoSigns,
+        } = params;
+        const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator({
+            ...params,
+            minusPseudoSigns: minusPseudoSigns?.filter(
+                (char) =>
+                    char !== thousandSeparator &&
+                    char !== decimalSeparator &&
+                    char !== minusSign,
+            ),
+            prefix: this.computedPrefix,
+        });
+        const prefix =
+            typeof this.computedPrefix === 'string'
+                ? this.computedPrefix
+                : (this.computedPrefix.find((x) => x !== minusSign) ?? '');
 
         return {
             ...numberOptions,
@@ -137,7 +172,9 @@ export default class NumberMaskDocComponent implements GeneratorParams {
                 maskitoAddOnFocusPlugin(prefix + postfix),
                 maskitoRemoveOnBlurPlugin(prefix + postfix),
                 maskitoCaretGuard((value) => [
-                    prefix.length,
+                    typeof this.computedPrefix === 'string' || !value.includes(minusSign)
+                        ? prefix.length
+                        : this.computedPrefix.join('').length,
                     value.length - postfix.length,
                 ]),
             ],
