@@ -13,7 +13,6 @@ export * from './date/to-date-string';
 export * from './date/validate-date-string';
 export * from './dummy';
 export * from './escape-reg-exp';
-export * from './extract-affixes';
 export * from './find-common-beginning-substr';
 export * from './is-empty';
 export * from './pad-with-zeroes-until-valid';

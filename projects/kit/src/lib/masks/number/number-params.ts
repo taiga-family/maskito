@@ -21,4 +21,5 @@ export interface MaskitoNumberParams
     prefix?: string;
     postfix?: string;
     minusSign?: string;
+    minusPseudoSigns?: readonly string[];
 }

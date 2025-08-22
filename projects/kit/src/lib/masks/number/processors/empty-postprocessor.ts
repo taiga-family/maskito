@@ -1,7 +1,7 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {extractAffixes} from '../../../utils';
-import {toNumberParts} from '../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * Make textfield empty if there is no integer part and all decimal digits are zeroes.
@@ -9,42 +9,32 @@ import {toNumberParts} from '../utils';
  * @example -0|,00 => Backspace => -.
  * @example ,42| => Backspace x2 => ,|00 => Backspace => Empty
  */
-export function emptyPostprocessor({
-    prefix,
-    postfix,
-    decimalSeparator,
-    minusSign,
-}: {
-    prefix: string;
-    postfix: string;
-    decimalSeparator: string;
-    minusSign: string;
-}): MaskitoPostprocessor {
+export function emptyPostprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+    >,
+): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [caretIndex] = selection;
-        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
-        const {minus, integerPart, decimalPart} = toNumberParts(cleanValue, {
-            decimalSeparator,
-            minusSign,
-        });
-        const aloneDecimalSeparator =
-            !integerPart &&
-            !decimalPart &&
-            Boolean(decimalSeparator) &&
-            cleanValue.includes(decimalSeparator);
+        const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
+            toNumberParts(value, params);
+        const aloneDecimalSeparator = !integerPart && !decimalPart && decimalSeparator;
 
         if (
             (!integerPart &&
                 !Number(decimalPart) &&
-                caretIndex === (minus + extractedPrefix).length) ||
+                caretIndex === (minus + prefix).length) ||
             aloneDecimalSeparator
         ) {
             return {
                 selection,
-                value: extractedPrefix + minus + extractedPostfix,
+                value: fromNumberParts({prefix, minus, postfix}, params),
             };
         }
 

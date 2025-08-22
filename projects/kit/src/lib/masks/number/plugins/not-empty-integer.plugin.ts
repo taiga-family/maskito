@@ -2,22 +2,28 @@ import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
-import {escapeRegExp, extractAffixes, noop} from '../../../utils';
+import {escapeRegExp, noop} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * It pads EMPTY integer part with zero if decimal parts exists.
  * It works on blur event only!
  * @example 1|,23 => Backspace => Blur => 0,23
  */
-export function createNotEmptyIntegerPlugin({
-    decimalSeparator,
-    prefix,
-    postfix,
-}: {
-    decimalSeparator: string;
-    prefix: string;
-    postfix: string;
-}): MaskitoPlugin {
+export function createNotEmptyIntegerPlugin(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+    >,
+): MaskitoPlugin {
+    const {decimalSeparator} = params;
+
     if (!decimalSeparator) {
         return noop;
     }
@@ -25,17 +31,22 @@ export function createNotEmptyIntegerPlugin({
     return maskitoEventHandler(
         'blur',
         (element) => {
-            const {cleanValue, extractedPostfix, extractedPrefix} = extractAffixes(
+            const {prefix, postfix, ...numberParts} = toNumberParts(
                 element.value,
-                {prefix, postfix},
+                params,
             );
-            const newValue =
-                extractedPrefix +
-                cleanValue.replace(
-                    new RegExp(`^(\\D+)?${escapeRegExp(decimalSeparator)}`),
-                    `$10${decimalSeparator}`,
-                ) +
-                extractedPostfix;
+            const onlyNumber = fromNumberParts(numberParts, params).replace(
+                new RegExp(`^(\\D+)?${escapeRegExp(decimalSeparator)}`),
+                `$10${decimalSeparator}`,
+            );
+            const newValue = fromNumberParts(
+                {
+                    ...toNumberParts(onlyNumber, params),
+                    prefix,
+                    postfix,
+                },
+                params,
+            );
 
             maskitoUpdateElement(element, newValue);
         },

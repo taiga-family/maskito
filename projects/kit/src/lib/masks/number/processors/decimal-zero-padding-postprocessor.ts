@@ -1,49 +1,47 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {extractAffixes, identity} from '../../../utils';
-import {maskitoParseNumber} from '../utils';
+import {identity} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, maskitoParseNumber, toNumberParts} from '../utils';
 
 /**
  * If `minimumFractionDigits` is `>0`, it pads decimal part with zeroes
  * (until number of digits after decimalSeparator is equal to the `minimumFractionDigits`).
  * @example 1,42 => (`minimumFractionDigits` is equal to 4) => 1,4200.
  */
-export function createDecimalZeroPaddingPostprocessor({
-    decimalSeparator,
-    minimumFractionDigits,
-    prefix,
-    postfix,
-    minusSign,
-}: {
-    decimalSeparator: string;
-    minimumFractionDigits: number;
-    prefix: string;
-    postfix: string;
-    minusSign: string;
-}): MaskitoPostprocessor {
+export function createDecimalZeroPaddingPostprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minimumFractionDigits'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+    >,
+): MaskitoPostprocessor {
+    const {minimumFractionDigits} = params;
+
     if (!minimumFractionDigits) {
         return identity;
     }
 
     return ({value, selection}) => {
-        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
-
-        if (Number.isNaN(maskitoParseNumber(cleanValue, {decimalSeparator, minusSign}))) {
+        if (Number.isNaN(maskitoParseNumber(value, params))) {
             return {value, selection};
         }
 
-        const [integerPart, decimalPart = ''] = cleanValue.split(decimalSeparator);
+        const {decimalPart, ...numberParts} = toNumberParts(value, params);
 
         return {
-            value:
-                extractedPrefix +
-                integerPart +
-                decimalSeparator +
-                decimalPart.padEnd(minimumFractionDigits, '0') +
-                extractedPostfix,
+            value: fromNumberParts(
+                {
+                    ...numberParts,
+                    decimalPart: decimalPart.padEnd(minimumFractionDigits, '0'),
+                },
+                params,
+            ),
             selection,
         };
     };

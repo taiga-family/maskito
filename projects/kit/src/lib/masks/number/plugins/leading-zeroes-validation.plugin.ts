@@ -2,6 +2,7 @@ import type {MaskitoPlugin} from '@maskito/core';
 import {maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
+import type {MaskitoNumberParams} from '../number-params';
 import {createLeadingZeroesValidationPostprocessor} from '../processors';
 
 const DUMMY_SELECTION = [0, 0] as const;
@@ -11,23 +12,19 @@ const DUMMY_SELECTION = [0, 0] as const;
  * @example 000000 => blur => 0
  * @example 00005 => blur => 5
  */
-export function createLeadingZeroesValidationPlugin({
-    decimalSeparator,
-    thousandSeparator,
-    prefix,
-    postfix,
-}: {
-    decimalSeparator: string;
-    thousandSeparator: string;
-    prefix: string;
-    postfix: string;
-}): MaskitoPlugin {
-    const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor({
-        decimalSeparator,
-        thousandSeparator,
-        prefix,
-        postfix,
-    });
+export function createLeadingZeroesValidationPlugin(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+        | 'thousandSeparator'
+    >,
+): MaskitoPlugin {
+    const dropRepeatedLeadingZeroes = createLeadingZeroesValidationPostprocessor(params);
 
     return maskitoEventHandler(
         'blur',

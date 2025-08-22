@@ -23,6 +23,8 @@ import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component
 import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
 import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
 
+type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
+
 @Component({
     standalone: true,
     selector: 'number-mask-doc',
@@ -43,7 +45,7 @@ import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/c
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class NumberMaskDocComponent implements Required<MaskitoNumberParams> {
+export default class NumberMaskDocComponent implements GeneratorParams {
     protected readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-stringify-number-demo.md?raw'
     );
@@ -124,7 +126,7 @@ export default class NumberMaskDocComponent implements Required<MaskitoNumberPar
         this.maskitoOptions = this.calculateMask(this);
     }
 
-    private calculateMask(options: Required<MaskitoNumberParams>): MaskitoOptions {
+    private calculateMask(options: GeneratorParams): MaskitoOptions {
         const {prefix, postfix} = options;
         const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
 

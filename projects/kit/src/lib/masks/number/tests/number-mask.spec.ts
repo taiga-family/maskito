@@ -131,6 +131,18 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoTransform('1 000.', options)).toBe('1 000. lbs.');
             });
 
+            it('paste 1 000<space> => 1 000. |lbs.', () => {
+                expect(
+                    maskitoTransform(
+                        {value: '1 000 ', selection: ['1 000 '.length, '1 000 '.length]},
+                        options,
+                    ),
+                ).toEqual({
+                    value: '1 000 lbs.',
+                    selection: ['1 000 '.length, '1 000 '.length],
+                });
+            });
+
             it('1 000 lbs. => 1 000 lbs.', () => {
                 expect(maskitoTransform('1 000 lbs.', options)).toBe('1 000 lbs.');
             });
@@ -398,12 +410,34 @@ describe('Number (maskitoTransform)', () => {
         });
     });
 
-    it('autofill value with extra leading and trailing whitespace (thousand separator is equal to whitespace too)', () => {
-        const options = maskitoNumberOptionsGenerator({
-            thousandSeparator: ' ',
+    describe('autofill value with extra leading and trailing whitespace (thousand separator is equal to whitespace too)', () => {
+        it('<space x3>123456<space x3>', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ' ',
+            });
+
+            expect(maskitoTransform('    123456    ', options)).toBe('123 456');
         });
 
-        expect(maskitoTransform('    123456    ', options)).toBe('123 456');
+        it('<space>|123 => |123', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ' ',
+            });
+
+            expect(maskitoTransform({value: ' 123', selection: [1, 1]}, options)).toEqual(
+                {
+                    value: '123',
+                    selection: [0, 0],
+                },
+            );
+            // Check when initial calibration processor already worked
+            expect(maskitoTransform({value: ' 123', selection: [1, 1]}, options)).toEqual(
+                {
+                    value: '123',
+                    selection: [0, 0],
+                },
+            );
+        });
     });
 
     it('[thousandSeparator] is equal to [decimalSeparator] when [maximumFractionDigits]=0', () => {

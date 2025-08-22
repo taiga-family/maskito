@@ -9,9 +9,9 @@ export function generateMaskExpression({
     maximumFractionDigits,
     min,
     minusSign,
+    minusPseudoSigns,
     postfix,
     prefix,
-    pseudoMinuses,
     thousandSeparator,
 }: Pick<
     Required<MaskitoNumberParams>,
@@ -19,18 +19,19 @@ export function generateMaskExpression({
     | 'decimalSeparator'
     | 'maximumFractionDigits'
     | 'min'
+    | 'minusPseudoSigns'
     | 'minusSign'
     | 'postfix'
     | 'prefix'
     | 'thousandSeparator'
-> & {pseudoMinuses: readonly string[]}): MaskitoMask {
+>): MaskitoMask {
     const computedPrefix =
-        min < 0 && [minusSign, ...pseudoMinuses].includes(prefix)
+        min < 0 && [minusSign, ...minusPseudoSigns].includes(prefix)
             ? ''
             : computeAllOptionalCharsRegExp(prefix);
     const digit = String.raw`\d`;
     const optionalMinus =
-        min < 0 ? `[${minusSign}${pseudoMinuses.map((x) => `\\${x}`).join('')}]?` : '';
+        min < 0 ? `[${minusSign}${minusPseudoSigns.map((x) => `\\${x}`).join('')}]?` : '';
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;

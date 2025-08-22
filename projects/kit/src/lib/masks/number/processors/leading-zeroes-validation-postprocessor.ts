@@ -1,6 +1,8 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {escapeRegExp, extractAffixes} from '../../../utils';
+import {escapeRegExp} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from '../utils';
 
 /**
  * It removes repeated leading zeroes for integer part.
@@ -9,17 +11,19 @@ import {escapeRegExp, extractAffixes} from '../../../utils';
  * @example User types "000000" => 0|
  * @example 0| => User types "5" => 5|
  */
-export function createLeadingZeroesValidationPostprocessor({
-    decimalSeparator,
-    thousandSeparator,
-    prefix,
-    postfix,
-}: {
-    decimalSeparator: string;
-    thousandSeparator: string;
-    prefix: string;
-    postfix: string;
-}): MaskitoPostprocessor {
+export function createLeadingZeroesValidationPostprocessor(
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        | 'decimalPseudoSeparators'
+        | 'decimalSeparator'
+        | 'minusPseudoSigns'
+        | 'minusSign'
+        | 'postfix'
+        | 'prefix'
+        | 'thousandSeparator'
+    >,
+): MaskitoPostprocessor {
+    const {thousandSeparator} = params;
     const trimLeadingZeroes = (value: string): string => {
         const escapedThousandSeparator = escapeRegExp(thousandSeparator);
 
@@ -49,16 +53,7 @@ export function createLeadingZeroesValidationPostprocessor({
 
     return ({value, selection}) => {
         const [from, to] = selection;
-        const {cleanValue, extractedPrefix, extractedPostfix} = extractAffixes(value, {
-            prefix,
-            postfix,
-        });
-
-        const hasDecimalSeparator =
-            Boolean(decimalSeparator) && cleanValue.includes(decimalSeparator);
-        const [integerPart = '', decimalPart = ''] = decimalSeparator
-            ? cleanValue.split(decimalSeparator)
-            : [cleanValue];
+        const {integerPart, ...numberParts} = toNumberParts(value, params);
         const zeroTrimmedIntegerPart = trimLeadingZeroes(integerPart);
 
         if (integerPart === zeroTrimmedIntegerPart) {
@@ -69,12 +64,10 @@ export function createLeadingZeroesValidationPostprocessor({
         const newTo = to - countTrimmedZeroesBefore(value, to);
 
         return {
-            value:
-                extractedPrefix +
-                zeroTrimmedIntegerPart +
-                (hasDecimalSeparator ? decimalSeparator : '') +
-                decimalPart +
-                extractedPostfix,
+            value: fromNumberParts(
+                {...numberParts, integerPart: zeroTrimmedIntegerPart},
+                params,
+            ),
             selection: [Math.max(newFrom, 0), Math.max(newTo, 0)],
         };
     };

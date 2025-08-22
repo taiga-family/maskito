@@ -50,135 +50,81 @@ export function maskitoNumberOptionsGenerator({
     precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
-    decimalPseudoSeparators,
+    decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     decimalZeroPadding = false,
     prefix: unsafePrefix = '',
     postfix = '',
     minusSign = CHAR_MINUS,
+    minusPseudoSigns = DEFAULT_PSEUDO_MINUSES.filter(
+        (char) =>
+            char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
+    ),
     maximumFractionDigits = precision,
     minimumFractionDigits = decimalZeroPadding ? maximumFractionDigits : 0,
 }: MaskitoNumberParams = {}): Required<MaskitoOptions> {
-    const pseudoMinuses = DEFAULT_PSEUDO_MINUSES.filter(
-        (char) =>
-            char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
-    );
-    const validatedDecimalPseudoSeparators = validateDecimalPseudoSeparators({
+    const decimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
         thousandSeparator,
-        decimalPseudoSeparators,
+        decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     });
     const prefix =
         unsafePrefix.endsWith(decimalSeparator) && maximumFractionDigits > 0
             ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
             : unsafePrefix;
 
-    const initializationOnlyPreprocessor = createInitializationOnlyPreprocessor({
-        decimalSeparator,
-        decimalPseudoSeparators: validatedDecimalPseudoSeparators,
-        pseudoMinuses,
+    const params: Required<MaskitoNumberParams> = {
+        max,
+        min,
+        precision,
+        thousandSeparator,
+        decimalSeparator:
+            maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
+                ? ''
+                : decimalSeparator,
+        decimalZeroPadding,
         prefix,
         postfix,
         minusSign,
-    });
-
-    decimalSeparator =
-        maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
-            ? ''
-            : decimalSeparator;
+        minusPseudoSigns,
+        maximumFractionDigits,
+        minimumFractionDigits: Math.min(minimumFractionDigits, maximumFractionDigits),
+        decimalPseudoSeparators,
+    };
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
-        mask: generateMaskExpression({
-            decimalSeparator,
-            maximumFractionDigits,
-            min,
-            minusSign,
-            postfix,
-            prefix,
-            pseudoMinuses,
-            thousandSeparator,
-            decimalPseudoSeparators: validatedDecimalPseudoSeparators,
-        }),
+        mask: generateMaskExpression(params),
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
-            initializationOnlyPreprocessor,
-            createAffixesFilterPreprocessor({prefix, postfix}),
+            createInitializationOnlyPreprocessor(params),
+            createAffixesFilterPreprocessor(params),
             createPseudoCharactersPreprocessor({
+                ...params,
                 validCharacter: minusSign,
-                pseudoCharacters: pseudoMinuses,
-                prefix,
-                postfix,
+                pseudoCharacters: minusPseudoSigns,
             }),
             createPseudoCharactersPreprocessor({
+                ...params,
                 validCharacter: decimalSeparator,
-                pseudoCharacters: validatedDecimalPseudoSeparators,
-                prefix,
-                postfix,
+                pseudoCharacters: decimalPseudoSeparators,
             }),
-            createNotEmptyIntegerPartPreprocessor({
-                decimalSeparator,
-                maximumFractionDigits,
-                prefix,
-                postfix,
-            }),
-            createNonRemovableCharsDeletionPreprocessor({
-                decimalSeparator,
-                minimumFractionDigits,
-                thousandSeparator,
-            }),
-            createZeroPrecisionPreprocessor({
-                maximumFractionDigits,
-                decimalSeparator,
-                prefix,
-                postfix,
-            }),
-            createRepeatedDecimalSeparatorPreprocessor({
-                decimalSeparator,
-                prefix,
-                postfix,
-            }),
+            createNotEmptyIntegerPartPreprocessor(params),
+            createNonRemovableCharsDeletionPreprocessor(params),
+            createZeroPrecisionPreprocessor(params),
+            createRepeatedDecimalSeparatorPreprocessor(params),
         ],
         postprocessors: [
-            createMinMaxPostprocessor({decimalSeparator, min, max, minusSign}),
+            createMinMaxPostprocessor(params),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
-            createThousandSeparatorPostprocessor({
-                decimalSeparator,
-                thousandSeparator,
-                prefix,
-                postfix,
-                minusSign,
-            }),
-            createDecimalZeroPaddingPostprocessor({
-                decimalSeparator,
-                prefix,
-                postfix,
-                minusSign,
-                minimumFractionDigits: Math.min(
-                    minimumFractionDigits,
-                    maximumFractionDigits,
-                ),
-            }),
-            emptyPostprocessor({
-                prefix,
-                postfix,
-                decimalSeparator,
-                minusSign,
-            }),
+            createThousandSeparatorPostprocessor(params),
+            createDecimalZeroPaddingPostprocessor(params),
+            emptyPostprocessor(params),
         ],
         plugins: [
-            createLeadingZeroesValidationPlugin({
-                decimalSeparator,
-                thousandSeparator,
-                prefix,
-                postfix,
-            }),
-            createNotEmptyIntegerPlugin({
-                decimalSeparator,
-                prefix,
-                postfix,
-            }),
-            createMinMaxPlugin({min, max, decimalSeparator, minusSign}),
+            createLeadingZeroesValidationPlugin(params),
+            createNotEmptyIntegerPlugin(params),
+            createMinMaxPlugin(params),
         ],
         overwriteMode:
             minimumFractionDigits > 0
