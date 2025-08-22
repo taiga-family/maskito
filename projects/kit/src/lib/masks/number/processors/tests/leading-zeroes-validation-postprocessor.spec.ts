@@ -8,7 +8,7 @@ const DEFAULT_PARAMS = {
     prefix: '',
     postfix: '',
     minusPseudoSigns: [],
-    decimalPseudoSeparators: [','] as string[], // TODO(v5): remove `as string[]`
+    decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
 } as const satisfies MaskitoNumberParams;
 
 describe('createLeadingZeroesValidationPostprocessor', () => {
