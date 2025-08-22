@@ -41,7 +41,7 @@ describe('React synthetic "onChange" event', () => {
         });
 
         it('paste partially valid value (mask corrects it and patches textfield) => onChange is dispatched ONCE', () => {
-            cy.get('input').paste('123456,78').should('have.value', '123 456.78');
+            cy.get('input').focus().paste('123456,78').should('have.value', '123 456.78');
             cy.get('@handler').should('have.been.calledOnceWith', '123 456.78');
         });
     });
@@ -101,7 +101,7 @@ describe('React synthetic "onChange" event', () => {
         });
 
         it('paste partially valid value (mask+state action correct it and patches textfield) => onChange is dispatched ONCE', () => {
-            cy.get('input').paste('nikita').should('have.value', 'NikiTa');
+            cy.get('input').focus().paste('nikita').should('have.value', 'NikiTa');
             cy.get('@handler').should('have.been.calledOnceWith', 'nikiTa');
         });
     });

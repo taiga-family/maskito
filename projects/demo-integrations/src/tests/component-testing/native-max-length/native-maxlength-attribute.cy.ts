@@ -82,6 +82,7 @@ describe('Native attribute maxlength works', () => {
 
             it('Empty input => Paste 123456789 => 123|', () => {
                 cy.get('@input')
+                    .focus()
                     .paste('123456789')
                     .should('have.value', '123')
                     .should('have.prop', 'selectionStart', '123'.length)
