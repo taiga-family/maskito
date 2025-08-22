@@ -1,6 +1,7 @@
 import {escapeRegExp} from '../../../utils';
 import type {MaskitoNumberParams} from '../number-params';
 import {extractAffixes} from './extract-affixes';
+import {extractPrefixInfo} from './extract-prefix-info';
 
 interface NumberParts {
     prefix: string;
@@ -35,6 +36,8 @@ export function toNumberParts(
         postfix,
         decimalSeparator,
         decimalPseudoSeparators,
+        minusSign,
+        minusPseudoSigns,
     });
     const [integerWithMinus = '', decimalPart = ''] = decimalSeparator
         ? cleanValue.split(decimalSeparator)
@@ -67,9 +70,15 @@ export function fromNumberParts(
         postfix = '',
         decimalSeparator = '',
     }: Partial<NumberParts>,
-    params: Pick<Required<MaskitoNumberParams>, 'decimalSeparator'>,
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        'decimalSeparator' | 'minusSign' | 'prefix'
+    >,
 ): string {
     const separator = decimalPart ? params.decimalSeparator : decimalSeparator;
+    const beginning = extractPrefixInfo(params).prefixIndex
+        ? minus + prefix
+        : prefix + minus;
 
-    return `${prefix}${minus}${integerPart}${separator}${decimalPart}${postfix}`;
+    return `${beginning}${integerPart}${separator}${decimalPart}${postfix}`;
 }

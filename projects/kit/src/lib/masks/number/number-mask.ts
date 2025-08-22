@@ -8,12 +8,10 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
-    CHAR_ZERO_WIDTH_SPACE,
 } from '../../constants';
 import {
     createFullWidthToHalfWidthPreprocessor,
     maskitoPostfixPostprocessorGenerator,
-    maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
 import type {MaskitoNumberParams} from './number-params';
 import {
@@ -25,16 +23,22 @@ import {
     createAffixesFilterPreprocessor,
     createDecimalZeroPaddingPostprocessor,
     createInitializationOnlyPreprocessor,
+    createLeadingMinusDeletionPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
+    createNumberPrefixPostprocessor,
     createPseudoCharactersPreprocessor,
     createRepeatedDecimalSeparatorPreprocessor,
     createThousandSeparatorPostprocessor,
     createZeroPrecisionPreprocessor,
     emptyPostprocessor,
 } from './processors';
-import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
+import {
+    generateMaskExpression,
+    validateDecimalPseudoSeparators,
+    validatePrefix,
+} from './utils';
 
 export const DEFAULT_PSEUDO_MINUSES = [
     CHAR_HYPHEN,
@@ -52,7 +56,7 @@ export function maskitoNumberOptionsGenerator({
     decimalSeparator = '.',
     decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     decimalZeroPadding = false,
-    prefix: unsafePrefix = '',
+    prefix = '',
     postfix = '',
     minusSign = CHAR_MINUS,
     minusPseudoSigns = DEFAULT_PSEUDO_MINUSES.filter(
@@ -67,10 +71,6 @@ export function maskitoNumberOptionsGenerator({
         thousandSeparator,
         decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     });
-    const prefix =
-        unsafePrefix.endsWith(decimalSeparator) && maximumFractionDigits > 0
-            ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
-            : unsafePrefix;
 
     const params: Required<MaskitoNumberParams> = {
         max,
@@ -82,7 +82,7 @@ export function maskitoNumberOptionsGenerator({
                 ? ''
                 : decimalSeparator,
         decimalZeroPadding,
-        prefix,
+        prefix: validatePrefix(prefix, {decimalSeparator, maximumFractionDigits}),
         postfix,
         minusSign,
         minusPseudoSigns,
@@ -112,10 +112,11 @@ export function maskitoNumberOptionsGenerator({
             createNonRemovableCharsDeletionPreprocessor(params),
             createZeroPrecisionPreprocessor(params),
             createRepeatedDecimalSeparatorPreprocessor(params),
+            createLeadingMinusDeletionPreprocessor(params),
         ],
         postprocessors: [
             createMinMaxPostprocessor(params),
-            maskitoPrefixPostprocessorGenerator(prefix),
+            createNumberPrefixPostprocessor(params),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor(params),
             createDecimalZeroPaddingPostprocessor(params),

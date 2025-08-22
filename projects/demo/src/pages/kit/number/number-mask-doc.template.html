@@ -144,9 +144,26 @@
         </tui-doc-example>
 
         <tui-doc-example
+            id="minus-before-prefix"
+            heading="Minus before prefix"
+            [content]="minusBeforePrefixExample6"
+            [description]="minusBeforePrefixDescription"
+        >
+            <ng-template #minusBeforePrefixDescription>
+                <p>
+                    Property
+                    <code>prefix</code>
+                    also accepts 2-length tuple to configure order of prefix and minus sign (by default, prefix is
+                    always placed before minus).
+                </p>
+            </ng-template>
+            <number-mask-doc-example-6 />
+        </tui-doc-example>
+
+        <tui-doc-example
             id="dynamic-decimal-zero-padding"
             heading="Dynamic decimal zero padding"
-            [content]="dynamicDecimalZeroPaddingExample6"
+            [content]="dynamicDecimalZeroPaddingExample7"
             [description]="dynamicDecimalZeroPaddingDescription"
         >
             <ng-template #dynamicDecimalZeroPaddingDescription>
@@ -156,7 +173,7 @@
                     inserts decimal separator.
                 </div>
             </ng-template>
-            <number-mask-doc-example-6 />
+            <number-mask-doc-example-7 />
         </tui-doc-example>
     </ng-template>
 
@@ -308,6 +325,7 @@
                 documentationPropertyMode="input"
                 documentationPropertyName="prefix"
                 documentationPropertyType="string"
+                [documentationPropertyValues]="prefixOptions"
                 [(documentationPropertyValue)]="prefix"
                 (documentationPropertyValueChange)="updateOptions()"
             >
