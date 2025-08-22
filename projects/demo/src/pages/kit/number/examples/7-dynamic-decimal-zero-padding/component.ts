@@ -15,7 +15,7 @@ import {getMaskitoOptions} from './mask';
 
 @Component({
     standalone: true,
-    selector: 'number-mask-doc-example-6',
+    selector: 'number-mask-doc-example-7',
     imports: [
         FormsModule,
         MaskitoDirective,
@@ -42,7 +42,7 @@ import {getMaskitoOptions} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample6 {
+export class NumberMaskDocExample7 {
     protected value = '42';
     protected decimalZeroPadding = this.value.includes('.');
 

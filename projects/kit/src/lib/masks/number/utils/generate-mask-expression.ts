@@ -2,6 +2,7 @@ import type {MaskitoMask} from '@maskito/core';
 
 import {escapeRegExp} from '../../../utils';
 import type {MaskitoNumberParams} from '../number-params';
+import {extractPrefixInfo} from './extract-prefix-info';
 
 export function generateMaskExpression({
     decimalPseudoSeparators,
@@ -11,8 +12,8 @@ export function generateMaskExpression({
     minusSign,
     minusPseudoSigns,
     postfix,
-    prefix,
     thousandSeparator,
+    ...params
 }: Pick<
     Required<MaskitoNumberParams>,
     | 'decimalPseudoSeparators'
@@ -25,6 +26,7 @@ export function generateMaskExpression({
     | 'prefix'
     | 'thousandSeparator'
 >): MaskitoMask {
+    const {prefix} = extractPrefixInfo({...params, minusSign});
     const computedPrefix =
         min < 0 && [minusSign, ...minusPseudoSigns].includes(prefix)
             ? ''
@@ -45,10 +47,9 @@ export function generateMaskExpression({
                   .join('')}]${digit}{0,${precisionPart}})?`
             : '';
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
+    const beginning = `(${optionalMinus + computedPrefix}|${computedPrefix + optionalMinus})`;
 
-    return new RegExp(
-        `^${computedPrefix}${optionalMinus}${integerPart}${decimalPart}${computedPostfix}$`,
-    );
+    return new RegExp(`^${beginning}${integerPart}${decimalPart}${computedPostfix}$`);
 }
 
 function computeAllOptionalCharsRegExp(str: string): string {
