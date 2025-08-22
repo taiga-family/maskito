@@ -3,6 +3,7 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
+import type {MaskitoNumberParams} from '@maskito/kit';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
@@ -21,10 +22,6 @@ import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
 import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
 import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
-
-type GeneratorOptions = Required<
-    NonNullable<Parameters<typeof maskitoNumberOptionsGenerator>[0]>
->;
 
 @Component({
     standalone: true,
@@ -46,7 +43,7 @@ type GeneratorOptions = Required<
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class NumberMaskDocComponent implements GeneratorOptions {
+export default class NumberMaskDocComponent implements Required<MaskitoNumberParams> {
     protected readonly maskitoParseNumberDemo = import(
         './examples/maskito-parse-stringify-number-demo.md?raw'
     );
@@ -127,7 +124,7 @@ export default class NumberMaskDocComponent implements GeneratorOptions {
         this.maskitoOptions = this.calculateMask(this);
     }
 
-    private calculateMask(options: GeneratorOptions): MaskitoOptions {
+    private calculateMask(options: Required<MaskitoNumberParams>): MaskitoOptions {
         const {prefix, postfix} = options;
         const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(options);
 
