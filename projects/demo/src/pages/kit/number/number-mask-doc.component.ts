@@ -22,7 +22,8 @@ import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';
 import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
 import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
-import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/component';
+import {NumberMaskDocExample6} from './examples/6-minus-before-prefix/components';
+import {NumberMaskDocExample7} from './examples/7-dynamic-decimal-zero-padding/component';
 
 @Component({
     standalone: true,
@@ -35,6 +36,7 @@ import {NumberMaskDocExample6} from './examples/6-dynamic-decimal-zero-padding/c
         NumberMaskDocExample4,
         NumberMaskDocExample5,
         NumberMaskDocExample6,
+        NumberMaskDocExample7,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInputModule,
@@ -77,15 +79,21 @@ export default class NumberMaskDocComponent implements Required<MaskitoNumberPar
         ),
     };
 
-    protected readonly dynamicDecimalZeroPaddingExample6: Record<
+    protected readonly minusBeforePrefixExample6: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-minus-before-prefix/mask.ts?raw'
+        ),
+    };
+
+    protected readonly dynamicDecimalZeroPaddingExample7: Record<
         string,
         TuiRawLoaderContent
     > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-dynamic-decimal-zero-padding/mask.ts?raw'
+            './examples/7-dynamic-decimal-zero-padding/mask.ts?raw'
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/6-dynamic-decimal-zero-padding/component.ts?raw'
+            './examples/7-dynamic-decimal-zero-padding/component.ts?raw'
         ),
     };
 
