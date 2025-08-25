@@ -18,7 +18,7 @@ export interface MaskitoNumberParams
      */
     decimalZeroPadding?: boolean;
     thousandSeparator?: string;
-    prefix?: string;
+    prefix?: string | readonly [string, string];
     postfix?: string;
     minusSign?: string;
     minusPseudoSigns?: readonly string[];
