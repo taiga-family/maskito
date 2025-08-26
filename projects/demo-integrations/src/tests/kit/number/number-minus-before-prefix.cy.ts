@@ -3,7 +3,7 @@ import {CHAR_EM_DASH, CHAR_EN_DASH, CHAR_JP_HYPHEN} from 'projects/kit/src/lib/c
 import {openNumberPage} from './utils';
 
 describe('Number | Minus before prefix', () => {
-    describe('[prefix]=["-", "$"] | [minusSign]="-"', () => {
+    describe('[prefix]="$" & [minusSign]="-" & negativePattern="minusFirst"', () => {
         beforeEach(() => {
             openNumberPage(
                 'decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&minusSign=-&prefix=$&negativePattern=minusFirst',
