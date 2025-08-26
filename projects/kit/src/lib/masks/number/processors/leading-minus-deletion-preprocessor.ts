@@ -15,6 +15,7 @@ export function createLeadingMinusDeletionPreprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,
@@ -22,8 +23,8 @@ export function createLeadingMinusDeletionPreprocessor(
     return ({elementState}, inputType) => {
         const {value, selection} = elementState;
         const [from, to] = selection;
-        const {prefix, minusSign} = params;
-        const beginning = typeof prefix === 'string' ? prefix : prefix.join('');
+        const {prefix, minusSign, negativePattern} = params;
+        const beginning = negativePattern === 'prefixFirst' ? prefix : minusSign + prefix;
         const newValue = fromNumberParts(
             {...toNumberParts(value, params), minus: ''},
             params,

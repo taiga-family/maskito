@@ -16,6 +16,7 @@ export function createNotEmptyIntegerPartPreprocessor(
         | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,

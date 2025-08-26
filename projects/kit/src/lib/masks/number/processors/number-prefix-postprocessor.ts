@@ -1,17 +1,20 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
-import type {MaskitoNumberParams} from '@maskito/kit';
-import {maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
 
-import {extractPrefixInfo} from '../utils';
+import {maskitoPrefixPostprocessorGenerator} from '../../../processors';
+import type {MaskitoNumberParams} from '../number-params';
 
-export function createNumberPrefixPostprocessor(
-    params: Pick<Required<MaskitoNumberParams>, 'minusSign' | 'prefix'>,
-): MaskitoPostprocessor {
-    const {prefix, prefixIndex} = extractPrefixInfo(params);
-    const {minusSign} = params;
-
+export function createNumberPrefixPostprocessor({
+    prefix,
+    minusSign,
+    negativePattern,
+}: Pick<
+    Required<MaskitoNumberParams>,
+    'minusSign' | 'negativePattern' | 'prefix'
+>): MaskitoPostprocessor {
     return ({value, selection}, initialElementState) =>
         maskitoPrefixPostprocessorGenerator(
-            value.includes(minusSign) && prefixIndex > 0 ? minusSign + prefix : prefix,
+            value.includes(minusSign) && negativePattern === 'minusFirst'
+                ? minusSign + prefix
+                : prefix,
         )({value, selection}, initialElementState);
 }

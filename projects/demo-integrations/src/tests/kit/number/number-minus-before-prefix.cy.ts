@@ -6,7 +6,7 @@ describe('Number | Minus before prefix', () => {
     describe('[prefix]=["-", "$"] | [minusSign]="-"', () => {
         beforeEach(() => {
             openNumberPage(
-                'decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&minusSign=-&prefix$=4',
+                'decimalSeparator=.&thousandSeparator=_&maximumFractionDigits=2&minusSign=-&prefix=$&negativePattern=minusFirst',
             );
         });
 

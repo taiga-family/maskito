@@ -1,7 +1,6 @@
 import {escapeRegExp} from '../../../utils';
 import type {MaskitoNumberParams} from '../number-params';
 import {extractAffixes} from './extract-affixes';
-import {extractPrefixInfo} from './extract-prefix-info';
 
 interface NumberParts {
     prefix: string;
@@ -72,13 +71,12 @@ export function fromNumberParts(
     }: Partial<NumberParts>,
     params: Pick<
         Required<MaskitoNumberParams>,
-        'decimalSeparator' | 'minusSign' | 'prefix'
+        'decimalSeparator' | 'minusSign' | 'negativePattern' | 'prefix'
     >,
 ): string {
     const separator = decimalPart ? params.decimalSeparator : decimalSeparator;
-    const beginning = extractPrefixInfo(params).prefixIndex
-        ? minus + prefix
-        : prefix + minus;
+    const beginning =
+        params.negativePattern === 'minusFirst' ? minus + prefix : prefix + minus;
 
     return `${beginning}${integerPart}${separator}${decimalPart}${postfix}`;
 }

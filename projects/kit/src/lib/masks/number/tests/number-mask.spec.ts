@@ -325,8 +325,9 @@ describe('Number (maskitoTransform)', () => {
 
         beforeEach(() => {
             options = maskitoNumberOptionsGenerator({
-                prefix: ['-', '$'],
+                prefix: '$',
                 minusSign: '-',
+                negativePattern: 'minusFirst',
                 decimalSeparator: '.',
                 maximumFractionDigits: 2,
             });

@@ -328,7 +328,8 @@ describe('maskitoStringifyNumber', () => {
         const params: MaskitoNumberParams = {
             decimalSeparator: ',',
             minusSign: CHAR_MINUS,
-            prefix: [CHAR_MINUS, '$'],
+            prefix: '$',
+            negativePattern: 'minusFirst',
             maximumFractionDigits: 2,
         };
 
