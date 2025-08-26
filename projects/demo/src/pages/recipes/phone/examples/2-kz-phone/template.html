@@ -1,22 +1,15 @@
-<tui-input
-    [formControl]="control"
-    [style.max-width.rem]="20"
-    [tuiTextfieldCustomContent]="kzFlag"
->
-    Enter a phone number
+<tui-textfield [style.max-width.rem]="20">
+    <label tuiLabel>Enter a phone number</label>
     <input
-        autocomplete="tel"
-        inputmode="tel"
-        tuiTextfieldLegacy
+        tuiTextfield
+        [formControl]="control"
         [maskito]="maskitoOptions"
     />
-</tui-input>
 
-<ng-template #kzFlag>
     <img
         alt="Flag of Kazakhstan"
         width="28"
         [src]="'KZ' | tuiFlag"
         [style.border-radius.%]="50"
     />
-</ng-template>
+</tui-textfield>
