@@ -151,10 +151,10 @@
         >
             <ng-template #minusBeforePrefixDescription>
                 <p>
-                    Property
-                    <code>prefix</code>
-                    also accepts 2-length tuple to configure order of prefix and minus sign (by default, prefix is
-                    always placed before minus).
+                    Use
+                    <code>negativePattern</code>
+                    property to configure order of prefix and minus sign (by default, prefix is always placed before
+                    minus).
                 </p>
             </ng-template>
             <number-mask-doc-example-6 />
@@ -325,7 +325,6 @@
                 documentationPropertyMode="input"
                 documentationPropertyName="prefix"
                 documentationPropertyType="string"
-                [documentationPropertyValues]="prefixOptions"
                 [(documentationPropertyValue)]="prefix"
                 (documentationPropertyValueChange)="updateOptions()"
             >
@@ -369,6 +368,21 @@
                     >
                         <code>\u2212</code>
                     </a>
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="negativePattern"
+                documentationPropertyType="'minusFirst' | 'prefixFirst'"
+                [documentationPropertyValues]="negativePatternOptions"
+                [(documentationPropertyValue)]="negativePattern"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Order of prefix and minus sign
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>'prefixFirst'</code>
                 </p>
             </ng-template>
 

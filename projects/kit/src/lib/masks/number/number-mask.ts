@@ -8,6 +8,7 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
+    CHAR_ZERO_WIDTH_SPACE,
 } from '../../constants';
 import {
     createFullWidthToHalfWidthPreprocessor,
@@ -34,11 +35,7 @@ import {
     createZeroPrecisionPreprocessor,
     emptyPostprocessor,
 } from './processors';
-import {
-    generateMaskExpression,
-    validateDecimalPseudoSeparators,
-    validatePrefix,
-} from './utils';
+import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export const DEFAULT_PSEUDO_MINUSES = [
     CHAR_HYPHEN,
@@ -65,6 +62,7 @@ export function maskitoNumberOptionsGenerator({
     ),
     maximumFractionDigits = precision,
     minimumFractionDigits = decimalZeroPadding ? maximumFractionDigits : 0,
+    negativePattern = 'prefixFirst',
 }: MaskitoNumberParams = {}): Required<MaskitoOptions> {
     const decimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
@@ -77,18 +75,22 @@ export function maskitoNumberOptionsGenerator({
         min,
         precision,
         thousandSeparator,
-        decimalSeparator:
-            maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
-                ? ''
-                : decimalSeparator,
-        decimalZeroPadding,
-        prefix: validatePrefix(prefix, {decimalSeparator, maximumFractionDigits}),
         postfix,
         minusSign,
         minusPseudoSigns,
         maximumFractionDigits,
-        minimumFractionDigits: Math.min(minimumFractionDigits, maximumFractionDigits),
         decimalPseudoSeparators,
+        negativePattern,
+        decimalZeroPadding,
+        decimalSeparator:
+            maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
+                ? ''
+                : decimalSeparator,
+        prefix:
+            prefix.endsWith(decimalSeparator) && maximumFractionDigits > 0
+                ? `${prefix}${CHAR_ZERO_WIDTH_SPACE}`
+                : prefix,
+        minimumFractionDigits: Math.min(minimumFractionDigits, maximumFractionDigits),
     };
 
     return {

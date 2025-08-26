@@ -2,5 +2,6 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 export default maskitoNumberOptionsGenerator({
     minusSign: '-',
-    prefix: ['-', '$'],
+    prefix: '$',
+    negativePattern: 'minusFirst',
 });

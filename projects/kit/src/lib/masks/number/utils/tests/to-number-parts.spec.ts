@@ -315,11 +315,11 @@ describe('toNumberParts', () => {
             });
         });
 
-        it('-$123 => {prefix: ["-", "$"], minus: "-"}', () => {
+        it('-$123 => {prefix: "$", minus: "-", negativePattern: "minusFirst"}', () => {
             expect(
                 toNumberParts('-$123', {
                     ...DEFAULT_PARAMS,
-                    prefix: ['-', '$'],
+                    prefix: '$',
                 }),
             ).toEqual({
                 minus: '-',

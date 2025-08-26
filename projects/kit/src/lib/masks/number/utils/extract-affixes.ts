@@ -1,6 +1,5 @@
 import {escapeRegExp} from '../../../utils/escape-reg-exp';
 import type {MaskitoNumberParams} from '../number-params';
-import {extractPrefixInfo} from './extract-prefix-info';
 
 export function extractAffixes(
     value: string,
@@ -31,9 +30,7 @@ export function extractAffixes(
     const minuses = [...minusPseudoSigns, minusSign].map((x) => `\\${x}`).join('');
     const prefixRegExp =
         prefix &&
-        new RegExp(
-            `^([${minuses}])?(${extractPrefixInfo({prefix, minusSign}).prefix.split('').map(escapeRegExp).join('?')}?)`,
-        );
+        new RegExp(`^([${minuses}])?(${prefix.split('').map(escapeRegExp).join('?')}?)`);
     const postfixRegExp =
         postfix && new RegExp(`${postfix.split('').map(escapeRegExp).join('?')}?$`);
 
