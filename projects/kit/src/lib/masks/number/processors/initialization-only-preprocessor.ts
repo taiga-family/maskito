@@ -21,6 +21,7 @@ export function createInitializationOnlyPreprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,

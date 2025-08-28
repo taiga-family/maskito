@@ -7,6 +7,7 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
 } from '../../../../constants';
+import type {MaskitoNumberParams} from '../../number-params';
 import {maskitoStringifyNumber} from '../stringify-number';
 
 describe('maskitoStringifyNumber', () => {
@@ -320,6 +321,32 @@ describe('maskitoStringifyNumber', () => {
                     }),
                 ).toBe('lbs. 1 000.42');
             });
+        });
+    });
+
+    describe('Minus is positioned before prefix', () => {
+        const params: MaskitoNumberParams = {
+            decimalSeparator: ',',
+            minusSign: CHAR_MINUS,
+            prefix: '$',
+            negativePattern: 'minusFirst',
+            maximumFractionDigits: 2,
+        };
+
+        it('-42 => -$42', () => {
+            expect(maskitoStringifyNumber(-42, params)).toBe(`${CHAR_MINUS}$42`);
+        });
+
+        it('-0.42 => -$0,42', () => {
+            expect(maskitoStringifyNumber(-0.42, params)).toBe(`${CHAR_MINUS}$0,42`);
+        });
+
+        it('0 => $0', () => {
+            expect(maskitoStringifyNumber(0, params)).toBe('$0');
+        });
+
+        it('NaN', () => {
+            expect(maskitoStringifyNumber(NaN, params)).toBe('');
         });
     });
 

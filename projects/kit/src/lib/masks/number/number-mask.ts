@@ -13,7 +13,6 @@ import {
 import {
     createFullWidthToHalfWidthPreprocessor,
     maskitoPostfixPostprocessorGenerator,
-    maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
 import type {MaskitoNumberParams} from './number-params';
 import {
@@ -25,9 +24,11 @@ import {
     createAffixesFilterPreprocessor,
     createDecimalZeroPaddingPostprocessor,
     createInitializationOnlyPreprocessor,
+    createLeadingMinusDeletionPreprocessor,
     createMinMaxPostprocessor,
     createNonRemovableCharsDeletionPreprocessor,
     createNotEmptyIntegerPartPreprocessor,
+    createNumberPrefixPostprocessor,
     createPseudoCharactersPreprocessor,
     createRepeatedDecimalSeparatorPreprocessor,
     createThousandSeparatorPostprocessor,
@@ -52,7 +53,7 @@ export function maskitoNumberOptionsGenerator({
     decimalSeparator = '.',
     decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     decimalZeroPadding = false,
-    prefix: unsafePrefix = '',
+    prefix = '',
     postfix = '',
     minusSign = CHAR_MINUS,
     minusPseudoSigns = DEFAULT_PSEUDO_MINUSES.filter(
@@ -61,34 +62,35 @@ export function maskitoNumberOptionsGenerator({
     ),
     maximumFractionDigits = precision,
     minimumFractionDigits = decimalZeroPadding ? maximumFractionDigits : 0,
+    negativePattern = 'prefixFirst',
 }: MaskitoNumberParams = {}): Required<MaskitoOptions> {
     const decimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,
         thousandSeparator,
         decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     });
-    const prefix =
-        unsafePrefix.endsWith(decimalSeparator) && maximumFractionDigits > 0
-            ? `${unsafePrefix}${CHAR_ZERO_WIDTH_SPACE}`
-            : unsafePrefix;
 
     const params: Required<MaskitoNumberParams> = {
         max,
         min,
         precision,
         thousandSeparator,
-        decimalSeparator:
-            maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
-                ? ''
-                : decimalSeparator,
-        decimalZeroPadding,
-        prefix,
         postfix,
         minusSign,
         minusPseudoSigns,
         maximumFractionDigits,
-        minimumFractionDigits: Math.min(minimumFractionDigits, maximumFractionDigits),
         decimalPseudoSeparators,
+        negativePattern,
+        decimalZeroPadding,
+        decimalSeparator:
+            maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
+                ? ''
+                : decimalSeparator,
+        prefix:
+            prefix.endsWith(decimalSeparator) && maximumFractionDigits > 0
+                ? `${prefix}${CHAR_ZERO_WIDTH_SPACE}`
+                : prefix,
+        minimumFractionDigits: Math.min(minimumFractionDigits, maximumFractionDigits),
     };
 
     return {
@@ -112,10 +114,11 @@ export function maskitoNumberOptionsGenerator({
             createNonRemovableCharsDeletionPreprocessor(params),
             createZeroPrecisionPreprocessor(params),
             createRepeatedDecimalSeparatorPreprocessor(params),
+            createLeadingMinusDeletionPreprocessor(params),
         ],
         postprocessors: [
             createMinMaxPostprocessor(params),
-            maskitoPrefixPostprocessorGenerator(prefix),
+            createNumberPrefixPostprocessor(params),
             maskitoPostfixPostprocessorGenerator(postfix),
             createThousandSeparatorPostprocessor(params),
             createDecimalZeroPaddingPostprocessor(params),

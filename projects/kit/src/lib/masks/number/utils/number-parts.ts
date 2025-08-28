@@ -35,6 +35,8 @@ export function toNumberParts(
         postfix,
         decimalSeparator,
         decimalPseudoSeparators,
+        minusSign,
+        minusPseudoSigns,
     });
     const [integerWithMinus = '', decimalPart = ''] = decimalSeparator
         ? cleanValue.split(decimalSeparator)
@@ -67,9 +69,14 @@ export function fromNumberParts(
         postfix = '',
         decimalSeparator = '',
     }: Partial<NumberParts>,
-    params: Pick<Required<MaskitoNumberParams>, 'decimalSeparator'>,
+    params: Pick<
+        Required<MaskitoNumberParams>,
+        'decimalSeparator' | 'minusSign' | 'negativePattern' | 'prefix'
+    >,
 ): string {
     const separator = decimalPart ? params.decimalSeparator : decimalSeparator;
+    const beginning =
+        params.negativePattern === 'minusFirst' ? minus + prefix : prefix + minus;
 
-    return `${prefix}${minus}${integerPart}${separator}${decimalPart}${postfix}`;
+    return `${beginning}${integerPart}${separator}${decimalPart}${postfix}`;
 }

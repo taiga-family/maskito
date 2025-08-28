@@ -320,6 +320,44 @@ describe('Number (maskitoTransform)', () => {
         });
     });
 
+    describe('`prefix` is positioned after minus sign', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        beforeEach(() => {
+            options = maskitoNumberOptionsGenerator({
+                prefix: '$',
+                minusSign: '-',
+                negativePattern: 'minusFirst',
+                decimalSeparator: '.',
+                maximumFractionDigits: 2,
+            });
+        });
+
+        it('empty textfield => empty textfield', () => {
+            expect(maskitoTransform('', options)).toBe('');
+        });
+
+        it('only minus sign => add prefix too', () => {
+            expect(maskitoTransform('-', options)).toBe('-$');
+        });
+
+        it('minus + prefix', () => {
+            expect(maskitoTransform('-$', options)).toBe('-$');
+        });
+
+        it('-123 => -$123', () => {
+            expect(maskitoTransform('-123', options)).toBe('-$123');
+        });
+
+        it('123 => $123', () => {
+            expect(maskitoTransform('123', options)).toBe('$123');
+        });
+
+        it('-.42 => -$0.42', () => {
+            expect(maskitoTransform('-.42', options)).toBe('-$.42');
+        });
+    });
+
     describe('should transform full width number to half width', () => {
         describe('at any time', () => {
             it('at the 1st time (after initialization)', () => {
