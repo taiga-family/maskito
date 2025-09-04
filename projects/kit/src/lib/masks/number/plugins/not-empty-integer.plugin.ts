@@ -18,6 +18,7 @@ export function createNotEmptyIntegerPlugin(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,

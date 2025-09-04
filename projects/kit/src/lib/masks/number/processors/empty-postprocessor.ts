@@ -16,6 +16,7 @@ export function emptyPostprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,

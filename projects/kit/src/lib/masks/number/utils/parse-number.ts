@@ -8,12 +8,15 @@ export function maskitoParseNumber(
     // TODO(v4): decimalSeparatorOrParams: MaskitoNumberParams | string => params: MaskitoNumberParams = {}
     decimalSeparatorOrParams: MaskitoNumberParams | string = {},
 ): number {
-    const {decimalSeparator = '.', minusSign = ''}: MaskitoNumberParams =
-        typeof decimalSeparatorOrParams === 'string'
-            ? {decimalSeparator: decimalSeparatorOrParams}
-            : decimalSeparatorOrParams;
+    const {
+        decimalSeparator = '.',
+        minusSign = '',
+        minusPseudoSigns = DEFAULT_PSEUDO_MINUSES,
+    }: MaskitoNumberParams = typeof decimalSeparatorOrParams === 'string'
+        ? {decimalSeparator: decimalSeparatorOrParams}
+        : decimalSeparatorOrParams;
     const hasNegativeSign = !!new RegExp(
-        `^\\D*[${escapeRegExp(minusSign)}\\${DEFAULT_PSEUDO_MINUSES.join('\\')}]`,
+        `^\\D*[${escapeRegExp(minusSign)}\\${minusPseudoSigns.join('\\')}]`,
     ).exec(maskedNumber);
     const escapedDecimalSeparator = escapeRegExp(decimalSeparator);
 

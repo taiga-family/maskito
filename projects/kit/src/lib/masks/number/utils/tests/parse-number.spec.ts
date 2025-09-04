@@ -7,6 +7,7 @@ import {
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
 } from '../../../../constants';
+import type {MaskitoNumberParams} from '../../number-params';
 import {maskitoParseNumber} from '../parse-number';
 
 describe('maskitoParseNumber', () => {
@@ -157,6 +158,51 @@ describe('maskitoParseNumber', () => {
 
                 expect(maskitoParseNumber(`lbs.${zeroWidthSpace}1 000.42`)).toBe(1000.42);
             });
+        });
+    });
+
+    describe('Minus is positioned before prefix', () => {
+        const params: MaskitoNumberParams = {
+            decimalSeparator: '.',
+            minusSign: CHAR_MINUS,
+            minusPseudoSigns: [
+                CHAR_MINUS,
+                CHAR_HYPHEN,
+                CHAR_EN_DASH,
+                CHAR_EM_DASH,
+                CHAR_JP_HYPHEN,
+            ],
+            // Even without knowing `prefix` / `maximumFractionDigits` values `maskitoParseNumber` is capable to parse number
+        };
+
+        it('-$42 (with leading minus character)', () => {
+            expect(maskitoParseNumber(`${CHAR_MINUS}$42`, params)).toBe(-42);
+        });
+
+        describe('pseudo minuses', () => {
+            [CHAR_MINUS, CHAR_HYPHEN, CHAR_EN_DASH, CHAR_EM_DASH, CHAR_JP_HYPHEN].forEach(
+                (pseudoMinus) => {
+                    it(`${pseudoMinus}$42`, () => {
+                        expect(maskitoParseNumber(`${pseudoMinus}$42`, params)).toBe(-42);
+                    });
+                },
+            );
+        });
+
+        it('-$0.42', () => {
+            expect(maskitoParseNumber(`${CHAR_MINUS}$0.42`, params)).toBe(-0.42);
+        });
+
+        it('-$.42', () => {
+            expect(maskitoParseNumber('-$.42', params)).toBe(-0.42);
+        });
+
+        it('-$0', () => {
+            expect(maskitoParseNumber('-$0', params)).toBe(-0);
+        });
+
+        it('-$', () => {
+            expect(maskitoParseNumber(`${CHAR_MINUS}$`, params)).toBeNaN();
         });
     });
 

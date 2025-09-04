@@ -17,6 +17,7 @@ export function createDecimalZeroPaddingPostprocessor(
         | 'minimumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,
