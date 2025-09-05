@@ -6,6 +6,6 @@
         "@nx/vite": "20.1.4",
         "@vitejs/plugin-react": "4.7.0",
         "cypress": "13.17.0",
-        "cypress-real-events": "1.14.0"
+        "cypress-real-events": "1.15.0"
     }
 }
