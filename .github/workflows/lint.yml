@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.3.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.152.0
-      - uses: taiga-family/ci/actions/setup/node@v1.152.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.153.0
+      - uses: taiga-family/ci/actions/setup/node@v1.153.0
       - run: npm run typecheck
 
   cspell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.3.0
-      - uses: taiga-family/ci/actions/setup/variables@v1.152.0
-      - uses: taiga-family/ci/actions/setup/node@v1.152.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.153.0
+      - uses: taiga-family/ci/actions/setup/node@v1.153.0
       - run: npm run cspell -- --no-progress
 
   prettier:
@@ -24,10 +24,10 @@ jobs:
       - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@v1.152.0
-      - uses: taiga-family/ci/actions/setup/node@v1.152.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.153.0
+      - uses: taiga-family/ci/actions/setup/node@v1.153.0
       - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.152.0
+      - uses: taiga-family/ci/actions/auto/push@v1.153.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -37,10 +37,10 @@ jobs:
       - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@v1.152.0
-      - uses: taiga-family/ci/actions/setup/node@v1.152.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.153.0
+      - uses: taiga-family/ci/actions/setup/node@v1.153.0
       - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.152.0
+      - uses: taiga-family/ci/actions/auto/push@v1.153.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -50,10 +50,10 @@ jobs:
       - uses: actions/checkout@v4.3.0
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@v1.152.0
-      - uses: taiga-family/ci/actions/setup/node@v1.152.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.153.0
+      - uses: taiga-family/ci/actions/setup/node@v1.153.0
       - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@v1.152.0
+      - uses: taiga-family/ci/actions/auto/push@v1.153.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
