@@ -15,6 +15,7 @@ export function createThousandSeparatorPostprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
         | 'thousandSeparator'

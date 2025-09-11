@@ -16,6 +16,7 @@ export function createZeroPrecisionPreprocessor(
         | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,

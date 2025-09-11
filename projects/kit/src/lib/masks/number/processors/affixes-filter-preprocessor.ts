@@ -15,6 +15,7 @@ export function createAffixesFilterPreprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
     >,
