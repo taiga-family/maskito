@@ -1,0 +1,167 @@
+# npm audit report
+
+@angular/platform-server  16.0.0-next.0 - 18.2.13
+Severity: high
+Angular SSR: Global Platform Injector Race Condition Leads to Cross-Request Data Leakage - https://github.com/advisories/GHSA-68x2-mx4q-78m7
+fix available via `npm audit fix --force`
+Will install @angular/platform-server@20.3.1, which is a breaking change
+node_modules/@angular/platform-server
+  @angular-devkit/build-angular  <=19.2.14 || 20.0.0-next.0 - 20.0.0-rc.4
+  Depends on vulnerable versions of @angular-devkit/build-webpack
+  Depends on vulnerable versions of @angular/platform-server
+  Depends on vulnerable versions of @babel/runtime
+  Depends on vulnerable versions of esbuild
+  Depends on vulnerable versions of inquirer
+  Depends on vulnerable versions of ng-packagr
+  Depends on vulnerable versions of vite
+  Depends on vulnerable versions of webpack-dev-server
+  node_modules/@angular-devkit/build-angular
+    @nguniversal/builders  *
+    Depends on vulnerable versions of @angular-devkit/build-angular
+    Depends on vulnerable versions of @nguniversal/common
+    Depends on vulnerable versions of browser-sync
+    node_modules/@nguniversal/builders
+
+@babel/runtime  <7.26.10
+Severity: moderate
+Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups - https://github.com/advisories/GHSA-968p-4wvh-cqc8
+fix available via `npm audit fix --force`
+Will install @angular-devkit/build-angular@20.3.2, which is a breaking change
+node_modules/@babel/runtime
+
+@nguniversal/common  >=16.0.0-next.0
+Severity: high
+Angular SSR: Global Platform Injector Race Condition Leads to Cross-Request Data Leakage - https://github.com/advisories/GHSA-68x2-mx4q-78m7
+fix available via `npm audit fix --force`
+Will install @nguniversal/express-engine@15.2.1, which is a breaking change
+node_modules/@nguniversal/common
+  @nguniversal/express-engine  >=16.0.0-next.0
+  Depends on vulnerable versions of @nguniversal/common
+  node_modules/@nguniversal/express-engine
+
+axios  <=1.11.0
+Severity: high
+Axios Cross-Site Request Forgery Vulnerability - https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
+axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL - https://github.com/advisories/GHSA-jr5f-v2jv-69x6
+Axios is vulnerable to DoS attack through lack of data size check - https://github.com/advisories/GHSA-4hjh-wcwx-xvwj
+fix available via `npm audit fix --force`
+Will install @nguniversal/builders@15.2.1, which is a breaking change
+node_modules/localtunnel/node_modules/axios
+  localtunnel  >=1.9.0
+  Depends on vulnerable versions of axios
+  node_modules/localtunnel
+    browser-sync  2.12.1 - 3.0.2
+    Depends on vulnerable versions of localtunnel
+    Depends on vulnerable versions of send
+    Depends on vulnerable versions of serve-static
+    node_modules/browser-sync
+
+esbuild  <=0.24.2
+Severity: moderate
+esbuild enables any website to send any requests to the development server and read the response - https://github.com/advisories/GHSA-67mh-4wv8-2f99
+fix available via `npm audit fix --force`
+Will install @angular-devkit/build-angular@20.3.2, which is a breaking change
+node_modules/esbuild
+node_modules/ng-packagr/node_modules/esbuild
+node_modules/vite/node_modules/esbuild
+  ng-packagr  12.2.0-next.0 - 19.2.0-next.2
+  Depends on vulnerable versions of esbuild
+  node_modules/ng-packagr
+  vite  <=6.1.6
+  Depends on vulnerable versions of esbuild
+  node_modules/@angular-devkit/build-angular/node_modules/vite
+  node_modules/vite
+    @nx/vite  <=20.5.0-rc.4 || 20.9.0-canary.20250415-bc685ce - 21.0.0-rc.4
+    Depends on vulnerable versions of vite
+    Depends on vulnerable versions of vitest
+    node_modules/@nx/vite
+    @vitest/mocker  <=3.0.0-beta.4
+    Depends on vulnerable versions of vite
+    node_modules/@vitest/mocker
+      vitest  0.0.1 - 0.0.12 || 0.0.29 - 0.0.122 || 0.3.3 - 3.0.0-beta.4
+      Depends on vulnerable versions of @vitest/mocker
+      Depends on vulnerable versions of vite
+      Depends on vulnerable versions of vite-node
+      node_modules/vitest
+    vite-node  <=2.2.0-beta.2
+    Depends on vulnerable versions of vite
+    node_modules/vite-node
+
+koa  <=2.16.1
+Severity: critical
+Inefficient Regular Expression Complexity in koa - https://github.com/advisories/GHSA-593f-38f6-jp5m
+Koajs vulnerable to Cross-Site Scripting (XSS) at ctx.redirect() function - https://github.com/advisories/GHSA-x2rg-q646-7m2v
+Koa Open Redirect via Referrer Header (User-Controlled) - https://github.com/advisories/GHSA-jgmv-j7ww-jx2x
+fix available via `npm audit fix --force`
+Will install @nx/angular@20.8.2, which is outside the stated dependency range
+node_modules/koa
+  @module-federation/dts-plugin  <=0.8.12
+  Depends on vulnerable versions of koa
+  node_modules/@module-federation/dts-plugin
+    @module-federation/enhanced  <=0.0.1-rc.0 || 0.1.2 - 0.8.12
+    Depends on vulnerable versions of @module-federation/dts-plugin
+    Depends on vulnerable versions of @module-federation/manifest
+    Depends on vulnerable versions of @module-federation/rspack
+    node_modules/@module-federation/enhanced
+      @nx/angular  <=0.0.0-pr-31222-862e973 || 19.5.0-beta.0 - 20.2.0-rc.0
+      Depends on vulnerable versions of @module-federation/enhanced
+      Depends on vulnerable versions of @nx/webpack
+      node_modules/@nx/angular
+      @nx/react  <=0.0.0-pr-31222-862e973 || 19.5.0-beta.0 - 20.2.0-rc.0
+      Depends on vulnerable versions of @module-federation/enhanced
+      node_modules/@nx/react
+      @nx/webpack  <=0.0.0-pr-31222-862e973 || 19.5.1 - 20.2.0-rc.0
+      Depends on vulnerable versions of @module-federation/enhanced
+      node_modules/@nx/webpack
+    @module-federation/manifest  <=0.0.0-next-20250916081540 || 0.1.3 - 0.8.12
+    Depends on vulnerable versions of @module-federation/dts-plugin
+    node_modules/@module-federation/manifest
+      @module-federation/rspack  <=0.8.12
+      Depends on vulnerable versions of @module-federation/dts-plugin
+      Depends on vulnerable versions of @module-federation/manifest
+      node_modules/@module-federation/rspack
+
+send  <0.19.0
+send vulnerable to template injection that can lead to XSS - https://github.com/advisories/GHSA-m6fv-jmcg-4jfg
+fix available via `npm audit fix --force`
+Will install @nguniversal/builders@15.2.1, which is a breaking change
+node_modules/send
+  serve-static  <=1.16.0
+  Depends on vulnerable versions of send
+  node_modules/serve-static
+
+
+tmp  <=0.2.3
+tmp allows arbitrary temporary file / directory write via symbolic link `dir` parameter - https://github.com/advisories/GHSA-52f5-9888-hmc6
+fix available via `npm audit fix --force`
+Will install @angular-devkit/build-angular@20.3.2, which is a breaking change
+node_modules/external-editor/node_modules/tmp
+  external-editor  >=1.1.1
+  Depends on vulnerable versions of tmp
+  node_modules/external-editor
+    inquirer  3.0.0 - 8.2.6 || 9.0.0 - 9.3.7
+    Depends on vulnerable versions of external-editor
+    node_modules/inquirer
+      @angular/cli  <=1.4.0-rc.2 || 7.0.0-beta.0 - 18.1.0-rc.1
+      Depends on vulnerable versions of inquirer
+      node_modules/@angular/cli
+
+
+webpack-dev-server  <=5.2.0
+Severity: moderate
+webpack-dev-server users' source code may be stolen when they access a malicious web site with non-Chromium based browser - https://github.com/advisories/GHSA-9jgg-88mc-972h
+webpack-dev-server users' source code may be stolen when they access a malicious web site - https://github.com/advisories/GHSA-4v9v-hfq4-rm2v
+fix available via `npm audit fix --force`
+Will install @angular-devkit/build-angular@20.3.2, which is a breaking change
+node_modules/webpack-dev-server
+  @angular-devkit/build-webpack  <=0.1703.17
+  Depends on vulnerable versions of webpack-dev-server
+  node_modules/@angular-devkit/build-webpack
+
+32 vulnerabilities (6 low, 10 moderate, 8 high, 8 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
