@@ -33,7 +33,11 @@ node_modules/@babel/runtime
 Severity: high
 Angular SSR: Global Platform Injector Race Condition Leads to Cross-Request Data Leakage - https://github.com/advisories/GHSA-68x2-mx4q-78m7
 fix available via `npm audit fix --force`
+<<<<<<< Updated upstream
 Will install @nguniversal/express-engine@15.2.1, which is a breaking change
+=======
+Will install @nguniversal/builders@15.2.1, which is a breaking change
+>>>>>>> Stashed changes
 node_modules/@nguniversal/common
   @nguniversal/express-engine  >=16.0.0-next.0
   Depends on vulnerable versions of @nguniversal/common
