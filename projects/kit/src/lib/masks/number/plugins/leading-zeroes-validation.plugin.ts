@@ -19,6 +19,7 @@ export function createLeadingZeroesValidationPlugin(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
         | 'thousandSeparator'
