@@ -18,6 +18,7 @@ export function createPseudoCharactersPreprocessor({
     | 'decimalSeparator'
     | 'minusPseudoSigns'
     | 'minusSign'
+    | 'negativePattern'
     | 'postfix'
     | 'prefix'
 > & {

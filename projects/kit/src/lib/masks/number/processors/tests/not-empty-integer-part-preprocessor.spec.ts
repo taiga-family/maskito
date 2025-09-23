@@ -13,6 +13,7 @@ const DEFAULT_PARAMS = {
     postfix: '',
     minusPseudoSigns: [],
     decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
+    negativePattern: 'prefixFirst',
 } as const satisfies MaskitoNumberParams;
 
 describe('createNotEmptyIntegerPartPreprocessor', () => {

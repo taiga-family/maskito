@@ -18,6 +18,7 @@ export function createLeadingZeroesValidationPostprocessor(
         | 'decimalSeparator'
         | 'minusPseudoSigns'
         | 'minusSign'
+        | 'negativePattern'
         | 'postfix'
         | 'prefix'
         | 'thousandSeparator'

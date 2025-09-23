@@ -22,4 +22,5 @@ export interface MaskitoNumberParams
     postfix?: string;
     minusSign?: string;
     minusPseudoSigns?: readonly string[];
+    negativePattern?: 'minusFirst' | 'prefixFirst';
 }

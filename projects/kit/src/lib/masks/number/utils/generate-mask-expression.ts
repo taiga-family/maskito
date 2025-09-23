@@ -45,10 +45,9 @@ export function generateMaskExpression({
                   .join('')}]${digit}{0,${precisionPart}})?`
             : '';
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
+    const beginning = `(${optionalMinus + computedPrefix}|${computedPrefix + optionalMinus})`;
 
-    return new RegExp(
-        `^${computedPrefix}${optionalMinus}${integerPart}${decimalPart}${computedPostfix}$`,
-    );
+    return new RegExp(`^${beginning}${integerPart}${decimalPart}${computedPostfix}$`);
 }
 
 function computeAllOptionalCharsRegExp(str: string): string {
