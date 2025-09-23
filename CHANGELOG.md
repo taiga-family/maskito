@@ -1,3 +1,21 @@
+### [3.11.0](https://github.com/taiga-family/maskito/compare/v3.10.3...v3.11.0) (2025-09-23)
+
+### 🚀 Features
+
+- **kit**: `Number` supports minus before prefix (#2281)
+  [(480c1fd)](https://github.com/taiga-family/maskito/commit/480c1fde7693b62df768364c0df00fc7328cb4e6)
+- **kit**: `Number` uses `toNumberParts` / `fromNumberParts` approach (#2270)
+  [(891780a)](https://github.com/taiga-family/maskito/commit/891780a8f179345a49dbe8b8036e639ae0a98cbd)
+
+### 🐞 Bug Fixes
+
+- **kit**: `PostfixPostprocessor` duplicates postfix on paste of value with incompleted postfix (#2267)
+  [(2707771)](https://github.com/taiga-family/maskito/commit/27077719ffc8628758664638e802e1ad3c9f8e27)
+- **kit**: `maskitoStringifyTime` and `maskitoParseTime` should support `AM` / `PM` formats (#2260)
+  [(a0aea6f)](https://github.com/taiga-family/maskito/commit/a0aea6f741fea3139f4e7d7c8f84ce46c1738c26)
+- **angular**: use `@Input` setters instead of `ngOnChanges` to handle programmatic changes (#2257)
+  [(cb8c129)](https://github.com/taiga-family/maskito/commit/cb8c129f1afd196a38f87dd4b36328ddea3b60a5)
+
 ### [3.10.3](https://github.com/taiga-family/maskito/compare/v3.10.2...v3.10.3) (2025-08-06)
 
 ### 🐞 Bug Fixes
