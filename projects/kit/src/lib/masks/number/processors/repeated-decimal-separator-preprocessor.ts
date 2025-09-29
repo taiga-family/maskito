@@ -14,6 +14,7 @@ export function createRepeatedDecimalSeparatorPreprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'postfix'

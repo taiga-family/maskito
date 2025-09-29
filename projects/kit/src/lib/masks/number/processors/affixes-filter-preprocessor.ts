@@ -13,6 +13,7 @@ export function createAffixesFilterPreprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'negativePattern'

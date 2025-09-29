@@ -13,6 +13,7 @@ export function createThousandSeparatorPostprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'negativePattern'

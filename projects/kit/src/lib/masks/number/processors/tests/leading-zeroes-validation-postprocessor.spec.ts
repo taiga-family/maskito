@@ -19,6 +19,7 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
         decimalSeparator: ',',
         thousandSeparator: '',
         minusSign: '−',
+        maximumFractionDigits: 0,
     };
     let processor: MaskitoPostprocessor;
 

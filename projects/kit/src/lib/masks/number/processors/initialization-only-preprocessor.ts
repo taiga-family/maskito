@@ -19,6 +19,7 @@ export function createInitializationOnlyPreprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'negativePattern'

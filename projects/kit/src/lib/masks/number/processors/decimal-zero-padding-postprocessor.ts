@@ -14,6 +14,7 @@ export function createDecimalZeroPaddingPostprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minimumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'

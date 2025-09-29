@@ -13,31 +13,25 @@ interface NumberParts {
 
 export function toNumberParts(
     value: string,
-    {
-        decimalSeparator,
-        decimalPseudoSeparators,
-        minusSign,
-        minusPseudoSigns,
-        prefix,
-        postfix,
-    }: Pick<
+    params: Pick<
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'postfix'
         | 'prefix'
     >,
 ): NumberParts {
-    const {extractedPrefix, cleanValue, extractedPostfix} = extractAffixes(value, {
-        prefix,
-        postfix,
+    const {extractedPrefix, cleanValue, extractedPostfix} = extractAffixes(value, params);
+    const {
         decimalSeparator,
-        decimalPseudoSeparators,
         minusSign,
         minusPseudoSigns,
-    });
+        decimalPseudoSeparators,
+        maximumFractionDigits,
+    } = params;
     const [integerWithMinus = '', decimalPart = ''] = decimalSeparator
         ? cleanValue.split(decimalSeparator)
         : [cleanValue];
@@ -50,12 +44,13 @@ export function toNumberParts(
         minus,
         integerPart,
         decimalPart,
-        decimalSeparator: decimalSeparator
-            ? (new RegExp(
-                  `[${[decimalSeparator, ...decimalPseudoSeparators].map(escapeRegExp).join('')}]`,
-                  'i',
-              ).exec(cleanValue)?.[0] ?? '')
-            : '',
+        decimalSeparator:
+            decimalSeparator && maximumFractionDigits > 0
+                ? (new RegExp(
+                      `[${[decimalSeparator, ...decimalPseudoSeparators].map(escapeRegExp).join('')}]`,
+                      'i',
+                  ).exec(cleanValue)?.[0] ?? '')
+                : '',
         postfix: extractedPostfix,
     };
 }
