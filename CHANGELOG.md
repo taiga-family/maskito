@@ -1,3 +1,14 @@
+### [3.11.1](https://github.com/taiga-family/maskito/compare/v3.11.0...v3.11.1) (2025-09-30)
+
+### 🐞 Bug Fixes
+
+- **kit**: resolve circular dependencies inside `Number` mask (#2344)
+  [(efb3039)](https://github.com/taiga-family/maskito/commit/efb303980905c33bfe58e0163b74c72da5f83fcd)
+- **kit**: `Number` fails to clear initial value (by selecting all + Backspace/Delete) (#2343)
+  [(63f6e72)](https://github.com/taiga-family/maskito/commit/63f6e725af215dc492ddca02d30123de0dd026de)
+- **kit**: `Number` has broken support for postfix with leading point (#2337)
+  [(e9a3598)](https://github.com/taiga-family/maskito/commit/e9a3598c9ce7f5c39f932d4e6b3c0ffabcde3741)
+
 ### [3.11.0](https://github.com/taiga-family/maskito/compare/v3.10.3...v3.11.0) (2025-09-23)
 
 ### 🚀 Features
