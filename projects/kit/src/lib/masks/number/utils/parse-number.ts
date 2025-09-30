@@ -1,6 +1,5 @@
-import {CHAR_HYPHEN} from '../../../constants';
+import {CHAR_HYPHEN, DEFAULT_PSEUDO_MINUSES} from '../../../constants';
 import {escapeRegExp} from '../../../utils';
-import {DEFAULT_PSEUDO_MINUSES} from '../number-mask';
 import type {MaskitoNumberParams} from '../number-params';
 
 export function maskitoParseNumber(

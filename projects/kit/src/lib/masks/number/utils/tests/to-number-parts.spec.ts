@@ -7,8 +7,8 @@ import {
     CHAR_HYPHEN,
     CHAR_JP_HYPHEN,
     CHAR_MINUS,
+    DEFAULT_PSEUDO_MINUSES,
 } from '../../../../constants';
-import {DEFAULT_PSEUDO_MINUSES} from '../../number-mask';
 import {toNumberParts} from '../number-parts';
 
 const DEFAULT_PARAMS = {
