@@ -80,4 +80,37 @@ describe('Number | With initial value', () => {
             .should('have.prop', 'selectionStart', '1 234 50'.length)
             .should('have.prop', 'selectionEnd', '1 234 50'.length);
     });
+
+    describe('select all initial value', () => {
+        beforeEach(() => {
+            cy.mount(TestInput, {
+                componentProperties: {
+                    maskitoOptions: maskitoNumberOptionsGenerator({
+                        thousandSeparator: '_',
+                    }),
+                    initialValue: '1_234',
+                },
+            });
+        });
+
+        it('and press Delete', () => {
+            cy.get('input')
+                .focus()
+                .should('have.value', '1_234')
+                .type('{selectAll}{del}')
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('and press Backspace', () => {
+            cy.get('input')
+                .focus()
+                .should('have.value', '1_234')
+                .type('{selectAll}{backspace}')
+                .should('have.value', '')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+    });
 });
