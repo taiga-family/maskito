@@ -373,7 +373,7 @@ describe('Number | Prefix & Postfix', () => {
         });
     });
 
-    describe('postfix consists starts with point and contains digits ([postfix]=".000 km" & [maximumFractionDigits]="0")`', () => {
+    describe('postfix starts with point and contains digits ([postfix]=".000 km" & [maximumFractionDigits]="0")`', () => {
         beforeEach(() => {
             openNumberPage('postfix=.000%20km&maximumFractionDigits=0');
         });
