@@ -2,13 +2,10 @@ import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 
 import {
-    CHAR_EM_DASH,
-    CHAR_EN_DASH,
-    CHAR_HYPHEN,
-    CHAR_JP_HYPHEN,
     CHAR_MINUS,
     CHAR_NO_BREAK_SPACE,
     CHAR_ZERO_WIDTH_SPACE,
+    DEFAULT_PSEUDO_MINUSES,
 } from '../../constants';
 import {
     createFullWidthToHalfWidthPreprocessor,
@@ -36,14 +33,6 @@ import {
     emptyPostprocessor,
 } from './processors';
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
-
-export const DEFAULT_PSEUDO_MINUSES = [
-    CHAR_HYPHEN,
-    CHAR_EN_DASH,
-    CHAR_EM_DASH,
-    CHAR_JP_HYPHEN,
-    CHAR_MINUS,
-];
 
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
