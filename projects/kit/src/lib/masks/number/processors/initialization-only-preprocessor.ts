@@ -66,7 +66,7 @@ export function createInitializationOnlyPreprocessor(
 
         return {
             elementState: {
-                selection: [from - deleted, to - deleted],
+                selection: [Math.max(from - deleted, 0), Math.max(to - deleted, 0)],
                 value: fromNumberParts(
                     {
                         ...toNumberParts(cleanState.value, params),
