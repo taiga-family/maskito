@@ -10,10 +10,12 @@ export function extractAffixes(
         decimalPseudoSeparators,
         minusSign,
         minusPseudoSigns,
+        maximumFractionDigits,
     }: Pick<
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'postfix'
@@ -42,18 +44,26 @@ export function extractAffixes(
         .replace(postfixRegExp, '');
 
     const leadingDecimalSeparatorRE = new RegExp(
-        decimalSeparator && `^[${decimalSeparators}]`,
+        decimalSeparator && maximumFractionDigits > 0 ? `^[${decimalSeparators}]` : '',
     );
+    const leadingDigitsRE = new RegExp(value.endsWith(postfix) ? '' : String.raw`^\d+`);
     const trailingDecimalSeparatorRE = new RegExp(
-        decimalSeparator && `[${decimalSeparators}]$`,
+        decimalSeparator && maximumFractionDigits > 0 ? `[${decimalSeparators}]$` : '',
     );
+    const trailingDigitsRE = new RegExp(value.startsWith(prefix) ? '' : String.raw`\d+$`);
 
     return {
-        extractedPrefix: extractedPrefix.replace(trailingDecimalSeparatorRE, ''),
-        extractedPostfix: extractedPostfix.replace(leadingDecimalSeparatorRE, ''),
+        extractedPrefix: extractedPrefix
+            .replace(trailingDecimalSeparatorRE, '')
+            .replace(trailingDigitsRE, ''),
+        extractedPostfix: extractedPostfix
+            .replace(leadingDecimalSeparatorRE, '')
+            .replace(leadingDigitsRE, ''),
         cleanValue:
+            (trailingDigitsRE.exec(extractedPrefix)?.[0] ?? '') +
             (trailingDecimalSeparatorRE.exec(extractedPrefix)?.[0] ?? '') +
             cleanValue +
+            (leadingDigitsRE.exec(extractedPostfix)?.[0] ?? '') +
             (leadingDecimalSeparatorRE.exec(extractedPostfix)?.[0] ?? ''),
     };
 }

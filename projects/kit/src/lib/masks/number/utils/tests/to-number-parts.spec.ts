@@ -17,6 +17,7 @@ const DEFAULT_PARAMS = {
     minusPseudoSigns: DEFAULT_PSEUDO_MINUSES,
     decimalSeparator: '.',
     minusSign: '-',
+    maximumFractionDigits: 0,
     decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
 } as const satisfies MaskitoNumberParams;
 
@@ -26,6 +27,7 @@ describe('toNumberParts', () => {
             const params = {
                 ...DEFAULT_PARAMS,
                 minusSign: '-',
+                maximumFractionDigits: 2,
                 decimalSeparator,
             } as const satisfies MaskitoNumberParams;
 
@@ -125,6 +127,7 @@ describe('toNumberParts', () => {
                 const params = {
                     ...DEFAULT_PARAMS,
                     minusSign: minus,
+                    maximumFractionDigits: 2,
                     decimalSeparator: '.',
                     decimalPseudoSeparators: ['б'] as string[], // TODO(v4): delete `as string[]`
                     thousandSeparator: ',',
@@ -151,6 +154,7 @@ describe('toNumberParts', () => {
             ...DEFAULT_PARAMS,
             minusSign: '-',
             thousandSeparator,
+            maximumFractionDigits: 2,
             decimalSeparator: '.',
         } as const satisfies MaskitoNumberParams;
 
@@ -271,6 +275,7 @@ describe('toNumberParts', () => {
                 ...DEFAULT_PARAMS,
                 decimalSeparator: '.',
                 prefix: 'lbs.',
+                maximumFractionDigits: 2,
             }),
         ).toEqual({
             minus: '',
@@ -286,6 +291,7 @@ describe('toNumberParts', () => {
         expect(
             toNumberParts('123.lbs.', {
                 ...DEFAULT_PARAMS,
+                maximumFractionDigits: 2,
                 postfix: 'lbs.',
             }),
         ).toEqual({
@@ -295,6 +301,70 @@ describe('toNumberParts', () => {
             decimalSeparator: '.',
             prefix: '',
             postfix: 'lbs.',
+        });
+    });
+
+    describe('postfix starts with point | [postfix]=".000 km" & [maximumFractionDigits]="0"', () => {
+        const postfix = '.000 km';
+        const params = {
+            ...DEFAULT_PARAMS,
+            maximumFractionDigits: 0,
+            postfix,
+        } as const;
+
+        it('1.000 km', () => {
+            expect(toNumberParts('1.000 km', params)).toEqual({
+                minus: '',
+                integerPart: '1',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '',
+                postfix: '.000 km',
+            });
+        });
+
+        it('.000 km', () => {
+            expect(toNumberParts('.000 km', params)).toEqual({
+                minus: '',
+                integerPart: '',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '',
+                postfix: '.000 km',
+            });
+        });
+
+        it('1000.', () => {
+            expect(toNumberParts('1000.', params)).toEqual({
+                minus: '',
+                integerPart: '1000',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '',
+                postfix: '.',
+            });
+        });
+
+        it('100.000 km', () => {
+            expect(toNumberParts('100.000 km', params)).toEqual({
+                minus: '',
+                integerPart: '100',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '',
+                postfix: '.000 km',
+            });
+        });
+
+        it('100 (zeroes can be both incomplete postfix & integer part => for ambiguous case regard it as integer part)', () => {
+            expect(toNumberParts('100', params)).toEqual({
+                minus: '',
+                integerPart: '100',
+                decimalPart: '',
+                decimalSeparator: '',
+                prefix: '',
+                postfix: '',
+            });
         });
     });
 

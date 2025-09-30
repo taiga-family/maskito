@@ -358,6 +358,40 @@ describe('Number (maskitoTransform)', () => {
         });
     });
 
+    describe('`postfix` starts with point | [postfix]=".000 km" & [maximumFractionDigits]="0"', () => {
+        let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
+
+        beforeEach(() => {
+            options = maskitoNumberOptionsGenerator({
+                postfix: '.000 km',
+                thousandSeparator: '',
+                maximumFractionDigits: 0,
+            });
+        });
+
+        it('empty textfield => empty textfield', () => {
+            expect(maskitoTransform('', options)).toBe('');
+        });
+
+        it('only postfix => only postfix', () => {
+            expect(maskitoTransform('.000 km', options)).toBe('.000 km');
+        });
+
+        it('1.000 km => 1.000 km', () => {
+            expect(maskitoTransform('1.000 km', options)).toBe('1.000 km');
+        });
+
+        it('100.000 km => 100.000 km', () => {
+            expect(maskitoTransform('100.000 km', options)).toBe('100.000 km');
+        });
+
+        it('-1.000 km => -1.000 km', () => {
+            expect(maskitoTransform(`${CHAR_HYPHEN}1.000 km`, options)).toBe(
+                `${CHAR_MINUS}1.000 km`,
+            );
+        });
+    });
+
     describe('should transform full width number to half width', () => {
         describe('at any time', () => {
             it('at the 1st time (after initialization)', () => {

@@ -360,7 +360,7 @@ describe('Number | Prefix & Postfix', () => {
     });
 
     describe('postfix consists of many characters `lbs_per_day`', () => {
-        it('Paste 100 + incompleted postfix', () => {
+        it('Paste 100 + incomplete postfix', () => {
             openNumberPage('postfix=lbs_per_day');
 
             cy.get('@input')
@@ -370,6 +370,194 @@ describe('Number | Prefix & Postfix', () => {
                 .should('have.value', '100lbs_per_day')
                 .should('have.prop', 'selectionStart', '100'.length)
                 .should('have.prop', 'selectionEnd', '100'.length);
+        });
+    });
+
+    describe('postfix starts with point and contains digits ([postfix]=".000 km" & [maximumFractionDigits]="0")`', () => {
+        beforeEach(() => {
+            openNumberPage('postfix=.000%20km&maximumFractionDigits=0');
+        });
+
+        it('Adds postfix on focus', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('Removes postfix on blur (for empty value)', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', '.000 km')
+                .blur()
+                .should('have.value', '');
+        });
+
+        it('Type 1 => 1.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('1')
+                .should('have.value', '1.000 km')
+                .should('have.prop', 'selectionStart', 1)
+                .should('have.prop', 'selectionEnd', 1);
+        });
+
+        it('Type 123 => 123.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('123')
+                .should('have.value', '123.000 km')
+                .should('have.prop', 'selectionStart', 3)
+                .should('have.prop', 'selectionEnd', 3);
+        });
+
+        it('Type 123456789 => 123 456 789.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('123456789')
+                .should('have.value', '123 456 789.000 km')
+                .should('have.prop', 'selectionStart', '123 456 789'.length)
+                .should('have.prop', 'selectionEnd', '123 456 789'.length);
+        });
+
+        it('Type 100 => 100.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('100')
+                .should('have.value', '100.000 km')
+                .should('have.prop', 'selectionStart', '100'.length)
+                .should('have.prop', 'selectionEnd', '100'.length);
+        });
+
+        it('1|.000 km => Backspace => |.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('1')
+                .should('have.value', '1.000 km')
+                .type('{backspace}')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('|1.000 km => Delete => |.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('1')
+                .type('{moveToStart}')
+                .should('have.value', '1.000 km')
+                .type('{del}')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('123.000 km => select all + Delete => |.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('123')
+                .should('have.value', '123.000 km')
+                .type('{selectAll}{del}')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('Allows to enter leading zeroes', () => {
+            cy.get('@input')
+                .focus()
+                .type('000')
+                .should('have.value', '000.000 km')
+                .should('have.prop', 'selectionStart', '000'.length)
+                .should('have.prop', 'selectionEnd', '000'.length);
+        });
+
+        it('Removes duplicated leading zeroes on blur', () => {
+            cy.get('@input')
+                .focus()
+                .type('000')
+                .should('have.value', '000.000 km')
+                .blur()
+                .should('have.value', '0.000 km');
+        });
+
+        it('Ignores typing decimal separator (.) at start', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0)
+                .type('.')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('Non-digit characters are ignored', () => {
+            cy.get('@input')
+                .focus()
+                .type('abc!@#')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('123.000 km => Select all + Type 4 => 4.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .type('123')
+                .should('have.value', '123.000 km')
+                .type('{selectAll}4')
+                .should('have.value', '4.000 km')
+                .should('have.prop', 'selectionStart', '4'.length)
+                .should('have.prop', 'selectionEnd', '4'.length);
+        });
+
+        it('Caret guard: cannot move caret into postfix', () => {
+            cy.get('@input')
+                .focus()
+                .type('123')
+                .should('have.value', '123.000 km')
+                .type('{moveToEnd}')
+                .should('have.prop', 'selectionStart', '123'.length)
+                .should('have.prop', 'selectionEnd', '123'.length)
+                .type('{rightArrow}'.repeat(5))
+                .should('have.prop', 'selectionStart', '123'.length)
+                .should('have.prop', 'selectionEnd', '123'.length);
+        });
+
+        it('|.000 km => Backspace keeps value and caret', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0)
+                .type('{backspace}'.repeat(5))
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('|.000 km => Delete keeps value and caret', () => {
+            cy.get('@input')
+                .focus()
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0)
+                .type('{del}')
+                .should('have.value', '.000 km')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('Paste with leading text: abc123 => 123.000 km', () => {
+            cy.get('@input')
+                .focus()
+                .paste('abc123')
+                .should('have.value', '123.000 km')
+                .should('have.prop', 'selectionStart', '123'.length)
+                .should('have.prop', 'selectionEnd', '123'.length);
         });
     });
 });

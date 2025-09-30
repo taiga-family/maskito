@@ -16,6 +16,7 @@ export function createNotEmptyIntegerPlugin(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'negativePattern'

@@ -14,6 +14,7 @@ export function emptyPostprocessor(
         Required<MaskitoNumberParams>,
         | 'decimalPseudoSeparators'
         | 'decimalSeparator'
+        | 'maximumFractionDigits'
         | 'minusPseudoSigns'
         | 'minusSign'
         | 'negativePattern'
