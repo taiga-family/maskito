@@ -157,7 +157,7 @@
             "defaultConfiguration": "production"
         },
         "serve-ssr": {
-            "executor": "@nguniversal/builders:ssr-dev-server",
+            "executor": "@angular-devkit/build-angular:ssr-dev-server",
             "options": {
                 "browserTarget": "{projectName}:build",
                 "serverTarget": "{projectName}:server",
@@ -182,7 +182,7 @@
             }
         },
         "prerender": {
-            "executor": "@nguniversal/builders:prerender",
+            "executor": "@angular-devkit/build-angular:prerender",
             "options": {
                 "browserTarget": "{projectName}:build:production",
                 "serverTarget": "{projectName}:server:production",
