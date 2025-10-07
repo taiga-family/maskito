@@ -35,12 +35,12 @@
         "tslib": "2.8.1"
     },
     "devDependencies": {
-        "@angular/core": "16.2.12",
-        "@angular/forms": "16.2.12"
+        "@angular/core": "17.3.12",
+        "@angular/forms": "17.3.12"
     },
     "peerDependencies": {
-        "@angular/core": ">=16.0.0",
-        "@angular/forms": ">=16.0.0",
+        "@angular/core": ">=17.0.0",
+        "@angular/forms": ">=17.0.0",
         "@maskito/core": "^3.11.1"
     },
     "ng-update": {
