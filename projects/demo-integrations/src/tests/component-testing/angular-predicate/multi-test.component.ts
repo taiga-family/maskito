@@ -4,7 +4,6 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 
 @Component({
-    standalone: true,
     selector: 'synchronous-test-input',
     imports: [FormsModule, MaskitoDirective],
     template: `

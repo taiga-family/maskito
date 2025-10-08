@@ -13,7 +13,6 @@ import {KitPluginsDocExample3} from './examples/3-event-handlers/component';
 import {KitPluginsDocExample4} from './examples/4-reject/component';
 
 @Component({
-    standalone: true,
     selector: 'kit-plugins-doc',
     imports: [
         KitPluginsDocExample1,

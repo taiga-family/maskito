@@ -14,7 +14,6 @@ import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
 import {PatternDocExample6} from './examples/6-pattern/component';
 
 @Component({
-    standalone: true,
     selector: 'angular-doc-page',
     imports: [
         MaskitoDirective,

@@ -6,7 +6,6 @@ import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 import {UnmaskDirective} from './unmask.directive';
 
 @Component({
-    standalone: true,
     selector: 'custom-unmask-handler-doc-example-5',
     imports: [FormsModule, MaskitoDirective, UnmaskDirective],
     templateUrl: './index.html',

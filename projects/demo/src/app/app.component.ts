@@ -10,7 +10,6 @@ import {TuiLink} from '@taiga-ui/core';
 import {debounceTime, map, startWith} from 'rxjs';
 
 @Component({
-    standalone: true,
     selector: 'app',
     imports: [RouterLink, TuiDocMain, TuiLink],
     templateUrl: './app.component.html',
@@ -30,7 +29,6 @@ import {debounceTime, map, startWith} from 'rxjs';
                         const exampleElements = Array.from(
                             host.querySelectorAll('tui-doc-example'),
                         );
-
                         const codeElements = Array.from(
                             host.querySelectorAll('tui-doc-code'),
                         );

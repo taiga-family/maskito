@@ -68,7 +68,6 @@ describe('@maskito/angular | Predicate', () => {
                 delay(1_000).then(() => element.querySelectorAll('input')[1]!);
 
             @Component({
-                standalone: true,
                 imports: [AsyncPipe, MaskitoDirective],
                 template: `
                     <div
@@ -137,7 +136,6 @@ describe('@maskito/angular | Predicate', () => {
 
         beforeEach(() => {
             @Component({
-                standalone: true,
                 imports: [MaskitoDirective],
                 template: `
                     <input

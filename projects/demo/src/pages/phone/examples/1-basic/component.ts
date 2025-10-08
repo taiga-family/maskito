@@ -6,7 +6,6 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'phone-doc-example-1',
     imports: [
         FormsModule,

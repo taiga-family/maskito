@@ -5,7 +5,6 @@ import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
-    standalone: true,
     selector: 'nested-doc-example-1',
     imports: [FormsModule, MaskitoDirective, TuiInputModule],
     templateUrl: './template.html',

@@ -7,7 +7,6 @@ import {TuiSegmented} from '@taiga-ui/kit';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'time-mask-doc-example-5',
     imports: [FormsModule, MaskitoDirective, TuiSegmented, TuiTextfield],
     template: `

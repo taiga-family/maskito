@@ -18,7 +18,6 @@ import {TimeMaskDocExample4} from './examples/4-affixes/component';
 import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
 
 @Component({
-    standalone: true,
     selector: 'time-mask-doc',
     imports: [
         MaskitoDirective,

@@ -4,7 +4,6 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoEventHandler} from '@maskito/kit';
 
 @Component({
-    standalone: true,
     imports: [MaskitoDirective],
     template: `
         <input

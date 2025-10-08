@@ -3,16 +3,14 @@ import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiIcon, TuiLink, TuiNotification, TuiSurface, TuiTitle} from '@taiga-ui/core';
-import {TuiAvatar, TuiTooltip} from '@taiga-ui/kit';
+import {TuiTooltip} from '@taiga-ui/kit';
 import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 
 @Component({
-    standalone: true,
     selector: 'core-concepts-overview-doc-page',
     imports: [
         RouterLink,
         TuiAddonDoc,
-        TuiAvatar,
         TuiCardLarge,
         TuiHeader,
         TuiIcon,

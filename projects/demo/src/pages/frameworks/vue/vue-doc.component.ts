@@ -7,7 +7,6 @@ import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {VueExample1} from './examples/vue-1/component';
 
 @Component({
-    standalone: true,
     selector: 'vue-doc-page',
     imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification, VueExample1],
     templateUrl: './vue-doc.template.html',

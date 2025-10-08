@@ -6,7 +6,6 @@ import {TuiInputModule} from '@taiga-ui/legacy';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'prefix-doc-example-2',
     imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `

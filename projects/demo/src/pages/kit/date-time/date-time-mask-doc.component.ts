@@ -18,7 +18,6 @@ import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
 import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
 
 @Component({
-    standalone: true,
     selector: 'date-time-mask-doc',
     imports: [
         DateTimeMaskDocExample1,

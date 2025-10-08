@@ -7,7 +7,6 @@ import {TuiLoader} from '@taiga-ui/core';
 import {StackblitzService} from '../../stackblitz.service';
 
 @Component({
-    standalone: true,
     selector: 'stackblitz-starter',
     imports: [TuiLoader],
     template: `

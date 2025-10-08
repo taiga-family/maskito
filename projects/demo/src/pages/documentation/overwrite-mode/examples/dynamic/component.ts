@@ -6,7 +6,6 @@ import {TuiTextareaModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy'
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'overwrite-mode-dynamic-doc-example-3',
     imports: [
         FormsModule,

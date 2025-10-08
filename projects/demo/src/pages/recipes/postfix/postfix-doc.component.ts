@@ -9,7 +9,6 @@ import {PostfixDocExample1} from './examples/1-pattern-mask/component';
 import {PostfixDocExample2} from './examples/2-postprocessor/component';
 
 @Component({
-    standalone: true,
     selector: 'postfix-doc',
     imports: [
         PostfixDocExample1,

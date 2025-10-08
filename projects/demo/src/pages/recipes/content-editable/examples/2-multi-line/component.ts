@@ -4,7 +4,6 @@ import {MaskitoDirective} from '@maskito/angular';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'content-editable-doc-example-2',
     imports: [MaskitoDirective],
     template: `

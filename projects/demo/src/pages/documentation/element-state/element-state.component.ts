@@ -5,7 +5,6 @@ import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 @Component({
-    standalone: true,
     selector: 'element-state-doc-page',
     imports: [RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './element-state.template.html',

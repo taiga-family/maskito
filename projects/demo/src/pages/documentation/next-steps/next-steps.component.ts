@@ -4,7 +4,6 @@ import {DemoPath} from '@demo/constants';
 import {TuiLink} from '@taiga-ui/core';
 
 @Component({
-    standalone: true,
     selector: 'next-steps',
     imports: [RouterLink, RouterLinkActive, TuiLink],
     templateUrl: './next-steps.template.html',

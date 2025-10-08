@@ -176,7 +176,6 @@ describe('Native attribute maxlength works', () => {
             });
 
             @Component({
-                standalone: true,
                 imports: [TestInput],
                 template: `
                     <test-input

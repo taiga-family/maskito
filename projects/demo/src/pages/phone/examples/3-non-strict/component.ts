@@ -13,7 +13,6 @@ import metadata from 'libphonenumber-js/min/metadata';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'phone-doc-example-3',
     imports: [
         FormsModule,

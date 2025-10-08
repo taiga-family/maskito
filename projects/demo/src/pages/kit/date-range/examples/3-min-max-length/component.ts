@@ -7,7 +7,6 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'date-range-mask-doc-example-3',
     imports: [
         FormsModule,

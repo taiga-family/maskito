@@ -9,7 +9,6 @@ import {ContentEditableDocExample1} from './examples/1-time/component';
 import {ContentEditableDocExample2} from './examples/2-multi-line/component';
 
 @Component({
-    standalone: true,
     selector: 'content-editable-doc',
     imports: [
         ContentEditableDocExample1,

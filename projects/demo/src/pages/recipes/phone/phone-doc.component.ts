@@ -9,7 +9,6 @@ import {PhoneUSDocExample1} from './examples/1-us-phone/component';
 import {PhoneKZDocExample2} from './examples/2-kz-phone/component';
 
 @Component({
-    standalone: true,
     selector: 'phone-doc',
     imports: [PhoneKZDocExample2, PhoneUSDocExample1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './phone-doc.template.html',

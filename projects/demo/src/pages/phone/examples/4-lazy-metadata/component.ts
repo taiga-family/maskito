@@ -7,7 +7,6 @@ import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 @Component({
-    standalone: true,
     selector: 'phone-doc-example-4',
     imports: [
         FormsModule,

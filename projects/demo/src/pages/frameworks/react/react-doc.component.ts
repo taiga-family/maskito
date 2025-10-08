@@ -11,7 +11,6 @@ import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.compon
 import {ReactExample2} from './examples/2-element-predicate/example.component';
 
 @Component({
-    standalone: true,
     selector: 'react-doc-page',
     imports: [
         NgSwitch,
