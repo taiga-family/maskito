@@ -104,7 +104,8 @@
                     "buildTarget": "{projectName}:build:development"
                 }
             },
-            "defaultConfiguration": "development"
+            "defaultConfiguration": "development",
+            "continuous": true
         },
         "serve-ip": {
             "executor": "nx:run-commands",
@@ -173,7 +174,8 @@
                     "browserTarget": "{projectName}:build:development"
                 }
             },
-            "defaultConfiguration": "development"
+            "defaultConfiguration": "development",
+            "continuous": true
         },
         "generate-routes-file": {
             "executor": "nx:run-commands",
