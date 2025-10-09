@@ -10,12 +10,14 @@ jobs:
       - uses: actions/checkout@v4.3.0
       - uses: taiga-family/ci/actions/setup/variables@v1.164.0
       - uses: taiga-family/ci/actions/setup/node@v1.164.0
+        with:
+          node-version: '22.x' # require by FirebaseExtended/action-hosting-deploy
       - run: npm run build
 
       - name: Debug output
         run: tree dist/demo/browser -P '*.html'
       - name: Deploy preview
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0.10.0
         if: env.IS_OWNER_MODE == 'true'
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
