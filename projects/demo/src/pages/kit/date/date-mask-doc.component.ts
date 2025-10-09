@@ -27,7 +27,7 @@ import {DateMaskDocExample2} from './examples/2-min-max/component';
         TuiTextfieldControllerModule,
     ],
     templateUrl: './date-mask-doc.template.html',
-    styleUrls: ['./date-mask-doc.style.less'],
+    styleUrl: './date-mask-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class DateMaskDocComponent implements Required<MaskitoDateParams> {

@@ -21,7 +21,7 @@ import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
         TuiTooltip,
     ],
     templateUrl: './core-concepts-overview.template.html',
-    styleUrls: ['./core-concepts-overview.styles.less'],
+    styleUrl: './core-concepts-overview.styles.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CoreConceptsOverviewDocPageComponent {

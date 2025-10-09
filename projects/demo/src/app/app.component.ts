@@ -13,7 +13,7 @@ import {debounceTime, map, startWith} from 'rxjs';
     selector: 'app',
     imports: [RouterLink, TuiDocMain, TuiLink],
     templateUrl: './app.component.html',
-    styleUrls: ['./app.style.less'],
+    styleUrl: './app.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
         ResizeObserverService,

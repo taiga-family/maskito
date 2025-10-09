@@ -35,7 +35,7 @@ import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component'
         TuiTextfieldControllerModule,
     ],
     templateUrl: './time-mask-doc.template.html',
-    styleUrls: ['./time-mask-doc.style.less'],
+    styleUrl: './time-mask-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TimeMaskDocComponent implements Required<MaskitoTimeParams> {

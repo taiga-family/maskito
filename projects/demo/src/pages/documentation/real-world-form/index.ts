@@ -39,7 +39,7 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
         TuiTextfieldControllerModule,
     ],
     templateUrl: './index.html',
-    styleUrls: ['./index.less'],
+    styleUrl: './index.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RealWorldForm {

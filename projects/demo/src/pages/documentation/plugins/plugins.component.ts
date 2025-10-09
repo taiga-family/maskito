@@ -33,7 +33,7 @@ import documentationMask from './examples/pads-zero-plugin';
         TuiTitle,
     ],
     templateUrl: './plugins.template.html',
-    styleUrls: ['./plugins.style.less'],
+    styleUrl: './plugins.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PluginsDocPageComponent {

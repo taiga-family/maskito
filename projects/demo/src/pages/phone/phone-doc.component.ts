@@ -53,7 +53,7 @@ type MetadataName = keyof typeof metadataSets;
         TuiTextfieldControllerModule,
     ],
     templateUrl: './phone-doc.template.html',
-    styleUrls: ['./phone-doc.style.less'],
+    styleUrl: './phone-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PhoneDocComponent implements GeneratorOptions {
