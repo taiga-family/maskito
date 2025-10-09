@@ -11,7 +11,6 @@ import {OverwriteModeDocExample2} from './examples/replace/component';
 import {OverwriteModeDocExample1} from './examples/shift/component';
 
 @Component({
-    standalone: true,
     selector: 'overwrite-mode-doc-page',
     imports: [
         NextStepsComponent,

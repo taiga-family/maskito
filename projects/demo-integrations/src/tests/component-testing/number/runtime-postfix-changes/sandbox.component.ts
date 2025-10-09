@@ -27,7 +27,6 @@ export class TestPipe4 implements PipeTransform {
 }
 
 @Component({
-    standalone: true,
     selector: 'test-doc-example-4',
     imports: [FormsModule, I18nPluralPipe, MaskitoDirective, TestPipe4],
     template: `

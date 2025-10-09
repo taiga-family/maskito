@@ -9,7 +9,6 @@ import {PrefixDocExample1} from './examples/1-pattern-mask/component';
 import {PrefixDocExample2} from './examples/2-postprocessor/component';
 
 @Component({
-    standalone: true,
     selector: 'prefix-doc',
     imports: [
         PrefixDocExample1,

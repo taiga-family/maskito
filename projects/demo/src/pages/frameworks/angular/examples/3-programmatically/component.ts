@@ -4,7 +4,6 @@ import {MaskitoDirective} from '@maskito/angular';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 @Component({
-    standalone: true,
     selector: 'programmatically-doc-example-3',
     imports: [MaskitoDirective, ReactiveFormsModule],
     templateUrl: './template.html',

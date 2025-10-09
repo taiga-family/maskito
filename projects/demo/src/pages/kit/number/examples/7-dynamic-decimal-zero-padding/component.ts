@@ -14,7 +14,6 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 import {getMaskitoOptions} from './mask';
 
 @Component({
-    standalone: true,
     selector: 'number-mask-doc-example-7',
     imports: [
         FormsModule,

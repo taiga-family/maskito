@@ -8,7 +8,6 @@ import {TuiLink} from '@taiga-ui/core';
 import {CardDocExample1} from './examples/1-basic/component';
 
 @Component({
-    standalone: true,
     selector: 'card-doc',
     imports: [CardDocExample1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './card-doc.template.html',

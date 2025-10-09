@@ -3,7 +3,6 @@ import {MaskitoPipe} from '@maskito/angular';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 @Component({
-    standalone: true,
     selector: 'pipe-doc-example-4',
     imports: [MaskitoPipe],
     templateUrl: './template.html',

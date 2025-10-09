@@ -5,7 +5,6 @@ import {TuiCheckbox} from '@taiga-ui/kit';
 import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
-    standalone: true,
     selector: 'nested-doc-example-2',
     imports: [FormsModule, TuiCheckbox, TuiInputModule, TuiLabel],
     templateUrl: './template.html',

@@ -6,7 +6,6 @@ import {TuiFlagPipe, TuiTextfield} from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'phone-doc-example-2',
     imports: [MaskitoDirective, ReactiveFormsModule, TuiFlagPipe, TuiTextfield],
     templateUrl: './template.html',

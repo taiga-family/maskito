@@ -7,7 +7,6 @@ import {TuiGroup} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/legacy';
 
 @Component({
-    standalone: true,
     selector: 'card-doc-example-1',
     imports: [MaskitoDirective, ReactiveFormsModule, TuiGroup, TuiInputModule],
     templateUrl: './template.html',

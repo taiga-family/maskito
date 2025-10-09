@@ -21,7 +21,6 @@ type GeneratorOptions = Required<
 >;
 
 @Component({
-    standalone: true,
     selector: 'date-range-mask-doc',
     imports: [
         DateRangeMaskDocExample1,

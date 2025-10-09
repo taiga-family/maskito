@@ -5,7 +5,6 @@ import {TuiNotification} from '@taiga-ui/core';
 import {NextStepsComponent} from '../next-steps/next-steps.component';
 
 @Component({
-    standalone: true,
     selector: 'transformer-doc-page',
     imports: [NextStepsComponent, TuiAddonDoc, TuiNotification],
     templateUrl: './transformer.template.html',

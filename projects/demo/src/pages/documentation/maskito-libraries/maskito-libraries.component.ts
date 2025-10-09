@@ -5,7 +5,6 @@ import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 @Component({
-    standalone: true,
     selector: 'maskito-libraries-doc-page',
     imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './maskito-libraries.template.html',

@@ -25,6 +25,8 @@ export const CYPRESS_CONFIG: Cypress.ConfigOptions = {
         supportFile: 'src/support/component.ts',
         indexHtmlFile: 'src/support/component-index.html',
         specPattern: 'src/tests/component-testing/**/*.cy.ts',
+        // No need to recompile empty sandbox before each test spec
+        justInTimeCompile: false,
     },
 };
 

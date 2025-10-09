@@ -27,7 +27,6 @@ const MONEY_AMOUNT_MASK = maskitoNumberOptionsGenerator({
 const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
 
 @Component({
-    standalone: true,
     selector: 'real-world-form',
     imports: [
         MaskitoDirective,

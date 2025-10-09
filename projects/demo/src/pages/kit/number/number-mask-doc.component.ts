@@ -27,7 +27,6 @@ import {NumberMaskDocExample7} from './examples/7-dynamic-decimal-zero-padding/c
 type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
 
 @Component({
-    standalone: true,
     selector: 'number-mask-doc',
     imports: [
         MaskitoDirective,

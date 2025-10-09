@@ -14,7 +14,6 @@ import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
 
 @Component({
-    standalone: true,
     selector: 'date-mask-doc',
     imports: [
         DateMaskDocExample1,

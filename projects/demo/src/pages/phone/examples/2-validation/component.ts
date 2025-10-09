@@ -21,7 +21,6 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
 }
 
 @Component({
-    standalone: true,
     selector: 'phone-doc-example-2',
     imports: [
         AsyncPipe,

@@ -15,7 +15,6 @@ import {PluginsDocExample4} from './examples/3-change-event/component';
 import documentationMask from './examples/pads-zero-plugin';
 
 @Component({
-    standalone: true,
     selector: 'plugins-mode-doc-page',
     imports: [
         FormsModule,

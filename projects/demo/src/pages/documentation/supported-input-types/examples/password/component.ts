@@ -7,7 +7,6 @@ import {TuiInputPasswordModule, TuiTextfieldControllerModule} from '@taiga-ui/le
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'input-type-password-example',
     imports: [
         FormsModule,

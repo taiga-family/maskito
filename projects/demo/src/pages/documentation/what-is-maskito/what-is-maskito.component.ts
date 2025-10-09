@@ -7,7 +7,6 @@ import {TuiAvatar} from '@taiga-ui/kit';
 import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 
 @Component({
-    standalone: true,
     selector: 'what-is-maskito-doc-page',
     imports: [
         RouterLink,

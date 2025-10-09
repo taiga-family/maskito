@@ -10,7 +10,6 @@ import {PlaceholderDocExample2} from './examples/2-phone/component';
 import {PlaceholderDocExample3} from './examples/3-date/component';
 
 @Component({
-    standalone: true,
     selector: 'placeholder-doc',
     imports: [
         PlaceholderDocExample1,

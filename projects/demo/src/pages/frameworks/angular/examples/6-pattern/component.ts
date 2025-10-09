@@ -3,7 +3,6 @@ import {FormsModule} from '@angular/forms';
 import {MaskitoPattern} from '@maskito/angular';
 
 @Component({
-    standalone: true,
     selector: 'pattern-doc-example-6',
     imports: [FormsModule, MaskitoPattern],
     templateUrl: './template.html',

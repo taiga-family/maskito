@@ -6,7 +6,6 @@ import {TuiTextfield} from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'kit-plugins-doc-example-2',
     imports: [FormsModule, MaskitoDirective, TuiTextfield],
     template: `

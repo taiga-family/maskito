@@ -6,7 +6,6 @@ import {TuiTextareaModule} from '@taiga-ui/legacy';
 import mask from './mask';
 
 @Component({
-    standalone: true,
     selector: 'textarea-doc-example-1',
     imports: [FormsModule, MaskitoDirective, TuiTextareaModule],
     template: `

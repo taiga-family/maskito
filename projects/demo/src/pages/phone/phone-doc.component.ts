@@ -38,7 +38,6 @@ type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>
 type MetadataName = keyof typeof metadataSets;
 
 @Component({
-    standalone: true,
     selector: 'phone-doc',
     imports: [
         MaskitoDirective,
