@@ -18,7 +18,7 @@ const DEFAULT_PARAMS = {
     decimalSeparator: '.',
     minusSign: '-',
     maximumFractionDigits: 0,
-    decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
+    decimalPseudoSeparators: [','],
 } as const satisfies MaskitoNumberParams;
 
 describe('toNumberParts', () => {
@@ -129,7 +129,7 @@ describe('toNumberParts', () => {
                     minusSign: minus,
                     maximumFractionDigits: 2,
                     decimalSeparator: '.',
-                    decimalPseudoSeparators: ['б'] as string[], // TODO(v4): delete `as string[]`
+                    decimalPseudoSeparators: ['б'],
                     thousandSeparator: ',',
                 } as const satisfies MaskitoNumberParams;
 

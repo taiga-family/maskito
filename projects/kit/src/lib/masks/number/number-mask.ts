@@ -37,11 +37,9 @@ import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 export function maskitoNumberOptionsGenerator({
     max = Number.MAX_SAFE_INTEGER,
     min = Number.MIN_SAFE_INTEGER,
-    precision = 0,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
     decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
-    decimalZeroPadding = false,
     prefix = '',
     postfix = '',
     minusSign = CHAR_MINUS,
@@ -49,8 +47,8 @@ export function maskitoNumberOptionsGenerator({
         (char) =>
             char !== thousandSeparator && char !== decimalSeparator && char !== minusSign,
     ),
-    maximumFractionDigits = precision,
-    minimumFractionDigits = decimalZeroPadding ? maximumFractionDigits : 0,
+    maximumFractionDigits = 0,
+    minimumFractionDigits = 0,
     negativePattern = 'prefixFirst',
 }: MaskitoNumberParams = {}): Required<MaskitoOptions> {
     const decimalPseudoSeparators = validateDecimalPseudoSeparators({
@@ -62,7 +60,6 @@ export function maskitoNumberOptionsGenerator({
     const params: Required<MaskitoNumberParams> = {
         max,
         min,
-        precision,
         thousandSeparator,
         postfix,
         minusSign,
@@ -70,7 +67,6 @@ export function maskitoNumberOptionsGenerator({
         maximumFractionDigits,
         decimalPseudoSeparators,
         negativePattern,
-        decimalZeroPadding,
         decimalSeparator:
             maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator
                 ? ''
