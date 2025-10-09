@@ -17,7 +17,7 @@ import {StackblitzService} from '../../stackblitz.service';
             [overlay]="true"
         ></tui-loader>
     `,
-    styleUrls: ['./stackblitz-starter.style.less'],
+    styleUrl: './stackblitz-starter.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [StackblitzService],
 })

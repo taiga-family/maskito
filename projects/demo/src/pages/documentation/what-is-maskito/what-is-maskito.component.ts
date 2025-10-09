@@ -19,7 +19,7 @@ import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
         TuiTitle,
     ],
     templateUrl: './what-is-maskito.template.html',
-    styleUrls: ['./what-is-maskito.style.less'],
+    styleUrl: './what-is-maskito.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class WhatIsMaskitoDocPageComponent {

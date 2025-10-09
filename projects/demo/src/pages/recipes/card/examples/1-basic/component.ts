@@ -10,7 +10,7 @@ import {TuiInputModule} from '@taiga-ui/legacy';
     selector: 'card-doc-example-1',
     imports: [MaskitoDirective, ReactiveFormsModule, TuiGroup, TuiInputModule],
     templateUrl: './template.html',
-    styleUrls: ['./style.less'],
+    styleUrl: './style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardDocExample1 {

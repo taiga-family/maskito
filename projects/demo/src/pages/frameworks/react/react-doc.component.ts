@@ -21,7 +21,7 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
         TuiTabs,
     ],
     templateUrl: './react-doc.template.html',
-    styleUrls: ['./react-doc.style.less'],
+    styleUrl: './react-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ReactDocPageComponent {
