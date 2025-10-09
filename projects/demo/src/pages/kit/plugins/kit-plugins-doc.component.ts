@@ -1,4 +1,3 @@
-import {NgIf} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
@@ -19,7 +18,6 @@ import {KitPluginsDocExample4} from './examples/4-reject/component';
         KitPluginsDocExample2,
         KitPluginsDocExample3,
         KitPluginsDocExample4,
-        NgIf,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

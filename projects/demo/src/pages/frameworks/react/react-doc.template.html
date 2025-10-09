@@ -150,7 +150,7 @@
             library for form-building. Explore all examples above – the provided knowledge about element predicate,
             ref merging and
             <code>OnInput</code>
-             event will help you a lot to achieve it.
+            event will help you a lot to achieve it.
         </p>
 
         <p>
@@ -187,17 +187,14 @@
             </button>
         </tui-tabs-with-more>
 
-        <ng-container [ngSwitch]="tabs.activeItemIndex">
-            <tui-doc-code
-                *ngSwitchCase="0"
-                [code]="reactHookFormExample['index.tsx']!"
-            />
-
-            <tui-doc-code
-                *ngSwitchCase="1"
-                [code]="reactHookFormExample['with-maskito-register.ts']!"
-            />
-        </ng-container>
+        @switch (tabs.activeItemIndex) {
+            @case (0) {
+                <tui-doc-code [code]="reactHookFormExample['index.tsx']!" />
+            }
+            @case (1) {
+                <tui-doc-code [code]="reactHookFormExample['with-maskito-register.ts']!" />
+            }
+        }
     </section>
 
     <section>

@@ -36,11 +36,5 @@ module.exports = {
                 ],
             },
         },
-        {
-            files: ['*.html'],
-            rules: {
-                '@angular-eslint/template/prefer-control-flow': 'off', // TODO
-            },
-        },
     ],
 };

@@ -1,4 +1,3 @@
-import {NgSwitch, NgSwitchCase} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
@@ -13,8 +12,6 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
 @Component({
     selector: 'react-doc-page',
     imports: [
-        NgSwitch,
-        NgSwitchCase,
         ReactExample1,
         ReactExample2,
         RouterLink,
