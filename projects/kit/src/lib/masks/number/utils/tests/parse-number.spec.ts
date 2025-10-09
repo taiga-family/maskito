@@ -213,7 +213,7 @@ describe('maskitoParseNumber', () => {
 
         it('decimal separator only => NaN', () => {
             expect(maskitoParseNumber('.')).toBeNaN();
-            expect(maskitoParseNumber(',', ',')).toBeNaN();
+            expect(maskitoParseNumber(',', {decimalSeparator: ','})).toBeNaN();
         });
 
         it('negative sign only => NaN', () => {

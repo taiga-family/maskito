@@ -4,16 +4,12 @@ import type {MaskitoNumberParams} from '../number-params';
 
 export function maskitoParseNumber(
     maskedNumber: string,
-    // TODO(v4): decimalSeparatorOrParams: MaskitoNumberParams | string => params: MaskitoNumberParams = {}
-    decimalSeparatorOrParams: MaskitoNumberParams | string = {},
-): number {
-    const {
+    {
         decimalSeparator = '.',
         minusSign = '',
         minusPseudoSigns = DEFAULT_PSEUDO_MINUSES,
-    }: MaskitoNumberParams = typeof decimalSeparatorOrParams === 'string'
-        ? {decimalSeparator: decimalSeparatorOrParams}
-        : decimalSeparatorOrParams;
+    }: MaskitoNumberParams = {},
+): number {
     const hasNegativeSign = !!new RegExp(
         `^\\D*[${escapeRegExp(minusSign)}\\${minusPseudoSigns.join('\\')}]`,
     ).exec(maskedNumber);
