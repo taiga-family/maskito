@@ -5,18 +5,8 @@ export interface MaskitoNumberParams
     > {
     min?: number;
     max?: number;
-    /**
-     * TODO(v4): delete
-     * @deprecated use `maximumFractionDigits` instead
-     */
-    precision?: number;
     decimalSeparator?: string;
-    decimalPseudoSeparators?: string[]; // TODO(v4): => readonly string[]
-    /**
-     * TODO(v4): delete
-     * @deprecated use `minimumFractionDigits` instead
-     */
-    decimalZeroPadding?: boolean;
+    decimalPseudoSeparators?: readonly string[];
     thousandSeparator?: string;
     prefix?: string;
     postfix?: string;

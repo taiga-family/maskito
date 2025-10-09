@@ -7,7 +7,7 @@ export function validateDecimalPseudoSeparators({
 }: {
     decimalSeparator: string;
     thousandSeparator: string;
-    decimalPseudoSeparators?: string[];
+    decimalPseudoSeparators?: readonly string[];
 }): string[] {
     return decimalPseudoSeparators.filter(
         (char) => char !== thousandSeparator && char !== decimalSeparator,

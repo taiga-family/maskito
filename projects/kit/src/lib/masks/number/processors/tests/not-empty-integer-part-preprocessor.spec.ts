@@ -12,7 +12,7 @@ const DEFAULT_PARAMS = {
     prefix: '',
     postfix: '',
     minusPseudoSigns: [],
-    decimalPseudoSeparators: [','] as string[], // TODO(v4): remove `as string[]`
+    decimalPseudoSeparators: [','],
     negativePattern: 'prefixFirst',
 } as const satisfies MaskitoNumberParams;
 
