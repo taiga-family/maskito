@@ -17,10 +17,11 @@ export class UnmaskDirective implements AfterViewInit {
     public unmaskHandler: (value: string) => any = identity;
 
     @Input()
-    public maskHandler: (value: any) => string = (value) =>
-        this.maskitoDirective.options
-            ? maskitoTransform(String(value), this.maskitoDirective.options)
-            : value;
+    public maskHandler: (value: any) => string = (value) => {
+        const options = this.maskitoDirective.options();
+
+        return options ? maskitoTransform(String(value), options) : value;
+    };
 
     public ngAfterViewInit(): void {
         const originalOnChange = this.accessor.onChange.bind(this.accessor);
