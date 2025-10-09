@@ -3,6 +3,7 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE, maskitoInitialCalibrationPlugin} from
 import type {RenderResult} from '@testing-library/react';
 import {render, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type {JSX} from 'react';
 
 import {useMaskito} from '../useMaskito';
 
