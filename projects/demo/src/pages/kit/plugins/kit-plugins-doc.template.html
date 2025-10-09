@@ -41,15 +41,16 @@
                 – to enter meridiem part (AM / PM).
             </p>
         </ng-template>
-        <tui-notification
-            *ngIf="!isMobile"
-            appearance="warning"
-            size="m"
-            class="tui-space_bottom-4"
-            [style.max-width.rem]="20"
-        >
-            Use real mobile device to see how it works!
-        </tui-notification>
+        @if (!isMobile) {
+            <tui-notification
+                appearance="warning"
+                size="m"
+                class="tui-space_bottom-4"
+                [style.max-width.rem]="20"
+            >
+                Use real mobile device to see how it works!
+            </tui-notification>
+        }
 
         <kit-plugins-doc-example-1 />
     </tui-doc-example>
