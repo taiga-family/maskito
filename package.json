@@ -92,7 +92,7 @@
         "@nx/rollup": "21.6.3",
         "@nx/workspace": "21.6.3",
         "@taiga-ui/auto-changelog-config": "0.332.0",
-        "@taiga-ui/browserslist-config": "0.332.0",
+        "@taiga-ui/browserslist-config": "0.329.0",
         "@taiga-ui/commitlint-config": "0.332.0",
         "@taiga-ui/cspell-config": "0.332.0",
         "@taiga-ui/eslint-plugin-experience": "0.249.0",
