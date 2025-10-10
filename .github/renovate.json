@@ -21,6 +21,10 @@
         {
             "matchPackageNames": ["jest-preset-angular"],
             "enabled": false
+        },
+        {
+            "matchPackageNames": ["@taiga-ui/browserslist-config"],
+            "enabled": false
         }
     ]
 }
