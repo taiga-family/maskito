@@ -9,5 +9,4 @@ export type MaskitoTimeMode =
     | 'HH'
     | 'MM:SS.MSS'
     | 'MM:SS'
-    | 'MM.SS.MSS' // TODO(v4): delete
     | 'SS.MSS';
