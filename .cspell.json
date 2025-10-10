@@ -5,6 +5,7 @@
     "ignorePaths": [
         ".git",
         ".gitignore",
+        ".npmrc",
         ".cspell.json",
         "**/dist/**",
         "**/assets/**",
