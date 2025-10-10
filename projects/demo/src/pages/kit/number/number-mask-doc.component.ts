@@ -120,11 +120,9 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         'minusFirst',
     ] as const satisfies ReadonlyArray<Required<MaskitoNumberParams>['negativePattern']>;
 
-    public precision = 0; // TODO(v4): delete
     public max = Number.MAX_SAFE_INTEGER;
     public min = Number.MIN_SAFE_INTEGER;
     public decimalSeparator = '.';
-    public decimalZeroPadding = false; // TODO(v4): delete
     public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0]!;
     public thousandSeparator = ' ';
     public prefix = '';
