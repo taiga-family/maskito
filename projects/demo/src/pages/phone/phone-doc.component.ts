@@ -87,9 +87,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         [DocExamplePrimaryTab.Angular]: import(
             './examples/4-lazy-metadata/component.ts?raw'
         ),
-        [DocExamplePrimaryTab.JavaScript]: import(
-            './examples/4-lazy-metadata/simple.md?raw'
-        ),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/4-lazy-metadata/simple.md'),
     };
 
     protected readonly focusBlurEvents: Record<string, TuiRawLoaderContent> = {

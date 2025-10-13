@@ -11,7 +11,7 @@ import {TuiLink} from '@taiga-ui/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ElementStateDocPageComponent {
-    protected readonly elementStateDemo = import('./examples/element-state-demo.md?raw');
+    protected readonly elementStateDemo = import('./examples/element-state-demo.md');
 
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly processorsDocPage = `/${DemoPath.Processors}`;

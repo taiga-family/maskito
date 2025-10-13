@@ -42,7 +42,7 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     protected pages = DemoPath;
 
     protected readonly maskitoParseStringifyTimeDemo = import(
-        './examples/maskito-parse-stringify-time-demo.md?raw'
+        './examples/maskito-parse-stringify-time-demo.md'
     );
 
     protected readonly modeExample1: Record<string, TuiRawLoaderContent> = {

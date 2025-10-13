@@ -53,7 +53,7 @@ export default class KitPluginsDocComponent {
 
     protected readonly rejectExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-reject/mask.ts?raw'),
-        'index.less': import('./examples/4-reject/animation.less?raw'),
+        'index.less': import('./examples/4-reject/animation.less'),
         'index.ts': import('./examples/4-reject/index.ts?raw'),
     };
 }

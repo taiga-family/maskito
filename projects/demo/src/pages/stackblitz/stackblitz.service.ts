@@ -30,7 +30,7 @@ export class StackblitzService implements TuiCodeEditor {
         files: Record<string, string>,
     ): Promise<void> {
         const [tsMd = '', css = ''] = await Promise.all(
-            [import('./files/example.ts.md?raw'), import('./files/styles.css?raw')].map(
+            [import('./files/example.ts.md'), import('./files/styles.css')].map(
                 tuiRawLoad,
             ),
         );

@@ -1,5 +1,8 @@
 import type {RefCallback} from 'react';
+// @ts-ignore
 import type {UseFormRegisterReturn} from 'react-hook-form';
+
+const noop = async (): Promise<void> => {};
 
 export const withMaskitoRegister = (
     registerResult: UseFormRegisterReturn,
@@ -14,6 +17,6 @@ export const withMaskitoRegister = (
         ...registerResult,
         ref,
         onInput: registerResult.onChange,
-        onChange: undefined,
+        onChange: noop,
     };
 };

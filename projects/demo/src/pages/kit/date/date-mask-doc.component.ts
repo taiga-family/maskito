@@ -34,7 +34,7 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
     protected apiPageControl = new FormControl('');
 
     protected readonly maskitoParseStringifyDateDemo = import(
-        './examples/maskito-parse-stringify-date-demo.md?raw'
+        './examples/maskito-parse-stringify-date-demo.md'
     );
 
     protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {

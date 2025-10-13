@@ -38,7 +38,7 @@ import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
 })
 export default class DateTimeMaskDocComponent implements Required<MaskitoDateTimeParams> {
     protected readonly maskitoParseStringifyDateTimeDemo = import(
-        './examples/maskito-parse-stringify-date-time-demo.md?raw'
+        './examples/maskito-parse-stringify-date-time-demo.md'
     );
 
     protected readonly dateTimeLocalizationExample: Record<string, TuiRawLoaderContent> =

@@ -2,6 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import type {ComponentType} from 'react';
+// @ts-ignore
 import {useForm} from 'react-hook-form';
 
 import {withMaskitoRegister} from './with-maskito-register';

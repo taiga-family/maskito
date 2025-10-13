@@ -28,12 +28,12 @@ export default class ContentEditableDocComponent {
     protected readonly reactDocPage = `/${DemoPath.React}`;
     protected readonly vueDocPage = `/${DemoPath.Vue}`;
     protected readonly maskitoWithContentEditableDemo = import(
-        './examples/maskito-with-content-editable.md?raw'
+        './examples/maskito-with-content-editable.md'
     );
 
     protected readonly contentEditableExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw'),
-        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md?raw'),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md'),
         [DocExamplePrimaryTab.Angular]: import('./examples/1-time/component.ts?raw'),
     };
 
@@ -41,7 +41,7 @@ export default class ContentEditableDocComponent {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-multi-line/mask.ts?raw'
         ),
-        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md?raw'),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md'),
         [DocExamplePrimaryTab.Angular]: import(
             './examples/2-multi-line/component.ts?raw'
         ),

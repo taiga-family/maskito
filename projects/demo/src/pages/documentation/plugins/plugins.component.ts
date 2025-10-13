@@ -43,7 +43,7 @@ export default class PluginsDocPageComponent {
     protected readonly documentationMask = documentationMask;
 
     protected readonly oversimplifiedNumberMask = import(
-        './examples/oversimplified-number-mask.md?raw'
+        './examples/oversimplified-number-mask.md'
     );
 
     protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw');

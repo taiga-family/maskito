@@ -33,10 +33,9 @@ export class StackblitzStarterComponent implements OnInit {
 
     protected async openStackblitz(): Promise<void> {
         const [ts = '', css = ''] = await Promise.all(
-            [
-                import('../../files/starter.ts?raw'),
-                import('../../files/styles.css?raw'),
-            ].map(tuiRawLoad),
+            [import('../../files/starter.ts?raw'), import('../../files/styles.css')].map(
+                tuiRawLoad,
+            ),
         );
 
         return this.stackblitz.openStarter(

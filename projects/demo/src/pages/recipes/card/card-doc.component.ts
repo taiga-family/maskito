@@ -19,6 +19,6 @@ export default class CardDocComponent {
 
     protected readonly cardExample1: Record<string, TuiRawLoaderContent> = {
         TypeScript: import('./examples/1-basic/component.ts?raw'),
-        HTML: import('./examples/1-basic/template.html?raw'),
+        HTML: import('./examples/1-basic/template.html'),
     };
 }

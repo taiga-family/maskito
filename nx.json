@@ -1,4 +1,7 @@
 {
+    "tui": {
+        "enabled": false
+    },
     "workspaceLayout": {
         "libsDir": "projects",
         "appsDir": "projects"
