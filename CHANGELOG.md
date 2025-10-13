@@ -1,3 +1,24 @@
+## [4.0.0](https://github.com/taiga-family/maskito/compare/v3.11.1...v4.0.0) (2025-10-13)
+
+### 🚀 Features
+
+- **angular**: `MaskitoDirective` uses model inputs (#2363)
+  [(524d08a)](https://github.com/taiga-family/maskito/commit/524d08a7d981711278bdc233b44df474f7351231)
+- **kit**: remove invalid `MM.SS.MSS` type from `MaskitoTimeMode` (use `MM:SS.MSS` instead) (#2365)
+  [(d902087)](https://github.com/taiga-family/maskito/commit/d902087d890f8a40c550bc1629ceab8855481e1b)
+- **demo**: use `styleUrl` instead of `styleUrls` for components with single stylesheet (#2357)
+  [(d088e3a)](https://github.com/taiga-family/maskito/commit/d088e3ac9140305ea5d07493a07c0cd793cbeae3)
+- **kit**: `maskitoParseNumber` accepts only `MaskitoNumberParams` as the 2nd argument (#2355)
+  [(a6b971f)](https://github.com/taiga-family/maskito/commit/a6b971f2c1574ba1a95286cc0c9c6fc66f18c15b)
+- **kit**: delete deprecated `precision` & `decimalZeroPadding` parameters from `Number` mask (#2354)
+  [(f6f497d)](https://github.com/taiga-family/maskito/commit/f6f497d0d45422f3016e50808835ea6b64035ce7)
+- **angular**: update Angular 18 =&gt; 19 (#2349)
+  [(4659d73)](https://github.com/taiga-family/maskito/commit/4659d7358a00939e0f582badf40cefad7f9cfd14)
+- **angular**: update Angular 17 =&gt; 18 (#2348)
+  [(852ae66)](https://github.com/taiga-family/maskito/commit/852ae66e84b85542b42bedfb7fd9b3626c90afb1)
+- **angular**: update to Angular 17 (#2347)
+  [(fb2d0e8)](https://github.com/taiga-family/maskito/commit/fb2d0e84920e2901ed41a35ca253365f596efd97)
+
 ### [3.11.1](https://github.com/taiga-family/maskito/compare/v3.11.0...v3.11.1) (2025-09-30)
 
 ### 🐞 Bug Fixes
