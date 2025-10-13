@@ -4,7 +4,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@maskito/react)](https://bundlephobia.com/result?p=@maskito/react)
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/taiga-family/maskito/main/projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" height="120px">
+    <img src="https://raw.githubusercontent.com/taiga-family/maskito/main/projects/demo/src/assets/icons/maskito.svg" alt="Maskito logo" width="120px">
 </p>
 
 <p align="center">
