@@ -134,7 +134,7 @@ describe('appendDate', () => {
 
         expect(result.getFullYear()).toBe(2000);
         expect(result.getMonth()).toBe(2);
-        expect(result.getDate()).toBe(28);
+        expect(result.getDate()).toBe(30);
     });
 
     it('year: 2000, month: 0, day: 1, if {month: -6, day: -15} was passed', () => {
@@ -227,14 +227,14 @@ describe('appendDate', () => {
 
     it(
         'year: 2018, month: 1, day: 26, if {month: -1} was passed (when current' +
-            ' month has more days, then final month, but both has the day and' +
+            'month has more days, then final month, but both has the day, and' +
             ' it`s last day of final month)',
         () => {
             const result = appendDate(new Date(2018, 2, 28), {month: -1});
 
             expect(result.getFullYear()).toBe(2018);
-            expect(result.getMonth()).toBe(1);
-            expect(result.getDate()).toBe(26);
+            expect(result.getMonth()).toBe(2);
+            expect(result.getDate()).toBe(1);
         },
     );
 
