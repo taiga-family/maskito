@@ -20,13 +20,15 @@ export default class PhoneDocComponent {
 
     protected readonly usPhoneExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-us-phone/mask.ts?raw'
+            './examples/1-us-phone/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly kzPhoneExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-kz-phone/mask.ts?raw'
+            './examples/2-kz-phone/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 }

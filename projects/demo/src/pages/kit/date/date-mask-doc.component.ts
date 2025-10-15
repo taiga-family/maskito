@@ -39,12 +39,16 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
 
     protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-localization/mask.ts?raw'
+            './examples/1-localization/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly dateMinMax: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected readonly modeOptions = [

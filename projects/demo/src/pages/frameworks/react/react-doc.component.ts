@@ -43,7 +43,8 @@ export default class ReactDocPageComponent {
     protected readonly reactHookFormExample: Record<string, TuiRawLoaderContent> = {
         'index.tsx': import('./examples/3-react-hook-form/index.tsx?raw'),
         'with-maskito-register.ts': import(
-            './examples/3-react-hook-form/with-maskito-register.ts?raw'
+            './examples/3-react-hook-form/with-maskito-register.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 

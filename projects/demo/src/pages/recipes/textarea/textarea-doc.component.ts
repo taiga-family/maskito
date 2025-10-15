@@ -20,6 +20,8 @@ export default class TextareaDocComponent {
     );
 
     protected readonly textareaExample1: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-latin/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-latin/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 }

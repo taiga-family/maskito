@@ -44,28 +44,36 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
     protected readonly dateTimeLocalizationExample: Record<string, TuiRawLoaderContent> =
         {
             [DocExamplePrimaryTab.MaskitoOptions]: import(
-                './examples/1-date-time-localization/mask.ts?raw'
+                './examples/1-date-time-localization/mask.ts?raw',
+                {with: {loader: 'text'}}
             ),
         };
 
     protected readonly dateTimeSeparatorExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-date-time-separator/mask.ts?raw'
+            './examples/2-date-time-separator/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly dateTimeMinMaxExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected readonly dateTimeTimeStepExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-time-step/mask.ts?raw'
+            './examples/4-time-step/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-am-pm/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-am-pm/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected apiPageControl = new FormControl('');

@@ -46,24 +46,31 @@ export default class PluginsDocPageComponent {
         './examples/oversimplified-number-mask.md'
     );
 
-    protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw');
+    protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw', {
+        with: {loader: 'text'},
+    });
 
     protected readonly initialCalibrationExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-initial-calibration/mask.ts?raw'
+            './examples/1-initial-calibration/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
-        'index.ts': import('./examples/1-initial-calibration/index.ts?raw'),
+        'index.ts': import('./examples/1-initial-calibration/index.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly strictCompositionExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-strict-composition/mask.ts?raw'
+            './examples/2-strict-composition/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly changeEventExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-change-event/mask.ts?raw'
+            './examples/3-change-event/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 }

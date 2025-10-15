@@ -18,7 +18,9 @@ export default class CardDocComponent {
     protected readonly dateMaskDocPage = `/${DemoPath.Date}`;
 
     protected readonly cardExample1: Record<string, TuiRawLoaderContent> = {
-        TypeScript: import('./examples/1-basic/component.ts?raw'),
+        TypeScript: import('./examples/1-basic/component.ts?raw', {
+            with: {loader: 'text'},
+        }),
         HTML: import('./examples/1-basic/template.html'),
     };
 }

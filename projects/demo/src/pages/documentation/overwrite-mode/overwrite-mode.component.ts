@@ -26,15 +26,21 @@ import {OverwriteModeDocExample1} from './examples/shift/component';
 })
 export default class OverwriteModeDocPageComponent {
     protected readonly shiftExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/shift/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/shift/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly replaceExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/replace/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/replace/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly dynamicExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/dynamic/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly elementStateDocPage = `/${DemoPath.ElementState}`;

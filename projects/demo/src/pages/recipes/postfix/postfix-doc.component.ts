@@ -28,7 +28,8 @@ export default class PostfixDocComponent {
     protected readonly patternMaskApproachExample1: Record<string, TuiRawLoaderContent> =
         {
             [DocExamplePrimaryTab.MaskitoOptions]: import(
-                './examples/1-pattern-mask/mask.ts?raw'
+                './examples/1-pattern-mask/mask.ts?raw',
+                {with: {loader: 'text'}}
             ),
         };
 
@@ -37,7 +38,8 @@ export default class PostfixDocComponent {
         TuiRawLoaderContent
     > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-postprocessor/mask.ts?raw'
+            './examples/2-postprocessor/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 }

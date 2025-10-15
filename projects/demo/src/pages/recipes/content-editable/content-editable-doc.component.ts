@@ -32,18 +32,24 @@ export default class ContentEditableDocComponent {
     );
 
     protected readonly contentEditableExample1: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
         [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md'),
-        [DocExamplePrimaryTab.Angular]: import('./examples/1-time/component.ts?raw'),
+        [DocExamplePrimaryTab.Angular]: import('./examples/1-time/component.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly contentEditableExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-multi-line/mask.ts?raw'
+            './examples/2-multi-line/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
         [DocExamplePrimaryTab.JavaScript]: import('./examples/vanilla-js-tab.md'),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/2-multi-line/component.ts?raw'
+            './examples/2-multi-line/component.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 }
