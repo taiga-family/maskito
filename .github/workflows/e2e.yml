@@ -30,9 +30,6 @@ jobs:
         # --optimization false to keep `window.ng` inside Cypress tests
         run: npm run build -- --optimization false
 
-      - name: Build SSR server
-        run: npm run build:ssr
-
   e2e-kit:
     needs: [build-demo]
     runs-on: ubuntu-latest

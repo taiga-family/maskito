@@ -7,6 +7,12 @@ import {tuiProvideRoutePageTab} from '@taiga-ui/addon-doc';
 export const ROUTES: Routes = [
     // Getting started
     {
+        path: '',
+        loadComponent: () =>
+            import('../pages/documentation/what-is-maskito/what-is-maskito.component'),
+        title: 'What is Maskito?',
+    },
+    {
         path: DemoPath.WhatIsMaskito,
         loadComponent: () =>
             import('../pages/documentation/what-is-maskito/what-is-maskito.component'),

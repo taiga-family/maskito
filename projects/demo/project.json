@@ -69,8 +69,7 @@
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
                     "nx build {projectName} -c production",
-                    "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html",
-                    "nx run {projectName}:prerender"
+                    "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html"
                 ]
             }
         },
@@ -138,14 +137,8 @@
             "options": {
                 "buildTarget": "{projectName}:build",
                 "port": 3333,
-                "staticFilePath": "dist/{projectRoot}/browser",
+                "staticFilePath": "dist/{projectName}/browser",
                 "spa": true
-            }
-        },
-        "generate-routes-file": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "ts-node {projectRoot}/generate-demo-routes-file.ts"
             }
         }
     }

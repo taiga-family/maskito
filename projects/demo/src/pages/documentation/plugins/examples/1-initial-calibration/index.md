@@ -1,3 +1,4 @@
+```ts
 import {Maskito} from '@maskito/core';
 
 import maskitoOptions from './mask';
@@ -13,3 +14,4 @@ console.info(element.value); // 123
 
 // Call this function when the element is detached from DOM
 maskedInput.destroy();
+```

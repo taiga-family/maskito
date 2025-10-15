@@ -55,9 +55,7 @@ export default class PluginsDocPageComponent {
             './examples/1-initial-calibration/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
-        'index.ts': import('./examples/1-initial-calibration/index.ts?raw', {
-            with: {loader: 'text'},
-        }),
+        'index.ts': import('./examples/1-initial-calibration/index.md'),
     };
 
     protected readonly strictCompositionExample: Record<string, TuiRawLoaderContent> = {
