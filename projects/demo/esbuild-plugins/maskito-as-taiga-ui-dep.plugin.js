@@ -1,4 +1,4 @@
-const {resolve} = require('node:path');
+const {resolve, join} = require('node:path');
 const {existsSync} = require('node:fs');
 
 /**
@@ -13,7 +13,7 @@ module.exports = {
     name: 'maskito-as-taiga-ui-dep',
     setup(build) {
         build.onResolve({filter: /^@maskito/}, (args) => {
-            if (!args.importer.includes('node_modules/@taiga-ui')) {
+            if (!args.importer.includes(join('node_modules', '@taiga-ui'))) {
                 // Ignore for local path aliases (ESBuild handles them properly)
                 return;
             }
