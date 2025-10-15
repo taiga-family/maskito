@@ -34,13 +34,12 @@ export class StackblitzStarterComponent implements OnInit {
     protected async openStackblitz(): Promise<void> {
         const [ts = '', css = ''] = await Promise.all(
             [
-                import('../../files/starter.ts?raw', {with: {loader: 'text'}})
-                    // TODO: remove .then after release https://github.com/taiga-family/taiga-ui/pull/12270
-                    .then((x) => ({default: x.default})),
-                import('../../files/styles.css')
-                    // TODO: remove .then after release https://github.com/taiga-family/taiga-ui/pull/12270
-                    .then((x) => ({default: x.default})),
-            ].map(tuiRawLoad),
+                import('../../files/starter.ts?raw', {with: {loader: 'text'}}),
+                import('../../files/styles.css'),
+            ]
+                // TODO: remove the first `.map` after release https://github.com/taiga-family/taiga-ui/pull/12270
+                .map(async (x) => Promise.resolve(x))
+                .map(tuiRawLoad),
         );
 
         return this.stackblitz.openStarter(

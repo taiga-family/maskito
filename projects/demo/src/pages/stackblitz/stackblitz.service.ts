@@ -30,9 +30,10 @@ export class StackblitzService implements TuiCodeEditor {
         files: Record<string, string>,
     ): Promise<void> {
         const [tsMd = '', css = ''] = await Promise.all(
-            [import('./files/example.ts.md'), import('./files/styles.css')].map(
-                tuiRawLoad,
-            ),
+            [import('./files/example.ts.md'), import('./files/styles.css')]
+                // TODO: remove the first `.map` after release https://github.com/taiga-family/taiga-ui/pull/12270
+                .map(async (x) => Promise.resolve(x))
+                .map(tuiRawLoad),
         );
 
         return stackblitz.openProject(
