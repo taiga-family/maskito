@@ -1,5 +1,5 @@
-const {resolve, join} = require('node:path');
-const fs = require('node:fs');
+const {resolve} = require('node:path');
+const {existsSync} = require('node:fs');
 
 /**
  * Maskito repo uses Taiga UI to build demo application.
@@ -12,7 +12,6 @@ const fs = require('node:fs');
 module.exports = {
     name: 'maskito-as-taiga-ui-dep',
     setup(build) {
-        // Resolve @maskito/* imports to the dist folder or source
         build.onResolve({filter: /^@maskito/}, (args) => {
             if (!args.importer.includes('node_modules/@taiga-ui')) {
                 // Ignore for local path aliases (ESBuild handles them properly)
@@ -21,25 +20,18 @@ module.exports = {
 
             const library = args.path // e.g., '@maskito/kit'
                 .split('/')[1];
-            const distPath = resolve(__dirname, '../../../dist', library);
+            const entryPoint = resolve(
+                __dirname,
+                '../../../projects',
+                library,
+                'src/index.ts',
+            );
 
-            // Check if the package has been built
-            const packageJsonPath = join(distPath, 'package.json');
-
-            if (fs.existsSync(packageJsonPath)) {
-                const entryPoint = JSON.parse(
-                    fs.readFileSync(packageJsonPath, 'utf-8'),
-                ).module;
-                const resolvedPath = join(distPath, entryPoint);
-
-                if (fs.existsSync(resolvedPath)) {
-                    return {
-                        path: resolvedPath,
-                    };
-                }
-            }
-
-            return null;
+            return existsSync(entryPoint)
+                ? {
+                      path: entryPoint,
+                  }
+                : null;
         });
     },
 };

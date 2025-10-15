@@ -58,14 +58,7 @@
                     "sourceMap": true
                 }
             },
-            "defaultConfiguration": "production",
-            "dependsOn": [
-                {
-                    "dependencies": true,
-                    "target": "build",
-                    "params": "ignore"
-                }
-            ]
+            "defaultConfiguration": "production"
         },
         "build-gh-pages": {
             "executor": "nx:run-commands",
@@ -108,14 +101,7 @@
                     "buildTarget": "{projectName}:build:development"
                 }
             },
-            "defaultConfiguration": "development",
-            "dependsOn": [
-                {
-                    "dependencies": true,
-                    "target": "build",
-                    "params": "ignore"
-                }
-            ]
+            "defaultConfiguration": "development"
         },
         "serve-ip": {
             "executor": "nx:run-commands",
