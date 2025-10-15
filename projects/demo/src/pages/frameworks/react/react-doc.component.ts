@@ -27,21 +27,27 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
 export default class ReactDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     protected readonly useMaskitoBasicUsage = import(
-        './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw'
+        './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw',
+        {with: {loader: 'text'}}
     );
 
     protected readonly controlledInputDemo = import('./examples/controlled-input.md');
     protected readonly mergeRefDemo = import('./examples/merge-ref.md');
 
     protected readonly elementPredicateExample: Record<string, TuiRawLoaderContent> = {
-        'index.tsx': import('./examples/2-element-predicate/index.tsx?raw'),
+        'index.tsx': import('./examples/2-element-predicate/index.tsx?raw', {
+            with: {loader: 'text'},
+        }),
         'awesome-input.tsx': import(
-            './examples/2-element-predicate/awesome-input.tsx?raw'
+            './examples/2-element-predicate/awesome-input.tsx?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly reactHookFormExample: Record<string, TuiRawLoaderContent> = {
-        'index.tsx': import('./examples/3-react-hook-form/index.tsx?raw'),
+        'index.tsx': import('./examples/3-react-hook-form/index.tsx?raw', {
+            with: {loader: 'text'},
+        }),
         'with-maskito-register.ts': import(
             './examples/3-react-hook-form/with-maskito-register.ts?raw',
             {with: {loader: 'text'}}
