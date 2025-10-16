@@ -38,7 +38,14 @@
                     "entry": "{projectRoot}/src/server.ts"
                 },
                 "outputMode": "server",
-                "allowedCommonJsDependencies": ["react-dom/client"],
+                "allowedCommonJsDependencies": [
+                    "react",
+                    "react-dom/client",
+                    "react/jsx-runtime",
+                    "@vue/compiler-dom",
+                    "@vue/runtime-dom",
+                    "@vue/shared"
+                ],
                 "loader": {
                     ".md": "text",
                     ".html": "text",

@@ -14,12 +14,12 @@ import {
     TuiInputModule,
     TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
+import type {MetadataJson} from 'libphonenumber-js';
 import type {CountryCode} from 'libphonenumber-js/core';
 import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
 import maxMetadata from 'libphonenumber-js/max/metadata';
 import minMetadata from 'libphonenumber-js/min/metadata';
 import mobileMetadata from 'libphonenumber-js/mobile/metadata';
-import type {MetadataJson} from 'libphonenumber-js/types';
 
 import {PhoneMaskDocExample1} from './examples/1-basic/component';
 import {PhoneMaskDocExample2} from './examples/2-validation/component';
