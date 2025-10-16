@@ -10,12 +10,8 @@ import mask from './mask';
     imports: [FormsModule, MaskitoDirective, TuiInputModule],
     template: `
         <tui-input
-            [style.animation-duration.ms]="300"
-            [style.animation-iteration-count]="1"
-            [style.animation-name]="'reject-' + (reject % 2)"
             [style.max-width.rem]="20"
             [(ngModel)]="value"
-            (maskitoReject)="reject = reject + 1"
         >
             CVC
             <input
@@ -29,9 +25,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KitPluginsDocExample4 {
-    protected maskitoOptions = mask;
-
+    protected readonly maskitoOptions = mask;
     protected value = '';
-
-    protected reject = -1;
 }
