@@ -1,4 +1,4 @@
-import './animation.less';
+import './animation.css';
 
 import {Maskito} from '@maskito/core';
 
@@ -16,5 +16,7 @@ element.addEventListener('maskitoReject', () => {
     element.style.animationName = `reject-${reject % 2}`;
 });
 
-// Call this function when the element is detached from DOM
-maskedInput.destroy();
+console.info(
+    'Call this function when the element is detached from DOM',
+    maskedInput.destroy,
+);
