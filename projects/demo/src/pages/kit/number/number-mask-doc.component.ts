@@ -48,40 +48,48 @@ type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
 })
 export default class NumberMaskDocComponent implements GeneratorParams {
     protected readonly maskitoParseNumberDemo = import(
-        './examples/maskito-parse-stringify-number-demo.md?raw'
+        './examples/maskito-parse-stringify-number-demo.md'
     );
 
     protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-high-precision/mask.ts?raw'
+            './examples/1-high-precision/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly separatorsExample2: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-separators/mask.ts?raw'
+            './examples/2-separators/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly postfixExample3: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-postfix/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-postfix/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected readonly decimalZeroPaddingExample4: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-decimal-zero-padding/mask.ts?raw'
+            './examples/4-decimal-zero-padding/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly customMinusSignExample5: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-custom-minus-sign/mask.ts?raw'
+            './examples/5-custom-minus-sign/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly minusBeforePrefixExample6: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-minus-before-prefix/mask.ts?raw'
+            './examples/6-minus-before-prefix/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
@@ -90,10 +98,12 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         TuiRawLoaderContent
     > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/7-dynamic-decimal-zero-padding/mask.ts?raw'
+            './examples/7-dynamic-decimal-zero-padding/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/7-dynamic-decimal-zero-padding/component.ts?raw'
+            './examples/7-dynamic-decimal-zero-padding/component.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 

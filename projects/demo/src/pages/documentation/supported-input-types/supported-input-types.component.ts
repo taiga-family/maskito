@@ -27,23 +27,33 @@ import {InputURLDocExample} from './examples/url/component';
 })
 export default class SupportedInputTypesDocPageComponent {
     protected readonly textTypeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/text/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/text/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly telTypeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/tel/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/tel/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly passwordTypeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/password/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/password/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly urlTypeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/url/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/url/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly searchTypeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/search/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/search/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected getInput(type: HTMLInputElement['type']): string {

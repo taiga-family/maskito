@@ -40,23 +40,29 @@ type GeneratorOptions = Required<
 export default class DateRangeMaskDocComponent implements GeneratorOptions {
     protected readonly dateLocalizationExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-date-localization/mask.ts?raw'
+            './examples/1-date-localization/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly minMaxExample2: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-min-max/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/2-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected readonly minMaxLengthExample3: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-min-max-length/mask.ts?raw'
+            './examples/3-min-max-length/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly customRangeExample4: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-range-separator/mask.ts?raw'
+            './examples/4-range-separator/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 

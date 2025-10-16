@@ -52,6 +52,5 @@ projects/demo-integrations/cypress
 .nx
 .ssl
 RELEASE_BODY.md
-projects/demo/routesFile.txt
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md

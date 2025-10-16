@@ -12,6 +12,6 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 })
 export default class TransformerDocPageComponent {
     protected readonly utilityInActionDemo = import(
-        './examples/utility-in-action-demo.md?raw'
+        './examples/utility-in-action-demo.md'
     );
 }

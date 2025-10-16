@@ -30,15 +30,20 @@ export default class PlaceholderDocComponent {
 
     protected readonly cvcExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-cvc-code/mask.ts?raw'
+            './examples/1-cvc-code/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly phoneExample2: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-phone/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-phone/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly dateExample3: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 }

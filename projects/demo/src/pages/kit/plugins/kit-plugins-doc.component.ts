@@ -35,25 +35,30 @@ export default class KitPluginsDocComponent {
         TuiRawLoaderContent
     > = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/1-selection-handler/mask.ts?raw'
+            './examples/1-selection-handler/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly caretGuardExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-caret-guard/mask.ts?raw'
+            './examples/2-caret-guard/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly eventHandlersExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-event-handlers/mask.ts?raw'
+            './examples/3-event-handlers/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly rejectExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-reject/mask.ts?raw'),
-        'index.less': import('./examples/4-reject/animation.less?raw'),
-        'index.ts': import('./examples/4-reject/index.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-reject/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+        'index.less': import('./examples/4-reject/animation.less'),
+        'index.ts': import('./examples/4-reject/index.ts?raw', {with: {loader: 'text'}}),
     };
 }

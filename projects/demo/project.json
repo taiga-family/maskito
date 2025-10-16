@@ -2,23 +2,19 @@
     "name": "demo",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "sourceRoot": "projects/demo/src",
     "prefix": "app",
-    "generators": {},
+    "sourceRoot": "projects/demo/src",
     "targets": {
         "build": {
-            "executor": "@nx/angular:webpack-browser",
+            "executor": "@nx/angular:application",
+            "outputs": ["{options.outputPath}"],
             "options": {
-                "customWebpackConfig": {
-                    "path": "{projectRoot}/webpack.config.ts"
-                },
                 "baseHref": "/",
-                "outputPath": "dist/{projectName}/browser",
+                "outputPath": "dist/{projectName}",
                 "index": "{projectRoot}/src/index.html",
-                "main": "{projectRoot}/src/main.ts",
-                "polyfills": "{projectRoot}/src/polyfills.ts",
+                "browser": "{projectRoot}/src/main.ts",
+                "polyfills": ["zone.js"],
                 "tsConfig": "{projectRoot}/tsconfig.app.json",
-                "aot": false,
                 "assets": [
                     {
                         "glob": "**/*",
@@ -37,40 +33,30 @@
                     "node_modules/@taiga-ui/styles/taiga-ui-global.less",
                     "{projectRoot}/src/styles.less"
                 ],
-                "scripts": [],
-                "vendorChunk": true,
-                "extractLicenses": false,
-                "buildOptimizer": false,
-                "sourceMap": true,
-                "optimization": false,
-                "namedChunks": true,
-                "allowedCommonJsDependencies": ["react-dom/client"]
+                "server": "{projectRoot}/src/main.server.ts",
+                "ssr": {
+                    "entry": "{projectRoot}/src/server.ts"
+                },
+                "outputMode": "server",
+                "allowedCommonJsDependencies": ["react-dom/client"],
+                "loader": {
+                    ".md": "text",
+                    ".html": "text",
+                    ".less": "text",
+                    ".css": "text"
+                },
+                "externalDependencies": ["react-hook-form"],
+                "plugins": ["{projectRoot}/esbuild-plugins/maskito-as-taiga-ui-dep.plugin.js"]
             },
             "configurations": {
                 "production": {
-                    "fileReplacements": [
-                        {
-                            "replace": "{projectRoot}/src/environments/environment.ts",
-                            "with": "{projectRoot}/src/environments/environment.prod.ts"
-                        }
-                    ],
-                    "optimization": true,
-                    "outputHashing": "all",
-                    "sourceMap": false,
-                    "namedChunks": false,
-                    "aot": true,
-                    "extractLicenses": true,
-                    "vendorChunk": false,
-                    "buildOptimizer": true,
-                    "budgets": [
-                        {
-                            "type": "initial",
-                            "maximumWarning": "2mb",
-                            "maximumError": "10mb"
-                        }
-                    ]
+                    "outputHashing": "all"
                 },
-                "development": {}
+                "development": {
+                    "optimization": false,
+                    "extractLicenses": false,
+                    "sourceMap": true
+                }
             },
             "defaultConfiguration": "production"
         },
@@ -83,18 +69,28 @@
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
                     "nx build {projectName} -c production",
-                    "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html",
-                    "nx run {projectName}:prerender"
+                    "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html"
                 ]
             }
         },
         "serve": {
+            "continuous": true,
             "executor": "@nx/angular:dev-server",
             "options": {
-                "buildTarget": "{projectName}:build",
                 "port": 3333,
-                "sslCert": ".ssl/localhost.pem",
-                "sslKey": ".ssl/localhost-key.pem"
+                "prebundle": {
+                    "exclude": [
+                        "@taiga-ui/addon-doc",
+                        "@taiga-ui/addon-mobile",
+                        "@taiga-ui/cdk",
+                        "@taiga-ui/core",
+                        "@taiga-ui/icons",
+                        "@taiga-ui/kit",
+                        "@taiga-ui/layout",
+                        "@taiga-ui/legacy",
+                        "@taiga-ui/styles"
+                    ]
+                }
             },
             "configurations": {
                 "production": {
@@ -104,8 +100,7 @@
                     "buildTarget": "{projectName}:build:development"
                 }
             },
-            "defaultConfiguration": "development",
-            "continuous": true
+            "defaultConfiguration": "development"
         },
         "serve-ip": {
             "executor": "nx:run-commands",
@@ -132,70 +127,19 @@
             "executor": "@nx/jest:jest",
             "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
-                "jestConfig": "{projectRoot}/jest.config.ts"
+                "jestConfig": "{projectRoot}/jest.config.ts",
+                "tsConfig": "tsconfig.spec.json"
             }
         },
-        "server": {
-            "executor": "@nx/angular:webpack-server",
+        "serve-static": {
+            "continuous": true,
+            "executor": "@nx/web:file-server",
             "options": {
-                "customWebpackConfig": {
-                    "path": "{projectRoot}/webpack.config.ts"
-                },
-                "outputPath": "dist/{projectName}/server",
-                "main": "{projectRoot}/server.ts",
-                "tsConfig": "{projectRoot}/tsconfig.server.json",
-                "sourceMap": true,
-                "optimization": false
-            },
-            "configurations": {
-                "production": {
-                    "outputHashing": "media",
-                    "sourceMap": false,
-                    "optimization": true
-                },
-                "development": {}
-            },
-            "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-            "executor": "@angular-devkit/build-angular:ssr-dev-server",
-            "options": {
-                "browserTarget": "{projectName}:build",
-                "serverTarget": "{projectName}:server",
-                "port": 3333
-            },
-            "configurations": {
-                "production": {
-                    "browserTarget": "{projectName}:build:production",
-                    "serverTarget": "{projectName}:server:production"
-                },
-                "development": {
-                    "serverTarget": "{projectName}:server:development",
-                    "browserTarget": "{projectName}:build:development"
-                }
-            },
-            "defaultConfiguration": "development",
-            "continuous": true
-        },
-        "generate-routes-file": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "ts-node {projectRoot}/generate-demo-routes-file.ts"
+                "buildTarget": "{projectName}:build",
+                "port": 3333,
+                "staticFilePath": "dist/{projectName}/browser",
+                "spa": true
             }
-        },
-        "prerender": {
-            "executor": "@angular-devkit/build-angular:prerender",
-            "options": {
-                "browserTarget": "{projectName}:build:production",
-                "serverTarget": "{projectName}:server:production",
-                "routesFile": "./{projectRoot}/routesFile.txt"
-            },
-            "dependsOn": [
-                {
-                    "target": "generate-routes-file",
-                    "params": "ignore"
-                }
-            ]
         }
     }
 }

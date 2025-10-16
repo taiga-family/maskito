@@ -3,10 +3,12 @@
     "compilerOptions": {
         "outDir": "../out-tsc/app",
         "target": "ES2022",
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "allowJs": false
     },
     "angularCompilerOptions": {
         "compilationMode": "full"
     },
-    "files": ["./src/typings.d.ts", "./src/main.ts", "./src/polyfills.ts"]
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "files": ["src/typings.d.ts"]
 }

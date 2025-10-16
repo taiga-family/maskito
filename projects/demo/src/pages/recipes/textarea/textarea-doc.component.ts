@@ -16,10 +16,12 @@ import {TextareaDocExample1} from './examples/1-latin/component';
 export default class TextareaDocComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     protected readonly maskitoWithTextareaDemo = import(
-        './examples/maskito-with-textarea.md?raw'
+        './examples/maskito-with-textarea.md'
     );
 
     protected readonly textareaExample1: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-latin/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-latin/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 }

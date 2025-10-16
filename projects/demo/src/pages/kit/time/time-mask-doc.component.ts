@@ -42,28 +42,38 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     protected pages = DemoPath;
 
     protected readonly maskitoParseStringifyTimeDemo = import(
-        './examples/maskito-parse-stringify-time-demo.md?raw'
+        './examples/maskito-parse-stringify-time-demo.md'
     );
 
     protected readonly modeExample1: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly amPmExample2: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-am-pm/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-am-pm/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly stepExample3: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly affixesExample4: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-affixes/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/4-affixes/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected readonly timeSegmentsMinMaxExample5: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-time-segments-min-max/mask.ts?raw'
+            './examples/5-time-segments-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 

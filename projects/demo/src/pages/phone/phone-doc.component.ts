@@ -62,39 +62,45 @@ export default class PhoneDocComponent implements GeneratorOptions {
     protected apiPageControl = new FormControl('');
 
     protected readonly basic: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw'),
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-basic/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected readonly validation: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-validation/mask.ts?raw'
+            './examples/2-validation/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/2-validation/component.ts?raw'
+            './examples/2-validation/component.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly nonStrict: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-non-strict/mask.ts?raw'
+            './examples/3-non-strict/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/3-non-strict/component.ts?raw'
+            './examples/3-non-strict/component.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
     protected readonly lazyMetadata: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.Angular]: import(
-            './examples/4-lazy-metadata/component.ts?raw'
+            './examples/4-lazy-metadata/component.ts?raw',
+            {with: {loader: 'text'}}
         ),
-        [DocExamplePrimaryTab.JavaScript]: import(
-            './examples/4-lazy-metadata/simple.md?raw'
-        ),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/4-lazy-metadata/simple.md'),
     };
 
     protected readonly focusBlurEvents: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-focus-blur-events/mask.ts?raw'
+            './examples/5-focus-blur-events/mask.ts?raw',
+            {with: {loader: 'text'}}
         ),
     };
 
