@@ -1,9 +1,12 @@
+```ts
 import './animation.css';
 
 import {Maskito} from '@maskito/core';
 
 import maskitoOptions from './mask';
 
-const element = document.querySelector('input')!; const maskedInput = new Maskito(element, maskitoOptions);
+const element = document.querySelector('input')!;
+const maskedInput = new Maskito(element, maskitoOptions);
 
-console.info( 'Call this function when the element is detached from DOM', maskedInput.destroy, );
+console.info('Call this function when the element is detached from DOM', maskedInput.destroy);
+```
