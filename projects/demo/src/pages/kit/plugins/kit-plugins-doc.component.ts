@@ -59,8 +59,6 @@ export default class KitPluginsDocComponent {
             with: {loader: 'text'},
         }),
         'animation.css': import('./examples/4-reject/animation.css'),
-        [DocExamplePrimaryTab.JavaScript]: import('./examples/4-reject/index.ts?raw', {
-            with: {loader: 'text'},
-        }),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/4-reject/index.md'),
     };
 }
