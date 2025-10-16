@@ -1,7 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 describe('Plugins | Reject', () => {
-    const original = 'reject--1';
+    const original = 'none';
     const rejected = 'reject-0';
 
     beforeEach(() => {
@@ -10,22 +10,22 @@ describe('Plugins | Reject', () => {
             .should('be.visible')
             .first()
             .should('have.value', '')
+            .should('have.css', 'animation-name', original)
             .focus()
             .as('input');
-        cy.get('#reject tui-input')
-            .should('have.css', 'animation-name', original)
-            .as('control');
     });
 
     it('Allows digits', () => {
-        cy.get('@input').type('1').should('have.value', '1');
-
-        cy.get('@control').should('have.css', 'animation-name', original);
+        cy.get('@input')
+            .type('1')
+            .should('have.value', '1')
+            .should('have.css', 'animation-name', original);
     });
 
     it('Rejects letters', () => {
-        cy.get('@input').type('1a').should('have.value', '1');
-
-        cy.get('@control').should('have.css', 'animation-name', rejected);
+        cy.get('@input')
+            .type('1a')
+            .should('have.value', '1')
+            .should('have.css', 'animation-name', rejected);
     });
 });
