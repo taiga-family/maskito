@@ -24,7 +24,7 @@ import mask from './mask';
             />
         </tui-input>
     `,
-    styleUrl: './animation.less',
+    styleUrl: './animation.css',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -49,7 +49,6 @@
                 "loader": {
                     ".md": "text",
                     ".html": "text",
-                    ".less": "text",
                     ".css": "text"
                 },
                 "externalDependencies": ["react-hook-form"],

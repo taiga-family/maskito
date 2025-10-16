@@ -58,7 +58,9 @@ export default class KitPluginsDocComponent {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-reject/mask.ts?raw', {
             with: {loader: 'text'},
         }),
-        'index.less': import('./examples/4-reject/animation.less'),
-        'index.ts': import('./examples/4-reject/index.ts?raw', {with: {loader: 'text'}}),
+        'animation.css': import('./examples/4-reject/animation.css'),
+        [DocExamplePrimaryTab.JavaScript]: import('./examples/4-reject/index.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 }
