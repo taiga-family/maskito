@@ -7,7 +7,7 @@ import {beforeEach, describe, expect, it} from '@jest/globals';
 import {App} from './app.component';
 import {APP_CONFIG} from './app.config';
 
-describe('Ensure units tests works for demo application', () => {
+describe('Ensure unit tests work for demo application', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [App],
