@@ -29,7 +29,20 @@
     </tui-notification>
 
     <section id="getting-started">
-        <h2>Getting Started</h2>
+        <header class="section-heading">
+            <h2 class="section-heading__title">Getting Started</h2>
+
+            <a
+                aria-label="Copy link to Getting Started"
+                href="#getting-started"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>Install libraries</p>
 
@@ -50,7 +63,20 @@
     </section>
 
     <section id="controlled-input">
-        <h2>Controlled masked input</h2>
+        <header class="section-heading">
+            <h2 class="section-heading__title">Controlled masked input</h2>
+
+            <a
+                aria-label="Copy link to Controlled masked input"
+                href="#controlled-input"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>
             <strong>Maskito</strong>
@@ -89,7 +115,20 @@
     </section>
 
     <section id="merge-refs">
-        <h2>Merge Maskito ref with the third-party ref</h2>
+        <header class="section-heading">
+            <h2 class="section-heading__title">Merge Maskito ref with the third-party ref</h2>
+
+            <a
+                aria-label="Copy link to Merge Maskito ref with the third-party ref"
+                href="#merge-refs"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>Do you need to use multiple hooks that return refs which both should be attached to the masked textfield?</p>
 
@@ -112,7 +151,20 @@
     </section>
 
     <section id="element-predicate">
-        <h2>Query nested input element</h2>
+        <header class="section-heading">
+            <h2 class="section-heading__title">Query nested input element</h2>
+
+            <a
+                aria-label="Copy link to Query nested input element"
+                href="#element-predicate"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>
             Pass a predicate to
@@ -140,7 +192,20 @@
     </section>
 
     <section id="form-library-integration">
-        <h2>Integration with third-party library for forms</h2>
+        <header class="section-heading">
+            <h2 class="section-heading__title">Integration with third-party library for forms</h2>
+
+            <a
+                aria-label="Copy link to Integration with third-party library for forms"
+                href="#form-library-integration"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>
             There is not silver bullet how to integrate
@@ -197,8 +262,21 @@
         }
     </section>
 
-    <section>
-        <h2>Best practices & Anti-Patterns</h2>
+    <section id="best-practices">
+        <header class="section-heading">
+            <h2 class="section-heading__title">Best practices &amp; Anti-Patterns</h2>
+
+            <a
+                aria-label="Copy link to Best practices and Anti-Patterns"
+                href="#best-practices"
+                tuiLink
+                class="section-heading__link"
+                [attr.title]="copyLinkTooltip"
+                (click)="copyAnchorLink($event)"
+            >
+                #
+            </a>
+        </header>
 
         <p>
             Pass named variables to avoid unnecessary hook runs with

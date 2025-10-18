@@ -9,3 +9,29 @@
 section {
     margin-block-start: 3.5rem;
 }
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-heading__title {
+    margin: 0;
+}
+
+.section-heading__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    font: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+section:hover .section-heading__link,
+.section-heading__link:focus-visible {
+    opacity: 1;
+}
