@@ -1,13 +1,12 @@
 ```ts
 import './styles.css';
+
+import type {MaskitoElement} from '@maskito/core';
 import {Maskito} from '@maskito/core';
-import mask from './mask';
+import options from './mask';
 
-const element: HTMLInputElement | HTMLTextAreaElement | null = document.querySelector('input, textarea');
+const element: MaskitoElement = document.querySelector('input,textarea')!;
+const mask = new Maskito(element, options);
 
-if (element) {
-  const maskedElement = new Maskito(element, mask);
-
-  console.info('Call this function when the element is detached from DOM', maskedElement.destroy);
-}
+console.info('Call this function when the element is detached from DOM', mask.destroy);
 ```

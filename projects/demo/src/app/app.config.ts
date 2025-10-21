@@ -10,14 +10,12 @@ import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
     TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
-    TUI_DOC_EXAMPLE_MARKDOWN_CODE_PROCESSOR,
     TUI_DOC_LOGO,
     TUI_DOC_PAGES,
     TUI_DOC_SOURCE_CODE,
     TUI_DOC_TITLE,
     TUI_DOC_TYPE_REFERENCE_HANDLER,
     tuiDocExampleOptionsProvider,
-    tuiTryParseMarkdownCodeBlock,
 } from '@taiga-ui/addon-doc';
 import {NG_EVENT_PLUGINS} from '@taiga-ui/event-plugins';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
@@ -146,12 +144,6 @@ export const APP_CONFIG: ApplicationConfig = {
                         return null;
                 }
             },
-        },
-        // TODO: delete this temporary workaround after Taiga UI update
-        // https://github.com/taiga-family/taiga-ui/pull/12270
-        {
-            provide: TUI_DOC_EXAMPLE_MARKDOWN_CODE_PROCESSOR,
-            useValue: (x: any) => tuiTryParseMarkdownCodeBlock(x?.default ?? x),
         },
     ],
 };
