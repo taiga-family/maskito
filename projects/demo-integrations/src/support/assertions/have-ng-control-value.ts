@@ -15,10 +15,16 @@ export const haveNgControlValueAssertion: Chai.ChaiPlugin = (_chai) => {
         // @ts-ignore
         const angularTools = windowRef.ng;
 
-        const controlValue: string = angularTools.getComponent(subject).control.value;
+        const control =
+            angularTools.getComponent(subject)?.control ??
+            angularTools.getDirectives(subject).find((x: unknown) => {
+                const inputs = angularTools.getDirectiveMetadata(x).inputs;
+
+                return 'formControl' in inputs || 'ngModel' in inputs;
+            });
 
         this.assert(
-            angularTools && controlValue === expectedValue,
+            angularTools && control.value === expectedValue,
             `expected #{this} to have Angular form control with value ${expectedValue}`,
             `expected #{this} to do not have Angular form control with value ${expectedValue}`,
             subject,

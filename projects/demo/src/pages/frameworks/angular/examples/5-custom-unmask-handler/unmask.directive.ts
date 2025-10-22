@@ -8,7 +8,7 @@ import {identity} from 'rxjs';
 @Directive({
     standalone: true,
     selector: '[maskito][unmaskHandler]',
-    inputs: ['unmaskHandler', 'maskHandler'],
+    inputs: ['unmaskHandler', 'stringifyHandler'],
 })
 export class UnmaskDirective implements AfterViewInit {
     private readonly accessor = inject(DefaultValueAccessor);
@@ -16,7 +16,7 @@ export class UnmaskDirective implements AfterViewInit {
 
     public unmaskHandler: (value: string) => any = identity;
 
-    public maskHandler: (value: any) => string = (value) => {
+    public stringifyHandler: (value: any) => string = (value) => {
         const options = this.maskitoDirective.options();
 
         return options ? maskitoTransform(String(value), options) : value;
@@ -27,6 +27,7 @@ export class UnmaskDirective implements AfterViewInit {
         const originalWriteValue = this.accessor.writeValue.bind(this.accessor);
 
         this.accessor.onChange = (value) => originalOnChange(this.unmaskHandler(value));
-        this.accessor.writeValue = (value) => originalWriteValue(this.maskHandler(value));
+        this.accessor.writeValue = (value) =>
+            originalWriteValue(this.stringifyHandler(value));
     }
 }
