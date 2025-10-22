@@ -38,6 +38,7 @@ export class UnmaskDocExample5 {
     protected readonly unmaskHandler = (x: string): number =>
         maskitoParseNumber(x, NUMBER_PARAMS);
 
+    // `maskitoStringifyNumber` implements the reverse transformation
     protected readonly stringify = (x: number): string =>
         maskitoStringifyNumber(x, NUMBER_PARAMS);
 }

@@ -2,7 +2,7 @@ import {DemoPath} from '@demo/constants';
 
 describe('Angular | Custom unmask handler', () => {
     beforeEach(() => {
-        cy.visit(`/${DemoPath.Angular}/API`);
+        cy.visit(DemoPath.Angular);
 
         cy.get('#unmask [automation-id="tui-doc-example"]').as('example');
         cy.get('@example').find('input').as('input');
