@@ -1,9 +1,11 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Clipboard} from '@angular/cdk/clipboard';
+import {DOCUMENT} from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TUI_DOC_EXAMPLE_TEXTS, TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAlertService, TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiTabs} from '@taiga-ui/kit';
 
 import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
@@ -25,6 +27,14 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ReactDocPageComponent {
+    private readonly documentRef = inject(DOCUMENT);
+    private readonly clipboard = inject(Clipboard);
+    private readonly alerts = inject(TuiAlertService);
+    private readonly docExampleTexts = inject(TUI_DOC_EXAMPLE_TEXTS);
+    private readonly copyLinkMessage = this.docExampleTexts[1] ?? '';
+    private readonly copyLinkLabel = this.docExampleTexts[2] ?? '';
+    protected readonly copyLinkTooltip = this.docExampleTexts[0] ?? '';
+
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     protected readonly useMaskitoBasicUsage = import(
         './examples/1-use-maskito-basic-usage/use-maskito-basic-usage.tsx?raw',
@@ -55,4 +65,25 @@ export default class ReactDocPageComponent {
     };
 
     protected readonly bestBadPractice = import('./examples/best-bad-practice.md');
+
+    protected copyAnchorLink(event: MouseEvent): void {
+        const anchor = event.currentTarget as HTMLAnchorElement | null;
+
+        if (!anchor) {
+            return;
+        }
+
+        const href =
+            anchor.href ||
+            `${this.documentRef.location.href.split('#')[0]}${anchor.getAttribute('href') ?? ''}`;
+
+        this.clipboard.copy(href);
+
+        this.alerts
+            .open(this.copyLinkMessage, {
+                label: this.copyLinkLabel,
+                appearance: 'positive',
+            })
+            .subscribe();
+    }
 }
