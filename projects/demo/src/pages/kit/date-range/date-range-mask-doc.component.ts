@@ -88,6 +88,8 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
     protected readonly minLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
         {day: 3},
         {day: 15},
+        {month: 1},
+        {month: 1, day: 1},
     ];
 
     protected readonly maxLengthOptions: Array<Partial<MaskitoDateSegments<number>>> = [
