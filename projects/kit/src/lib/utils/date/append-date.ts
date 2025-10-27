@@ -21,7 +21,7 @@ export function appendDate(
     const currentMonthDaysCount = getMonthDaysCount(initialMonth, isLeapYear(years));
     let days = day;
 
-    if (initialDate > monthDaysCount) {
+    if (initialDate >= monthDaysCount) {
         days += initialDate - (currentMonthDaysCount - monthDaysCount);
     } else if (
         currentMonthDaysCount < monthDaysCount &&
