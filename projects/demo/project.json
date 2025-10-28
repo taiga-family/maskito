@@ -52,7 +52,10 @@
                     ".css": "text"
                 },
                 "externalDependencies": ["react-hook-form"],
-                "plugins": ["{projectRoot}/esbuild-plugins/maskito-as-taiga-ui-dep.plugin.js"]
+                "plugins": [
+                    "{projectRoot}/esbuild-plugins/maskito-as-taiga-ui-dep.plugin.js",
+                    "{projectRoot}/esbuild-plugins/vue-esm.plugin.js"
+                ]
             },
             "configurations": {
                 "production": {
