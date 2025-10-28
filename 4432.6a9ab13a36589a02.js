@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[4432],{4432:n=>{n.exports="```ts\nimport {Maskito} from '@maskito/core';\n\nconst onlyDigitsInput = new Maskito(element, {\n  mask: /^\\d+$/,\n});\n```\n"}}]);

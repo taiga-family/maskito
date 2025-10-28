@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[4690],{4690:n=>{n.exports='<input\n    placeholder="Name on the card"\n    [maskitoPattern]="regExp"\n    [(ngModel)]="name"\n/>\n\n<input\n    maskitoPattern="\\d{0,3}"\n    placeholder="CVC"\n    [(ngModel)]="cvc"\n/>\n'}}]);

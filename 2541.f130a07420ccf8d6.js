@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[2541],{2541:n=>{n.exports='<input\n    [formControl]="control"\n    [maskito]="maskito"\n/>\n<button\n    type="button"\n    (click)="setValue()"\n>\n    Set 12345.6789\n</button>\n'}}]);

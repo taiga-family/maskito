@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[3822],{3822:n=>{n.exports='```html\n\x3c!-- Best Practice \u2705--\x3e\n<input v-maskito="options" />\n\n\x3c!-- Anti-Pattern \u274c--\x3e\n<input v-maskito="{ mask: /^\\d+$/ }" />\n```\n'}}]);

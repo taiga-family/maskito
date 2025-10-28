@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[2496],{2496:e=>{e.exports="Balance: ${{ value | maskito: options }}\n"}}]);

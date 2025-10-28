@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdemo=self.webpackChunkdemo||[]).push([[8070],{8070:e=>{e.exports="import type {MaskitoOptions} from '@maskito/core';\n\nexport default {\n    mask: ({value}) => {\n        const digitsCount = value.replaceAll(/\\D/g, '').length;\n\n        return ['$', ...new Array(digitsCount || 1).fill(/\\d/)];\n    },\n} satisfies MaskitoOptions;\n"}}]);
