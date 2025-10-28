@@ -16,8 +16,10 @@ export class VueExample1 {
                 template: '<input v-model="value" v-maskito="options" />',
                 directives: {maskito},
                 data: () => ({
-                    value: '123456',
-                    options: maskitoNumberOptionsGenerator(),
+                    value: '123_456',
+                    options: maskitoNumberOptionsGenerator({
+                        thousandSeparator: '_',
+                    }),
                 }),
             }).mount('#vue');
         });
