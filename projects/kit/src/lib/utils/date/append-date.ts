@@ -16,7 +16,21 @@ export function appendDate(
     const totalMonths = (initialYear + year) * MONTHS_IN_YEAR + initialMonth + month;
     let years = Math.floor(totalMonths / MONTHS_IN_YEAR);
     let months = totalMonths % MONTHS_IN_YEAR;
-    let days = Math.min(initialDate, getMonthDaysCount(months, isLeapYear(years))) + day;
+
+    const monthDaysCount = getMonthDaysCount(months, isLeapYear(years));
+    const currentMonthDaysCount = getMonthDaysCount(initialMonth, isLeapYear(years));
+    let days = day;
+
+    if (initialDate >= monthDaysCount) {
+        days += initialDate - (currentMonthDaysCount - monthDaysCount);
+    } else if (
+        currentMonthDaysCount < monthDaysCount &&
+        initialDate === currentMonthDaysCount
+    ) {
+        days += initialDate + (monthDaysCount - currentMonthDaysCount);
+    } else {
+        days += initialDate;
+    }
 
     while (days > getMonthDaysCount(months, isLeapYear(years))) {
         days -= getMonthDaysCount(months, isLeapYear(years));
@@ -41,8 +55,8 @@ export function appendDate(
     }
 
     days =
-        day < 0 || (day === 0 && isLeapYear(initialYear) && (month < 0 || year < 0))
-            ? days + 1 // add one day when moving days backward, or months or years backward for leap year
+        day < 0 || month < 0 || year < 0
+            ? days + 1 // add one day when moving days, or months, or years backward
             : days - 1; // "from"-day is included in the range
 
     return new Date(years, months, days);
