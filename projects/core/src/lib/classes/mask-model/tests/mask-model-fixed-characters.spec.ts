@@ -131,7 +131,7 @@ describe('MaskModel | Fixed characters', () => {
             },
         );
 
-        it.each(['a', 'x', '!', '@', '#'])(
+        it.each(['a', 'x', '!', '@', '#', '´', '¨'])(
             'should reject "%s" character in RegExp digit-only mask',
             (invalidChar) => {
                 const maskOptions: Required<MaskitoOptions> = {
