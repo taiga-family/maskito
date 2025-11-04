@@ -111,6 +111,46 @@ describe('MaskModel | Fixed characters', () => {
         });
     });
 
+    describe('MaskModel | addCharacters with invalid characters', () => {
+        it.each(['¨', '´', 'a', '#', '$', '%', '^', '&', '*', '!'])(
+            'should reject "%s" character in digit-only array mask',
+            (invalidChar) => {
+                const maskOptions: Required<MaskitoOptions> = {
+                    ...MASKITO_DEFAULT_OPTIONS,
+                    mask: [/\d/, /\d/, ' ', /\d/, /\d/],
+                };
+
+                const model = new MaskModel(
+                    {value: '12 34', selection: [5, 5]},
+                    maskOptions,
+                );
+
+                expect(() => model.addCharacters(invalidChar)).toThrow(
+                    'Invalid mask value',
+                );
+            },
+        );
+
+        it.each(['a', 'x', '!', '@', '#'])(
+            'should reject "%s" character in RegExp digit-only mask',
+            (invalidChar) => {
+                const maskOptions: Required<MaskitoOptions> = {
+                    ...MASKITO_DEFAULT_OPTIONS,
+                    mask: /^\d+$/,
+                };
+
+                const model = new MaskModel(
+                    {value: '123', selection: [3, 3]},
+                    maskOptions,
+                );
+
+                expect(() => model.addCharacters(invalidChar)).toThrow(
+                    'Invalid mask value',
+                );
+            },
+        );
+    });
+
     describe('Attempt to insert invalid characters for `overwriteMode: replace`', () => {
         const testCases: Record<string, MaskitoMask> = {
             '["$", /d/, /d/]': ['$', /\d/, /\d/],

@@ -8,6 +8,7 @@ import {areElementStatesEqual} from '../../utils/element-states-equality';
 import {applyOverwriteMode} from './utils/apply-overwrite-mode';
 import {calibrateValueByMask} from './utils/calibrate-value-by-mask';
 import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
+import {newCharacterIsInvalid} from './utils/validate-new-characters';
 
 export class MaskModel implements ElementState {
     private readonly unmaskInitialState: ElementState = {value: '', selection: [0, 0]};
@@ -78,8 +79,17 @@ export class MaskModel implements ElementState {
                 removeFixedMaskCharacters(newLeadingPartState, maskExpression).value ===
                     this.unmaskInitialState.value.slice(0, unmaskedFrom));
 
+        // Validate that each new character matches its target position in the mask
+        const isInvalidNewChars = newCharacterIsInvalid({
+            newCharacters,
+            newUnmaskedLeadingValuePart,
+            unmaskedFrom,
+            maskExpression,
+        });
+
         if (
             isInvalidCharsInsertion ||
+            isInvalidNewChars ||
             areElementStatesEqual(this, maskedElementState) // If typing new characters does not change value
         ) {
             throw new Error('Invalid mask value');
