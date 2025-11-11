@@ -125,6 +125,7 @@ export function maskitoDateTimeOptionsGenerator({
             createTimeSegmentsSteppingPlugin({
                 step: timeStep,
                 fullMode,
+                timeSegmentMinValues: DEFAULT_TIME_SEGMENT_MIN_VALUES,
                 timeSegmentMaxValues: DEFAULT_TIME_SEGMENT_MAX_VALUES,
             }),
             createMeridiemSteppingPlugin(fullMode.indexOf('AA')),
