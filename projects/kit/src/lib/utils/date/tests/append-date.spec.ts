@@ -201,17 +201,13 @@ describe('appendDate', () => {
         },
     );
 
-    it(
-        'year: 2018, month: 2, day: 31, if {month: 1} was passed (for the' +
-            ' last day of month',
-        () => {
-            const result = appendDate(new Date(2018, 2, 1), {month: 1});
+    it('year: 2018, month: 2, day: 31, if {month: 1} was passed', () => {
+        const result = appendDate(new Date(2018, 2, 1), {month: 1});
 
-            expect(result.getFullYear()).toBe(2018);
-            expect(result.getMonth()).toBe(2);
-            expect(result.getDate()).toBe(31);
-        },
-    );
+        expect(result.getFullYear()).toBe(2018);
+        expect(result.getMonth()).toBe(2);
+        expect(result.getDate()).toBe(31);
+    });
 
     it(
         'year: 2018, month: 1, day: 27, if {month: -1} was passed (when the' +
