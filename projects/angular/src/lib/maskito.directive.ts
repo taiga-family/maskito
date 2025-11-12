@@ -16,7 +16,7 @@ import {
     maskitoTransform,
 } from '@maskito/core';
 
-@Directive({standalone: true, selector: '[maskito]'})
+@Directive({selector: '[maskito]'})
 export class MaskitoDirective implements OnDestroy {
     private readonly elementRef: HTMLElement = inject(ElementRef).nativeElement;
     private readonly ngZone = inject(NgZone);

@@ -8,7 +8,6 @@ import type {MaskitoOptions} from '@maskito/core';
 
 describe('Maskito Angular package', () => {
     @Component({
-        standalone: true,
         imports: [MaskitoDirective, MaskitoPipe, ReactiveFormsModule],
         template: `
             <div id="pipe">{{ control.value | maskito: options }}</div>

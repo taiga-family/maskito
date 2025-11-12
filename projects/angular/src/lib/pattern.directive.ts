@@ -3,7 +3,6 @@ import {Directive, inject} from '@angular/core';
 import {MaskitoDirective} from './maskito.directive';
 
 @Directive({
-    standalone: true,
     selector: '[maskitoPattern]',
     inputs: ['maskitoPattern'],
     hostDirectives: [MaskitoDirective],

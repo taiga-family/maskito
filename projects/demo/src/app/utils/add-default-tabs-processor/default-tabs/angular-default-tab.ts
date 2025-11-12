@@ -6,7 +6,6 @@ import mask from './mask';
 
 @Component({
   selector: 'my-app',
-  standalone: true,
   imports: [MaskitoDirective],
   template: '<input [maskito]="options" />',
 })

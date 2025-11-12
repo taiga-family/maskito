@@ -5,7 +5,6 @@ import {createRoot} from 'react-dom/client';
 import {App} from '.';
 
 @Component({
-    standalone: true,
     selector: 'react-example-2',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
