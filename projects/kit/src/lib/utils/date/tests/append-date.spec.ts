@@ -170,8 +170,8 @@ describe('appendDate', () => {
     });
 
     it(
-        'year: 2025, month: 8, day: 1, if {month: -1} was passed (for last ' +
-            'day of month, when current month has less days, then final month)',
+        'year: 2025, month: 8, day: 1, if {month: -1} was passed (for the last ' +
+            'day of month)',
         () => {
             const result = appendDate(new Date(2025, 8, 30), {month: -1});
 
@@ -190,8 +190,8 @@ describe('appendDate', () => {
     });
 
     it(
-        'year: 2018, month: 2, day: 1, if {month: -1} was passed (for last day' +
-            ' of month, when current month has more days, then final month)',
+        'year: 2018, month: 2, day: 1, if {month: -1} was passed (for the last ' +
+            'day of month',
         () => {
             const result = appendDate(new Date(2018, 2, 31), {month: -1});
 
@@ -202,8 +202,8 @@ describe('appendDate', () => {
     );
 
     it(
-        'year: 2018, month: 2, day: 31, if {month: 1} was passed (for' +
-            ' last day of month, when current month has more days, then final month)',
+        'year: 2018, month: 2, day: 31, if {month: 1} was passed (for the' +
+            ' last day of month',
         () => {
             const result = appendDate(new Date(2018, 2, 1), {month: 1});
 
@@ -214,8 +214,9 @@ describe('appendDate', () => {
     );
 
     it(
-        'year: 2018, month: 1, day: 27, if {month: -1} was passed (when current' +
-            ' month has more days, then final month, and final month don`t has the day)',
+        'year: 2018, month: 1, day: 27, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, and the final' +
+            ' month don`t has the day)',
         () => {
             const result = appendDate(new Date(2018, 2, 29), {month: -1});
 
@@ -242,9 +243,9 @@ describe('appendDate', () => {
     });
 
     it(
-        'year: 2018, month: 1, day: 26, if {month: -1} was passed (when current' +
-            'month has more days, then final month, but both has the day, and' +
-            ' it`s last day of final month)',
+        'year: 2018, month: 1, day: 26, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, but both have' +
+            ' the day, and it`s the last day of the final month)',
         () => {
             const result = appendDate(new Date(2018, 2, 28), {month: -1});
 
@@ -271,8 +272,9 @@ describe('appendDate', () => {
     });
 
     it(
-        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when current' +
-            ' month has more days, then final month, but both has the day)',
+        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, but both has' +
+            ' the day)',
         () => {
             const result = appendDate(new Date(2018, 2, 27), {month: -1});
 
@@ -283,8 +285,9 @@ describe('appendDate', () => {
     );
 
     it(
-        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when current' +
-            ' month has more days, then final month, and final month don`t has the day)',
+        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, and the final' +
+            ' month don`t has the day)',
         () => {
             const result = appendDate(new Date(2018, 2, 30), {month: -1});
 
@@ -295,8 +298,9 @@ describe('appendDate', () => {
     );
 
     it(
-        'year: 2018, month: 2, day: 30, if {month: 1} was passed (when current' +
-            ' month has more days, then final month, but both has the day)',
+        'year: 2018, month: 2, day: 30, if {month: 1} was passed (when the' +
+            ' current month has more days than the final month, but both' +
+            ' has the day)',
         () => {
             const result = appendDate(new Date(2018, 1, 28), {month: 1});
 
