@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
-    standalone: true,
     selector: 'angular-logo',
     template: '<img src="assets/icons/angular.svg" />',
     styles: ['img {display: flex; width: 1.5rem}'],

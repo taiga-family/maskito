@@ -8,7 +8,6 @@ import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 
 @Pipe({
-    standalone: true,
     name: 'calculateMask',
 })
 export class TestPipe4 implements PipeTransform {

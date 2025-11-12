@@ -6,7 +6,6 @@ import {maskitoTransform} from '@maskito/core';
 import {identity} from 'rxjs';
 
 @Directive({
-    standalone: true,
     selector: '[maskito][unmaskHandler]',
     inputs: ['unmaskHandler', 'stringifyHandler'],
 })
