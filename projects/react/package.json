@@ -35,8 +35,8 @@
     "devDependencies": {
         "@testing-library/react": "16.3.0",
         "@testing-library/user-event": "14.6.1",
-        "@types/react": "19.2.2",
-        "@types/react-dom": "19.2.2",
+        "@types/react": "19.2.4",
+        "@types/react-dom": "19.2.3",
         "react": "19.2.0",
         "react-dom": "19.2.0",
         "react-test-renderer": "19.2.0"

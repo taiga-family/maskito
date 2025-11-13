@@ -5,7 +5,6 @@ import {createRoot} from 'react-dom/client';
 import {App} from './use-maskito-basic-usage';
 
 @Component({
-    standalone: true,
     selector: 'react-example-1',
     template: '',
     changeDetection: ChangeDetectionStrategy.OnPush,
