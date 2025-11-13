@@ -129,12 +129,12 @@ describe('appendDate', () => {
         expect(result.getDate()).toBe(1);
     });
 
-    it('year: 2000, month: 2, day: 28, if {month: -4, day: 14} was passed', () => {
+    it('year: 2000, month: 2, day: 30, if {month: -4, day: 14} was passed', () => {
         const result = appendDate(y2000m6d15, {month: -4, day: 14});
 
         expect(result.getFullYear()).toBe(2000);
         expect(result.getMonth()).toBe(2);
-        expect(result.getDate()).toBe(28);
+        expect(result.getDate()).toBe(30);
     });
 
     it('year: 2000, month: 0, day: 1, if {month: -6, day: -15} was passed', () => {
@@ -153,17 +153,7 @@ describe('appendDate', () => {
         expect(result.getDate()).toBe(1);
     });
 
-    it('capped day when moving month backward', () => {
-        const result = appendDate(new Date(2018, 2, 30), {
-            month: -1,
-        });
-
-        expect(result.getFullYear()).toBe(2018);
-        expect(result.getMonth()).toBe(1);
-        expect(result.getDate()).toBe(27);
-    });
-
-    it('capped day when moving month forward', () => {
+    it('year: 2018, month: 1, day: 27, if {month: 1} was passed', () => {
         const result = appendDate(new Date(2018, 0, 31), {month: 1});
 
         expect(result.getFullYear()).toBe(2018);
@@ -179,11 +169,140 @@ describe('appendDate', () => {
         expect(result.getDate()).toBe(31);
     });
 
-    it('year: 2025, month: 1, day: 27, if {month: 1} was passed', () => {
-        const result = appendDate(new Date(2025, 0, 31), {month: 1});
+    it(
+        'year: 2025, month: 8, day: 1, if {month: -1} was passed (for the last ' +
+            'day of month)',
+        () => {
+            const result = appendDate(new Date(2025, 8, 30), {month: -1});
+
+            expect(result.getFullYear()).toBe(2025);
+            expect(result.getMonth()).toBe(8);
+            expect(result.getDate()).toBe(1);
+        },
+    );
+
+    it('year: 2025, month: 8, day: 30, if {month: 1} was passed', () => {
+        const result = appendDate(new Date(2025, 8, 1), {month: 1});
 
         expect(result.getFullYear()).toBe(2025);
+        expect(result.getMonth()).toBe(8);
+        expect(result.getDate()).toBe(30);
+    });
+
+    it(
+        'year: 2018, month: 2, day: 1, if {month: -1} was passed (for the last ' +
+            'day of month',
+        () => {
+            const result = appendDate(new Date(2018, 2, 31), {month: -1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(2);
+            expect(result.getDate()).toBe(1);
+        },
+    );
+
+    it('year: 2018, month: 2, day: 31, if {month: 1} was passed', () => {
+        const result = appendDate(new Date(2018, 2, 1), {month: 1});
+
+        expect(result.getFullYear()).toBe(2018);
+        expect(result.getMonth()).toBe(2);
+        expect(result.getDate()).toBe(31);
+    });
+
+    it(
+        'year: 2018, month: 1, day: 27, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, and the final' +
+            ' month don`t has the day)',
+        () => {
+            const result = appendDate(new Date(2018, 2, 29), {month: -1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(1);
+            expect(result.getDate()).toBe(27);
+        },
+    );
+
+    it('year: 2018, month: 1, day: 27, if {month: -1} was passed', () => {
+        const result = appendDate(new Date(2018, 2, 26), {month: -1});
+
+        expect(result.getFullYear()).toBe(2018);
         expect(result.getMonth()).toBe(1);
         expect(result.getDate()).toBe(27);
     });
+
+    it('year: 2018, month: 2, day: 26, if {month: 1} was passed', () => {
+        const result = appendDate(new Date(2018, 1, 27), {month: 1});
+
+        expect(result.getFullYear()).toBe(2018);
+        expect(result.getMonth()).toBe(2);
+        expect(result.getDate()).toBe(26);
+    });
+
+    it(
+        'year: 2018, month: 1, day: 26, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, but both have' +
+            ' the day, and it`s the last day of the final month)',
+        () => {
+            const result = appendDate(new Date(2018, 2, 28), {month: -1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(1);
+            expect(result.getDate()).toBe(26);
+        },
+    );
+
+    it('year: 2018, month: 1, day: 26, if {month: -1} was passed', () => {
+        const result = appendDate(new Date(2018, 2, 25), {month: -1});
+
+        expect(result.getFullYear()).toBe(2018);
+        expect(result.getMonth()).toBe(1);
+        expect(result.getDate()).toBe(26);
+    });
+
+    it('year: 2018, month: 2, day: 25, if {month: 1} was passed', () => {
+        const result = appendDate(new Date(2018, 1, 26), {month: 1});
+
+        expect(result.getFullYear()).toBe(2018);
+        expect(result.getMonth()).toBe(2);
+        expect(result.getDate()).toBe(25);
+    });
+
+    it(
+        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, but both has' +
+            ' the day)',
+        () => {
+            const result = appendDate(new Date(2018, 2, 27), {month: -1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(1);
+            expect(result.getDate()).toBe(28);
+        },
+    );
+
+    it(
+        'year: 2018, month: 1, day: 28, if {month: -1} was passed (when the' +
+            ' current month has more days than the final month, and the final' +
+            ' month don`t has the day)',
+        () => {
+            const result = appendDate(new Date(2018, 2, 30), {month: -1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(1);
+            expect(result.getDate()).toBe(28);
+        },
+    );
+
+    it(
+        'year: 2018, month: 2, day: 30, if {month: 1} was passed (when the' +
+            ' current month has more days than the final month, but both' +
+            ' has the day)',
+        () => {
+            const result = appendDate(new Date(2018, 1, 28), {month: 1});
+
+            expect(result.getFullYear()).toBe(2018);
+            expect(result.getMonth()).toBe(2);
+            expect(result.getDate()).toBe(30);
+        },
+    );
 });
