@@ -1,6 +1,6 @@
 {
     "name": "@maskito/phone",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "description": "The optional framework-agnostic Maskito's package with phone masks",
     "keywords": [
         "input",
@@ -38,8 +38,8 @@
         "libphonenumber-js": "1.12.26"
     },
     "peerDependencies": {
-        "@maskito/core": "^4.0.0",
-        "@maskito/kit": "^4.0.0",
+        "@maskito/core": "^4.0.1",
+        "@maskito/kit": "^4.0.1",
         "libphonenumber-js": ">=1.0.0"
     }
 }

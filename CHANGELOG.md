@@ -1,3 +1,11 @@
+### [4.0.1](https://github.com/taiga-family/maskito/compare/v4.0.0...v4.0.1) (2025-11-14)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Time` with `[step]` ignores `timeSegmentMinValues` on arrow stepping (#2420)
+  [(398a5c1)](https://github.com/taiga-family/maskito/commit/398a5c163d03502d413ca15c8756f41891b75197)
+- empty commit name [(3c80959)](https://github.com/taiga-family/maskito/commit/3c80959773a4c44b29e70a420bc1fc6e074030b9)
+
 ## [4.0.0](https://github.com/taiga-family/maskito/compare/v3.11.1...v4.0.0) (2025-10-13)
 
 ### 🚀 Features
