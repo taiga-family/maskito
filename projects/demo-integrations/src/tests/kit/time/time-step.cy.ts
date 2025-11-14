@@ -133,12 +133,12 @@ describe('Time', () => {
 
                 describe('time segment digits stepping', () => {
                     [
-                        {value: '12:34 AM', caretIndex: 0, newValue: '00:34 AM'},
-                        {value: '12:34 AM', caretIndex: '1'.length, newValue: '00:34 AM'},
+                        {value: '12:34 AM', caretIndex: 0, newValue: '01:34 AM'},
+                        {value: '12:34 AM', caretIndex: '1'.length, newValue: '01:34 AM'},
                         {
                             value: '12:34 AM',
                             caretIndex: '12'.length,
-                            newValue: '00:34 AM',
+                            newValue: '01:34 AM',
                         },
                         {
                             value: '12:34 AM',

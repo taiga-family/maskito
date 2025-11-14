@@ -72,6 +72,7 @@ export function maskitoTimeOptionsGenerator({
             createTimeSegmentsSteppingPlugin({
                 fullMode: mode,
                 step,
+                timeSegmentMinValues: enrichedTimeSegmentMinValues,
                 timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
             }),
             createMeridiemSteppingPlugin(mode.indexOf('AA')),

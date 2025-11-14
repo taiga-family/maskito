@@ -147,4 +147,56 @@ describe('DateTime | timeStep', () => {
             });
         });
     });
+    describe('yy/mm;HH:MM AA', () => {
+        describe('timeStep = 1, initial state = 22/12;', () => {
+            beforeEach(() => {
+                cy.visit(
+                    `/${DemoPath.DateTime}/API?dateTimeSeparator=;&dateMode=yy%2Fmm&timeStep=1&timeMode=HH:MM%20AA`,
+                );
+                cy.get('#demo-content input')
+                    .should('be.visible')
+                    .first()
+                    .focus()
+                    .clear()
+                    .as('input');
+
+                cy.get('@input')
+                    .type('2212;')
+                    .should('have.value', '22.12;')
+                    .should('have.a.prop', 'selectionStart', '22.12;'.length)
+                    .should('have.a.prop', 'selectionEnd', '22.12;'.length);
+            });
+
+            it('wraps hours correctly when pressing up at hour 12', () => {
+                cy.get('@input')
+                    .type('1234p')
+                    .should('have.value', '22.12;12:34 PM')
+                    .should('have.a.prop', 'selectionStart', '22.12;12:34 PM'.length)
+                    .should('have.a.prop', 'selectionEnd', '22.12;12:34 PM'.length)
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('22.12;'.length))
+                    .type('{upArrow}'.repeat(2))
+                    .should('have.a.prop', 'selectionStart', '22.12;'.length)
+                    .should('have.a.prop', 'selectionEnd', '22.12;'.length)
+                    .should('have.value', '22.12;02:34 PM')
+                    .type('{downArrow}'.repeat(4))
+                    .should('have.a.prop', 'selectionStart', '22.12;'.length)
+                    .should('have.a.prop', 'selectionEnd', '22.12;'.length)
+                    .should('have.value', '22.12;10:34 PM');
+            });
+
+            it('increments and decrements minutes in AM/PM mode correctly', () => {
+                cy.get('@input')
+                    .type('1234a')
+                    .should('have.value', '22.12;12:34 AM')
+                    .should('have.a.prop', 'selectionStart', '22.12;12:34 AM'.length)
+                    .should('have.a.prop', 'selectionEnd', '22.12;12:34 AM'.length)
+                    .type('{leftArrow}'.repeat(3))
+                    .type('{upArrow}'.repeat(2))
+                    .should('have.value', '22.12;12:36 AM')
+                    .type('{downArrow}'.repeat(3))
+                    .should('have.value', '22.12;12:33 AM');
+            });
+        });
+    });
 });
