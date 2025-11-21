@@ -35,8 +35,8 @@ import {
 import {generateMaskExpression, validateDecimalPseudoSeparators} from './utils';
 
 export function maskitoNumberOptionsGenerator({
-    max = Number.MAX_SAFE_INTEGER,
-    min = Number.MIN_SAFE_INTEGER,
+    max = Infinity,
+    min = -Infinity,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
     decimalSeparator = '.',
     decimalPseudoSeparators: unsafeDecimalPseudoSeparators,

@@ -6,18 +6,14 @@ import type {MaskitoNumberParams} from '../number-params';
 import {stringifyNumberWithoutExp} from './stringify-number-without-exp';
 
 export function maskitoStringifyNumber(
-    number: number,
+    number: bigint | number | null,
     params: MaskitoNumberParams,
 ): string {
     if (Number.isNaN(number) || number === null) {
         return '';
     }
 
-    const {
-        min = Number.MIN_SAFE_INTEGER,
-        max = Number.MAX_SAFE_INTEGER,
-        decimalSeparator = '.',
-    } = params;
+    const {min = -Infinity, max = Infinity, decimalSeparator = '.'} = params;
 
     const value = stringifyNumberWithoutExp(clamp(number, min, max)).replace(
         '.',
