@@ -48,7 +48,11 @@
         id="example"
         heading="Above code example in practice"
     >
-        <vue-example-1 />
+        @defer {
+            <vue-example-1 />
+        } @placeholder {
+            <input value="123_456" />
+        }
     </tui-doc-example>
 
     <section class="tui-space_top-12">
