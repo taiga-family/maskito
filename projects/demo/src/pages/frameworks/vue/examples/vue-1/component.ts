@@ -1,7 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {afterNextRender, ChangeDetectionStrategy, Component} from '@angular/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {maskito} from '@maskito/vue';
-import {createApp} from 'vue';
 
 @Component({
     selector: 'vue-example-1',
@@ -9,8 +8,8 @@ import {createApp} from 'vue';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VueExample1 {
-    constructor() {
-        setTimeout(() => {
+    protected readonly csrOnly = afterNextRender(async () =>
+        import('vue').then(({createApp}) => {
             createApp({
                 template: '<input v-model="value" v-maskito="options" />',
                 directives: {maskito},
@@ -21,6 +20,6 @@ export class VueExample1 {
                     }),
                 }),
             }).mount('#vue');
-        });
-    }
+        }),
+    );
 }
