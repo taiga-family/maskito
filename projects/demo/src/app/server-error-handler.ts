@@ -2,7 +2,7 @@ import type {ErrorHandler} from '@angular/core';
 import {Injectable} from '@angular/core';
 
 // TODO
-const KNOWN_ISSUES: string[] = [
+const KNOWN_ISSUES: ReadonlyArray<RegExp | string> = [
     /**
      * ```
      * // mask.ts
@@ -19,7 +19,7 @@ const KNOWN_ISSUES: string[] = [
      */
     'Input data should be a String',
     // Same here
-    "Cannot find module 'react-hook-form' imported from", // TODO(v6): remove after Angular bump to >= 20
+    /Cannot find (module|package) 'react-hook-form' imported from/, // TODO(v6): remove after Angular bump to >= 20
 ];
 
 @Injectable()
@@ -27,7 +27,13 @@ export class ServerErrorHandler implements ErrorHandler {
     public handleError(error: Error | string): void {
         const errorMessage = (typeof error === 'string' ? error : error.message) || '';
 
-        if (KNOWN_ISSUES.some((issue) => errorMessage.includes(issue))) {
+        if (
+            KNOWN_ISSUES.some((issue) =>
+                typeof issue === 'string'
+                    ? errorMessage.includes(issue)
+                    : errorMessage.match(issue),
+            )
+        ) {
             return;
         }
 
