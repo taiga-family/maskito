@@ -9,7 +9,7 @@ jobs:
     name: Packages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.0
+      - uses: actions/checkout@v4.3.1
       - uses: taiga-family/ci/actions/setup/variables@v1.172.0
       - uses: taiga-family/ci/actions/setup/node@v1.172.0
       - run: npx nx run-many --target build --all --exclude=demo
@@ -18,7 +18,7 @@ jobs:
     name: Demo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.0
+      - uses: actions/checkout@v4.3.1
       - uses: taiga-family/ci/actions/setup/variables@v1.172.0
       - uses: taiga-family/ci/actions/setup/node@v1.172.0
       - run: npx nx build-gh-pages

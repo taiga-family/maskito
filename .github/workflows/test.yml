@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.0
+      - uses: actions/checkout@v4.3.1
       - uses: taiga-family/ci/actions/setup/variables@v1.172.0
       - uses: taiga-family/ci/actions/setup/node@v1.172.0
 
@@ -28,7 +28,7 @@ jobs:
     needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.0
+      - uses: actions/checkout@v4.3.1
       - uses: actions/download-artifact@v4.3.0
         with:
           name: coverage-${{ github.workflow }}-${{ github.run_id }}
