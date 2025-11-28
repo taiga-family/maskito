@@ -42,9 +42,8 @@ export default class PluginsDocPageComponent {
     protected readonly kitPluginsDocPage = `/${DemoPath.KitPlugins}`;
     protected readonly documentationMask = documentationMask;
 
-    protected readonly oversimplifiedNumberMask = import(
-        './examples/oversimplified-number-mask.md'
-    );
+    protected readonly oversimplifiedNumberMask =
+        import('./examples/oversimplified-number-mask.md');
 
     protected readonly padsZeroPlugin = import('./examples/pads-zero-plugin.ts?raw', {
         with: {loader: 'text'},

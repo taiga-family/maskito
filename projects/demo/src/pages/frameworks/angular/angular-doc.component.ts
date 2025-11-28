@@ -36,9 +36,8 @@ export default class AngularDocPageComponent {
 
     protected readonly importMaskitoExample = import('./examples/import-maskito.md');
 
-    protected readonly basicDirectiveApproach = import(
-        './examples/basic-directive-approach.md'
-    );
+    protected readonly basicDirectiveApproach =
+        import('./examples/basic-directive-approach.md');
 
     protected readonly customInputExample = import('./examples/custom-input-example.md');
 

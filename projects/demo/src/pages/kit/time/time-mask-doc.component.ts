@@ -41,9 +41,8 @@ import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component'
 export default class TimeMaskDocComponent implements Required<MaskitoTimeParams> {
     protected pages = DemoPath;
 
-    protected readonly maskitoParseStringifyTimeDemo = import(
-        './examples/maskito-parse-stringify-time-demo.md'
-    );
+    protected readonly maskitoParseStringifyTimeDemo =
+        import('./examples/maskito-parse-stringify-time-demo.md');
 
     protected readonly modeExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw', {

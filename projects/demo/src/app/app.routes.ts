@@ -21,18 +21,14 @@ export const ROUTES: Routes = [
     {
         path: DemoPath.MaskitoLibraries,
         loadComponent: () =>
-            import(
-                '../pages/documentation/maskito-libraries/maskito-libraries.component'
-            ),
+            import('../pages/documentation/maskito-libraries/maskito-libraries.component'),
         title: 'Maskito libraries',
     },
     // Core concepts
     {
         path: DemoPath.CoreConceptsOverview,
         loadComponent: () =>
-            import(
-                '../pages/documentation/core-concepts-overview/core-concepts-overview.component'
-            ),
+            import('../pages/documentation/core-concepts-overview/core-concepts-overview.component'),
         title: 'Core concepts',
     },
     {
@@ -172,9 +168,7 @@ export const ROUTES: Routes = [
     {
         path: DemoPath.SupportedInputTypes,
         loadComponent: () =>
-            import(
-                '../pages/documentation/supported-input-types/supported-input-types.component'
-            ),
+            import('../pages/documentation/supported-input-types/supported-input-types.component'),
         title: 'Supported <input /> types',
     },
     {
