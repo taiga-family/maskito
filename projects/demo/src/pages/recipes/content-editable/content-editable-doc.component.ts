@@ -27,9 +27,8 @@ export default class ContentEditableDocComponent {
     protected readonly angularDocPage = `/${DemoPath.Angular}`;
     protected readonly reactDocPage = `/${DemoPath.React}`;
     protected readonly vueDocPage = `/${DemoPath.Vue}`;
-    protected readonly maskitoWithContentEditableDemo = import(
-        './examples/maskito-with-content-editable.md'
-    );
+    protected readonly maskitoWithContentEditableDemo =
+        import('./examples/maskito-with-content-editable.md');
 
     protected readonly contentEditableExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-time/mask.ts?raw', {

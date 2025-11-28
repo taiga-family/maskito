@@ -11,7 +11,6 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class TransformerDocPageComponent {
-    protected readonly utilityInActionDemo = import(
-        './examples/utility-in-action-demo.md'
-    );
+    protected readonly utilityInActionDemo =
+        import('./examples/utility-in-action-demo.md');
 }

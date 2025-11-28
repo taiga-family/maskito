@@ -14,12 +14,10 @@ import {NextStepsComponent} from '../next-steps/next-steps.component';
 })
 export default class MaskExpressionDocPageComponent {
     protected readonly elementStateDocPage = `/${DemoPath.ElementState}`;
-    protected readonly regExpMaskExpDemo = import(
-        './examples/reg-exp-mask-expression-demo.md'
-    );
+    protected readonly regExpMaskExpDemo =
+        import('./examples/reg-exp-mask-expression-demo.md');
 
     protected readonly basicTimeDemo = import('./examples/basic-time-example.md');
-    protected readonly dynamicMaskExpDemo = import(
-        './examples/dynamic-mask-expression-demo.md'
-    );
+    protected readonly dynamicMaskExpDemo =
+        import('./examples/dynamic-mask-expression-demo.md');
 }

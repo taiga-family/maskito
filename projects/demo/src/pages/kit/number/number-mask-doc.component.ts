@@ -47,9 +47,8 @@ type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class NumberMaskDocComponent implements GeneratorParams {
-    protected readonly maskitoParseNumberDemo = import(
-        './examples/maskito-parse-stringify-number-demo.md'
-    );
+    protected readonly maskitoParseNumberDemo =
+        import('./examples/maskito-parse-stringify-number-demo.md');
 
     protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(

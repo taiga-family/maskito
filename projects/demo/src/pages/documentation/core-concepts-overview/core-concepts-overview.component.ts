@@ -25,9 +25,8 @@ import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CoreConceptsOverviewDocPageComponent {
-    protected readonly maskitoPublicApiDemo = import(
-        './examples/maskito-public-api-demo.md'
-    );
+    protected readonly maskitoPublicApiDemo =
+        import('./examples/maskito-public-api-demo.md');
 
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly processorsDocPage = `/${DemoPath.Processors}`;
