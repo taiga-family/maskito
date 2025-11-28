@@ -1,12 +1,20 @@
 /**
  * Clamps a value between two inclusive limits
- *
- * @param value
- * @param min lower limit
- * @param max upper limit
  */
-export function clamp<T extends Date | number>(value: T, min: T, max: T): T {
-    const clampedValue = Math.min(Number(max), Math.max(Number(min), Number(value)));
+export function clamp<T extends Date | bigint | number>(
+    value: T,
+    minimum: T | null,
+    maximum?: T | null,
+): T {
+    const minClamped = max(minimum ?? value, value);
 
-    return (value instanceof Date ? new Date(clampedValue) : clampedValue) as T;
+    return min(maximum ?? minClamped, minClamped);
+}
+
+function min<T extends Date | bigint | number>(x: T, ...values: T[]): T {
+    return values.reduce((a, b) => (a < b ? a : b), x);
+}
+
+function max<T extends Date | bigint | number>(x: T, ...values: T[]): T {
+    return values.reduce((a, b) => (a > b ? a : b), x);
 }

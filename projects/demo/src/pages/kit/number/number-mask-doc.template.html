@@ -291,7 +291,8 @@
             <ng-template
                 documentationPropertyMode="input"
                 documentationPropertyName="min"
-                documentationPropertyType="number"
+                documentationPropertyType="number | bigint"
+                [documentationPropertyValues]="minOptions"
                 [(documentationPropertyValue)]="min"
                 (documentationPropertyValueChange)="updateOptions()"
             >
@@ -299,14 +300,15 @@
 
                 <p>
                     <strong>Default:</strong>
-                    <code>Number.MIN_SAFE_INTEGER</code>
+                    <code>-Infinity</code>
                     .
                 </p>
             </ng-template>
             <ng-template
                 documentationPropertyMode="input"
                 documentationPropertyName="max"
-                documentationPropertyType="number"
+                documentationPropertyType="number | bigint"
+                [documentationPropertyValues]="maxOptions"
                 [(documentationPropertyValue)]="max"
                 (documentationPropertyValueChange)="updateOptions()"
             >
@@ -314,7 +316,7 @@
 
                 <p>
                     <strong>Default:</strong>
-                    <code>Number.MAX_SAFE_INTEGER</code>
+                    <code>Infinity</code>
                     .
                 </p>
             </ng-template>

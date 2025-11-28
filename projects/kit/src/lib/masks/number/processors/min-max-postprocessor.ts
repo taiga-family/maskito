@@ -1,6 +1,8 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {CHAR_HYPHEN} from '../../../constants';
+import {clamp} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
 import {maskitoParseNumber} from '../utils';
 
 /**
@@ -12,14 +14,17 @@ export function createMinMaxPostprocessor({
     max,
     decimalSeparator,
     minusSign,
-}: {
-    min: number;
-    max: number;
-    decimalSeparator: string;
-    minusSign: string;
-}): MaskitoPostprocessor {
+    maximumFractionDigits,
+}: Pick<
+    Required<MaskitoNumberParams>,
+    'decimalSeparator' | 'max' | 'maximumFractionDigits' | 'min' | 'minusSign'
+>): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const parsedNumber = maskitoParseNumber(value, {decimalSeparator, minusSign});
+        const parsedNumber = maskitoParseNumber(value, {
+            decimalSeparator,
+            minusSign,
+            bigint: !(maximumFractionDigits && value.includes(decimalSeparator)),
+        });
         const limitedValue =
             /**
              * We cannot limit lower bound if user enters positive number.
@@ -31,7 +36,7 @@ export function createMinMaxPostprocessor({
              * @example (max = -10)
              * Value is -10 => Without this condition user cannot delete 0 to enter another digit
              */
-            parsedNumber > 0 ? Math.min(parsedNumber, max) : Math.max(parsedNumber, min);
+            parsedNumber > 0 ? clamp(parsedNumber, null, max) : clamp(parsedNumber, min);
 
         if (parsedNumber && limitedValue !== parsedNumber) {
             const newValue = `${limitedValue}`

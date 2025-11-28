@@ -3,6 +3,7 @@ import {maskitoTransform, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {clamp} from '../../../utils';
+import type {MaskitoNumberParams} from '../number-params';
 import {maskitoParseNumber, stringifyNumberWithoutExp} from '../utils';
 
 /**
@@ -14,18 +15,20 @@ export function createMinMaxPlugin({
     max,
     decimalSeparator,
     minusSign,
-}: {
-    min: number;
-    max: number;
-    decimalSeparator: string;
-    minusSign: string;
-}): MaskitoPlugin {
+    maximumFractionDigits,
+}: Pick<
+    Required<MaskitoNumberParams>,
+    'decimalSeparator' | 'max' | 'maximumFractionDigits' | 'min' | 'minusSign'
+>): MaskitoPlugin {
     return maskitoEventHandler(
         'blur',
         (element, options) => {
             const parsedNumber = maskitoParseNumber(element.value, {
                 decimalSeparator,
                 minusSign,
+                bigint: !(
+                    maximumFractionDigits && element.value.includes(decimalSeparator)
+                ),
             });
             const clampedNumber = clamp(parsedNumber, min, max);
 

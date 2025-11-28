@@ -129,8 +129,30 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         'minusFirst',
     ] as const satisfies ReadonlyArray<Required<MaskitoNumberParams>['negativePattern']>;
 
-    public max = Number.MAX_SAFE_INTEGER;
-    public min = Number.MIN_SAFE_INTEGER;
+    protected readonly minOptions: ReadonlyArray<bigint | number> = [
+        -Infinity,
+        BigInt(`-${'987654321'.repeat(3)}`),
+        Number.MIN_SAFE_INTEGER,
+        -123,
+        -100,
+        0,
+        0.1,
+        5,
+    ];
+
+    protected readonly maxOptions: ReadonlyArray<bigint | number> = [
+        Infinity,
+        BigInt('987654321'.repeat(3)),
+        Number.MAX_SAFE_INTEGER,
+        777,
+        3,
+        0,
+        -0.1,
+        -5,
+    ];
+
+    public max = Infinity;
+    public min = -Infinity;
     public decimalSeparator = '.';
     public decimalPseudoSeparators = this.decimalPseudoSeparatorsOptions[0]!;
     public thousandSeparator = ' ';

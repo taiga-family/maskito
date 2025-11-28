@@ -364,7 +364,7 @@ describe('Number (maskitoTransform)', () => {
         beforeEach(() => {
             options = maskitoNumberOptionsGenerator({
                 postfix: '.000 km',
-                thousandSeparator: '',
+                thousandSeparator: '.',
                 maximumFractionDigits: 0,
             });
         });
@@ -383,6 +383,10 @@ describe('Number (maskitoTransform)', () => {
 
         it('100.000 km => 100.000 km', () => {
             expect(maskitoTransform('100.000 km', options)).toBe('100.000 km');
+        });
+
+        it('123456 => 123.456.000 km', () => {
+            expect(maskitoTransform('123456', options)).toBe('123.456.000 km');
         });
 
         it('-1.000 km => -1.000 km', () => {

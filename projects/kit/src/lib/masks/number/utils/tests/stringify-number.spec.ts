@@ -430,4 +430,75 @@ describe('maskitoStringifyNumber', () => {
             ).toBe('123');
         });
     });
+
+    describe('BigInt support', () => {
+        it('stringifies BigInt values larger than Number.MAX_SAFE_INTEGER', () => {
+            expect(
+                maskitoStringifyNumber(
+                    BigInt(String(Number.MAX_SAFE_INTEGER).repeat(2)),
+                    {
+                        thousandSeparator: ' ',
+                    },
+                ),
+            ).toBe('90 071 992 547 409 919 007 199 254 740 991');
+        });
+
+        it('clamps values using bigint-powered min/max', () => {
+            expect(
+                maskitoStringifyNumber(100n, {
+                    min: -5n,
+                    max: 5n,
+                }),
+            ).toBe('5');
+
+            expect(
+                maskitoStringifyNumber(-100n, {
+                    min: -5n,
+                    max: 5n,
+                }),
+            ).toBe(`${CHAR_MINUS}5`);
+
+            expect(
+                maskitoStringifyNumber(10, {
+                    min: -5n,
+                    max: 5n,
+                }),
+            ).toBe('5');
+
+            expect(
+                maskitoStringifyNumber(10n, {
+                    min: -5,
+                    max: 5,
+                }),
+            ).toBe('5');
+        });
+
+        it('pads fractional part for bigint inputs', () => {
+            expect(
+                maskitoStringifyNumber(42n, {
+                    thousandSeparator: '',
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                }),
+            ).toBe('42.00');
+        });
+
+        it('works with prefix', () => {
+            expect(
+                maskitoStringifyNumber(1000000000000n, {
+                    prefix: '$',
+                    thousandSeparator: '_',
+                }),
+            ).toBe('$1_000_000_000_000');
+        });
+
+        it('works with postfix', () => {
+            expect(
+                maskitoStringifyNumber(-5000n, {
+                    postfix: ' pcs',
+                    thousandSeparator: '_',
+                }),
+            ).toBe(`${CHAR_MINUS}5_000 pcs`);
+        });
+    });
 });

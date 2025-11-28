@@ -4,13 +4,13 @@
  * @param value the number
  * @return string representation of a number
  */
-export function stringifyNumberWithoutExp(value: number): string {
+export function stringifyNumberWithoutExp(value: bigint | number): string {
     const valueAsString = String(value);
     const [numberPart = '', expPart] = valueAsString.split('e-');
 
     let valueWithoutExp = valueAsString;
 
-    if (expPart) {
+    if (expPart && typeof value === 'number') {
         const [, fractionalPart] = numberPart.split('.');
         const decimalDigits = Number(expPart) + (fractionalPart?.length ?? 0);
 
