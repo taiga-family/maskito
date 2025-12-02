@@ -210,23 +210,41 @@ describe('maskitoParseNumber', () => {
                 expect(typeof result === 'number').toBe(TRUE);
             });
 
-            it('returns `number` when `bigint` is explicitly set to `false`', () => {
-                const result = maskitoParseNumber('42', {bigint: false});
-                const TRUE: Expect<IsEqual<typeof result, number>> = true;
+            describe('returns `number` type when `bigint` is explicitly set to `false`', () => {
+                it('and actual returned value is `number` for non-empty value', () => {
+                    const result = maskitoParseNumber('42', {bigint: false});
+                    const TRUE: Expect<IsEqual<typeof result, number>> = true;
 
-                expect(typeof result === 'number').toBe(TRUE);
+                    expect(typeof result === 'number').toBe(TRUE);
+                });
+
+                it('and actual returned value is `NaN` for empty value', () => {
+                    const result = maskitoParseNumber('-', {bigint: false});
+                    const TRUE: Expect<IsEqual<typeof result, number>> = true;
+
+                    expect(Number.isNaN(result)).toBe(TRUE);
+                });
             });
 
-            it('returns `bigint` when `bigint` is explicitly set to `true`', () => {
-                const result = maskitoParseNumber('42', {bigint: true});
-                const TRUE: Expect<IsEqual<typeof result, bigint>> = true;
+            describe('returns `bigint | null` type when `bigint` is explicitly set to `true`', () => {
+                it('and actual returned value is `bigint` for non-empty value', () => {
+                    const result = maskitoParseNumber('42', {bigint: true});
+                    const TRUE: Expect<IsEqual<typeof result, bigint | null>> = true;
 
-                expect(typeof result === 'bigint').toBe(TRUE);
+                    expect(typeof result === 'bigint').toBe(TRUE);
+                });
+
+                it('and actual returned value is `null` for empty value', () => {
+                    const result = maskitoParseNumber('', {bigint: true});
+                    const TRUE: Expect<IsEqual<typeof result, bigint | null>> = true;
+
+                    expect(result === null).toBe(TRUE);
+                });
             });
 
-            it('returns `bigint | number` when `bigint` is computed dynamically', () => {
+            it('returns `bigint | number | null` when `bigint` is computed dynamically', () => {
                 const result = maskitoParseNumber('42', {bigint: Boolean(1)});
-                const TRUE: Expect<IsEqual<typeof result, bigint | number>> = true;
+                const TRUE: Expect<IsEqual<typeof result, bigint | number | null>> = true;
 
                 expect(typeof result === 'bigint').toBe(TRUE);
             });

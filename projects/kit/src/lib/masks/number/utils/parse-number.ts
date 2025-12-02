@@ -15,12 +15,12 @@ export function maskitoParseNumber(
 export function maskitoParseNumber(
     maskedNumber: string,
     params?: MaskitoNumberParams & {bigint: true},
-): bigint;
+): bigint | null;
 
 export function maskitoParseNumber(
     maskedNumber: string,
     params?: MaskitoNumberParams & {bigint: boolean},
-): bigint | number;
+): bigint | number | null;
 
 export function maskitoParseNumber(
     maskedNumber: string,
@@ -32,7 +32,7 @@ export function maskitoParseNumber(
         minusSign = CHAR_MINUS,
         thousandSeparator = CHAR_NO_BREAK_SPACE,
     }: MaskitoNumberParams & {bigint?: boolean} = {},
-): bigint | number {
+): bigint | number | null {
     const hasNegativeSign = !!new RegExp(
         `^\\D*[${escapeRegExp(minusSign)}\\${minusPseudoSigns.join('\\')}]`,
     ).exec(maskedNumber);
@@ -59,5 +59,5 @@ export function maskitoParseNumber(
             : Number(`${sign}${unmaskedNumber}`);
     }
 
-    return NaN;
+    return bigint ? null : NaN;
 }

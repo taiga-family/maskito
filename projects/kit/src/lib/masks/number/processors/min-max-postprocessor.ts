@@ -20,11 +20,12 @@ export function createMinMaxPostprocessor({
     'decimalSeparator' | 'max' | 'maximumFractionDigits' | 'min' | 'minusSign'
 >): MaskitoPostprocessor {
     return ({value, selection}) => {
-        const parsedNumber = maskitoParseNumber(value, {
-            decimalSeparator,
-            minusSign,
-            bigint: !(maximumFractionDigits && value.includes(decimalSeparator)),
-        });
+        const parsedNumber =
+            maskitoParseNumber(value, {
+                decimalSeparator,
+                minusSign,
+                bigint: !(maximumFractionDigits && value.includes(decimalSeparator)),
+            }) ?? NaN;
         const limitedValue =
             /**
              * We cannot limit lower bound if user enters positive number.

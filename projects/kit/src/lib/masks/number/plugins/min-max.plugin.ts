@@ -23,13 +23,14 @@ export function createMinMaxPlugin({
     return maskitoEventHandler(
         'blur',
         (element, options) => {
-            const parsedNumber = maskitoParseNumber(element.value, {
-                decimalSeparator,
-                minusSign,
-                bigint: !(
-                    maximumFractionDigits && element.value.includes(decimalSeparator)
-                ),
-            });
+            const parsedNumber =
+                maskitoParseNumber(element.value, {
+                    decimalSeparator,
+                    minusSign,
+                    bigint: !(
+                        maximumFractionDigits && element.value.includes(decimalSeparator)
+                    ),
+                }) ?? NaN;
             const clampedNumber = clamp(parsedNumber, min, max);
 
             if (!Number.isNaN(parsedNumber) && parsedNumber !== clampedNumber) {
