@@ -79,7 +79,7 @@ export const DEMO_PAGES: TuiDocRoutePages = [
         section: 'Kit',
         title: 'Number',
         route: DemoPath.Number,
-        keywords: 'digit, number, money, mask, kit, generator',
+        keywords: 'digit, number, money, mask, kit, generator, big, int, integer, bigint',
     },
     {
         section: 'Kit',
