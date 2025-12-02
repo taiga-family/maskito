@@ -130,6 +130,36 @@
                 to mutate textfield's value on focus/blur events.
             </ng-template>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="national-format"
+            heading="National format"
+            [content]="nationalFormat"
+            [description]="nationalFormatDescription"
+        >
+            <phone-doc-example-6 />
+
+            <ng-template #nationalFormatDescription>
+                <p>
+                    Setting the
+                    <code>format</code>
+                    option to
+                    <code>'NATIONAL'</code>
+                    enables national phone number formatting (e.g.,
+                    <code>(213) 373-4253</code>
+                    instead of
+                    <code>+1 213 373-4253</code>
+                    ).
+                </p>
+                <p>
+                    This option only works with
+                    <code>strict: true</code>
+                    (the default) and requires a
+                    <code>countryIsoCode</code>
+                    to be specified.
+                </p>
+            </ng-template>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -210,6 +240,34 @@
                 <p>
                     <strong>Default:</strong>
                     <code>-</code>
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="format"
+                documentationPropertyType="MaskitoPhoneFormat"
+                [documentationPropertyValues]="formatVariants"
+                [(documentationPropertyValue)]="format"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Phone number format. Use
+                <code>'INTERNATIONAL'</code>
+                for international format with country code (e.g.,
+                <code>+1 213 373-4253</code>
+                ) or
+                <code>'NATIONAL'</code>
+                for national format without country code (e.g.,
+                <code>(213) 373-4253</code>
+                ).
+                <p>
+                    <strong>Default:</strong>
+                    <code>'INTERNATIONAL'</code>
+                </p>
+                <p>
+                    <strong>Note:</strong>
+                    National format only works with
+                    <code>strict: true</code>
+                    .
                 </p>
             </ng-template>
         </tui-doc-documentation>
