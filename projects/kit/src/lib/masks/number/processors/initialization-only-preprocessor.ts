@@ -34,7 +34,7 @@ export function createInitializationOnlyPreprocessor(
         postfix: '',
         thousandSeparator: '',
         maximumFractionDigits: Infinity,
-        min: Number.MIN_SAFE_INTEGER,
+        min: -Infinity,
     });
 
     return ({elementState, data}) => {

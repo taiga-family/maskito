@@ -2,8 +2,8 @@ export interface MaskitoNumberParams extends Pick<
     Intl.NumberFormatOptions,
     'maximumFractionDigits' | 'minimumFractionDigits'
 > {
-    min?: number;
-    max?: number;
+    min?: bigint | number;
+    max?: bigint | number;
     decimalSeparator?: string;
     decimalPseudoSeparators?: readonly string[];
     thousandSeparator?: string;
