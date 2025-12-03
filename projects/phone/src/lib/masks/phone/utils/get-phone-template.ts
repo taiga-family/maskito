@@ -62,7 +62,7 @@ function convertToTemplate(source: string, separator: string): string {
         return '';
     }
 
-    // Different locales use weird whitespace; normalise it and swap all digits with fillers.
+    // Different locales use weird whitespace; normalize it and swap all digits with fillers.
     const normalized = source
         // Swap all exotic Unicode spaces (NBSP, thin space, etc.) with a regular space.
         .replaceAll(/[\u00A0\u1680\u180E\u2000-\u200B\u202F\u205F\u3000]/g, ' ')
