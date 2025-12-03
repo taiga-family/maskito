@@ -7,29 +7,6 @@
         <code>maskitoNumberOptionsGenerator</code>
         to create a mask for entering a formatted number.
 
-        <tui-notification
-            size="m"
-            class="tui-space_top-4"
-        >
-            <div>
-                Despite the name of the mask, element's raw value is still string.
-
-                <p>
-                    Use
-                    <code>maskitoParseNumber</code>
-                    to get number-type value.
-                </p>
-
-                <p>
-                    Use
-                    <code>maskitoStringifyNumber</code>
-                    to get the masked string from number-type value.
-                </p>
-
-                <tui-doc-code [code]="maskitoParseNumberDemo" />
-            </div>
-        </tui-notification>
-
         <tui-doc-example
             id="high-precision"
             heading="High precision"
@@ -385,5 +362,59 @@
                 </p>
             </ng-template>
         </tui-doc-documentation>
+    </ng-template>
+
+    <ng-template pageTab="Helpers">
+        <tui-notification
+            appearance="warning"
+            size="m"
+        >
+            Despite the name of the mask, element's raw value is still
+            <code>string</code>
+            type!
+        </tui-notification>
+
+        <section class="tui-space_top-10">
+            <h2>maskitoParseNumber</h2>
+
+            <ul class="tui-list">
+                <li class="tui-list__item">
+                    By default, returns
+                    <code>number</code>
+                    type value
+
+                    <tui-doc-code
+                        class="tui-space_top-4"
+                        [code]="parseNumberAsNumberTypeDemo"
+                    />
+                </li>
+
+                <li class="tui-list__item">
+                    Also, supports
+                    <code>bigint</code>
+                    mode
+
+                    <tui-doc-code
+                        class="tui-space_top-4"
+                        [code]="parseNumberAsBigIntTypeDemo"
+                    />
+                </li>
+            </ul>
+        </section>
+
+        <section class="tui-space_top-10">
+            <h2>maskitoStringifyNumber</h2>
+
+            Works with both
+            <code>number</code>
+            and
+            <code>bigint</code>
+            types.
+
+            <tui-doc-code
+                class="tui-space_top-4"
+                [code]="stringifyNumberDemo"
+            />
+        </section>
     </ng-template>
 </tui-doc-page>
