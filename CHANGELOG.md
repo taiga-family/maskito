@@ -1,9 +1,23 @@
 ## [5.0.0](https://github.com/taiga-family/maskito/compare/v4.0.1...v5.0.0) (2025-12-03)
 
-### 🚀 Features
+### ⚠ BREAKING CHANGES
+
+- Bump Safari browser support (#2439)
+
+  |                | < 5.0.0 | ≥ 5.0.0 |
+  | -------------- | ------- | ------- |
+  | Safari Desktop | 13.1+   | 14.1+   |
+  | Safari Mobile  | 13.4+   | 14.5+   |
 
 - **kit**: `Number` supports `BigInt` (#2431)
   [(2d2f86d)](https://github.com/taiga-family/maskito/commit/2d2f86dafb1524528305908af27b4df37d9e1330)
+
+  New default values for `maskitoNumberOptionsGenerator` / `maskitoStringifyNumber`:
+
+  | MaskitoNumberParams | < 5.0.0                   | ≥ 5.0.0     |
+  | ------------------- | ------------------------- | ----------- |
+  | `min`               | `Number.MIN_SAFE_INTEGER` | `-Infinity` |
+  | `max`               | `Number.MAX_SAFE_INTEGER` | `Infinity`  |
 
 ### [4.0.1](https://github.com/taiga-family/maskito/compare/v4.0.0...v4.0.1) (2025-11-14)
 
