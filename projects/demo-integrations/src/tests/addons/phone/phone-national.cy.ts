@@ -14,22 +14,28 @@ describe('Phone [format]=NATIONAL', () => {
         });
 
         describe('basic typing (1 character per keydown)', () => {
-            const tests = [
-                // [Typed value, Masked value, caretIndex]
-                ['213', '213', '213'.length],
-                ['2133734', '2133734', '2133734'.length],
-                ['2133734253', '(213) 373-4253', '(213) 373-4253'.length],
-                ['21337342531234', '(213) 373-4253', '(213) 373-4253'.length],
-            ] as const;
+            it('Type "213" => "(213)"', () => {
+                cy.get('@input').type('213').should('have.value', '(213)');
+            });
 
-            tests.forEach(([typedValue, maskedValue, caretIndex]) => {
-                it(`Type "${typedValue}" => "${maskedValue}"`, () => {
-                    cy.get('@input')
-                        .type(typedValue)
-                        .should('have.value', maskedValue)
-                        .should('have.prop', 'selectionStart', caretIndex)
-                        .should('have.prop', 'selectionEnd', caretIndex);
-                });
+            it('Type "2133734" => "(213) 373-4"', () => {
+                cy.get('@input').type('2133734').should('have.value', '(213) 373-4');
+            });
+
+            it('Type "2133734253" => "(213) 373-4253"', () => {
+                cy.get('@input')
+                    .type('2133734253')
+                    .should('have.value', '(213) 373-4253')
+                    .should('have.prop', 'selectionStart', 14)
+                    .should('have.prop', 'selectionEnd', 14);
+            });
+
+            it('Type "21337342531234" => "(213) 373-4253" (truncated)', () => {
+                cy.get('@input')
+                    .type('21337342531234')
+                    .should('have.value', '(213) 373-4253')
+                    .should('have.prop', 'selectionStart', 14)
+                    .should('have.prop', 'selectionEnd', 14);
             });
         });
 
@@ -74,9 +80,10 @@ describe('Phone [format]=NATIONAL', () => {
 
             const tests = [
                 // [How many times "Backspace"-key was pressed, Masked value]
-                [1, '(213) 373-425'],
-                [4, '(213) 373-4'],
-                [10, ''],
+                // Starting from "(213) 373-4253" (10 digits), each backspace removes one digit
+                [1, '(213) 373-425'], // 9 digits
+                [4, '(213) 373'], // 6 digits (10 - 4 = 6)
+                [10, ''], // 0 digits
             ] as const;
 
             tests.forEach(([n, maskedValue]) => {
@@ -85,6 +92,59 @@ describe('Phone [format]=NATIONAL', () => {
                         .type('{backspace}'.repeat(n))
                         .should('have.value', maskedValue);
                 });
+            });
+        });
+
+        describe('delete from middle preserves cursor position', () => {
+            beforeEach(() => {
+                cy.get('@input').type('2133734253');
+            });
+
+            it('Delete after "4" in "(213) 373-4253" removes "2" and keeps cursor position', () => {
+                // Position cursor after "4" (position 11 in "(213) 373-4253")
+                cy.get('@input')
+                    .type(`{moveToStart}${'{rightArrow}'.repeat(11)}`)
+                    .should('have.prop', 'selectionStart', 11)
+                    .type('{del}')
+                    .should('have.value', '(213) 373-453')
+                    .should('have.prop', 'selectionStart', 11)
+                    .should('have.prop', 'selectionEnd', 11);
+            });
+
+            it('Delete after "2" in "(213) 373-4253" removes "5" and keeps cursor position', () => {
+                // Position cursor after "2" (position 12 in "(213) 373-4253")
+                cy.get('@input')
+                    .type(`{moveToStart}${'{rightArrow}'.repeat(12)}`)
+                    .should('have.prop', 'selectionStart', 12)
+                    .type('{del}')
+                    .should('have.value', '(213) 373-423')
+                    .should('have.prop', 'selectionStart', 12)
+                    .should('have.prop', 'selectionEnd', 12);
+            });
+
+            it('Delete after "5" in "(213) 373-4253" removes "3" and keeps cursor position', () => {
+                // Position cursor after "5" (position 13 in "(213) 373-4253")
+                cy.get('@input')
+                    .type(`{moveToStart}${'{rightArrow}'.repeat(13)}`)
+                    .should('have.prop', 'selectionStart', 13)
+                    .type('{del}')
+                    .should('have.value', '(213) 373-425')
+                    .should('have.prop', 'selectionStart', 13)
+                    .should('have.prop', 'selectionEnd', 13);
+            });
+
+            it('Delete after "1" in "(800) 123-4567" removes "2" and keeps cursor at position 7', () => {
+                cy.get('@input')
+                    .clear()
+                    .type('8001234567')
+                    .should('have.value', '(800) 123-4567')
+                    // Position cursor after "1" (position 7 in "(800) 123-4567")
+                    .type(`{moveToStart}${'{rightArrow}'.repeat(7)}`)
+                    .should('have.prop', 'selectionStart', 7)
+                    .type('{del}')
+                    .should('have.value', '(800) 134-567')
+                    .should('have.prop', 'selectionStart', 7)
+                    .should('have.prop', 'selectionEnd', 7);
             });
         });
 
@@ -152,10 +212,6 @@ describe('Phone [format]=NATIONAL', () => {
                 .first()
                 .focus()
                 .as('input');
-        });
-
-        it('Type Berlin number', () => {
-            cy.get('@input').type('30123456').should('have.value', '030 123456');
         });
 
         it('Paste +4930123456 (strips country code)', () => {

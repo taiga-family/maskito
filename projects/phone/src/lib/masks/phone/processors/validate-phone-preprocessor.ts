@@ -21,11 +21,13 @@ export function validatePhonePreprocessorGenerator({
 }): MaskitoPreprocessor {
     const isNational = format === 'NATIONAL';
 
-    return ({elementState, data}) => {
+    return ({elementState, data}, actionType) => {
         const {selection, value} = elementState;
         const [from] = selection;
         const selectionIncludesPrefix = !isNational && from < prefix.length;
         const cleanCode = prefix.trim();
+        const isDeleting =
+            actionType === 'deleteBackward' || actionType === 'deleteForward';
 
         // handling autocomplete
         if (value && !isNational && !value.startsWith(cleanCode) && !data) {
@@ -40,7 +42,8 @@ export function validatePhonePreprocessorGenerator({
         }
 
         // For national format, handle autocomplete differently
-        if (value && isNational && !data) {
+        // Skip this during deletion to allow normal backspace/delete behavior
+        if (value && isNational && !data && !isDeleting) {
             const formatter = new AsYouType(countryIsoCode, metadata);
             const digitsOnly = value.replaceAll(/\D/g, '');
 

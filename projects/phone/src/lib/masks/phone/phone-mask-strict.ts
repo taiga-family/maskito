@@ -7,6 +7,7 @@ import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 import {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
+    preserveCursorPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
 import type {MaskitoPhoneFormat} from './types';
@@ -72,7 +73,10 @@ export function maskitoPhoneStrictOptionsGenerator({
             }),
         ],
         postprocessors: isNational
-            ? [phoneLengthPostprocessorGenerator(metadata)]
+            ? [
+                  preserveCursorPostprocessorGenerator(),
+                  phoneLengthPostprocessorGenerator(metadata),
+              ]
             : [
                   maskitoPrefixPostprocessorGenerator(prefix),
                   phoneLengthPostprocessorGenerator(metadata),
