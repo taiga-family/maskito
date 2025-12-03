@@ -22,25 +22,24 @@ const serverConfig = mergeApplicationConfig(APP_CONFIG, {
             ROUTES.map((route) => {
                 const path = route.path ?? '';
 
-                if (path === DemoPath.Angular) {
-                    return withTabs(path, ['Setup']);
+                switch (path) {
+                    case DemoPath.Angular:
+                        return withTabs(path, ['Setup']);
+                    case DemoPath.Number:
+                        return withTabs(path, ['API', 'Helpers']);
+                    case DemoPath.Plugins:
+                        return withTabs(path, ['Built-in_core_plugins']);
+                    default:
+                        return path.startsWith('kit') || path.startsWith('addons')
+                            ? withTabs(path, ['API'])
+                            : {
+                                  path,
+                                  renderMode: RenderMode.Prerender,
+                                  async getPrerenderParams() {
+                                      return [];
+                                  },
+                              };
                 }
-
-                if (path === DemoPath.Plugins) {
-                    return withTabs(path, ['Built-in_core_plugins']);
-                }
-
-                if (path.startsWith('kit') || path.startsWith('addons')) {
-                    return withTabs(path, ['API']);
-                }
-
-                return {
-                    path,
-                    renderMode: RenderMode.Prerender,
-                    async getPrerenderParams() {
-                        return [];
-                    },
-                };
             }),
         ),
         UNIVERSAL_PROVIDERS,
