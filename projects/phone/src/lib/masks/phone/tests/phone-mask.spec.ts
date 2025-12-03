@@ -84,10 +84,16 @@ describe('Phone (maskitoTransform)', () => {
             expect(maskitoTransform('213-373-4253', options)).toBe('(213) 373-4253');
         });
 
-        it('handles partial number', () => {
-            // Partial numbers don't have full national formatting until they're valid
-            // libphonenumber-js formatNational() requires a valid phone number
-            expect(maskitoTransform('213', options)).toBe('213');
+        it('handles partial number with three digits', () => {
+            expect(maskitoTransform('213', options)).toBe('(213)');
+        });
+
+        it('handles partial number with four digits', () => {
+            expect(maskitoTransform('2134', options)).toBe('(213) 4');
+        });
+
+        it('handles partial number with seven digits', () => {
+            expect(maskitoTransform('2134567', options)).toBe('(213) 456-7');
         });
     });
 
@@ -135,6 +141,14 @@ describe('Phone (maskitoTransform)', () => {
 
         it('strips country code and formats nationally', () => {
             expect(maskitoTransform('+79202800155', options)).toBe('8 (920) 280-01-55');
+        });
+
+        it.each([
+            ['920', '920'],
+            ['9202', '920 2'],
+            ['9202800', '920 280-0'],
+        ])('formats partial input %s', (input, expected) => {
+            expect(maskitoTransform(input, options)).toBe(expected);
         });
     });
 
