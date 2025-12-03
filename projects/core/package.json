@@ -1,6 +1,6 @@
 {
     "name": "@maskito/core",
-    "version": "4.0.1",
+    "version": "5.0.0",
     "description": "The main zero-dependency and framework-agnostic Maskito's package to create an input mask",
     "keywords": [
         "input",

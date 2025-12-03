@@ -1,3 +1,10 @@
+## [5.0.0](https://github.com/taiga-family/maskito/compare/v4.0.1...v5.0.0) (2025-12-03)
+
+### 🚀 Features
+
+- **kit**: `Number` supports `BigInt` (#2431)
+  [(2d2f86d)](https://github.com/taiga-family/maskito/commit/2d2f86dafb1524528305908af27b4df37d9e1330)
+
 ### [4.0.1](https://github.com/taiga-family/maskito/compare/v4.0.0...v4.0.1) (2025-11-14)
 
 ### 🐞 Bug Fixes
