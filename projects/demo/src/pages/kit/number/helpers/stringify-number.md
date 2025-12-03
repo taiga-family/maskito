@@ -1,6 +1,6 @@
 ```ts
 import {
-  maskitoParseNumber,
+  maskitoStringifyNumber,
   type MaskitoNumberParams, // type for 2nd argument of maskitoStringifyNumber
   maskitoNumberOptionsGenerator,
 } from '@maskito/kit';
