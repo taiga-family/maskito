@@ -1,6 +1,8 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {getCountryCallingCode, parsePhoneNumber} from 'libphonenumber-js/core';
+import {AsYouType, getCountryCallingCode, parsePhoneNumber} from 'libphonenumber-js/core';
+
+import type {MaskitoPhoneFormat} from '../types';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).
@@ -9,9 +11,11 @@ import {getCountryCallingCode, parsePhoneNumber} from 'libphonenumber-js/core';
 export function cutInitCountryCodePreprocessor({
     countryIsoCode,
     metadata,
+    format = 'INTERNATIONAL',
 }: {
     countryIsoCode: CountryCode;
     metadata: MetadataJson;
+    format?: MaskitoPhoneFormat;
 }): MaskitoPreprocessor {
     let isInitializationPhase = true;
 
@@ -26,8 +30,26 @@ export function cutInitCountryCodePreprocessor({
 
         try {
             const phone = parsePhoneNumber(value, countryIsoCode, metadata);
-            const code = getCountryCallingCode(countryIsoCode, metadata);
+            const isNational = format === 'NATIONAL';
 
+            if (isNational) {
+                // For national format, format using the national formatter
+                const formatter = new AsYouType(countryIsoCode, metadata);
+
+                formatter.input(phone.nationalNumber);
+                const formattedNational = formatter.getNumber()?.formatNational() ?? '';
+
+                formatter.reset();
+
+                return {
+                    elementState: {
+                        value: formattedNational,
+                        selection,
+                    },
+                };
+            }
+
+            const code = getCountryCallingCode(countryIsoCode, metadata);
             const newValue = `+${code} ${phone.nationalNumber}`;
 
             return {

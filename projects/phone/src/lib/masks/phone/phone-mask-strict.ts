@@ -7,22 +7,32 @@ import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 import {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
+    preserveCursorPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
-import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
+import type {MaskitoPhoneFormat} from './types';
+import {
+    generatePhoneMask,
+    getNationalPhoneTemplate,
+    getPhoneTemplate,
+    selectTemplate,
+} from './utils';
 
 export function maskitoPhoneStrictOptionsGenerator({
     countryIsoCode,
     metadata,
     separator = '-',
+    format = 'INTERNATIONAL',
 }: {
     countryIsoCode: CountryCode;
     metadata: MetadataJson;
     separator?: string;
+    format?: MaskitoPhoneFormat;
 }): Required<MaskitoOptions> {
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
-    const prefix = `+${code} `;
+    const isNational = format === 'NATIONAL';
+    const prefix = isNational ? '' : `+${code} `;
 
     let currentTemplate = '';
     let currentPhoneLength = 0;
@@ -30,7 +40,9 @@ export function maskitoPhoneStrictOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const newTemplate = getPhoneTemplate(formatter, value, separator);
+            const newTemplate = isNational
+                ? getNationalPhoneTemplate(formatter, value, separator)
+                : getPhoneTemplate(formatter, value, separator);
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({
@@ -43,19 +55,31 @@ export function maskitoPhoneStrictOptionsGenerator({
 
             return generatePhoneMask({value, template: currentTemplate, prefix});
         },
-        plugins: [
-            maskitoCaretGuard((value, [from, to]) => [
-                from === to ? prefix.length : 0,
-                value.length,
-            ]),
-        ],
+        plugins: isNational
+            ? []
+            : [
+                  maskitoCaretGuard((value, [from, to]) => [
+                      from === to ? prefix.length : 0,
+                      value.length,
+                  ]),
+              ],
         preprocessors: [
-            cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
-            validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
+            validatePhonePreprocessorGenerator({
+                prefix,
+                countryIsoCode,
+                metadata,
+                format,
+            }),
         ],
-        postprocessors: [
-            maskitoPrefixPostprocessorGenerator(prefix),
-            phoneLengthPostprocessorGenerator(metadata),
-        ],
+        postprocessors: isNational
+            ? [
+                  preserveCursorPostprocessorGenerator(),
+                  phoneLengthPostprocessorGenerator(metadata),
+              ]
+            : [
+                  maskitoPrefixPostprocessorGenerator(prefix),
+                  phoneLengthPostprocessorGenerator(metadata),
+              ],
     };
 }

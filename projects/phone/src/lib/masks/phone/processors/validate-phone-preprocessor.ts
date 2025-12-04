@@ -6,23 +6,31 @@ import {
     validatePhoneNumberLength,
 } from 'libphonenumber-js/core';
 
+import type {MaskitoPhoneFormat} from '../types';
+
 export function validatePhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
+    format = 'INTERNATIONAL',
 }: {
     prefix: string;
     countryIsoCode?: CountryCode;
     metadata: MetadataJson;
+    format?: MaskitoPhoneFormat;
 }): MaskitoPreprocessor {
-    return ({elementState, data}) => {
+    const isNational = format === 'NATIONAL';
+
+    return ({elementState, data}, actionType) => {
         const {selection, value} = elementState;
         const [from] = selection;
-        const selectionIncludesPrefix = from < prefix.length;
+        const selectionIncludesPrefix = !isNational && from < prefix.length;
         const cleanCode = prefix.trim();
+        const isDeleting =
+            actionType === 'deleteBackward' || actionType === 'deleteForward';
 
         // handling autocomplete
-        if (value && !value.startsWith(cleanCode) && !data) {
+        if (value && !isNational && !value.startsWith(cleanCode) && !data) {
             const formatter = new AsYouType({defaultCountry: countryIsoCode}, metadata);
 
             formatter.input(value);
@@ -31,6 +39,26 @@ export function validatePhonePreprocessorGenerator({
             formatter.reset();
 
             return {elementState: {value: formatter.input(numberValue), selection}};
+        }
+
+        // For national format, handle autocomplete differently
+        // Skip this during deletion to allow normal backspace/delete behavior
+        if (value && isNational && !data && !isDeleting) {
+            const formatter = new AsYouType(countryIsoCode, metadata);
+            const digitsOnly = value.replaceAll(/\D/g, '');
+
+            formatter.input(digitsOnly);
+            const phoneNumber = formatter.getNumber();
+
+            if (phoneNumber) {
+                const formattedNational = phoneNumber.formatNational();
+
+                formatter.reset();
+
+                return {elementState: {value: formattedNational, selection}};
+            }
+
+            formatter.reset();
         }
 
         try {
@@ -47,6 +75,25 @@ export function validatePhonePreprocessorGenerator({
                     : parsePhoneNumber(data, metadata);
 
                 const {nationalNumber, countryCallingCode} = phone;
+
+                if (isNational) {
+                    // For national format, return only the national number formatted
+                    const formatter = new AsYouType(countryIsoCode, metadata);
+
+                    formatter.input(nationalNumber);
+                    const phoneNumber = formatter.getNumber();
+                    const formattedNational = phoneNumber?.formatNational() ?? '';
+
+                    formatter.reset();
+
+                    return {
+                        elementState: {
+                            selection,
+                            value: '',
+                        },
+                        data: formattedNational || nationalNumber,
+                    };
+                }
 
                 return {
                     elementState: {
