@@ -222,7 +222,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionEnd', '+1 212 34'.length);
             });
 
-            it('+1 21|2 343-3355 => Backspace => +1 2|23 433-55', () => {
+            it('+1 21|2 343-3355 => Backspace => +1 2|23 433-355', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -239,7 +239,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionStart', '+1 21'.length)
                     .should('have.prop', 'selectionEnd', '+1 21'.length)
                     .type('{backspace}')
-                    .should('have.value', '+1 223 433-55')
+                    .should('have.value', '+1 223 433-355')
                     .should('have.prop', 'selectionStart', '+1 2'.length)
                     .should('have.prop', 'selectionEnd', '+1 2'.length);
             });
