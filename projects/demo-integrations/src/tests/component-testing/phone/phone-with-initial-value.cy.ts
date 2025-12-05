@@ -15,7 +15,7 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+7 771 931-111|1 => Backspace => +7 771 931-11|1 (deletes last "1")', () => {
+            it('+7 771 931-1111| => Backspace => +7 771 931-111|', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -34,7 +34,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionEnd', '+7 771 931-111'.length);
             });
 
-            it('+7 771 9|31-1111 => Backspace => +7 771 |31-1111 (deletes "9")', () => {
+            it('+7 771 9|31-1111 => Backspace => +7 771 |311-111', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -56,7 +56,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionEnd', '+7 771 '.length);
             });
 
-            it('+7 771 93|1-1111 => Backspace => +7 771 9|1-1111 (deletes "3")', () => {
+            it('+7 771 93|1-1111 => Backspace => +7 771 9|11-111', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -78,7 +78,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionEnd', '+7 771 9'.length);
             });
 
-            it('+7 771 931|-1111 => Backspace => +7 771 93|1-111 (deletes "1")', () => {
+            it('+7 771 931|-1111 => Backspace => +7 771 93|1-111', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -100,7 +100,7 @@ describe('Phone | With initial value', () => {
                     .should('have.prop', 'selectionEnd', '+7 771 93'.length);
             });
 
-            it('+7 77|1 931-1111 => Backspace => +7 7|19 311-111 (deletes "7")', () => {
+            it('+7 77|1 931-1111 => Backspace => +7 7|19 311-111', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
@@ -161,7 +161,7 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+1 212 3|43-3355 => Backspace => +1 212 |43-3355 (deletes "3")', () => {
+            it('+1 212 3|43-3355 => Backspace => +1 212 |433-355', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createNonStrictMaskitoOptions(),
