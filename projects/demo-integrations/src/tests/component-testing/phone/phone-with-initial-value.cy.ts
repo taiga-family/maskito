@@ -149,7 +149,201 @@ describe('Phone | With initial value', () => {
         });
     });
 
-    describe('Non-strict mode', () => {
+    describe('Strict mode (United States)', () => {
+        function createMaskitoOptions(): ReturnType<typeof maskitoPhoneOptionsGenerator> {
+            return maskitoPhoneOptionsGenerator({
+                countryIsoCode: 'US',
+                metadata,
+                strict: true,
+            });
+        }
+
+        describe('Backspace on initial render', () => {
+            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '+1 212 343-335')
+                    .should('have.prop', 'selectionStart', '+1 212 343-335'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 343-335'.length);
+            });
+
+            it('+1 212 3|43-3355 => Backspace => +1 212 |433-355', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('43-3355'.length))
+                    .should('have.prop', 'selectionStart', '+1 212 3'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 3'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+1 212 433-355')
+                    .should('have.prop', 'selectionStart', '+1 212 '.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 '.length);
+            });
+
+            it('+1 212 343|-3355 => Backspace => +1 212 34|3-355', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('-3355'.length))
+                    .should('have.prop', 'selectionStart', '+1 212 343'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 343'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+1 212 343-355')
+                    .should('have.prop', 'selectionStart', '+1 212 34'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 34'.length);
+            });
+
+            it('+1 21|2 343-3355 => Backspace => +1 2|23 433-55', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('2 343-3355'.length))
+                    .should('have.prop', 'selectionStart', '+1 21'.length)
+                    .should('have.prop', 'selectionEnd', '+1 21'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+1 223 433-55')
+                    .should('have.prop', 'selectionStart', '+1 2'.length)
+                    .should('have.prop', 'selectionEnd', '+1 2'.length);
+            });
+        });
+    });
+
+    describe('Strict mode (France)', () => {
+        function createMaskitoOptions(): ReturnType<typeof maskitoPhoneOptionsGenerator> {
+            return maskitoPhoneOptionsGenerator({
+                countryIsoCode: 'FR',
+                metadata,
+                strict: true,
+            });
+        }
+
+        describe('Backspace on initial render', () => {
+            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 12-34-56-7')
+                    .should('have.prop', 'selectionStart', '+33 6 12-34-56-7'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-34-56-7'.length);
+            });
+
+            it('+33 6 12-3|4-56-78 => Backspace => +33 6 12-|45-67-8', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('4-56-78'.length))
+                    .should('have.prop', 'selectionStart', '+33 6 12-3'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-3'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 12-45-67-8')
+                    .should('have.prop', 'selectionStart', '+33 6 12-'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-'.length);
+            });
+
+            it('+33 6 1|2-34-56-78 => Backspace => +33 6 |23-45-67-8', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('2-34-56-78'.length))
+                    .should('have.prop', 'selectionStart', '+33 6 1'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 1'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 23-45-67-8')
+                    .should('have.prop', 'selectionStart', '+33 6 '.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 '.length);
+            });
+
+            it('+33 6 12-34|-56-78 => Backspace => +33 6 12-3|5-67-8', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('-56-78'.length))
+                    .should('have.prop', 'selectionStart', '+33 6 12-34'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-34'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 12-35-67-8')
+                    .should('have.prop', 'selectionStart', '+33 6 12-3'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-3'.length);
+            });
+        });
+    });
+
+    describe('Non-strict mode (United States)', () => {
         function createNonStrictMaskitoOptions(): ReturnType<
             typeof maskitoPhoneOptionsGenerator
         > {
@@ -161,6 +355,25 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
+            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '+1 212 343-335')
+                    .should('have.prop', 'selectionStart', '+1 212 343-335'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 343-335'.length);
+            });
+
             it('+1 212 3|43-3355 => Backspace => +1 212 |433-355', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
@@ -181,6 +394,83 @@ describe('Phone | With initial value', () => {
                     .should('have.value', '+1 212 433-355')
                     .should('have.prop', 'selectionStart', '+1 212 '.length)
                     .should('have.prop', 'selectionEnd', '+1 212 '.length);
+            });
+
+            it('+1 212 343|-3355 => Backspace => +1 212 34|3-355', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        initialValue: '+1 212 343-3355',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+1 212 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('-3355'.length))
+                    .should('have.prop', 'selectionStart', '+1 212 343'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 343'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+1 212 343-355')
+                    .should('have.prop', 'selectionStart', '+1 212 34'.length)
+                    .should('have.prop', 'selectionEnd', '+1 212 34'.length);
+            });
+        });
+    });
+
+    describe('Non-strict mode (France)', () => {
+        function createNonStrictMaskitoOptions(): ReturnType<
+            typeof maskitoPhoneOptionsGenerator
+        > {
+            return maskitoPhoneOptionsGenerator({
+                countryIsoCode: 'FR',
+                metadata,
+                strict: false,
+            });
+        }
+
+        describe('Backspace on initial render', () => {
+            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 12-34-56-7')
+                    .should('have.prop', 'selectionStart', '+33 6 12-34-56-7'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-34-56-7'.length);
+            });
+
+            it('+33 6 12-3|4-56-78 => Backspace => +33 6 12-|45-67-8', () => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        initialValue: '+33 6 12-34-56-78',
+                    },
+                });
+
+                cy.get('input')
+                    .should('be.visible')
+                    .should('have.value', '+33 6 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat('4-56-78'.length))
+                    .should('have.prop', 'selectionStart', '+33 6 12-3'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-3'.length)
+                    .type('{backspace}')
+                    .should('have.value', '+33 6 12-45-67-8')
+                    .should('have.prop', 'selectionStart', '+33 6 12-'.length)
+                    .should('have.prop', 'selectionEnd', '+33 6 12-'.length);
             });
         });
     });
