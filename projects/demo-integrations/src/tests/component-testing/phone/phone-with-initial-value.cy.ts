@@ -14,7 +14,7 @@ describe('Phone | With initial value', () => {
             });
         }
 
-        describe('Backspace on initial render (BUG: first deletion fails)', () => {
+        describe('Backspace on initial render', () => {
             it('+7 771 931-111|1 => Backspace => +7 771 931-11|1 (deletes last "1")', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
@@ -160,7 +160,7 @@ describe('Phone | With initial value', () => {
             });
         }
 
-        describe('Backspace on initial render (BUG: first deletion fails)', () => {
+        describe('Backspace on initial render', () => {
             it('+1 212 3|43-3355 => Backspace => +1 212 |43-3355 (deletes "3")', () => {
                 cy.mount(TestInput, {
                     componentProperties: {
