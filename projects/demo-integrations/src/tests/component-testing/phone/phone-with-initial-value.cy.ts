@@ -16,14 +16,16 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+7 771 931-1111| => Backspace => +7 771 931-111|', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
                         initialValue: '+7 771 931-1111',
                     },
                 });
+            });
 
+            it('+7 771 931-1111| => Backspace => +7 771 931-111|', () => {
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+7 771 931-1111')
@@ -36,13 +38,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+7 771 9|31-1111 => Backspace => +7 771 |311-111', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+7 771 931-1111',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+7 771 931-1111')
@@ -58,13 +53,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+7 771 93|1-1111 => Backspace => +7 771 9|11-111', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+7 771 931-1111',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+7 771 931-1111')
@@ -80,13 +68,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+7 771 931|-1111 => Backspace => +7 771 93|1-111', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+7 771 931-1111',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+7 771 931-1111')
@@ -102,13 +83,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+7 77|1 931-1111 => Backspace => +7 7|19 311-111', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+7 771 931-1111',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+7 771 931-1111')
@@ -125,14 +99,16 @@ describe('Phone | With initial value', () => {
         });
 
         describe('Backspace after typing (confirms mask works when value is typed)', () => {
-            it('Type value, then backspace in middle works correctly', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
                         initialValue: '+7 ',
                     },
                 });
+            });
 
+            it('Type value, then backspace in middle works correctly', () => {
                 cy.get('input')
                     .should('be.visible')
                     .focus()
@@ -160,14 +136,16 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
                         initialValue: '+1 212 343-3355',
                     },
                 });
+            });
 
+            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -180,13 +158,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+1 212 3|43-3355 => Backspace => +1 212 |433-355', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+1 212 343-3355',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -202,13 +173,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+1 212 343|-3355 => Backspace => +1 212 34|3-355', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+1 212 343-3355',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -224,13 +188,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+1 21|2 343-3355 => Backspace => +1 2|23 433-355', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+1 212 343-3355',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -257,14 +214,16 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createMaskitoOptions(),
                         initialValue: '+33 6 12-34-56-78',
                     },
                 });
+            });
 
+            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
@@ -277,13 +236,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+33 6 12-3|4-56-78 => Backspace => +33 6 12-|45-67-8', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+33 6 12-34-56-78',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
@@ -299,13 +251,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+33 6 1|2-34-56-78 => Backspace => +33 6 |23-45-67-8', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+33 6 12-34-56-78',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
@@ -321,13 +266,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+33 6 12-34|-56-78 => Backspace => +33 6 12-3|5-67-8', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
-                        initialValue: '+33 6 12-34-56-78',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
@@ -354,14 +292,16 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createNonStrictMaskitoOptions(),
                         initialValue: '+1 212 343-3355',
                     },
                 });
+            });
 
+            it('+1 212 343-3355| => Backspace => +1 212 343-335|', () => {
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -374,13 +314,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+1 212 3|43-3355 => Backspace => +1 212 |433-355', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createNonStrictMaskitoOptions(),
-                        initialValue: '+1 212 343-3355',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -396,13 +329,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+1 212 343|-3355 => Backspace => +1 212 34|3-355', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createNonStrictMaskitoOptions(),
-                        initialValue: '+1 212 343-3355',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+1 212 343-3355')
@@ -429,14 +355,16 @@ describe('Phone | With initial value', () => {
         }
 
         describe('Backspace on initial render', () => {
-            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
+            beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
                         maskitoOptions: createNonStrictMaskitoOptions(),
                         initialValue: '+33 6 12-34-56-78',
                     },
                 });
+            });
 
+            it('+33 6 12-34-56-78| => Backspace => +33 6 12-34-56-7|', () => {
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
@@ -449,13 +377,6 @@ describe('Phone | With initial value', () => {
             });
 
             it('+33 6 12-3|4-56-78 => Backspace => +33 6 12-|45-67-8', () => {
-                cy.mount(TestInput, {
-                    componentProperties: {
-                        maskitoOptions: createNonStrictMaskitoOptions(),
-                        initialValue: '+33 6 12-34-56-78',
-                    },
-                });
-
                 cy.get('input')
                     .should('be.visible')
                     .should('have.value', '+33 6 12-34-56-78')
