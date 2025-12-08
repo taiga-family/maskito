@@ -29,18 +29,6 @@ export function maskitoPhoneNonStrictOptionsGenerator({
             const newTemplate = getPhoneTemplate(formatter, value, separator);
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
-            /**
-             * When Maskito is initialized on an element that already has a value,
-             * the closure state (currentTemplate, currentPhoneLength) is not yet
-             * initialized. We detect this case by checking if currentPhoneLength
-             * is 0 but the value already has digits, and initialize the state
-             * from the actual value before running selectTemplate.
-             */
-            if (currentPhoneLength === 0 && newPhoneLength > 0) {
-                currentTemplate = newTemplate;
-                currentPhoneLength = newPhoneLength;
-            }
-
             currentTemplate = selectTemplate({
                 currentTemplate,
                 newTemplate,
