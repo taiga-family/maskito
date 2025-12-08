@@ -1,3 +1,4 @@
+import type {MaskitoOptions} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import metadata from 'libphonenumber-js/min/metadata';
 
@@ -6,7 +7,7 @@ import {TestInput} from '../utils';
 describe('Phone | With initial value', () => {
     describe('Strict mode (Kazakhstan)', () => {
         // Create fresh options for each test to ensure clean closure state
-        function createMaskitoOptions(): ReturnType<typeof maskitoPhoneOptionsGenerator> {
+        function createMaskitoOptions(): MaskitoOptions {
             return maskitoPhoneOptionsGenerator({
                 countryIsoCode: 'KZ',
                 metadata,
@@ -150,7 +151,7 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Strict mode (United States)', () => {
-        function createMaskitoOptions(): ReturnType<typeof maskitoPhoneOptionsGenerator> {
+        function createMaskitoOptions(): MaskitoOptions {
             return maskitoPhoneOptionsGenerator({
                 countryIsoCode: 'US',
                 metadata,
@@ -247,7 +248,7 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Strict mode (France)', () => {
-        function createMaskitoOptions(): ReturnType<typeof maskitoPhoneOptionsGenerator> {
+        function createMaskitoOptions(): MaskitoOptions {
             return maskitoPhoneOptionsGenerator({
                 countryIsoCode: 'FR',
                 metadata,
@@ -344,9 +345,7 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Non-strict mode (United States)', () => {
-        function createNonStrictMaskitoOptions(): ReturnType<
-            typeof maskitoPhoneOptionsGenerator
-        > {
+        function createNonStrictMaskitoOptions(): MaskitoOptions {
             return maskitoPhoneOptionsGenerator({
                 countryIsoCode: 'US',
                 metadata,
@@ -421,9 +420,7 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Non-strict mode (France)', () => {
-        function createNonStrictMaskitoOptions(): ReturnType<
-            typeof maskitoPhoneOptionsGenerator
-        > {
+        function createNonStrictMaskitoOptions(): MaskitoOptions {
             return maskitoPhoneOptionsGenerator({
                 countryIsoCode: 'FR',
                 metadata,
