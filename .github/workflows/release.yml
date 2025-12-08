@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.3.1
-      - uses: taiga-family/ci/actions/setup/variables@v1.175.0
-      - uses: taiga-family/ci/actions/setup/node@v1.175.0
-      - uses: taiga-family/ci/actions/run/release-it@v1.175.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.176.0
+      - uses: taiga-family/ci/actions/setup/node@v1.176.0
+      - uses: taiga-family/ci/actions/run/release-it@v1.176.0
         id: release-it
         with:
           ref: ${{ github.ref }}
@@ -28,12 +28,12 @@ jobs:
           npmToken: ${{ secrets.NPM_TOKEN }}
           githubToken: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
-      - uses: taiga-family/ci/actions/run/read-package-json@v1.175.0
+      - uses: taiga-family/ci/actions/run/read-package-json@v1.176.0
         id: info
 
       - name: Announce to Telegram
         if: steps.release-it.outputs.released == 'true'
-        uses: taiga-family/ci/actions/messenger/telegram/announce@v1.175.0
+        uses: taiga-family/ci/actions/messenger/telegram/announce@v1.176.0
         with:
           chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
           topicId: ${{ secrets.TAIGA_TELEGRAM_CHAT_THREAD_ID }}
