@@ -127,19 +127,15 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Strict mode (United States)', () => {
-        function createMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
-                countryIsoCode: 'US',
-                metadata,
-                strict: true,
-            });
-        }
-
         describe('Backspace on initial render', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'US',
+                            metadata,
+                            strict: true,
+                        }),
                         initialValue: '+1 212 343-3355',
                     },
                 });
@@ -205,19 +201,15 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Strict mode (France)', () => {
-        function createMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
-                countryIsoCode: 'FR',
-                metadata,
-                strict: true,
-            });
-        }
-
         describe('Backspace on initial render', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: createMaskitoOptions(),
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'FR',
+                            metadata,
+                            strict: true,
+                        }),
                         initialValue: '+33 6 12-34-56-78',
                     },
                 });
@@ -283,19 +275,15 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Non-strict mode (United States)', () => {
-        function createNonStrictMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
-                countryIsoCode: 'US',
-                metadata,
-                strict: false,
-            });
-        }
-
         describe('Backspace on initial render', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'US',
+                            metadata,
+                            strict: false,
+                        }),
                         initialValue: '+1 212 343-3355',
                     },
                 });
@@ -346,19 +334,15 @@ describe('Phone | With initial value', () => {
     });
 
     describe('Non-strict mode (France)', () => {
-        function createNonStrictMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
-                countryIsoCode: 'FR',
-                metadata,
-                strict: false,
-            });
-        }
-
         describe('Backspace on initial render', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: createNonStrictMaskitoOptions(),
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'FR',
+                            metadata,
+                            strict: false,
+                        }),
                         initialValue: '+33 6 12-34-56-78',
                     },
                 });
