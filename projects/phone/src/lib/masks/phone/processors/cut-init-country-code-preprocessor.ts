@@ -14,6 +14,7 @@ export function cutInitCountryCodePreprocessor({
     metadata: MetadataJson;
 }): MaskitoPreprocessor {
     let isInitializationPhase = true;
+    const code = `+${getCountryCallingCode(countryIsoCode, metadata)} `;
 
     return ({elementState, data}) => {
         if (!isInitializationPhase) {
@@ -24,11 +25,20 @@ export function cutInitCountryCodePreprocessor({
 
         isInitializationPhase = false;
 
+        /**
+         * If the value already starts with the expected prefix (e.g., "+7 "),
+         * don't reformat it. This avoids breaking selection positions when
+         * the input already has a properly formatted value (e.g., an initial
+         * value set on the element before Maskito attaches).
+         */
+        if (value.startsWith(code)) {
+            return {elementState};
+        }
+
         try {
             const phone = parsePhoneNumber(value, countryIsoCode, metadata);
-            const code = getCountryCallingCode(countryIsoCode, metadata);
 
-            const newValue = `+${code} ${phone.nationalNumber}`;
+            const newValue = `${code} ${phone.nationalNumber}`;
 
             return {
                 elementState: {
