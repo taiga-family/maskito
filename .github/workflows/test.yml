@@ -37,32 +37,32 @@ jobs:
       - name: Display structure of coverage files
         run: tree -L 2 ./coverage -P 'lcov.info'
 
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/core/
           flags: summary,core
           name: core
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/kit/
           flags: summary,kit
           name: kit
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/phone/
           flags: summary,phone
           name: phone
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/angular/
           flags: summary,angular
           name: angular
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/react/
           flags: summary,react
           name: react
-      - uses: codecov/codecov-action@v5.5.1
+      - uses: codecov/codecov-action@v5.5.2
         with:
           directory: ./coverage/vue/
           flags: summary,vue
