@@ -130,6 +130,40 @@
                 to mutate textfield's value on focus/blur events.
             </ng-template>
         </tui-doc-example>
+
+        <tui-doc-example
+            id="national-format"
+            heading="National format"
+            [content]="nationalFormat"
+            [description]="nationalFormatDescription"
+        >
+            <phone-doc-example-6 />
+
+            <ng-template #nationalFormatDescription>
+                <p>
+                    Setting the
+                    <code>format</code>
+                    option to
+                    <code>'NATIONAL'</code>
+                    displays phone numbers in the country's national format without the country code prefix.
+                </p>
+                <p>
+                    For example, US numbers will be formatted as
+                    <code>(212) 343-3355</code>
+                    instead of
+                    <code>+1 212 343-3355</code>
+                    .
+                </p>
+                <p>
+                    <strong>Note:</strong>
+                    National format only works with
+                    <code>strict: true</code>
+                    mode (requires
+                    <code>countryIsoCode</code>
+                    ).
+                </p>
+            </ng-template>
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -210,6 +244,35 @@
                 <p>
                     <strong>Default:</strong>
                     <code>-</code>
+                </p>
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="format"
+                documentationPropertyType="PhoneNumberFormat"
+                [documentationPropertyValues]="formatVariants"
+                [(documentationPropertyValue)]="format"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Phone number format.
+                <code>'INTERNATIONAL'</code>
+                includes the country code prefix (e.g.,
+                <code>+1 212 343-3355</code>
+                ).
+                <code>'NATIONAL'</code>
+                uses country-specific formatting without the country code (e.g.,
+                <code>(212) 343-3355</code>
+                for US).
+                <p>
+                    <strong>Note:</strong>
+                    <code>'NATIONAL'</code>
+                    format only works with
+                    <code>strict: true</code>
+                    mode.
+                </p>
+                <p>
+                    <strong>Default:</strong>
+                    <code>'INTERNATIONAL'</code>
                 </p>
             </ng-template>
         </tui-doc-documentation>

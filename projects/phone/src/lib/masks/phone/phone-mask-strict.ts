@@ -4,6 +4,7 @@ import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/k
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
+import type {PhoneNumberFormat} from './phone-mask';
 import {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
@@ -15,14 +16,26 @@ export function maskitoPhoneStrictOptionsGenerator({
     countryIsoCode,
     metadata,
     separator = '-',
+    format = 'INTERNATIONAL',
 }: {
     countryIsoCode: CountryCode;
     metadata: MetadataJson;
     separator?: string;
+    /**
+     * Phone number format.
+     * - 'INTERNATIONAL' (default): Includes country code prefix (e.g., +1 212 343-3355)
+     * - 'NATIONAL': Country-specific format without country code (e.g., (212) 343-3355)
+     */
+    format?: PhoneNumberFormat;
 }): Required<MaskitoOptions> {
+    const isNational = format === 'NATIONAL';
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
-    const prefix = `+${code} `;
+    /**
+     * For international format: prefix is "+{countryCode} " (e.g., "+1 ")
+     * For national format: prefix is empty string (no country code displayed)
+     */
+    const prefix = isNational ? '' : `+${code} `;
 
     let currentTemplate = '';
     let currentPhoneLength = 0;
@@ -30,7 +43,14 @@ export function maskitoPhoneStrictOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const newTemplate = getPhoneTemplate(formatter, value, separator);
+            const newTemplate = getPhoneTemplate({
+                formatter,
+                value,
+                separator,
+                countryIsoCode,
+                metadata,
+                format,
+            });
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({
@@ -43,19 +63,28 @@ export function maskitoPhoneStrictOptionsGenerator({
 
             return generatePhoneMask({value, template: currentTemplate, prefix});
         },
-        plugins: [
-            maskitoCaretGuard((value, [from, to]) => [
-                from === to ? prefix.length : 0,
-                value.length,
-            ]),
-        ],
+        plugins: isNational
+            ? []
+            : [
+                  maskitoCaretGuard((value, [from, to]) => [
+                      from === to ? prefix.length : 0,
+                      value.length,
+                  ]),
+              ],
         preprocessors: [
-            cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
-            validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
+            validatePhonePreprocessorGenerator({
+                prefix,
+                countryIsoCode,
+                metadata,
+                format,
+            }),
         ],
-        postprocessors: [
-            maskitoPrefixPostprocessorGenerator(prefix),
-            phoneLengthPostprocessorGenerator(metadata),
-        ],
+        postprocessors: isNational
+            ? [phoneLengthPostprocessorGenerator(metadata)]
+            : [
+                  maskitoPrefixPostprocessorGenerator(prefix),
+                  phoneLengthPostprocessorGenerator(metadata),
+              ],
     };
 }
