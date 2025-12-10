@@ -38,4 +38,44 @@ describe('number converting to string without exponent', () => {
     it('fractional value with exponent and precision equals 4', () => {
         expect(stringifyNumberWithoutExp(2.23e-2)).toBe('0.0223');
     });
+
+    it('very small exponent that exceeds toFixed limit must expand manually', () => {
+        expect(stringifyNumberWithoutExp(102.282e-112)).toBe(
+            '0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000102282',
+        );
+    });
+
+    it('positive exponent should use full wide expansion', () => {
+        expect(stringifyNumberWithoutExp(1e25)).toBe('10000000000000000000000000');
+    });
+
+    it('zero', () => {
+        expect(stringifyNumberWithoutExp(0)).toBe('0');
+    });
+
+    it('negative zero formatted correctly', () => {
+        expect(stringifyNumberWithoutExp(-0)).toBe('0');
+    });
+
+    it('bigint basic', () => {
+        expect(stringifyNumberWithoutExp(123n)).toBe('123');
+    });
+
+    it('negative bigint', () => {
+        expect(stringifyNumberWithoutExp(-999999999999999999999n)).toBe(
+            '-999999999999999999999',
+        );
+    });
+
+    it('large negative exponent simple case', () => {
+        expect(stringifyNumberWithoutExp(5e-5)).toBe('0.00005');
+    });
+
+    it('decimal with many zeros inside exponent', () => {
+        expect(stringifyNumberWithoutExp(9.001e-4)).toBe('0.0009001');
+    });
+
+    it('positive exponent with fractional part', () => {
+        expect(stringifyNumberWithoutExp(3.14e5)).toBe('314000');
+    });
 });
