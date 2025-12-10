@@ -81,10 +81,6 @@ describe('Phone (maskitoTransform)', () => {
                 expect(maskitoTransform('+12123433355', options)).toBe('(212) 343-3355');
             });
 
-            /**
-             * Note: libphonenumber-js formatIncompletePhoneNumber closes parentheses
-             * even for incomplete area codes, e.g., '212' -> '(212)'
-             */
             it('handles partial input - area code (library adds closing paren)', () => {
                 expect(maskitoTransform('212', options)).toBe('(212)');
             });

@@ -27,39 +27,37 @@ describe('Phone | National format', () => {
                 });
             });
 
-            it('formats as (xxx) xxx-xxxx', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .focus()
-                    .type('2123433355')
-                    .should('have.value', '(212) 343-3355');
-            });
+            const typingCases: Array<{name: string; input: string; expected: string}> = [
+                {
+                    name: 'formats as (xxx) xxx-xxxx',
+                    input: '2123433355',
+                    expected: '(212) 343-3355',
+                },
+                {
+                    name: 'formats partial input - area code',
+                    input: '212',
+                    expected: '(212)',
+                },
+                {
+                    name: 'formats partial input - after area code',
+                    input: '2123',
+                    expected: '(212) 3',
+                },
+                {
+                    name: 'formats partial input - middle of number',
+                    input: '212343',
+                    expected: '(212) 343',
+                },
+            ];
 
-            /**
-             * Note: libphonenumber-js closes parentheses even for partial area codes.
-             */
-            it('formats partial input - area code', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .focus()
-                    .type('212')
-                    .should('have.value', '(212)');
-            });
-
-            it('formats partial input - after area code', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .focus()
-                    .type('2123')
-                    .should('have.value', '(212) 3');
-            });
-
-            it('formats partial input - middle of number', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .focus()
-                    .type('212343')
-                    .should('have.value', '(212) 343');
+            typingCases.forEach(({name, input, expected}) => {
+                it(name, () => {
+                    cy.get('input')
+                        .should('be.visible')
+                        .focus()
+                        .type(input)
+                        .should('have.value', expected);
+                });
             });
         });
 
@@ -73,47 +71,48 @@ describe('Phone | National format', () => {
                 });
             });
 
-            it('(212) 343-3355| => Backspace => (212) 343-335|', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .should('have.value', '(212) 343-3355')
-                    .focus()
-                    .type('{moveToEnd}')
-                    .type('{backspace}')
-                    .should('have.value', '(212) 343-335')
-                    .should('have.prop', 'selectionStart', '(212) 343-335'.length)
-                    .should('have.prop', 'selectionEnd', '(212) 343-335'.length);
-            });
+            const backspaceCases: Array<{
+                name: string;
+                leftArrows: number;
+                expectedValue: string;
+                expectedCursor: number;
+            }> = [
+                {
+                    name: '(212) 343-3355| => Backspace => (212) 343-335|',
+                    leftArrows: 0,
+                    expectedValue: '(212) 343-335',
+                    expectedCursor: '(212) 343-335'.length,
+                },
+                {
+                    name: '(212) 343|-3355 => Backspace => (212) 34|3-355',
+                    leftArrows: '-3355'.length,
+                    expectedValue: '(212) 343-355',
+                    expectedCursor: '(212) 34'.length,
+                },
+                {
+                    name: '(212) 3|43-3355 => Backspace => (212) |433-355',
+                    leftArrows: '43-3355'.length,
+                    expectedValue: '(212) 433-355',
+                    expectedCursor: '(212) '.length,
+                },
+            ];
 
-            it('(212) 343|-3355 => Backspace => (212) 34|3-355', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .should('have.value', '(212) 343-3355')
-                    .focus()
-                    .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat('-3355'.length))
-                    .should('have.prop', 'selectionStart', '(212) 343'.length)
-                    .should('have.prop', 'selectionEnd', '(212) 343'.length)
-                    .type('{backspace}')
-                    .should('have.value', '(212) 343-355')
-                    .should('have.prop', 'selectionStart', '(212) 34'.length)
-                    .should('have.prop', 'selectionEnd', '(212) 34'.length);
-            });
-
-            it('(212) 3|43-3355 => Backspace => (212) |433-355', () => {
-                cy.get('input')
-                    .should('be.visible')
-                    .should('have.value', '(212) 343-3355')
-                    .focus()
-                    .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat('43-3355'.length))
-                    .should('have.prop', 'selectionStart', '(212) 3'.length)
-                    .should('have.prop', 'selectionEnd', '(212) 3'.length)
-                    .type('{backspace}')
-                    .should('have.value', '(212) 433-355')
-                    .should('have.prop', 'selectionStart', '(212) '.length)
-                    .should('have.prop', 'selectionEnd', '(212) '.length);
-            });
+            backspaceCases.forEach(
+                ({name, leftArrows, expectedValue, expectedCursor}) => {
+                    it(name, () => {
+                        cy.get('input')
+                            .should('be.visible')
+                            .should('have.value', '(212) 343-3355')
+                            .focus()
+                            .type('{moveToEnd}')
+                            .type('{leftArrow}'.repeat(leftArrows) || '{moveToEnd}')
+                            .type('{backspace}')
+                            .should('have.value', expectedValue)
+                            .should('have.prop', 'selectionStart', expectedCursor)
+                            .should('have.prop', 'selectionEnd', expectedCursor);
+                    });
+                },
+            );
         });
 
         describe('Typing after initialization with value', () => {
@@ -191,19 +190,15 @@ describe('Phone | National format', () => {
     });
 
     describe('Custom separator', () => {
-        function createMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
-                countryIsoCode: 'US',
-                metadata,
-                format: 'NATIONAL',
-                separator: ' ',
-            });
-        }
-
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
-                    maskitoOptions: createMaskitoOptions(),
+                    maskitoOptions: maskitoPhoneOptionsGenerator({
+                        countryIsoCode: 'US',
+                        metadata,
+                        format: 'NATIONAL',
+                        separator: ' ',
+                    }),
                     initialValue: '',
                 },
             });
