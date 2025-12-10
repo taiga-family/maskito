@@ -77,6 +77,12 @@ describe('maskitoStringifyNumber', () => {
             expect(
                 maskitoStringifyNumber(1.2e-8, {maximumFractionDigits: 10, prefix: '$'}),
             ).toBe('$0.000000012');
+
+            expect(
+                maskitoStringifyNumber(2e24, {
+                    thousandSeparator: '_',
+                }),
+            ).toBe('2_000_000_000_000_000_000_000_000');
         });
     });
 
