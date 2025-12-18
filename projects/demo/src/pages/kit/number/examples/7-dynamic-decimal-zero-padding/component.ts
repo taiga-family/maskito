@@ -63,7 +63,6 @@ export class NumberMaskDocExample7 {
 
             this.decimalZeroPadding = this.decimalZeroPadding && !dotWasRemoved;
         } else {
-            // eslint-disable-next-line i18n/no-russian-character
             this.decimalZeroPadding = ['.', ',', 'б', 'ю'].some(
                 (sep) => data?.includes(sep) || this.value.includes(sep),
             );

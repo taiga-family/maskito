@@ -114,7 +114,6 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     protected apiPageControl = new FormControl('');
 
     protected readonly decimalPseudoSeparatorsOptions = [
-        // eslint-disable-next-line i18n/no-russian-character
         ['.', ',', 'б', 'ю'],
         ['.'],
         [','],

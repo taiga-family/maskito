@@ -184,6 +184,7 @@ describe('Native attribute maxlength works', () => {
                     />
                     <button
                         id="cleaner"
+                        type="button"
                         (click)="clear()"
                     >
                         Cleaner
