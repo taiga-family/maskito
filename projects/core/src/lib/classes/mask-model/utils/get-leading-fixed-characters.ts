@@ -1,7 +1,6 @@
 import type {ElementState} from '../../../types';
 import {isFixedCharacter} from './is-fixed-character';
 
-// eslint-disable-next-line @typescript-eslint/max-params
 export function getLeadingFixedCharacters(
     mask: Array<RegExp | string>,
     validatedValuePart: string,
