@@ -1,4 +1,4 @@
-import '@taiga-ui/testing/setup-jest';
+import '@taiga-ui/testing';
 
 import {enableProdMode} from '@angular/core';
 
