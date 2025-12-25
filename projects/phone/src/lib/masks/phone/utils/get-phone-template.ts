@@ -5,7 +5,9 @@ export function getPhoneTemplate(
     value: string,
     separator: string,
 ): string {
-    formatter.input(value.replaceAll(/[^\d+]/g, ''));
+    const normalizedValue = value && !value.startsWith('+') ? `+${value}` : value;
+
+    formatter.input(normalizedValue.replaceAll(/[^\d+]/g, ''));
 
     const initialTemplate = formatter.getTemplate();
     const split = initialTemplate.split(' ');
