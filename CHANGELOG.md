@@ -1,3 +1,14 @@
+### [5.0.1](https://github.com/taiga-family/maskito/compare/v5.0.0...v5.0.1) (2025-12-26)
+
+### 🐞 Bug Fixes
+
+- **phone**: `Phone` removes last digit if pasted without '+' (#2480)
+  [(5d709ca)](https://github.com/taiga-family/maskito/commit/5d709ca9c2e4a8abbe99a38c47551a9e6b2d8d36)
+- **kit**: `maskitoStringifyNumber` supports extremal exponent values (#2463)
+  [(1340257)](https://github.com/taiga-family/maskito/commit/1340257486a86499f94c96dbe67949ada32ebae4)
+- **phone**: `Phone` with initial value has problems with the first time delete action (#2455)
+  [(fa596fa)](https://github.com/taiga-family/maskito/commit/fa596fa101333b519bc3d760d6f4969151178e1a)
+
 ## [5.0.0](https://github.com/taiga-family/maskito/compare/v4.0.1...v5.0.0) (2025-12-03)
 
 ### ⚠ BREAKING CHANGES
