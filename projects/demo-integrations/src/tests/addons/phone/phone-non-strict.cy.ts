@@ -169,6 +169,13 @@ describe('Phone', () => {
                 },
             );
         });
+
+        describe('Pasting numbers', () => {
+            it('should not cut the last digit when pasting', () => {
+                cy.get('@input').paste('12125552365');
+                cy.get('@input').should('have.value', '+1 212 555-2365');
+            });
+        });
     });
 
     describe('Some countries', () => {
