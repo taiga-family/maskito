@@ -9,6 +9,7 @@ import {
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
+import {normalizePhonePreprocessorGenerator} from './processors/normalize-phone-preprocessor';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
 export function maskitoPhoneStrictOptionsGenerator({
@@ -52,6 +53,7 @@ export function maskitoPhoneStrictOptionsGenerator({
         preprocessors: [
             cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
             validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            normalizePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
         ],
         postprocessors: [
             maskitoPrefixPostprocessorGenerator(prefix),
