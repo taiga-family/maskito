@@ -35,6 +35,7 @@ export function getPhoneTemplate({
         const normalizedValue = value && !value.startsWith('+') ? `+${value}` : value;
 
         formatter.input(normalizedValue.replaceAll(/[^\d+]/g, ''));
+
         return getNationalPhoneTemplate({
             value: normalizedValue,
             countryIsoCode,
