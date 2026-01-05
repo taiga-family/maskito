@@ -31,11 +31,10 @@ export function getPhoneTemplate({
 }): string {
     const isNational = format === 'NATIONAL';
 
-    const normalizedValue = value && !value.startsWith('+') ? `+${value}` : value;
-
-    formatter.input(normalizedValue.replaceAll(/[^\d+]/g, ''));
-
     if (isNational && countryIsoCode && metadata) {
+        const normalizedValue = value && !value.startsWith('+') ? `+${value}` : value;
+
+        formatter.input(normalizedValue.replaceAll(/[^\d+]/g, ''));
         return getNationalPhoneTemplate({
             value: normalizedValue,
             countryIsoCode,
@@ -44,7 +43,7 @@ export function getPhoneTemplate({
         });
     }
 
-    return getInternationalPhoneTemplate({formatter, value: normalizedValue, separator});
+    return getInternationalPhoneTemplate({formatter, value, separator});
 }
 
 /**
