@@ -60,7 +60,16 @@ function getInternationalPhoneTemplate({
     value: string;
     separator: string;
 }): string {
-    formatter.input(value.replaceAll(/[^\d+]/g, ''));
+    const digitsAndPlus = value.replaceAll(/[^\d+]/g, '');
+    /**
+     * Normalize value to start with '+' so AsYouType can detect the country.
+     * Only add '+' if there are actual digits to format.
+     */
+    const hasDigits = /\d/.test(digitsAndPlus);
+    const normalizedValue =
+        hasDigits && !digitsAndPlus.startsWith('+') ? `+${digitsAndPlus}` : digitsAndPlus;
+
+    formatter.input(normalizedValue);
 
     const initialTemplate = formatter.getTemplate();
     const split = initialTemplate.split(' ');
