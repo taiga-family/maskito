@@ -68,6 +68,7 @@ export default [
             'unicorn/prefer-string-raw': 'off',
             '@typescript-eslint/consistent-type-exports': 'off',
             '@typescript-eslint/method-signature-style': 'off',
+            '@typescript-eslint/strict-void-return': 'off',
         },
     },
 ];
