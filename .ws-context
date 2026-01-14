@@ -1,0 +1,9 @@
+{
+    "framework": "angular",
+    "projects/vue/**": {
+        "framework": "vue"
+    },
+    "projects/react/**": {
+        "framework": "react"
+    }
+}
