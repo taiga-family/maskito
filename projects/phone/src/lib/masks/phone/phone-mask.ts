@@ -4,11 +4,6 @@ import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {maskitoPhoneNonStrictOptionsGenerator} from './phone-mask-non-strict';
 import {maskitoPhoneStrictOptionsGenerator} from './phone-mask-strict';
 
-/**
- * Phone number format type.
- * - 'INTERNATIONAL': Includes country code prefix (e.g., +1 212 343-3355)
- * - 'NATIONAL': Country-specific format without country code (e.g., (212) 343-3355)
- */
 export type PhoneNumberFormat = 'INTERNATIONAL' | 'NATIONAL';
 
 export function maskitoPhoneOptionsGenerator({

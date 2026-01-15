@@ -9,7 +9,7 @@ import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS} from '@taiga-ui/cdk';
-import {TuiLink} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {
     TUI_IS_APPLE,
     TuiInputModule,
@@ -53,6 +53,7 @@ type MetadataName = keyof typeof metadataSets;
         TuiAddonDoc,
         TuiInputModule,
         TuiLink,
+        TuiNotification,
         TuiTextfieldControllerModule,
     ],
     templateUrl: './phone-doc.template.html',
@@ -151,15 +152,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         const code = getCountryCallingCode(this.countryIsoCode, this.metadata);
         const prefix = `${CHAR_PLUS}${code} `;
 
-        /**
-         * For national format, don't add focus/blur plugins since there's no prefix.
-         * For international strict mode, add focus/blur plugins for prefix handling.
-         */
-        if (this.format === 'NATIONAL') {
-            return options;
-        }
-
-        return this.strict
+        return this.strict && this.format === 'INTERNATIONAL'
             ? {
                   ...options,
                   plugins: [

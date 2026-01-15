@@ -3,17 +3,6 @@ import {formatIncompletePhoneNumber} from 'libphonenumber-js/core';
 
 import type {PhoneNumberFormat} from '../phone-mask';
 
-/**
- * Generates a phone template string based on the current input value.
- *
- * @param formatter - AsYouType formatter instance
- * @param value - Current input value
- * @param separator - Separator character between number groups
- * @param countryIsoCode - Country ISO code (required for national format)
- * @param metadata - libphonenumber-js metadata
- * @param format - Phone number format ('INTERNATIONAL' or 'NATIONAL')
- * @returns Template string with 'x' placeholders for digits
- */
 export function getPhoneTemplate({
     formatter,
     value,

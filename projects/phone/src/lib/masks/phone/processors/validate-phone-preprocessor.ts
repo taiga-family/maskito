@@ -17,7 +17,7 @@ function convertToNationalFormat(
     countryIsoCode: CountryCode,
     metadata: MetadataJson,
 ): string | null {
-    const formatter = new AsYouType({defaultCountry: countryIsoCode}, metadata);
+    const formatter = new AsYouType(countryIsoCode, metadata);
 
     formatter.input(value);
     const numberValue = formatter.getNumberValue() ?? '';
@@ -50,11 +50,6 @@ export function validatePhonePreprocessorGenerator({
     prefix: string;
     countryIsoCode?: CountryCode;
     metadata: MetadataJson;
-    /**
-     * Phone number format.
-     * - 'INTERNATIONAL' (default): Includes country code prefix
-     * - 'NATIONAL': Country-specific format without country code
-     */
     format?: PhoneNumberFormat;
 }): MaskitoPreprocessor {
     const isNational = format === 'NATIONAL';
@@ -92,10 +87,7 @@ export function validatePhonePreprocessorGenerator({
                 /**
                  * International format autocomplete handling.
                  */
-                const formatter = new AsYouType(
-                    {defaultCountry: countryIsoCode},
-                    metadata,
-                );
+                const formatter = new AsYouType(countryIsoCode, metadata);
 
                 formatter.input(value);
                 const numberValue = formatter.getNumberValue() ?? '';

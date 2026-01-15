@@ -19,15 +19,9 @@ export function cutInitCountryCodePreprocessor({
 }: {
     countryIsoCode: CountryCode;
     metadata: MetadataJson;
-    /**
-     * Phone number format.
-     * - 'INTERNATIONAL' (default): Includes country code prefix
-     * - 'NATIONAL': Country-specific format without country code
-     */
     format?: PhoneNumberFormat;
 }): MaskitoPreprocessor {
     let isInitializationPhase = true;
-    const isNational = format === 'NATIONAL';
     const code = `+${getCountryCallingCode(countryIsoCode, metadata)} `;
 
     return ({elementState, data}) => {
@@ -43,7 +37,7 @@ export function cutInitCountryCodePreprocessor({
          * For national format, check if value is already in national format
          * (doesn't start with '+').
          */
-        if (isNational) {
+        if (format === 'NATIONAL') {
             /**
              * If value starts with '+', extract national number.
              * Otherwise, assume it's already in national format.
@@ -55,18 +49,17 @@ export function cutInitCountryCodePreprocessor({
                         countryIsoCode,
                         metadata,
                     );
+
                     /**
                      * Format the national number using country-specific formatting.
                      */
-                    const formattedNational = formatIncompletePhoneNumber(
-                        nationalNumber,
-                        countryIsoCode,
-                        metadata,
-                    );
-
                     return {
                         elementState: {
-                            value: formattedNational,
+                            value: formatIncompletePhoneNumber(
+                                nationalNumber,
+                                countryIsoCode,
+                                metadata,
+                            ),
                             selection,
                         },
                     };
