@@ -64,4 +64,22 @@ describe('Phone [strict]=true', () => {
             });
         });
     });
+
+    describe('Pasting numbers', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.PhonePackage}/API?countryIsoCode=RU&strict=true`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .should('have.value', '+7 ')
+                .as('input');
+        });
+
+        it('should merge pasted numbers with existing input', () => {
+            cy.get('@input').clear().type('+987');
+            cy.get('@input').paste('654');
+            cy.get('@input').should('have.value', '+7 987 654');
+        });
+    });
 });
