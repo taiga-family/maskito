@@ -4,6 +4,7 @@ import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType} from 'libphonenumber-js/core';
 
 import {
+    normalizePhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
@@ -47,6 +48,11 @@ export function maskitoPhoneNonStrictOptionsGenerator({
         },
         preprocessors: [
             validatePhonePreprocessorGenerator({
+                prefix,
+                countryIsoCode: defaultIsoCode,
+                metadata,
+            }),
+            normalizePhonePreprocessorGenerator({
                 prefix,
                 countryIsoCode: defaultIsoCode,
                 metadata,
