@@ -6,10 +6,10 @@ import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 import type {MaskitoPhoneParams} from './phone-mask';
 import {
     cutInitCountryCodePreprocessor,
+    normalizePhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
-import {normalizePhonePreprocessorGenerator} from './processors/normalize-phone-preprocessor';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
 export function maskitoPhoneStrictOptionsGenerator({
