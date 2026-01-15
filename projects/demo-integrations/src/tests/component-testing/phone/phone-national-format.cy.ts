@@ -1,211 +1,352 @@
-import type {MaskitoOptions} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import type {CountryCode} from 'libphonenumber-js';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import {TestInput} from '../utils';
 
-interface CountryTestConfig {
-    countryIsoCode: CountryCode;
-    fullNumber: {input: string; expected: string};
-    partialCases: Array<{name: string; input: string; expected: string}>;
-    backspaceCases: Array<{
-        name: string;
-        leftArrows: number;
-        expectedValue: string;
-        expectedCursor: number;
-    }>;
-}
-
-const countryConfigs: CountryTestConfig[] = [
-    {
-        countryIsoCode: 'US',
-        fullNumber: {input: '2123433355', expected: '(212) 343-3355'},
-        partialCases: [
-            {name: 'area code', input: '212', expected: '(212)'},
-            {name: 'after area code', input: '2123', expected: '(212) 3'},
-            {name: 'middle of number', input: '212343', expected: '(212) 343'},
-        ],
-        backspaceCases: [
-            {
-                name: 'end',
-                leftArrows: 0,
-                expectedValue: '(212) 343-335',
-                expectedCursor: 13,
-            },
-            {
-                name: 'before last group',
-                leftArrows: 5,
-                expectedValue: '(212) 343-355',
-                expectedCursor: 8,
-            },
-            {
-                name: 'after area code',
-                leftArrows: 7,
-                expectedValue: '(212) 433-355',
-                expectedCursor: 6,
-            },
-        ],
-    },
-    {
-        countryIsoCode: 'RU',
-        fullNumber: {input: '9202800155', expected: '920 280-01-55'},
-        partialCases: [
-            {name: 'first group', input: '920', expected: '920'},
-            {name: 'after first group', input: '9202', expected: '920 2'},
-            {name: 'middle of number', input: '920280', expected: '920 280'},
-        ],
-        backspaceCases: [
-            {
-                name: 'end',
-                leftArrows: 0,
-                expectedValue: '920 280-01-5',
-                expectedCursor: 12,
-            },
-            {
-                name: 'before last group',
-                leftArrows: 3,
-                expectedValue: '920 280-05-5',
-                expectedCursor: 9,
-            },
-            {
-                name: 'after first group',
-                leftArrows: 8,
-                expectedValue: '920 800-15-5',
-                expectedCursor: 4,
-            },
-        ],
-    },
-    {
-        countryIsoCode: 'ES',
-        fullNumber: {input: '612345678', expected: '612 34-56-78'},
-        partialCases: [
-            {name: 'first group', input: '612', expected: '612'},
-            {name: 'after first group', input: '6123', expected: '612 3'},
-            {name: 'middle of number', input: '612345', expected: '612 34-5'},
-        ],
-        backspaceCases: [
-            {
-                name: 'end',
-                leftArrows: 0,
-                expectedValue: '612 34-56-7',
-                expectedCursor: 11,
-            },
-            {
-                name: 'before last group',
-                leftArrows: 3,
-                expectedValue: '612 34-57-8',
-                expectedCursor: 8,
-            },
-            {
-                name: 'after first group',
-                leftArrows: 7,
-                expectedValue: '612 45-67-8',
-                expectedCursor: 4,
-            },
-        ],
-    },
-    {
-        countryIsoCode: 'FR',
-        fullNumber: {input: '0612345678', expected: '06 12-34-56-78'},
-        partialCases: [
-            {name: 'first group', input: '06', expected: '06'},
-            {name: 'after first group', input: '0612', expected: '06 12'},
-            {name: 'middle of number', input: '061234', expected: '06 12-34'},
-        ],
-        backspaceCases: [
-            {
-                name: 'end',
-                leftArrows: 0,
-                expectedValue: '06 12-34-56-7',
-                expectedCursor: 13,
-            },
-            {
-                name: 'before last group',
-                leftArrows: 3,
-                expectedValue: '06 12-34-57-8',
-                expectedCursor: 10,
-            },
-            {
-                name: 'after second group',
-                leftArrows: 7,
-                expectedValue: '06 12-45-67-8',
-                expectedCursor: 6,
-            },
-        ],
-    },
-];
-
 describe('Phone | National format', () => {
-    countryConfigs.forEach(
-        ({countryIsoCode, fullNumber, partialCases, backspaceCases}) => {
-            describe(countryIsoCode, () => {
-                function createMaskitoOptions(): MaskitoOptions {
-                    return maskitoPhoneOptionsGenerator({
-                        countryIsoCode,
-                        metadata,
-                        format: 'NATIONAL',
-                    });
-                }
-
-                describe('Typing digits', () => {
-                    beforeEach(() => {
-                        cy.mount(TestInput, {
-                            componentProperties: {
-                                maskitoOptions: createMaskitoOptions(),
-                                initialValue: '',
-                            },
-                        });
-                    });
-
-                    it(`formats full number as ${fullNumber.expected}`, () => {
-                        cy.get('input')
-                            .focus()
-                            .type(fullNumber.input)
-                            .should('have.value', fullNumber.expected);
-                    });
-
-                    partialCases.forEach(({name, input, expected}) => {
-                        it(`formats partial input - ${name}`, () => {
-                            cy.get('input')
-                                .focus()
-                                .type(input)
-                                .should('have.value', expected);
-                        });
-                    });
-                });
-
-                describe('Backspace behavior', () => {
-                    beforeEach(() => {
-                        cy.mount(TestInput, {
-                            componentProperties: {
-                                maskitoOptions: createMaskitoOptions(),
-                                initialValue: fullNumber.expected,
-                            },
-                        });
-                    });
-
-                    backspaceCases.forEach(
-                        ({name, leftArrows, expectedValue, expectedCursor}) => {
-                            it(`backspace at ${name}`, () => {
-                                cy.get('input')
-                                    .should('have.value', fullNumber.expected)
-                                    .focus()
-                                    .type('{moveToEnd}')
-                                    .type(
-                                        '{leftArrow}'.repeat(leftArrows) || '{moveToEnd}',
-                                    )
-                                    .type('{backspace}')
-                                    .should('have.value', expectedValue)
-                                    .should('have.prop', 'selectionStart', expectedCursor)
-                                    .should('have.prop', 'selectionEnd', expectedCursor);
-                            });
-                        },
-                    );
+    describe('United States', () => {
+        describe('Typing digits', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'US',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '',
+                    },
                 });
             });
-        },
-    );
+
+            it('Type 2123433355 => (212) 343-3355', () => {
+                cy.get('input')
+                    .focus()
+                    .type('2123433355')
+                    .should('have.value', '(212) 343-3355');
+            });
+
+            it('Type 212 => (212)', () => {
+                cy.get('input').focus().type('212').should('have.value', '(212)');
+            });
+
+            it('Type 2123 => (212) 3', () => {
+                cy.get('input').focus().type('2123').should('have.value', '(212) 3');
+            });
+
+            it('Type 212343 => (212) 343', () => {
+                cy.get('input').focus().type('212343').should('have.value', '(212) 343');
+            });
+        });
+
+        describe('Backspace behavior', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'US',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '(212) 343-3355',
+                    },
+                });
+            });
+
+            it('(212) 343-3355| => Backspace => (212) 343-335|', () => {
+                cy.get('input')
+                    .should('have.value', '(212) 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '(212) 343-335')
+                    .should('have.prop', 'selectionStart', 13)
+                    .should('have.prop', 'selectionEnd', 13);
+            });
+
+            it('(212) 343|-3355 => Backspace => (212) 34|3-355', () => {
+                cy.get('input')
+                    .should('have.value', '(212) 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(5))
+                    .type('{backspace}')
+                    .should('have.value', '(212) 343-355')
+                    .should('have.prop', 'selectionStart', 8)
+                    .should('have.prop', 'selectionEnd', 8);
+            });
+
+            it('(212) 3|43-3355 => Backspace => (212) |433-355', () => {
+                cy.get('input')
+                    .should('have.value', '(212) 343-3355')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(7))
+                    .type('{backspace}')
+                    .should('have.value', '(212) 433-355')
+                    .should('have.prop', 'selectionStart', 6)
+                    .should('have.prop', 'selectionEnd', 6);
+            });
+        });
+    });
+
+    describe('Russia', () => {
+        describe('Typing digits', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'RU',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '',
+                    },
+                });
+            });
+
+            it('Type 9202800155 => 920 280-01-55', () => {
+                cy.get('input')
+                    .focus()
+                    .type('9202800155')
+                    .should('have.value', '920 280-01-55');
+            });
+
+            it('Type 920 => 920', () => {
+                cy.get('input').focus().type('920').should('have.value', '920');
+            });
+
+            it('Type 9202 => 920 2', () => {
+                cy.get('input').focus().type('9202').should('have.value', '920 2');
+            });
+
+            it('Type 920280 => 920 280', () => {
+                cy.get('input').focus().type('920280').should('have.value', '920 280');
+            });
+        });
+
+        describe('Backspace behavior', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'RU',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '920 280-01-55',
+                    },
+                });
+            });
+
+            it('920 280-01-55| => Backspace => 920 280-01-5|', () => {
+                cy.get('input')
+                    .should('have.value', '920 280-01-55')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '920 280-01-5')
+                    .should('have.prop', 'selectionStart', 12)
+                    .should('have.prop', 'selectionEnd', 12);
+            });
+
+            it('920 280-01|-55 => Backspace => 920 280-0|5-5', () => {
+                cy.get('input')
+                    .should('have.value', '920 280-01-55')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(3))
+                    .type('{backspace}')
+                    .should('have.value', '920 280-05-5')
+                    .should('have.prop', 'selectionStart', 9)
+                    .should('have.prop', 'selectionEnd', 9);
+            });
+
+            it('920 2|80-01-55 => Backspace => 920 |800-15-5', () => {
+                cy.get('input')
+                    .should('have.value', '920 280-01-55')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(8))
+                    .type('{backspace}')
+                    .should('have.value', '920 800-15-5')
+                    .should('have.prop', 'selectionStart', 4)
+                    .should('have.prop', 'selectionEnd', 4);
+            });
+        });
+    });
+
+    describe('Spain', () => {
+        describe('Typing digits', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'ES',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '',
+                    },
+                });
+            });
+
+            it('Type 612345678 => 612 34-56-78', () => {
+                cy.get('input')
+                    .focus()
+                    .type('612345678')
+                    .should('have.value', '612 34-56-78');
+            });
+
+            it('Type 612 => 612', () => {
+                cy.get('input').focus().type('612').should('have.value', '612');
+            });
+
+            it('Type 6123 => 612 3', () => {
+                cy.get('input').focus().type('6123').should('have.value', '612 3');
+            });
+
+            it('Type 612345 => 612 34-5', () => {
+                cy.get('input').focus().type('612345').should('have.value', '612 34-5');
+            });
+        });
+
+        describe('Backspace behavior', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'ES',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '612 34-56-78',
+                    },
+                });
+            });
+
+            it('612 34-56-78| => Backspace => 612 34-56-7|', () => {
+                cy.get('input')
+                    .should('have.value', '612 34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '612 34-56-7')
+                    .should('have.prop', 'selectionStart', 11)
+                    .should('have.prop', 'selectionEnd', 11);
+            });
+
+            it('612 34-56|-78 => Backspace => 612 34-5|7-8', () => {
+                cy.get('input')
+                    .should('have.value', '612 34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(3))
+                    .type('{backspace}')
+                    .should('have.value', '612 34-57-8')
+                    .should('have.prop', 'selectionStart', 8)
+                    .should('have.prop', 'selectionEnd', 8);
+            });
+
+            it('612 3|4-56-78 => Backspace => 612 |45-67-8', () => {
+                cy.get('input')
+                    .should('have.value', '612 34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(7))
+                    .type('{backspace}')
+                    .should('have.value', '612 45-67-8')
+                    .should('have.prop', 'selectionStart', 4)
+                    .should('have.prop', 'selectionEnd', 4);
+            });
+        });
+    });
+
+    describe('France', () => {
+        describe('Typing digits', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'FR',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '',
+                    },
+                });
+            });
+
+            it('Type 0612345678 => 06 12-34-56-78', () => {
+                cy.get('input')
+                    .focus()
+                    .type('0612345678')
+                    .should('have.value', '06 12-34-56-78');
+            });
+
+            it('Type 06 => 06', () => {
+                cy.get('input').focus().type('06').should('have.value', '06');
+            });
+
+            it('Type 0612 => 06 12', () => {
+                cy.get('input').focus().type('0612').should('have.value', '06 12');
+            });
+
+            it('Type 061234 => 06 12-34', () => {
+                cy.get('input').focus().type('061234').should('have.value', '06 12-34');
+            });
+        });
+
+        describe('Backspace behavior', () => {
+            beforeEach(() => {
+                cy.mount(TestInput, {
+                    componentProperties: {
+                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                            countryIsoCode: 'FR',
+                            metadata,
+                            format: 'NATIONAL',
+                        }),
+                        initialValue: '06 12-34-56-78',
+                    },
+                });
+            });
+
+            it('06 12-34-56-78| => Backspace => 06 12-34-56-7|', () => {
+                cy.get('input')
+                    .should('have.value', '06 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{backspace}')
+                    .should('have.value', '06 12-34-56-7')
+                    .should('have.prop', 'selectionStart', 13)
+                    .should('have.prop', 'selectionEnd', 13);
+            });
+
+            it('06 12-34-56|-78 => Backspace => 06 12-34-5|7-8', () => {
+                cy.get('input')
+                    .should('have.value', '06 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(3))
+                    .type('{backspace}')
+                    .should('have.value', '06 12-34-57-8')
+                    .should('have.prop', 'selectionStart', 10)
+                    .should('have.prop', 'selectionEnd', 10);
+            });
+
+            it('06 12-3|4-56-78 => Backspace => 06 12-|45-67-8', () => {
+                cy.get('input')
+                    .should('have.value', '06 12-34-56-78')
+                    .focus()
+                    .type('{moveToEnd}')
+                    .type('{leftArrow}'.repeat(7))
+                    .type('{backspace}')
+                    .should('have.value', '06 12-45-67-8')
+                    .should('have.prop', 'selectionStart', 6)
+                    .should('have.prop', 'selectionEnd', 6);
+            });
+        });
+    });
 
     describe('Custom separator', () => {
         beforeEach(() => {
@@ -222,7 +363,7 @@ describe('Phone | National format', () => {
             });
         });
 
-        it('uses space as separator', () => {
+        it('Type 2123433355 with space separator => (212) 343 3355', () => {
             cy.get('input')
                 .focus()
                 .type('2123433355')
