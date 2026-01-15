@@ -7,7 +7,7 @@ import {
     validatePhoneNumberLength,
 } from 'libphonenumber-js/core';
 
-import type {PhoneNumberFormat} from '../phone-mask';
+import type {MaskitoPhoneParams} from '../phone-mask';
 
 /**
  * Converts an international phone value to national format.
@@ -46,11 +46,8 @@ export function validatePhonePreprocessorGenerator({
     countryIsoCode,
     metadata,
     format = 'INTERNATIONAL',
-}: {
+}: Pick<MaskitoPhoneParams, 'countryIsoCode' | 'format' | 'metadata'> & {
     prefix: string;
-    countryIsoCode?: CountryCode;
-    metadata: MetadataJson;
-    format?: PhoneNumberFormat;
 }): MaskitoPreprocessor {
     const isNational = format === 'NATIONAL';
 

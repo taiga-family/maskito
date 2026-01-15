@@ -1,10 +1,9 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
-import type {PhoneNumberFormat} from './phone-mask';
+import type {MaskitoPhoneParams} from './phone-mask';
 import {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
@@ -17,17 +16,10 @@ export function maskitoPhoneStrictOptionsGenerator({
     metadata,
     separator = '-',
     format = 'INTERNATIONAL',
-}: {
-    countryIsoCode: CountryCode;
-    metadata: MetadataJson;
-    separator?: string;
-    /**
-     * Phone number format.
-     * - 'INTERNATIONAL' (default): Includes country code prefix (e.g., +1 212 343-3355)
-     * - 'NATIONAL': Country-specific format without country code (e.g., (212) 343-3355)
-     */
-    format?: PhoneNumberFormat;
-}): Required<MaskitoOptions> {
+}: Pick<MaskitoPhoneParams, 'format' | 'separator'> &
+    Required<
+        Pick<MaskitoPhoneParams, 'countryIsoCode' | 'metadata'>
+    >): Required<MaskitoOptions> {
     const isNational = format === 'NATIONAL';
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);

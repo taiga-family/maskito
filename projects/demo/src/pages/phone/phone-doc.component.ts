@@ -4,7 +4,7 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
-import type {PhoneNumberFormat} from '@maskito/phone';
+import type {MaskitoPhoneParams} from '@maskito/phone';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
@@ -118,12 +118,16 @@ export default class PhoneDocComponent implements GeneratorOptions {
     public strict = true;
     public countryIsoCode: CountryCode = 'RU';
     public separator = '-';
-    public format: PhoneNumberFormat = 'INTERNATIONAL';
+    public format: NonNullable<MaskitoPhoneParams['format']> = 'INTERNATIONAL';
     public metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
     public selectedMetadata: MetadataName = this.metadataVariants[0]!;
     public countryCodeVariants = getCountries(this.metadata);
     public separatorVariants = ['-', ' '];
-    public formatVariants: PhoneNumberFormat[] = ['INTERNATIONAL', 'NATIONAL'];
+    public formatVariants: Array<NonNullable<MaskitoPhoneParams['format']>> = [
+        'INTERNATIONAL',
+        'NATIONAL',
+    ];
+
     public maskitoOptions = this.computeOptions();
 
     public get metadata(): MetadataJson {

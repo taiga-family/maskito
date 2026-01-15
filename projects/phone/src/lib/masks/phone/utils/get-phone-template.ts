@@ -1,7 +1,7 @@
 import type {AsYouType, CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {formatIncompletePhoneNumber} from 'libphonenumber-js/core';
 
-import type {PhoneNumberFormat} from '../phone-mask';
+import type {MaskitoPhoneParams} from '../phone-mask';
 
 export function getPhoneTemplate({
     formatter,
@@ -16,7 +16,7 @@ export function getPhoneTemplate({
     separator: string;
     countryIsoCode?: CountryCode;
     metadata?: MetadataJson;
-    format?: PhoneNumberFormat;
+    format?: MaskitoPhoneParams['format'];
 }): string {
     const isNational = format === 'NATIONAL';
 

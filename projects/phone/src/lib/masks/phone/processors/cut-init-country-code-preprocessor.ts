@@ -1,12 +1,11 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {
     formatIncompletePhoneNumber,
     getCountryCallingCode,
     parsePhoneNumber,
 } from 'libphonenumber-js/core';
 
-import type {PhoneNumberFormat} from '../phone-mask';
+import type {MaskitoPhoneParams} from '../phone-mask';
 
 /**
  * This preprocessor works only once at initialization phase (when `new Maskito(...)` is executed).
@@ -15,12 +14,10 @@ import type {PhoneNumberFormat} from '../phone-mask';
 export function cutInitCountryCodePreprocessor({
     countryIsoCode,
     metadata,
-    format = 'INTERNATIONAL',
-}: {
-    countryIsoCode: CountryCode;
-    metadata: MetadataJson;
-    format?: PhoneNumberFormat;
-}): MaskitoPreprocessor {
+    format,
+}: Required<
+    Pick<MaskitoPhoneParams, 'countryIsoCode' | 'format' | 'metadata'>
+>): MaskitoPreprocessor {
     let isInitializationPhase = true;
     const code = `+${getCountryCallingCode(countryIsoCode, metadata)} `;
 
