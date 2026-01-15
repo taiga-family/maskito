@@ -36,10 +36,6 @@ export function getPhoneTemplate({
     return getInternationalPhoneTemplate({formatter, value, separator});
 }
 
-/**
- * Generates an international phone template (with country code prefix).
- * Format: +X XXX XXX-XX-XX (separator applies to groups after area code)
- */
 function getInternationalPhoneTemplate({
     formatter,
     value,
@@ -49,23 +45,19 @@ function getInternationalPhoneTemplate({
     value: string;
     separator: string;
 }): string {
-    const digitsAndPlus = value.replaceAll(/[^\d+]/g, '');
-    /**
-     * Normalize value to start with '+' so AsYouType can detect the country.
-     * Only add '+' if there are actual digits to format.
-     */
-    const hasDigits = /\d/.test(digitsAndPlus);
-    const normalizedValue =
-        hasDigits && !digitsAndPlus.startsWith('+') ? `+${digitsAndPlus}` : digitsAndPlus;
+    const hasDigitsOrPlus = /[\d+]/.test(value);
 
-    formatter.input(normalizedValue);
+    if (!hasDigitsOrPlus) {
+        return '';
+    }
+
+    const normalizedValue = value.startsWith('+') ? value : `+${value}`;
+
+    formatter.input(normalizedValue.replaceAll(/[^\d+]/g, ''));
 
     const initialTemplate = formatter.getTemplate();
     const split = initialTemplate.split(' ');
-    /**
-     * Join first two parts with space (country code + area code),
-     * then join remaining parts with the custom separator.
-     */
+    // Join first two parts with space, remaining parts with custom separator
     const template =
         split.length > 1
             ? `${split.slice(0, 2).join(' ')} ${split.slice(2).join(separator)}`
@@ -76,11 +68,6 @@ function getInternationalPhoneTemplate({
     return template.trim();
 }
 
-/**
- * Generates a national phone template (without country code prefix).
- * Uses formatIncompletePhoneNumber to get country-specific national formatting.
- * Example for US: (XXX) XXX-XXXX
- */
 function getNationalPhoneTemplate({
     value,
     countryIsoCode,
@@ -98,58 +85,18 @@ function getNationalPhoneTemplate({
         return '';
     }
 
-    /**
-     * formatIncompletePhoneNumber returns the formatted string with actual digits.
-     * We need to convert it to a template by replacing digits with 'x' placeholders.
-     */
     const formatted = formatIncompletePhoneNumber(digitsOnly, countryIsoCode, metadata);
-
-    /**
-     * Convert formatted number to template by replacing digits with 'x'.
-     */
     const template = formatted.replaceAll(/\d/g, 'x');
 
-    /**
-     * Apply custom separator: Replace dashes with the custom separator.
-     * We identify the "main number" portion (after any trunk prefix and area code)
-     * and apply the separator there.
-     *
-     * Strategy: Find the index after the area code (first ')' or after first space-separated group)
-     * and apply separator replacement only to the portion after that.
-     */
-    const parts = template.split(' ');
+    // Space-separated formats (like FR): join groups after first with separator
+    if (!formatted.includes('-')) {
+        const parts = template.split(' ');
 
-    if (parts.length > 1) {
-        /**
-         * Find the area code group - it's typically the group with parentheses,
-         * or if no parentheses, the first two groups form the prefix.
-         */
-        const areaCodeIndex = parts.findIndex((part) => part.includes(')'));
-
-        if (areaCodeIndex >= 0) {
-            /**
-             * Everything up to and including the area code stays as-is (with spaces).
-             * Everything after gets separators replaced and joined.
-             */
-            const prefixParts = parts.slice(0, areaCodeIndex + 1);
-            const numberParts = parts
-                .slice(areaCodeIndex + 1)
-                .map((part) => part.replaceAll('-', separator));
-
-            return `${prefixParts.join(' ')} ${numberParts.join(separator)}`;
-        }
-
-        /**
-         * No parentheses found (simple format like RU without area code parens).
-         * Keep first part as-is, apply separator to the rest.
-         */
-        const firstPart = parts[0];
-        const remainingParts = parts
-            .slice(1)
-            .map((part) => part.replaceAll('-', separator));
-
-        return `${firstPart} ${remainingParts.join(separator)}`;
+        return parts.length > 1
+            ? `${parts[0]} ${parts.slice(1).join(separator)}`
+            : template;
     }
 
-    return template;
+    // Dash-separated formats (like US, RU): swap dashes for custom separator
+    return template.replaceAll('-', separator);
 }
