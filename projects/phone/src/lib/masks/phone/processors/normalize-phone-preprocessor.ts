@@ -1,6 +1,6 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {parsePhoneNumber, validatePhoneNumberLength} from 'libphonenumber-js/core';
+import {parsePhoneNumber} from 'libphonenumber-js/core';
 
 export function normalizePhonePreprocessorGenerator({
     prefix,
@@ -12,37 +12,28 @@ export function normalizePhonePreprocessorGenerator({
     metadata: MetadataJson;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
-        const {selection} = elementState;
+        const {selection, value} = elementState;
         const [from] = selection;
         const selectionIncludesPrefix = from < prefix.length;
 
-        try {
-            const validationError = validatePhoneNumberLength(
-                data,
-                {defaultCountry: countryIsoCode},
-                metadata,
-            );
+        // handle paste of a full phone number when input is empty or contains only the prefix
+        if (data.length > 2 && (value === '' || value.trim() === prefix.trim())) {
+            // handle paste-event with different code, for example for 8 / +7
+            const phone = countryIsoCode
+                ? parsePhoneNumber(data, countryIsoCode, metadata)
+                : parsePhoneNumber(data, metadata);
 
-            if (!validationError || validationError === 'TOO_SHORT') {
-                // handle paste-event with different code, for example for 8 / +7
-                const phone = countryIsoCode
-                    ? parsePhoneNumber(data, countryIsoCode, metadata)
-                    : parsePhoneNumber(data, metadata);
+            const {nationalNumber, countryCallingCode} = phone;
 
-                const {nationalNumber, countryCallingCode} = phone;
-
-                return {
-                    elementState: {
-                        selection,
-                        value: selectionIncludesPrefix ? '' : prefix,
-                    },
-                    data: selectionIncludesPrefix
-                        ? `+${countryCallingCode} ${nationalNumber}`
-                        : nationalNumber,
-                };
-            }
-        } catch {
-            return {elementState};
+            return {
+                elementState: {
+                    selection,
+                    value: selectionIncludesPrefix ? '' : prefix,
+                },
+                data: selectionIncludesPrefix
+                    ? `+${countryCallingCode} ${nationalNumber}`
+                    : nationalNumber,
+            };
         }
 
         return {elementState};
