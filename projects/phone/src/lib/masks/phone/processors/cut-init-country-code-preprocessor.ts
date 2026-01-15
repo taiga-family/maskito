@@ -34,68 +34,41 @@ export function cutInitCountryCodePreprocessor({
         isInitializationPhase = false;
 
         /**
-         * For national format, check if value is already in national format
-         * (doesn't start with '+').
-         */
-        if (format === 'NATIONAL') {
-            /**
-             * If value starts with '+', extract national number.
-             * Otherwise, assume it's already in national format.
-             */
-            if (value.startsWith('+')) {
-                try {
-                    const {nationalNumber} = parsePhoneNumber(
-                        value,
-                        countryIsoCode,
-                        metadata,
-                    );
-
-                    /**
-                     * Format the national number using country-specific formatting.
-                     */
-                    return {
-                        elementState: {
-                            value: formatIncompletePhoneNumber(
-                                nationalNumber,
-                                countryIsoCode,
-                                metadata,
-                            ),
-                            selection,
-                        },
-                    };
-                } catch {
-                    return {elementState};
-                }
-            }
-
-            return {elementState};
-        }
-
-        /**
-         * International format: If the value already starts with the expected prefix (e.g., "+7 "),
+         * International format:
+         * If the value already starts with the expected prefix (e.g., "+7 "),
          * don't reformat it. This avoids breaking selection positions when
          * the input already has a properly formatted value (e.g., an initial
          * value set on the element before Maskito attaches).
+         *
+         * National format:
+         * If value starts with '+', extract national number.
+         * Otherwise, assume it's already in national format.
          */
-        if (value.startsWith(code)) {
+        if (
+            (format === 'INTERNATIONAL' && value.startsWith(code)) ||
+            (format === 'NATIONAL' && !value.startsWith('+'))
+        ) {
             return {elementState};
         }
 
         try {
-            const phone = parsePhoneNumber(value, countryIsoCode, metadata);
-
-            const newValue = `${code} ${phone.nationalNumber}`;
+            const {nationalNumber} = parsePhoneNumber(value, countryIsoCode, metadata);
 
             return {
                 elementState: {
-                    value: newValue,
+                    value:
+                        format === 'NATIONAL'
+                            ? formatIncompletePhoneNumber(
+                                  nationalNumber,
+                                  countryIsoCode,
+                                  metadata,
+                              )
+                            : `${code} ${nationalNumber}`,
                     selection,
                 },
             };
         } catch {
-            return {
-                elementState,
-            };
+            return {elementState};
         }
     };
 }
