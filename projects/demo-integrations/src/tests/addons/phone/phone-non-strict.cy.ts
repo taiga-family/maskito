@@ -172,14 +172,17 @@ describe('Phone', () => {
 
         describe('Pasting numbers', () => {
             it('should not cut the last digit when pasting', () => {
-                cy.get('@input').paste('12125552365');
-                cy.get('@input').should('have.value', '+1 212 555-2365');
+                cy.get('@input')
+                    .paste('12125552365')
+                    .should('have.value', '+1 212 555-2365');
             });
 
             it('should merge pasted numbers with existing input', () => {
-                cy.get('@input').clear().type('+6488');
-                cy.get('@input').paste('85584567');
-                cy.get('@input').should('have.value', '+64 888 558-4567');
+                cy.get('@input')
+                    .clear()
+                    .type('+6488')
+                    .paste('85584567')
+                    .should('have.value', '+64 888 558-4567');
             });
         });
     });
