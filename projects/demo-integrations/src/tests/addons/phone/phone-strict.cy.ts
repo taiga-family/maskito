@@ -77,9 +77,11 @@ describe('Phone [strict]=true', () => {
         });
 
         it('should merge pasted numbers with existing input', () => {
-            cy.get('@input').clear().type('987');
-            cy.get('@input').paste('654');
-            cy.get('@input').should('have.value', '+7 987 654');
+            cy.get('@input')
+                .clear()
+                .type('987')
+                .paste('654')
+                .should('have.value', '+7 987 654');
         });
     });
 });
