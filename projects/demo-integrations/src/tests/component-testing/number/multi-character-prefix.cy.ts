@@ -6,9 +6,7 @@ describe('Number | multi-character prefix "EUR " (no initial value & no caret gu
     beforeEach(() => {
         cy.mount(TestInput, {
             componentProperties: {
-                maskitoOptions: maskitoNumberOptionsGenerator({
-                    prefix: 'EUR ',
-                }),
+                maskitoOptions: maskitoNumberOptionsGenerator({prefix: 'EUR '}),
             },
         });
         cy.get('input').focus().should('have.value', '').as('input');

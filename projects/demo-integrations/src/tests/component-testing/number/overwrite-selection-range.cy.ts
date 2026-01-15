@@ -4,9 +4,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {TestInput} from '../utils';
 
 describe('Number | overwrite selection range', () => {
-    const numberOptions = maskitoNumberOptionsGenerator({
-        maximumFractionDigits: 3,
-    });
+    const numberOptions = maskitoNumberOptionsGenerator({maximumFractionDigits: 3});
 
     it('overwrite of selection range inside preprocessor works ', () => {
         const maskitoOptions: MaskitoOptions = {
@@ -58,9 +56,7 @@ describe('Number | overwrite selection range', () => {
             ],
         };
 
-        cy.mount(TestInput, {
-            componentProperties: {maskitoOptions},
-        });
+        cy.mount(TestInput, {componentProperties: {maskitoOptions}});
 
         cy.get('input')
             .type('.')

@@ -21,9 +21,7 @@ export function createZeroPlaceholdersPreprocessor(postfix = ''): MaskitoPreproc
         }
 
         if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
-            return {
-                elementState: {selection, value: newValue},
-            };
+            return {elementState: {selection, value: newValue}};
         }
 
         return {

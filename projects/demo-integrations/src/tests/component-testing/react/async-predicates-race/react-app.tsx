@@ -7,9 +7,7 @@ import {useEffect, useState} from 'react';
 
 import {AwesomeInput} from '../awesome-input';
 
-const timeOptions = maskitoTimeOptionsGenerator({
-    mode: 'HH:MM',
-});
+const timeOptions = maskitoTimeOptionsGenerator({mode: 'HH:MM'});
 
 const options: MaskitoOptions = {
     ...timeOptions,

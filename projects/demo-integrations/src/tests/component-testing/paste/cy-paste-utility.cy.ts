@@ -4,9 +4,7 @@ import {createOutputSpy} from 'cypress/angular';
 import {TestInput} from '../utils';
 
 describe('Ensure cy.paste() emulates required browser features', () => {
-    const maskitoOptions = {
-        mask: /^\d+$/g,
-    };
+    const maskitoOptions = {mask: /^\d+$/g};
 
     describe('Emits `beforeinput` event', () => {
         beforeEach(() => {
@@ -105,9 +103,7 @@ describe('Ensure cy.paste() emulates required browser features', () => {
     });
 
     it('respects the `maxlength` attribute', () => {
-        cy.mount(TestInput, {
-            componentProperties: {maskitoOptions, maxLength: 3},
-        });
+        cy.mount(TestInput, {componentProperties: {maskitoOptions, maxLength: 3}});
 
         cy.get('input').focus().paste('12345').should('have.value', '123');
     });

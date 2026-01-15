@@ -3,11 +3,7 @@ import {Sandbox} from './sandbox.component';
 describe('Number | runtime changes of postfix', () => {
     describe('year & years', () => {
         beforeEach(() => {
-            cy.mount(Sandbox, {
-                componentProperties: {
-                    value: '1 year',
-                },
-            });
+            cy.mount(Sandbox, {componentProperties: {value: '1 year'}});
             cy.get('input').focus().should('have.value', '1 year').as('input');
         });
 
@@ -58,9 +54,7 @@ describe('Number | runtime changes of postfix', () => {
         };
 
         it('10| mice => Backspace => 1 mouse', () => {
-            cy.mount(Sandbox, {
-                componentProperties: {pluralize, value: '10 mice'},
-            });
+            cy.mount(Sandbox, {componentProperties: {pluralize, value: '10 mice'}});
 
             cy.get('input')
                 .type('{moveToStart}')
@@ -72,9 +66,7 @@ describe('Number | runtime changes of postfix', () => {
         });
 
         it('1| mouse => Type 0 => 10| mice', () => {
-            cy.mount(Sandbox, {
-                componentProperties: {pluralize, value: '1 mouse'},
-            });
+            cy.mount(Sandbox, {componentProperties: {pluralize, value: '1 mouse'}});
 
             cy.get('input')
                 .type('{moveToStart}')

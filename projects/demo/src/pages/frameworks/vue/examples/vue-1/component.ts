@@ -15,9 +15,7 @@ export class VueExample1 {
                 directives: {maskito},
                 data: () => ({
                     value: '123_456',
-                    options: maskitoNumberOptionsGenerator({
-                        thousandSeparator: '_',
-                    }),
+                    options: maskitoNumberOptionsGenerator({thousandSeparator: '_'}),
                 }),
             }).mount('#vue');
         }),

@@ -4,12 +4,8 @@ import {enrichTimeSegmentsWithZeroes} from '../enrich-time-segments-with-zeroes'
 
 describe('enrichTimeSegmentsWithZeroes', () => {
     const fn = (value: string): string =>
-        enrichTimeSegmentsWithZeroes(
-            {value, selection: [0, 0]},
-            {
-                mode: 'HH:MM:SS',
-            },
-        ).value;
+        enrichTimeSegmentsWithZeroes({value, selection: [0, 0]}, {mode: 'HH:MM:SS'})
+            .value;
 
     it('all time segments valid', () => {
         expect(fn('17:43:00')).toBe('17:43:00');

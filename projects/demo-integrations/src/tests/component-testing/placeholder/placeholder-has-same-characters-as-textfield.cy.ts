@@ -22,11 +22,7 @@ describe('Placeholder | intersects with some characters from textfield value', (
     };
 
     beforeEach(() => {
-        cy.mount(TestInput, {
-            componentProperties: {
-                maskitoOptions,
-            },
-        });
+        cy.mount(TestInput, {componentProperties: {maskitoOptions}});
     });
 
     it('Empty => focus => show placeholder', () => {

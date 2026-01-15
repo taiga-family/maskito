@@ -33,9 +33,7 @@ export class CardDocExample1 {
         separator: '/',
     });
 
-    protected readonly cvvMask: MaskitoOptions = {
-        mask: [...new Array(3).fill(/\d/)],
-    };
+    protected readonly cvvMask: MaskitoOptions = {mask: [...new Array(3).fill(/\d/)]};
 
     protected readonly form = new FormGroup({
         cardNumber: new FormControl(''),
