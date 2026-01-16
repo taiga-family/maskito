@@ -1,4 +1,5 @@
 export {cutInitCountryCodePreprocessor} from './cut-init-country-code-preprocessor';
-export {normalizePhonePreprocessorGenerator} from './normalize-phone-preprocessor';
+export {normalizeNonStrictPhonePreprocessorGenerator} from './normalize-non-strict-phone-preprocessor';
+export {normalizeStrictPhonePreprocessorGenerator} from './normalize-strict-phone-preprocessor';
 export {phoneLengthPostprocessorGenerator} from './phone-length-postprocessor';
 export {validatePhonePreprocessorGenerator} from './validate-phone-preprocessor';

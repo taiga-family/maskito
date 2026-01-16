@@ -2,7 +2,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {parsePhoneNumber} from 'libphonenumber-js/core';
 
-export function normalizePhonePreprocessorGenerator({
+export function normalizeStrictPhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
@@ -16,8 +16,8 @@ export function normalizePhonePreprocessorGenerator({
         const [from] = selection;
         const selectionIncludesPrefix = from < prefix.length;
 
-        // handle paste of a full phone number when input is empty or contains only the prefix
-        if (data.length > 2 && (value === '' || value.trim() === prefix.trim())) {
+        // handle paste of a number when input contains only the prefix
+        if (data.length > 2 && value.trim() === prefix.trim()) {
             // handle paste-event with different code, for example for 8 / +7
             const phone = countryIsoCode
                 ? parsePhoneNumber(data, countryIsoCode, metadata)
