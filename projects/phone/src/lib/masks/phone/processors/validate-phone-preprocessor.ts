@@ -9,6 +9,22 @@ import {
 
 import type {MaskitoPhoneParams} from '../phone-mask';
 
+function extractNumberValue(
+    value: string,
+    countryIsoCode: CountryCode | undefined,
+    metadata: MetadataJson,
+): string {
+    const formatter = new AsYouType(countryIsoCode, metadata);
+
+    formatter.input(value);
+
+    const numberValue = formatter.getNumberValue() ?? '';
+
+    formatter.reset();
+
+    return numberValue;
+}
+
 /**
  * Converts an international phone value to national format.
  */
@@ -17,12 +33,7 @@ function convertToNationalFormat(
     countryIsoCode: CountryCode,
     metadata: MetadataJson,
 ): string {
-    const formatter = new AsYouType(countryIsoCode, metadata);
-
-    formatter.input(value);
-    const numberValue = formatter.getNumberValue() ?? '';
-
-    formatter.reset();
+    const numberValue = extractNumberValue(value, countryIsoCode, metadata);
 
     if (!numberValue) {
         return '';
@@ -84,12 +95,8 @@ export function validatePhonePreprocessorGenerator({
                 /**
                  * International format autocomplete handling.
                  */
+                const numberValue = extractNumberValue(value, countryIsoCode, metadata);
                 const formatter = new AsYouType(countryIsoCode, metadata);
-
-                formatter.input(value);
-                const numberValue = formatter.getNumberValue() ?? '';
-
-                formatter.reset();
 
                 return {elementState: {value: formatter.input(numberValue), selection}};
             }
