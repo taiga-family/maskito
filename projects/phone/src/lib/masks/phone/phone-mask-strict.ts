@@ -48,14 +48,12 @@ export function maskitoPhoneStrictOptionsGenerator({
 
             return generatePhoneMask({value, template: currentTemplate, prefix});
         },
-        plugins: isNational
-            ? []
-            : [
-                  maskitoCaretGuard((value, [from, to]) => [
-                      from === to ? prefix.length : 0,
-                      value.length,
-                  ]),
-              ],
+        plugins: [
+            maskitoCaretGuard((value, [from, to]) => [
+                from === to ? prefix.length : 0,
+                value.length,
+            ]),
+        ],
         preprocessors: [
             cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
             validatePhonePreprocessorGenerator({
