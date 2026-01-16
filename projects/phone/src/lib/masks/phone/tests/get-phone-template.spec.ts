@@ -206,5 +206,94 @@ describe('getPhoneTemplate', () => {
 
             expect(template).toBe('');
         });
+
+        describe('incomplete US numbers with leading country code', () => {
+            it('1212555 => x (xxx) xxx (no hyphen after parenthesis)', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '1212555',
+                    separator: '-',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                // Should NOT produce 'x (xxx)-xxx' - space after ) must be preserved
+                expect(template).toBe('x (xxx) xxx');
+            });
+
+            it('12125553 => x (xxx) xxx-x (hyphen only before last group)', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '12125553',
+                    separator: '-',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                expect(template).toBe('x (xxx) xxx-x');
+            });
+
+            it('1212 => x (xxx) (incomplete area code)', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '1212',
+                    separator: '-',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                expect(template).toBe('x (xxx)');
+            });
+
+            it('12125 => x (xxx) x', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '12125',
+                    separator: '-',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                expect(template).toBe('x (xxx) x');
+            });
+        });
+
+        describe('incomplete US numbers with custom separator', () => {
+            it('1212555 with space separator => x (xxx) xxx', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '1212555',
+                    separator: ' ',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                expect(template).toBe('x (xxx) xxx');
+            });
+
+            it('12125553 with space separator => x (xxx) xxx x', () => {
+                const formatter = new AsYouType('US', metadata);
+                const template = getPhoneTemplate({
+                    formatter,
+                    value: '12125553',
+                    separator: ' ',
+                    countryIsoCode: 'US',
+                    metadata,
+                    format: 'NATIONAL',
+                });
+
+                expect(template).toBe('x (xxx) xxx x');
+            });
+        });
     });
 });

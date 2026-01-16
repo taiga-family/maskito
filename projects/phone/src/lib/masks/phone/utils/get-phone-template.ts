@@ -88,6 +88,11 @@ function getNationalPhoneTemplate({
     const formatted = formatIncompletePhoneNumber(digitsOnly, countryIsoCode, metadata);
     const template = formatted.replaceAll(/\d/g, 'x');
 
+    // Parenthesis-based formats (like US): preserve space after ), only replace dashes
+    if (template.includes(')')) {
+        return template.replaceAll('-', separator);
+    }
+
     // Space-separated formats (like FR): join groups after first with separator
     if (!formatted.includes('-')) {
         const parts = template.split(' ');
@@ -97,6 +102,6 @@ function getNationalPhoneTemplate({
             : template;
     }
 
-    // Dash-separated formats (like US, RU): swap dashes for custom separator
+    // Dash-separated formats (like RU): swap dashes for custom separator
     return template.replaceAll('-', separator);
 }
