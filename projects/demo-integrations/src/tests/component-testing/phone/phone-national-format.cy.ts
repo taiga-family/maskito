@@ -60,8 +60,8 @@ describe('Phone | National format', () => {
                     .type('{moveToEnd}')
                     .type('{backspace}')
                     .should('have.value', '(212) 343-335')
-                    .should('have.prop', 'selectionStart', 13)
-                    .should('have.prop', 'selectionEnd', 13);
+                    .should('have.prop', 'selectionStart', '(212) 343-335'.length)
+                    .should('have.prop', 'selectionEnd', '(212) 343-335'.length);
             });
 
             it('(212) 343|-3355 => Backspace => (212) 34|3-355', () => {
@@ -69,11 +69,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '(212) 343-3355')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(5))
+                    .type('{leftArrow}'.repeat('-3355'.length))
                     .type('{backspace}')
                     .should('have.value', '(212) 343-355')
-                    .should('have.prop', 'selectionStart', 8)
-                    .should('have.prop', 'selectionEnd', 8);
+                    .should('have.prop', 'selectionStart', '(212) 34'.length)
+                    .should('have.prop', 'selectionEnd', '(212) 34'.length);
             });
 
             it('(212) 3|43-3355 => Backspace => (212) |433-355', () => {
@@ -81,11 +81,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '(212) 343-3355')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(7))
+                    .type('{leftArrow}'.repeat('43-3355'.length))
                     .type('{backspace}')
                     .should('have.value', '(212) 433-355')
-                    .should('have.prop', 'selectionStart', 6)
-                    .should('have.prop', 'selectionEnd', 6);
+                    .should('have.prop', 'selectionStart', '(212) '.length)
+                    .should('have.prop', 'selectionEnd', '(212) '.length);
             });
         });
     });
@@ -146,8 +146,8 @@ describe('Phone | National format', () => {
                     .type('{moveToEnd}')
                     .type('{backspace}')
                     .should('have.value', '920 280-01-5')
-                    .should('have.prop', 'selectionStart', 12)
-                    .should('have.prop', 'selectionEnd', 12);
+                    .should('have.prop', 'selectionStart', '920 280-01-5'.length)
+                    .should('have.prop', 'selectionEnd', '920 280-01-5'.length);
             });
 
             it('920 280-01|-55 => Backspace => 920 280-0|5-5', () => {
@@ -155,11 +155,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '920 280-01-55')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(3))
+                    .type('{leftArrow}'.repeat('-55'.length))
                     .type('{backspace}')
                     .should('have.value', '920 280-05-5')
-                    .should('have.prop', 'selectionStart', 9)
-                    .should('have.prop', 'selectionEnd', 9);
+                    .should('have.prop', 'selectionStart', '920 280-0'.length)
+                    .should('have.prop', 'selectionEnd', '920 280-0'.length);
             });
 
             it('920 2|80-01-55 => Backspace => 920 |800-15-5', () => {
@@ -167,11 +167,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '920 280-01-55')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(8))
+                    .type('{leftArrow}'.repeat('80-01-55'.length))
                     .type('{backspace}')
                     .should('have.value', '920 800-15-5')
-                    .should('have.prop', 'selectionStart', 4)
-                    .should('have.prop', 'selectionEnd', 4);
+                    .should('have.prop', 'selectionStart', '920 '.length)
+                    .should('have.prop', 'selectionEnd', '920 '.length);
             });
         });
     });
@@ -232,8 +232,8 @@ describe('Phone | National format', () => {
                     .type('{moveToEnd}')
                     .type('{backspace}')
                     .should('have.value', '612 34-56-7')
-                    .should('have.prop', 'selectionStart', 11)
-                    .should('have.prop', 'selectionEnd', 11);
+                    .should('have.prop', 'selectionStart', '612 34-56-7'.length)
+                    .should('have.prop', 'selectionEnd', '612 34-56-7'.length);
             });
 
             it('612 34-56|-78 => Backspace => 612 34-5|7-8', () => {
@@ -241,11 +241,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '612 34-56-78')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(3))
+                    .type('{leftArrow}'.repeat('-78'.length))
                     .type('{backspace}')
                     .should('have.value', '612 34-57-8')
-                    .should('have.prop', 'selectionStart', 8)
-                    .should('have.prop', 'selectionEnd', 8);
+                    .should('have.prop', 'selectionStart', '612 34-5'.length)
+                    .should('have.prop', 'selectionEnd', '612 34-5'.length);
             });
 
             it('612 3|4-56-78 => Backspace => 612 |45-67-8', () => {
@@ -253,11 +253,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '612 34-56-78')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(7))
+                    .type('{leftArrow}'.repeat('4-56-78'.length))
                     .type('{backspace}')
                     .should('have.value', '612 45-67-8')
-                    .should('have.prop', 'selectionStart', 4)
-                    .should('have.prop', 'selectionEnd', 4);
+                    .should('have.prop', 'selectionStart', '612 '.length)
+                    .should('have.prop', 'selectionEnd', '612 '.length);
             });
         });
     });
@@ -318,8 +318,8 @@ describe('Phone | National format', () => {
                     .type('{moveToEnd}')
                     .type('{backspace}')
                     .should('have.value', '06 12-34-56-7')
-                    .should('have.prop', 'selectionStart', 13)
-                    .should('have.prop', 'selectionEnd', 13);
+                    .should('have.prop', 'selectionStart', '06 12-34-56-7'.length)
+                    .should('have.prop', 'selectionEnd', '06 12-34-56-7'.length);
             });
 
             it('06 12-34-56|-78 => Backspace => 06 12-34-5|7-8', () => {
@@ -327,11 +327,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '06 12-34-56-78')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(3))
+                    .type('{leftArrow}'.repeat('-78'.length))
                     .type('{backspace}')
                     .should('have.value', '06 12-34-57-8')
-                    .should('have.prop', 'selectionStart', 10)
-                    .should('have.prop', 'selectionEnd', 10);
+                    .should('have.prop', 'selectionStart', '06 12-34-5'.length)
+                    .should('have.prop', 'selectionEnd', '06 12-34-5'.length);
             });
 
             it('06 12-3|4-56-78 => Backspace => 06 12-|45-67-8', () => {
@@ -339,11 +339,11 @@ describe('Phone | National format', () => {
                     .should('have.value', '06 12-34-56-78')
                     .focus()
                     .type('{moveToEnd}')
-                    .type('{leftArrow}'.repeat(7))
+                    .type('{leftArrow}'.repeat('4-56-78'.length))
                     .type('{backspace}')
                     .should('have.value', '06 12-45-67-8')
-                    .should('have.prop', 'selectionStart', 6)
-                    .should('have.prop', 'selectionEnd', 6);
+                    .should('have.prop', 'selectionStart', '06 12-'.length)
+                    .should('have.prop', 'selectionEnd', '06 12-'.length);
             });
         });
     });
