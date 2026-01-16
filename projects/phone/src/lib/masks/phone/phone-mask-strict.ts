@@ -1,9 +1,9 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoCaretGuard, maskitoPrefixPostprocessorGenerator} from '@maskito/kit';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
+import type {MaskitoPhoneParams} from './phone-mask';
 import {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
@@ -15,14 +15,12 @@ export function maskitoPhoneStrictOptionsGenerator({
     countryIsoCode,
     metadata,
     separator = '-',
-}: {
-    countryIsoCode: CountryCode;
-    metadata: MetadataJson;
-    separator?: string;
-}): Required<MaskitoOptions> {
+    format = 'INTERNATIONAL',
+}: Omit<Required<MaskitoPhoneParams>, 'strict'>): Required<MaskitoOptions> {
+    const isNational = format === 'NATIONAL';
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
-    const prefix = `+${code} `;
+    const prefix = isNational ? '' : `+${code} `;
 
     let currentTemplate = '';
     let currentPhoneLength = 0;
@@ -30,7 +28,14 @@ export function maskitoPhoneStrictOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const newTemplate = getPhoneTemplate(formatter, value, separator);
+            const newTemplate = getPhoneTemplate({
+                formatter,
+                value,
+                separator,
+                countryIsoCode,
+                metadata,
+                format,
+            });
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({
@@ -50,12 +55,19 @@ export function maskitoPhoneStrictOptionsGenerator({
             ]),
         ],
         preprocessors: [
-            cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
-            validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
+            validatePhonePreprocessorGenerator({
+                prefix,
+                countryIsoCode,
+                metadata,
+                format,
+            }),
         ],
-        postprocessors: [
-            maskitoPrefixPostprocessorGenerator(prefix),
-            phoneLengthPostprocessorGenerator(metadata),
-        ],
+        postprocessors: isNational
+            ? [phoneLengthPostprocessorGenerator(metadata)]
+            : [
+                  maskitoPrefixPostprocessorGenerator(prefix),
+                  phoneLengthPostprocessorGenerator(metadata),
+              ],
     };
 }
