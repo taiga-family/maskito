@@ -75,7 +75,7 @@ describe('getPhoneTemplate', () => {
         });
 
         describe('pasting numbers without "+" prefix produces correct template', () => {
-            it('uS number: 12125552365', () => {
+            it('using US number: 12125552365', () => {
                 const formatter = new AsYouType(undefined, metadata);
                 const templateWithPlus = getPhoneTemplate({
                     formatter,
@@ -96,7 +96,7 @@ describe('getPhoneTemplate', () => {
                 expect(templateWithoutPlus).toBe('xx xxx xxx-xxxx');
             });
 
-            it('rU number: 79202800155', () => {
+            it('using RU number: 79202800155', () => {
                 const formatter = new AsYouType(undefined, metadata);
                 const templateWithPlus = getPhoneTemplate({
                     formatter,
@@ -117,7 +117,7 @@ describe('getPhoneTemplate', () => {
                 expect(templateWithoutPlus).toBe('xx xxx xxx-xx-xx');
             });
 
-            it('bY number: 375447488269', () => {
+            it('using BY number: 375447488269', () => {
                 const formatter = new AsYouType(undefined, metadata);
                 const templateWithPlus = getPhoneTemplate({
                     formatter,

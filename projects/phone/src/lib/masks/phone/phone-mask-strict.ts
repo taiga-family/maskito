@@ -16,17 +16,10 @@ export function maskitoPhoneStrictOptionsGenerator({
     metadata,
     separator = '-',
     format = 'INTERNATIONAL',
-}: Pick<MaskitoPhoneParams, 'format' | 'separator'> &
-    Required<
-        Pick<MaskitoPhoneParams, 'countryIsoCode' | 'metadata'>
-    >): Required<MaskitoOptions> {
+}: Omit<Required<MaskitoPhoneParams>, 'strict'>): Required<MaskitoOptions> {
     const isNational = format === 'NATIONAL';
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
-    /**
-     * For international format: prefix is "+{countryCode} " (e.g., "+1 ")
-     * For national format: prefix is empty string (no country code displayed)
-     */
     const prefix = isNational ? '' : `+${code} `;
 
     let currentTemplate = '';
