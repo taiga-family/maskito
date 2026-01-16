@@ -103,9 +103,7 @@ export function validatePhonePreprocessorGenerator({
             );
 
             if (!validationError || validationError === 'TOO_SHORT') {
-                /**
-                 * Handle paste-event with different code, for example for 8 / +7.
-                 */
+                // Handle paste-event with different code, for example for 8 / +7.
                 const phone = countryIsoCode
                     ? parsePhoneNumber(data, countryIsoCode, metadata)
                     : parsePhoneNumber(data, metadata);
