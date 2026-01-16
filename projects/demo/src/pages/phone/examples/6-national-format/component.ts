@@ -47,8 +47,6 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhoneMaskDocExample6 {
-    private readonly isApple = inject(TUI_IS_APPLE);
-
     protected value = '';
     protected readonly mask = mask;
 
@@ -56,7 +54,5 @@ export class PhoneMaskDocExample6 {
      * Pattern for iOS Safari to allow phone number input.
      * National format doesn't include '+', so pattern is different.
      */
-    protected get pattern(): string {
-        return this.isApple ? '[0-9()-]{1,20}' : '';
-    }
+    protected readonly pattern = inject(TUI_IS_APPLE) ? '[0-9()-]{1,20}' : '';
 }
