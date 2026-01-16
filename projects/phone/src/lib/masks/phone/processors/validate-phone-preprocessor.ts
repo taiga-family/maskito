@@ -16,7 +16,7 @@ function convertToNationalFormat(
     value: string,
     countryIsoCode: CountryCode,
     metadata: MetadataJson,
-): string | null {
+): string {
     const formatter = new AsYouType(countryIsoCode, metadata);
 
     formatter.input(value);
@@ -25,7 +25,7 @@ function convertToNationalFormat(
     formatter.reset();
 
     if (!numberValue) {
-        return null;
+        return '';
     }
 
     try {
@@ -37,7 +37,7 @@ function convertToNationalFormat(
             metadata,
         );
     } catch {
-        return null;
+        return '';
     }
 }
 
