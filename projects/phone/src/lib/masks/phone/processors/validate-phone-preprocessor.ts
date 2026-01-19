@@ -1,10 +1,6 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {
-    AsYouType,
-    parsePhoneNumber,
-    validatePhoneNumberLength,
-} from 'libphonenumber-js/core';
+import {AsYouType} from 'libphonenumber-js/core';
 
 export function validatePhonePreprocessorGenerator({
     prefix,
@@ -17,8 +13,6 @@ export function validatePhonePreprocessorGenerator({
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {selection, value} = elementState;
-        const [from] = selection;
-        const selectionIncludesPrefix = from < prefix.length;
         const cleanCode = prefix.trim();
 
         // handling autocomplete
@@ -31,35 +25,6 @@ export function validatePhonePreprocessorGenerator({
             formatter.reset();
 
             return {elementState: {value: formatter.input(numberValue), selection}};
-        }
-
-        try {
-            const validationError = validatePhoneNumberLength(
-                data,
-                {defaultCountry: countryIsoCode},
-                metadata,
-            );
-
-            if (!validationError || validationError === 'TOO_SHORT') {
-                // handle paste-event with different code, for example for 8 / +7
-                const phone = countryIsoCode
-                    ? parsePhoneNumber(data, countryIsoCode, metadata)
-                    : parsePhoneNumber(data, metadata);
-
-                const {nationalNumber, countryCallingCode} = phone;
-
-                return {
-                    elementState: {
-                        selection,
-                        value: selectionIncludesPrefix ? '' : prefix,
-                    },
-                    data: selectionIncludesPrefix
-                        ? `+${countryCallingCode} ${nationalNumber}`
-                        : nationalNumber,
-                };
-            }
-        } catch {
-            return {elementState};
         }
 
         return {elementState};

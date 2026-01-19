@@ -6,6 +6,7 @@ import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
 import {
     cutInitCountryCodePreprocessor,
+    normalizeStrictPhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
@@ -52,6 +53,7 @@ export function maskitoPhoneStrictOptionsGenerator({
         preprocessors: [
             cutInitCountryCodePreprocessor({countryIsoCode, metadata}),
             validatePhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            normalizeStrictPhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
         ],
         postprocessors: [
             maskitoPrefixPostprocessorGenerator(prefix),
