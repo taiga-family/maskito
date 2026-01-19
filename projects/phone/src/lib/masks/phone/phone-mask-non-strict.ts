@@ -26,7 +26,11 @@ export function maskitoPhoneNonStrictOptionsGenerator({
     return {
         ...MASKITO_DEFAULT_OPTIONS,
         mask: ({value}) => {
-            const newTemplate = getPhoneTemplate(formatter, value, separator);
+            const newTemplate = getPhoneTemplate({
+                formatter,
+                value,
+                separator,
+            });
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({

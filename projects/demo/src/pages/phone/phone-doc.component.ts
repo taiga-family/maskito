@@ -4,11 +4,12 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
+import type {MaskitoPhoneParams} from '@maskito/phone';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS} from '@taiga-ui/cdk';
-import {TuiLink} from '@taiga-ui/core';
+import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {
     TUI_IS_APPLE,
     TuiInputModule,
@@ -26,6 +27,7 @@ import {PhoneMaskDocExample2} from './examples/2-validation/component';
 import {PhoneMaskDocExample3} from './examples/3-non-strict/component';
 import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
 import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
+import {PhoneMaskDocExample6} from './examples/6-national-format/component';
 
 const metadataSets = {
     min: minMetadata,
@@ -46,10 +48,12 @@ type MetadataName = keyof typeof metadataSets;
         PhoneMaskDocExample3,
         PhoneMaskDocExample4,
         PhoneMaskDocExample5,
+        PhoneMaskDocExample6,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInputModule,
         TuiLink,
+        TuiNotification,
         TuiTextfieldControllerModule,
     ],
     templateUrl: './phone-doc.template.html',
@@ -104,22 +108,43 @@ export default class PhoneDocComponent implements GeneratorOptions {
         ),
     };
 
+    protected readonly nationalFormat: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-national-format/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
     public strict = true;
     public countryIsoCode: CountryCode = 'RU';
     public separator = '-';
+    public format: NonNullable<MaskitoPhoneParams['format']> = 'INTERNATIONAL';
     public metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
     public selectedMetadata: MetadataName = this.metadataVariants[0]!;
     public countryCodeVariants = getCountries(this.metadata);
     public separatorVariants = ['-', ' '];
+    public formatVariants: Array<NonNullable<MaskitoPhoneParams['format']>> = [
+        'INTERNATIONAL',
+        'NATIONAL',
+    ];
+
     public maskitoOptions = this.computeOptions();
 
     public get metadata(): MetadataJson {
         return metadataSets[this.selectedMetadata];
     }
 
-    // TODO: delete after bumping Safari support to 18+
+    /**
+     * Pattern for iOS Safari to allow phone number input.
+     * Different patterns for international vs national format.
+     * TODO: delete after bumping Safari support to 18+
+     */
     protected get pattern(): string {
-        return this.isApple ? '+[0-9-]{1,20}' : '';
+        if (!this.isApple) {
+            return '';
+        }
+
+        return this.format === 'NATIONAL' ? '[0-9()-]{1,20}' : '+[0-9-]{1,20}';
     }
 
     protected updateOptions(): void {
@@ -131,7 +156,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
         const code = getCountryCallingCode(this.countryIsoCode, this.metadata);
         const prefix = `${CHAR_PLUS}${code} `;
 
-        return this.strict
+        return this.strict && this.format === 'INTERNATIONAL'
             ? {
                   ...options,
                   plugins: [

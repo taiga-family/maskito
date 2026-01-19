@@ -2,35 +2,104 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {
     AsYouType,
+    formatIncompletePhoneNumber,
     parsePhoneNumber,
     validatePhoneNumberLength,
 } from 'libphonenumber-js/core';
+
+import type {MaskitoPhoneParams} from '../phone-mask';
+
+function extractNumberValue(
+    value: string,
+    countryIsoCode: CountryCode | undefined,
+    metadata: MetadataJson,
+): string {
+    const formatter = new AsYouType(countryIsoCode, metadata);
+
+    formatter.input(value);
+
+    const numberValue = formatter.getNumberValue() ?? '';
+
+    formatter.reset();
+
+    return numberValue;
+}
+
+/**
+ * Converts an international phone value to national format.
+ */
+function convertToNationalFormat(
+    value: string,
+    countryIsoCode: CountryCode,
+    metadata: MetadataJson,
+): string {
+    const numberValue = extractNumberValue(value, countryIsoCode, metadata);
+
+    if (!numberValue) {
+        return '';
+    }
+
+    try {
+        const phone = parsePhoneNumber(numberValue, countryIsoCode, metadata);
+
+        return formatIncompletePhoneNumber(
+            phone.nationalNumber,
+            countryIsoCode,
+            metadata,
+        );
+    } catch {
+        return '';
+    }
+}
 
 export function validatePhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
-}: {
+    format = 'INTERNATIONAL',
+}: Pick<MaskitoPhoneParams, 'countryIsoCode' | 'format' | 'metadata'> & {
     prefix: string;
-    countryIsoCode?: CountryCode;
-    metadata: MetadataJson;
 }): MaskitoPreprocessor {
+    const isNational = format === 'NATIONAL';
+
     return ({elementState, data}) => {
         const {selection, value} = elementState;
         const [from] = selection;
-        const selectionIncludesPrefix = from < prefix.length;
+        /**
+         * For national format, prefix is empty, so selectionIncludesPrefix is always false.
+         */
+        const selectionIncludesPrefix = prefix.length > 0 && from < prefix.length;
         const cleanCode = prefix.trim();
 
-        // handling autocomplete
-        if (value && !value.startsWith(cleanCode) && !data) {
-            const formatter = new AsYouType({defaultCountry: countryIsoCode}, metadata);
+        /**
+         * Handle autocomplete: when value doesn't match expected format.
+         * For international: value should start with '+' or country code.
+         * For national: value should not start with '+'.
+         */
+        if (value && !data) {
+            if (isNational && value.startsWith('+') && countryIsoCode) {
+                /**
+                 * For national format, if autocomplete provides international format,
+                 * convert it to national format.
+                 */
+                const formattedNational = convertToNationalFormat(
+                    value,
+                    countryIsoCode,
+                    metadata,
+                );
 
-            formatter.input(value);
-            const numberValue = formatter.getNumberValue() ?? '';
+                if (formattedNational) {
+                    return {elementState: {value: formattedNational, selection}};
+                }
+            } else if (!isNational && !value.startsWith(cleanCode)) {
+                /**
+                 * International format autocomplete handling.
+                 */
+                const numberValue = extractNumberValue(value, countryIsoCode, metadata);
+                const formatter = new AsYouType(countryIsoCode, metadata);
 
-            formatter.reset();
-
-            return {elementState: {value: formatter.input(numberValue), selection}};
+                return {elementState: {value: formatter.input(numberValue), selection}};
+            }
         }
 
         try {
@@ -41,12 +110,26 @@ export function validatePhonePreprocessorGenerator({
             );
 
             if (!validationError || validationError === 'TOO_SHORT') {
-                // handle paste-event with different code, for example for 8 / +7
+                // Handle paste-event with different code, for example for 8 / +7.
                 const phone = countryIsoCode
                     ? parsePhoneNumber(data, countryIsoCode, metadata)
                     : parsePhoneNumber(data, metadata);
 
                 const {nationalNumber, countryCallingCode} = phone;
+
+                if (isNational && countryIsoCode) {
+                    /**
+                     * For national format, always return just the national number.
+                     * The mask will format it according to the country's national format.
+                     */
+                    return {
+                        elementState: {
+                            selection,
+                            value: '',
+                        },
+                        data: nationalNumber,
+                    };
+                }
 
                 return {
                     elementState: {
