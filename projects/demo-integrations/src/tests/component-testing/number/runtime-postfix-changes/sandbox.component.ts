@@ -1,6 +1,13 @@
 import {I18nPluralPipe} from '@angular/common';
-import type {PipeTransform} from '@angular/core';
-import {ChangeDetectionStrategy, Component, Pipe} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    input,
+    model,
+    Pipe,
+    type PipeTransform,
+} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
@@ -14,7 +21,6 @@ export class TestPipe4 implements PipeTransform {
     public transform(postfix: string): MaskitoOptions {
         const options = maskitoNumberOptionsGenerator({
             postfix,
-            maximumFractionDigits: 2,
             thousandSeparator: ' ',
         });
 
@@ -31,24 +37,21 @@ export class TestPipe4 implements PipeTransform {
     template: `
         <input
             placeholder="Enter number"
-            [maskito]="parsedValue | i18nPlural: pluralize | calculateMask"
+            [maskito]="parsedValue() | i18nPlural: pluralize() | calculateMask"
             [(ngModel)]="value"
         />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Sandbox {
-    protected value = '1 year';
+    protected readonly value = model('');
+    protected readonly parsedValue = computed(() => maskitoParseNumber(this.value()));
 
-    protected readonly pluralize = {
+    protected readonly pluralize = input({
         '=NaN': '',
         one: ' year',
         few: ' years',
         many: ' years',
         other: ' years',
-    };
-
-    protected get parsedValue(): number {
-        return maskitoParseNumber(this.value);
-    }
+    });
 }
