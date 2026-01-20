@@ -59,7 +59,7 @@ describe('Number | runtime changes of postfix', () => {
 
         it('10| mice => Backspace => 1 mouse', () => {
             cy.mount(Sandbox, {
-                componentProperties: {pluralize, value: '10| mice'},
+                componentProperties: {pluralize, value: '10 mice'},
             });
 
             cy.get('input')
@@ -73,7 +73,7 @@ describe('Number | runtime changes of postfix', () => {
 
         it('1| mouse => Type 0 => 10| mice', () => {
             cy.mount(Sandbox, {
-                componentProperties: {pluralize, value: '1| mouse'},
+                componentProperties: {pluralize, value: '1 mouse'},
             });
 
             cy.get('input')
