@@ -9,7 +9,7 @@ module.exports = {
             {
                 diagnostics: true,
                 stringifyContentPathRegex: String.raw`\.html$`,
-                tsconfig: resolve(process.cwd(), 'tsconfig.spec.json'),
+                tsconfig: resolve(__dirname, 'tsconfig.spec.json'),
             },
         ],
     },
