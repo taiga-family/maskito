@@ -1,6 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
+import * as maskitoCore from '@maskito/core';
 import type {RenderResult} from '@testing-library/react';
-import {render} from '@testing-library/react';
+import {render, waitFor} from '@testing-library/react';
 import type {UserEvent} from '@testing-library/user-event';
 import userEvent from '@testing-library/user-event';
 import type {JSX} from 'react';
@@ -36,6 +37,12 @@ describe('Maskito React package', () => {
         );
     }
 
+    function ConditionalInputComponent({showInput}: Readonly<{showInput: boolean}>): JSX.Element {
+        const inputRef = useMaskito({options});
+
+        return showInput ? <input ref={inputRef} /> : <></>;
+    }
+
     let testElement: RenderResult;
     let user: UserEvent;
 
@@ -60,6 +67,24 @@ describe('Maskito React package', () => {
         expect(handler).toHaveBeenLastCalledWith('1,');
         expect(handler).toHaveBeenCalledTimes(2);
         expect(getValue()).toBe('1,');
+    });
+
+    it('should destroy Maskito instance when input element is removed', async () => {
+        const destroySpy = jest.spyOn(maskitoCore.Maskito.prototype, 'destroy');
+
+        testElement = render(<ConditionalInputComponent showInput={true} />);
+        user = userEvent.setup();
+
+        await type('1.2');
+        expect(getValue()).toBe('1,2');
+
+        testElement.rerender(<ConditionalInputComponent showInput={false} />);
+
+        await waitFor(() => {
+            expect(destroySpy).toHaveBeenCalledTimes(1);
+        });
+
+        destroySpy.mockRestore();
     });
 
     afterEach(() => {

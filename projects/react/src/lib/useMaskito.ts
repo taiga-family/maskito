@@ -70,6 +70,10 @@ export const useMaskito = ({
         } else {
             setElement(elementOrPromise);
         }
+
+        return () => {
+            setElement(null);
+        };
     }, [hostElement, elementPredicate, latestPredicateRef, options, latestOptionsRef]);
 
     useIsomorphicLayoutEffect(() => {
