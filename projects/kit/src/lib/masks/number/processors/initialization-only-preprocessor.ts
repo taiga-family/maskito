@@ -70,8 +70,8 @@ export function createInitializationOnlyPreprocessor(
                 value: fromNumberParts(
                     {
                         ...toNumberParts(cleanState.value, params),
-                        prefix,
-                        postfix,
+                        prefix: prefix && params.prefix,
+                        postfix: postfix && params.postfix,
                     },
                     params,
                 ),

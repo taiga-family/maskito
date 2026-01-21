@@ -131,7 +131,7 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoTransform('1 000.', options)).toBe('1 000. lbs.');
             });
 
-            it('paste 1 000<space> => 1 000. |lbs.', () => {
+            it('paste 1 000<space> => 1 000 |lbs.', () => {
                 expect(
                     maskitoTransform(
                         {value: '1 000 ', selection: ['1 000 '.length, '1 000 '.length]},
