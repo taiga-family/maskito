@@ -7,9 +7,7 @@ import {useForm} from 'react-hook-form';
 
 import {withMaskitoRegister} from './with-maskito-register';
 
-const options: MaskitoOptions = maskitoNumberOptionsGenerator({
-    maximumFractionDigits: 2,
-});
+const options: MaskitoOptions = maskitoNumberOptionsGenerator({maximumFractionDigits: 2});
 
 export const App: ComponentType = () => {
     const maskitoRef = useMaskito({options});

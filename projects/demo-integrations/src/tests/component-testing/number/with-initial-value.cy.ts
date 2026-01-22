@@ -64,9 +64,7 @@ describe('Number | With initial value', () => {
     it('123 45|6 789 => Type 0 (the 1st time input event) => 1 234 50|6 789', () => {
         cy.mount(TestInput, {
             componentProperties: {
-                maskitoOptions: maskitoNumberOptionsGenerator({
-                    thousandSeparator: ' ',
-                }),
+                maskitoOptions: maskitoNumberOptionsGenerator({thousandSeparator: ' '}),
                 initialValue: '123 456 789',
             },
         });

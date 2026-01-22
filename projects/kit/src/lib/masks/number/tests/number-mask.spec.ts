@@ -399,17 +399,13 @@ describe('Number (maskitoTransform)', () => {
     describe('should transform full width number to half width', () => {
         describe('at any time', () => {
             it('at the 1st time (after initialization)', () => {
-                const options = maskitoNumberOptionsGenerator({
-                    thousandSeparator: '_',
-                });
+                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
 
                 expect(maskitoTransform('１２３４５', options)).toBe('12_345');
             });
 
             it('at the 2nd time (after initialization)', () => {
-                const options = maskitoNumberOptionsGenerator({
-                    thousandSeparator: '_',
-                });
+                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
 
                 maskitoTransform('１２３４５', options);
 
@@ -488,17 +484,13 @@ describe('Number (maskitoTransform)', () => {
 
     describe('autofill value with extra leading and trailing whitespace (thousand separator is equal to whitespace too)', () => {
         it('<space x3>123456<space x3>', () => {
-            const options = maskitoNumberOptionsGenerator({
-                thousandSeparator: ' ',
-            });
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ' '});
 
             expect(maskitoTransform('    123456    ', options)).toBe('123 456');
         });
 
         it('<space>|123 => |123', () => {
-            const options = maskitoNumberOptionsGenerator({
-                thousandSeparator: ' ',
-            });
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ' '});
 
             expect(maskitoTransform({value: ' 123', selection: [1, 1]}, options)).toEqual(
                 {

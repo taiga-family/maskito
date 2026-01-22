@@ -14,9 +14,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoInitialCalibrationPlugin} from '@maskito/core';
 import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 
-@Pipe({
-    name: 'calculateMask',
-})
+@Pipe({name: 'calculateMask'})
 export class TestPipe4 implements PipeTransform {
     public transform(postfix: string): MaskitoOptions {
         const options = maskitoNumberOptionsGenerator({

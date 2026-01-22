@@ -53,9 +53,7 @@ describe('Number | postfix with point', () => {
 
         describe('Complex: maskitoCaretGuard + maskitoAddOnFocusPlugin + maskitoRemoveOnBlurPlugin', () => {
             const postfix = ' lbs.';
-            const numberOptions = maskitoNumberOptionsGenerator({
-                postfix,
-            });
+            const numberOptions = maskitoNumberOptionsGenerator({postfix});
             const maskitoOptions: MaskitoOptions = {
                 ...numberOptions,
                 plugins: [

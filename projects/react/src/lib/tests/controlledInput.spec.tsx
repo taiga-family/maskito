@@ -31,9 +31,7 @@ describe('Maskito with React controlled input', () => {
     }
 
     describe('works with basic mask without processors (only mask expression)', () => {
-        const options: MaskitoOptions = {
-            mask: /^[a-z]$/i,
-        };
+        const options: MaskitoOptions = {mask: /^[a-z]$/i};
 
         it('updates value for setState-like action', async () => {
             testElement = render(<TestComponent options={options} />);

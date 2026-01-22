@@ -16,7 +16,5 @@ export function maskitoStringifyDate(
 
     const segments = toDateSegments(validatedDate);
 
-    return toDateString(segments, {
-        dateMode: mode.replaceAll('/', separator),
-    });
+    return toDateString(segments, {dateMode: mode.replaceAll('/', separator)});
 }

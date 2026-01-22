@@ -4,14 +4,7 @@ export default [
     ...taiga.configs.recommended,
     {
         files: ['projects/react/**/*.{js,ts,jsx,tsx}'],
-        rules: {
-            'unicorn/filename-case': [
-                'error',
-                {
-                    case: 'camelCase',
-                },
-            ],
-        },
+        rules: {'unicorn/filename-case': ['error', {case: 'camelCase'}]},
     },
     {
         files: ['*.{ts,tsx}'],
@@ -26,9 +19,7 @@ export default [
         rules: {
             'jest/prefer-ending-with-an-expect': [
                 'error',
-                {
-                    assertFunctionNames: ['expect', 'check'],
-                },
+                {assertFunctionNames: ['expect', 'check']},
             ],
         },
     },

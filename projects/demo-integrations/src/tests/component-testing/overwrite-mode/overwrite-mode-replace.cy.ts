@@ -11,11 +11,7 @@ describe('overwriteMode = replace', () => {
 
     describe('selection contains several characters', () => {
         beforeEach(() => {
-            cy.mount(TestInput, {
-                componentProperties: {
-                    maskitoOptions: digitsOnlyMask,
-                },
-            });
+            cy.mount(TestInput, {componentProperties: {maskitoOptions: digitsOnlyMask}});
         });
 
         it('12|34| => Press 0 => 120', BROWSER_SUPPORTS_REAL_EVENTS, () => {
@@ -78,11 +74,7 @@ describe('overwriteMode = replace', () => {
 
     describe('selectionStart === selectionEnd', () => {
         beforeEach(() => {
-            cy.mount(TestInput, {
-                componentProperties: {
-                    maskitoOptions: digitsOnlyMask,
-                },
-            });
+            cy.mount(TestInput, {componentProperties: {maskitoOptions: digitsOnlyMask}});
         });
 
         it('|123 => Press 0 => 0|23', () => {

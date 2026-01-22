@@ -43,9 +43,7 @@ describe('Maskito Angular package', () => {
     let fixture: ComponentFixture<TestComponent>;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [TestComponent],
-        });
+        TestBed.configureTestingModule({imports: [TestComponent]});
 
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();

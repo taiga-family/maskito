@@ -43,11 +43,9 @@ describe('maskitoStringifyNumber', () => {
         });
 
         it('empty decimal part & thousand separator is comma', () => {
-            expect(
-                maskitoStringifyNumber(1000000, {
-                    thousandSeparator: ',',
-                }),
-            ).toBe('1,000,000');
+            expect(maskitoStringifyNumber(1000000, {thousandSeparator: ','})).toBe(
+                '1,000,000',
+            );
         });
 
         it('trailing decimal separator (minimumFractionDigits > maximumFractionDigits => maximumFractionDigits has more priority)', () => {
@@ -78,11 +76,9 @@ describe('maskitoStringifyNumber', () => {
                 maskitoStringifyNumber(1.2e-8, {maximumFractionDigits: 10, prefix: '$'}),
             ).toBe('$0.000000012');
 
-            expect(
-                maskitoStringifyNumber(2e24, {
-                    thousandSeparator: '_',
-                }),
-            ).toBe('2_000_000_000_000_000_000_000_000');
+            expect(maskitoStringifyNumber(2e24, {thousandSeparator: '_'})).toBe(
+                '2_000_000_000_000_000_000_000_000',
+            );
         });
     });
 
@@ -160,11 +156,9 @@ describe('maskitoStringifyNumber', () => {
     describe('negative numbers', () => {
         describe('minus sign', () => {
             it('can be minus', () => {
-                expect(
-                    maskitoStringifyNumber(-1, {
-                        minusSign: CHAR_MINUS,
-                    }),
-                ).toBe(`${CHAR_MINUS}1`);
+                expect(maskitoStringifyNumber(-1, {minusSign: CHAR_MINUS})).toBe(
+                    `${CHAR_MINUS}1`,
+                );
             });
 
             it('can be hyphen', () => {
@@ -186,19 +180,15 @@ describe('maskitoStringifyNumber', () => {
             });
 
             it('can be em-dash', () => {
-                expect(
-                    maskitoStringifyNumber(-42, {
-                        minusSign: CHAR_EM_DASH,
-                    }),
-                ).toBe(`${CHAR_EM_DASH}42`);
+                expect(maskitoStringifyNumber(-42, {minusSign: CHAR_EM_DASH})).toBe(
+                    `${CHAR_EM_DASH}42`,
+                );
             });
 
             it('can be katakana-hiragana prolonged sound mark', () => {
-                expect(
-                    maskitoStringifyNumber(-42, {
-                        minusSign: CHAR_JP_HYPHEN,
-                    }),
-                ).toBe(`${CHAR_JP_HYPHEN}42`);
+                expect(maskitoStringifyNumber(-42, {minusSign: CHAR_JP_HYPHEN})).toBe(
+                    `${CHAR_JP_HYPHEN}42`,
+                );
             });
         });
 
@@ -212,29 +202,19 @@ describe('maskitoStringifyNumber', () => {
         });
 
         it('stringifies negative number with decimal part', () => {
-            expect(
-                maskitoStringifyNumber(-123.456, {
-                    maximumFractionDigits: 3,
-                }),
-            ).toBe(`${CHAR_MINUS}123.456`);
+            expect(maskitoStringifyNumber(-123.456, {maximumFractionDigits: 3})).toBe(
+                `${CHAR_MINUS}123.456`,
+            );
         });
     });
 
     describe('Prefix & Postfix', () => {
         it('stringifies number with only prefix', () => {
-            expect(
-                maskitoStringifyNumber(42, {
-                    prefix: '$',
-                }),
-            ).toBe('$42');
+            expect(maskitoStringifyNumber(42, {prefix: '$'})).toBe('$42');
         });
 
         it('stringifies number with only postfix', () => {
-            expect(
-                maskitoStringifyNumber(42, {
-                    postfix: '%',
-                }),
-            ).toBe('42%');
+            expect(maskitoStringifyNumber(42, {postfix: '%'})).toBe('42%');
         });
 
         it('stringifies number with both prefix and postfix', () => {
@@ -247,20 +227,12 @@ describe('maskitoStringifyNumber', () => {
         });
 
         it('stringifies negative number with prefix', () => {
-            expect(
-                maskitoStringifyNumber(-42, {
-                    prefix: '>',
-                }),
-            ).toBe(`>${CHAR_MINUS}42`);
+            expect(maskitoStringifyNumber(-42, {prefix: '>'})).toBe(`>${CHAR_MINUS}42`);
         });
 
         describe('prefix/postfix includes point and space', () => {
             it('stringifies INTEGER number with postfix " lbs."', () => {
-                expect(
-                    maskitoStringifyNumber(42, {
-                        postfix: ' lbs.',
-                    }),
-                ).toBe('42 lbs.');
+                expect(maskitoStringifyNumber(42, {postfix: ' lbs.'})).toBe('42 lbs.');
 
                 expect(
                     maskitoStringifyNumber(1000, {
@@ -297,11 +269,7 @@ describe('maskitoStringifyNumber', () => {
             });
 
             it('stringifies INTEGER number with prefix "lbs. "', () => {
-                expect(
-                    maskitoStringifyNumber(42, {
-                        prefix: 'lbs. ',
-                    }),
-                ).toBe('lbs. 42');
+                expect(maskitoStringifyNumber(42, {prefix: 'lbs. '})).toBe('lbs. 42');
 
                 expect(
                     maskitoStringifyNumber(1000, {
@@ -358,19 +326,11 @@ describe('maskitoStringifyNumber', () => {
 
     describe('Min and Max constraints', () => {
         it('applies min constraint', () => {
-            expect(
-                maskitoStringifyNumber(-10, {
-                    min: 0,
-                }),
-            ).toBe('0');
+            expect(maskitoStringifyNumber(-10, {min: 0})).toBe('0');
         });
 
         it('applies max constraint', () => {
-            expect(
-                maskitoStringifyNumber(1000, {
-                    max: 100,
-                }),
-            ).toBe('100');
+            expect(maskitoStringifyNumber(1000, {max: 100})).toBe('100');
         });
 
         it('applies both min and max constraints', () => {
@@ -399,25 +359,19 @@ describe('maskitoStringifyNumber', () => {
 
     describe('[maximumFractionDigits] handling', () => {
         it('handles zero maximumFractionDigits correctly', () => {
-            expect(
-                maskitoStringifyNumber(123.456, {
-                    maximumFractionDigits: 0,
-                }),
-            ).toBe('123');
+            expect(maskitoStringifyNumber(123.456, {maximumFractionDigits: 0})).toBe(
+                '123',
+            );
         });
 
         it('handles custom maximumFractionDigits correctly', () => {
-            expect(
-                maskitoStringifyNumber(123.456, {
-                    maximumFractionDigits: 1,
-                }),
-            ).toBe('123.4');
+            expect(maskitoStringifyNumber(123.456, {maximumFractionDigits: 1})).toBe(
+                '123.4',
+            );
 
-            expect(
-                maskitoStringifyNumber(123.456, {
-                    maximumFractionDigits: 4,
-                }),
-            ).toBe('123.456');
+            expect(maskitoStringifyNumber(123.456, {maximumFractionDigits: 4})).toBe(
+                '123.456',
+            );
         });
 
         it('handles zero padding correctly', () => {
@@ -442,9 +396,7 @@ describe('maskitoStringifyNumber', () => {
             expect(
                 maskitoStringifyNumber(
                     BigInt(String(Number.MAX_SAFE_INTEGER).repeat(2)),
-                    {
-                        thousandSeparator: ' ',
-                    },
+                    {thousandSeparator: ' '},
                 ),
             ).toBe('90 071 992 547 409 919 007 199 254 740 991');
         });

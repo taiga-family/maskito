@@ -56,9 +56,7 @@ export default class RealWorldForm {
         address: new FormControl(''),
     });
 
-    protected nameMask: MaskitoOptions = {
-        mask: ONLY_LATIN_LETTERS_RE,
-    };
+    protected nameMask: MaskitoOptions = {mask: ONLY_LATIN_LETTERS_RE};
 
     protected surnameMask: MaskitoOptions = {
         mask: ONLY_LATIN_LETTERS_RE,
@@ -72,9 +70,7 @@ export default class RealWorldForm {
         strict: false,
     });
 
-    protected passwordMask: MaskitoOptions = {
-        mask: /^\d*[a-z]?\d*$/i,
-    };
+    protected passwordMask: MaskitoOptions = {mask: /^\d*[a-z]?\d*$/i};
 
     protected readonly transactionDateMask = maskitoDateOptionsGenerator({
         mode: 'dd/mm/yyyy',
@@ -89,9 +85,7 @@ export default class RealWorldForm {
         ],
     };
 
-    protected readonly addressMask: MaskitoOptions = {
-        mask: /^[a-z1-9\s.,/]+$/i,
-    };
+    protected readonly addressMask: MaskitoOptions = {mask: /^[a-z1-9\s.,/]+$/i};
 
     protected showPassword = false;
 

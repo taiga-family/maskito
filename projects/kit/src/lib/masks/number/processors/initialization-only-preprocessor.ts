@@ -56,9 +56,7 @@ export function createInitializationOnlyPreprocessor(
                 ],
                 value: onlyNumber,
             },
-            {
-                mask: cleanNumberMask,
-            },
+            {mask: cleanNumberMask},
         );
         const deleted =
             onlyNumber.slice(0, Math.max(to - prefix.length, 0)).length -

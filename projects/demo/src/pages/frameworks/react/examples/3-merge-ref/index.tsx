@@ -3,9 +3,7 @@ import {useMaskito} from '@maskito/react';
 import type {ComponentType} from 'react';
 import {useRef} from 'react';
 
-const digitsOnlyMask: MaskitoOptions = {
-    mask: /^\d+$/,
-};
+const digitsOnlyMask: MaskitoOptions = {mask: /^\d+$/};
 
 export const App: ComponentType = () => {
     const externalRef = useRef<HTMLInputElement | null>(null);

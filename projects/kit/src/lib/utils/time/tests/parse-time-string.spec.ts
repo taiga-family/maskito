@@ -4,9 +4,7 @@ import {parseTimeString} from '../parse-time-string';
 
 describe('parseTimeString', () => {
     it('hh', () => {
-        expect(parseTimeString('19', 'HH')).toEqual({
-            hours: '19',
-        });
+        expect(parseTimeString('19', 'HH')).toEqual({hours: '19'});
     });
 
     it('hh:mm', () => {

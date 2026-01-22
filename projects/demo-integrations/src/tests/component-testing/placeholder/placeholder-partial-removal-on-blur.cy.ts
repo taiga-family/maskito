@@ -25,11 +25,7 @@ describe('Placeholder | partial removal of placeholder characters on blur', () =
     };
 
     beforeEach(() => {
-        cy.mount(TestInput, {
-            componentProperties: {
-                maskitoOptions,
-            },
-        });
+        cy.mount(TestInput, {componentProperties: {maskitoOptions}});
     });
 
     it('Empty => focus => show full placeholder', () => {

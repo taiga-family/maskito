@@ -142,9 +142,7 @@ describe('Native attribute maxlength works', () => {
 
     describe('with oversimplified Number mask', () => {
         beforeEach(() => {
-            const maskitoOptions: MaskitoOptions = {
-                mask: /^\d*$/,
-            };
+            const maskitoOptions: MaskitoOptions = {mask: /^\d*$/};
 
             cy.mount(TestInput, {
                 componentProperties: {
