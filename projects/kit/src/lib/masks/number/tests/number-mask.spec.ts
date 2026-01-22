@@ -409,7 +409,7 @@ describe('Number (maskitoTransform)', () => {
                 options = maskitoNumberOptionsGenerator({
                     postfix: '.000 km',
                     thousandSeparator: '.',
-                    // by default, thousandSeparator === '.' & maximumFractionDigits === 0
+                    // by default, decimalSeparator === '.' & maximumFractionDigits === 0
                 });
             });
 
