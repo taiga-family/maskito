@@ -364,7 +364,8 @@ describe('Number (maskitoTransform)', () => {
         beforeEach(() => {
             options = maskitoNumberOptionsGenerator({
                 postfix: '.000 km',
-                thousandSeparator: '.',
+                // Ensure that default point as decimal separator is compatible with postfix
+                decimalSeparator: '.',
                 maximumFractionDigits: 0,
             });
         });
@@ -385,14 +386,40 @@ describe('Number (maskitoTransform)', () => {
             expect(maskitoTransform('100.000 km', options)).toBe('100.000 km');
         });
 
-        it('123456 => 123.456.000 km', () => {
-            expect(maskitoTransform('123456', options)).toBe('123.456.000 km');
-        });
-
         it('-1.000 km => -1.000 km', () => {
             expect(maskitoTransform(`${CHAR_HYPHEN}1.000 km`, options)).toBe(
                 `${CHAR_MINUS}1.000 km`,
             );
+        });
+
+        it('thousandSeparator equals to empty string', () => {
+            expect(
+                maskitoTransform(
+                    '123456789',
+                    maskitoNumberOptionsGenerator({
+                        postfix: '.000 km',
+                        thousandSeparator: '',
+                    }),
+                ),
+            ).toBe('123456789.000 km');
+        });
+
+        describe('thousandSeparator equals to point too', () => {
+            beforeEach(() => {
+                options = maskitoNumberOptionsGenerator({
+                    postfix: '.000 km',
+                    thousandSeparator: '.',
+                    // by default, thousandSeparator === '.' & maximumFractionDigits === 0
+                });
+            });
+
+            it('-123 => -123.000 km', () => {
+                expect(maskitoTransform('-123', options)).toBe(`${CHAR_MINUS}123.000 km`);
+            });
+
+            it('123456 => 123.456.000 km', () => {
+                expect(maskitoTransform('123456', options)).toBe('123.456.000 km');
+            });
         });
     });
 

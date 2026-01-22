@@ -27,9 +27,9 @@ export function createMinMaxPlugin({
                 maskitoParseNumber(element.value, {
                     decimalSeparator,
                     minusSign,
-                    bigint: !(
-                        maximumFractionDigits && element.value.includes(decimalSeparator)
-                    ),
+                    bigint:
+                        !maximumFractionDigits &&
+                        !element.value.includes(decimalSeparator),
                 }) ?? NaN;
             const clampedNumber = clamp(parsedNumber, min, max);
 

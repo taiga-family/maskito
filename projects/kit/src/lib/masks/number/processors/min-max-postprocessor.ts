@@ -24,7 +24,7 @@ export function createMinMaxPostprocessor({
             maskitoParseNumber(value, {
                 decimalSeparator,
                 minusSign,
-                bigint: !(maximumFractionDigits && value.includes(decimalSeparator)),
+                bigint: !maximumFractionDigits && !value.includes(decimalSeparator),
             }) ?? NaN;
         const limitedValue =
             /**
