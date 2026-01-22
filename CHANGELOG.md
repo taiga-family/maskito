@@ -1,3 +1,21 @@
+## [5.1.0](https://github.com/taiga-family/maskito/compare/v5.0.1...v5.1.0) (2026-01-22)
+
+### 🚀 Features
+
+- **phone:** `Phone` supports national format ([#2461](https://github.com/taiga-family/maskito/issues/2461))
+  ([c90bca2](https://github.com/taiga-family/maskito/commit/c90bca2c2f0f3bc3746a2559fc84bd688075c1be))
+
+### 🐞Bug Fixes
+
+- **kit:** `Number` fails to dynamically change postfix ([#2501](https://github.com/taiga-family/maskito/issues/2501))
+  ([cd73d6a](https://github.com/taiga-family/maskito/commit/cd73d6a729068e4b301509b12def6e149a7b5d66))
+- **kit:** `Number` throws `Failed to parse String to BigInt` error
+  ([#2509](https://github.com/taiga-family/maskito/issues/2509))
+  ([7b80f79](https://github.com/taiga-family/maskito/commit/7b80f79140740462d3d924ba49993e1376d2b6e3))
+- **react:** `useMaskito` should destroy Maskito instance if element is detached from the DOM
+  ([#2507](https://github.com/taiga-family/maskito/issues/2507))
+  ([1cdb203](https://github.com/taiga-family/maskito/commit/1cdb20359aaf4fa479420638d76bc7b238a6cb4c))
+
 ### [5.0.1](https://github.com/taiga-family/maskito/compare/v5.0.0...v5.0.1) (2025-12-26)
 
 ### 🐞 Bug Fixes
