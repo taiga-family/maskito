@@ -12,5 +12,5 @@ export class PatternDocExample6 {
     protected name = '';
     protected cvc = '';
 
-    protected regExp = /^[a-zA-Z\s]+$/;
+    protected regExp = /^[a-z\s]+$/i;
 }

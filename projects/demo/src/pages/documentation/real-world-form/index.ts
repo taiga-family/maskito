@@ -70,7 +70,7 @@ export default class RealWorldForm {
         strict: false,
     });
 
-    protected passwordMask: MaskitoOptions = {mask: /^\d*[a-z]?\d*$/i};
+    protected passwordMask: MaskitoOptions = {mask: /^\d*(?:[a-z]\d*)?$/i};
 
     protected readonly transactionDateMask = maskitoDateOptionsGenerator({
         mode: 'dd/mm/yyyy',

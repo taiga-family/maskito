@@ -31,7 +31,7 @@ export function createFirstDateEndSeparatorPreprocessor({
                 ? firstCompleteDate +
                   value
                       .slice(firstCompleteDate.length)
-                      .replace(/^[\D\s]*/, firstDateEndSeparator)
+                      .replace(/^\D*/, firstDateEndSeparator)
                 : value;
         const caretShift = newValue.length - value.length;
 

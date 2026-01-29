@@ -31,9 +31,11 @@ describe('escapeRegExp', () => {
 
         expect(escaped).toBe(String.raw`\+`);
         expect(testString.replace(new RegExp(escaped), '')).toBe('42');
-        expect(() => testString.replace(new RegExp(rawRegExpStr), '')).toThrow(
-            new SyntaxError('Invalid regular expression: /+/: Nothing to repeat'),
-        );
+
+        expect(() =>
+            // eslint-disable-next-line regexp/no-invalid-regexp
+            testString.replace(new RegExp(rawRegExpStr), ''),
+        ).toThrow(new SyntaxError('Invalid regular expression: /+/: Nothing to repeat'));
     });
 
     describe('Symbols which do not require escaping', () => {

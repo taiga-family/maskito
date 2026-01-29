@@ -11,7 +11,7 @@ import type {
 import {maskitoUpdateElement} from '@maskito/core';
 
 export default {
-    mask: /^\d*\.?\d*$/,
+    mask: /^\d*(?:\.\d*)?$/,
     plugins: [
         (element: MaskitoElement, _: MaskitoOptions) => {
             const blurHandler = (): void => {

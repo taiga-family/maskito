@@ -46,7 +46,7 @@ export default {
 
 // Paste "89123456789" => "+7 (912) 345-67-89"
 function createCompletePhoneInsertionPreprocessor(): MaskitoPreprocessor {
-    const trimPrefix = (value: string): string => value.replace(/^(\+?7?\s?8?)\s?/, '');
+    const trimPrefix = (value: string): string => value.replace(/^\+?7?\s?8?\s?/, '');
     const countDigits = (value: string): number => value.replaceAll(/\D/g, '').length;
 
     return ({elementState, data}) => {

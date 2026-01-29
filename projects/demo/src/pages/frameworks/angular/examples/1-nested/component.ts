@@ -14,7 +14,7 @@ export class NestedDocExample1 {
     protected value = '';
 
     public readonly nameMask: MaskitoOptions = {
-        mask: /^[a-zA-Z\s]+$/,
+        mask: /^[a-z\s]+$/i,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
