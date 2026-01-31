@@ -2,7 +2,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {parsePhoneNumber} from 'libphonenumber-js/core';
 
-export function normalizeStrictPhonePreprocessorGenerator({
+export function pasteStrictPhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
