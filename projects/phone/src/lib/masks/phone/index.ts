@@ -4,6 +4,6 @@ export {maskitoPhoneOptionsGenerator} from './phone-mask';
 export {
     cutInitCountryCodePreprocessor,
     phoneLengthPostprocessorGenerator,
-    validatePhonePreprocessorGenerator,
+    browserAutofillPreprocessorGenerator,
 } from './processors';
 export {maskitoGetCountryFromNumber} from './utils';

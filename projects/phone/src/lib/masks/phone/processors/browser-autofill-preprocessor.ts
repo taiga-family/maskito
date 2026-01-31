@@ -52,7 +52,7 @@ function convertToNationalFormat(
     }
 }
 
-export function validatePhonePreprocessorGenerator({
+export function browserAutofillPreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
