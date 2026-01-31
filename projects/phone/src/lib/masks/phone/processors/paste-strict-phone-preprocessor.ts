@@ -1,16 +1,18 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {parsePhoneNumber} from 'libphonenumber-js/core';
+
+import type {MaskitoPhoneParams} from '../phone-mask';
 
 export function pasteStrictPhonePreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
-}: {
+    format = 'INTERNATIONAL',
+}: Pick<MaskitoPhoneParams, 'countryIsoCode' | 'format' | 'metadata'> & {
     prefix: string;
-    countryIsoCode?: CountryCode;
-    metadata: MetadataJson;
 }): MaskitoPreprocessor {
+    const isNational = format === 'NATIONAL';
+
     return ({elementState, data}) => {
         const {selection, value} = elementState;
         const [from] = selection;
@@ -24,6 +26,20 @@ export function pasteStrictPhonePreprocessorGenerator({
                 : parsePhoneNumber(data, metadata);
 
             const {nationalNumber, countryCallingCode} = phone;
+
+            if (isNational && countryIsoCode) {
+                /**
+                 * For national format, always return just the national number.
+                 * The mask will format it according to the country's national format.
+                 */
+                return {
+                    elementState: {
+                        selection,
+                        value: '',
+                    },
+                    data: nationalNumber,
+                };
+            }
 
             return {
                 elementState: {
