@@ -4,10 +4,10 @@ import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {AsYouType} from 'libphonenumber-js/core';
 
 import {
+    browserAutofillPreprocessorGenerator,
     pasteNonStrictPhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
     sanitizePhonePreprocessorGenerator,
-    browserAutofillPreprocessorGenerator,
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
