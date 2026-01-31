@@ -1,6 +1,29 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
+import {type PhoneNumber} from 'libphonenumber-js';
 import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {parsePhoneNumber} from 'libphonenumber-js/core';
+
+function parsePhone({
+    data,
+    prefix,
+    countryIsoCode,
+    metadata,
+}: {
+    data: string;
+    prefix: string;
+    countryIsoCode?: CountryCode;
+    metadata: MetadataJson;
+}): PhoneNumber {
+    if (!data.startsWith(prefix) && countryIsoCode) {
+        try {
+            return parsePhoneNumber(`+${data}`, countryIsoCode, metadata);
+        } catch {
+            return parsePhoneNumber(data, countryIsoCode, metadata);
+        }
+    }
+
+    return parsePhoneNumber(data, metadata);
+}
 
 export function pasteNonStrictPhonePreprocessorGenerator({
     prefix,
@@ -16,20 +39,12 @@ export function pasteNonStrictPhonePreprocessorGenerator({
 
         // handle paste of a number when input is empty
         if (data.length > 2 && value === '') {
-            const phone = (() => {
-                if (!data.startsWith(prefix) && countryIsoCode) {
-                    try {
-                        const normalized = `+${data}`;
-
-                        return parsePhoneNumber(normalized, countryIsoCode, metadata);
-                    } catch {
-                        // fallback: try original data without normalization
-                        return parsePhoneNumber(data, countryIsoCode, metadata);
-                    }
-                } else {
-                    return parsePhoneNumber(data, metadata);
-                }
-            })();
+            const phone = parsePhone({
+                data,
+                prefix,
+                countryIsoCode,
+                metadata,
+            });
 
             const {number} = phone;
 
