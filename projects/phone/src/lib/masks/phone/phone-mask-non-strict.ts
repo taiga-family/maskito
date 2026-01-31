@@ -6,6 +6,7 @@ import {AsYouType} from 'libphonenumber-js/core';
 import {
     pasteNonStrictPhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
+    sanitizePhonePreprocessorGenerator,
     validatePhonePreprocessorGenerator,
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
@@ -47,6 +48,7 @@ export function maskitoPhoneNonStrictOptionsGenerator({
                 : generatePhoneMask({value, template: currentTemplate, prefix});
         },
         preprocessors: [
+            sanitizePhonePreprocessorGenerator(),
             validatePhonePreprocessorGenerator({
                 prefix,
                 countryIsoCode: defaultIsoCode,
