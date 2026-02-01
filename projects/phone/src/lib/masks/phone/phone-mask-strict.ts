@@ -65,7 +65,12 @@ export function maskitoPhoneStrictOptionsGenerator({
                 metadata,
                 format,
             }),
-            pasteStrictPhonePreprocessorGenerator({prefix, countryIsoCode, metadata}),
+            pasteStrictPhonePreprocessorGenerator({
+                prefix,
+                countryIsoCode,
+                metadata,
+                format,
+            }),
         ],
         postprocessors: isNational
             ? [phoneLengthPostprocessorGenerator(metadata)]
