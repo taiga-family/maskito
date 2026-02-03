@@ -26,7 +26,7 @@ export function createNonRemovableCharsDeletionPreprocessor({
         const areNonRemovableZeroesSelected =
             Boolean(minimumFractionDigits) &&
             from > value.indexOf(decimalSeparator) &&
-            Boolean(selectedCharacters.match(/^0+$/gi));
+            Boolean(selectedCharacters.match(/^0+$/g));
 
         if (
             (actionType !== 'deleteBackward' && actionType !== 'deleteForward') ||

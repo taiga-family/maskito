@@ -5,7 +5,7 @@ import {TestInput} from '../utils';
 
 describe('overwriteMode = replace', () => {
     const digitsOnlyMask: MaskitoOptions = {
-        mask: /^\d+$/gi,
+        mask: /^\d+$/g,
         overwriteMode: 'replace',
     };
 

@@ -46,7 +46,7 @@ describe('Number | overwrite selection range', () => {
 
     it('overwrite of selection range inside postprocessor works ', () => {
         const maskitoOptions: MaskitoOptions = {
-            mask: /^\d*\.?\d*$/,
+            mask: /^\d*(?:\.\d*)?$/,
             overwriteMode: 'replace',
             postprocessors: [
                 (elementState) =>

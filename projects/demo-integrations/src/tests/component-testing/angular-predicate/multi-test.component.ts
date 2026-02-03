@@ -39,7 +39,7 @@ export class MultiTestInputComponent {
     };
 
     protected readonly nameMask: MaskitoOptions = {
-        mask: /^[a-zA-Z\s]+$/,
+        mask: /^[a-z\s]+$/i,
         postprocessors: [
             ({value, selection}) => ({value: value.toUpperCase(), selection}),
         ],
