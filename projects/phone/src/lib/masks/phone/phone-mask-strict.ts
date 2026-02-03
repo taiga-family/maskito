@@ -9,7 +9,7 @@ import {
     cutInitCountryCodePreprocessor,
     pasteStrictPhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
-    sanitizePhonePreprocessorGenerator,
+    sanitizePreprocessor,
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
@@ -57,7 +57,7 @@ export function maskitoPhoneStrictOptionsGenerator({
             ]),
         ],
         preprocessors: [
-            sanitizePhonePreprocessorGenerator(),
+            sanitizePreprocessor(),
             cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
             browserAutofillPreprocessorGenerator({
                 prefix,
