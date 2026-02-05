@@ -90,19 +90,7 @@
             "executor": "@nx/angular:dev-server",
             "options": {
                 "port": 3333,
-                "prebundle": {
-                    "exclude": [
-                        "@taiga-ui/addon-doc",
-                        "@taiga-ui/addon-mobile",
-                        "@taiga-ui/cdk",
-                        "@taiga-ui/core",
-                        "@taiga-ui/icons",
-                        "@taiga-ui/kit",
-                        "@taiga-ui/layout",
-                        "@taiga-ui/legacy",
-                        "@taiga-ui/styles"
-                    ]
-                }
+                "prebundle": false
             },
             "configurations": {
                 "production": {
