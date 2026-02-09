@@ -161,6 +161,12 @@ export const DEMO_PAGES: TuiDocRoutePages = [
         keywords: 'guide, placeholder, fill, recipe',
     },
     {
+        section: 'Recipes',
+        title: 'Network address',
+        route: DemoPath.NetworkAddress,
+        keywords: 'ipv6, ipv4, ip, mac, address, network, recipe',
+    },
+    {
         section: 'Other',
         title: 'Browser support',
         route: DemoPath.BrowserSupport,

@@ -1,0 +1,53 @@
+<tui-doc-page
+    header="Network address"
+    package="Recipes"
+>
+    <p class="tui-space_top-0">
+        Use mask expression to create inputs for network addresses such as IPv6, IPv4, and MAC.
+    </p>
+
+    <tui-doc-example
+        id="ipv6"
+        heading="IPv6"
+        [content]="ipv6Example1"
+        [description]="ipv6Description"
+    >
+        <ng-template #ipv6Description>
+            This example demonstrates how to create an IPv6 address input via pattern mask expression with fixed colon
+            separators. A
+            <strong>postprocessor</strong>
+            converts all characters to lowercase.
+        </ng-template>
+        <network-address-doc-example-1 />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="ipv4"
+        heading="IPv4"
+        [content]="ipv4Example2"
+        [description]="ipv4Description"
+    >
+        <ng-template #ipv4Description>
+            This example demonstrates how to create an IPv4 address input via dynamic mask expression. It creates up to
+            4 octets separated by dots. Each octet allows up to 3 digits. A
+            <strong>postprocessor</strong>
+            clamps each octet value to a maximum of 255.
+        </ng-template>
+        <network-address-doc-example-2 />
+    </tui-doc-example>
+
+    <tui-doc-example
+        id="mac"
+        heading="MAC"
+        [content]="macExample3"
+        [description]="macDescription"
+    >
+        <ng-template #macDescription>
+            This example demonstrates how to create a MAC address input via pattern mask expression with fixed colon
+            separators. A
+            <strong>postprocessor</strong>
+            converts all characters to uppercase.
+        </ng-template>
+        <network-address-doc-example-3 />
+    </tui-doc-example>
+</tui-doc-page>
