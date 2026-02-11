@@ -57,7 +57,7 @@ export function maskitoPhoneStrictOptionsGenerator({
             ]),
         ],
         preprocessors: [
-            sanitizePreprocessor(),
+            sanitizePreprocessor,
             cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
             browserAutofillPreprocessorGenerator({
                 prefix,

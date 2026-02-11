@@ -48,7 +48,7 @@ export function maskitoPhoneNonStrictOptionsGenerator({
                 : generatePhoneMask({value, template: currentTemplate, prefix});
         },
         preprocessors: [
-            sanitizePreprocessor(),
+            sanitizePreprocessor,
             browserAutofillPreprocessorGenerator({
                 prefix,
                 countryIsoCode: defaultIsoCode,
