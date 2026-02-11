@@ -4,7 +4,6 @@ import {
     AsYouType,
     formatIncompletePhoneNumber,
     parsePhoneNumber,
-    validatePhoneNumberLength,
 } from 'libphonenumber-js/core';
 
 import type {MaskitoPhoneParams} from '../phone-mask';
@@ -52,7 +51,7 @@ function convertToNationalFormat(
     }
 }
 
-export function validatePhonePreprocessorGenerator({
+export function browserAutofillPreprocessorGenerator({
     prefix,
     countryIsoCode,
     metadata,
@@ -64,11 +63,6 @@ export function validatePhonePreprocessorGenerator({
 
     return ({elementState, data}) => {
         const {selection, value} = elementState;
-        const [from] = selection;
-        /**
-         * For national format, prefix is empty, so selectionIncludesPrefix is always false.
-         */
-        const selectionIncludesPrefix = prefix.length > 0 && from < prefix.length;
         const cleanCode = prefix.trim();
 
         /**
@@ -100,49 +94,6 @@ export function validatePhonePreprocessorGenerator({
 
                 return {elementState: {value: formatter.input(numberValue), selection}};
             }
-        }
-
-        try {
-            const validationError = validatePhoneNumberLength(
-                data,
-                {defaultCountry: countryIsoCode},
-                metadata,
-            );
-
-            if (!validationError || validationError === 'TOO_SHORT') {
-                // Handle paste-event with different code, for example for 8 / +7.
-                const phone = countryIsoCode
-                    ? parsePhoneNumber(data, countryIsoCode, metadata)
-                    : parsePhoneNumber(data, metadata);
-
-                const {nationalNumber, countryCallingCode} = phone;
-
-                if (isNational && countryIsoCode) {
-                    /**
-                     * For national format, always return just the national number.
-                     * The mask will format it according to the country's national format.
-                     */
-                    return {
-                        elementState: {
-                            selection,
-                            value: '',
-                        },
-                        data: nationalNumber,
-                    };
-                }
-
-                return {
-                    elementState: {
-                        selection,
-                        value: selectionIncludesPrefix ? '' : prefix,
-                    },
-                    data: selectionIncludesPrefix
-                        ? `+${countryCallingCode} ${nationalNumber}`
-                        : nationalNumber,
-                };
-            }
-        } catch {
-            return {elementState};
         }
 
         return {elementState};

@@ -5,9 +5,11 @@ import {AsYouType, getCountryCallingCode} from 'libphonenumber-js/core';
 
 import type {MaskitoPhoneParams} from './phone-mask';
 import {
+    browserAutofillPreprocessorGenerator,
     cutInitCountryCodePreprocessor,
+    pasteStrictPhonePreprocessorGenerator,
     phoneLengthPostprocessorGenerator,
-    validatePhonePreprocessorGenerator,
+    sanitizePreprocessor,
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
@@ -55,8 +57,15 @@ export function maskitoPhoneStrictOptionsGenerator({
             ]),
         ],
         preprocessors: [
+            sanitizePreprocessor,
             cutInitCountryCodePreprocessor({countryIsoCode, metadata, format}),
-            validatePhonePreprocessorGenerator({
+            browserAutofillPreprocessorGenerator({
+                prefix,
+                countryIsoCode,
+                metadata,
+                format,
+            }),
+            pasteStrictPhonePreprocessorGenerator({
                 prefix,
                 countryIsoCode,
                 metadata,
