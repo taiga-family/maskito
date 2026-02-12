@@ -112,4 +112,14 @@ describe('Network Address | IPv4', () => {
                 .should('have.value', '192.168.001.001');
         });
     });
+
+    describe('partially omitted separators', () => {
+        it('3 digits + 1 digit & separator + 3 digits + 3 digits', () => {
+            cy.get('@input').paste('1921.123123').should('have.value', '192.1.123.123');
+        });
+
+        it('3 digits + 3 digits + 1 digit & separator + 3 digits', () => {
+            cy.get('@input').paste('1921681.001').should('have.value', '192.168.1.001');
+        });
+    });
 });
