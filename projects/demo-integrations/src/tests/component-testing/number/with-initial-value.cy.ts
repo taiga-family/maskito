@@ -113,7 +113,7 @@ describe('Number | With initial value', () => {
         });
     });
 
-    describe('select some already existed characters and then type new digit', () => {
+    describe('select some existing characters and then type new digit', () => {
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
