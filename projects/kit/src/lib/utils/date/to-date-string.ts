@@ -35,13 +35,13 @@ export function toDateString(
         timeMode?: string;
     },
 ): string {
-    const safeYear = dateMode.match(/y/g)?.length === 2 ? year?.slice(-2) : year;
+    const yearLength = dateMode.match(/y/g)?.length ?? 0;
     const fullMode = dateMode + (timeMode ? dateTimeSeparator + timeMode : '');
 
     return fullMode
         .replaceAll(/d+/g, day ?? '')
         .replaceAll(/m+/g, month ?? '')
-        .replaceAll(/y+/g, safeYear ?? '')
+        .replaceAll(/y+/g, year?.slice(-yearLength) ?? '')
         .replaceAll(/H+/g, hours ?? '')
         .replaceAll('MSS', milliseconds ?? '')
         .replaceAll(/M+/g, minutes ?? '')
