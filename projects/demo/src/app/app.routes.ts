@@ -158,6 +158,12 @@ export const ROUTES: Routes = [
             import('../pages/recipes/placeholder/placeholder-doc.component'),
         title: 'With placeholder',
     },
+    {
+        path: DemoPath.NetworkAddress,
+        loadComponent: () =>
+            import('../pages/recipes/network-address/network-address-doc.component'),
+        title: 'Network address',
+    },
     // Other
     {
         path: DemoPath.BrowserSupport,
