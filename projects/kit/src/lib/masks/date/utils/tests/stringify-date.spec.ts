@@ -174,4 +174,20 @@ describe('maskitoStringifyDate', () => {
             });
         });
     });
+
+    describe('year contains leading zeroes', () => {
+        const date = new Date('0042-02-13T00:00:00.000');
+
+        it('dd/mm/yyyy', () => {
+            expect(maskitoStringifyDate(date, {mode: 'dd/mm/yyyy'})).toBe('13.02.0042');
+        });
+
+        it('yyyy/mm/dd', () => {
+            expect(maskitoStringifyDate(date, {mode: 'yyyy/mm/dd'})).toBe('0042.02.13');
+        });
+
+        it('mm/yy', () => {
+            expect(maskitoStringifyDate(date, {mode: 'mm/yy'})).toBe('02.42');
+        });
+    });
 });

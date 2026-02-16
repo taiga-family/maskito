@@ -13,8 +13,10 @@ export function maskitoStringifyDate(
     }: MaskitoDateParams,
 ): string {
     const validatedDate = clamp(date, min, max);
+    const {year, ...segments} = toDateSegments(validatedDate);
 
-    const segments = toDateSegments(validatedDate);
-
-    return toDateString(segments, {dateMode: mode.replaceAll('/', separator)});
+    return toDateString(
+        {...segments, year: year.padStart(mode.match(/y/g)?.length ?? 0, '0')},
+        {dateMode: mode.replaceAll('/', separator)},
+    );
 }
