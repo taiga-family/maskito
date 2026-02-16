@@ -1,6 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
 
+import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 import {TestInput} from '../utils';
 
 describe('Number | With initial value', () => {
@@ -110,5 +111,55 @@ describe('Number | With initial value', () => {
                 .should('have.prop', 'selectionStart', 0)
                 .should('have.prop', 'selectionEnd', 0);
         });
+    });
+
+    describe('select some existing characters and then type new digit', () => {
+        beforeEach(() => {
+            cy.mount(TestInput, {
+                componentProperties: {
+                    maskitoOptions: maskitoNumberOptionsGenerator({
+                        thousandSeparator: '_',
+                    }),
+                    initialValue: '123_456',
+                },
+            });
+        });
+
+        it(
+            'Initial 12|3_456| => Type 9 (the 1st (input) event) => 129|',
+            BROWSER_SUPPORTS_REAL_EVENTS,
+            () => {
+                cy.get('input')
+                    .type('{moveToStart}')
+                    .type('{rightArrow}'.repeat('12'.length))
+                    .realPress([
+                        'Shift',
+                        ...new Array('3_456'.length).fill('ArrowRight'),
+                    ]);
+
+                cy.get('input')
+                    .type('9')
+                    .should('have.value', '129')
+                    .should('have.prop', 'selectionStart', '129'.length)
+                    .should('have.prop', 'selectionEnd', '129'.length);
+            },
+        );
+
+        it(
+            'Enter 12|3_456| => Type 9 (NOT the 1st (input) event) => 129|',
+            BROWSER_SUPPORTS_REAL_EVENTS,
+            () => {
+                cy.get('input')
+                    .clear()
+                    .type('123_456')
+                    .realPress(['Shift', ...new Array('3_456'.length).fill('ArrowLeft')]);
+
+                cy.get('input')
+                    .type('9')
+                    .should('have.value', '129')
+                    .should('have.prop', 'selectionStart', '129'.length)
+                    .should('have.prop', 'selectionEnd', '129'.length);
+            },
+        );
     });
 });

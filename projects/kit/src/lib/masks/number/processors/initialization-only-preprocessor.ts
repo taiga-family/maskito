@@ -58,13 +58,17 @@ export function createInitializationOnlyPreprocessor(
             },
             {mask: cleanNumberMask},
         );
-        const deleted =
-            onlyNumber.slice(0, Math.max(to - prefix.length, 0)).length -
-            cleanState.value.slice(0, cleanState.selection[1]).length;
 
         return {
             elementState: {
-                selection: [Math.max(from - deleted, 0), Math.max(to - deleted, 0)],
+                selection: selection.map((position, i) => {
+                    const deleted =
+                        onlyNumber.slice(0, Math.max(position - prefix.length, 0))
+                            .length -
+                        cleanState.value.slice(0, cleanState.selection[i]).length;
+
+                    return Math.max(position - deleted, 0);
+                }) as [number, number],
                 value: fromNumberParts(
                     {
                         ...toNumberParts(cleanState.value, params),
