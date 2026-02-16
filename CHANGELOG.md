@@ -1,3 +1,14 @@
+### [5.1.1](https://github.com/taiga-family/maskito/compare/v5.1.0...v5.1.1) (2026-02-16)
+
+### 🐞 Bug Fixes
+
+- **kit**: `maskitoStringifyDate` incorrectly formats year with leading zeroes (#2538)
+  [(9817f08)](https://github.com/taiga-family/maskito/commit/9817f084dd34628afd1bebe8070189edf8f3fd1f)
+- **kit**: `Number` deletes the previous non-selected character on the first deletion (#2537)
+  [(40ef2e0)](https://github.com/taiga-family/maskito/commit/40ef2e03b8ecaf564a1d4f055b8d629ba8932370)
+- **phone**: `Phone` preserves previously entered digits on new digits paste (#2481)
+  [(f836f4f)](https://github.com/taiga-family/maskito/commit/f836f4f5ec94d865a2bcb44960161cfe25fe3a64)
+
 ## [5.1.0](https://github.com/taiga-family/maskito/compare/v5.0.1...v5.1.0) (2026-01-22)
 
 ### 🚀 Features
