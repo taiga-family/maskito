@@ -27,7 +27,6 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            '@typescript-eslint/no-unnecessary-condition': 'off',
             '@typescript-eslint/naming-convention': 'off',
             'markdown/fenced-code-language': 'off',
             'de-morgan/no-negated-conjunction': 'off',

@@ -94,7 +94,7 @@ describe('Placeholder | count number of dispatched input event', () => {
         const {plugins, ...placeholderOptions} = maskitoWithPlaceholder('dd/mm/yyyy');
         const maskitoOptions: MaskitoOptions = {
             ...dateOptions,
-            plugins: plugins.concat(dateOptions.plugins || []),
+            plugins: plugins.concat(dateOptions.plugins),
             preprocessors: [
                 ...placeholderOptions.preprocessors,
                 ...dateOptions.preprocessors,

@@ -42,7 +42,7 @@ export function createDoubleSpacePlugin(): MaskitoPlugin {
             const {value, selectionStart, selectionEnd} = element;
             const rejectedSpace =
                 prevEvent?.inputType === 'insertText' &&
-                prevEvent?.data === SPACE &&
+                prevEvent.data === SPACE &&
                 !value.slice(0, Number(selectionEnd)).endsWith(SPACE);
 
             if (event.inputType === 'insertText' && event.data === `.${SPACE}`) {
@@ -52,10 +52,10 @@ export function createDoubleSpacePlugin(): MaskitoPlugin {
                 ) {
                     // Android
                     element.value = prevValue;
-                    element.setSelectionRange?.(prevCaretIndex, prevCaretIndex);
+                    element.setSelectionRange(prevCaretIndex, prevCaretIndex);
                 } else if (rejectedSpace) {
                     // Mac OS
-                    element.setSelectionRange?.(selectionStart, selectionStart);
+                    element.setSelectionRange(selectionStart, selectionStart);
                 }
             }
 

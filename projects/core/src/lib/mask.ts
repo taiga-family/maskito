@@ -208,7 +208,7 @@ export class Maskito extends MaskHistory {
             element.matches(':focus') &&
             (element.selectionStart !== from || element.selectionEnd !== to)
         ) {
-            element.setSelectionRange?.(from, to);
+            element.setSelectionRange(from, to);
         }
     }
 
@@ -235,15 +235,13 @@ export class Maskito extends MaskHistory {
             data: null,
         },
     ): void {
-        if (globalThis.InputEvent) {
-            this.element.dispatchEvent(
-                new InputEvent('input', {
-                    ...eventInit,
-                    bubbles: true,
-                    cancelable: false,
-                }),
-            );
-        }
+        this.element.dispatchEvent(
+            new InputEvent('input', {
+                ...eventInit,
+                bubbles: true,
+                cancelable: false,
+            }),
+        );
     }
 
     private handleDelete({

@@ -16,7 +16,7 @@ const {
 
 export default {
     ...dateOptions,
-    plugins: plugins.concat(dateOptions.plugins || []),
+    plugins: plugins.concat(dateOptions.plugins),
     preprocessors: [
         // Always put it BEFORE all other preprocessors
         ...placeholderOptions.preprocessors,
