@@ -102,7 +102,7 @@
         "@nx/react": "21.6.3",
         "@nx/rollup": "21.6.3",
         "@nx/workspace": "21.6.3",
-        "@taiga-ui/configs": "0.418.0",
+        "@taiga-ui/configs": "0.420.0",
         "@tinkoff/eslint-config": "5.0.1",
         "@tinkoff/eslint-config-react": "5.0.1",
         "@types/node": "24.10.11",
