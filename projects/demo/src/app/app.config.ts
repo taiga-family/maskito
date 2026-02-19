@@ -74,7 +74,7 @@ export const APP_CONFIG: ApplicationConfig = {
                     return `${link}/${context.path}`;
                 }
 
-                if (context.package?.toLowerCase() !== 'kit') {
+                if (context.package.toLowerCase() !== 'kit') {
                     return null;
                 }
 

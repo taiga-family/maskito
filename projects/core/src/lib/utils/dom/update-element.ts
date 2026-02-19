@@ -26,7 +26,7 @@ export function maskitoUpdateElement(
         element.value = valueOrElementState.value;
 
         if (element.matches(':focus')) {
-            element.setSelectionRange?.(from, to);
+            element.setSelectionRange(from, to);
         }
     }
 

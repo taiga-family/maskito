@@ -54,9 +54,9 @@ function getPrototype(
 ): HTMLInputElement | HTMLTextAreaElement | null | undefined {
     switch (element.nodeName) {
         case 'INPUT':
-            return globalThis.HTMLInputElement?.prototype;
+            return globalThis.HTMLInputElement.prototype;
         case 'TEXTAREA':
-            return globalThis.HTMLTextAreaElement?.prototype;
+            return globalThis.HTMLTextAreaElement.prototype;
         default:
             return null;
     }

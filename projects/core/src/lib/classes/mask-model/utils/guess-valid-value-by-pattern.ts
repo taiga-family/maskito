@@ -56,6 +56,8 @@ export function guessValidValueByPattern(
         value: validateValueWithMask(maskedValue + trailingFixedCharacters, mask)
             ? maskedValue + trailingFixedCharacters
             : maskedValue,
+        // issues: https://github.com/typescript-eslint/typescript-eslint/issues/12069
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         selection: [maskedFrom ?? maskedValue.length, maskedTo ?? maskedValue.length],
     };
 }
