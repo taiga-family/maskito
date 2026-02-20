@@ -25,9 +25,9 @@ export class StackblitzStarterComponent implements OnInit {
     private readonly platformId = inject(PLATFORM_ID);
     private readonly stackblitz = inject(StackblitzService);
 
-    public async ngOnInit(): Promise<void> {
+    public ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {
-            await this.openStackblitz();
+            void this.openStackblitz();
         }
     }
 
