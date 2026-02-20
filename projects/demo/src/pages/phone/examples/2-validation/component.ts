@@ -48,7 +48,7 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
         <tui-error
             [error]="[] | tuiFieldError | async"
             [formControl]="control"
-        ></tui-error>
+        />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
