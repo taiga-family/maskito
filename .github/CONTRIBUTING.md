@@ -5,8 +5,8 @@
 When contributing, it's better to first discuss the change you wish to make via issue, email, or any other method with
 the owners of this repository before making a change.
 
-All members of our community are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md). Please make sure you are
-welcoming and friendly in all of our spaces.
+All members of our community are expected to follow our [Code of Conduct](.github/CODE_OF_CONDUCT.md). Please make sure
+you are welcoming and friendly in all of our spaces.
 
 ## Getting started
 
