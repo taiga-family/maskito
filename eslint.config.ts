@@ -32,7 +32,6 @@ export default [
             'de-morgan/no-negated-conjunction': 'off',
             '@typescript-eslint/no-unsafe-function-type': 'off',
             'package-json/valid-contributors': 'off',
-            '@angular-eslint/template/prefer-self-closing-tags': 'off',
             '@angular-eslint/no-async-lifecycle-method': 'off',
             'no-bitwise': 'off',
             'import/enforce-node-protocol-usage': 'off',

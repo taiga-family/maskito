@@ -15,7 +15,7 @@ import {StackblitzService} from '../../stackblitz.service';
             textContent="Stackblitz loading..."
             class="loader"
             [overlay]="true"
-        ></tui-loader>
+        />
     `,
     styleUrl: './stackblitz-starter.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,

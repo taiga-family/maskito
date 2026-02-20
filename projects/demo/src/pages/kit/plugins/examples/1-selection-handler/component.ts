@@ -21,7 +21,7 @@ import mask from './mask';
                 [(ngModel)]="value"
             />
 
-            <tui-icon icon="@tui.clock"></tui-icon>
+            <tui-icon icon="@tui.clock" />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
