@@ -29,10 +29,8 @@ export default [
         rules: {
             '@typescript-eslint/naming-convention': 'off',
             'markdown/fenced-code-language': 'off',
-            'de-morgan/no-negated-conjunction': 'off',
             '@typescript-eslint/no-unsafe-function-type': 'off',
             'package-json/valid-contributors': 'off',
-            '@angular-eslint/no-async-lifecycle-method': 'off',
             'no-bitwise': 'off',
             'import/enforce-node-protocol-usage': 'off',
             'package-json/valid-scripts': 'off',
