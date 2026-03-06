@@ -172,4 +172,26 @@ describe('maskitoParseDate', () => {
             expect(parsedDate?.getTime()).toBe(params.max?.getTime());
         });
     });
+
+    describe('invalid date strings', () => {
+        const params: MaskitoDateParams = {
+            mode: 'mm/dd/yyyy',
+            min: new Date('2000-01-01T00:00:00.000'),
+            max: new Date('2030-01-01T00:00:00.000'),
+        };
+
+        it.each([
+            'this-is-not-a-date',
+            '',
+            '   ',
+            '12//2020',
+            '/31/2020',
+            '12/31/',
+            '12/31/20',
+            '12/31/abcd',
+            '1a/31/2020',
+        ])('should return null for "%s"', (value) => {
+            expect(maskitoParseDate(value, params)).toBeNull();
+        });
+    });
 });
