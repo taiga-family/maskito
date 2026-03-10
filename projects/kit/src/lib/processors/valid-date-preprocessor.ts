@@ -27,7 +27,7 @@ export function createValidDatePreprocessor({
 
         const newCharacters = data.replaceAll(
             new RegExp(
-                `[^\\d${escapeRegExp(dateSegmentsSeparator)}${rangeSeparator}]`,
+                String.raw`[^\d${escapeRegExp(dateSegmentsSeparator)}${rangeSeparator}]`,
                 'g',
             ),
             '',

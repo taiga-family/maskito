@@ -10,7 +10,8 @@ export function splitDateTimeString(
         '',
     ).length;
     const [date = ''] =
-        new RegExp(`(\\d[^\\d]*){0,${dateDigitsCount - 1}}\\d?`).exec(dateTime) || [];
+        new RegExp(String.raw`(\d[^\d]*){0,${dateDigitsCount - 1}}\d?`).exec(dateTime) ||
+        [];
     const [dateTimeSeparator = ''] =
         LEADING_NON_DIGIT_RE.exec(dateTime.slice(date.length)) || [];
 

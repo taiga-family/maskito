@@ -10,6 +10,6 @@ export function parseDateRangeString(
     return (
         dateRange
             .replace(rangeSeparator, '')
-            .match(new RegExp(`(\\D*\\d[^\\d\\s]*){1,${digitsInDate}}`, 'g')) || []
+            .match(new RegExp(String.raw`(\D*\d[^\d\s]*){1,${digitsInDate}}`, 'g')) || []
     );
 }

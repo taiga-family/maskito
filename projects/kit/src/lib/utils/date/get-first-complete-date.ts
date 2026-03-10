@@ -6,7 +6,7 @@ export function getFirstCompleteDate(
 ): string {
     const digitsInDate = countDigits(dateModeTemplate);
     const [completeDate = ''] =
-        new RegExp(`(\\D*\\d){${digitsInDate}}`).exec(dateString) || [];
+        new RegExp(String.raw`(\D*\d){${digitsInDate}}`).exec(dateString) || [];
 
     return completeDate;
 }

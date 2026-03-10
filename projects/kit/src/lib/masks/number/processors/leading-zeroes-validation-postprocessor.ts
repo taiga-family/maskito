@@ -32,12 +32,12 @@ export function createLeadingZeroesValidationPostprocessor(
         return value
             .replace(
                 // all leading zeroes followed by another zero
-                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=0)`),
+                new RegExp(String.raw`^(\D+)?[0${escapedThousandSeparator}]+(?=0)`),
                 '$1',
             )
             .replace(
                 // zero followed by not-zero digit
-                new RegExp(`^(\\D+)?[0${escapedThousandSeparator}]+(?=[1-9])`),
+                new RegExp(String.raw`^(\D+)?[0${escapedThousandSeparator}]+(?=[1-9])`),
                 '$1',
             );
     };
