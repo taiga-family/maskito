@@ -6,7 +6,10 @@ export function maskitoParseDate(
     value: string,
     {mode, min = DEFAULT_MIN_DATE, max = DEFAULT_MAX_DATE}: MaskitoDateParams,
 ): Date | null {
-    if (value.length < mode.length) {
+    const digitsPattern = mode.replaceAll(/[^dmy]/g, '');
+    const digits = value.replaceAll(/\D+/g, '');
+
+    if (digits.length !== digitsPattern.length) {
         return null;
     }
 
