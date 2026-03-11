@@ -23,7 +23,7 @@ export function createNotEmptyIntegerPartPreprocessor(
 ): MaskitoPreprocessor {
     const {maximumFractionDigits, decimalSeparator} = params;
     const startWithDecimalSepRegExp = new RegExp(
-        `^\\D*${escapeRegExp(decimalSeparator)}`,
+        String.raw`^\D*${escapeRegExp(decimalSeparator)}`,
     );
 
     return ({elementState, data}) => {

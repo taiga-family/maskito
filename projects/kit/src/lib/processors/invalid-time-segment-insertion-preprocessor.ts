@@ -27,7 +27,7 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
     parseValue?: (value: string) => {timeString: string; restValue?: string};
 }): MaskitoPreprocessor {
     const invalidCharsRegExp = new RegExp(
-        `[^\\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]+`,
+        String.raw`[^\d${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]+`,
     );
 
     return ({elementState, data}, actionType) => {

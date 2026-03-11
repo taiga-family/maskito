@@ -40,11 +40,11 @@ export function maskitoParseNumber(
 
     const unmaskedNumber = maskedNumber
         // drop all decimal separators not followed by a digit
-        .replaceAll(new RegExp(`${escapedDecimalSeparator}(?!\\d)`, 'g'), '')
+        .replaceAll(new RegExp(String.raw`${escapedDecimalSeparator}(?!\d)`, 'g'), '')
         // drop all non-digit characters except decimal separator
         .replaceAll(
             new RegExp(
-                `[^\\d${maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator ? '' : escapedDecimalSeparator}]`,
+                String.raw`[^\d${maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator ? '' : escapedDecimalSeparator}]`,
                 'g',
             ),
             '',
