@@ -1,6 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 
 describe('Phone', () => {
     beforeEach(() => {
@@ -299,7 +300,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...new Array('7-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-89'.length),
                         'Backspace',
                     ]);
 
@@ -317,7 +318,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...new Array('7-8'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-8'.length),
                         'Backspace',
                     ]);
 
@@ -333,9 +334,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-89'.length),
                         'Shift',
-                        ...new Array('67'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '67'.length),
                         'Backspace',
                     ]);
 
@@ -351,9 +352,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-67-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-67-89'.length),
                         'Shift',
-                        ...new Array('345'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345'.length),
                         'Backspace',
                     ]);
 
@@ -386,7 +387,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...new Array('7-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-89'.length),
                     ]);
 
                     cy.get('@input')
@@ -404,7 +405,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...new Array('7-8'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-8'.length),
                     ]);
 
                     cy.get('@input')
@@ -420,9 +421,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-89'.length),
                         'Shift',
-                        ...new Array('67'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '67'.length),
                     ]);
 
                     cy.get('@input')
@@ -438,9 +439,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-67-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-67-89'.length),
                         'Shift',
-                        ...new Array('345'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345'.length),
                     ]);
 
                     cy.get('@input')
@@ -473,7 +474,7 @@ describe('Phone', () => {
                 () => {
                     cy.get('@input').realPress([
                         'Shift',
-                        ...new Array('7-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-89'.length),
                     ]);
 
                     cy.get('@input')
@@ -491,7 +492,7 @@ describe('Phone', () => {
                     cy.get('@input').realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...new Array('7-8'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '7-8'.length),
                     ]);
 
                     cy.get('@input')
@@ -507,9 +508,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-89'.length),
                         'Shift',
-                        ...new Array('67'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '67'.length),
                     ]);
 
                     cy.get('@input')
@@ -525,9 +526,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('-67-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-67-89'.length),
                         'Shift',
-                        ...new Array('345'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345'.length),
                     ]);
 
                     cy.get('@input')
@@ -545,9 +546,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('345-67-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345-67-89'.length),
                         'Shift',
-                        ...new Array(') '.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', ') '.length),
                         'Backspace',
                     ]);
 
@@ -563,9 +564,9 @@ describe('Phone', () => {
                 BROWSER_SUPPORTS_REAL_EVENTS,
                 () => {
                     cy.get('@input').realPress([
-                        ...new Array('345-67-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345-67-89'.length),
                         'Shift',
-                        ...new Array(') '.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', ') '.length),
                     ]);
 
                     cy.get('@input')
@@ -613,9 +614,9 @@ describe('Phone', () => {
                 cy.get('@input')
                     .type('9123456789')
                     .realPress([
-                        ...new Array('-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-89'.length),
                         'Shift',
-                        ...new Array('345-67'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345-67'.length),
                     ]);
 
                 cy.get('@input')
@@ -662,9 +663,9 @@ describe('Phone', () => {
                 cy.get('@input')
                     .type('9123456789')
                     .realPress([
-                        ...new Array('-89'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '-89'.length),
                         'Shift',
-                        ...new Array('345-67'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '345-67'.length),
                     ]);
 
                 cy.get('@input')

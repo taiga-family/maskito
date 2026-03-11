@@ -1,4 +1,3 @@
-import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import type {ComponentFixture} from '@angular/core/testing';
 import {MaskitoDirective} from '@maskito/angular';
@@ -29,13 +28,13 @@ describe('@maskito/angular | Predicate', () => {
     it('supports asynchronous predicate', () => {
         const cardMask: MaskitoOptions = {
             mask: [
-                ...new Array(4).fill(/\d/),
+                ...Array.from<RegExp>({length: 4}).fill(/\d/),
                 ' ',
-                ...new Array(4).fill(/\d/),
+                ...Array.from<RegExp>({length: 4}).fill(/\d/),
                 ' ',
-                ...new Array(4).fill(/\d/),
+                ...Array.from<RegExp>({length: 4}).fill(/\d/),
                 ' ',
-                ...new Array(4).fill(/\d/),
+                ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ],
         };
 
@@ -68,7 +67,7 @@ describe('@maskito/angular | Predicate', () => {
                 delay(1_000).then(() => element.querySelectorAll('input')[1]!);
 
             @Component({
-                imports: [AsyncPipe, MaskitoDirective],
+                imports: [MaskitoDirective],
                 template: `
                     <div
                         class="wrapper"

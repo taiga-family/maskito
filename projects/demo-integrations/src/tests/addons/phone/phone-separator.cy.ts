@@ -1,6 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 
 describe('Phone', () => {
     describe('Separator', () => {
@@ -87,10 +88,7 @@ describe('Phone', () => {
                     it('+7 920 424-11-32 => Select "+7 920 424 |11| 32" => Backspace => +7 920 424 |32', () => {
                         cy.get('@input')
                             .type('{leftArrow}'.repeat(' 32'.length))
-                            .realPress([
-                                'Shift',
-                                ...new Array('11'.length).fill('ArrowLeft'),
-                            ]);
+                            .realPress(['Shift', ...repeatKey('ArrowLeft', '11'.length)]);
 
                         cy.get('@input')
                             .type('{backspace}')
@@ -108,10 +106,7 @@ describe('Phone', () => {
                     it('+7 920 424-11-32 => Select "+7 920 424 |11| 32" => Type "5" => +7 920 424 5|3 2', () => {
                         cy.get('@input')
                             .type('{leftArrow}'.repeat(' 32'.length))
-                            .realPress([
-                                'Shift',
-                                ...new Array('11'.length).fill('ArrowLeft'),
-                            ]);
+                            .realPress(['Shift', ...repeatKey('ArrowLeft', '11'.length)]);
 
                         cy.get('@input')
                             .type('5')

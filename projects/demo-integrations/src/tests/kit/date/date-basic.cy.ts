@@ -1,6 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 
 describe('Date', () => {
     describe('Basic', () => {
@@ -254,7 +255,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('.2022'.length))
                             .realPress([
                                 'Shift',
-                                ...new Array('12'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '12'.length),
                                 'Backspace',
                             ]);
 
@@ -274,7 +275,7 @@ describe('Date', () => {
                             .type('{leftArrow}'.repeat('1.2011'.length))
                             .realPress([
                                 'Shift',
-                                ...new Array('1.1'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '1.1'.length),
                                 'Backspace',
                             ]);
 
@@ -294,10 +295,7 @@ describe('Date', () => {
                         cy.get('@input')
                             .type('12112022')
                             .type('{leftArrow}'.repeat('.11.2022'.length))
-                            .realPress([
-                                'Shift',
-                                ...new Array('12'.length).fill('ArrowLeft'),
-                            ]);
+                            .realPress(['Shift', ...repeatKey('ArrowLeft', '12'.length)]);
 
                         cy.get('@input')
                             .type('3')
@@ -314,10 +312,7 @@ describe('Date', () => {
                         cy.get('@input')
                             .type('12112022')
                             .type('{leftArrow}'.repeat('.11.2022'.length))
-                            .realPress([
-                                'Shift',
-                                ...new Array('12'.length).fill('ArrowLeft'),
-                            ]);
+                            .realPress(['Shift', ...repeatKey('ArrowLeft', '12'.length)]);
 
                         cy.get('@input')
                             .type('0')

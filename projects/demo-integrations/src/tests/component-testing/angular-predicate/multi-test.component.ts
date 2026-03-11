@@ -28,13 +28,13 @@ export class MultiTestInputComponent {
 
     protected readonly cardMask: MaskitoOptions = {
         mask: [
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
         ],
     };
 

@@ -2,6 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 import {TestInput} from '../utils';
 
 describe('Number | With initial value', () => {
@@ -132,10 +133,7 @@ describe('Number | With initial value', () => {
                 cy.get('input')
                     .type('{moveToStart}')
                     .type('{rightArrow}'.repeat('12'.length))
-                    .realPress([
-                        'Shift',
-                        ...new Array('3_456'.length).fill('ArrowRight'),
-                    ]);
+                    .realPress(['Shift', ...repeatKey('ArrowRight', '3_456'.length)]);
 
                 cy.get('input')
                     .type('9')
@@ -152,7 +150,7 @@ describe('Number | With initial value', () => {
                 cy.get('input')
                     .clear()
                     .type('123_456')
-                    .realPress(['Shift', ...new Array('3_456'.length).fill('ArrowLeft')]);
+                    .realPress(['Shift', ...repeatKey('ArrowLeft', '3_456'.length)]);
 
                 cy.get('input')
                     .type('9')

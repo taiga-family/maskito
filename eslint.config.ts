@@ -51,7 +51,6 @@ export default [
             'import/consistent-type-specifier-style': 'off',
             'import/no-duplicates': 'off',
             '@typescript-eslint/no-unnecessary-type-conversion': 'off',
-            'unicorn/no-new-array': 'off',
             '@typescript-eslint/consistent-type-exports': 'off',
             '@typescript-eslint/method-signature-style': 'off',
             '@typescript-eslint/strict-void-return': 'off',

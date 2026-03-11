@@ -11,7 +11,7 @@ const EMPTY_STATE: ElementState = {
 
 describe('MaskModel | Dynamic mask', () => {
     describe('switching on the fly works', () => {
-        const SHORT: MaskitoMask = new Array(10).fill(null).map((_) => /\d/);
+        const SHORT: MaskitoMask = Array.from<RegExp>({length: 10}).fill(/\d/);
         const MEDIUM: MaskitoMask = [
             /\d/,
             /\d/,
@@ -33,7 +33,7 @@ describe('MaskModel | Dynamic mask', () => {
             /\d/,
             /\d/,
         ];
-        const LONG: MaskitoMask = new Array(20).fill(null).map((_) => /\d/);
+        const LONG: MaskitoMask = Array.from<RegExp>({length: 20}).fill(/\d/);
         const maskitoOptions: Required<MaskitoOptions> = {
             ...MASKITO_DEFAULT_OPTIONS,
             mask: ({value}) => {
