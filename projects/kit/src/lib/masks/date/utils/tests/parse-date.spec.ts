@@ -193,5 +193,37 @@ describe('maskitoParseDate', () => {
         ])('should return null for "%s"', (value) => {
             expect(maskitoParseDate(value, params)).toBeNull();
         });
+
+        it('should return null for a date with incomplete year and multi-char separator', () => {
+            expect(
+                maskitoParseDate('16-01-20', {
+                    mode: 'dd/mm/yyyy',
+                    separator: '-',
+                }),
+            ).toBeNull();
+
+            expect(
+                maskitoParseDate('16--01--20', {
+                    mode: 'dd/mm/yyyy',
+                    separator: '--',
+                }),
+            ).toBeNull();
+        });
+
+        it('should parse a date with complete year and multi-char separator', () => {
+            expect(
+                maskitoParseDate('16-01-2026', {
+                    mode: 'dd/mm/yyyy',
+                    separator: '-',
+                })?.getTime(),
+            ).toBe(Date.parse('2026-01-16T00:00:00.000'));
+
+            expect(
+                maskitoParseDate('16--01--2026', {
+                    mode: 'dd/mm/yyyy',
+                    separator: '--',
+                })?.getTime(),
+            ).toBe(Date.parse('2026-01-16T00:00:00.000'));
+        });
     });
 });
