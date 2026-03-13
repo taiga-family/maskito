@@ -133,6 +133,26 @@ describe('maskitoParseDateTime', () => {
         ).toBeNull();
     });
 
+    it('parses date-time with dd/mm date mode without year', () => {
+        expect(
+            maskitoParseDateTime('25/12, 16:20', {
+                dateMode: 'dd/mm',
+                timeMode,
+                dateTimeSeparator,
+            })?.getTime(),
+        ).toBe(Date.parse('0000-12-25T16:20:00.000'));
+    });
+
+    it('parses date-time with mm/dd date mode without year', () => {
+        expect(
+            maskitoParseDateTime('12/25, 16:20', {
+                dateMode: 'mm/dd',
+                timeMode,
+                dateTimeSeparator,
+            })?.getTime(),
+        ).toBe(Date.parse('0000-12-25T16:20:00.000'));
+    });
+
     it('handles invalid date-time separator', () => {
         expect(
             maskitoParseDateTime('31/12/2018-16:20', {
