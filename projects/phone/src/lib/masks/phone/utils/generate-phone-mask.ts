@@ -20,8 +20,8 @@ export function generatePhoneMask({
                   .map((сhar) =>
                       сhar === TEMPLATE_FILLER || /\d/.test(сhar) ? /\d/ : сhar,
                   )
-            : new Array(Math.max(value.length - prefix.length, prefix.length)).fill(
-                  /\d/,
-              )),
+            : Array.from<RegExp>({
+                  length: Math.max(value.length - prefix.length, prefix.length),
+              }).fill(/\d/)),
     ];
 }

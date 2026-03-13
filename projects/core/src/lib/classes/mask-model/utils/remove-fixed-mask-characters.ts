@@ -32,7 +32,11 @@ export function removeFixedMaskCharacters(
     );
 
     if (selection.length < 2) {
-        selection.push(...new Array(2 - selection.length).fill(unmaskedValue.length));
+        selection.push(
+            ...Array.from<number>({length: 2 - selection.length}).fill(
+                unmaskedValue.length,
+            ),
+        );
     }
 
     return {

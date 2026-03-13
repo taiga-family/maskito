@@ -16,15 +16,15 @@ import {TuiInputModule} from '@taiga-ui/legacy';
 export class CardDocExample1 {
     protected readonly cardMask: MaskitoOptions = {
         mask: [
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(4).fill(/\d/),
+            ...Array.from<RegExp>({length: 4}).fill(/\d/),
             ' ',
-            ...new Array(3).fill(/\d/),
+            ...Array.from<RegExp>({length: 3}).fill(/\d/),
         ],
     };
 
@@ -33,7 +33,9 @@ export class CardDocExample1 {
         separator: '/',
     });
 
-    protected readonly cvvMask: MaskitoOptions = {mask: [...new Array(3).fill(/\d/)]};
+    protected readonly cvvMask: MaskitoOptions = {
+        mask: Array.from<RegExp>({length: 3}).fill(/\d/),
+    };
 
     protected readonly form = new FormGroup({
         cardNumber: new FormControl(''),

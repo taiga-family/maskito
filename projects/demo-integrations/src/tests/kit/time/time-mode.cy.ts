@@ -1,6 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 
 describe('Time', () => {
     describe('Mode', () => {
@@ -47,9 +48,9 @@ describe('Time', () => {
                         .type('235959')
                         .should('have.value', '23:59')
                         .realPress([
-                            ...new Array(':59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':59'.length),
                             'Shift',
-                            ...new Array('23'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '23'.length),
                         ]);
 
                     cy.get('@input')
@@ -64,9 +65,9 @@ describe('Time', () => {
                         .type('235959')
                         .should('have.value', '23:59')
                         .realPress([
-                            ...new Array(':59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':59'.length),
                             'Shift',
-                            ...new Array('23'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '23'.length),
                         ]);
 
                     cy.get('@input')
@@ -152,9 +153,9 @@ describe('Time', () => {
                             .type('235959')
                             .should('have.value', '23:59:59')
                             .realPress([
-                                ...new Array(':59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -173,9 +174,9 @@ describe('Time', () => {
                             .type('235959')
                             .should('have.value', '23:59:59')
                             .realPress([
-                                ...new Array(':59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -259,9 +260,9 @@ describe('Time', () => {
                             .type('235959999')
                             .should('have.value', '23:59:59.999')
                             .realPress([
-                                ...new Array(':59.999'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59.999'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -280,9 +281,9 @@ describe('Time', () => {
                             .type('235959999')
                             .should('have.value', '23:59:59.999')
                             .realPress([
-                                ...new Array(':59.999'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59.999'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -480,9 +481,9 @@ describe('Time', () => {
                             .type('5959999')
                             .should('have.value', '59:59.999')
                             .realPress([
-                                ...new Array(':59.999'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59.999'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -501,9 +502,9 @@ describe('Time', () => {
                             .type('5959999')
                             .should('have.value', '59:59.999')
                             .realPress([
-                                ...new Array(':59.999'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', ':59.999'.length),
                                 'Shift',
-                                ...new Array('59'.length).fill('ArrowLeft'),
+                                ...repeatKey('ArrowLeft', '59'.length),
                             ]);
 
                         cy.get('@input')
@@ -602,9 +603,9 @@ describe('Time', () => {
                         .type('59999')
                         .should('have.value', '59.999')
                         .realPress([
-                            ...new Array('.999'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '.999'.length),
                             'Shift',
-                            ...new Array('59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '59'.length),
                         ]);
 
                     cy.get('@input')
@@ -619,9 +620,9 @@ describe('Time', () => {
                         .type('59999')
                         .should('have.value', '59.999')
                         .realPress([
-                            ...new Array('.999'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '.999'.length),
                             'Shift',
-                            ...new Array('59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '59'.length),
                         ]);
 
                     cy.get('@input')
@@ -709,9 +710,9 @@ describe('Time', () => {
                         .type('5959')
                         .should('have.value', '59:59')
                         .realPress([
-                            ...new Array(':59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':59'.length),
                             'Shift',
-                            ...new Array('59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '59'.length),
                         ]);
 
                     cy.get('@input')
@@ -726,9 +727,9 @@ describe('Time', () => {
                         .type('5959')
                         .should('have.value', '59:59')
                         .realPress([
-                            ...new Array(':59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':59'.length),
                             'Shift',
-                            ...new Array('59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '59'.length),
                         ]);
 
                     cy.get('@input')

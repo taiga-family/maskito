@@ -1,6 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 import {TestInput} from '../utils';
 
 describe('overwriteMode = replace', () => {
@@ -18,7 +19,7 @@ describe('overwriteMode = replace', () => {
             cy.get('input')
                 .type('1234')
                 .should('have.value', '1234')
-                .realPress(['Shift', ...new Array('34'.length).fill('ArrowLeft')]);
+                .realPress(['Shift', ...repeatKey('ArrowLeft', '34'.length)]);
 
             cy.get('input').type('0').should('have.value', '120');
         });
@@ -30,7 +31,7 @@ describe('overwriteMode = replace', () => {
                 .realPress([
                     'ArrowLeft',
                     'Shift',
-                    ...new Array('23'.length).fill('ArrowLeft'),
+                    ...repeatKey('ArrowLeft', '23'.length),
                 ]);
 
             cy.get('input').type('0').should('have.value', '104');
@@ -52,7 +53,7 @@ describe('overwriteMode = replace', () => {
                 .realPress([
                     'ArrowLeft',
                     'Shift',
-                    ...new Array('23'.length).fill('ArrowLeft'),
+                    ...repeatKey('ArrowLeft', '23'.length),
                 ]);
 
             cy.get('input').type('{backspace}').should('have.value', '14');
@@ -65,7 +66,7 @@ describe('overwriteMode = replace', () => {
                 .realPress([
                     'ArrowLeft',
                     'Shift',
-                    ...new Array('23'.length).fill('ArrowLeft'),
+                    ...repeatKey('ArrowLeft', '23'.length),
                 ]);
 
             cy.get('input').type('{del}').should('have.value', '14');

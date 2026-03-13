@@ -1,6 +1,7 @@
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
 
+import {repeatKey} from '../../utils';
 import {TestInput} from '../utils';
 
 describe('Number | [prefix]="$ " | [postfix]=" per day" (without caret guard)', () => {
@@ -48,7 +49,7 @@ describe('Number | [prefix]="$ " | [postfix]=" per day" (without caret guard)', 
             cy.get('@input')
                 .type('{moveToEnd}')
                 .type('{leftArrow}'.repeat('day'.length))
-                .realPress(['Shift', ...new Array('1.1'.length).fill('ArrowLeft')]);
+                .realPress(['Shift', ...repeatKey('ArrowLeft', '1.1'.length)]);
 
             cy.get('@input')
                 .type('{backspace}')

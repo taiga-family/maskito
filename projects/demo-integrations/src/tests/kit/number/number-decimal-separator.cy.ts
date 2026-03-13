@@ -1,4 +1,5 @@
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 import {openNumberPage} from './utils';
 
 describe('Number | Decimal separator (symbol used to separate the integer part from the fractional part)', () => {
@@ -170,7 +171,7 @@ describe('Number | Decimal separator (symbol used to separate the integer part f
                     .realPress([
                         'ArrowLeft',
                         'Shift',
-                        ...new Array('23,4'.length).fill('ArrowLeft'),
+                        ...repeatKey('ArrowLeft', '23,4'.length),
                     ]);
 
                 cy.get('@input')

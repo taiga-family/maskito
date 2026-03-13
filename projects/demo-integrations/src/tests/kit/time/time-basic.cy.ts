@@ -1,6 +1,7 @@
 import {DemoPath} from '@demo/constants';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
+import {repeatKey} from '../../utils';
 
 describe('Time', () => {
     describe('Basic', () => {
@@ -173,7 +174,7 @@ describe('Time', () => {
                         .type('1234')
                         .realPress([
                             'Shift',
-                            ...new Array('34'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '34'.length),
                             'Backspace',
                         ]);
 
@@ -189,7 +190,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...new Array('2:3'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '2:3'.length),
                             'Backspace',
                         ]);
 
@@ -203,9 +204,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
-                            ...new Array(':34'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':34'.length),
                             'Shift',
-                            ...new Array('12'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '12'.length),
                             'Backspace',
                         ]);
 
@@ -220,10 +221,7 @@ describe('Time', () => {
                 it('23:|59| => Delete => 23', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('2359')
-                        .realPress([
-                            'Shift',
-                            ...new Array('59'.length).fill('ArrowLeft'),
-                        ]);
+                        .realPress(['Shift', ...repeatKey('ArrowLeft', '59'.length)]);
 
                     cy.get('@input')
                         .type('{del}')
@@ -238,7 +236,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...new Array('3:5'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '3:5'.length),
                         ]);
 
                     cy.get('@input')
@@ -252,9 +250,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('2359')
                         .realPress([
-                            ...new Array(':59'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':59'.length),
                             'Shift',
-                            ...new Array('23'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '23'.length),
                         ]);
 
                     cy.get('@input')
@@ -269,10 +267,7 @@ describe('Time', () => {
                 it('11:|22| => Press 3 => 11:3|', BROWSER_SUPPORTS_REAL_EVENTS, () => {
                     cy.get('@input')
                         .type('1122')
-                        .realPress([
-                            'Shift',
-                            ...new Array('22'.length).fill('ArrowLeft'),
-                        ]);
+                        .realPress(['Shift', ...repeatKey('ArrowLeft', '22'.length)]);
 
                     cy.get('@input')
                         .type('3')
@@ -287,7 +282,7 @@ describe('Time', () => {
                         .realPress([
                             'ArrowLeft',
                             'Shift',
-                            ...new Array('1:2'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '1:2'.length),
                         ]);
 
                     cy.get('@input')
@@ -301,9 +296,9 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('1133')
                         .realPress([
-                            ...new Array(':33'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':33'.length),
                             'Shift',
-                            ...new Array('11'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', '11'.length),
                         ]);
 
                     cy.get('@input')
@@ -317,7 +312,7 @@ describe('Time', () => {
                     cy.get('@input')
                         .type('1234')
                         .realPress([
-                            ...new Array(':34'.length).fill('ArrowLeft'),
+                            ...repeatKey('ArrowLeft', ':34'.length),
                             'Shift',
                             'ArrowLeft',
                         ]);
