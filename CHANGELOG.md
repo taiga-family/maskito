@@ -1,3 +1,19 @@
+### [5.1.2](https://github.com/taiga-family/maskito/compare/v5.1.1...v5.1.2) (2026-03-13)
+
+### 🚀 Features
+
+- no-async-lifecycle method (#2549)
+  [(aa5312e)](https://github.com/taiga-family/maskito/commit/aa5312ea53196bfb45f4c2d034c6c84db9b4b8ea)
+- no-unnecessary-condition (#2544)
+  [(00cf7b1)](https://github.com/taiga-family/maskito/commit/00cf7b19d68274c7d3a522f8b8b27a4e6c192778)
+
+### 🐞 Bug Fixes
+
+- **kit**: `maskitoParseDate` & `maskitoParseDateTime` supports parsing of dates in formats `mm/dd`, `dd/mm` (#2577)
+  [(a0f073b)](https://github.com/taiga-family/maskito/commit/a0f073b26b3be0d6bf776d970adc65c745cb3d41)
+- **kit**: `maskitoParseDate` should return `null` for invalid `Date` string (#2561)
+  [(cf2b5f2)](https://github.com/taiga-family/maskito/commit/cf2b5f206a6679d2171bfd25fdc969ffee6dad7f)
+
 ### [5.1.1](https://github.com/taiga-family/maskito/compare/v5.1.0...v5.1.1) (2026-02-16)
 
 ### 🐞 Bug Fixes
