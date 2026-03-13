@@ -173,6 +173,26 @@ describe('maskitoParseDate', () => {
         });
     });
 
+    describe('mode without year segment', () => {
+        it('should parse mm/dd and preserve month/day values', () => {
+            const parsedDate = maskitoParseDate('12/25', {
+                mode: 'mm/dd',
+                separator: '/',
+            });
+
+            expect(parsedDate?.getTime()).toBe(Date.parse('0000-12-25T00:00:00.000'));
+        });
+
+        it('should parse dd/mm and preserve day/month values', () => {
+            const parsedDate = maskitoParseDate('25/12', {
+                mode: 'dd/mm',
+                separator: '/',
+            });
+
+            expect(parsedDate?.getTime()).toBe(Date.parse('0000-12-25T00:00:00.000'));
+        });
+    });
+
     describe('invalid date strings', () => {
         const params: MaskitoDateParams = {
             mode: 'mm/dd/yyyy',

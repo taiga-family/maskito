@@ -17,5 +17,5 @@ export function maskitoParseDate(
 
     const parsedDate = segmentsToDate(dateSegments);
 
-    return clamp(parsedDate, min, max);
+    return mode.includes('y') ? clamp(parsedDate, min, max) : parsedDate;
 }

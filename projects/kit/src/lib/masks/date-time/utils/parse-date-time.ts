@@ -30,5 +30,5 @@ export function maskitoParseDateTime(
 
     const dateTime = new Date(Number(date) + time);
 
-    return clamp(dateTime, min, max);
+    return dateMode.includes('y') ? clamp(dateTime, min, max) : dateTime;
 }
