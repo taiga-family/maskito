@@ -1,4 +1,5 @@
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../../constants';
+import type {MaskitoDateTimeParams} from '../../date-time-params';
 import {maskitoParseDateTime} from '../parse-date-time';
 
 describe('maskitoParseDateTime', () => {
@@ -185,5 +186,28 @@ describe('maskitoParseDateTime', () => {
                 dateTimeSeparator,
             }),
         ).toBeNull();
+    });
+
+    describe('invalid date-time strings', () => {
+        const params: MaskitoDateTimeParams = {dateMode, timeMode, dateTimeSeparator};
+
+        it.each([
+            'this-is-not-a-datetime',
+            '',
+            '   ',
+            '02//2018, 16:20',
+            '/11/2018, 16:20',
+            '02/11/, 16:20',
+            '02/11/20, 16:20',
+            '02/11/abcd, 16:20',
+            '1a/11/2018, 16:20',
+        ])('should return null for invalid date part "%s"', (value) =>
+            expect(maskitoParseDateTime(value, params)).toBeNull(),
+        );
+
+        it.each(['02/11/2018, 16:ab', '02/11/2018, aa:20'])(
+            'should return null for invalid time part "%s"',
+            (value) => expect(maskitoParseDateTime(value, params)).toBeNull(),
+        );
     });
 });

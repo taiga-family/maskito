@@ -16,8 +16,10 @@ export function maskitoParseDateTime(
     }: MaskitoDateTimeParams,
 ): Date | null {
     const [dateSegment = '', timeSegment = ''] = value.split(dateTimeSeparator);
+    const digitsPattern = timeMode.replaceAll(/[^HMS]/g, '');
+    const digits = timeSegment.replaceAll(/\D+/g, '');
 
-    if (timeSegment.length !== timeMode.length) {
+    if (digits.length !== digitsPattern.length) {
         return null;
     }
 
