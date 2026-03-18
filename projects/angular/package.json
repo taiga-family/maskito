@@ -35,8 +35,8 @@
         "tslib": "2.8.1"
     },
     "devDependencies": {
-        "@angular/core": "19.2.18",
-        "@angular/forms": "19.2.18"
+        "@angular/core": "19.2.20",
+        "@angular/forms": "19.2.20"
     },
     "peerDependencies": {
         "@angular/core": ">=19.0.0",
