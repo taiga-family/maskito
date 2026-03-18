@@ -23,20 +23,29 @@ import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component
 import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
 import {NumberMaskDocExample6} from './examples/6-minus-before-prefix/components';
 import {NumberMaskDocExample7} from './examples/7-dynamic-decimal-zero-padding/component';
+import {NumberMaskDocExample8} from './examples/8-thousand-separator-pattern/component';
+import {NumberMaskDocExample9} from './examples/9-thousand-separator-pattern-intl/component';
 
-type GeneratorParams = Omit<Required<MaskitoNumberParams>, 'minusPseudoSigns'>;
+type GeneratorParams = Omit<
+    Required<MaskitoNumberParams>,
+    'minusPseudoSigns' | 'thousandSeparatorPattern'
+> &
+    Pick<MaskitoNumberParams, 'thousandSeparatorPattern'>;
 
 @Component({
     selector: 'number-mask-doc',
     imports: [
         MaskitoDirective,
         NumberMaskDocExample1,
+
         NumberMaskDocExample2,
         NumberMaskDocExample3,
         NumberMaskDocExample4,
         NumberMaskDocExample5,
         NumberMaskDocExample6,
         NumberMaskDocExample7,
+        NumberMaskDocExample8,
+        NumberMaskDocExample9,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInputModule,
@@ -93,6 +102,26 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     protected readonly minusBeforePrefixExample6: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/6-minus-before-prefix/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly thousandSeparatorPatternExample8: Record<
+        string,
+        TuiRawLoaderContent
+    > = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/8-thousand-separator-pattern/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly thousandSeparatorPatternIntlExample9: Record<
+        string,
+        TuiRawLoaderContent
+    > = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/9-thousand-separator-pattern-intl/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
@@ -167,6 +196,8 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     public maximumFractionDigits = 0;
     public negativePattern: Required<MaskitoNumberParams>['negativePattern'] =
         this.negativePatternOptions[0];
+
+    public thousandSeparatorPattern: MaskitoNumberParams['thousandSeparatorPattern'];
 
     public maskitoOptions: MaskitoOptions = this.calculateMask(this);
 

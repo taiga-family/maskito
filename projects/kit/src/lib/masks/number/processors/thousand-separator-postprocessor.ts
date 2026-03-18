@@ -4,6 +4,9 @@ import {identity} from '../../../utils';
 import type {MaskitoNumberParams} from '../number-params';
 import {fromNumberParts, toNumberParts} from '../utils';
 
+const SPACE_REG = /\s/;
+const SPACE_GLOBAL_REG = /\s/g;
+
 /**
  * It adds symbol for separating thousands.
  * @example 1000000 => (thousandSeparator is equal to space) => 1 000 000.
@@ -20,15 +23,22 @@ export function createThousandSeparatorPostprocessor(
         | 'postfix'
         | 'prefix'
         | 'thousandSeparator'
+        | 'thousandSeparatorPattern'
     >,
 ): MaskitoPostprocessor {
-    const {thousandSeparator} = params;
+    const {thousandSeparator, thousandSeparatorPattern} = params;
 
     if (!thousandSeparator) {
         return identity;
     }
 
-    const isAllSpaces = (...chars: string[]): boolean => chars.every((x) => /\s/.test(x));
+    const isSeparatorWhitespace = SPACE_REG.test(thousandSeparator);
+    const isSeparator = isSeparatorWhitespace
+        ? (char: string): boolean => SPACE_REG.test(char)
+        : (char: string): boolean => char === thousandSeparator;
+    const stripSeparators = isSeparatorWhitespace
+        ? (str: string): string => str.replaceAll(SPACE_GLOBAL_REG, '')
+        : (str: string): string => str.replaceAll(thousandSeparator, '');
 
     return ({value, selection}) => {
         const [initialFrom, initialTo] = selection;
@@ -36,14 +46,16 @@ export function createThousandSeparatorPostprocessor(
 
         const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
             toNumberParts(value, params);
-        const deletedChars =
-            fromNumberParts({minus, integerPart, decimalSeparator, decimalPart}, params)
-                .length -
-            (
-                minus +
-                integerPart +
-                (decimalSeparator ? decimalSeparator + decimalPart : '')
-            ).length;
+        const rawLength = (
+            minus +
+            integerPart +
+            (decimalSeparator ? decimalSeparator + decimalPart : '')
+        ).length;
+        const normalizedLength = fromNumberParts(
+            {minus, integerPart, decimalSeparator, decimalPart},
+            params,
+        ).length;
+        const deletedChars = normalizedLength - rawLength;
 
         if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
             from -= deletedChars;
@@ -53,62 +65,60 @@ export function createThousandSeparatorPostprocessor(
             to -= deletedChars;
         }
 
-        const processedIntegerPart = Array.from(integerPart).reduceRight(
-            (formattedValuePart, char, i) => {
-                const isLeadingThousandSeparator = !i && char === thousandSeparator;
-                const isPositionForSeparator =
-                    !isLeadingThousandSeparator &&
-                    Boolean(formattedValuePart.length) &&
-                    (formattedValuePart.length + 1) % 4 === 0;
-                const isSeparator =
-                    char === thousandSeparator || isAllSpaces(char, thousandSeparator);
+        const integerStart = prefix.length + minus.length;
 
-                if (isPositionForSeparator && isSeparator) {
-                    return thousandSeparator + formattedValuePart;
-                }
+        const groups = thousandSeparatorPattern(stripSeparators(integerPart));
+        const digitAt: number[] = [];
+        let pos = 0;
 
-                if (!isPositionForSeparator && isSeparator) {
-                    if (from && i <= initialFrom) {
-                        from--;
-                    }
+        for (const [i, group] of groups.entries()) {
+            if (i > 0) {
+                pos += thousandSeparator.length;
+            }
 
-                    if (to && i <= initialTo) {
-                        to--;
-                    }
+            for (let j = 0; j < group.length; j++) {
+                digitAt.push(pos + j);
+            }
 
-                    return formattedValuePart;
-                }
+            pos += group.length;
+        }
 
-                if (!isPositionForSeparator) {
-                    return char + formattedValuePart;
-                }
+        const formatted = groups.join(thousandSeparator);
 
-                if (i < initialFrom) {
-                    from++;
-                }
+        const mapCursor = (cursor: number): number => {
+            const offset = cursor - integerStart;
 
-                if (i < initialTo) {
-                    to++;
-                }
+            if (offset <= 0) {
+                return cursor;
+            }
 
-                return char + thousandSeparator + formattedValuePart;
-            },
-            '',
-        );
+            if (offset >= integerPart.length) {
+                return cursor + formatted.length - integerPart.length;
+            }
+
+            const digitCount = stripSeparators(integerPart.slice(0, offset)).length;
+            const prevWasSep = isSeparator(integerPart.charAt(offset - 1));
+
+            if (prevWasSep) {
+                return integerStart + (digitAt[digitCount] ?? formatted.length);
+            }
+
+            return integerStart + (digitAt[digitCount - 1] ?? -1) + 1;
+        };
 
         return {
             value: fromNumberParts(
                 {
                     prefix,
                     minus,
-                    integerPart: processedIntegerPart,
+                    integerPart: formatted,
                     decimalSeparator,
                     decimalPart,
                     postfix,
                 },
                 params,
             ),
-            selection: [from, to],
+            selection: [mapCursor(from), mapCursor(to)],
         };
     };
 }

@@ -149,6 +149,56 @@
             </ng-template>
             <number-mask-doc-example-7 />
         </tui-doc-example>
+        <tui-doc-example
+            id="thousand-separator-pattern"
+            heading="Thousand separator pattern"
+            [content]="thousandSeparatorPatternExample8"
+            [description]="thousandSeparatorPatternDescription"
+        >
+            <ng-template #thousandSeparatorPatternDescription>
+                <p>
+                    Use
+                    <code>thousandSeparatorPattern</code>
+                    to customize digit grouping. Provide a function that receives raw integer digits as a string and
+                    returns them split into groups, left-to-right.
+                </p>
+                <p>
+                    This example implements 4-digit grouping for Japanese yen — the traditional
+                    <code>万</code>
+                    (10 000) counting system: ¥1,2345,6789.
+                </p>
+            </ng-template>
+            <tui-notification
+                size="m"
+                class="tui-space_bottom-4"
+                [style.max-width.rem]="30"
+            >
+                Japanese numbering groups digits in sets of 4 from right: ¥1,2345,6789
+            </tui-notification>
+            <number-mask-doc-example-8 />
+        </tui-doc-example>
+        <tui-doc-example
+            id="thousand-separator-pattern-intl"
+            heading="Thousand separator pattern uses Intl.NumberFormat"
+            [content]="thousandSeparatorPatternIntlExample9"
+            [description]="thousandSeparatorPatternIntlDescription"
+        >
+            <ng-template #thousandSeparatorPatternIntlDescription>
+                Use
+                <code>Intl.NumberFormat.formatToParts</code>
+                to derive the grouping from a browser locale automatically. Pass the result to
+                <code>thousandSeparatorPattern</code>
+                parameter.
+            </ng-template>
+            <tui-notification
+                size="m"
+                class="tui-space_bottom-4"
+                [style.max-width.rem]="30"
+            >
+                Indian numbering system groups digits as 2+3 from right: 12,34,567
+            </tui-notification>
+            <number-mask-doc-example-9 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -214,6 +264,24 @@
                 <p>
                     <strong>Default:</strong>
                     non-breaking space.
+                </p>
+            </ng-template>
+
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="thousandSeparatorPattern"
+                documentationPropertyType="(digits: string) => readonly string[]"
+                [(documentationPropertyValue)]="thousandSeparatorPattern"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                A function that defines how integer digits are split into groups. Receives raw integer digits as a
+                string; returns them as an ordered array of groups (left-to-right).
+
+                <p>
+                    <strong>Default:</strong>
+                    standard 3-digit Western grouping driven by
+                    <code>thousandSeparator</code>
+                    .
                 </p>
             </ng-template>
 
