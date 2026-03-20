@@ -1,8 +1,4 @@
-import type {
-    MaskitoElement,
-    MaskitoElementPredicate,
-    MaskitoOptions,
-} from '@maskito/core';
+import type {MaskitoElement, MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {Maskito, MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
 import type {RefCallback} from 'react';
 import {useCallback, useRef, useState} from 'react';
@@ -38,12 +34,9 @@ export const useMaskito = ({
     const [hostElement, setHostElement] = useState<HTMLElement | null>(null);
     const [element, setElement] = useState<MaskitoElement | null>(null);
 
-    const onRefChange: RefCallback<HTMLElement> = useCallback(
-        (node: HTMLElement | null) => {
-            setHostElement(node);
-        },
-        [],
-    );
+    const onRefChange: RefCallback<HTMLElement> = useCallback((node: HTMLElement | null) => {
+        setHostElement(node);
+    }, []);
 
     const latestPredicateRef = useRef(elementPredicate);
     const latestOptionsRef = useRef(options);
@@ -60,10 +53,7 @@ export const useMaskito = ({
 
         if (isThenable(elementOrPromise)) {
             void elementOrPromise.then((el) => {
-                if (
-                    latestPredicateRef.current === elementPredicate &&
-                    latestOptionsRef.current === options
-                ) {
+                if (latestPredicateRef.current === elementPredicate && latestOptionsRef.current === options) {
                     setElement(el);
                 }
             });

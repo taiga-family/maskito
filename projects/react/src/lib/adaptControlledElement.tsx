@@ -16,10 +16,7 @@ import type {MaskitoElement} from '@maskito/core';
  * @see https://github.com/facebook/react/blob/ee76351917106c6146745432a52e9a54a41ee181/packages/react-dom-bindings/src/client/inputValueTracking.js#L173-L177
  */
 export function adaptReactControlledElement(element: MaskitoElement): MaskitoElement {
-    const valueSetter = Object.getOwnPropertyDescriptor(
-        getPrototype(element),
-        'value',
-    )?.set;
+    const valueSetter = Object.getOwnPropertyDescriptor(getPrototype(element), 'value')?.set;
 
     if (!valueSetter) {
         return element;
@@ -39,9 +36,7 @@ export function adaptReactControlledElement(element: MaskitoElement): MaskitoEle
         get(target, prop: keyof HTMLElement) {
             const nativeProperty = target[prop];
 
-            return typeof nativeProperty === 'function'
-                ? nativeProperty.bind(target)
-                : nativeProperty;
+            return typeof nativeProperty === 'function' ? nativeProperty.bind(target) : nativeProperty;
         },
         set(target, prop: keyof HTMLElement, val, receiver) {
             return Reflect.set(prop in adapter ? adapter : target, prop, val, receiver);
@@ -49,9 +44,7 @@ export function adaptReactControlledElement(element: MaskitoElement): MaskitoEle
     });
 }
 
-function getPrototype(
-    element: MaskitoElement,
-): HTMLInputElement | HTMLTextAreaElement | null | undefined {
+function getPrototype(element: MaskitoElement): HTMLInputElement | HTMLTextAreaElement | null | undefined {
     switch (element.nodeName) {
         case 'INPUT':
             return globalThis.HTMLInputElement.prototype;
