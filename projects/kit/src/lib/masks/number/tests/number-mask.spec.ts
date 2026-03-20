@@ -3,6 +3,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 import {maskitoParseNumber} from '@maskito/kit';
 
+import {intlPattern} from '../../../../../../demo/src/pages/kit/number/examples/9-thousand-separator-pattern-intl/mask';
 import {
     CHAR_EM_DASH,
     CHAR_EN_DASH,
@@ -532,6 +533,409 @@ describe('Number (maskitoTransform)', () => {
                     selection: [0, 0],
                 },
             );
+        });
+    });
+
+    describe('thousandSeparatorPattern', () => {
+        it('default behavior unchanged: 123456789 => 123 456 789 (non-breaking space)', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: CHAR_NO_BREAK_SPACE,
+            });
+
+            expect(maskitoTransform('123456789', options)).toBe(
+                `123${CHAR_NO_BREAK_SPACE}456${CHAR_NO_BREAK_SPACE}789`,
+            );
+        });
+
+        it('small number unaffected: 999 => 999', () => {
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+
+            expect(maskitoTransform('999', options)).toBe('999');
+        });
+
+        it('zero unaffected: 0 => 0', () => {
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+
+            expect(maskitoTransform('0', options)).toBe('0');
+        });
+
+        describe('Indian numbering system pattern', () => {
+            const indianPattern = (digits: string): readonly string[] => {
+                if (!digits) {
+                    return [];
+                }
+
+                const last3 = digits.slice(-3);
+                const rest = digits.slice(0, -3);
+                const groups: string[] = [];
+
+                for (let i = 0; i < rest.length; i += 2) {
+                    groups.push(rest.slice(i, i + 2));
+                }
+
+                return [...groups, last3].filter(Boolean);
+            };
+
+            it('123456789 => 12,34,56,789', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: indianPattern,
+                });
+
+                expect(maskitoTransform('123456789', options)).toBe('12,34,56,789');
+            });
+
+            it('single group: 1200 => 1,200', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: indianPattern,
+                });
+
+                expect(maskitoTransform('1200', options)).toBe('1,200');
+            });
+
+            it('negative number: -123456789 => -12,34,56,789', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: indianPattern,
+                });
+
+                expect(maskitoTransform('-123456789', options)).toBe(
+                    `${CHAR_MINUS}12,34,56,789`,
+                );
+            });
+
+            it('decimal part is unaffected: 1234567.89 => 12,34,567.89', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    decimalSeparator: '.',
+                    maximumFractionDigits: 2,
+                    thousandSeparatorPattern: indianPattern,
+                });
+
+                expect(maskitoTransform('1234567.89', options)).toBe('12,34,567.89');
+            });
+
+            it('idempotent: re-transform 12,34,56,789 => 12,34,56,789', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: indianPattern,
+                });
+
+                expect(maskitoTransform('12,34,56,789', options)).toBe('12,34,56,789');
+            });
+        });
+
+        describe('custom thousandSeparator "_"', () => {
+            it('1234567 => 1_234_567', () => {
+                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+
+                expect(maskitoTransform('1234567', options)).toBe('1_234_567');
+            });
+
+            it('negative number: -1234567 => -1_234_567', () => {
+                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+
+                expect(maskitoTransform('-1234567', options)).toBe(
+                    `${CHAR_MINUS}1_234_567`,
+                );
+            });
+
+            it('decimal part is unaffected: 1234567.89 => 1_234_567.89', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '_',
+                    decimalSeparator: '.',
+                    maximumFractionDigits: 2,
+                });
+
+                expect(maskitoTransform('1234567.89', options)).toBe('1_234_567.89');
+            });
+
+            it('idempotent: re-transform 1_234_567 => 1_234_567', () => {
+                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+
+                expect(maskitoTransform('1_234_567', options)).toBe('1_234_567');
+            });
+
+            it('with Indian 2+3 pattern: 1234567 => 12_34_567', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '_',
+                    thousandSeparatorPattern: intlPattern('en-IN'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('12_34_567');
+            });
+        });
+
+        it('no-op pattern (single group): 1234567 => 1234567', () => {
+            const noGroupingPattern = (digits: string): readonly string[] =>
+                digits ? [digits] : [];
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ',',
+                thousandSeparatorPattern: noGroupingPattern,
+            });
+
+            expect(maskitoTransform('1234567', options)).toBe('1234567');
+        });
+
+        it('prefix + custom pattern: ₹1234567 => ₹12,34,567', () => {
+            const options = maskitoNumberOptionsGenerator({
+                prefix: '₹',
+                thousandSeparator: ',',
+                thousandSeparatorPattern: intlPattern('en-IN'),
+            });
+
+            expect(maskitoTransform('1234567', options)).toBe('₹12,34,567');
+        });
+
+        it('postfix + custom pattern: 1234567 => 1.234.567 €', () => {
+            const options = maskitoNumberOptionsGenerator({
+                postfix: ' €',
+                thousandSeparator: '.',
+                decimalSeparator: ',',
+                thousandSeparatorPattern: intlPattern('de-DE'),
+            });
+
+            expect(maskitoTransform('1234567', options)).toBe('1.234.567 €');
+        });
+
+        describe('Intl.NumberFormat-based grouping', () => {
+            it('de-DE: 1234567 => 1.234.567 (3-digit grouping, dot separator)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '.',
+                    decimalSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('de-DE'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1.234.567');
+            });
+
+            it('ja-JP: 1234567 => 1,234,567 (3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('ja-JP'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('en-IN: 123456789 => 12,34,56,789 (Indian 2+3 grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('en-IN'),
+                });
+
+                expect(maskitoTransform('123456789', options)).toBe('12,34,56,789');
+            });
+
+            it('en-IN: single group 1200 => 1,200', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('en-IN'),
+                });
+
+                expect(maskitoTransform('1200', options)).toBe('1,200');
+            });
+
+            it('en-US: same as default 3-digit grouping', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('en-US'),
+                });
+
+                expect(maskitoTransform('123456789', options)).toBe('123,456,789');
+            });
+
+            it('en-US: large number 1234567890 => 1,234,567,890', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('en-US'),
+                });
+
+                expect(maskitoTransform('1234567890', options)).toBe('1,234,567,890');
+            });
+
+            it('en-IN: negative number -123456789 => -12,34,56,789', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('en-IN'),
+                });
+
+                expect(maskitoTransform('-123456789', options)).toBe(
+                    `${CHAR_MINUS}12,34,56,789`,
+                );
+            });
+
+            it('de-DE: decimal part unaffected: 1234567,89 => 1.234.567,89', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '.',
+                    decimalSeparator: ',',
+                    maximumFractionDigits: 2,
+                    thousandSeparatorPattern: intlPattern('de-DE'),
+                });
+
+                expect(maskitoTransform('1234567,89', options)).toBe('1.234.567,89');
+            });
+
+            it('de-DE: minimumFractionDigits: 1234 => 1.234,00', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: '.',
+                    decimalSeparator: ',',
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                    thousandSeparatorPattern: intlPattern('de-DE'),
+                });
+
+                expect(maskitoTransform('1234', options)).toBe('1.234,00');
+            });
+
+            it('hi-IN: 1234567 => 12,34,567 (Hindi India, Indian grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('hi-IN'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('12,34,567');
+            });
+
+            it('hi-IN: 123456789 => 12,34,56,789 (scales same as en-IN)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('hi-IN'),
+                });
+
+                expect(maskitoTransform('123456789', options)).toBe('12,34,56,789');
+            });
+
+            it('fr-FR: 1234567 => 1,234,567 (French, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('fr-FR'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('ru-RU: 1234567 => 1,234,567 (Russian, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('ru-RU'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('pt-BR: 1234567 => 1,234,567 (Brazilian Portuguese, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('pt-BR'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('zh-CN: 1234567 => 1,234,567 (Chinese Simplified, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('zh-CN'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('ko-KR: 1234567 => 1,234,567 (Korean, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('ko-KR'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            it('tr-TR: 1234567 => 1,234,567 (Turkish, 3-digit grouping)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('tr-TR'),
+                });
+
+                expect(maskitoTransform('1234567', options)).toBe('1,234,567');
+            });
+
+            describe('Indian 2+3 grouping', () => {
+                it('ne-NP: uses Indian 2+3 grouping', () => {
+                    const options = maskitoNumberOptionsGenerator({
+                        thousandSeparator: ',',
+                        thousandSeparatorPattern: intlPattern('ne-NP'),
+                    });
+
+                    expect(maskitoTransform('1234567', options)).toBe('12,34,567');
+                });
+
+                it('en-IN: 1200 => 1,200 (Indian grouping, 4-digit number)', () => {
+                    const options = maskitoNumberOptionsGenerator({
+                        thousandSeparator: ',',
+                        thousandSeparatorPattern: intlPattern('en-IN'),
+                    });
+
+                    expect(maskitoTransform('1200', options)).toBe('1,200');
+                });
+            });
+
+            it('es-ES: 1200 => 1200 (no separator for 4-digit numbers in Spanish locale)', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ',',
+                    thousandSeparatorPattern: intlPattern('es-ES'),
+                });
+
+                expect(maskitoTransform('1200', options)).toBe('1200');
+            });
+        });
+    });
+
+    describe('BigInt support', () => {
+        it('number beyond MAX_SAFE_INTEGER is formatted correctly', () => {
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+
+            expect(maskitoTransform('9007199254740993', options)).toBe(
+                '9,007,199,254,740,993',
+            );
+        });
+
+        it('negative number beyond MIN_SAFE_INTEGER is formatted correctly', () => {
+            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+
+            expect(maskitoTransform('-9007199254740993', options)).toBe(
+                `${CHAR_MINUS}9,007,199,254,740,993`,
+            );
+        });
+
+        it('max: BigInt clamps value exceeding max', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ',',
+                max: BigInt('1000000'),
+            });
+
+            expect(maskitoTransform('9007199254740993', options)).toBe('1,000,000');
+        });
+
+        it('min: BigInt clamps negative value below min', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ',',
+                min: BigInt('-1000000'),
+            });
+
+            expect(maskitoTransform('-9007199254740993', options)).toBe(
+                `${CHAR_MINUS}1,000,000`,
+            );
+        });
+
+        it('thousandSeparatorPattern + BigInt: large Indian-grouped number', () => {
+            const options = maskitoNumberOptionsGenerator({
+                thousandSeparator: ',',
+                thousandSeparatorPattern: intlPattern('en-IN'),
+            });
+
+            expect(maskitoTransform('12345678901', options)).toBe('12,34,56,78,901');
         });
     });
 

@@ -7,6 +7,7 @@ export interface MaskitoNumberParams extends Pick<
     decimalSeparator?: string;
     decimalPseudoSeparators?: readonly string[];
     thousandSeparator?: string;
+    thousandSeparatorPattern?: (digits: string) => readonly string[];
     prefix?: string;
     postfix?: string;
     minusSign?: string;

@@ -1,0 +1,30 @@
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
+import {TuiInputModule} from '@taiga-ui/legacy';
+
+import mask from './mask';
+
+@Component({
+    selector: 'number-mask-doc-example-8',
+    imports: [FormsModule, MaskitoDirective, TuiInputModule],
+    template: `
+        <tui-input
+            [style.max-width.rem]="30"
+            [(ngModel)]="value"
+        >
+            Japanese yen
+            <input
+                inputmode="decimal"
+                placeholder="¥1,2345,6789"
+                tuiTextfieldLegacy
+                [maskito]="maskitoOptions"
+            />
+        </tui-input>
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class NumberMaskDocExample8 {
+    protected maskitoOptions = mask;
+    protected value = '';
+}

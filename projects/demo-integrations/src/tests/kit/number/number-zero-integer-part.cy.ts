@@ -213,8 +213,8 @@ describe('Number | Zero integer part', () => {
                 .type('{rightArrow}'.repeat('-0,'.length))
                 .type('{backspace}')
                 .should('have.value', '−00_005')
-                .should('have.prop', 'selectionStart', '-00'.length)
-                .should('have.prop', 'selectionEnd', '-00'.length)
+                .should('have.prop', 'selectionStart', '-0'.length)
+                .should('have.prop', 'selectionEnd', '-0'.length)
                 .blur()
                 .should('have.value', '−5');
         });
