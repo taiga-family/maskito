@@ -3,7 +3,7 @@ import {useMaskito} from '@maskito/react';
 import type {ComponentType} from 'react';
 import {useEffect, useState} from 'react';
 
-import {AwesomeInput} from '../awesome-input';
+import {AwesomeInput} from '../awesomeInput';
 
 export const SWITCH_OPTIONS_TIME = 1_000;
 export const PREDICATE_RESOLVING_TIME = 2_000;
