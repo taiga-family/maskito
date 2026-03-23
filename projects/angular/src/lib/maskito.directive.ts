@@ -9,7 +9,7 @@ import {
     untracked,
 } from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import type {MaskitoOptions} from '@maskito/core';
 import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
@@ -47,10 +47,9 @@ export class MaskitoDirective implements OnDestroy {
     });
 
     public readonly options = model<MaskitoOptions | null>(null, {alias: 'maskito'});
-    public readonly elementPredicate = model<MaskitoElementPredicate>(
-        MASKITO_DEFAULT_ELEMENT_PREDICATE,
-        {alias: 'maskitoElement'},
-    );
+    public readonly elementPredicate = model(MASKITO_DEFAULT_ELEMENT_PREDICATE, {
+        alias: 'maskitoElement',
+    });
 
     constructor() {
         const accessor = inject(DefaultValueAccessor, {self: true, optional: true});

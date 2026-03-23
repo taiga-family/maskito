@@ -16,7 +16,7 @@ export class EventListener {
     ): void {
         const untypedFn = fn as (event: HTMLElementEventMap[E]) => unknown;
 
-        this.element.addEventListener<E>(eventType, untypedFn, options);
+        this.element.addEventListener(eventType, untypedFn, options);
         this.listeners.push(() =>
             this.element.removeEventListener(eventType, untypedFn, options),
         );

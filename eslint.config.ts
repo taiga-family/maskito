@@ -3,11 +3,7 @@ import taiga from '@taiga-ui/eslint-plugin-experience-next';
 export default [
     ...taiga.configs.recommended,
     {
-        files: ['projects/react/**/*.{jsx,tsx}'],
-        rules: {'unicorn/filename-case': ['error', {case: 'camelCase'}]},
-    },
-    {
-        files: ['*.{ts,tsx}'],
+        files: ['*.tsx'],
         rules: {
             'react/display-name': 'off',
             'react/react-in-jsx-scope': 'off',
@@ -15,7 +11,7 @@ export default [
         },
     },
     {
-        files: ['*.spec.{ts,tsx}'],
+        files: ['*.spec.tsx'],
         rules: {
             'jest/prefer-ending-with-an-expect': [
                 'error',

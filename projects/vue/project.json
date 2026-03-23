@@ -15,6 +15,7 @@
                 "entryFile": "{projectRoot}/src/index.ts",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "useLegacyTypescriptPlugin": false,
                 "external": "all",
                 "assets": [
                     {
