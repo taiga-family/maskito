@@ -17,7 +17,7 @@ steps to kick-start the development:
 2. Run `npm start` to launch demo project where you could test your changes
 3. Use following commands to ensure code quality
 
-```
+```bash
 npm run lint
 npm run build
 npm run test
