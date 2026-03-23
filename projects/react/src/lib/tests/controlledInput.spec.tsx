@@ -13,7 +13,10 @@ describe('Maskito with React controlled input', () => {
         user.type(testElement.getByRole('textbox'), v);
     const getValue = (): string => (testElement.getByRole('textbox') as HTMLInputElement).value;
 
-    function TestComponent({handler, options}: Readonly<{handler?: Function; options: MaskitoOptions}>): JSX.Element {
+    function TestComponent({
+        handler,
+        options,
+    }: Readonly<{handler?: (value: string) => void; options: MaskitoOptions}>): JSX.Element {
         const inputRef = useMaskito({options});
         const [value, setValue] = useState('');
 
