@@ -2,7 +2,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {ChangeDetectionStrategy, Component, ElementRef, inject, PLATFORM_ID} from '@angular/core';
 import {createRoot} from 'react-dom/client';
 
-import {App} from './use-maskito-basic-usage';
+import {App} from './useMaskitoBasicUsage';
 
 @Component({
     selector: 'react-example-1',

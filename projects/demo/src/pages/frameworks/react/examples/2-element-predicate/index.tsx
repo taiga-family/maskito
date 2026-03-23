@@ -3,7 +3,7 @@ import {maskitoDateOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import type {ComponentType} from 'react';
 
-import {AwesomeInput} from './awesome-input';
+import {AwesomeInput} from './awesomeInput';
 
 const options = maskitoDateOptionsGenerator({mode: 'dd/mm/yyyy'});
 

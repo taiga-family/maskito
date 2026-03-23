@@ -1,6 +1,6 @@
 import {mount} from 'cypress/react';
 
-import {App, PREDICATE_RESOLVING_TIME, SWITCH_OPTIONS_TIME} from './react-app';
+import {App, PREDICATE_RESOLVING_TIME, SWITCH_OPTIONS_TIME} from './reactApp';
 
 describe('React async predicate + maskitoOptions race', () => {
     beforeEach(() => {

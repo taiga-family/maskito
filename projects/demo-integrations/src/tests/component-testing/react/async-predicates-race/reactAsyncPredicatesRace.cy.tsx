@@ -1,6 +1,6 @@
 import {mount} from 'cypress/react';
 
-import {App} from './react-app';
+import {App} from './reactApp';
 
 describe('Async predicate works', () => {
     describe('Basic async predicate (it returns promise which resolves in 2s)', () => {
