@@ -27,7 +27,6 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            'markdown/fenced-code-language': 'off',
             '@typescript-eslint/no-unsafe-function-type': 'off',
             'package-json/valid-contributors': 'off',
             'no-bitwise': 'off',

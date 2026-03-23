@@ -17,6 +17,6 @@
 
 ## How to install
 
-```
+```bash
 npm i @maskito/{core,react}
 ```
