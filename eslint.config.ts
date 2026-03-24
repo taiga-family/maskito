@@ -23,11 +23,8 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            'package-json/valid-contributors': 'off',
             'no-bitwise': 'off',
             'import/enforce-node-protocol-usage': 'off',
-            'package-json/valid-scripts': 'off',
-            'package-json/sort-collections': 'off',
             '@typescript-eslint/no-unused-private-class-members': 'off',
             '@typescript-eslint/prefer-function-type': 'off',
             '@typescript-eslint/no-restricted-types': 'off',
