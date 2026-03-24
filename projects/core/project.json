@@ -15,6 +15,7 @@
                 "tsConfig": "{projectRoot}/tsconfig.lib.json",
                 "format": ["esm", "cjs"],
                 "compiler": "tsc",
+                "useLegacyTypescriptPlugin": false,
                 "external": "all",
                 "assets": [
                     {

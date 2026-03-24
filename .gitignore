@@ -54,3 +54,4 @@ projects/demo-integrations/cypress
 RELEASE_BODY.md
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
+.rollup.cache
