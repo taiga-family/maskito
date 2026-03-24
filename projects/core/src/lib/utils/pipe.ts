@@ -17,7 +17,9 @@ export function maskitoPipe(
 /**
  * @internal
  */
-export function maskitoPipe(processors: readonly Function[] = []): Function {
+export function maskitoPipe(
+    processors: ReadonlyArray<(...args: any[]) => any> = [],
+): (...args: any[]) => any {
     return (initialData: object, ...readonlyArgs: unknown[]) =>
         processors.reduce(
             (data, fn) => ({...data, ...fn(data, ...readonlyArgs)}),

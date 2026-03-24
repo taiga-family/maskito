@@ -27,7 +27,6 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            '@typescript-eslint/no-unsafe-function-type': 'off',
             'package-json/valid-contributors': 'off',
             'no-bitwise': 'off',
             'import/enforce-node-protocol-usage': 'off',
