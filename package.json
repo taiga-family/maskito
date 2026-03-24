@@ -36,21 +36,21 @@
         "projects/*"
     ],
     "scripts": {
-    "build": "nx run demo:build:production",
-    "cspell": "cspell --relative --dot --gitignore .",
-    "cy:open": "cypress open --project ./projects/demo-integrations/",
-    "cy:run": "nx e2e demo-integrations && nx component-test demo-integrations && nx ct-react demo-integrations",
-    "lint": "eslint .",
-    "prepare": "husky",
-    "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
-    "release": "npx nx run-many --target publish --all",
-    "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'",
-    "serve:ssr": "node dist/demo/server/server.mjs",
-    "start": "nx run demo:serve",
-    "stylelint": "stylelint '**/*.{less,css}'",
-    "test": "nx run-many --target test --all",
-    "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json"
-  },
+        "build": "nx run demo:build:production",
+        "cspell": "cspell --relative --dot --gitignore .",
+        "cy:open": "cypress open --project ./projects/demo-integrations/",
+        "cy:run": "nx e2e demo-integrations && nx component-test demo-integrations && nx ct-react demo-integrations",
+        "lint": "eslint .",
+        "prepare": "husky",
+        "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
+        "release": "npx nx run-many --target publish --all",
+        "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'",
+        "serve:ssr": "node dist/demo/server/server.mjs",
+        "start": "nx run demo:serve",
+        "stylelint": "stylelint '**/*.{less,css}'",
+        "test": "nx run-many --target test --all",
+        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json"
+    },
     "commitlint": {
         "extends": [
             "@taiga-ui/commitlint-config"
