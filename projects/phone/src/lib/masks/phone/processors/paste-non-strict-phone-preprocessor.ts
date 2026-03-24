@@ -34,18 +34,16 @@ export function pasteNonStrictPhonePreprocessorGenerator({
 }: Pick<MaskitoPhoneParams, 'countryIsoCode' | 'metadata'> & {
     prefix: string;
 }): MaskitoPreprocessor {
-    return ({elementState, data}) => {
-        return {
-            elementState,
-            data:
-                data.length > 2 && elementState.value === ''
-                    ? parsePhone({
-                          data,
-                          prefix,
-                          countryIsoCode,
-                          metadata,
-                      }).number
-                    : data,
-        };
-    };
+    return ({elementState, data}) => ({
+        elementState,
+        data:
+            data.length > 2 && elementState.value === ''
+                ? parsePhone({
+                      data,
+                      prefix,
+                      countryIsoCode,
+                      metadata,
+                  }).number
+                : data,
+    });
 }
