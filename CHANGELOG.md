@@ -2,14 +2,8 @@
 
 ### 🚀 Features
 
-- **core**: improve typings for internal utility `maskitoPipe` (#2593)
-  [(40c7a84)](https://github.com/taiga-family/maskito/commit/40c7a8403dab3a8abfe99ef0f4574fbd58fc2cdf)
 - **kit**: `Number` supports `thousandSeparatorPattern` (#2584)
   [(f4e1340)](https://github.com/taiga-family/maskito/commit/f4e1340ddedd8abf04c181c8db31edf420564845)
-- prepare before update new eslint config (#2586)
-  [(ab5dfb5)](https://github.com/taiga-family/maskito/commit/ab5dfb5cf80ae27170ca508f9733f8744ae32ee0)
-- do not use non-ascii symbols in code (#2578)
-  [(e624e5a)](https://github.com/taiga-family/maskito/commit/e624e5a22e2c8075a7db729302dafb4e9a6699be)
 
 ### 🐞 Bug Fixes
 
@@ -17,13 +11,6 @@
   [(9c3e9bc)](https://github.com/taiga-family/maskito/commit/9c3e9bccc046be9e9a91ea05255bf55985144df1)
 
 ### [5.1.2](https://github.com/taiga-family/maskito/compare/v5.1.1...v5.1.2) (2026-03-13)
-
-### 🚀 Features
-
-- no-async-lifecycle method (#2549)
-  [(aa5312e)](https://github.com/taiga-family/maskito/commit/aa5312ea53196bfb45f4c2d034c6c84db9b4b8ea)
-- no-unnecessary-condition (#2544)
-  [(00cf7b1)](https://github.com/taiga-family/maskito/commit/00cf7b19d68274c7d3a522f8b8b27a4e6c192778)
 
 ### 🐞 Bug Fixes
 
@@ -397,14 +384,6 @@
 
 - **core**: `overwriteMode: replace` has incorrect behavior on attempt to insert invalid characters (#1772)
   [(5aeb074)](https://github.com/taiga-family/maskito/commit/5aeb0741fa82ad6e43e862059a17b2e78ee9831b)
-- **deps**: update dependency libphonenumber-js to v1.11.11 (#1760)
-  [(b8781fb)](https://github.com/taiga-family/maskito/commit/b8781fbe9a2cbacee0d53d5e143687f83b5c3773)
-- **deps**: update dependency vue to v3.5.11 (#1754)
-  [(47f12a3)](https://github.com/taiga-family/maskito/commit/47f12a3ecc16b7f9d79ba31632abc3e1af80b516)
-- **deps**: update dependency @types/react to v18.3.11 (#1751)
-  [(86328e6)](https://github.com/taiga-family/maskito/commit/86328e6b2b76049958f215cfe6551d63f8d3ffcc)
-- **deps**: update dependency libphonenumber-js to v1.11.10 (#1747)
-  [(37a4d8c)](https://github.com/taiga-family/maskito/commit/37a4d8cc374e1f03878692ccc44379b3d92acafe)
 
 ### [3.0.3](https://github.com/taiga-family/maskito/compare/v3.0.2...v3.0.3) (2024-09-25)
 
