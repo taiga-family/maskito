@@ -1,3 +1,21 @@
+### [5.2.0](https://github.com/taiga-family/maskito/compare/v5.1.2...v5.2.0) (2026-03-25)
+
+### 🚀 Features
+
+- **core**: improve typings for internal utility `maskitoPipe` (#2593)
+  [(40c7a84)](https://github.com/taiga-family/maskito/commit/40c7a8403dab3a8abfe99ef0f4574fbd58fc2cdf)
+- **kit**: `Number` supports `thousandSeparatorPattern` (#2584)
+  [(f4e1340)](https://github.com/taiga-family/maskito/commit/f4e1340ddedd8abf04c181c8db31edf420564845)
+- prepare before update new eslint config (#2586)
+  [(ab5dfb5)](https://github.com/taiga-family/maskito/commit/ab5dfb5cf80ae27170ca508f9733f8744ae32ee0)
+- do not use non-ascii symbols in code (#2578)
+  [(e624e5a)](https://github.com/taiga-family/maskito/commit/e624e5a22e2c8075a7db729302dafb4e9a6699be)
+
+### 🐞 Bug Fixes
+
+- **kit**: validate digit count in time segment for `maskitoParseDateTime` (#2581)
+  [(9c3e9bc)](https://github.com/taiga-family/maskito/commit/9c3e9bccc046be9e9a91ea05255bf55985144df1)
+
 ### [5.1.2](https://github.com/taiga-family/maskito/compare/v5.1.1...v5.1.2) (2026-03-13)
 
 ### 🚀 Features
