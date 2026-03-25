@@ -4,7 +4,7 @@ import {
     type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
-import {maskitoParseNumber} from '@maskito/kit';
+import {type MaskitoNumberParams, maskitoParseNumber} from '@maskito/kit';
 
 import {intlPattern} from '../../../../../../demo/src/pages/kit/number/examples/9-thousand-separator-pattern-intl/mask';
 import {
@@ -191,6 +191,7 @@ describe('Number (maskitoTransform)', () => {
     });
 
     describe('`prefix` contains point and space (`lbs. `)', () => {
+        let params!: MaskitoNumberParams;
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         describe('maximumFractionDigits: 2', () => {
@@ -269,11 +270,12 @@ describe('Number (maskitoTransform)', () => {
 
         describe('prefix ends with same character as decimal separator equals (zero-width space workaround)', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                params = {
                     prefix: 'lbs.',
                     decimalSeparator: '.',
                     maximumFractionDigits: 2,
-                });
+                };
+                options = maskitoNumberOptionsGenerator(params);
             });
 
             it('empty textfield => empty textfield', () => {
@@ -296,14 +298,14 @@ describe('Number (maskitoTransform)', () => {
                 const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}0.42`;
 
                 expect(maskitoTransform('0.42', options)).toBe(expected);
-                expect(maskitoParseNumber(expected)).toBe(0.42);
+                expect(maskitoParseNumber(expected, params)).toBe(0.42);
             });
 
             it('42 => lbs.42', () => {
                 const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}42`;
 
                 expect(maskitoTransform('42', options)).toBe(expected);
-                expect(maskitoParseNumber(expected)).toBe(42);
+                expect(maskitoParseNumber(expected, params)).toBe(42);
             });
 
             it('1 000 => lbs.1 000', () => {
@@ -312,14 +314,14 @@ describe('Number (maskitoTransform)', () => {
                 expect(maskitoTransform(`1${CHAR_NO_BREAK_SPACE}000`, options)).toBe(
                     expected,
                 );
-                expect(maskitoParseNumber(expected)).toBe(1000);
+                expect(maskitoParseNumber(expected, params)).toBe(1000);
             });
 
             it('1 000. => lbs.1 000.', () => {
                 const expected = `lbs.${CHAR_ZERO_WIDTH_SPACE}1${CHAR_NO_BREAK_SPACE}000.`;
 
                 expect(maskitoTransform('1 000.', options)).toBe(expected);
-                expect(maskitoParseNumber(expected)).toBe(1000);
+                expect(maskitoParseNumber(expected, params)).toBe(1000);
             });
         });
     });
