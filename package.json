@@ -15,33 +15,41 @@
         "url": "https://github.com/nsbarsukov"
     },
     "contributors": [
-        "Alex Inkin <alexander@inkin.ru> (https://twitter.com/waterplea)",
-        "Maksim Ivanov <splincodewd@yandex.ru>",
-        "Vladimir Potekhin <vladimir.potekh@gmail.com>",
-        "Nikita Barsukov <nikita.s.barsukov@gmail.com>"
+        {
+            "name": "Alex Inkin",
+            "email": "alexander@inkin.ru"
+        },
+        {
+            "name": "Vladimir Potekhin",
+            "email": "vladimir.potekh@gmail.com"
+        },
+        {
+            "name": "Nikita Barsukov",
+            "email": "nikita.s.barsukov@gmail.com"
+        },
+        {
+            "name": "Georgiy Lunin",
+            "email": "nextzeddicus@gmail.com"
+        }
     ],
     "workspaces": [
         "projects/*"
     ],
     "scripts": {
-        "prepare": "husky",
-        "*** Workflow ***": "",
-        "start": "nx run demo:serve",
         "build": "nx run demo:build:production",
-        "test": "nx run-many --target test --all",
-        "*** Format ***": "",
-        "lint": "eslint .",
         "cspell": "cspell --relative --dot --gitignore .",
-        "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
-        "stylelint": "stylelint '**/*.{less,css}'",
-        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json",
-        "*** SSR ***": "",
-        "serve:ssr": "node dist/demo/server/server.mjs",
-        "*** Cypress ***": "",
         "cy:open": "cypress open --project ./projects/demo-integrations/",
         "cy:run": "nx e2e demo-integrations && nx component-test demo-integrations && nx ct-react demo-integrations",
+        "lint": "eslint .",
+        "prepare": "husky",
+        "prettier": "prettier !package-lock.json . --ignore-path .gitignore",
         "release": "npx nx run-many --target publish --all",
-        "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'"
+        "release:local": "npx release-it --no-git.push --'hooks.before:release=\"echo Skip publish\"'",
+        "serve:ssr": "node dist/demo/server/server.mjs",
+        "start": "nx run demo:serve",
+        "stylelint": "stylelint '**/*.{less,css}'",
+        "test": "nx run-many --target test --all",
+        "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json"
     },
     "commitlint": {
         "extends": [
