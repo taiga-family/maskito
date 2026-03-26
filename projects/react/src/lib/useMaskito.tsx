@@ -1,7 +1,11 @@
-import type {MaskitoElement, MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {Maskito, MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
-import type {RefCallback} from 'react';
-import {useCallback, useRef, useState} from 'react';
+import {
+    Maskito,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    type MaskitoElement,
+    type MaskitoElementPredicate,
+    type MaskitoOptions,
+} from '@maskito/core';
+import {type RefCallback, useCallback, useRef, useState} from 'react';
 
 import {adaptReactControlledElement} from './adaptControlledElement';
 import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';

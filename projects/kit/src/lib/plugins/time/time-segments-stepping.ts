@@ -1,5 +1,4 @@
-import type {MaskitoPlugin} from '@maskito/core';
-import {maskitoUpdateElement} from '@maskito/core';
+import {type MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import type {MaskitoTimeSegments} from '../../types';
 import {noop} from '../../utils';

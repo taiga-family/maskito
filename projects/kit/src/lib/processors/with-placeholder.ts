@@ -1,5 +1,8 @@
-import type {MaskitoOptions, MaskitoPreprocessor} from '@maskito/core';
-import {maskitoUpdateElement} from '@maskito/core';
+import {
+    type MaskitoOptions,
+    type MaskitoPreprocessor,
+    maskitoUpdateElement,
+} from '@maskito/core';
 
 import {maskitoCaretGuard, maskitoEventHandler} from '../plugins';
 

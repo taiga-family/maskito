@@ -3,16 +3,15 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoNumberParams} from '@maskito/kit';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
     maskitoNumberOptionsGenerator,
+    type MaskitoNumberParams,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/legacy';
 

@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {InputPasswordDocExample} from './examples/password/component';

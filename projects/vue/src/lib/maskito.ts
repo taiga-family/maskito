@@ -1,5 +1,9 @@
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {Maskito, MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
+import {
+    Maskito,
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    type MaskitoElementPredicate,
+    type MaskitoOptions,
+} from '@maskito/core';
 import type {ObjectDirective} from 'vue';
 
 const teardown = new Map<HTMLElement, Maskito>();

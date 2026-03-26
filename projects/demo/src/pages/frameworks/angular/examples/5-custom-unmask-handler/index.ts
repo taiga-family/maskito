@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import type {MaskitoNumberParams} from '@maskito/kit';
 import {
     maskitoNumberOptionsGenerator,
+    type MaskitoNumberParams,
     maskitoParseNumber,
     maskitoStringifyNumber,
 } from '@maskito/kit';

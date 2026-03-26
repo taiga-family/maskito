@@ -1,10 +1,7 @@
-import type {ApplicationRef} from '@angular/core';
-import {ErrorHandler, mergeApplicationConfig} from '@angular/core';
-import type {BootstrapContext} from '@angular/platform-browser';
-import {bootstrapApplication} from '@angular/platform-browser';
+import {type ApplicationRef, ErrorHandler, mergeApplicationConfig} from '@angular/core';
+import {bootstrapApplication, type BootstrapContext} from '@angular/platform-browser';
 import {provideServerRendering} from '@angular/platform-server';
-import type {ServerRoute} from '@angular/ssr';
-import {provideServerRouting, RenderMode} from '@angular/ssr';
+import {provideServerRouting, RenderMode, type ServerRoute} from '@angular/ssr';
 import {DemoPath} from '@demo/constants';
 import {UNIVERSAL_PROVIDERS} from '@ng-web-apis/universal';
 

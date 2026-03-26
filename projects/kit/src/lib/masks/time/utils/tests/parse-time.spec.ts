@@ -1,6 +1,5 @@
 import {describe, expect, it} from '@jest/globals';
-import type {MaskitoTimeMode} from '@maskito/kit';
-import {maskitoParseTime} from '@maskito/kit';
+import {maskitoParseTime, type MaskitoTimeMode} from '@maskito/kit';
 
 describe('maskitoParseTime', () => {
     const testCases = new Map<MaskitoTimeMode, Array<{text: string; ms: number}>>([

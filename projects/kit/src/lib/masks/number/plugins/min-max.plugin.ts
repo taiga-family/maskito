@@ -1,5 +1,4 @@
-import type {MaskitoPlugin} from '@maskito/core';
-import {maskitoTransform, maskitoUpdateElement} from '@maskito/core';
+import {type MaskitoPlugin, maskitoTransform, maskitoUpdateElement} from '@maskito/core';
 
 import {maskitoEventHandler} from '../../../plugins';
 import {clamp} from '../../../utils';

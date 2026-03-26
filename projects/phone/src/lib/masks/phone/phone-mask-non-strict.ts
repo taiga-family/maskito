@@ -1,7 +1,5 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {AsYouType} from 'libphonenumber-js/core';
+import {MASKITO_DEFAULT_OPTIONS, type MaskitoOptions} from '@maskito/core';
+import {AsYouType, type CountryCode, type MetadataJson} from 'libphonenumber-js/core';
 
 import {
     browserAutofillPreprocessorGenerator,

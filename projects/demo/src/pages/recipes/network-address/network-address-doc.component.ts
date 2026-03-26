@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 
 import {NetworkAddressDocExample1} from './examples/1-ipv6/component';
 import {NetworkAddressDocExample2} from './examples/2-ipv4/component';

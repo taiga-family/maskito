@@ -1,5 +1,4 @@
-import type {AfterViewInit} from '@angular/core';
-import {Directive, inject} from '@angular/core';
+import {type AfterViewInit, Directive, inject} from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoTransform} from '@maskito/core';

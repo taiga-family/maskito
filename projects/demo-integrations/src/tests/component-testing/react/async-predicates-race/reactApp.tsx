@@ -1,9 +1,7 @@
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {maskitoInitialCalibrationPlugin} from '@maskito/core';
+import {type MaskitoElementPredicate, maskitoInitialCalibrationPlugin, type MaskitoOptions} from '@maskito/core';
 import {maskitoTimeOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
-import type {ComponentType} from 'react';
-import {useEffect, useState} from 'react';
+import {type ComponentType, useEffect, useState} from 'react';
 
 import {AwesomeInput} from '../awesomeInput';
 

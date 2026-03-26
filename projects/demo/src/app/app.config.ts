@@ -1,11 +1,9 @@
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
-import type {ApplicationConfig} from '@angular/core';
-import {inject, PLATFORM_ID} from '@angular/core';
+import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideRouter, withInMemoryScrolling} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiDocSourceCodePathOptions} from '@taiga-ui/addon-doc';
 import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
@@ -16,6 +14,7 @@ import {
     TUI_DOC_TITLE,
     TUI_DOC_TYPE_REFERENCE_HANDLER,
     tuiDocExampleOptionsProvider,
+    type TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
 import {NG_EVENT_PLUGINS} from '@taiga-ui/event-plugins';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';

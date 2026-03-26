@@ -1,10 +1,8 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {useMaskito} from '@maskito/react';
-import type {RenderResult} from '@testing-library/react';
-import {render} from '@testing-library/react';
+import {render, type RenderResult} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import type {JSX} from 'react';
-import {useCallback, useState} from 'react';
+import {type JSX, useCallback, useState} from 'react';
 
 describe('Maskito with React controlled input', () => {
     let testElement: RenderResult;

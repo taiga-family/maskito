@@ -4,10 +4,8 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
-import type {MaskitoPhoneParams} from '@maskito/phone';
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/phone';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS} from '@taiga-ui/cdk';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {
@@ -16,8 +14,11 @@ import {
     TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
 import type {MetadataJson} from 'libphonenumber-js';
-import type {CountryCode} from 'libphonenumber-js/core';
-import {getCountries, getCountryCallingCode} from 'libphonenumber-js/core';
+import {
+    type CountryCode,
+    getCountries,
+    getCountryCallingCode,
+} from 'libphonenumber-js/core';
 import maxMetadata from 'libphonenumber-js/max/metadata';
 import minMetadata from 'libphonenumber-js/min/metadata';
 import mobileMetadata from 'libphonenumber-js/mobile/metadata';

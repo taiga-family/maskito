@@ -1,7 +1,10 @@
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_ELEMENT_PREDICATE, maskitoInitialCalibrationPlugin} from '@maskito/core';
-import type {RenderResult} from '@testing-library/react';
-import {render, waitFor} from '@testing-library/react';
+import {
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    type MaskitoElementPredicate,
+    maskitoInitialCalibrationPlugin,
+    type MaskitoOptions,
+} from '@maskito/core';
+import {render, type RenderResult, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type {JSX} from 'react';
 

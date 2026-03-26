@@ -1,5 +1,4 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {maskitoUpdateElement} from '@maskito/core';
+import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
 import {maskitoEventHandler, maskitoWithPlaceholder} from '@maskito/kit';
 
 import {TestInput} from '../utils';

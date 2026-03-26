@@ -1,6 +1,9 @@
 import {beforeEach, describe, expect, it} from '@jest/globals';
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_OPTIONS,
+    type MaskitoOptions,
+    maskitoTransform,
+} from '@maskito/core';
 import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
 
 import {DATE_TIME_SEPARATOR} from '../constants';

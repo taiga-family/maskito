@@ -1,5 +1,4 @@
-import type {MaskitoPreprocessor} from '@maskito/core';
-import {maskitoTransform} from '@maskito/core';
+import {type MaskitoPreprocessor, maskitoTransform} from '@maskito/core';
 
 import type {MaskitoNumberParams} from '../number-params';
 import {fromNumberParts, generateMaskExpression, toNumberParts} from '../utils';
