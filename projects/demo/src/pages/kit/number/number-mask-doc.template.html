@@ -433,14 +433,18 @@
     </ng-template>
 
     <ng-template pageTab="Helpers">
-        <tui-notification
-            appearance="warning"
-            size="m"
-        >
-            Despite the name of the mask, element's raw value is still
+        <div>
+            Despite the name of the mask, the element's raw value remains of type
             <code>string</code>
-            type!
-        </tui-notification>
+            !
+        </div>
+        <p>
+            Use the helpers below to perform
+            <code>string</code>
+            ⇄
+            <code>number</code>
+            conversions seamlessly.
+        </p>
 
         <section class="tui-space_top-10">
             <h2>maskitoParseNumber</h2>
@@ -468,6 +472,17 @@
                     />
                 </li>
             </ul>
+
+            <tui-notification
+                appearance="warning"
+                size="m"
+                class="tui-space_top-4"
+            >
+                Always pass the second argument to the utility if your number format parameters differ from the default
+                ones to ensure correct parsing and avoid unexpected results!
+
+                <tui-doc-code [code]="parseNumberInvalidUsageDemo" />
+            </tui-notification>
         </section>
 
         <section class="tui-space_top-10">
