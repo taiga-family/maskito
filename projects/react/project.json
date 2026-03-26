@@ -14,8 +14,8 @@
                 "project": "{projectRoot}/package.json",
                 "entryFile": "{projectRoot}/src/index.ts",
                 "external": "all",
-                "rollupConfig": "@nx/react/plugins/bundle-rollup",
-                "compiler": "babel",
+                "compiler": "tsc",
+                "useLegacyTypescriptPlugin": false,
                 "format": ["esm", "cjs"],
                 "assets": [
                     {

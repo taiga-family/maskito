@@ -13,6 +13,15 @@ jobs:
       - uses: taiga-family/ci/actions/setup/variables@v1.193.0
       - uses: taiga-family/ci/actions/setup/node@v1.193.0
       - run: npx nx run-many --target build --all --exclude=demo
+      - name: validate dts
+        # https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/packages/cli/README.md
+        run: |
+          # TODO npx attw --pack dist/angular --ignore-rules cjs-resolves-to-esm internal-resolution-error
+          npx attw --pack dist/core
+          npx attw --pack dist/kit
+          npx attw --pack dist/phone
+          npx attw --pack dist/react
+          npx attw --pack dist/vue
 
   build-demo:
     name: Demo
