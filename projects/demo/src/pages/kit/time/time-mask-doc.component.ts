@@ -4,10 +4,13 @@ import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoTimeMode, MaskitoTimeParams, MaskitoTimeSegments} from '@maskito/kit';
-import {maskitoTimeOptionsGenerator} from '@maskito/kit';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {
+    type MaskitoTimeMode,
+    maskitoTimeOptionsGenerator,
+    type MaskitoTimeParams,
+    type MaskitoTimeSegments,
+} from '@maskito/kit';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 

@@ -1,9 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import * as maskitoCore from '@maskito/core';
-import type {RenderResult} from '@testing-library/react';
-import {render, waitFor} from '@testing-library/react';
-import type {UserEvent} from '@testing-library/user-event';
-import userEvent from '@testing-library/user-event';
+import {render, type RenderResult, waitFor} from '@testing-library/react';
+import userEvent, {type UserEvent} from '@testing-library/user-event';
 import type {JSX} from 'react';
 
 import {useMaskito} from '../useMaskito';

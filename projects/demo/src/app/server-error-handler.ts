@@ -1,5 +1,4 @@
-import type {ErrorHandler} from '@angular/core';
-import {Injectable} from '@angular/core';
+import {type ErrorHandler, Injectable} from '@angular/core';
 
 // TODO
 const KNOWN_ISSUES: ReadonlyArray<RegExp | string> = [

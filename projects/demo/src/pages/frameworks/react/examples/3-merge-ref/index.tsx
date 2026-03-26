@@ -1,7 +1,6 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {useMaskito} from '@maskito/react';
-import type {ComponentType} from 'react';
-import {useRef} from 'react';
+import {type ComponentType, useRef} from 'react';
 
 const digitsOnlyMask: MaskitoOptions = {mask: /^\d+$/};
 

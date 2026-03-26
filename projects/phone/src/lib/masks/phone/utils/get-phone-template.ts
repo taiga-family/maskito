@@ -1,5 +1,9 @@
-import type {AsYouType, CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {formatIncompletePhoneNumber} from 'libphonenumber-js/core';
+import {
+    type AsYouType,
+    type CountryCode,
+    formatIncompletePhoneNumber,
+    type MetadataJson,
+} from 'libphonenumber-js/core';
 
 import type {MaskitoPhoneParams} from '../phone-mask';
 

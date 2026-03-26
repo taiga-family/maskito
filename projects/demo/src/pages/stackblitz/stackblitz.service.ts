@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import phonePackageJson from '@maskito/phone/package.json';
-import type {OpenOptions, Project} from '@stackblitz/sdk';
-import stackblitz from '@stackblitz/sdk';
-import type {TuiCodeEditor} from '@taiga-ui/addon-doc';
-import {tuiRawLoad, tuiTryParseMarkdownCodeBlock} from '@taiga-ui/addon-doc';
+import stackblitz, {type OpenOptions, type Project} from '@stackblitz/sdk';
+import {
+    type TuiCodeEditor,
+    tuiRawLoad,
+    tuiTryParseMarkdownCodeBlock,
+} from '@taiga-ui/addon-doc';
 import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';

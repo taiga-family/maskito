@@ -1,5 +1,4 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {maskitoChangeEventPlugin} from '@maskito/core';
+import {maskitoChangeEventPlugin, type MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {createOutputSpy} from 'cypress/angular';
 

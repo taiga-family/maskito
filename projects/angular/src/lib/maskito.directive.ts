@@ -1,4 +1,3 @@
-import type {OnDestroy} from '@angular/core';
 import {
     Directive,
     effect,
@@ -6,13 +5,14 @@ import {
     inject,
     model,
     NgZone,
+    type OnDestroy,
     untracked,
 } from '@angular/core';
 import {DefaultValueAccessor} from '@angular/forms';
-import type {MaskitoOptions} from '@maskito/core';
 import {
     Maskito,
     MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
 

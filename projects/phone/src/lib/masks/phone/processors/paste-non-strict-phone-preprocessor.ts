@@ -1,7 +1,10 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 import {type PhoneNumber} from 'libphonenumber-js';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
-import {parsePhoneNumber} from 'libphonenumber-js/core';
+import {
+    type CountryCode,
+    type MetadataJson,
+    parsePhoneNumber,
+} from 'libphonenumber-js/core';
 
 import {type MaskitoPhoneParams} from '../phone-mask';
 

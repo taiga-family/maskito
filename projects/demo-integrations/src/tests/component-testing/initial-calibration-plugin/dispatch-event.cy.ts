@@ -1,5 +1,4 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {maskitoInitialCalibrationPlugin} from '@maskito/core';
+import {maskitoInitialCalibrationPlugin, type MaskitoOptions} from '@maskito/core';
 import {createOutputSpy} from 'cypress/angular';
 
 import {TestInput} from '../utils';

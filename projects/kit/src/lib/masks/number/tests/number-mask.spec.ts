@@ -1,6 +1,9 @@
 import {beforeEach, describe, expect, it} from '@jest/globals';
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_OPTIONS,
+    type MaskitoOptions,
+    maskitoTransform,
+} from '@maskito/core';
 import {maskitoParseNumber} from '@maskito/kit';
 
 import {intlPattern} from '../../../../../../demo/src/pages/kit/number/examples/9-thousand-separator-pattern-intl/mask';

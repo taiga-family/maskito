@@ -2,8 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import {mount} from 'cypress/react';
-import type {ChangeEvent, JSX} from 'react';
-import {useCallback, useState} from 'react';
+import {type ChangeEvent, type JSX, useCallback, useState} from 'react';
 
 describe('React synthetic "onChange" event', () => {
     describe('uncontrolled input', () => {

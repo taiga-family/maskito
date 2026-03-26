@@ -1,6 +1,9 @@
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoTimeMode} from '@maskito/kit';
-import {maskitoSelectionChangeHandler, maskitoTimeOptionsGenerator} from '@maskito/kit';
+import {
+    maskitoSelectionChangeHandler,
+    type MaskitoTimeMode,
+    maskitoTimeOptionsGenerator,
+} from '@maskito/kit';
 
 const mode: MaskitoTimeMode = 'HH:MM AA';
 

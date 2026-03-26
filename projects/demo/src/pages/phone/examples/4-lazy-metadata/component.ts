@@ -1,5 +1,4 @@
-import type {OnInit} from '@angular/core';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, type OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';

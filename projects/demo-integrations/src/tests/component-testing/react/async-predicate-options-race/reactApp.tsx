@@ -1,7 +1,6 @@
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {useMaskito} from '@maskito/react';
-import type {ComponentType} from 'react';
-import {useEffect, useState} from 'react';
+import {type ComponentType, useEffect, useState} from 'react';
 
 import {AwesomeInput} from '../awesomeInput';
 

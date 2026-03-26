@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TUI_IS_MOBILE} from '@taiga-ui/cdk';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 

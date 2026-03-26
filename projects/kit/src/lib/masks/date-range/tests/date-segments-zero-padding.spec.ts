@@ -1,6 +1,9 @@
 import {beforeEach, describe, expect, it} from '@jest/globals';
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_OPTIONS,
+    type MaskitoOptions,
+    maskitoTransform,
+} from '@maskito/core';
 import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
 
 describe('DateRange (maskitoTransform) | Date segments zero padding', () => {

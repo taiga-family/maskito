@@ -1,14 +1,14 @@
-import type {
+import {
     /**
      * HTMLElement + some common properties from:
      * - HTMLInputElement
      * - HTMLTextAreaElement
      * - [contenteditable]
      */
-    MaskitoElement,
-    MaskitoOptions,
+    type MaskitoElement,
+    type MaskitoOptions,
+    maskitoUpdateElement,
 } from '@maskito/core';
-import {maskitoUpdateElement} from '@maskito/core';
 
 export default {
     mask: /^\d*(?:\.\d*)?$/,

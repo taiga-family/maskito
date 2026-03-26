@@ -1,5 +1,4 @@
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
+import {MASKITO_DEFAULT_OPTIONS, type MaskitoOptions} from '@maskito/core';
 
 import {
     DEFAULT_TIME_SEGMENT_MAX_VALUES,

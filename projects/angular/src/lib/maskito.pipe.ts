@@ -1,7 +1,9 @@
-import type {PipeTransform} from '@angular/core';
-import {Pipe} from '@angular/core';
-import type {MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
+import {Pipe, type PipeTransform} from '@angular/core';
+import {
+    MASKITO_DEFAULT_OPTIONS,
+    type MaskitoOptions,
+    maskitoTransform,
+} from '@maskito/core';
 
 @Pipe({name: 'maskito'})
 export class MaskitoPipe implements PipeTransform {

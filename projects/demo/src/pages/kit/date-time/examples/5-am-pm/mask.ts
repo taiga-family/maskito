@@ -1,8 +1,9 @@
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoDateMode, MaskitoTimeMode} from '@maskito/kit';
 import {
+    type MaskitoDateMode,
     maskitoDateTimeOptionsGenerator,
     maskitoSelectionChangeHandler,
+    type MaskitoTimeMode,
 } from '@maskito/kit';
 
 const dateTimeSeparator = ', ';

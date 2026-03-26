@@ -1,8 +1,9 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
-import type {CountryCode, MetadataJson} from 'libphonenumber-js/core';
 import {
     AsYouType,
+    type CountryCode,
     formatIncompletePhoneNumber,
+    type MetadataJson,
     parsePhoneNumber,
 } from 'libphonenumber-js/core';
 

@@ -3,8 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiSurface, TuiTextfield, TuiTitle} from '@taiga-ui/core';
 import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
 

@@ -10,8 +10,7 @@ import {
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import type {MaskitoOptions} from '@maskito/core';
-import {maskitoInitialCalibrationPlugin} from '@maskito/core';
+import {maskitoInitialCalibrationPlugin, type MaskitoOptions} from '@maskito/core';
 import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
 
 @Pipe({name: 'calculateMask'})

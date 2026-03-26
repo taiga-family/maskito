@@ -6,8 +6,11 @@ import {
     Output,
 } from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
-import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
-import {MASKITO_DEFAULT_ELEMENT_PREDICATE} from '@maskito/core';
+import {
+    MASKITO_DEFAULT_ELEMENT_PREDICATE,
+    type MaskitoElementPredicate,
+    type MaskitoOptions,
+} from '@maskito/core';
 
 @Component({
     selector: 'test-input',

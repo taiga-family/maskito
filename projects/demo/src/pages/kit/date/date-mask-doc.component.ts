@@ -3,10 +3,12 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import type {MaskitoDateMode, MaskitoDateParams} from '@maskito/kit';
-import {maskitoDateOptionsGenerator} from '@maskito/kit';
-import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiAddonDoc} from '@taiga-ui/addon-doc';
+import {
+    type MaskitoDateMode,
+    maskitoDateOptionsGenerator,
+    type MaskitoDateParams,
+} from '@maskito/kit';
+import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
