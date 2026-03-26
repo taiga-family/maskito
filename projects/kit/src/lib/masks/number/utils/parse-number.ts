@@ -1,11 +1,7 @@
-import {
-    CHAR_HYPHEN,
-    CHAR_MINUS,
-    CHAR_NO_BREAK_SPACE,
-    DEFAULT_PSEUDO_MINUSES,
-} from '../../../constants';
-import {escapeRegExp} from '../../../utils';
-import type {MaskitoNumberParams} from '../number-params';
+import {CHAR_HYPHEN} from '../../../constants';
+import {type MaskitoNumberParams} from '../number-params';
+import {fromNumberParts, toNumberParts} from './number-parts';
+import {withNumberDefaults} from './with-number-defaults';
 
 export function maskitoParseNumber(
     maskedNumber: string,
@@ -24,35 +20,27 @@ export function maskitoParseNumber(
 
 export function maskitoParseNumber(
     maskedNumber: string,
-    {
-        bigint = false,
-        decimalSeparator = '.',
-        maximumFractionDigits = 0,
-        minusPseudoSigns = DEFAULT_PSEUDO_MINUSES,
-        minusSign = CHAR_MINUS,
-        thousandSeparator = CHAR_NO_BREAK_SPACE,
-    }: MaskitoNumberParams & {bigint?: boolean} = {},
+    {bigint = false, ...optionalParams}: MaskitoNumberParams & {bigint?: boolean} = {},
 ): bigint | number | null {
-    const hasNegativeSign = !!new RegExp(
-        `^\\D*[${escapeRegExp(minusSign)}\\${minusPseudoSigns.join('\\')}]`,
-    ).exec(maskedNumber);
-    const escapedDecimalSeparator = escapeRegExp(decimalSeparator);
-
-    const unmaskedNumber = maskedNumber
-        // drop all decimal separators not followed by a digit
-        .replaceAll(new RegExp(String.raw`${escapedDecimalSeparator}(?!\d)`, 'g'), '')
-        // drop all non-digit characters except decimal separator
-        .replaceAll(
-            new RegExp(
-                String.raw`[^\d${maximumFractionDigits <= 0 && decimalSeparator === thousandSeparator ? '' : escapedDecimalSeparator}]`,
-                'g',
-            ),
-            '',
-        )
-        .replace(decimalSeparator, decimalSeparator && '.');
+    const params = withNumberDefaults(optionalParams);
+    const {minus, integerPart, decimalSeparator, ...numberParts} = toNumberParts(
+        maskedNumber,
+        params,
+    );
+    const unmaskedNumber = fromNumberParts(
+        {
+            ...numberParts,
+            integerPart: integerPart.replaceAll(/\D/g, ''),
+            decimalSeparator: decimalSeparator && '.',
+            prefix: '',
+            postfix: '',
+            minus: '',
+        },
+        {...params, decimalSeparator: '.'},
+    );
 
     if (unmaskedNumber) {
-        const sign = hasNegativeSign ? CHAR_HYPHEN : '';
+        const sign = minus ? CHAR_HYPHEN : '';
 
         return bigint
             ? BigInt(`${sign}${unmaskedNumber}`)

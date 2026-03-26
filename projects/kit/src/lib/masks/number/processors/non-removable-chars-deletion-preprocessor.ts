@@ -1,5 +1,7 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
+import type {MaskitoNumberParams} from '../number-params';
+
 /**
  * Manage caret-navigation when user "deletes" non-removable digits or separators
  * @example 1,|42 => Backspace => 1|,42 (only if `minimumFractionDigits` is `>0`)
@@ -11,11 +13,10 @@ export function createNonRemovableCharsDeletionPreprocessor({
     decimalSeparator,
     thousandSeparator,
     minimumFractionDigits,
-}: {
-    decimalSeparator: string;
-    thousandSeparator: string;
-    minimumFractionDigits: number;
-}): MaskitoPreprocessor {
+}: Pick<
+    Required<MaskitoNumberParams>,
+    'decimalSeparator' | 'minimumFractionDigits' | 'thousandSeparator'
+>): MaskitoPreprocessor {
     return ({elementState, data}, actionType) => {
         const {value, selection} = elementState;
         const [from, to] = selection;

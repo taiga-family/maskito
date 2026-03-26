@@ -4,3 +4,4 @@ export * from './number-parts';
 export * from './parse-number';
 export * from './stringify-number-without-exp';
 export * from './validate-decimal-pseudo-separators';
+export * from './with-number-defaults';

@@ -130,39 +130,64 @@ describe('maskitoParseNumber', () => {
         });
 
         it('parses negative number with prefix', () => {
-            expect(maskitoParseNumber('>-42')).toBe(-42);
-            expect(maskitoParseNumber('> -42')).toBe(-42);
+            expect(maskitoParseNumber('>-42', {prefix: '>'})).toBe(-42);
+            expect(maskitoParseNumber('> -42', {prefix: '> '})).toBe(-42);
         });
 
         describe('prefix/postfix includes point and space', () => {
+            const postfix = ' lbs.';
+            const prefix = 'lbs. ';
+
             it('parses INTEGER number with postfix " lbs."', () => {
-                expect(maskitoParseNumber('42 lbs.')).toBe(42);
-                expect(maskitoParseNumber('1 000 lbs.')).toBe(1000);
-                expect(maskitoParseNumber('1 000 lbs.')).toBe(1000);
+                expect(maskitoParseNumber('42 lbs.', {postfix})).toBe(42);
+                expect(maskitoParseNumber('1 000 lbs.', {postfix})).toBe(1000);
+                expect(maskitoParseNumber('1 000 lbs.', {postfix})).toBe(1000);
             });
 
             it('parses DECIMAL number with postfix " lbs."', () => {
-                expect(maskitoParseNumber('0.42 lbs.')).toBe(0.42);
-                expect(maskitoParseNumber('.42 lbs.')).toBe(0.42);
-                expect(maskitoParseNumber('1 000.42 lbs.')).toBe(1000.42);
-                expect(maskitoParseNumber('1 000. lbs.')).toBe(1000);
+                expect(maskitoParseNumber('0.42 lbs.', {postfix})).toBe(0.42);
+                expect(maskitoParseNumber('.42 lbs.', {postfix})).toBe(0.42);
+                expect(maskitoParseNumber('1 000.42 lbs.', {postfix})).toBe(1000.42);
+                expect(maskitoParseNumber('1 000. lbs.', {postfix})).toBe(1000);
             });
 
             it('parses INTEGER number with prefix "lbs. "', () => {
-                expect(maskitoParseNumber('lbs. 42')).toBe(42);
-                expect(maskitoParseNumber('lbs. 1 000')).toBe(1000);
-                expect(maskitoParseNumber('lbs. 1 000')).toBe(1000);
+                expect(maskitoParseNumber('lbs. 42', {prefix})).toBe(42);
+                expect(maskitoParseNumber('lbs. 1 000', {prefix})).toBe(1000);
+                expect(maskitoParseNumber('lbs. 1 000', {prefix})).toBe(1000);
             });
 
             it('parses DECIMAL number with prefix "lbs. "', () => {
-                expect(maskitoParseNumber('lbs. 0.42')).toBe(0.42);
-                expect(maskitoParseNumber('lbs. .42')).toBe(0.42);
-                expect(maskitoParseNumber('lbs. 1 000.42')).toBe(1000.42);
-                expect(maskitoParseNumber('lbs. 1 000.42')).toBe(1000.42);
+                expect(maskitoParseNumber('lbs. 0.42', {prefix})).toBe(0.42);
+                expect(maskitoParseNumber('lbs. .42', {prefix})).toBe(0.42);
+                expect(maskitoParseNumber('lbs. 1 000.42', {prefix})).toBe(1000.42);
+                expect(maskitoParseNumber('lbs. 1 000.42', {prefix})).toBe(1000.42);
 
                 const zeroWidthSpace = '\u200B';
 
-                expect(maskitoParseNumber(`lbs.${zeroWidthSpace}1 000.42`)).toBe(1000.42);
+                expect(
+                    maskitoParseNumber(`lbs.${zeroWidthSpace}1 000.42`, {prefix}),
+                ).toBe(1000.42);
+            });
+        });
+
+        describe('postfix includes digits, cm3', () => {
+            const postfix = 'cm3';
+
+            it('no value, only postfix', () => {
+                expect(maskitoParseNumber(postfix, {postfix})).toBeNaN();
+            });
+
+            it('0cm3 => 0', () => {
+                expect(maskitoParseNumber(`0${postfix}`, {postfix})).toBe(0);
+            });
+
+            it('3cm3 => 3', () => {
+                expect(maskitoParseNumber(`3${postfix}`, {postfix})).toBe(3);
+            });
+
+            it('123cm3 => 123', () => {
+                expect(maskitoParseNumber(`123${postfix}`, {postfix})).toBe(123);
             });
         });
     });

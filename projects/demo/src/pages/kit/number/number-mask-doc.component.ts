@@ -61,6 +61,9 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     protected readonly parseNumberAsBigIntTypeDemo =
         import('./helpers/parse-number-as-bigint-type.md');
 
+    protected readonly parseNumberInvalidUsageDemo =
+        import('./helpers/parse-number-invalid-usage.md');
+
     protected readonly stringifyNumberDemo = import('./helpers/stringify-number.md');
 
     protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
