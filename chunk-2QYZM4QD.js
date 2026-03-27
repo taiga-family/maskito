@@ -1,0 +1,13 @@
+import"./chunk-TIC6Q35B.js";var o=`import {maskitoChangeEventPlugin, type MaskitoOptions} from '@maskito/core';
+import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+
+const numberOptions = maskitoNumberOptionsGenerator({maximumFractionDigits: 2});
+
+export default {
+    ...numberOptions,
+    plugins: [
+        ...numberOptions.plugins,
+        maskitoChangeEventPlugin(), // <--- Enable it
+    ],
+} satisfies MaskitoOptions;
+`;export{o as default};

@@ -1,0 +1,1 @@
+import"./chunk-TIC6Q35B.js";var s="```ts\nmaskitoParseNumber('-42'); // -42 \u2705\nmaskitoParseNumber('> -42'); // 42 \u274C\nmaskitoParseNumber('> -42', {prefix: '> '}); // -42 \u2705\n```\n";export{s as default};
