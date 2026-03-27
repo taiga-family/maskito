@@ -1,3 +1,12 @@
+### [5.2.1](https://github.com/taiga-family/maskito/compare/v5.2.0...v5.2.1) (2026-03-27)
+
+### 🐞 Bug Fixes
+
+- **react**: omitted `d.ts` files (#2607)
+  [(a10e118)](https://github.com/taiga-family/maskito/commit/a10e1187c81cfd4af8935edd7d459c3e6b5c6cc4)
+- **kit**: `maskitoParseNumber` incorrectly parses postfix containing digits (#2600)
+  [(4805166)](https://github.com/taiga-family/maskito/commit/48051666d3235fe72c5bc90d83405175905ec7fa)
+
 ### [5.2.0](https://github.com/taiga-family/maskito/compare/v5.1.2...v5.2.0) (2026-03-25)
 
 ### 🚀 Features
