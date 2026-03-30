@@ -1,3 +1,5 @@
+import {CHAR_MINUS} from 'projects/kit/src/lib/constants';
+
 import {openNumberPage} from './utils';
 
 describe('Number | Max validation', () => {
@@ -143,6 +145,74 @@ describe('Number | Max validation', () => {
                 .blur()
                 .wait(100)
                 .should('have.value', '−6');
+        });
+    });
+
+    describe('postfix with digit (cm3) should not affect max validation', () => {
+        it(`types 1234567890123456 with max=${Number.MAX_SAFE_INTEGER} — NOT clamped to max`, () => {
+            openNumberPage(`postfix=cm3&max=${Number.MAX_SAFE_INTEGER}`);
+
+            const expectedValue = '1 234 567 890 123 456cm3';
+
+            cy.get('@input')
+                .type('1234567890123456')
+                .should('have.value', expectedValue)
+                .should(
+                    'have.prop',
+                    'selectionStart',
+                    expectedValue.length - 'cm3'.length,
+                )
+                .should('have.prop', 'selectionEnd', expectedValue.length - 'cm3'.length);
+        });
+
+        it('types value exceeding max — IS clamped to 999', () => {
+            openNumberPage('postfix=cm3&max=999');
+
+            cy.get('@input')
+                .type('12345')
+                .should('have.value', '999cm3')
+                .should('have.prop', 'selectionStart', '999'.length)
+                .should('have.prop', 'selectionEnd', '999'.length);
+        });
+
+        it(`types negative value within min with min=${Number.MIN_SAFE_INTEGER} — NOT clamped`, () => {
+            openNumberPage(`postfix=cm3&min=${Number.MIN_SAFE_INTEGER}`);
+
+            const expectedValue = `${CHAR_MINUS}1 234 567 890 123 456cm3`;
+
+            cy.get('@input')
+                .type('-1234567890123456')
+                .should('have.value', expectedValue)
+                .should(
+                    'have.prop',
+                    'selectionStart',
+                    expectedValue.length - 'cm3'.length,
+                )
+                .should('have.prop', 'selectionEnd', expectedValue.length - 'cm3'.length);
+        });
+    });
+
+    describe('prefix with digit (100x) should not affect max validation', () => {
+        it('types value within max — NOT clamped', () => {
+            openNumberPage('prefix=100x&max=999');
+
+            const expectedValue = '100x500';
+
+            cy.get('@input')
+                .type('500')
+                .should('have.value', expectedValue)
+                .should('have.prop', 'selectionStart', expectedValue.length)
+                .should('have.prop', 'selectionEnd', expectedValue.length);
+        });
+
+        it('types value exceeding max — IS clamped to 999', () => {
+            openNumberPage('prefix=100x&max=999');
+
+            cy.get('@input')
+                .type('1234')
+                .should('have.value', '100x999')
+                .should('have.prop', 'selectionStart', '100x999'.length)
+                .should('have.prop', 'selectionEnd', '100x999'.length);
         });
     });
 
