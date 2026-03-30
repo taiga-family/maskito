@@ -16,5 +16,15 @@ export function createNumberPrefixPostprocessor({
             value.includes(minusSign) && negativePattern === 'minusFirst'
                 ? minusSign + prefix
                 : prefix,
-        )({value, selection}, initialElementState);
+        )(
+            {
+                value:
+                    negativePattern === 'minusFirst' &&
+                    value.startsWith(prefix + minusSign) // $-100 => -$100
+                        ? value.replace(prefix + minusSign, minusSign + prefix)
+                        : value,
+                selection,
+            },
+            initialElementState,
+        );
 }
