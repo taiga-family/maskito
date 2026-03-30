@@ -111,7 +111,7 @@
         "@nx/react": "21.6.3",
         "@nx/rollup": "21.6.3",
         "@nx/workspace": "21.6.3",
-        "@taiga-ui/configs": "0.444.0",
+        "@taiga-ui/configs": "0.445.0",
         "@tinkoff/eslint-config": "5.2.0",
         "@tinkoff/eslint-config-react": "5.2.0",
         "@types/highlight.js": "10.1.0",
