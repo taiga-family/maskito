@@ -152,7 +152,7 @@ describe('Number | Max validation', () => {
         it(`types 1234567890123456 with max=${Number.MAX_SAFE_INTEGER} — NOT clamped to max`, () => {
             openNumberPage(`postfix=cm3&max=${Number.MAX_SAFE_INTEGER}`);
 
-            const expectedValue = '1 234 567 890 123 456cm3';
+            const expectedValue = '1 234 567 890 123 456cm3';
 
             cy.get('@input')
                 .type('1234567890123456')
@@ -178,7 +178,7 @@ describe('Number | Max validation', () => {
         it(`types negative value within min with min=${Number.MIN_SAFE_INTEGER} — NOT clamped`, () => {
             openNumberPage(`postfix=cm3&min=${Number.MIN_SAFE_INTEGER}`);
 
-            const expectedValue = `${CHAR_MINUS}1 234 567 890 123 456cm3`;
+            const expectedValue = `${CHAR_MINUS}1 234 567 890 123 456cm3`;
 
             cy.get('@input')
                 .type('-1234567890123456')
