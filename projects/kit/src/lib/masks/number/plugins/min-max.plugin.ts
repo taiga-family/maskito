@@ -9,23 +9,15 @@ import {maskitoParseNumber, stringifyNumberWithoutExp} from '../utils';
  * This plugin is connected with {@link createMinMaxPostprocessor}:
  * both validate `min`/`max` bounds of entered value (but at the different point of time).
  */
-export function createMinMaxPlugin({
-    min,
-    max,
-    decimalSeparator,
-    minusSign,
-    maximumFractionDigits,
-}: Pick<
-    Required<MaskitoNumberParams>,
-    'decimalSeparator' | 'max' | 'maximumFractionDigits' | 'min' | 'minusSign'
->): MaskitoPlugin {
+export function createMinMaxPlugin(params: Required<MaskitoNumberParams>): MaskitoPlugin {
+    const {decimalSeparator, maximumFractionDigits, min, max} = params;
+
     return maskitoEventHandler(
         'blur',
         (element, options) => {
             const parsedNumber =
                 maskitoParseNumber(element.value, {
-                    decimalSeparator,
-                    minusSign,
+                    ...params,
                     bigint:
                         !maximumFractionDigits &&
                         !element.value.includes(decimalSeparator),
