@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.194.0
-      - uses: taiga-family/ci/actions/setup/node@v1.194.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.195.0
+      - uses: taiga-family/ci/actions/setup/node@v1.195.0
       - run: npx nx run-many --target build --all --exclude=demo
       - name: validate dts
         # https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/packages/cli/README.md
@@ -28,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.194.0
-      - uses: taiga-family/ci/actions/setup/node@v1.194.0
+      - uses: taiga-family/ci/actions/setup/variables@v1.195.0
+      - uses: taiga-family/ci/actions/setup/node@v1.195.0
       - run: npx nx build-gh-pages
 
 concurrency:
