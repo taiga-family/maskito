@@ -944,6 +944,74 @@ describe('Number (maskitoTransform)', () => {
         });
     });
 
+    describe('min/max validation should ignore digits inside affixes', () => {
+        describe('postfix = cm3', () => {
+            it('value within max is NOT clamped', () => {
+                expect(
+                    maskitoTransform(
+                        '123',
+                        maskitoNumberOptionsGenerator({max: 123, postfix: 'cm3'}),
+                    ),
+                ).toBe('123cm3');
+
+                expect(
+                    maskitoTransform(
+                        '1234567890123456',
+                        maskitoNumberOptionsGenerator({
+                            postfix: 'cm3',
+                            max: Number.MAX_SAFE_INTEGER,
+                        }),
+                    ),
+                ).toBe('1 234 567 890 123 456cm3');
+            });
+
+            it('value exceeding max IS clamped without losing postfix', () => {
+                const options = maskitoNumberOptionsGenerator({
+                    thousandSeparator: ' ',
+                    max: 999,
+                    postfix: 'cm3',
+                });
+
+                expect(maskitoTransform('12345', options)).toBe('999cm3');
+            });
+
+            it('negative value within min is NOT clamped', () => {
+                expect(
+                    maskitoTransform(
+                        '-1234567890123456',
+                        maskitoNumberOptionsGenerator({postfix: 'cm3'}),
+                    ),
+                ).toBe(`${CHAR_MINUS}1 234 567 890 123 456cm3`);
+            });
+        });
+
+        describe('prefix = 100 x', () => {
+            it('value within max is NOT clamped', () => {
+                expect(
+                    maskitoTransform(
+                        '500',
+                        maskitoNumberOptionsGenerator({
+                            max: 999,
+                            prefix: '100 x ',
+                        }),
+                    ),
+                ).toBe('100 x 500');
+            });
+
+            it('value exceeding max IS clamped', () => {
+                expect(
+                    maskitoTransform(
+                        '1234',
+                        maskitoNumberOptionsGenerator({
+                            max: 999,
+                            prefix: '100 x ',
+                        }),
+                    ),
+                ).toBe('100 x 999');
+            });
+        });
+    });
+
     it('[thousandSeparator] is equal to [decimalSeparator] when [maximumFractionDigits]=0', () => {
         const options = maskitoNumberOptionsGenerator({
             thousandSeparator: '.',
