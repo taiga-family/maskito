@@ -9,21 +9,15 @@ import {maskitoParseNumber} from '../utils';
  * This postprocessor is connected with {@link createMinMaxPlugin}:
  * both validate `min`/`max` bounds of entered value (but at the different point of time).
  */
-export function createMinMaxPostprocessor({
-    min,
-    max,
-    decimalSeparator,
-    minusSign,
-    maximumFractionDigits,
-}: Pick<
-    Required<MaskitoNumberParams>,
-    'decimalSeparator' | 'max' | 'maximumFractionDigits' | 'min' | 'minusSign'
->): MaskitoPostprocessor {
+export function createMinMaxPostprocessor(
+    params: Required<MaskitoNumberParams>,
+): MaskitoPostprocessor {
+    const {decimalSeparator, maximumFractionDigits, min, max, minusSign} = params;
+
     return ({value, selection}) => {
         const parsedNumber =
             maskitoParseNumber(value, {
-                decimalSeparator,
-                minusSign,
+                ...params,
                 bigint: !maximumFractionDigits && !value.includes(decimalSeparator),
             }) ?? NaN;
         const limitedValue =
