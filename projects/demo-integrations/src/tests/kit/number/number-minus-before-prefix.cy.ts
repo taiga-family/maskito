@@ -23,6 +23,19 @@ describe('Number | Minus before prefix', () => {
                     .should('have.prop', 'selectionEnd', '-$'.length);
             });
 
+            it('$|100 => type "-" => -$|100 (caret stays before digits)', () => {
+                cy.get('@input')
+                    .type('100')
+                    .should('have.value', '$100')
+                    .type('{moveToStart}')
+                    .should('have.prop', 'selectionStart', 1)
+                    .should('have.prop', 'selectionEnd', 1)
+                    .type('-')
+                    .should('have.value', '-$100')
+                    .should('have.prop', 'selectionStart', '-$'.length)
+                    .should('have.prop', 'selectionEnd', '-$'.length);
+            });
+
             describe('works with pseudo minuses', () => {
                 [CHAR_EN_DASH, CHAR_EM_DASH, CHAR_JP_HYPHEN].forEach((minus) => {
                     it(minus, () => {
