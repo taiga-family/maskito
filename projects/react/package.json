@@ -1,6 +1,6 @@
 {
     "name": "@maskito/react",
-    "version": "5.2.1",
+    "version": "5.2.2",
     "description": "The React-specific Maskito's library",
     "keywords": [
         "input",
@@ -53,7 +53,7 @@
         "react-test-renderer": "19.2.4"
     },
     "peerDependencies": {
-        "@maskito/core": "^5.2.1",
+        "@maskito/core": "^5.2.2",
         "react": ">=16.8",
         "react-dom": ">=16.8"
     }

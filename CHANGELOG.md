@@ -1,3 +1,12 @@
+### [5.2.2](https://github.com/taiga-family/maskito/compare/v5.2.1...v5.2.2) (2026-03-31)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Number` with `negativePattern=minusFirst` + `prefix` has unexpected caret shift on minus insertion (#2616)
+  [(1d7bc77)](https://github.com/taiga-family/maskito/commit/1d7bc7761f1e4c7dad3b01b6c651295dd6d31bc4)
+- **kit**: `Number` should ignore digits in affixes for `min`/`max` validation (#2615)
+  [(227a860)](https://github.com/taiga-family/maskito/commit/227a860453b4d0cee42a96e8ef06d155a44cce06)
+
 ### [5.2.1](https://github.com/taiga-family/maskito/compare/v5.2.0...v5.2.1) (2026-03-27)
 
 ### 🐞 Bug Fixes
