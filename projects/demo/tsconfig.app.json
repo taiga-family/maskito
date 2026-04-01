@@ -1,10 +1,10 @@
 {
     "extends": "../../tsconfig.build.json",
     "compilerOptions": {
+        "allowJs": false,
         "outDir": "../out-tsc/app",
         "target": "ES2022",
-        "useDefineForClassFields": false,
-        "allowJs": false
+        "useDefineForClassFields": false
     },
     "angularCompilerOptions": {
         "compilationMode": "full"
