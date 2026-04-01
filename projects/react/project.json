@@ -10,17 +10,17 @@
             "outputs": ["{options.outputPath}"],
             "options": {
                 "outputPath": "dist/{projectName}",
-                "tsConfig": "{projectRoot}/tsconfig.lib.json",
+                "tsConfig": "tsconfig.build.json",
                 "project": "{projectRoot}/package.json",
-                "entryFile": "{projectRoot}/src/index.ts",
+                "main": "{projectRoot}/src/index.ts",
                 "external": "all",
                 "compiler": "tsc",
                 "useLegacyTypescriptPlugin": false,
                 "format": ["esm", "cjs"],
                 "assets": [
                     {
-                        "glob": "{projectRoot}/README.md",
-                        "input": ".",
+                        "input": "{projectRoot}",
+                        "glob": "README.md",
                         "output": "."
                     }
                 ]

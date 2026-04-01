@@ -1,16 +1,12 @@
 {
     "extends": "@taiga-ui/tsconfig",
-    "exclude": ["projects/demo-integrations", "projects/**/*.spec.ts", "projects/**/*.spec.tsx"],
-    "angularCompilerOptions": {
-        "strictTemplates": true
-    },
+    "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
+    "references": [{"path": "./tsconfig.spec.json"}],
     "compilerOptions": {
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "typeRoots": ["node_modules/@types", "node_modules/@taiga-ui/tsconfig/@types"],
-        "sourceMap": true,
+        "typeRoots": ["node_modules/@types"],
         "jsx": "react-jsx",
-        "checkJs": false,
         "paths": {
             "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
             "@maskito/angular": ["projects/angular/src/index.ts"],

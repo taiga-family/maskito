@@ -1,11 +1,13 @@
 {
     "extends": "./tsconfig.json",
-    "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/jest.config.ts"],
+    "include": ["**/src/**/*.ts", "**/src/**/*.tsx", "**/src/**/*.d.ts"],
+    "exclude": ["**/*.spec.ts", "**/*.spec.tsx"],
     "compilerOptions": {
         "declaration": true,
         "declarationMap": true,
         "types": [],
-        "inlineSources": true
+        "inlineSources": true,
+        "incremental": false
     },
     "angularCompilerOptions": {
         "compilationMode": "partial"

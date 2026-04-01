@@ -1,5 +1,5 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "../../tsconfig.build.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
         "target": "ES2022",
@@ -8,7 +8,5 @@
     },
     "angularCompilerOptions": {
         "compilationMode": "full"
-    },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
-    "files": ["src/typings.d.ts"]
+    }
 }
