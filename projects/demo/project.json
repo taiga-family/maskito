@@ -17,6 +17,9 @@
                 },
                 "production": {
                     "outputHashing": "all"
+                },
+                "typecheck": {
+                    "tsConfig": "{projectRoot}/tsconfig.typecheck.json"
                 }
             },
             "defaultConfiguration": "production",

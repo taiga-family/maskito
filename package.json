@@ -89,7 +89,6 @@
         "@angular/compiler-cli": "19.2.20",
         "@angular/core": "19.2.20",
         "@angular/platform-browser-dynamic": "19.2.20",
-        "@arethetypeswrong/cli": "0.18.2",
         "@nx/angular": "21.6.3",
         "@nx/eslint": "21.6.3",
         "@nx/jest": "21.6.3",

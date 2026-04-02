@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.app.json",
+    "compilerOptions": {
+        "paths": {
+            "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
+            "@maskito/angular": ["dist/angular"],
+            "@maskito/core": ["dist/core"],
+            "@maskito/kit": ["dist/kit"],
+            "@maskito/phone": ["dist/phone"],
+            "@maskito/react": ["dist/react"],
+            "@maskito/vue": ["dist/vue"]
+        }
+    }
+}
