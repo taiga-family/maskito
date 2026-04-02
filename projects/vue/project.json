@@ -1,63 +1,63 @@
 {
-    "name": "vue",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "projects/vue/src",
+    "name": "vue",
     "projectType": "library",
+    "sourceRoot": "projects/vue/src",
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nx/rollup:rollup",
-            "outputs": ["{options.outputPath}"],
-            "options": {
-                "outputPath": "dist/{projectName}",
-                "tsConfig": "tsconfig.build.json",
-                "project": "{projectRoot}/package.json",
-                "main": "{projectRoot}/src/index.ts",
-                "format": ["esm", "cjs"],
-                "compiler": "tsc",
-                "useLegacyTypescriptPlugin": false,
-                "external": "all",
-                "assets": [
-                    {
-                        "input": "{projectRoot}",
-                        "glob": "README.md",
-                        "output": "."
-                    }
-                ]
-            },
             "dependsOn": [
                 {
-                    "target": "build",
+                    "dependencies": true,
                     "params": "forward",
-                    "dependencies": true
+                    "target": "build"
                 }
-            ]
+            ],
+            "executor": "@nx/rollup:rollup",
+            "options": {
+                "assets": [
+                    {
+                        "glob": "README.md",
+                        "input": "{projectRoot}",
+                        "output": "."
+                    }
+                ],
+                "compiler": "tsc",
+                "external": "all",
+                "format": ["esm", "cjs"],
+                "main": "{projectRoot}/src/index.ts",
+                "outputPath": "dist/{projectName}",
+                "project": "{projectRoot}/package.json",
+                "tsConfig": "tsconfig.build.json",
+                "useLegacyTypescriptPlugin": false
+            },
+            "outputs": ["{options.outputPath}"]
         },
         "lint": {
             "executor": "@nx/eslint:lint",
-            "outputs": ["{options.outputFile}"],
             "options": {
                 "lintFilePatterns": ["{projectRoot}/**/*.{ts,js}"]
+            },
+            "outputs": ["{options.outputFile}"]
+        },
+        "publish": {
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "build"
+                }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npm publish ./dist/{projectName} --ignore-scripts"
             }
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
                 "jestConfig": "{projectRoot}/jest.config.ts"
-            }
-        },
-        "publish": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "npm publish ./dist/{projectName} --ignore-scripts"
             },
-            "dependsOn": [
-                {
-                    "target": "build",
-                    "params": "ignore"
-                }
-            ]
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"]
         }
     }
 }

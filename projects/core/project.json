@@ -1,49 +1,49 @@
 {
-    "name": "core",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "projects/core/src",
+    "name": "core",
     "projectType": "library",
+    "sourceRoot": "projects/core/src",
     "tags": [],
     "targets": {
         "build": {
             "executor": "@nx/rollup:rollup",
-            "outputs": ["{options.outputPath}"],
             "options": {
-                "project": "{projectRoot}/package.json",
-                "outputPath": "dist/{projectName}",
-                "main": "{projectRoot}/src/index.ts",
-                "tsConfig": "tsconfig.build.json",
-                "format": ["esm", "cjs"],
-                "compiler": "tsc",
-                "useLegacyTypescriptPlugin": false,
-                "external": "all",
                 "assets": [
                     {
-                        "input": "{projectRoot}",
                         "glob": "README.md",
+                        "input": "{projectRoot}",
                         "output": "."
                     }
-                ]
+                ],
+                "compiler": "tsc",
+                "external": "all",
+                "format": ["esm", "cjs"],
+                "main": "{projectRoot}/src/index.ts",
+                "outputPath": "dist/{projectName}",
+                "project": "{projectRoot}/package.json",
+                "tsConfig": "tsconfig.build.json",
+                "useLegacyTypescriptPlugin": false
+            },
+            "outputs": ["{options.outputPath}"]
+        },
+        "publish": {
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "build"
+                }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npm publish ./dist/{projectName} --ignore-scripts"
             }
         },
         "test": {
             "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
             "options": {
                 "jestConfig": "{projectRoot}/jest.config.ts"
-            }
-        },
-        "publish": {
-            "executor": "nx:run-commands",
-            "options": {
-                "command": "npm publish ./dist/{projectName} --ignore-scripts"
             },
-            "dependsOn": [
-                {
-                    "target": "build",
-                    "params": "ignore"
-                }
-            ]
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"]
         }
     }
 }

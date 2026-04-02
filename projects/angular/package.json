@@ -21,26 +21,26 @@
     },
     "license": "Apache-2.0",
     "author": {
-        "name": "Nikita Barsukov",
         "email": "nikita.s.barsukov@gmail.com",
+        "name": "Nikita Barsukov",
         "url": "https://github.com/nsbarsukov"
     },
     "contributors": [
         {
-            "name": "Alex Inkin",
-            "email": "alexander@inkin.ru"
+            "email": "alexander@inkin.ru",
+            "name": "Alex Inkin"
         },
         {
-            "name": "Vladimir Potekhin",
-            "email": "vladimir.potekh@gmail.com"
+            "email": "vladimir.potekh@gmail.com",
+            "name": "Vladimir Potekhin"
         },
         {
-            "name": "Nikita Barsukov",
-            "email": "nikita.s.barsukov@gmail.com"
+            "email": "nikita.s.barsukov@gmail.com",
+            "name": "Nikita Barsukov"
         },
         {
-            "name": "Georgiy Lunin",
-            "email": "nextzeddicus@gmail.com"
+            "email": "nextzeddicus@gmail.com",
+            "name": "Georgiy Lunin"
         }
     ],
     "dependencies": {
@@ -56,9 +56,6 @@
         "@maskito/core": "^5.2.2"
     },
     "ng-update": {
-        "packageGroup": [
-            "@maskito/core",
-            "@maskito/kit"
-        ]
+        "packageGroup": ["@maskito/core", "@maskito/kit"]
     }
 }

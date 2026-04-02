@@ -1,35 +1,35 @@
 {
-    "name": "demo-integrations",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "demo-integrations",
+    "implicitDependencies": ["demo"],
     "projectType": "application",
     "sourceRoot": "projects/demo-integrations/src",
-    "implicitDependencies": ["demo"],
     "targets": {
-        "e2e": {
-            "executor": "@nx/cypress:cypress",
-            "options": {
-                "cypressConfig": "{projectRoot}/cypress.config.ts",
-                "testingType": "e2e",
-                "skipServe": true,
-                "browser": "chrome",
-                "devServerTarget": "demo:serve:development"
-            }
-        },
         "component-test": {
             "executor": "@nx/cypress:cypress",
             "options": {
                 "cypressConfig": "{projectRoot}/cypress.config.ts",
-                "testingType": "component",
+                "devServerTarget": "demo:build",
                 "skipServe": true,
-                "devServerTarget": "demo:build"
+                "testingType": "component"
             }
         },
         "ct-react": {
             "executor": "@nx/cypress:cypress",
             "options": {
                 "cypressConfig": "{projectRoot}/cypress-react.config.ts",
-                "testingType": "component",
-                "skipServe": true
+                "skipServe": true,
+                "testingType": "component"
+            }
+        },
+        "e2e": {
+            "executor": "@nx/cypress:cypress",
+            "options": {
+                "browser": "chrome",
+                "cypressConfig": "{projectRoot}/cypress.config.ts",
+                "devServerTarget": "demo:serve:development",
+                "skipServe": true,
+                "testingType": "e2e"
             }
         }
     }

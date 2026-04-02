@@ -1,9 +1,13 @@
 {
     "extends": "../../tsconfig.json",
-    "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
-    "exclude": [],
     "compilerOptions": {
         "typeRoots": ["../../node_modules/@types", "../../node_modules/cypress/types"],
         "types": ["cypress", "node"]
-    }
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.d.ts"
+    ],
+    "exclude": []
 }

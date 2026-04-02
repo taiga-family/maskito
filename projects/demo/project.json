@@ -1,20 +1,35 @@
 {
-    "name": "demo",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "projectType": "application",
+    "name": "demo",
     "prefix": "app",
+    "projectType": "application",
     "sourceRoot": "projects/demo/src",
     "targets": {
         "build": {
+            "configurations": {
+                "development": {
+                    "extractLicenses": false,
+                    "optimization": false,
+                    "outputMode": "static",
+                    "server": false,
+                    "sourceMap": true,
+                    "ssr": false
+                },
+                "production": {
+                    "outputHashing": "all"
+                }
+            },
+            "defaultConfiguration": "production",
             "executor": "@nx/angular:application",
-            "outputs": ["{options.outputPath}"],
             "options": {
-                "baseHref": "/",
-                "outputPath": "dist/{projectName}",
-                "index": "{projectRoot}/src/index.html",
-                "browser": "{projectRoot}/src/main.ts",
-                "polyfills": ["zone.js"],
-                "tsConfig": "{projectRoot}/tsconfig.app.json",
+                "allowedCommonJsDependencies": [
+                    "react",
+                    "react-dom/client",
+                    "react/jsx-runtime",
+                    "@vue/compiler-dom",
+                    "@vue/runtime-dom",
+                    "@vue/shared"
+                ],
                 "assets": [
                     {
                         "glob": "**/*",
@@ -27,66 +42,57 @@
                         "output": "assets/taiga-ui/icons"
                     }
                 ],
+                "baseHref": "/",
+                "browser": "{projectRoot}/src/main.ts",
+                "externalDependencies": ["react-hook-form"],
+                "index": "{projectRoot}/src/index.html",
+                "loader": {
+                    ".css": "text",
+                    ".html": "text",
+                    ".md": "text"
+                },
+                "outputMode": "server",
+                "outputPath": "dist/{projectName}",
+                "plugins": ["{projectRoot}/esbuild-plugins/maskito-as-taiga-ui-dep.plugin.js", "{projectRoot}/esbuild-plugins/vue-esm.plugin.js"],
+                "polyfills": ["zone.js"],
+                "server": "{projectRoot}/src/main.server.ts",
+                "ssr": {
+                    "entry": "{projectRoot}/src/server.ts"
+                },
                 "styles": [
                     "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
                     "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
                     "node_modules/@taiga-ui/styles/taiga-ui-global.less",
                     "{projectRoot}/src/styles.less"
                 ],
-                "server": "{projectRoot}/src/main.server.ts",
-                "ssr": {
-                    "entry": "{projectRoot}/src/server.ts"
-                },
-                "outputMode": "server",
-                "allowedCommonJsDependencies": [
-                    "react",
-                    "react-dom/client",
-                    "react/jsx-runtime",
-                    "@vue/compiler-dom",
-                    "@vue/runtime-dom",
-                    "@vue/shared"
-                ],
-                "loader": {
-                    ".md": "text",
-                    ".html": "text",
-                    ".css": "text"
-                },
-                "externalDependencies": ["react-hook-form"],
-                "plugins": [
-                    "{projectRoot}/esbuild-plugins/maskito-as-taiga-ui-dep.plugin.js",
-                    "{projectRoot}/esbuild-plugins/vue-esm.plugin.js"
-                ]
+                "tsConfig": "{projectRoot}/tsconfig.app.json"
             },
-            "configurations": {
-                "production": {
-                    "outputHashing": "all"
-                },
-                "development": {
-                    "optimization": false,
-                    "extractLicenses": false,
-                    "sourceMap": true,
-                    "server": false,
-                    "ssr": false,
-                    "outputMode": "static"
-                }
-            },
-            "defaultConfiguration": "production"
+            "outputs": ["{options.outputPath}"]
         },
         "build-gh-pages": {
             "executor": "nx:run-commands",
             "options": {
-                "parallel": false,
                 "commands": [
                     "echo 'Github pages require special 404.html'",
                     "echo 'Read more: https://angular.io/guide/deployment#deploy-to-github-pages'",
                     "echo ------",
                     "nx build {projectName} -c production",
                     "cp dist/{projectName}/browser/index.html dist/{projectName}/browser/404.html"
-                ]
+                ],
+                "parallel": false
             }
         },
         "serve": {
+            "configurations": {
+                "development": {
+                    "buildTarget": "{projectName}:build:development"
+                },
+                "production": {
+                    "buildTarget": "{projectName}:build:production"
+                }
+            },
             "continuous": true,
+            "defaultConfiguration": "development",
             "executor": "@nx/angular:dev-server",
             "options": {
                 "port": 3333,
@@ -103,16 +109,7 @@
                         "@taiga-ui/styles"
                     ]
                 }
-            },
-            "configurations": {
-                "production": {
-                    "buildTarget": "{projectName}:build:production"
-                },
-                "development": {
-                    "buildTarget": "{projectName}:build:development"
-                }
-            },
-            "defaultConfiguration": "development"
+            }
         },
         "serve-ip": {
             "executor": "nx:run-commands",
@@ -123,7 +120,6 @@
         "serve-ssl": {
             "executor": "nx:run-commands",
             "options": {
-                "parallel": false,
                 "commands": [
                     "echo \"mkcert is a simple tool for making locally-trusted development certificates\"",
                     "echo \"Read about installation and more: https://github.com/FiloSottile/mkcert\"",
@@ -132,15 +128,8 @@
                     "mkdir -p .ssl",
                     "mkcert -key-file .ssl/localhost-key.pem -cert-file .ssl/localhost.pem localhost 127.0.0.1 ::1",
                     "nx serve --ssl"
-                ]
-            }
-        },
-        "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
-            "options": {
-                "jestConfig": "{projectRoot}/jest.config.ts",
-                "tsConfig": "tsconfig.spec.json"
+                ],
+                "parallel": false
             }
         },
         "serve-static": {
@@ -149,9 +138,17 @@
             "options": {
                 "buildTarget": "{projectName}:build",
                 "port": 3333,
-                "staticFilePath": "dist/{projectName}/browser",
-                "spa": true
+                "spa": true,
+                "staticFilePath": "dist/{projectName}/browser"
             }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "options": {
+                "jestConfig": "{projectRoot}/jest.config.ts",
+                "tsConfig": "tsconfig.spec.json"
+            },
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"]
         }
     }
 }

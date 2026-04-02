@@ -1,12 +1,9 @@
 {
     "extends": "@taiga-ui/tsconfig",
-    "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts"],
-    "references": [{"path": "./tsconfig.spec.json"}],
     "compilerOptions": {
         "baseUrl": "./",
-        "outDir": "./dist/out-tsc",
-        "typeRoots": ["node_modules/@types"],
         "jsx": "react-jsx",
+        "outDir": "./dist/out-tsc",
         "paths": {
             "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
             "@maskito/angular": ["projects/angular/src/index.ts"],
@@ -15,6 +12,17 @@
             "@maskito/phone": ["projects/phone/src/index.ts"],
             "@maskito/react": ["projects/react/src/index.ts"],
             "@maskito/vue": ["projects/vue/src/index.ts"]
+        },
+        "typeRoots": ["node_modules/@types"]
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.d.ts"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.spec.json"
         }
-    }
+    ]
 }

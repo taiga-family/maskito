@@ -1,51 +1,51 @@
 {
-    "name": "angular",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "angular",
+    "prefix": "maskito",
     "projectType": "library",
     "sourceRoot": "projects/angular/src",
-    "prefix": "maskito",
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nx/angular:package",
-            "outputs": ["{workspaceRoot}/dist/{projectName}"],
-            "options": {
-                "project": "{projectRoot}/ng-package.json",
-                "tsConfig": "tsconfig.build.json"
-            },
             "configurations": {
+                "development": {},
                 "production": {
                     "tsConfig": "{projectRoot}/tsconfig.lib.prod.json"
-                },
-                "development": {}
+                }
             },
             "defaultConfiguration": "production",
             "dependsOn": [
                 {
-                    "target": "build",
+                    "dependencies": true,
                     "params": "forward",
-                    "dependencies": true
+                    "target": "build"
                 }
-            ]
-        },
-        "test": {
-            "executor": "@nx/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+            ],
+            "executor": "@nx/angular:package",
             "options": {
-                "jestConfig": "{projectRoot}/jest.config.ts"
-            }
+                "project": "{projectRoot}/ng-package.json",
+                "tsConfig": "tsconfig.build.json"
+            },
+            "outputs": ["{workspaceRoot}/dist/{projectName}"]
         },
         "publish": {
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "build"
+                }
+            ],
             "executor": "nx:run-commands",
             "options": {
                 "command": "npm publish ./dist/{projectName} --ignore-scripts"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "options": {
+                "jestConfig": "{projectRoot}/jest.config.ts"
             },
-            "dependsOn": [
-                {
-                    "target": "build",
-                    "params": "ignore"
-                }
-            ]
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"]
         }
     }
 }
