@@ -107,11 +107,7 @@ function updateSegmentValue({
     const segmentValue = Number(value.slice(from, to).padEnd(to - from, '0'));
     const newSegmentValue = mod(segmentValue + toAdd, min, max + 1);
 
-    return (
-        value.slice(0, from) +
-        String(newSegmentValue).padStart(to - from, '0') +
-        value.slice(to, value.length)
-    );
+    return `${value.slice(0, from)}${String(newSegmentValue).padStart(to - from, '0')}${value.slice(to, value.length)}`;
 }
 
 function mod(value: number, min: number, max: number): number {

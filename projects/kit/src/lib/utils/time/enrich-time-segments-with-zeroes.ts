@@ -50,10 +50,7 @@ export function enrichTimeSegmentsWithZeroes(
 
     const [leadingNonDigitCharacters = ''] = value.match(/^\D+(?=\d)/g) || []; // prefix
     const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || []; // trailing segment separators / meridiem characters / postfix
-    const validatedTimeString =
-        leadingNonDigitCharacters +
-        toTimeString(validatedTimeSegments) +
-        trailingNonDigitCharacters;
+    const validatedTimeString = `${leadingNonDigitCharacters}${toTimeString(validatedTimeSegments)}${trailingNonDigitCharacters}`;
     const addedDateSegmentSeparators = Math.max(
         validatedTimeString.length - value.length - paddedZeroes,
         0,

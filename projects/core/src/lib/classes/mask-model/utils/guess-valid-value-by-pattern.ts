@@ -19,7 +19,7 @@ export function guessValidValueByPattern(
                 char,
                 initialElementState,
             );
-            const newValidatedChars = validatedCharacters + leadingCharacters;
+            const newValidatedChars = `${validatedCharacters}${leadingCharacters}`;
             const charConstraint = mask[newValidatedChars.length] || '';
 
             if (maskedFrom === null && charIndex >= elementState.selection[0]) {
@@ -31,11 +31,11 @@ export function guessValidValueByPattern(
             }
 
             if (isFixedCharacter(charConstraint)) {
-                return newValidatedChars + charConstraint;
+                return `${newValidatedChars}${charConstraint}`;
             }
 
             if (char.match(charConstraint)) {
-                return newValidatedChars + char;
+                return `${newValidatedChars}${char}`;
             }
 
             return leadingCharacters.startsWith(char)
@@ -53,8 +53,8 @@ export function guessValidValueByPattern(
     );
 
     return {
-        value: validateValueWithMask(maskedValue + trailingFixedCharacters, mask)
-            ? maskedValue + trailingFixedCharacters
+        value: validateValueWithMask(`${maskedValue}${trailingFixedCharacters}`, mask)
+            ? `${maskedValue}${trailingFixedCharacters}`
             : maskedValue,
         // issues: https://github.com/typescript-eslint/typescript-eslint/issues/12069
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

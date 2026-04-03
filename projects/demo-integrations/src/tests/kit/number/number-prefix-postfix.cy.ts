@@ -297,7 +297,7 @@ describe('Number | Prefix & Postfix', () => {
         it('forbids to enter more minuses', () => {
             cy.get('@input')
                 .focus()
-                .type(CHAR_MINUS + CHAR_HYPHEN + CHAR_EN_DASH + CHAR_EM_DASH)
+                .type(`${CHAR_MINUS}${CHAR_HYPHEN}${CHAR_EN_DASH}${CHAR_EM_DASH}`)
                 .should('have.value', CHAR_MINUS);
         });
 

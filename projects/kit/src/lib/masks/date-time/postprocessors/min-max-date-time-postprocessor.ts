@@ -57,7 +57,7 @@ export function createMinMaxDateTimePostprocessor({
 
             return {
                 selection,
-                value: fixedValue + tail,
+                value: `${fixedValue}${tail}`,
             };
         }
 
@@ -66,12 +66,11 @@ export function createMinMaxDateTimePostprocessor({
         // trailing segment separators or meridiem characters
         const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || [];
 
-        const validatedValue =
-            toDateString(dateToSegments(clampedDate), {
-                dateMode: dateModeTemplate,
-                dateTimeSeparator,
-                timeMode,
-            }) + trailingNonDigitCharacters;
+        const validatedValue = `${toDateString(dateToSegments(clampedDate), {
+            dateMode: dateModeTemplate,
+            dateTimeSeparator,
+            timeMode,
+        })}${trailingNonDigitCharacters}`;
 
         return {
             selection,

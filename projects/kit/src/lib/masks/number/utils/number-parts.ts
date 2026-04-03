@@ -71,7 +71,9 @@ export function fromNumberParts(
 ): string {
     const separator = decimalPart ? params.decimalSeparator : decimalSeparator;
     const beginning =
-        params.negativePattern === 'minusFirst' ? minus + prefix : prefix + minus;
+        params.negativePattern === 'minusFirst'
+            ? `${minus}${prefix}`
+            : `${prefix}${minus}`;
 
     return `${beginning}${integerPart}${separator}${decimalPart}${postfix}`;
 }

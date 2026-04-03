@@ -22,7 +22,7 @@ describe('Number | BigInt', () => {
         it('types minus + String(Number.MAX_SAFE_INTEGER).repeat(3)', () => {
             cy.get('@input')
                 .type(`-${String(Number.MAX_SAFE_INTEGER).repeat(3)}`)
-                .should('have.value', CHAR_MINUS + expectedValue)
+                .should('have.value', `${CHAR_MINUS}${expectedValue}`)
                 .should('have.prop', 'selectionStart', 1 + expectedValue.length)
                 .should('have.prop', 'selectionEnd', 1 + expectedValue.length);
         });
@@ -84,7 +84,7 @@ describe('Number | BigInt', () => {
             const expectedValue = `${CHAR_MINUS}900,719,925,474,099,190,071,992,547,409,919,007,199,254,740,991%`;
 
             cy.get('@input')
-                .type(CHAR_MINUS + String(Number.MAX_SAFE_INTEGER).repeat(3))
+                .type(`${CHAR_MINUS}${String(Number.MAX_SAFE_INTEGER).repeat(3)}`)
                 .should('have.value', expectedValue)
                 .should('have.prop', 'selectionStart', expectedValue.length - 1)
                 .should('have.prop', 'selectionEnd', expectedValue.length - 1);

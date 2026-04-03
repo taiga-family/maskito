@@ -46,11 +46,9 @@ export function createThousandSeparatorPostprocessor(
 
         const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
             toNumberParts(value, params);
-        const rawLength = (
-            minus +
-            integerPart +
-            (decimalSeparator ? decimalSeparator + decimalPart : '')
-        ).length;
+        const rawLength =
+            `${minus}${integerPart}${decimalSeparator ? `${decimalSeparator}${decimalPart}` : ''}`
+                .length;
         const normalizedLength = fromNumberParts(
             {minus, integerPart, decimalSeparator, decimalPart},
             params,

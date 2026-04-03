@@ -19,7 +19,7 @@ export function maskitoPrefixPostprocessorGenerator(
                   (modifiedValue, char, i) =>
                       modifiedValue[i] === char
                           ? modifiedValue
-                          : modifiedValue.slice(0, i) + char + modifiedValue.slice(i),
+                          : `${modifiedValue.slice(0, i)}${char}${modifiedValue.slice(i)}`,
                   value,
               );
               const addedCharsCount = prefixedValue.length - value.length;

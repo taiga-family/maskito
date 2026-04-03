@@ -39,7 +39,7 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
         const [from, rawTo] = selection;
         const newCharacters = data.replace(invalidCharsRegExp, '');
         const to = rawTo + newCharacters.length; // to be conformed with `overwriteMode: replace`
-        const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
+        const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
         const {timeString, restValue = ''} = parseValue(newPossibleValue);
         const timeSegments = Object.entries(
             parseTimeString(timeString, timeMode),

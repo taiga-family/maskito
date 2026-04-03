@@ -51,7 +51,7 @@ export function stringifyNumberWithoutExp(value: bigint | number): string {
     }
 
     const {minus, integerPart, decimalPart} = toNumberParts(numberPart, DEFAULT);
-    const digits = integerPart + decimalPart;
+    const digits = `${integerPart}${decimalPart}`;
     const shift = Math.abs(Number(exponent));
     const totalZeros = shift - integerPart.length;
 
@@ -65,5 +65,5 @@ export function stringifyNumberWithoutExp(value: bigint | number): string {
         result = `${digits.slice(0, index)}.${digits.slice(index)}`;
     }
 
-    return minus + result;
+    return `${minus}${result}`;
 }

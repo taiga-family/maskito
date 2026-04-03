@@ -28,10 +28,9 @@ export function createFirstDateEndSeparatorPreprocessor({
         const pseudoSeparatorsRE = new RegExp(`[${pseudoSeparators.join('')}]`, 'gi');
         const newValue =
             firstCompleteDate && value.length > firstCompleteDate.length
-                ? firstCompleteDate +
-                  value
+                ? `${firstCompleteDate}${value
                       .slice(firstCompleteDate.length)
-                      .replace(/^\D*/, firstDateEndSeparator)
+                      .replace(/^\D*/, firstDateEndSeparator)}`
                 : value;
         const caretShift = newValue.length - value.length;
 

@@ -34,7 +34,7 @@ export function maskitoWithPlaceholder(
                 focused = true;
                 maskitoUpdateElement(
                     element,
-                    element.value + placeholder.slice(element.value.length),
+                    `${element.value}${placeholder.slice(element.value.length)}`,
                 );
             },
             {capture: true},
@@ -74,12 +74,10 @@ export function maskitoWithPlaceholder(
                 lastClearValue = value;
 
                 const justPlaceholderRemoval =
-                    value +
-                        placeholder.slice(
-                            value.length,
-                            initialElementState.value.length,
-                        ) ===
-                    initialElementState.value;
+                    `${value}${placeholder.slice(
+                        value.length,
+                        initialElementState.value.length,
+                    )}` === initialElementState.value;
 
                 if (action === 'validation' && justPlaceholderRemoval) {
                     /**
@@ -95,7 +93,7 @@ export function maskitoWithPlaceholder(
 
                 const newValue =
                     focused || !focusedOnly
-                        ? value + placeholder.slice(value.length)
+                        ? `${value}${placeholder.slice(value.length)}`
                         : value;
 
                 if (

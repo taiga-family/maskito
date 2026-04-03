@@ -35,7 +35,7 @@ export function createValidDatePreprocessor({
 
         const [from, rawTo] = selection;
         let to = rawTo + data.length;
-        const newPossibleValue = value.slice(0, from) + newCharacters + value.slice(to);
+        const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
         const dateStrings = parseDateRangeString(
             newPossibleValue,
             dateModeTemplate,
@@ -63,7 +63,7 @@ export function createValidDatePreprocessor({
 
             validatedValue +=
                 hasRangeSeparator && !validatedValue
-                    ? validatedDateString + rangeSeparator
+                    ? `${validatedDateString}${rangeSeparator}`
                     : validatedDateString;
         }
 
@@ -72,13 +72,10 @@ export function createValidDatePreprocessor({
         return {
             elementState: {
                 selection,
-                value:
-                    validatedValue.slice(0, from) +
-                    newData
-                        .split(dateSegmentsSeparator)
-                        .map((segment) => '0'.repeat(segment.length))
-                        .join(dateSegmentsSeparator) +
-                    validatedValue.slice(to),
+                value: `${validatedValue.slice(0, from)}${newData
+                    .split(dateSegmentsSeparator)
+                    .map((segment) => '0'.repeat(segment.length))
+                    .join(dateSegmentsSeparator)}${validatedValue.slice(to)}`,
             },
             data: newData,
         };

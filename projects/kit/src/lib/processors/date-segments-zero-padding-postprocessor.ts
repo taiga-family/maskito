@@ -47,12 +47,11 @@ export function createDateSegmentsZeroPaddingPostprocessor({
             );
         });
 
-        const validatedValue =
-            uniteFn(validatedDateStrings, value) +
-            (dateStrings[dateStrings.length - 1]?.endsWith(dateSegmentSeparator)
+        const validatedValue = `${uniteFn(validatedDateStrings, value)}${
+            dateStrings[dateStrings.length - 1]?.endsWith(dateSegmentSeparator)
                 ? dateSegmentSeparator
-                : '') +
-            restPart;
+                : ''
+        }${restPart}`;
 
         if (
             caretShift &&

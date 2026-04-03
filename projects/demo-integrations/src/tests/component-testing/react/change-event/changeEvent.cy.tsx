@@ -47,7 +47,7 @@ describe('React synthetic "onChange" event', () => {
 
     describe('controlled input', () => {
         beforeEach(() => {
-            const capitalize = (x: string): string => x.charAt(0).toUpperCase() + x.slice(1);
+            const capitalize = (x: string): string => `${x.charAt(0).toUpperCase()}${x.slice(1)}`;
             const handler = cy.spy().as('handler');
             const options: MaskitoOptions = {
                 mask: /^[a-z]+$/i,

@@ -31,7 +31,7 @@ export function emptyPostprocessor(
         if (
             (!integerPart &&
                 !Number(decimalPart) &&
-                caretIndex === (minus + prefix).length) ||
+                caretIndex === `${minus}${prefix}`.length) ||
             aloneDecimalSeparator
         ) {
             return {
