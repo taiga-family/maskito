@@ -6,6 +6,7 @@ import {
 } from '@maskito/core';
 import {type MaskitoNumberParams, maskitoParseNumber} from '@maskito/kit';
 
+// TODO: fix later, drop implicit dependencies
 import {intlPattern} from '../../../../../../demo/src/pages/kit/number/examples/9-thousand-separator-pattern-intl/mask';
 import {
     CHAR_EM_DASH,

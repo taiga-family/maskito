@@ -1,6 +1,7 @@
 {
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "name": "kit",
+    "implicitDependencies": ["!demo"],
     "projectType": "library",
     "sourceRoot": "projects/kit/src",
     "tags": [],

@@ -10,7 +10,8 @@ jobs:
       - uses: actions/checkout@v6.0.2
       - uses: taiga-family/ci/actions/setup/variables@v1.195.0
       - uses: taiga-family/ci/actions/setup/node@v1.195.0
-      - run: npm run build
+      - run: npx nx run-many --target build --all --exclude=demo
+      - run: npx nx run demo:build:typecheck
 
       - name: Debug output
         run: tree dist/demo/browser -P '*.html'
