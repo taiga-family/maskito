@@ -36,5 +36,5 @@ export function maskitoStringifyDateTime(
         );
     const timeString = maskitoStringifyTime(extractedTime, {mode: timeMode});
 
-    return dateString + dateTimeSeparator + timeString;
+    return `${dateString}${dateTimeSeparator}${timeString}`;
 }

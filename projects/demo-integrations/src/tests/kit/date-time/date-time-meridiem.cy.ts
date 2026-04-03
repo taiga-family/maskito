@@ -239,7 +239,7 @@ describe('DateTime | time modes with meridiem', () => {
                 it(`can be ${x}`, () => {
                     cy.get('@textfield')
                         .type(value)
-                        .should('have.value', beforeTimeValue + value)
+                        .should('have.value', `${beforeTimeValue}${value}`)
                         .should('have.prop', 'selectionStart', beforeTimeValue.length + 2)
                         .should('have.prop', 'selectionEnd', beforeTimeValue.length + 2);
                 });

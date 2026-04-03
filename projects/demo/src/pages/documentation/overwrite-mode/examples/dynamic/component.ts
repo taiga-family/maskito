@@ -32,7 +32,5 @@ export class OverwriteModeDocExample3 {
     protected maskitoOptions = mask;
 
     protected initialValue =
-        'This artificial example demonstrates the usage of dynamic mode. ' +
-        'If this textarea contains only digits — "replace" mode is enabled. ' +
-        'Otherwise, "shift" mode is enabled.';
+        'This artificial example demonstrates the usage of dynamic mode. If this textarea contains only digits — "replace" mode is enabled. Otherwise, "shift" mode is enabled.';
 }

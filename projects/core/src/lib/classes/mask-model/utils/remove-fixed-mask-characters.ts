@@ -26,7 +26,7 @@ export function removeFixedMaskCharacters(
 
             return isFixedCharacter(charConstraint) && charConstraint === char
                 ? rawValue
-                : rawValue + char;
+                : `${rawValue}${char}`;
         },
         '',
     );

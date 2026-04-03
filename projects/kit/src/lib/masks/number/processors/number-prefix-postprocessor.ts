@@ -14,14 +14,14 @@ export function createNumberPrefixPostprocessor({
     return ({value, selection}, initialElementState) =>
         maskitoPrefixPostprocessorGenerator(
             value.includes(minusSign) && negativePattern === 'minusFirst'
-                ? minusSign + prefix
+                ? `${minusSign}${prefix}`
                 : prefix,
         )(
             {
                 value:
                     negativePattern === 'minusFirst' &&
-                    value.startsWith(prefix + minusSign) // $-100 => -$100
-                        ? value.replace(prefix + minusSign, minusSign + prefix)
+                    value.startsWith(`${prefix}${minusSign}`) // $-100 => -$100
+                        ? value.replace(`${prefix}${minusSign}`, `${minusSign}${prefix}`)
                         : value,
                 selection,
             },

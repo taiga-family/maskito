@@ -9,7 +9,7 @@ export function guessValidValueByRegExp(
     let newTo = to;
 
     const validatedValue = Array.from(value).reduce((validatedValuePart, char, i) => {
-        const newPossibleValue = validatedValuePart + char;
+        const newPossibleValue = `${validatedValuePart}${char}`;
 
         if (from === i) {
             newFrom = validatedValuePart.length;

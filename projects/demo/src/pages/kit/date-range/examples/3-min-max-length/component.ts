@@ -38,6 +38,5 @@ export class DateRangeMaskDocExample3 {
     protected readonly filler = 'dd.mm.yyyy – dd.mm.yyyy';
     protected readonly mask = mask;
     protected readonly hint =
-        'The right date must be at least 3 days after the left one.\n' +
-        'Also, the difference between the dates must not exceed 1 month.';
+        'The right date must be at least 3 days after the left one.\nAlso, the difference between the dates must not exceed 1 month.';
 }

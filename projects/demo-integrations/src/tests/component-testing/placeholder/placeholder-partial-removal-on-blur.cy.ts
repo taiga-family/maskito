@@ -15,7 +15,10 @@ describe('Placeholder | partial removal of placeholder characters on blur', () =
             maskitoEventHandler('focus', (element) => {
                 const value = element.value || '';
 
-                maskitoUpdateElement(element, value + PLACEHOLDER.slice(value.length));
+                maskitoUpdateElement(
+                    element,
+                    `${value}${PLACEHOLDER.slice(value.length)}`,
+                );
             }),
             maskitoEventHandler('blur', (element) =>
                 maskitoUpdateElement(element, element.value.replaceAll('#', '')),

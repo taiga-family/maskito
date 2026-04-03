@@ -26,7 +26,7 @@ export function maskitoPostfixPostprocessorGenerator(
                   !value.match(incompletePostfixRE) &&
                   !initialElementState.value.endsWith(postfix)
               ) {
-                  return {selection, value: value + postfix};
+                  return {selection, value: `${value}${postfix}`};
               }
 
               const initialValueBeforePostfix = initialElementState.value.replace(
@@ -51,7 +51,7 @@ export function maskitoPostfixPostprocessorGenerator(
                               postfixWasModified;
 
                           return newValue[i] !== char || isInitiallyMirroredChar
-                              ? newValue.slice(0, i + 1) + char + newValue.slice(i + 1)
+                              ? `${newValue.slice(0, i + 1)}${char}${newValue.slice(i + 1)}`
                               : newValue;
                       }, value),
               };

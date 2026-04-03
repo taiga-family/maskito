@@ -215,8 +215,8 @@ export default class NumberMaskDocComponent implements GeneratorParams {
             ...numberOptions,
             plugins: [
                 ...plugins,
-                maskitoAddOnFocusPlugin(prefix + postfix),
-                maskitoRemoveOnBlurPlugin(prefix + postfix),
+                maskitoAddOnFocusPlugin(`${prefix}${postfix}`),
+                maskitoRemoveOnBlurPlugin(`${prefix}${postfix}`),
                 maskitoCaretGuard((value) => [
                     negativePattern === 'minusFirst' && value.includes(minusSign)
                         ? minusSign.length + prefix.length

@@ -46,7 +46,7 @@ export function createMinMaxDatePostprocessor({
                     ? dateSegmentSeparator
                     : '';
 
-                validatedValue += fixedValue + tail;
+                validatedValue += `${fixedValue}${tail}`;
                 continue;
             }
 
@@ -61,7 +61,7 @@ export function createMinMaxDatePostprocessor({
 
         return {
             selection,
-            value: validatedValue + (endsWithRangeSeparator ? rangeSeparator : ''),
+            value: `${validatedValue}${endsWithRangeSeparator ? rangeSeparator : ''}`,
         };
     };
 }

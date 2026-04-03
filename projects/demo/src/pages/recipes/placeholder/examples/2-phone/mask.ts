@@ -60,7 +60,7 @@ export default {
 
             maskitoUpdateElement(
                 element,
-                initialValue + PLACEHOLDER.slice(initialValue.length),
+                `${initialValue}${PLACEHOLDER.slice(initialValue.length)}`,
             );
         }),
         maskitoEventHandler('blur', (element) => {

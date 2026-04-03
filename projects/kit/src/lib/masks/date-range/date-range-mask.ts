@@ -76,11 +76,11 @@ export function maskitoDateRangeOptionsGenerator({
                 uniteFn: (validatedDateStrings, initialValue) =>
                     validatedDateStrings.reduce(
                         (acc, dateString, dateIndex) =>
-                            acc +
-                            dateString +
-                            (!dateIndex && initialValue.includes(rangeSeparator)
-                                ? rangeSeparator
-                                : ''),
+                            `${acc}${dateString}${
+                                !dateIndex && initialValue.includes(rangeSeparator)
+                                    ? rangeSeparator
+                                    : ''
+                            }`,
                         '',
                     ),
             }),

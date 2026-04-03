@@ -36,7 +36,7 @@ export function toDateString(
     },
 ): string {
     const yearLength = dateMode.match(/y/g)?.length ?? 0;
-    const fullMode = dateMode + (timeMode ? dateTimeSeparator + timeMode : '');
+    const fullMode = `${dateMode}${timeMode ? `${dateTimeSeparator}${timeMode}` : ''}`;
 
     return fullMode
         .replaceAll(/d+/g, day ?? '')

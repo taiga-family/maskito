@@ -84,7 +84,7 @@ export function maskitoDateTimeOptionsGenerator({
                         dateModeTemplate,
                     );
 
-                    return {timeString, restValue: dateString + dateTimeSeparator};
+                    return {timeString, restValue: `${dateString}${dateTimeSeparator}`};
                 },
             }),
             createValidDateTimePreprocessor({

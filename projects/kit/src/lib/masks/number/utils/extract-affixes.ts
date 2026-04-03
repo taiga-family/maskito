@@ -59,11 +59,6 @@ export function extractAffixes(
         extractedPostfix: extractedPostfix
             .replace(leadingDecimalSeparatorRE, '')
             .replace(leadingDigitsRE, ''),
-        cleanValue:
-            (trailingDigitsRE.exec(extractedPrefix)?.[0] ?? '') +
-            (trailingDecimalSeparatorRE.exec(extractedPrefix)?.[0] ?? '') +
-            cleanValue +
-            (leadingDigitsRE.exec(extractedPostfix)?.[0] ?? '') +
-            (leadingDecimalSeparatorRE.exec(extractedPostfix)?.[0] ?? ''),
+        cleanValue: `${trailingDigitsRE.exec(extractedPrefix)?.[0] ?? ''}${trailingDecimalSeparatorRE.exec(extractedPrefix)?.[0] ?? ''}${cleanValue}${leadingDigitsRE.exec(extractedPostfix)?.[0] ?? ''}${leadingDecimalSeparatorRE.exec(extractedPostfix)?.[0] ?? ''}`,
     };
 }

@@ -34,7 +34,7 @@ export function createMeridiemSteppingPlugin(meridiemStartIndex: number): Maskit
             maskitoUpdateElement(element, {
                 value:
                     value.length === meridiemStartIndex
-                        ? value + newMeridiem
+                        ? `${value}${newMeridiem}`
                         : value.replace(ANY_MERIDIEM_CHARACTER_RE, newMeridiem),
                 selection: [caretIndex, caretIndex],
             });
