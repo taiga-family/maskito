@@ -23,8 +23,7 @@ export default {
         ...dateTimeOptions.plugins,
         maskitoSelectionChangeHandler((element) => {
             element.inputMode =
-                element.selectionStart! >=
-                `${`${dateMode}${dateTimeSeparator}`}HH:MM`.length
+                element.selectionStart! >= `${dateMode}${dateTimeSeparator}HH:MM`.length
                     ? 'text'
                     : 'numeric';
         }),
