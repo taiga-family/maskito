@@ -56,6 +56,9 @@
         "@maskito/core": "^5.2.2"
     },
     "ng-update": {
-        "packageGroup": ["@maskito/core", "@maskito/kit"]
+        "packageGroup": [
+            "@maskito/core",
+            "@maskito/kit"
+        ]
     }
 }
