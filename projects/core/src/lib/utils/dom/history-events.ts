@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import {HotkeyCode, HotkeyModifier, isHotkey} from './hotkey';
 
 export function isRedo(event: KeyboardEvent): boolean {

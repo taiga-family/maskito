@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 export const HotkeyModifier = {
     CTRL: 1 << 0,
     ALT: 1 << 1,

@@ -23,7 +23,6 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            'no-bitwise': 'off',
             'import/enforce-node-protocol-usage': 'off',
             '@typescript-eslint/no-unused-private-class-members': 'off',
             '@typescript-eslint/prefer-function-type': 'off',
