@@ -32,7 +32,9 @@
             "name": "Georgiy Lunin"
         }
     ],
-    "workspaces": ["projects/*"],
+    "workspaces": [
+        "projects/*"
+    ],
     "scripts": {
         "build": "nx run demo:build:production",
         "cspell": "cspell --relative --dot --gitignore .",
@@ -50,16 +52,27 @@
         "typecheck": "tsc --noEmit --skipLibCheck --incremental false --tsBuildInfoFile null --project tsconfig.spec.json && tsc -p projects/demo-integrations/tsconfig.json"
     },
     "commitlint": {
-        "extends": ["@taiga-ui/commitlint-config"]
+        "extends": [
+            "@taiga-ui/commitlint-config"
+        ]
     },
     "lint-staged": {
-        "*.less": ["stylelint --fix"],
-        "*.{js,ts,html,md,less,json,svg,yml}": ["npm run lint -- --fix", "prettier --write"]
+        "*.less": [
+            "stylelint --fix"
+        ],
+        "*.{js,ts,html,md,less,json,svg,yml}": [
+            "npm run lint -- --fix",
+            "prettier --write"
+        ]
     },
-    "browserslist": ["extends @taiga-ui/browserslist-config"],
+    "browserslist": [
+        "extends @taiga-ui/browserslist-config"
+    ],
     "prettier": "@taiga-ui/prettier-config",
     "stylelint": {
-        "extends": ["@taiga-ui/stylelint-config"],
+        "extends": [
+            "@taiga-ui/stylelint-config"
+        ],
         "ignoreFiles": [
             "**/dist/**",
             "**/coverage/**",
@@ -122,7 +135,13 @@
         "template": "templates/note.hbs"
     },
     "syncer": {
-        "includePaths": ["./projects", "./package-lock.json"],
-        "matchPackageNames": ["@maskito/*", "maskito"]
+        "includePaths": [
+            "./projects",
+            "./package-lock.json"
+        ],
+        "matchPackageNames": [
+            "@maskito/*",
+            "maskito"
+        ]
     }
 }
