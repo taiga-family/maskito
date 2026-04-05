@@ -320,7 +320,7 @@ describe('maskitoStringifyNumber', () => {
         });
 
         it('NaN', () => {
-            expect(maskitoStringifyNumber(NaN, params)).toBe('');
+            expect(maskitoStringifyNumber(Number.NaN, params)).toBe('');
         });
     });
 
