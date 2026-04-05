@@ -133,7 +133,7 @@ describe('toNumberParts', () => {
                     thousandSeparator: ',',
                 } as const satisfies MaskitoNumberParams;
 
-                it(`${minus}`, () => {
+                it(minus, () => {
                     expect(toNumberParts(`${minus}1,234,567.89`, params)).toEqual({
                         minus,
                         integerPart: '1,234,567',

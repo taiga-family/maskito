@@ -17,7 +17,7 @@ describe('isEmpty', () => {
         });
 
         it('undefined', () => {
-            expect(isEmpty(undefined)).toBe(true);
+            expect(isEmpty()).toBe(true);
         });
     });
 

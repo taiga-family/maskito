@@ -25,9 +25,9 @@ export function getWordSelection(
 
         return [
             from,
-            nearestWordEndIndex !== -1
-                ? from + leadingSpaces.length + nearestWordEndIndex
-                : value.length,
+            nearestWordEndIndex === -1
+                ? value.length
+                : from + leadingSpaces.length + nearestWordEndIndex,
         ];
     }
 
@@ -40,7 +40,7 @@ export function getWordSelection(
         .findIndex((char) => SPACE_REG.exec(char));
 
     return [
-        selectedWordLength !== -1 ? to - trailingSpaces.length - selectedWordLength : 0,
+        selectedWordLength === -1 ? 0 : to - trailingSpaces.length - selectedWordLength,
         to,
     ];
 }

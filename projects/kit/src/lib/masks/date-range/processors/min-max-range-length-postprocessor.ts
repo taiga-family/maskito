@@ -51,9 +51,9 @@ export function createMinMaxRangeLengthPostprocessor({
         }
 
         const minDistantToDate = appendDate(fromDate, minLength);
-        const maxDistantToDate = !isEmpty(maxLength)
-            ? appendDate(fromDate, maxLength)
-            : max;
+        const maxDistantToDate = isEmpty(maxLength)
+            ? max
+            : appendDate(fromDate, maxLength);
 
         const minLengthClampedToDate = clamp(toDate, minDistantToDate, max);
         const minMaxLengthClampedToDate =

@@ -52,9 +52,9 @@ export function generateMaskExpression({
 
 function computeAllOptionalCharsRegExp(str: string): string {
     return str
-        ? `${str
+        ? str
               .split('')
               .map((char) => `${escapeRegExp(char)}?`)
-              .join('')}`
+              .join('')
         : '';
 }

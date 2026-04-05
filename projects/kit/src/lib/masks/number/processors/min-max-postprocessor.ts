@@ -19,7 +19,7 @@ export function createMinMaxPostprocessor(
             maskitoParseNumber(value, {
                 ...params,
                 bigint: !maximumFractionDigits && !value.includes(decimalSeparator),
-            }) ?? NaN;
+            }) ?? Number.NaN;
         const limitedValue =
             /**
              * We cannot limit lower bound if user enters positive number.

@@ -47,5 +47,5 @@ export function maskitoParseNumber(
             : Number(`${sign}${unmaskedNumber}`);
     }
 
-    return bigint ? null : NaN;
+    return bigint ? null : Number.NaN;
 }
