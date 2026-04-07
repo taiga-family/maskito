@@ -150,14 +150,7 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         [','],
     ];
 
-    protected readonly maximumFractionDigitsOptions: number[] = [
-        0,
-        1,
-        2,
-        5,
-        10,
-        Infinity,
-    ];
+    protected readonly maximumFractionDigitsOptions = [0, 1, 2, 5, 10, Infinity];
 
     protected readonly negativePatternOptions = [
         'prefixFirst',
@@ -201,7 +194,7 @@ export default class NumberMaskDocComponent implements GeneratorParams {
 
     public thousandSeparatorPattern: MaskitoNumberParams['thousandSeparatorPattern'];
 
-    public maskitoOptions: MaskitoOptions = this.calculateMask(this);
+    public maskitoOptions = this.calculateMask(this);
 
     protected updateOptions(): void {
         this.maskitoOptions = this.calculateMask(this);

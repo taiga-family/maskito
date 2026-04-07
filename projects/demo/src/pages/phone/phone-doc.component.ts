@@ -121,7 +121,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
     public separator = '-';
     public format: NonNullable<MaskitoPhoneParams['format']> = 'INTERNATIONAL';
     public metadataVariants = Object.keys(metadataSets) as readonly MetadataName[];
-    public selectedMetadata: MetadataName = this.metadataVariants[0]!;
+    public selectedMetadata = this.metadataVariants[0]!;
     public countryCodeVariants = getCountries(this.metadata);
     public separatorVariants = ['-', ' '];
     public formatVariants: Array<NonNullable<MaskitoPhoneParams['format']>> = [

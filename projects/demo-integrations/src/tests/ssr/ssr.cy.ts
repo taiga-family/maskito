@@ -7,7 +7,7 @@ describe('Server side rendering', () => {
         cy.visit(DemoPath.WhatIsMaskito);
     });
 
-    const baseUrl: string = Cypress.config('baseUrl') ?? '/';
+    const baseUrl = Cypress.config('baseUrl') ?? '/';
 
     it('should serve statics and favicon.ico', () => {
         cy.request(`${baseUrl}/favicon.ico`).its('status').should('equal', 200);
