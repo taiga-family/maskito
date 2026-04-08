@@ -9,9 +9,10 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {isSafari} from '@ng-web-apis/platform';
+import {TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiButton, TuiFlagPipe, TuiIcon} from '@taiga-ui/core';
 import {
-    TUI_IS_APPLE,
     TuiInputModule,
     TuiTextareaModule,
     TuiTextfieldControllerModule,
@@ -43,7 +44,12 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class RealWorldForm {
-    private readonly isApple = inject(TUI_IS_APPLE);
+    /**
+     * https://github.com/taiga-family/maskito/pull/2165
+     * TODO: delete after bumping Safari support to 18+
+     */
+    protected readonly phonePattern =
+        isSafari(tuiInjectElement()) || inject(TUI_IS_IOS) ? '+[0-9-]{1,20}' : '';
 
     protected readonly form = new FormGroup({
         name: new FormControl(''),
@@ -91,11 +97,6 @@ export default class RealWorldForm {
 
     protected get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.form.value.phone ?? '', metadata) ?? '';
-    }
-
-    // TODO: delete after bumping Safari support to 18+
-    protected get phoneTextfieldPattern(): string {
-        return this.isApple ? '+[0-9-]{1,20}' : '';
     }
 
     protected log(something: any): void {
