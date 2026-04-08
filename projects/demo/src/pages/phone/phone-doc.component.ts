@@ -5,14 +5,11 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/phone';
+import {isSafari} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {CHAR_PLUS} from '@taiga-ui/cdk';
+import {CHAR_PLUS, TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
-import {
-    TUI_IS_APPLE,
-    TuiInputModule,
-    TuiTextfieldControllerModule,
-} from '@taiga-ui/legacy';
+import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 import type {MetadataJson} from 'libphonenumber-js';
 import {
     type CountryCode,
@@ -62,7 +59,7 @@ type MetadataName = keyof typeof metadataSets;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PhoneDocComponent implements GeneratorOptions {
-    private readonly isApple = inject(TUI_IS_APPLE);
+    private readonly isApple = isSafari(tuiInjectElement()) || inject(TUI_IS_IOS);
 
     protected apiPageControl = new FormControl('');
 
