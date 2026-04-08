@@ -6,11 +6,7 @@ import {
     Output,
 } from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
-import {
-    MASKITO_DEFAULT_ELEMENT_PREDICATE,
-    type MaskitoElementPredicate,
-    type MaskitoOptions,
-} from '@maskito/core';
+import {MASKITO_DEFAULT_ELEMENT_PREDICATE, type MaskitoOptions} from '@maskito/core';
 
 @Component({
     selector: 'test-input',
@@ -37,8 +33,7 @@ export class TestInput {
     public maskitoOptions: MaskitoOptions | null = null;
 
     @Input()
-    public maskitoElementPredicate: MaskitoElementPredicate =
-        MASKITO_DEFAULT_ELEMENT_PREDICATE;
+    public maskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
     @Output()
     public readonly beforeinput = new EventEmitter();
