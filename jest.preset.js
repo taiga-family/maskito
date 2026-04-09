@@ -1,5 +1,5 @@
 const nxPreset = require('@nx/jest/preset').default;
-const {resolve} = require('path');
+const {resolve} = require('node:path');
 
 module.exports = {
     ...nxPreset,
