@@ -77,6 +77,27 @@
             </ng-template>
             <date-range-mask-doc-example-4 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="locale-date-range"
+            heading="Automatically derives options for the given locale"
+            [content]="localeDateRangeExample5"
+            [description]="localeDateRangeDescription"
+        >
+            <ng-template #localeDateRangeDescription>
+                Use
+                <code>maskitoLocaleDateRange</code>
+                to automatically derive date
+                <code>mode</code>
+                and
+                <code>dateSeparator</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <date-range-mask-doc-example-5 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -182,5 +203,24 @@
                 Maximal length of the range
             </ng-template>
         </tui-doc-documentation>
+    </ng-template>
+
+    <ng-template pageTab="Helpers">
+        <section>
+            <h2>maskitoLocaleDateRange</h2>
+
+            Automatically derives date
+            <code>mode</code>
+            and
+            <code>dateSeparator</code>
+            from
+            <code>Intl.DateTimeFormat</code>
+            for the given locale.
+
+            <tui-doc-code
+                class="tui-space_top-4"
+                [code]="localeDateRangeHelperDemo"
+            />
+        </section>
     </ng-template>
 </tui-doc-page>

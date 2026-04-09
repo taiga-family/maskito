@@ -14,12 +14,14 @@ import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
+import {DateMaskDocExample3} from './examples/3-locale-date/component';
 
 @Component({
     selector: 'date-mask-doc',
     imports: [
         DateMaskDocExample1,
         DateMaskDocExample2,
+        DateMaskDocExample3,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -48,6 +50,16 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
     protected readonly dateMinMax: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/2-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeDateHelperDemo =
+        import('./examples/maskito-locale-date-demo.md');
+
+    protected readonly localeDateExample3: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-locale-date/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
