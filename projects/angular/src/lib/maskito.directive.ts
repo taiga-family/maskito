@@ -25,9 +25,9 @@ export class MaskitoDirective implements OnDestroy {
     protected readonly initEffect = effect(async () => {
         const options = this.options();
         const elementPredicate = this.elementPredicate();
-        const {maskedElement, elementRef, ngZone} = this;
+        const {elementRef, ngZone} = this;
 
-        maskedElement?.destroy();
+        this.destroy();
 
         if (!options) {
             return;
@@ -35,7 +35,10 @@ export class MaskitoDirective implements OnDestroy {
 
         const predicateResult = await elementPredicate(elementRef);
 
-        if (this.elementPredicate() !== elementPredicate || this.options() !== options) {
+        if (
+            untracked(this.elementPredicate) !== elementPredicate ||
+            untracked(this.options) !== options
+        ) {
             // Ignore the result of the predicate if the
             // maskito element (or its options) has changed before the predicate was resolved.
             return;
@@ -58,7 +61,7 @@ export class MaskitoDirective implements OnDestroy {
             const original = accessor.writeValue.bind(accessor);
 
             accessor.writeValue = (value: unknown) => {
-                const options = untracked(() => this.options());
+                const options = untracked(this.options);
 
                 original(
                     options ? maskitoTransform(String(value ?? ''), options) : value,
@@ -68,6 +71,11 @@ export class MaskitoDirective implements OnDestroy {
     }
 
     public ngOnDestroy(): void {
+        this.destroy();
+    }
+
+    private destroy(): void {
         this.maskedElement?.destroy();
+        this.maskedElement = null;
     }
 }
