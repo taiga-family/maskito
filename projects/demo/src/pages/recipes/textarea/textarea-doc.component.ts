@@ -14,6 +14,7 @@ import {TextareaDocExample1} from './examples/1-latin/component';
 })
 export default class TextareaDocComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+
     protected readonly maskitoWithTextareaDemo =
         import('./examples/maskito-with-textarea.md');
 

@@ -11,6 +11,5 @@ import {MaskitoPattern} from '@maskito/angular';
 export class PatternDocExample6 {
     protected name = '';
     protected cvc = '';
-
     protected regExp = /^[a-z\s]+$/i;
 }

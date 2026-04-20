@@ -65,6 +65,7 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
     ] as const satisfies readonly MaskitoDateMode[];
 
     protected readonly separatorOptions = ['.', '/', '-'] as const;
+
     protected readonly minMaxOptions = [
         '0001-01-01',
         '9999-12-31',

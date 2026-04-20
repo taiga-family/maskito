@@ -12,7 +12,6 @@ import {TuiLink} from '@taiga-ui/core';
 })
 export default class ElementStateDocPageComponent {
     protected readonly elementStateDemo = import('./examples/element-state-demo.md');
-
     protected readonly maskExpressionDocPage = `/${DemoPath.MaskExpression}`;
     protected readonly processorsDocPage = `/${DemoPath.Processors}`;
     protected readonly overwriteModeDocPage = `/${DemoPath.OverwriteMode}`;

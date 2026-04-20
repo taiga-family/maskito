@@ -11,7 +11,6 @@ import {identity} from 'rxjs';
 export class UnmaskDirective implements AfterViewInit {
     private readonly accessor = inject(DefaultValueAccessor);
     private readonly maskitoDirective = inject(MaskitoDirective);
-
     public unmaskHandler: (value: string) => any = identity;
 
     public stringifyHandler: (value: any) => string = (value) => {
