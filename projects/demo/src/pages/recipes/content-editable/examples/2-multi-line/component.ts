@@ -28,6 +28,7 @@ import mask from './mask';
 })
 export class ContentEditableDocExample2 {
     protected readonly mask = mask;
+
     protected initialText = `Hello, world!
 How are you today?
 Read description of this example!`;

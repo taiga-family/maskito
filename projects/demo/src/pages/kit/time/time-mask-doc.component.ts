@@ -112,7 +112,6 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     public timeSegmentMaxValues = this.timeSegmentMaxValuesOptions[0];
     public prefix = '';
     public postfix = '';
-
     public step = 0;
     public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 

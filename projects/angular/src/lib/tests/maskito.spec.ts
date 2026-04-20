@@ -21,6 +21,7 @@ describe('Maskito Angular package', () => {
     })
     class TestComponent {
         public readonly control = new FormControl();
+
         public options: MaskitoOptions | null = {
             mask: /^\d+(,\d{0,2})?$/,
             preprocessors: [

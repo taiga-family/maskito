@@ -25,6 +25,5 @@ import mask from './mask';
 })
 export class PrefixDocExample2 {
     protected readonly maskitoOptions = mask;
-
     protected value = '';
 }

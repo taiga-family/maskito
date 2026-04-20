@@ -50,6 +50,7 @@ export class MaskitoDirective implements OnDestroy {
     });
 
     public readonly options = model<MaskitoOptions | null>(null, {alias: 'maskito'});
+
     public readonly elementPredicate = model(MASKITO_DEFAULT_ELEMENT_PREDICATE, {
         alias: 'maskitoElement',
     });

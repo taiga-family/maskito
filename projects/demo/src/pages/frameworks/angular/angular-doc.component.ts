@@ -32,7 +32,6 @@ import {PatternDocExample6} from './examples/6-pattern/component';
 })
 export default class AngularDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
-
     protected readonly importMaskitoExample = import('./examples/import-maskito.md');
 
     protected readonly basicDirectiveApproach =

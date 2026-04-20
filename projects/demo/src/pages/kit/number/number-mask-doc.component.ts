@@ -189,11 +189,11 @@ export default class NumberMaskDocComponent implements GeneratorParams {
     public minusSign = CHAR_MINUS;
     public minimumFractionDigits = 0;
     public maximumFractionDigits = 0;
+
     public negativePattern: Required<MaskitoNumberParams>['negativePattern'] =
         this.negativePatternOptions[0];
 
     public thousandSeparatorPattern: MaskitoNumberParams['thousandSeparatorPattern'];
-
     public maskitoOptions = this.calculateMask(this);
 
     protected updateOptions(): void {

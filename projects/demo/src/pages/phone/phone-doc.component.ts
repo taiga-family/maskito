@@ -60,7 +60,6 @@ type MetadataName = keyof typeof metadataSets;
 })
 export default class PhoneDocComponent implements GeneratorOptions {
     private readonly isApple = isSafari(tuiInjectElement()) || inject(TUI_IS_IOS);
-
     protected apiPageControl = new FormControl('');
 
     protected readonly basic: Record<string, TuiRawLoaderContent> = {
@@ -121,6 +120,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
     public selectedMetadata = this.metadataVariants[0]!;
     public countryCodeVariants = getCountries(this.metadata);
     public separatorVariants = ['-', ' '];
+
     public formatVariants: Array<NonNullable<MaskitoPhoneParams['format']>> = [
         'INTERNATIONAL',
         'NATIONAL',

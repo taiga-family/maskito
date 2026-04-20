@@ -26,15 +26,14 @@ const BUILT_IN_PLUGINS = [createDoubleSpacePlugin(), createBrokenDefaultPlugin()
 export class Maskito extends MaskHistory {
     private readonly isTextArea = this.element.nodeName === 'TEXTAREA';
     private readonly eventListener = new EventListener(this.element);
+
     private readonly options: Required<MaskitoOptions> = {
         ...MASKITO_DEFAULT_OPTIONS,
         ...this.maskitoOptions,
     };
 
     private upcomingElementState: ElementState | null = null;
-
     private readonly preprocessor = maskitoPipe(this.options.preprocessors);
-
     private readonly postprocessor = maskitoPipe(this.options.postprocessors);
 
     private readonly teardowns = this.options.plugins

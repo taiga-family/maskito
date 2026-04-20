@@ -92,7 +92,6 @@ export default class RealWorldForm {
     };
 
     protected readonly addressMask: MaskitoOptions = {mask: /^[a-z1-9\s.,/]+$/i};
-
     protected showPassword = false;
 
     protected get countryIsoCode(): string {

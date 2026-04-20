@@ -25,6 +25,7 @@ import {ReactExample2} from './examples/2-element-predicate/example.component';
 })
 export default class ReactDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
+
     protected readonly useMaskitoBasicUsage = import(
         './examples/1-use-maskito-basic-usage/useMaskitoBasicUsage.tsx?raw',
         {with: {loader: 'text'}}
