@@ -2,8 +2,8 @@
     "name": "@maskito/demo-cypress",
     "private": true,
     "devDependencies": {
-        "@nx/cypress": "22.6.5",
-        "@nx/vite": "22.6.5",
+        "@nx/cypress": "22.7.0-beta.16",
+        "@nx/vite": "22.7.0-beta.16",
         "@vitejs/plugin-react": "4.7.0",
         "cypress": "14.5.4",
         "cypress-real-events": "1.15.0",
