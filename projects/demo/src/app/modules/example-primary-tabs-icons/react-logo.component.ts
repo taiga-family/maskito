@@ -3,7 +3,7 @@ import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
     selector: 'react-logo',
-    template: '<img src="assets/icons/react.svg" />',
+    template: '<img src="assets/icons/react.svg" alt="React logo" />',
     styles: ['img {display: flex; width: 1.5rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
