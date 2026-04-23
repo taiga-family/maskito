@@ -3,7 +3,7 @@ import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
     selector: 'javascript-logo',
-    template: '<img src="assets/icons/javascript.svg" />',
+    template: '<img src="assets/icons/javascript.svg" alt="JavaScript logo" />',
     styles: ['img {display: flex; width: 1.5rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

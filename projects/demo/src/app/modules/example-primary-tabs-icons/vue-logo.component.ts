@@ -3,7 +3,7 @@ import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
 @Component({
     selector: 'vue-logo',
-    template: '<img src="assets/icons/vue.svg" />',
+    template: '<img src="assets/icons/vue.svg" alt="Vue logo" />',
     styles: ['img {display: flex; width: 1.5rem}'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
