@@ -19,6 +19,7 @@ import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/componen
 import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
 import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
 import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
+import {DateTimeMaskDocExample6} from './examples/6-locale-date-time/component';
 
 @Component({
     selector: 'date-time-mask-doc',
@@ -28,6 +29,7 @@ import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
         DateTimeMaskDocExample3,
         DateTimeMaskDocExample4,
         DateTimeMaskDocExample5,
+        DateTimeMaskDocExample6,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -77,6 +79,16 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
             with: {loader: 'text'},
         }),
     };
+
+    protected readonly localeDateTimeExample6: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-locale-date-time/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeDateTimeHelperDemo =
+        import('./examples/maskito-locale-date-time-demo.md');
 
     protected apiPageControl = new FormControl('');
 

@@ -199,6 +199,30 @@
             </tui-notification>
             <number-mask-doc-example-9 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="locale-number"
+            heading="Automatically derives options for the given locale"
+            class="tui-space_top-4"
+            [content]="localeNumberExample10"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use
+                <code>maskitoLocaleNumber</code>
+                to automatically derives
+                <code>thousandSeparator</code>
+                ,
+                <code>decimalSeparator</code>
+                , and
+                <code>thousandSeparatorPattern</code>
+                from
+                <code>Intl.NumberFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <number-mask-doc-example-10 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -497,6 +521,15 @@
             <tui-doc-code
                 class="tui-space_top-4"
                 [code]="stringifyNumberDemo"
+            />
+        </section>
+
+        <section class="tui-space_top-10">
+            <h2>maskitoLocaleNumber</h2>
+
+            <tui-doc-code
+                class="tui-space_top-4"
+                [code]="localeNumberHelperDemo"
             />
         </section>
     </ng-template>

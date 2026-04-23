@@ -1,11 +1,11 @@
-import {maskitoNumberOptionsGenerator, type MaskitoNumberParams} from '@maskito/kit';
+import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 
-export const intlPattern = (
-    locale: string,
-): MaskitoNumberParams['thousandSeparatorPattern'] => {
-    const formatter = new Intl.NumberFormat(locale, {maximumFractionDigits: 0});
+const formatter = new Intl.NumberFormat('en-IN', {maximumFractionDigits: 0});
 
-    return (digits: string): readonly string[] => {
+export default maskitoNumberOptionsGenerator({
+    prefix: '₹',
+    thousandSeparator: ',',
+    thousandSeparatorPattern: (digits: string): readonly string[] => {
         if (!digits) {
             return [];
         }
@@ -22,11 +22,5 @@ export const intlPattern = (
 
                 return group;
             });
-    };
-};
-
-export default maskitoNumberOptionsGenerator({
-    prefix: '₹',
-    thousandSeparator: ',',
-    thousandSeparatorPattern: intlPattern('en-IN'),
+    },
 });

@@ -7,11 +7,14 @@ import {
 import {type MaskitoNumberParams} from '../number-params';
 import {validateDecimalPseudoSeparators} from './validate-decimal-pseudo-separators';
 
+export const DEFAULT_THOUSAND_SEPARATOR_PATTERN = (digits: string): readonly string[] =>
+    digits.match(/\d{1,3}(?=(?:\d{3})*$)/g) ?? [];
+
 export function withNumberDefaults({
     max = Infinity,
     min = -Infinity,
     thousandSeparator = CHAR_NO_BREAK_SPACE,
-    thousandSeparatorPattern = (x) => x.match(/\d{1,3}(?=(?:\d{3})*$)/g) ?? [],
+    thousandSeparatorPattern = DEFAULT_THOUSAND_SEPARATOR_PATTERN,
     decimalSeparator = '.',
     decimalPseudoSeparators: unsafeDecimalPseudoSeparators,
     prefix = '',

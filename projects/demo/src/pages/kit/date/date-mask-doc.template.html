@@ -71,6 +71,27 @@
 
             <date-mask-doc-example-2 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="locale-date"
+            heading="Automatically derives options for the given locale"
+            [content]="localeDateExample3"
+            [description]="localeDateDescription"
+        >
+            <ng-template #localeDateDescription>
+                Use
+                <code>maskitoLocaleDate</code>
+                to automatically derive date
+                <code>mode</code>
+                and
+                <code>separator</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <date-mask-doc-example-3 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -148,5 +169,24 @@
                 </p>
             </ng-template>
         </tui-doc-documentation>
+    </ng-template>
+
+    <ng-template pageTab="Helpers">
+        <section>
+            <h2>maskitoLocaleDate</h2>
+
+            Automatically derives date
+            <code>mode</code>
+            and
+            <code>separator</code>
+            from
+            <code>Intl.DateTimeFormat</code>
+            for the given locale.
+
+            <tui-doc-code
+                class="tui-space_top-4"
+                [code]="localeDateHelperDemo"
+            />
+        </section>
     </ng-template>
 </tui-doc-page>

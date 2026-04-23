@@ -17,6 +17,7 @@ import {DateRangeMaskDocExample1} from './examples/1-date-localization/component
 import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
 import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
 import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
+import {DateRangeMaskDocExample5} from './examples/5-locale-date-range/component';
 
 type GeneratorOptions = Required<
     NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
@@ -29,6 +30,7 @@ type GeneratorOptions = Required<
         DateRangeMaskDocExample2,
         DateRangeMaskDocExample3,
         DateRangeMaskDocExample4,
+        DateRangeMaskDocExample5,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -67,6 +69,16 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
             {with: {loader: 'text'}}
         ),
     };
+
+    protected readonly localeDateRangeExample5: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/5-locale-date-range/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeDateRangeHelperDemo =
+        import('./examples/maskito-locale-date-range-demo.md');
 
     protected apiPageControl = new FormControl('');
 

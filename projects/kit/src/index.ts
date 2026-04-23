@@ -1,4 +1,10 @@
 export {
+    maskitoLocaleDate,
+    maskitoLocaleDateRange,
+    maskitoLocaleDateTime,
+    maskitoLocaleNumber,
+} from './lib/locale';
+export {
     maskitoDateOptionsGenerator,
     type MaskitoDateParams,
     maskitoParseDate,
