@@ -10,15 +10,15 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
 
       - name: Run tests
         run: npx nx run-many --target test --all --coverage
 
       - name: Archive coverage artifacts
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-${{ github.workflow }}-${{ github.run_id }}
           path: coverage
@@ -28,8 +28,8 @@ jobs:
     needs: [tests]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: actions/download-artifact@v8.0.1
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: coverage-${{ github.workflow }}-${{ github.run_id }}
           path: coverage
@@ -37,32 +37,32 @@ jobs:
       - name: Display structure of coverage files
         run: tree -L 2 ./coverage -P 'lcov.info'
 
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/core/
           flags: summary,core
           name: core
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/kit/
           flags: summary,kit
           name: kit
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/phone/
           flags: summary,phone
           name: phone
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/angular/
           flags: summary,angular
           name: angular
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/react/
           flags: summary,react
           name: react
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           directory: ./coverage/vue/
           flags: summary,vue
