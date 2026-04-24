@@ -12,6 +12,7 @@ export {
     maskitoStringifyDateTime,
 } from './lib/masks/date-time';
 export {
+    maskitoNumber,
     maskitoNumberOptionsGenerator,
     type MaskitoNumberParams,
     maskitoParseNumber,

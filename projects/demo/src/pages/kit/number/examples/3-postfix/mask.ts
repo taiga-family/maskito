@@ -1,12 +1,8 @@
 import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
-import {
-    maskitoCaretGuard,
-    maskitoEventHandler,
-    maskitoNumberOptionsGenerator,
-} from '@maskito/kit';
+import {maskitoCaretGuard, maskitoEventHandler, maskitoNumber} from '@maskito/kit';
 
 export const postfix = '%';
-const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator({
+const {plugins, ...numberOptions} = maskitoNumber({
     postfix,
     min: 0,
     max: 100,

@@ -1,7 +1,7 @@
 import {maskitoTransform} from '@maskito/core';
 
 import {clamp} from '../../../utils';
-import {maskitoNumberOptionsGenerator} from '../number-mask';
+import {maskitoNumber} from '../number-mask';
 import type {MaskitoNumberParams} from '../number-params';
 import {stringifyNumberWithoutExp} from './stringify-number-without-exp';
 import {withNumberDefaults} from './with-number-defaults';
@@ -19,5 +19,5 @@ export function maskitoStringifyNumber(
         clamp(number, params.min, params.max),
     ).replace('.', params.decimalSeparator);
 
-    return maskitoTransform(value, maskitoNumberOptionsGenerator(params));
+    return maskitoTransform(value, maskitoNumber(params));
 }

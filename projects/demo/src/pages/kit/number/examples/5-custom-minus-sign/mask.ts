@@ -1,6 +1,6 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
-export default maskitoNumberOptionsGenerator({
+export default maskitoNumber({
     minusSign: '-',
     thousandSeparator: '',
 });

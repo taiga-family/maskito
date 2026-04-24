@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
@@ -7,7 +7,7 @@ describe('Number | postfix consists of many characters', () => {
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
-                    maskitoOptions: maskitoNumberOptionsGenerator({
+                    maskitoOptions: maskitoNumber({
                         postfix: ' lbs. per day',
                         thousandSeparator: ' ',
                         decimalSeparator: '.',

@@ -2,7 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
-    maskitoNumberOptionsGenerator,
+    maskitoNumber,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 
@@ -11,7 +11,7 @@ import {TestInput} from '../utils';
 describe('Number | postfix with point', () => {
     describe('` lbs.` postfix', () => {
         describe('Basic', () => {
-            const maskitoOptions = maskitoNumberOptionsGenerator({
+            const maskitoOptions = maskitoNumber({
                 postfix: ' lbs.',
                 thousandSeparator: ' ',
                 maximumFractionDigits: 2,
@@ -53,7 +53,7 @@ describe('Number | postfix with point', () => {
 
         describe('Complex: maskitoCaretGuard + maskitoAddOnFocusPlugin + maskitoRemoveOnBlurPlugin', () => {
             const postfix = ' lbs.';
-            const numberOptions = maskitoNumberOptionsGenerator({postfix});
+            const numberOptions = maskitoNumber({postfix});
             const maskitoOptions: MaskitoOptions = {
                 ...numberOptions,
                 plugins: [

@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
@@ -7,7 +7,7 @@ describe('Number | min/max limits are bigint', () => {
         cy.mount(TestInput, {
             componentProperties: {
                 initialValue: '',
-                maskitoOptions: maskitoNumberOptionsGenerator({
+                maskitoOptions: maskitoNumber({
                     min: BigInt(Number.MIN_SAFE_INTEGER) - 777n,
                     max: BigInt(Number.MAX_SAFE_INTEGER) + 300n,
                     thousandSeparator: '',

@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator, type MaskitoNumberParams} from '@maskito/kit';
+import {maskitoNumber, type MaskitoNumberParams} from '@maskito/kit';
 
 export const intlPattern = (
     locale: string,
@@ -25,7 +25,7 @@ export const intlPattern = (
     };
 };
 
-export default maskitoNumberOptionsGenerator({
+export default maskitoNumber({
     prefix: '₹',
     thousandSeparator: ',',
     thousandSeparatorPattern: intlPattern('en-IN'),

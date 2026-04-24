@@ -1,8 +1,8 @@
 ```ts
 import {maskitoTransform} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
-const maskitoOptions = maskitoNumberOptionsGenerator({
+const maskitoOptions = maskitoNumber({
   thousandSeparator: ' ',
 });
 

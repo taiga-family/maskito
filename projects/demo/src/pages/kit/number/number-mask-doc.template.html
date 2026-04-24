@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoNumberOptionsGenerator</code>
+        <code>maskitoNumber</code>
         to create a mask for entering a formatted number.
 
         <tui-doc-example
@@ -198,6 +198,32 @@
                 Indian numbering system groups digits as 2+3 from right: 12,34,567
             </tui-notification>
             <number-mask-doc-example-9 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="locale"
+            heading="Locale"
+            class="tui-space_top-4"
+            [content]="localeNumberExample10"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use
+                <code>locale</code>
+                option of
+                <code>maskitoNumber</code>
+                to automatically derive
+                <code>thousandSeparator</code>
+                ,
+                <code>decimalSeparator</code>
+                , and
+                <code>thousandSeparatorPattern</code>
+                from
+                <code>Intl.NumberFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <number-mask-doc-example-10 />
         </tui-doc-example>
     </ng-template>
 

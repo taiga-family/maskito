@@ -6,7 +6,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
-    maskitoNumberOptionsGenerator,
+    maskitoNumber,
     type MaskitoNumberParams,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
@@ -24,10 +24,11 @@ import {NumberMaskDocExample6} from './examples/6-minus-before-prefix/components
 import {NumberMaskDocExample7} from './examples/7-dynamic-decimal-zero-padding/component';
 import {NumberMaskDocExample8} from './examples/8-thousand-separator-pattern/component';
 import {NumberMaskDocExample9} from './examples/9-thousand-separator-pattern-intl/component';
+import {NumberMaskDocExample10} from './examples/10-locale-number/component';
 
 type GeneratorParams = Omit<
     Required<MaskitoNumberParams>,
-    'minusPseudoSigns' | 'thousandSeparatorPattern'
+    'locale' | 'minusPseudoSigns' | 'thousandSeparatorPattern'
 > &
     Pick<MaskitoNumberParams, 'thousandSeparatorPattern'>;
 
@@ -36,7 +37,7 @@ type GeneratorParams = Omit<
     imports: [
         MaskitoDirective,
         NumberMaskDocExample1,
-
+        NumberMaskDocExample10,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
         NumberMaskDocExample4,
@@ -65,6 +66,14 @@ export default class NumberMaskDocComponent implements GeneratorParams {
         import('./helpers/parse-number-invalid-usage.md');
 
     protected readonly stringifyNumberDemo = import('./helpers/stringify-number.md');
+    protected readonly localeNumberHelperDemo = import('./helpers/locale-number.md');
+
+    protected readonly localeNumberExample10: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/10-locale-number/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
 
     protected readonly highPrecisionExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
@@ -202,7 +211,7 @@ export default class NumberMaskDocComponent implements GeneratorParams {
 
     private calculateMask(params: GeneratorParams): MaskitoOptions {
         const {prefix, postfix, negativePattern, minusSign} = params;
-        const {plugins, ...numberOptions} = maskitoNumberOptionsGenerator(params);
+        const {plugins, ...numberOptions} = maskitoNumber(params);
 
         return {
             ...numberOptions,

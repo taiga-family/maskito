@@ -27,10 +27,8 @@ import {
 } from './processors';
 import {generateMaskExpression, withNumberDefaults} from './utils';
 
-export function maskitoNumberOptionsGenerator(
-    optionalParams?: MaskitoNumberParams,
-): Required<MaskitoOptions> {
-    const params = withNumberDefaults(optionalParams);
+export function maskitoNumber(options?: MaskitoNumberParams): Required<MaskitoOptions> {
+    const params = withNumberDefaults(options);
 
     return {
         mask: generateMaskExpression(params),
@@ -74,3 +72,10 @@ export function maskitoNumberOptionsGenerator(
                 : 'shift',
     };
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoNumber} instead.
+     */
+    maskitoNumber as maskitoNumberOptionsGenerator,
+};

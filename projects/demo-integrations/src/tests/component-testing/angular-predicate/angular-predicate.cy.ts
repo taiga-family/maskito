@@ -6,7 +6,7 @@ import type {
     MaskitoElementPredicate,
     MaskitoOptions,
 } from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 import {MultiTestInputComponent} from './multi-test.component';
@@ -81,7 +81,7 @@ describe('@maskito/angular | Predicate', () => {
                 changeDetection: ChangeDetectionStrategy.OnPush,
             })
             class ComplexTextfield {
-                protected maskitoOptions = maskitoNumberOptionsGenerator();
+                protected maskitoOptions = maskitoNumber();
                 protected elementPredicate = signal(invalidPredicate);
 
                 constructor() {

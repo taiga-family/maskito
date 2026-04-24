@@ -17,14 +17,14 @@ import {
     CHAR_NO_BREAK_SPACE,
     CHAR_ZERO_WIDTH_SPACE,
 } from '../../../constants';
-import {maskitoNumberOptionsGenerator} from '../number-mask';
+import {maskitoNumber} from '../number-mask';
 
 describe('Number (maskitoTransform)', () => {
     describe('`maximumFractionDigits` is `0`', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoNumberOptionsGenerator({
+            options = maskitoNumber({
                 decimalSeparator: ',',
                 decimalPseudoSeparators: ['.'],
                 maximumFractionDigits: 0,
@@ -48,7 +48,7 @@ describe('Number (maskitoTransform)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoNumberOptionsGenerator({
+            options = maskitoNumber({
                 decimalSeparator: ',',
                 decimalPseudoSeparators: ['.', ','],
                 thousandSeparator: '.',
@@ -74,7 +74,7 @@ describe('Number (maskitoTransform)', () => {
     });
 
     it('should accept simple and non-breaking spaces as interchangeable characters for [thousandSeparator]', () => {
-        const options = maskitoNumberOptionsGenerator({
+        const options = maskitoNumber({
             postfix: ' $',
             thousandSeparator: ' ',
         });
@@ -87,7 +87,7 @@ describe('Number (maskitoTransform)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoNumberOptionsGenerator({
+            options = maskitoNumber({
                 decimalSeparator: ',',
                 thousandSeparator: '.',
                 decimalPseudoSeparators: ['.', ','],
@@ -106,7 +106,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('maximumFractionDigits: 2', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                options = maskitoNumber({
                     postfix: ' lbs.',
                     maximumFractionDigits: 2,
                 });
@@ -155,7 +155,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('maximumFractionDigits: 0', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                options = maskitoNumber({
                     postfix: ' lbs.',
                     maximumFractionDigits: 0,
                 });
@@ -197,7 +197,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('maximumFractionDigits: 2', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                options = maskitoNumber({
                     prefix: 'lbs. ',
                     maximumFractionDigits: 2,
                 });
@@ -234,7 +234,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('maximumFractionDigits: 0', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                options = maskitoNumber({
                     prefix: 'lbs. ',
                     maximumFractionDigits: 0,
                 });
@@ -276,7 +276,7 @@ describe('Number (maskitoTransform)', () => {
                     decimalSeparator: '.',
                     maximumFractionDigits: 2,
                 };
-                options = maskitoNumberOptionsGenerator(params);
+                options = maskitoNumber(params);
             });
 
             it('empty textfield => empty textfield', () => {
@@ -331,7 +331,7 @@ describe('Number (maskitoTransform)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoNumberOptionsGenerator({
+            options = maskitoNumber({
                 prefix: '$',
                 minusSign: '-',
                 negativePattern: 'minusFirst',
@@ -369,7 +369,7 @@ describe('Number (maskitoTransform)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoNumberOptionsGenerator({
+            options = maskitoNumber({
                 postfix: '.000 km',
                 // Ensure that default point as decimal separator is compatible with postfix
                 decimalSeparator: '.',
@@ -403,7 +403,7 @@ describe('Number (maskitoTransform)', () => {
             expect(
                 maskitoTransform(
                     '123456789',
-                    maskitoNumberOptionsGenerator({
+                    maskitoNumber({
                         postfix: '.000 km',
                         thousandSeparator: '',
                     }),
@@ -413,7 +413,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('thousandSeparator equals to point too', () => {
             beforeEach(() => {
-                options = maskitoNumberOptionsGenerator({
+                options = maskitoNumber({
                     postfix: '.000 km',
                     thousandSeparator: '.',
                     // by default, decimalSeparator === '.' & maximumFractionDigits === 0
@@ -433,13 +433,13 @@ describe('Number (maskitoTransform)', () => {
     describe('should transform full width number to half width', () => {
         describe('at any time', () => {
             it('at the 1st time (after initialization)', () => {
-                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+                const options = maskitoNumber({thousandSeparator: '_'});
 
                 expect(maskitoTransform('１２３４５', options)).toBe('12_345');
             });
 
             it('at the 2nd time (after initialization)', () => {
-                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+                const options = maskitoNumber({thousandSeparator: '_'});
 
                 maskitoTransform('１２３４５', options);
 
@@ -466,7 +466,7 @@ describe('Number (maskitoTransform)', () => {
         ];
 
         minuses.forEach((minus) => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 minusSign: minus.value,
                 thousandSeparator: ' ',
             });
@@ -495,7 +495,7 @@ describe('Number (maskitoTransform)', () => {
         ].forEach((minus) => {
             describe(`applies ${minus.name} properly`, () => {
                 beforeEach(() => {
-                    options = maskitoNumberOptionsGenerator({
+                    options = maskitoNumber({
                         min: -123,
                         minusSign: minus.value,
                     });
@@ -518,13 +518,13 @@ describe('Number (maskitoTransform)', () => {
 
     describe('autofill value with extra leading and trailing whitespace (thousand separator is equal to whitespace too)', () => {
         it('<space x3>123456<space x3>', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ' '});
+            const options = maskitoNumber({thousandSeparator: ' '});
 
             expect(maskitoTransform('    123456    ', options)).toBe('123 456');
         });
 
         it('<space>|123 => |123', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ' '});
+            const options = maskitoNumber({thousandSeparator: ' '});
 
             expect(maskitoTransform({value: ' 123', selection: [1, 1]}, options)).toEqual(
                 {
@@ -544,9 +544,7 @@ describe('Number (maskitoTransform)', () => {
 
     describe('thousandSeparatorPattern', () => {
         it('default behavior unchanged: 123456789 => 123 456 789 (non-breaking space)', () => {
-            const options = maskitoNumberOptionsGenerator({
-                thousandSeparator: CHAR_NO_BREAK_SPACE,
-            });
+            const options = maskitoNumber({thousandSeparator: CHAR_NO_BREAK_SPACE});
 
             expect(maskitoTransform('123456789', options)).toBe(
                 `123${CHAR_NO_BREAK_SPACE}456${CHAR_NO_BREAK_SPACE}789`,
@@ -554,13 +552,13 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('small number unaffected: 999 => 999', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+            const options = maskitoNumber({thousandSeparator: ','});
 
             expect(maskitoTransform('999', options)).toBe('999');
         });
 
         it('zero unaffected: 0 => 0', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+            const options = maskitoNumber({thousandSeparator: ','});
 
             expect(maskitoTransform('0', options)).toBe('0');
         });
@@ -583,7 +581,7 @@ describe('Number (maskitoTransform)', () => {
             };
 
             it('123456789 => 12,34,56,789', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: indianPattern,
                 });
@@ -592,7 +590,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('single group: 1200 => 1,200', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: indianPattern,
                 });
@@ -601,7 +599,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('negative number: -123456789 => -12,34,56,789', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: indianPattern,
                 });
@@ -612,7 +610,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('decimal part is unaffected: 1234567.89 => 12,34,567.89', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     decimalSeparator: '.',
                     maximumFractionDigits: 2,
@@ -623,7 +621,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('idempotent: re-transform 12,34,56,789 => 12,34,56,789', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: indianPattern,
                 });
@@ -634,13 +632,13 @@ describe('Number (maskitoTransform)', () => {
 
         describe('custom thousandSeparator "_"', () => {
             it('1234567 => 1_234_567', () => {
-                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+                const options = maskitoNumber({thousandSeparator: '_'});
 
                 expect(maskitoTransform('1234567', options)).toBe('1_234_567');
             });
 
             it('negative number: -1234567 => -1_234_567', () => {
-                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+                const options = maskitoNumber({thousandSeparator: '_'});
 
                 expect(maskitoTransform('-1234567', options)).toBe(
                     `${CHAR_MINUS}1_234_567`,
@@ -648,7 +646,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('decimal part is unaffected: 1234567.89 => 1_234_567.89', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: '_',
                     decimalSeparator: '.',
                     maximumFractionDigits: 2,
@@ -658,13 +656,13 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('idempotent: re-transform 1_234_567 => 1_234_567', () => {
-                const options = maskitoNumberOptionsGenerator({thousandSeparator: '_'});
+                const options = maskitoNumber({thousandSeparator: '_'});
 
                 expect(maskitoTransform('1_234_567', options)).toBe('1_234_567');
             });
 
             it('with Indian 2+3 pattern: 1234567 => 12_34_567', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: '_',
                     thousandSeparatorPattern: intlPattern('en-IN'),
                 });
@@ -676,7 +674,7 @@ describe('Number (maskitoTransform)', () => {
         it('no-op pattern (single group): 1234567 => 1234567', () => {
             const noGroupingPattern = (digits: string): readonly string[] =>
                 digits ? [digits] : [];
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 thousandSeparator: ',',
                 thousandSeparatorPattern: noGroupingPattern,
             });
@@ -685,7 +683,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('prefix + custom pattern: ₹1234567 => ₹12,34,567', () => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 prefix: '₹',
                 thousandSeparator: ',',
                 thousandSeparatorPattern: intlPattern('en-IN'),
@@ -695,7 +693,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('postfix + custom pattern: 1234567 => 1.234.567 €', () => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 postfix: ' €',
                 thousandSeparator: '.',
                 decimalSeparator: ',',
@@ -707,7 +705,7 @@ describe('Number (maskitoTransform)', () => {
 
         describe('Intl.NumberFormat-based grouping', () => {
             it('de-DE: 1234567 => 1.234.567 (3-digit grouping, dot separator)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: '.',
                     decimalSeparator: ',',
                     thousandSeparatorPattern: intlPattern('de-DE'),
@@ -717,7 +715,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('ja-JP: 1234567 => 1,234,567 (3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('ja-JP'),
                 });
@@ -726,7 +724,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('en-IN: 123456789 => 12,34,56,789 (Indian 2+3 grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('en-IN'),
                 });
@@ -735,7 +733,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('en-IN: single group 1200 => 1,200', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('en-IN'),
                 });
@@ -744,7 +742,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('en-US: same as default 3-digit grouping', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('en-US'),
                 });
@@ -753,7 +751,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('en-US: large number 1234567890 => 1,234,567,890', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('en-US'),
                 });
@@ -762,7 +760,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('en-IN: negative number -123456789 => -12,34,56,789', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('en-IN'),
                 });
@@ -773,7 +771,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('de-DE: decimal part unaffected: 1234567,89 => 1.234.567,89', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: '.',
                     decimalSeparator: ',',
                     maximumFractionDigits: 2,
@@ -784,7 +782,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('de-DE: minimumFractionDigits: 1234 => 1.234,00', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: '.',
                     decimalSeparator: ',',
                     maximumFractionDigits: 2,
@@ -796,7 +794,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('hi-IN: 1234567 => 12,34,567 (Hindi India, Indian grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('hi-IN'),
                 });
@@ -805,7 +803,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('hi-IN: 123456789 => 12,34,56,789 (scales same as en-IN)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('hi-IN'),
                 });
@@ -814,7 +812,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('fr-FR: 1234567 => 1,234,567 (French, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('fr-FR'),
                 });
@@ -823,7 +821,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('ru-RU: 1234567 => 1,234,567 (Russian, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('ru-RU'),
                 });
@@ -832,7 +830,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('pt-BR: 1234567 => 1,234,567 (Brazilian Portuguese, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('pt-BR'),
                 });
@@ -841,7 +839,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('zh-CN: 1234567 => 1,234,567 (Chinese Simplified, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('zh-CN'),
                 });
@@ -850,7 +848,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('ko-KR: 1234567 => 1,234,567 (Korean, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('ko-KR'),
                 });
@@ -859,7 +857,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('tr-TR: 1234567 => 1,234,567 (Turkish, 3-digit grouping)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('tr-TR'),
                 });
@@ -869,7 +867,7 @@ describe('Number (maskitoTransform)', () => {
 
             describe('Indian 2+3 grouping', () => {
                 it('ne-NP: uses Indian 2+3 grouping', () => {
-                    const options = maskitoNumberOptionsGenerator({
+                    const options = maskitoNumber({
                         thousandSeparator: ',',
                         thousandSeparatorPattern: intlPattern('ne-NP'),
                     });
@@ -878,7 +876,7 @@ describe('Number (maskitoTransform)', () => {
                 });
 
                 it('en-IN: 1200 => 1,200 (Indian grouping, 4-digit number)', () => {
-                    const options = maskitoNumberOptionsGenerator({
+                    const options = maskitoNumber({
                         thousandSeparator: ',',
                         thousandSeparatorPattern: intlPattern('en-IN'),
                     });
@@ -888,7 +886,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('es-ES: 1200 => 1200 (no separator for 4-digit numbers in Spanish locale)', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ',',
                     thousandSeparatorPattern: intlPattern('es-ES'),
                 });
@@ -900,7 +898,7 @@ describe('Number (maskitoTransform)', () => {
 
     describe('BigInt support', () => {
         it('number beyond MAX_SAFE_INTEGER is formatted correctly', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+            const options = maskitoNumber({thousandSeparator: ','});
 
             expect(maskitoTransform('9007199254740993', options)).toBe(
                 '9,007,199,254,740,993',
@@ -908,7 +906,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('negative number beyond MIN_SAFE_INTEGER is formatted correctly', () => {
-            const options = maskitoNumberOptionsGenerator({thousandSeparator: ','});
+            const options = maskitoNumber({thousandSeparator: ','});
 
             expect(maskitoTransform('-9007199254740993', options)).toBe(
                 `${CHAR_MINUS}9,007,199,254,740,993`,
@@ -916,7 +914,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('max: BigInt clamps value exceeding max', () => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 thousandSeparator: ',',
                 max: BigInt('1000000'),
             });
@@ -925,7 +923,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('min: BigInt clamps negative value below min', () => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 thousandSeparator: ',',
                 min: BigInt('-1000000'),
             });
@@ -936,7 +934,7 @@ describe('Number (maskitoTransform)', () => {
         });
 
         it('thousandSeparatorPattern + BigInt: large Indian-grouped number', () => {
-            const options = maskitoNumberOptionsGenerator({
+            const options = maskitoNumber({
                 thousandSeparator: ',',
                 thousandSeparatorPattern: intlPattern('en-IN'),
             });
@@ -949,16 +947,13 @@ describe('Number (maskitoTransform)', () => {
         describe('postfix = cm3', () => {
             it('value within max is NOT clamped', () => {
                 expect(
-                    maskitoTransform(
-                        '123',
-                        maskitoNumberOptionsGenerator({max: 123, postfix: 'cm3'}),
-                    ),
+                    maskitoTransform('123', maskitoNumber({max: 123, postfix: 'cm3'})),
                 ).toBe('123cm3');
 
                 expect(
                     maskitoTransform(
                         '1234567890123456',
-                        maskitoNumberOptionsGenerator({
+                        maskitoNumber({
                             postfix: 'cm3',
                             max: Number.MAX_SAFE_INTEGER,
                         }),
@@ -967,7 +962,7 @@ describe('Number (maskitoTransform)', () => {
             });
 
             it('value exceeding max IS clamped without losing postfix', () => {
-                const options = maskitoNumberOptionsGenerator({
+                const options = maskitoNumber({
                     thousandSeparator: ' ',
                     max: 999,
                     postfix: 'cm3',
@@ -980,7 +975,7 @@ describe('Number (maskitoTransform)', () => {
                 expect(
                     maskitoTransform(
                         '-1234567890123456',
-                        maskitoNumberOptionsGenerator({postfix: 'cm3'}),
+                        maskitoNumber({postfix: 'cm3'}),
                     ),
                 ).toBe(`${CHAR_MINUS}1 234 567 890 123 456cm3`);
             });
@@ -991,7 +986,7 @@ describe('Number (maskitoTransform)', () => {
                 expect(
                     maskitoTransform(
                         '500',
-                        maskitoNumberOptionsGenerator({
+                        maskitoNumber({
                             max: 999,
                             prefix: '100 x ',
                         }),
@@ -1003,7 +998,7 @@ describe('Number (maskitoTransform)', () => {
                 expect(
                     maskitoTransform(
                         '1234',
-                        maskitoNumberOptionsGenerator({
+                        maskitoNumber({
                             max: 999,
                             prefix: '100 x ',
                         }),
@@ -1014,7 +1009,7 @@ describe('Number (maskitoTransform)', () => {
     });
 
     it('[thousandSeparator] is equal to [decimalSeparator] when [maximumFractionDigits]=0', () => {
-        const options = maskitoNumberOptionsGenerator({
+        const options = maskitoNumber({
             thousandSeparator: '.',
             decimalSeparator: '.', // default value
             maximumFractionDigits: 0, // default value

@@ -1,5 +1,7 @@
+export * from './default-thousand-separator-pattern';
 export * from './extract-affixes';
 export * from './generate-mask-expression';
+export * from './get-locale-number-separators';
 export * from './number-parts';
 export * from './parse-number';
 export * from './stringify-number-without-exp';

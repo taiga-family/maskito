@@ -1,7 +1,7 @@
 import {maskitoChangeEventPlugin, type MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
-const numberOptions = maskitoNumberOptionsGenerator({maximumFractionDigits: 2});
+const numberOptions = maskitoNumber({maximumFractionDigits: 2});
 
 export default {
     ...numberOptions,

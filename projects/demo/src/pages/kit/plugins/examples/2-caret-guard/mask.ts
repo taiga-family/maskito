@@ -1,10 +1,10 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoCaretGuard, maskitoNumber} from '@maskito/kit';
 
 const prefix = '$';
 const postfix = ' per day';
 
-const numberOptions = maskitoNumberOptionsGenerator({
+const numberOptions = maskitoNumber({
     prefix,
     postfix,
     min: 0,
