@@ -2,7 +2,7 @@
 import {
   maskitoStringifyNumber,
   type MaskitoNumberParams, // type for 2nd argument of maskitoStringifyNumber
-  maskitoNumberOptionsGenerator,
+  maskitoNumber,
 } from '@maskito/kit';
 
 const params: MaskitoNumberParams = {
@@ -10,7 +10,7 @@ const params: MaskitoNumberParams = {
   prefix: '$',
 };
 
-maskitoNumberOptionsGenerator(params); // MaskitoOptions
+maskitoNumber(params); // MaskitoOptions
 
 maskitoStringifyNumber(null); // ''
 maskitoStringifyNumber(NaN); // ''

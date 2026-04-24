@@ -5,7 +5,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
     maskitoDateOptionsGenerator,
-    maskitoNumberOptionsGenerator,
+    maskitoNumber,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
@@ -19,7 +19,7 @@ import {
 } from '@taiga-ui/legacy';
 import metadata from 'libphonenumber-js/min/metadata';
 
-const MONEY_AMOUNT_MASK = maskitoNumberOptionsGenerator({
+const MONEY_AMOUNT_MASK = maskitoNumber({
     min: 0,
     prefix: '$ ',
     maximumFractionDigits: 2,

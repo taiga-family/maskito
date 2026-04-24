@@ -1,10 +1,10 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
 describe('Number | overwrite selection range', () => {
-    const numberOptions = maskitoNumberOptionsGenerator({maximumFractionDigits: 3});
+    const numberOptions = maskitoNumber({maximumFractionDigits: 3});
 
     it('overwrite of selection range inside preprocessor works ', () => {
         const maskitoOptions: MaskitoOptions = {

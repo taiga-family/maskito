@@ -1,8 +1,8 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 export function getMaskitoOptions(decimalZeroPadding: boolean): MaskitoOptions {
-    return maskitoNumberOptionsGenerator({
+    return maskitoNumber({
         minimumFractionDigits: decimalZeroPadding ? 2 : 0,
         maximumFractionDigits: 2,
         decimalSeparator: '.',

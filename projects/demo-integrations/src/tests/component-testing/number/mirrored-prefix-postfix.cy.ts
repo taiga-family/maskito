@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {BROWSER_SUPPORTS_REAL_EVENTS} from 'projects/demo-integrations/src/support/constants';
 
 import {repeatKey} from '../../utils';
@@ -9,7 +9,7 @@ describe('Number | [prefix]="$ " | [postfix]=" per day" (without caret guard)', 
         cy.mount(TestInput, {
             componentProperties: {
                 initialValue: '$ 100 per day',
-                maskitoOptions: maskitoNumberOptionsGenerator({
+                maskitoOptions: maskitoNumber({
                     prefix: '$ ',
                     postfix: ' per day',
                 }),

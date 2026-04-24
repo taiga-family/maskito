@@ -8,9 +8,9 @@ import {fromNumberParts, generateMaskExpression, toNumberParts} from '../utils';
  * This preprocessor helps to avoid conflicts during transition from one mask to another (for the same input).
  * For example, the developer changes postfix (or other mask's props) during run-time.
  * ```
- * let maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' year'});
+ * let maskitoOptions = maskitoNumber({postfix: ' year'});
  * // [3 seconds later]
- * maskitoOptions = maskitoNumberOptionsGenerator({postfix: ' years'});
+ * maskitoOptions = maskitoNumber({postfix: ' years'});
  * ```
  */
 export function createInitializationOnlyPreprocessor(

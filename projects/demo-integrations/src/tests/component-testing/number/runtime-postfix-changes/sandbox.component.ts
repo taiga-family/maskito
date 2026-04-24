@@ -11,12 +11,12 @@ import {
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoInitialCalibrationPlugin, type MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator, maskitoParseNumber} from '@maskito/kit';
+import {maskitoNumber, maskitoParseNumber} from '@maskito/kit';
 
 @Pipe({name: 'calculateMask'})
 export class TestPipe4 implements PipeTransform {
     public transform(postfix: string): MaskitoOptions {
-        const options = maskitoNumberOptionsGenerator({
+        const options = maskitoNumber({
             postfix,
             thousandSeparator: ' ',
         });

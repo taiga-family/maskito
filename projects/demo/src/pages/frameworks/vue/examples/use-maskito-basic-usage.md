@@ -1,6 +1,6 @@
 ```ts
 import {createApp} from 'vue';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {maskito} from '@maskito/vue';
 
 createApp({
@@ -8,7 +8,7 @@ createApp({
   directives: {maskito},
   data: () => ({
     value: '123_456',
-    options: maskitoNumberOptionsGenerator({
+    options: maskitoNumber({
       thousandSeparator: '_',
     }),
   }),

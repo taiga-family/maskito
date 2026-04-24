@@ -1,5 +1,5 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import {mount} from 'cypress/react';
 import {type ChangeEvent, type JSX, useCallback, useState} from 'react';
@@ -8,7 +8,7 @@ describe('React synthetic "onChange" event', () => {
     describe('uncontrolled input', () => {
         beforeEach(() => {
             const handler = cy.spy().as('handler');
-            const options = maskitoNumberOptionsGenerator({maximumFractionDigits: 2, thousandSeparator: ' '});
+            const options = maskitoNumber({maximumFractionDigits: 2, thousandSeparator: ' '});
 
             function App(): JSX.Element {
                 const maskRef = useMaskito({options});

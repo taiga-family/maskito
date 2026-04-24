@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
@@ -7,7 +7,7 @@ describe('Number | [postfix]=" EUR" (no initial value & no caret guard)', () => 
         cy.mount(TestInput, {
             componentProperties: {
                 initialValue: '',
-                maskitoOptions: maskitoNumberOptionsGenerator({
+                maskitoOptions: maskitoNumber({
                     postfix: ' EUR',
                     maximumFractionDigits: 2,
                 }),

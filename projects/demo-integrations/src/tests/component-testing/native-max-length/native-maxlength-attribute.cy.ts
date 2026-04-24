@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, ElementRef, inject} from '@angular/core';
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 import {TestInput} from '../utils';
@@ -8,9 +8,7 @@ import {TestInput} from '../utils';
 describe('Native attribute maxlength works', () => {
     describe('<input maxlength="3" /> & overwriteMode = shift', () => {
         beforeEach(() => {
-            const maskitoOptions = maskitoNumberOptionsGenerator({
-                thousandSeparator: ' ',
-            });
+            const maskitoOptions = maskitoNumber({thousandSeparator: ' '});
 
             cy.mount(TestInput, {
                 componentProperties: {
@@ -167,7 +165,7 @@ describe('Native attribute maxlength works', () => {
 
     describe('with Number mask', () => {
         beforeEach(() => {
-            const inputYearMask: MaskitoOptions = maskitoNumberOptionsGenerator({
+            const inputYearMask: MaskitoOptions = maskitoNumber({
                 min: 0,
                 max: 9999,
                 thousandSeparator: '',

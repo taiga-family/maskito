@@ -2,14 +2,14 @@
 import {
   maskitoParseNumber,
   type MaskitoNumberParams, // type for 2nd argument of maskitoParseNumber
-  maskitoNumberOptionsGenerator,
+  maskitoNumber,
 } from '@maskito/kit';
 
 const params: MaskitoNumberParams = {
   thousandSeparator: '_',
 };
 
-maskitoNumberOptionsGenerator(params); // MaskitoOptions
+maskitoNumber(params); // MaskitoOptions
 
 const value: bigint | null = maskitoParseNumber('1_234_567_890_123_456_789', {
   ...params,

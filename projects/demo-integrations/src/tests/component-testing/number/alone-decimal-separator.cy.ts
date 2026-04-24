@@ -1,4 +1,4 @@
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
@@ -6,7 +6,7 @@ describe('Number | should drop decimal separator if all digits are erased', () =
     beforeEach(() => {
         cy.mount(TestInput, {
             componentProperties: {
-                maskitoOptions: maskitoNumberOptionsGenerator({
+                maskitoOptions: maskitoNumber({
                     maximumFractionDigits: 2,
                     minusSign: '-',
                 }),

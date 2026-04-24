@@ -1,6 +1,6 @@
 ```ts
 import {createApp} from 'vue';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {maskito} from '@maskito/vue';
 
 createApp({
@@ -9,7 +9,7 @@ createApp({
   data: () => ({
     value: '123456',
     options: {
-      ...maskitoNumberOptionsGenerator(),
+      ...maskitoNumber(),
       elementPredicate: (host) => host.querySelector('input')!,
     },
   }),

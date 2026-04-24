@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {
-    maskitoNumberOptionsGenerator,
+    maskitoNumber,
     type MaskitoNumberParams,
     maskitoParseNumber,
     maskitoStringifyNumber,
@@ -28,7 +28,7 @@ export class UnmaskDocExample5 {
      * Despite it, textfield's value is always prettified formatted STRING.
      */
     protected value = 1000.42;
-    protected readonly maskito = maskitoNumberOptionsGenerator(NUMBER_PARAMS);
+    protected readonly maskito = maskitoNumber(NUMBER_PARAMS);
 
     /**
      * `maskitoParseNumber` is built-in utility to convert

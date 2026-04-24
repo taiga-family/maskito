@@ -2,14 +2,14 @@
 import {
   maskitoParseNumber,
   type MaskitoNumberParams, // type for 2nd argument of maskitoParseNumber
-  maskitoNumberOptionsGenerator,
+  maskitoNumber,
 } from '@maskito/kit';
 
 const params: MaskitoNumberParams = {
   decimalSeparator: ',', // default is '.'
 };
 
-maskitoNumberOptionsGenerator(params); // MaskitoOptions
+maskitoNumber(params); // MaskitoOptions
 
 const value: number = maskitoParseNumber('10 000,42', params); // 10000.42
 

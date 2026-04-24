@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 
 @Component({
     selector: 'programmatically-doc-example-3',
@@ -11,10 +11,7 @@ import {maskitoNumberOptionsGenerator} from '@maskito/kit';
 })
 export class ProgrammaticallyDocExample3 {
     protected readonly control = new FormControl('');
-
-    protected readonly maskito = maskitoNumberOptionsGenerator({
-        maximumFractionDigits: 2,
-    });
+    protected readonly maskito = maskitoNumber({maximumFractionDigits: 2});
 
     protected setValue(): void {
         this.control.setValue(

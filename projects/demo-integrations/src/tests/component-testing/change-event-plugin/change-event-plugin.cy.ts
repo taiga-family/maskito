@@ -1,11 +1,11 @@
 import {maskitoChangeEventPlugin, type MaskitoOptions} from '@maskito/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {createOutputSpy} from 'cypress/angular';
 
 import {TestInput} from '../utils';
 
 describe('maskitoChangeEventPlugin', () => {
-    const numberMask = maskitoNumberOptionsGenerator({
+    const numberMask = maskitoNumber({
         thousandSeparator: ' ',
         decimalSeparator: '.',
         maximumFractionDigits: 2,

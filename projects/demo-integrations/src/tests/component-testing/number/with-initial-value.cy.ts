@@ -1,5 +1,5 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoCaretGuard, maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoCaretGuard, maskitoNumber} from '@maskito/kit';
 
 import {BROWSER_SUPPORTS_REAL_EVENTS} from '../../../support/constants';
 import {repeatKey} from '../../utils';
@@ -13,7 +13,7 @@ describe('Number | With initial value', () => {
             const prefix = '$';
             const postfix = ' kg';
 
-            const numberOptions = maskitoNumberOptionsGenerator({
+            const numberOptions = maskitoNumber({
                 prefix,
                 postfix,
                 thousandSeparator: ' ',
@@ -66,7 +66,7 @@ describe('Number | With initial value', () => {
     it('123 45|6 789 => Type 0 (the 1st time input event) => 1 234 50|6 789', () => {
         cy.mount(TestInput, {
             componentProperties: {
-                maskitoOptions: maskitoNumberOptionsGenerator({thousandSeparator: ' '}),
+                maskitoOptions: maskitoNumber({thousandSeparator: ' '}),
                 initialValue: '123 456 789',
             },
         });
@@ -85,9 +85,7 @@ describe('Number | With initial value', () => {
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
-                    maskitoOptions: maskitoNumberOptionsGenerator({
-                        thousandSeparator: '_',
-                    }),
+                    maskitoOptions: maskitoNumber({thousandSeparator: '_'}),
                     initialValue: '1_234',
                 },
             });
@@ -118,9 +116,7 @@ describe('Number | With initial value', () => {
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
-                    maskitoOptions: maskitoNumberOptionsGenerator({
-                        thousandSeparator: '_',
-                    }),
+                    maskitoOptions: maskitoNumber({thousandSeparator: '_'}),
                     initialValue: '123_456',
                 },
             });

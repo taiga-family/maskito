@@ -4,6 +4,7 @@ export interface MaskitoNumberParams extends Pick<
 > {
     min?: bigint | number;
     max?: bigint | number;
+    locale?: string;
     decimalSeparator?: string;
     decimalPseudoSeparators?: readonly string[];
     thousandSeparator?: string;

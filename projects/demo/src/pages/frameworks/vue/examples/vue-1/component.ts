@@ -1,5 +1,5 @@
 import {afterNextRender, ChangeDetectionStrategy, Component} from '@angular/core';
-import {maskitoNumberOptionsGenerator} from '@maskito/kit';
+import {maskitoNumber} from '@maskito/kit';
 import {maskito} from '@maskito/vue';
 
 @Component({
@@ -15,7 +15,7 @@ export class VueExample1 {
                 directives: {maskito},
                 data: () => ({
                     value: '123_456',
-                    options: maskitoNumberOptionsGenerator({thousandSeparator: '_'}),
+                    options: maskitoNumber({thousandSeparator: '_'}),
                 }),
             }).mount('#vue');
         }),
