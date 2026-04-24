@@ -12,16 +12,16 @@ jobs:
     name: Build demo
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -39,13 +39,13 @@ jobs:
         project: [date, date-range, date-time, number, time]
     name: Kit / ${{ matrix.project }}
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@v1.201.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
 
       - name: Download demo build from cache
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -65,13 +65,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Recipes
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@v1.201.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
 
       - name: Download demo build from cache
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -89,13 +89,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Others
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@v1.201.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
 
       - name: Download demo build from cache
-        uses: actions/cache@v5
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -116,10 +116,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Component Testing
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@v1.201.0
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
 
       - name: Run Cypress tests
         run:
