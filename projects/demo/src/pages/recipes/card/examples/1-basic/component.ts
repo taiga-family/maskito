@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoDateOptionsGenerator} from '@maskito/kit';
+import {maskitoDate} from '@maskito/kit';
 import {TuiGroup} from '@taiga-ui/core';
 import {TuiInputModule} from '@taiga-ui/legacy';
 
@@ -28,7 +28,7 @@ export class CardDocExample1 {
         ],
     };
 
-    protected readonly expiredMask = maskitoDateOptionsGenerator({
+    protected readonly expiredMask = maskitoDate({
         mode: 'mm/yy',
         separator: '/',
     });

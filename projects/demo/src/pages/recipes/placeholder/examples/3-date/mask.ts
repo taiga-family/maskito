@@ -1,9 +1,9 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoDateOptionsGenerator, maskitoWithPlaceholder} from '@maskito/kit';
+import {maskitoDate, maskitoWithPlaceholder} from '@maskito/kit';
 
 export const PLACEHOLDER = 'dd/mm/yyyy';
 
-const dateOptions = maskitoDateOptionsGenerator({
+const dateOptions = maskitoDate({
     mode: 'dd/mm/yyyy',
     separator: '/',
 });

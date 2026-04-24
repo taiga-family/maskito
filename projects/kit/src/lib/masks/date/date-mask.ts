@@ -9,19 +9,20 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import type {MaskitoDateParams} from './date-params';
+import {getLocaleDateParams} from './utils/get-locale-date-params';
 
-export function maskitoDateOptionsGenerator({
-    mode,
-    separator = '.',
-    max,
-    min,
-}: MaskitoDateParams): Required<MaskitoOptions> {
-    const dateModeTemplate = mode.split('/').join(separator);
+export function maskitoDate(
+    {locale = '', ...params}: MaskitoDateParams = {mode: 'dd/mm/yyyy'},
+): Required<MaskitoOptions> {
+    const localeParams = locale ? getLocaleDateParams(locale) : null;
+    const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
+    const dateSeparator = params.separator ?? localeParams?.separator ?? '.';
+    const dateModeTemplate = mode.split('/').join(dateSeparator);
 
     return {
         ...MASKITO_DEFAULT_OPTIONS,
-        mask: Array.from(dateModeTemplate).map((char) =>
-            separator.includes(char) ? char : /\d/,
+        mask: [...dateModeTemplate].map((char) =>
+            dateSeparator.includes(char) ? char : /\d/,
         ),
         overwriteMode: 'replace',
         preprocessors: [
@@ -29,26 +30,32 @@ export function maskitoDateOptionsGenerator({
             createZeroPlaceholdersPreprocessor(),
             normalizeDatePreprocessor({
                 dateModeTemplate,
-                dateSegmentsSeparator: separator,
+                dateSeparator,
             }),
             createValidDatePreprocessor({
                 dateModeTemplate,
-                dateSegmentsSeparator: separator,
+                dateSeparator,
             }),
         ],
         postprocessors: [
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
-                dateSegmentSeparator: separator,
+                dateSeparator,
                 splitFn: (value) => ({dateStrings: [value]}),
                 uniteFn: ([dateString = '']) => dateString,
             }),
             createMinMaxDatePostprocessor({
-                min,
-                max,
+                ...params,
                 dateModeTemplate,
-                dateSegmentSeparator: separator,
+                dateSeparator,
             }),
         ],
     };
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoDate} instead.
+     */
+    maskitoDate as maskitoDateOptionsGenerator,
+};

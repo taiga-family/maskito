@@ -51,12 +51,14 @@ export function enrichTimeSegmentsWithZeroes(
     const [leadingNonDigitCharacters = ''] = value.match(/^\D+(?=\d)/g) || []; // prefix
     const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || []; // trailing segment separators / meridiem characters / postfix
     const validatedTimeString = `${leadingNonDigitCharacters}${toTimeString(validatedTimeSegments)}${trailingNonDigitCharacters}`;
-    const addedTimeSegmentSeparators = Math.max(
+
+    const addedTimeSeparators = Math.max(
         validatedTimeString.length - value.length - paddedZeroes,
         0,
     );
-    let newFrom = from + paddedZeroes + addedTimeSegmentSeparators;
-    let newTo = to + paddedZeroes + addedTimeSegmentSeparators;
+
+    let newFrom = from + paddedZeroes + addedTimeSeparators;
+    let newTo = to + paddedZeroes + addedTimeSeparators;
 
     if (
         newFrom === newTo &&

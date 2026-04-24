@@ -7,13 +7,13 @@ import {splitDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
     dateModeTemplate,
-    dateSegmentsSeparator,
+    dateSeparator,
     dateTimeSeparator,
     timeMode,
     timeSegmentMaxValues,
 }: {
     dateModeTemplate: string;
-    dateSegmentsSeparator: string;
+    dateSeparator: string;
     dateTimeSeparator: string;
     timeMode: MaskitoTimeMode;
     timeSegmentMaxValues: MaskitoTimeSegments<number>;
@@ -21,7 +21,7 @@ export function createValidDateTimePreprocessor({
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 
-        if (data === dateSegmentsSeparator) {
+        if (data === dateSeparator) {
             return {
                 elementState,
                 data: selection[0] === value.length ? data : '',
@@ -47,7 +47,7 @@ export function createValidDateTimePreprocessor({
 
         const {validatedDateString, updatedSelection} = validateDateString({
             dateString,
-            dateSegmentsSeparator,
+            dateSeparator,
             dateModeTemplate,
             offset: 0,
             selection: [from, to],
@@ -78,9 +78,9 @@ export function createValidDateTimePreprocessor({
             elementState: {
                 selection,
                 value: `${validatedValue.slice(0, from)}${newData
-                    .split(dateSegmentsSeparator)
+                    .split(dateSeparator)
                     .map((segment) => '0'.repeat(segment.length))
-                    .join(dateSegmentsSeparator)}${validatedValue.slice(to)}`,
+                    .join(dateSeparator)}${validatedValue.slice(to)}`,
             },
             data: newData,
         };

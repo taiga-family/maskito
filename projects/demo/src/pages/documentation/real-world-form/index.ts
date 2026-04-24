@@ -4,7 +4,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {
     maskitoAddOnFocusPlugin,
-    maskitoDateOptionsGenerator,
+    maskitoDate,
     maskitoNumber,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
@@ -77,10 +77,7 @@ export default class RealWorldForm {
     });
 
     protected passwordMask: MaskitoOptions = {mask: /^\d*(?:[a-z]\d*)?$/i};
-
-    protected readonly transactionDateMask = maskitoDateOptionsGenerator({
-        mode: 'dd/mm/yyyy',
-    });
+    protected readonly transactionDateMask = maskitoDate({mode: 'dd/mm/yyyy'});
 
     protected readonly transactionAmountMask: MaskitoOptions = {
         ...MONEY_AMOUNT_MASK,

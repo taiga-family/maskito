@@ -46,7 +46,7 @@ export function maskitoDateRangeOptionsGenerator({
             createFullWidthToHalfWidthPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
-                dateSegmentSeparator: dateSeparator,
+                dateSeparator,
                 firstDateEndSeparator: rangeSeparator,
                 pseudoFirstDateEndSeparators: POSSIBLE_DATE_RANGE_SEPARATOR,
             }),
@@ -54,18 +54,18 @@ export function maskitoDateRangeOptionsGenerator({
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 rangeSeparator,
-                dateSegmentsSeparator: dateSeparator,
+                dateSeparator,
             }),
             createValidDatePreprocessor({
                 dateModeTemplate,
                 rangeSeparator,
-                dateSegmentsSeparator: dateSeparator,
+                dateSeparator,
             }),
         ],
         postprocessors: [
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
-                dateSegmentSeparator: dateSeparator,
+                dateSeparator,
                 splitFn: (value) => ({
                     dateStrings: parseDateRangeString(
                         value,
@@ -89,7 +89,7 @@ export function maskitoDateRangeOptionsGenerator({
                 max,
                 dateModeTemplate,
                 rangeSeparator,
-                dateSegmentSeparator: dateSeparator,
+                dateSeparator,
             }),
             createMinMaxRangeLengthPostprocessor({
                 dateModeTemplate,

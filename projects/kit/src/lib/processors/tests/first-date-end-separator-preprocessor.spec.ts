@@ -11,7 +11,7 @@ describe('FirstDateEndSeparatorPreprocessor', () => {
         const preprocessorFn = createFirstDateEndSeparatorPreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
             firstDateEndSeparator: ' ~ ',
-            dateSegmentSeparator: '.',
+            dateSeparator: '.',
             pseudoFirstDateEndSeparators: POSSIBLE_DATE_RANGE_SEPARATOR,
         });
         const preprocess = (value: string): string =>
@@ -66,7 +66,7 @@ describe('FirstDateEndSeparatorPreprocessor', () => {
         const preprocessorFn = createFirstDateEndSeparatorPreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
             firstDateEndSeparator: '_',
-            dateSegmentSeparator: '.',
+            dateSeparator: '.',
             pseudoFirstDateEndSeparators: POSSIBLE_DATE_TIME_SEPARATOR,
         });
         // eslint-disable-next-line sonarjs/no-identical-functions

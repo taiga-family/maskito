@@ -10,12 +10,12 @@ import {getFirstCompleteDate} from '../utils';
 export function createFirstDateEndSeparatorPreprocessor({
     dateModeTemplate,
     firstDateEndSeparator,
-    dateSegmentSeparator,
+    dateSeparator,
     pseudoFirstDateEndSeparators,
 }: {
     dateModeTemplate: string;
     firstDateEndSeparator: string;
-    dateSegmentSeparator: string;
+    dateSeparator: string;
     pseudoFirstDateEndSeparators: string[];
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
@@ -23,7 +23,7 @@ export function createFirstDateEndSeparatorPreprocessor({
         const [from, to] = selection;
         const firstCompleteDate = getFirstCompleteDate(value, dateModeTemplate);
         const pseudoSeparators = pseudoFirstDateEndSeparators.filter(
-            (x) => !firstDateEndSeparator.includes(x) && x !== dateSegmentSeparator,
+            (x) => !firstDateEndSeparator.includes(x) && x !== dateSeparator,
         );
         const pseudoSeparatorsRE = new RegExp(`[${pseudoSeparators.join('')}]`, 'gi');
         const newValue =

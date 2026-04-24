@@ -19,13 +19,13 @@ export function createMinMaxDatePostprocessor({
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     rangeSeparator = '',
-    dateSegmentSeparator = '.',
+    dateSeparator = '.',
 }: {
     dateModeTemplate: string;
     min?: Date;
     max?: Date;
     rangeSeparator?: string;
-    dateSegmentSeparator?: string;
+    dateSeparator?: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithRangeSeparator = rangeSeparator && value.endsWith(rangeSeparator);
@@ -42,9 +42,7 @@ export function createMinMaxDatePostprocessor({
                 const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
 
                 const fixedValue = toDateString(fixedDate, {dateMode: dateModeTemplate});
-                const tail = dateString.endsWith(dateSegmentSeparator)
-                    ? dateSegmentSeparator
-                    : '';
+                const tail = dateString.endsWith(dateSeparator) ? dateSeparator : '';
 
                 validatedValue += `${fixedValue}${tail}`;
                 continue;

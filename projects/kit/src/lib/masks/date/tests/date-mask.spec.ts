@@ -9,14 +9,14 @@ import {
     type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
-import {maskitoDateOptionsGenerator} from '@maskito/kit';
+import {maskitoDate} from '@maskito/kit';
 
 describe('Date (maskitoTransform)', () => {
     describe('[mode]="yyyy/mm/dd"', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoDateOptionsGenerator({
+            options = maskitoDate({
                 mode: 'yyyy/mm/dd',
                 separator: '/',
             });
