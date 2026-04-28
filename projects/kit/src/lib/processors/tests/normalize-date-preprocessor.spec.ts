@@ -7,7 +7,7 @@ describe('normalizeDatePreprocessor', () => {
     describe('Input-date-range', () => {
         const preprocessor = normalizeDatePreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
-            dateSegmentsSeparator: '.',
+            dateSeparator: '.',
             rangeSeparator: ' – ',
         });
 
@@ -37,7 +37,7 @@ describe('normalizeDatePreprocessor', () => {
     describe('Input-date long mode', () => {
         const preprocessor = normalizeDatePreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
-            dateSegmentsSeparator: '.',
+            dateSeparator: '.',
         });
 
         const check = getCheckFunction(preprocessor);
@@ -58,7 +58,7 @@ describe('normalizeDatePreprocessor', () => {
     describe('input-date short mode', () => {
         const preprocessor = normalizeDatePreprocessor({
             dateModeTemplate: 'mm/yy',
-            dateSegmentsSeparator: '/',
+            dateSeparator: '/',
         });
 
         const check = getCheckFunction(preprocessor);
@@ -79,7 +79,7 @@ describe('normalizeDatePreprocessor', () => {
     describe('input-date-time', () => {
         const preprocessor = normalizeDatePreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
-            dateSegmentsSeparator: '.',
+            dateSeparator: '.',
         });
         const check = getCheckFunction(preprocessor);
 

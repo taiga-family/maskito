@@ -1,3 +1,3 @@
-import {maskitoDateOptionsGenerator} from '@maskito/kit';
+import {maskitoDate} from '@maskito/kit';
 
-export default maskitoDateOptionsGenerator({mode: 'yyyy/mm/dd', separator: '/'});
+export default maskitoDate({mode: 'yyyy/mm/dd', separator: '/'});

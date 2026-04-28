@@ -63,7 +63,7 @@ export function maskitoDateTimeOptionsGenerator({
             createColonConvertPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
-                dateSegmentSeparator: dateSeparator,
+                dateSeparator,
                 firstDateEndSeparator: dateTimeSeparator,
                 pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
@@ -71,7 +71,7 @@ export function maskitoDateTimeOptionsGenerator({
             createMeridiemPreprocessor(timeMode),
             normalizeDatePreprocessor({
                 dateModeTemplate,
-                dateSegmentsSeparator: dateSeparator,
+                dateSeparator,
                 dateTimeSeparator,
             }),
             createInvalidTimeSegmentInsertionPreprocessor({
@@ -89,7 +89,7 @@ export function maskitoDateTimeOptionsGenerator({
             }),
             createValidDateTimePreprocessor({
                 dateModeTemplate,
-                dateSegmentsSeparator: dateSeparator,
+                dateSeparator,
                 dateTimeSeparator,
                 timeMode,
                 timeSegmentMaxValues,
@@ -99,7 +99,7 @@ export function maskitoDateTimeOptionsGenerator({
             createMeridiemPostprocessor(timeMode),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
-                dateSegmentSeparator: dateSeparator,
+                dateSeparator,
                 splitFn: (value) => {
                     const [dateString, timeString] = splitDateTimeString(
                         value,

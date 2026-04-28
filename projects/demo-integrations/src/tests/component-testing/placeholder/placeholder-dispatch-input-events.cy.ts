@@ -1,5 +1,5 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoDateOptionsGenerator, maskitoWithPlaceholder} from '@maskito/kit';
+import {maskitoDate, maskitoWithPlaceholder} from '@maskito/kit';
 import {createOutputSpy} from 'cypress/angular';
 
 import {TestInput} from '../utils';
@@ -87,7 +87,7 @@ describe('Placeholder | count number of dispatched input event', () => {
     });
 
     describe('With built-in Date mask (from @maskito/kit)', () => {
-        const dateOptions = maskitoDateOptionsGenerator({
+        const dateOptions = maskitoDate({
             mode: 'dd/mm/yyyy',
             separator: '/',
         });

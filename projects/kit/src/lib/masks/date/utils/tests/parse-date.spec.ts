@@ -1,5 +1,4 @@
-import type {MaskitoDateParams} from '../../date-params';
-import {maskitoParseDate} from '../parse-date';
+import {type MaskitoDateParams, maskitoParseDate} from '@maskito/kit';
 
 describe('maskitoParseDate', () => {
     describe('mode = mm/dd/yyyy, separator = default', () => {
@@ -190,6 +189,26 @@ describe('maskitoParseDate', () => {
             });
 
             expect(parsedDate?.getTime()).toBe(Date.parse('0000-12-25T00:00:00.000'));
+        });
+    });
+
+    describe('locale parameter', () => {
+        it('en-US locale automatically derives mm/dd/yyyy mode', () => {
+            const parsedDate = maskitoParseDate('04/27/2026', {locale: 'en-US'});
+
+            expect(parsedDate?.getTime()).toBe(Date.parse('2026-04-27T00:00:00.000'));
+        });
+
+        it('de-DE locale automatically derives dd/mm/yyyy mode with dot separator', () => {
+            const parsedDate = maskitoParseDate('27.04.2026', {locale: 'de-DE'});
+
+            expect(parsedDate?.getTime()).toBe(Date.parse('2026-04-27T00:00:00.000'));
+        });
+
+        it('ja-JP locale automatically derives yyyy/mm/dd mode with slash separator', () => {
+            const parsedDate = maskitoParseDate('2026/04/27', {locale: 'ja-JP'});
+
+            expect(parsedDate?.getTime()).toBe(Date.parse('2026-04-27T00:00:00.000'));
         });
     });
 

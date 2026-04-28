@@ -3,23 +3,21 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import {
-    type MaskitoDateMode,
-    maskitoDateOptionsGenerator,
-    type MaskitoDateParams,
-} from '@maskito/kit';
+import {maskitoDate, type MaskitoDateMode, type MaskitoDateParams} from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
+import {DateMaskDocExample3} from './examples/3-locale-date/component';
 
 @Component({
     selector: 'date-mask-doc',
     imports: [
         DateMaskDocExample1,
         DateMaskDocExample2,
+        DateMaskDocExample3,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -32,11 +30,21 @@ import {DateMaskDocExample2} from './examples/2-min-max/component';
     styleUrl: './date-mask-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DateMaskDocComponent implements Required<MaskitoDateParams> {
+export default class DateMaskDocComponent implements Omit<
+    Required<MaskitoDateParams>,
+    'locale'
+> {
     protected apiPageControl = new FormControl('');
 
     protected readonly maskitoParseStringifyDateDemo =
         import('./examples/maskito-parse-stringify-date-demo.md');
+
+    protected readonly localeDate: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-locale-date/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
 
     protected readonly dateLocalization: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
@@ -79,7 +87,7 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
     public separator: string = this.separatorOptions[0];
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
-    public maskitoOptions: MaskitoOptions = maskitoDateOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoDate(this);
 
     protected updateDate(): void {
         this.min = new Date(this.minStr);
@@ -88,6 +96,6 @@ export default class DateMaskDocComponent implements Required<MaskitoDateParams>
     }
 
     protected updateOptions(): void {
-        this.maskitoOptions = maskitoDateOptionsGenerator(this);
+        this.maskitoOptions = maskitoDate(this);
     }
 }

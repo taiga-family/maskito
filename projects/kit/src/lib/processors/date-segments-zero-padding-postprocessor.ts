@@ -6,12 +6,12 @@ import {padWithZeroesUntilValid, parseDateString, toDateString} from '../utils';
 
 export function createDateSegmentsZeroPaddingPostprocessor({
     dateModeTemplate,
-    dateSegmentSeparator,
+    dateSeparator,
     splitFn,
     uniteFn,
 }: {
     dateModeTemplate: string;
-    dateSegmentSeparator: string;
+    dateSeparator: string;
     splitFn: (value: string) => {dateStrings: string[]; restPart?: string};
     uniteFn: (validatedDateStrings: string[], initialValue: string) => string;
 }): MaskitoPostprocessor {
@@ -48,8 +48,8 @@ export function createDateSegmentsZeroPaddingPostprocessor({
         });
 
         const validatedValue = `${uniteFn(validatedDateStrings, value)}${
-            dateStrings[dateStrings.length - 1]?.endsWith(dateSegmentSeparator)
-                ? dateSegmentSeparator
+            dateStrings[dateStrings.length - 1]?.endsWith(dateSeparator)
+                ? dateSeparator
                 : ''
         }${restPart}`;
 
@@ -57,15 +57,15 @@ export function createDateSegmentsZeroPaddingPostprocessor({
             caretShift &&
             validatedValue.slice(
                 to + caretShift,
-                to + caretShift + dateSegmentSeparator.length,
-            ) === dateSegmentSeparator
+                to + caretShift + dateSeparator.length,
+            ) === dateSeparator
         ) {
             /**
              * If `caretShift` > 0, it means that time segment was padded with zero.
              * It is only possible if any character insertion happens.
-             * If caret is before `dateSegmentSeparator` => it should be moved after `dateSegmentSeparator`.
+             * If caret is before `dateSeparator` => it should be moved after `dateSeparator`.
              */
-            caretShift += dateSegmentSeparator.length;
+            caretShift += dateSeparator.length;
         }
 
         return {

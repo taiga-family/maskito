@@ -4,17 +4,17 @@ import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
 
 export function createValidDatePreprocessor({
     dateModeTemplate,
-    dateSegmentsSeparator,
+    dateSeparator,
     rangeSeparator = '',
 }: {
     dateModeTemplate: string;
-    dateSegmentsSeparator: string;
+    dateSeparator: string;
     rangeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
 
-        if (data === dateSegmentsSeparator) {
+        if (data === dateSeparator) {
             return {
                 elementState,
                 data: selection[0] === value.length ? data : '',
@@ -27,7 +27,7 @@ export function createValidDatePreprocessor({
 
         const newCharacters = data.replaceAll(
             new RegExp(
-                String.raw`[^\d${escapeRegExp(dateSegmentsSeparator)}${rangeSeparator}]`,
+                String.raw`[^\d${escapeRegExp(dateSeparator)}${rangeSeparator}]`,
                 'g',
             ),
             '',
@@ -50,7 +50,7 @@ export function createValidDatePreprocessor({
             const {validatedDateString, updatedSelection} = validateDateString({
                 dateString,
                 dateModeTemplate,
-                dateSegmentsSeparator,
+                dateSeparator,
                 offset: validatedValue.length,
                 selection: [from, to],
             });
@@ -73,9 +73,9 @@ export function createValidDatePreprocessor({
             elementState: {
                 selection,
                 value: `${validatedValue.slice(0, from)}${newData
-                    .split(dateSegmentsSeparator)
+                    .split(dateSeparator)
                     .map((segment) => '0'.repeat(segment.length))
-                    .join(dateSegmentsSeparator)}${validatedValue.slice(to)}`,
+                    .join(dateSeparator)}${validatedValue.slice(to)}`,
             },
             data: newData,
         };

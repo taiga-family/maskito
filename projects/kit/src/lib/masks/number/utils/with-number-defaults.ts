@@ -6,7 +6,7 @@ import {
 } from '../../../constants';
 import {type MaskitoNumberParams} from '../number-params';
 import {DEFAULT_THOUSAND_SEPARATOR_PATTERN} from './default-thousand-separator-pattern';
-import {getLocaleNumberSeparators} from './get-locale-number-separators';
+import {getLocaleNumberParams} from './get-locale-number-params';
 import {validateDecimalPseudoSeparators} from './validate-decimal-pseudo-separators';
 
 export function withNumberDefaults({
@@ -32,7 +32,7 @@ export function withNumberDefaults({
         maximumFractionDigits = 0,
         minimumFractionDigits = 0,
         negativePattern = 'prefixFirst',
-    } = locale ? {...getLocaleNumberSeparators(locale), ...params} : params;
+    } = locale ? {...getLocaleNumberParams(locale), ...params} : params;
 
     const decimalPseudoSeparators = validateDecimalPseudoSeparators({
         decimalSeparator,

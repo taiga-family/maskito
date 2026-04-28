@@ -1,12 +1,12 @@
+import type {MaskitoNumberParams} from '../number-params';
 import {DEFAULT_THOUSAND_SEPARATOR_PATTERN} from './default-thousand-separator-pattern';
 
-interface LocaleNumberSeparators {
-    thousandSeparator: string;
-    decimalSeparator: string;
-    thousandSeparatorPattern: (digits: string) => readonly string[];
-}
-
-export function getLocaleNumberSeparators(locale: string): LocaleNumberSeparators {
+export function getLocaleNumberParams(
+    locale: string,
+): Pick<
+    Required<MaskitoNumberParams>,
+    'decimalSeparator' | 'thousandSeparator' | 'thousandSeparatorPattern'
+> {
     const separatorParts = new Intl.NumberFormat(locale, {
         minimumFractionDigits: 1,
         useGrouping: true,

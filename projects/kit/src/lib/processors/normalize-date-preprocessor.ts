@@ -4,17 +4,17 @@ import {DATE_TIME_SEPARATOR} from '../masks/date-time/constants';
 
 export function normalizeDatePreprocessor({
     dateModeTemplate,
-    dateSegmentsSeparator,
+    dateSeparator,
     rangeSeparator = '',
     dateTimeSeparator = DATE_TIME_SEPARATOR,
 }: {
     dateModeTemplate: string;
-    dateSegmentsSeparator: string;
+    dateSeparator: string;
     rangeSeparator?: string;
     dateTimeSeparator?: string;
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
-        const templateSegments = dateModeTemplate.split(dateSegmentsSeparator);
+        const templateSegments = dateModeTemplate.split(dateSeparator);
         const includesTime = data.includes(dateTimeSeparator);
         const dateSegments = data
             .slice(0, includesTime ? data.indexOf(dateTimeSeparator) : Infinity)
@@ -37,7 +37,7 @@ export function normalizeDatePreprocessor({
 
             dates[dateIndex] += isLastDateSegment
                 ? segment
-                : `${segment.padStart(template.length, '0')}${dateSegmentsSeparator}`;
+                : `${segment.padStart(template.length, '0')}${dateSeparator}`;
 
             return dates;
         }, []);

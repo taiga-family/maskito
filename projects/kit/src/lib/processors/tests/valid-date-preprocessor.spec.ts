@@ -6,7 +6,7 @@ describe('createValidDatePreprocessor', () => {
     describe('Paste/Drop of many characters', () => {
         const preprocessor = createValidDatePreprocessor({
             dateModeTemplate: 'dd.mm.yyyy',
-            dateSegmentsSeparator: '.',
+            dateSeparator: '.',
             rangeSeparator: ' – ',
         });
         const EMPTY_INPUT = {value: '', selection: [0, 0] as [number, number]};
@@ -46,7 +46,7 @@ describe('createValidDatePreprocessor', () => {
         const processor = createValidDatePreprocessor({
             rangeSeparator,
             dateModeTemplate: 'dd.mm.yyyy',
-            dateSegmentsSeparator: '.',
+            dateSeparator: '.',
         });
 
         const initialState = {

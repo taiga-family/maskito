@@ -1,5 +1,5 @@
 import {
-    maskitoDateOptionsGenerator,
+    maskitoDate,
     maskitoDateRangeOptionsGenerator,
     maskitoDateTimeOptionsGenerator,
 } from '@maskito/kit';
@@ -12,7 +12,7 @@ describe('Multi character date segment separator', () => {
     [
         {
             title: 'Date',
-            maskitoOptions: maskitoDateOptionsGenerator({
+            maskitoOptions: maskitoDate({
                 mode: 'dd/mm/yyyy',
                 separator: multiCharacterSeparator,
             }),

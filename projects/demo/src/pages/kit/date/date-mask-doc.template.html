@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoDateOptionsGenerator</code>
+        <code>maskitoDate</code>
         to create a mask for date input.
 
         <tui-notification
@@ -32,6 +32,7 @@
         <tui-doc-example
             id="date-localization"
             heading="Date localization"
+            class="tui-space_top-4"
             [content]="dateLocalization"
             [description]="dateLocalizationDescription"
         >
@@ -44,6 +45,29 @@
             </ng-template>
 
             <date-mask-doc-example-1 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="locale"
+            heading="Locale"
+            [content]="localeDate"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use
+                <code>locale</code>
+                option of
+                <code>maskitoDate</code>
+                to automatically derive
+                <code>mode</code>
+                and
+                <code>separator</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <date-mask-doc-example-3 />
         </tui-doc-example>
 
         <tui-doc-example
