@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npm run typecheck
 
   cspell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npm run cspell -- --no-progress
 
   prettier:
@@ -24,10 +24,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
-      - uses: taiga-family/ci/actions/auto/push@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/auto/push@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -37,10 +37,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/auto/push@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -50,10 +50,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/ci/actions/auto/push@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/auto/push@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 

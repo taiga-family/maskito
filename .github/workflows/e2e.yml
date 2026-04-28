@@ -16,8 +16,8 @@ jobs:
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
@@ -40,9 +40,9 @@ jobs:
     name: Kit / ${{ matrix.project }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/cypress@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
 
       - name: Download demo build from cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
@@ -66,9 +66,9 @@ jobs:
     name: Recipes
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/cypress@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
 
       - name: Download demo build from cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
@@ -90,9 +90,9 @@ jobs:
     name: Others
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/cypress@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
 
       - name: Download demo build from cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
@@ -117,9 +117,9 @@ jobs:
     name: Component Testing
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: taiga-family/ci/actions/setup/variables@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/node@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
-      - uses: taiga-family/ci/actions/setup/cypress@ef883fc6417f920333ffa8b903683d7d6b914615 # v1.201.0
+      - uses: taiga-family/ci/actions/setup/variables@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/node@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
+      - uses: taiga-family/ci/actions/setup/cypress@f6c5ae70c94321b87f6fd2ff9bd3a94b60e98828 # v1.203.0
 
       - name: Run Cypress tests
         run:
