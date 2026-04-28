@@ -1,6 +1,6 @@
-import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
+import {maskitoDateRange} from '@maskito/kit';
 
-export default maskitoDateRangeOptionsGenerator({
+export default maskitoDateRange({
     mode: 'mm/dd/yyyy',
     dateSeparator: '/',
 });

@@ -10,29 +10,22 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import type {MaskitoDateMode, MaskitoDateSegments} from '../../types';
 import {parseDateRangeString} from '../../utils';
+import {getLocaleDateParams} from '../date/utils/get-locale-date-params';
 import {POSSIBLE_DATE_RANGE_SEPARATOR} from './constants';
+import type {MaskitoDateRangeParams} from './date-range-params';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
 import {createSwapDatesPostprocessor} from './processors/swap-dates-postprocessor';
 
-export function maskitoDateRangeOptionsGenerator({
-    mode,
-    min,
-    max,
-    minLength,
-    maxLength,
-    dateSeparator = '.',
-    rangeSeparator = `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`,
-}: {
-    mode: MaskitoDateMode;
-    min?: Date;
-    max?: Date;
-    minLength?: Partial<MaskitoDateSegments<number>>;
-    maxLength?: Partial<MaskitoDateSegments<number>>;
-    dateSeparator?: string;
-    rangeSeparator?: string;
-}): Required<MaskitoOptions> {
+export function maskitoDateRange(
+    {locale = '', ...params}: MaskitoDateRangeParams = {mode: 'dd/mm/yyyy'},
+): Required<MaskitoOptions> {
+    const localeParams = locale ? getLocaleDateParams(locale) : null;
+    const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
+    const dateSeparator = params.dateSeparator ?? localeParams?.separator ?? '.';
+    const rangeSeparator =
+        params.rangeSeparator ??
+        `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
     const dateModeTemplate = mode.split('/').join(dateSeparator);
     const dateMask = Array.from(dateModeTemplate).map((char) =>
         dateSeparator.includes(char) ? char : /\d/,
@@ -85,17 +78,14 @@ export function maskitoDateRangeOptionsGenerator({
                     ),
             }),
             createMinMaxDatePostprocessor({
-                min,
-                max,
+                ...params,
                 dateModeTemplate,
                 rangeSeparator,
                 dateSeparator,
             }),
             createMinMaxRangeLengthPostprocessor({
+                ...params,
                 dateModeTemplate,
-                minLength,
-                maxLength,
-                max,
                 rangeSeparator,
             }),
             createSwapDatesPostprocessor({
@@ -105,3 +95,10 @@ export function maskitoDateRangeOptionsGenerator({
         ],
     };
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoDateRange} instead.
+     */
+    maskitoDateRange as maskitoDateRangeOptionsGenerator,
+};
