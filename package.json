@@ -110,7 +110,7 @@
         "@nx/react": "22.7.0-beta.16",
         "@nx/rollup": "22.7.0-beta.16",
         "@nx/workspace": "22.7.0-beta.16",
-        "@taiga-ui/configs": "0.488.0",
+        "@taiga-ui/configs": "0.489.0",
         "@tinkoff/eslint-config": "5.2.0",
         "@tinkoff/eslint-config-react": "5.2.0",
         "@types/highlight.js": "10.1.0",
