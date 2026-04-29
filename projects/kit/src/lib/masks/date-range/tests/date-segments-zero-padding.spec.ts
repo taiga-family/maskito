@@ -4,14 +4,14 @@ import {
     type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
-import {maskitoDateRangeOptionsGenerator} from '@maskito/kit';
+import {maskitoDateRange} from '@maskito/kit';
 
 describe('DateRange (maskitoTransform) | Date segments zero padding', () => {
     describe('[mode]="yyyy/mm/dd"', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoDateRangeOptionsGenerator({
+            options = maskitoDateRange({
                 mode: 'yyyy/mm/dd',
                 dateSeparator: '/',
                 rangeSeparator: '-',

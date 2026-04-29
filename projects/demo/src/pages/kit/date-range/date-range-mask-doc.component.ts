@@ -5,7 +5,8 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {
     type MaskitoDateMode,
-    maskitoDateRangeOptionsGenerator,
+    maskitoDateRange,
+    type MaskitoDateRangeParams,
     type MaskitoDateSegments,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
@@ -17,10 +18,7 @@ import {DateRangeMaskDocExample1} from './examples/1-date-localization/component
 import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
 import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
 import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
-
-type GeneratorOptions = Required<
-    NonNullable<Parameters<typeof maskitoDateRangeOptionsGenerator>[0]>
->;
+import {DateRangeMaskDocExample5} from './examples/5-locale-date-range/component';
 
 @Component({
     selector: 'date-range-mask-doc',
@@ -29,6 +27,7 @@ type GeneratorOptions = Required<
         DateRangeMaskDocExample2,
         DateRangeMaskDocExample3,
         DateRangeMaskDocExample4,
+        DateRangeMaskDocExample5,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -39,7 +38,10 @@ type GeneratorOptions = Required<
     templateUrl: './date-range-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DateRangeMaskDocComponent implements GeneratorOptions {
+export default class DateRangeMaskDocComponent implements Omit<
+    Required<MaskitoDateRangeParams>,
+    'locale'
+> {
     protected readonly dateLocalizationExample1: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/1-date-localization/mask.ts?raw',
@@ -64,6 +66,13 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
     protected readonly customRangeExample4: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/4-range-separator/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeExample5: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/5-locale-date-range/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
@@ -109,7 +118,7 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
     public maxLength: Partial<MaskitoDateSegments<number>> = {};
     public dateSeparator = '.';
     public rangeSeparator = ' – ';
-    public maskitoOptions: MaskitoOptions = maskitoDateRangeOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoDateRange(this);
 
     @tuiPure
     protected getPlaceholder(
@@ -123,7 +132,7 @@ export default class DateRangeMaskDocComponent implements GeneratorOptions {
     }
 
     protected updateOptions(): void {
-        this.maskitoOptions = maskitoDateRangeOptionsGenerator(this);
+        this.maskitoOptions = maskitoDateRange(this);
     }
 
     protected updateDate(): void {

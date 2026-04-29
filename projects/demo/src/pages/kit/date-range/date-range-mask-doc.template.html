@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoDateRangeOptionsGenerator</code>
+        <code>maskitoDateRange</code>
         to create a mask to input a range of dates.
 
         <tui-doc-example
@@ -76,6 +76,24 @@
                 parameter to customize separator between dates of the date range.
             </ng-template>
             <date-range-mask-doc-example-4 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            id="locale"
+            heading="Locale"
+            [content]="localeExample5"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Pass a BCP 47
+                <code>locale</code>
+                string to automatically infer
+                <code>mode</code>
+                and
+                <code>dateSeparator</code>
+                from the locale.
+            </ng-template>
+            <date-range-mask-doc-example-5 />
         </tui-doc-example>
     </ng-template>
 
