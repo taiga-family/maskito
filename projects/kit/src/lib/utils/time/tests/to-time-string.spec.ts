@@ -3,162 +3,138 @@ import {describe, expect, it} from '@jest/globals';
 import {toTimeString} from '../to-time-string';
 
 describe('toTimeString', () => {
-    describe('HH', () => {
-        it('21', () => {
-            expect(toTimeString({hours: '21'})).toBe('21');
+    describe('default separators from mode', () => {
+        it('is HH:MM with both segments', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30'},
+                    {mode: 'HH:MM', separators: []},
+                ),
+            ).toBe('14:30');
         });
 
-        it('1', () => {
-            expect(toTimeString({hours: '1'})).toBe('1');
+        it('is HH:MM:SS with all segments', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30', seconds: '45'},
+                    {mode: 'HH:MM:SS', separators: []},
+                ),
+            ).toBe('14:30:45');
         });
-    });
 
-    describe('HH:MM', () => {
-        it('21:59', () => {
-            expect(toTimeString({hours: '21', minutes: '59'})).toBe('21:59');
+        it('is HH:MM:SS.MSS with all segments', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30', seconds: '45', milliseconds: '678'},
+                    {mode: 'HH:MM:SS.MSS', separators: []},
+                ),
+            ).toBe('14:30:45.678');
         });
 
-        it('12:4', () => {
-            expect(toTimeString({hours: '12', minutes: '4'})).toBe('12:4');
+        it('is MM:SS mode (no hours)', () => {
+            expect(
+                toTimeString(
+                    {minutes: '30', seconds: '45'},
+                    {mode: 'MM:SS', separators: []},
+                ),
+            ).toBe('30:45');
         });
-    });
 
-    describe('HH:MM:SS', () => {
-        it('21:59:23', () => {
-            expect(toTimeString({hours: '21', minutes: '59', seconds: '23'})).toBe(
-                '21:59:23',
+        it('is SS.MSS mode', () => {
+            expect(
+                toTimeString(
+                    {seconds: '45', milliseconds: '678'},
+                    {mode: 'SS.MSS', separators: []},
+                ),
+            ).toBe('45.678');
+        });
+
+        it('is HH AA mode strips AA from output', () => {
+            expect(toTimeString({hours: '02'}, {mode: 'HH AA', separators: []})).toBe(
+                '02',
             );
         });
 
-        it('01:23:5', () => {
-            expect(toTimeString({hours: '01', minutes: '23', seconds: '5'})).toBe(
-                '01:23:5',
+        it('is HH:MM AA mode strips AA from output', () => {
+            expect(
+                toTimeString(
+                    {hours: '02', minutes: '30'},
+                    {mode: 'HH:MM AA', separators: []},
+                ),
+            ).toBe('02:30');
+        });
+    });
+
+    describe('custom separators', () => {
+        it('dot separator for HH:MM', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30'},
+                    {mode: 'HH:MM', separators: ['.']},
+                ),
+            ).toBe('14.30');
+        });
+
+        it('h separator for HH:MM', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30'},
+                    {mode: 'HH:MM', separators: ['h']},
+                ),
+            ).toBe('14h30');
+        });
+
+        it('fr-CA style " h " and " min " for HH:MM:SS', () => {
+            expect(
+                toTimeString(
+                    {hours: '18', minutes: '05', seconds: '05'},
+                    {mode: 'HH:MM:SS', separators: [' h ', ' min ']},
+                ),
+            ).toBe('18 h 05 min 05');
+        });
+
+        it('fr-CA style with comma for milliseconds in HH:MM:SS.MSS', () => {
+            expect(
+                toTimeString(
+                    {hours: '18', minutes: '05', seconds: '05', milliseconds: '766'},
+                    {mode: 'HH:MM:SS.MSS', separators: [' h ', ' min ', ',']},
+                ),
+            ).toBe('18 h 05 min 05,766');
+        });
+
+        it('single separator repeats for all positions', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30', seconds: '45'},
+                    {mode: 'HH:MM:SS', separators: ['.']},
+                ),
+            ).toBe('14.30.45');
+        });
+    });
+
+    describe('partial segments (leading/trailing separator trimming)', () => {
+        it('trims trailing separator when seconds are absent', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30'},
+                    {mode: 'HH:MM:SS', separators: []},
+                ),
+            ).toBe('14:30');
+        });
+
+        it('trims leading separator when hours are absent in MM:SS mode', () => {
+            expect(toTimeString({minutes: '05'}, {mode: 'MM:SS', separators: []})).toBe(
+                '05',
             );
         });
-    });
 
-    describe('HH:MM:SS.MSS', () => {
-        it('21:59:23.111', () => {
+        it('trims fr-CA separator when minutes segment is absent', () => {
             expect(
-                toTimeString({
-                    hours: '21',
-                    minutes: '59',
-                    seconds: '23',
-                    milliseconds: '111',
-                }),
-            ).toBe('21:59:23.111');
-        });
-
-        it('01:23:52.1', () => {
-            expect(
-                toTimeString({
-                    hours: '01',
-                    minutes: '23',
-                    seconds: '52',
-                    milliseconds: '1',
-                }),
-            ).toBe('01:23:52.1');
-        });
-
-        it('13:13:13.15', () => {
-            expect(
-                toTimeString({
-                    hours: '13',
-                    minutes: '13',
-                    seconds: '13',
-                    milliseconds: '15',
-                }),
-            ).toBe('13:13:13.15');
-        });
-    });
-
-    describe('MM:SS.MSS', () => {
-        it('12:12.111', () => {
-            expect(
-                toTimeString({
-                    minutes: '12',
-                    seconds: '12',
-                    milliseconds: '111',
-                }),
-            ).toBe('12:12.111');
-        });
-
-        it('23:01.9', () => {
-            expect(
-                toTimeString({
-                    minutes: '23',
-                    seconds: '01',
-                    milliseconds: '9',
-                }),
-            ).toBe('23:01.9');
-        });
-
-        it('00:02.91', () => {
-            expect(
-                toTimeString({
-                    minutes: '00',
-                    seconds: '02',
-                    milliseconds: '91',
-                }),
-            ).toBe('00:02.91');
-        });
-    });
-
-    describe('SS.MSS', () => {
-        it('12.111', () => {
-            expect(
-                toTimeString({
-                    seconds: '12',
-                    milliseconds: '111',
-                }),
-            ).toBe('12.111');
-        });
-
-        it('01.9', () => {
-            expect(
-                toTimeString({
-                    seconds: '01',
-                    milliseconds: '9',
-                }),
-            ).toBe('01.9');
-        });
-
-        it('02.91', () => {
-            expect(
-                toTimeString({
-                    seconds: '02',
-                    milliseconds: '91',
-                }),
-            ).toBe('02.91');
-        });
-    });
-
-    describe('MM:SS', () => {
-        it('12:11', () => {
-            expect(
-                toTimeString({
-                    minutes: '12',
-                    seconds: '11',
-                }),
-            ).toBe('12:11');
-        });
-
-        it('01:09', () => {
-            expect(
-                toTimeString({
-                    minutes: '01',
-                    seconds: '09',
-                }),
-            ).toBe('01:09');
-        });
-
-        it('02:55', () => {
-            expect(
-                toTimeString({
-                    minutes: '02',
-                    seconds: '55',
-                }),
-            ).toBe('02:55');
+                toTimeString(
+                    {hours: '14'},
+                    {mode: 'HH:MM:SS', separators: [' h ', ' min ']},
+                ),
+            ).toBe('14');
         });
     });
 });

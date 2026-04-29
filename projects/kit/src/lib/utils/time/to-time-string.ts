@@ -1,15 +1,26 @@
+import type {MaskitoTimeParams} from '@maskito/kit';
+
 import type {MaskitoTimeSegments} from '../../types';
 
-const LEADING_NON_DIGITS = /^\D*/;
-const TRAILING_NON_DIGITS = /\D*$/;
+export function toTimeString(
+    segments: Partial<MaskitoTimeSegments>,
+    {mode, separators = []}: Pick<MaskitoTimeParams, 'mode' | 'separators'>,
+): string {
+    let separatorIndex = 0;
 
-export function toTimeString({
-    hours = '',
-    minutes = '',
-    seconds = '',
-    milliseconds = '',
-}: Partial<MaskitoTimeSegments>): string {
-    return `${hours}:${minutes}:${seconds}.${milliseconds}`
-        .replace(LEADING_NON_DIGITS, '')
-        .replace(TRAILING_NON_DIGITS, '');
+    const modeTemplate = mode
+        .replace(' AA', '')
+        .replaceAll(
+            /[:.]/g,
+            (char) =>
+                separators[separatorIndex++] ?? separators[separators.length - 1] ?? char,
+        );
+
+    return modeTemplate
+        .replaceAll(/H+/g, segments.hours ?? '')
+        .replaceAll('MSS', segments.milliseconds ?? '')
+        .replaceAll(/M+/g, segments.minutes ?? '')
+        .replaceAll(/S+/g, segments.seconds ?? '')
+        .replace(/^\D*/, '')
+        .replace(/\D*$/, '');
 }

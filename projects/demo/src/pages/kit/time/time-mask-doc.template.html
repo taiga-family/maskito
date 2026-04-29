@@ -134,6 +134,22 @@
             </ng-template>
             <time-mask-doc-example-5 />
         </tui-doc-example>
+
+        <tui-doc-example
+            id="separator"
+            heading="Custom separator"
+            [content]="separatorExample6"
+            [description]="separatorDescription"
+        >
+            <ng-template #separatorDescription>
+                Use
+                <code>separator</code>
+                property to customize the character between time segments. Default is
+                <code>[':', ':', '.']</code>
+                .
+            </ng-template>
+            <time-mask-doc-example-6 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -164,6 +180,27 @@
                 (documentationPropertyValueChange)="updateOptions()"
             >
                 Time format mode
+            </ng-template>
+            <ng-template
+                documentationPropertyMode="input"
+                documentationPropertyName="separators"
+                documentationPropertyType="ReadonlyArray<string>"
+                [documentationPropertyValues]="separatorOptions"
+                [(documentationPropertyValue)]="separators"
+                (documentationPropertyValueChange)="updateOptions()"
+            >
+                Separators between time segments (left to right). If shorter than the number of positions in the mode,
+                remaining positions use the canonical separators from the mode (
+                <code>':'</code>
+                or
+                <code>'.'</code>
+                ).
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>[]</code>
+                    (uses canonical separators from mode)
+                </p>
             </ng-template>
             <ng-template
                 documentationPropertyMode="input"
