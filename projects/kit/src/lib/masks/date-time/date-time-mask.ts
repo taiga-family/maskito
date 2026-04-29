@@ -20,7 +20,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import type {MaskitoTimeSegments} from '../../types';
-import {createTimeMaskExpression} from '../../utils/time';
+import {createTimeMaskExpression, resolveSeparators} from '../../utils/time';
 import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
@@ -55,7 +55,10 @@ export function maskitoDateTimeOptionsGenerator({
                 dateSeparator.includes(char) ? char : /\d/,
             ),
             ...dateTimeSeparator.split(''),
-            ...createTimeMaskExpression(timeMode),
+            ...createTimeMaskExpression({
+                mode: timeMode,
+                separators: resolveSeparators(timeMode),
+            }),
         ],
         overwriteMode: 'replace',
         preprocessors: [

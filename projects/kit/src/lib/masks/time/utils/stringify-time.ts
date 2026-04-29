@@ -1,6 +1,6 @@
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
 import type {MaskitoTimeSegments} from '../../../types';
-import {padStartTimeSegments} from '../../../utils/time';
+import {padStartTimeSegments, resolveSeparators} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-params';
 
 /**
@@ -11,7 +11,7 @@ import type {MaskitoTimeParams} from '../time-params';
  */
 export function maskitoStringifyTime(
     milliseconds: number,
-    {mode, timeSegmentMaxValues = {}}: MaskitoTimeParams,
+    {mode, separators = [], timeSegmentMaxValues = {}}: MaskitoTimeParams,
 ): string {
     const maxValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
@@ -42,7 +42,19 @@ export function maskitoStringifyTime(
         milliseconds,
     });
 
-    return mode
+    const resolvedSeparators = resolveSeparators(mode, separators);
+    let sepIdx = 0;
+    const modeWithSeparators = Array.from(mode)
+        .map((char) => {
+            if (char === ':' || char === '.') {
+                return resolvedSeparators[sepIdx++] ?? char;
+            }
+
+            return char;
+        })
+        .join('');
+
+    return modeWithSeparators
         .replaceAll(/H+/g, result.hours)
         .replaceAll('MSS', result.milliseconds)
         .replaceAll(/M+/g, result.minutes)

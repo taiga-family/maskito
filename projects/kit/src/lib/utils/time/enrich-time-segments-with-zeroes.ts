@@ -1,4 +1,4 @@
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../constants';
 import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
 import {escapeRegExp} from '../escape-reg-exp';
 import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
@@ -6,9 +6,26 @@ import {padStartTimeSegments} from './pad-start-time-segments';
 import {parseTimeString} from './parse-time-string';
 import {toTimeString} from './to-time-string';
 
-const TRAILING_TIME_SEGMENT_SEPARATOR_REG = new RegExp(
-    `[${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]$`,
-);
+const ALL_SEGMENT_NAMES = new Set(['HH', 'MM', 'MSS', 'SS']);
+
+function toFullSlotSeparators(
+    mode: MaskitoTimeMode,
+    separators: readonly string[],
+): readonly [string, string, string] {
+    const modeSegments = mode.split(/\W/).filter((s) => ALL_SEGMENT_NAMES.has(s));
+    const hasHH = modeSegments.includes('HH');
+    const hasMM = modeSegments.includes('MM');
+    const hasSS = modeSegments.includes('SS');
+    const hasMSS = modeSegments.includes('MSS');
+
+    let sepIdx = 0;
+
+    return [
+        hasHH && hasMM ? (separators[sepIdx++] ?? ':') : '',
+        hasMM && hasSS ? (separators[sepIdx++] ?? ':') : '',
+        hasSS && hasMSS ? (separators[sepIdx++] ?? '.') : '',
+    ] as const;
+}
 
 /**
  * Pads invalid time segment with zero to make it valid.
@@ -20,11 +37,17 @@ export function enrichTimeSegmentsWithZeroes(
     {
         mode,
         timeSegmentMaxValues = DEFAULT_TIME_SEGMENT_MAX_VALUES,
+        separators = [],
     }: {
         mode: MaskitoTimeMode;
         timeSegmentMaxValues?: MaskitoTimeSegments<number>;
+        separators?: readonly string[];
     },
 ): {value: string; selection: readonly [number, number]} {
+    const uniqueSeparatorChars = [
+        ...new Set(separators.flatMap((sep) => Array.from(sep))),
+    ].map(escapeRegExp);
+
     const [from, to] = selection;
     const parsedTime = parseTimeString(value, mode);
     const possibleTimeSegments = Object.entries(parsedTime) as Array<
@@ -50,7 +73,8 @@ export function enrichTimeSegmentsWithZeroes(
 
     const [leadingNonDigitCharacters = ''] = value.match(/^\D+(?=\d)/g) || []; // prefix
     const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || []; // trailing segment separators / meridiem characters / postfix
-    const validatedTimeString = `${leadingNonDigitCharacters}${toTimeString(validatedTimeSegments)}${trailingNonDigitCharacters}`;
+    const fullSlotSeps = toFullSlotSeparators(mode, separators);
+    const validatedTimeString = `${leadingNonDigitCharacters}${toTimeString(validatedTimeSegments, fullSlotSeps)}${trailingNonDigitCharacters}`;
 
     const addedTimeSeparators = Math.max(
         validatedTimeString.length - value.length - paddedZeroes,
@@ -60,14 +84,19 @@ export function enrichTimeSegmentsWithZeroes(
     let newFrom = from + paddedZeroes + addedTimeSeparators;
     let newTo = to + paddedZeroes + addedTimeSeparators;
 
-    if (
-        newFrom === newTo &&
-        paddedZeroes &&
-        // if next character after cursor is time segment separator
-        validatedTimeString.slice(0, newTo + 1).match(TRAILING_TIME_SEGMENT_SEPARATOR_REG)
-    ) {
-        newFrom++;
-        newTo++;
+    if (newFrom === newTo && paddedZeroes && uniqueSeparatorChars.length > 0) {
+        const trailingTimeSegmentSeparatorReg = new RegExp(
+            `[${uniqueSeparatorChars.join('')}]$`,
+        );
+
+        const cursorIsRightBeforeSeparator = validatedTimeString
+            .slice(0, newTo + 1)
+            .match(trailingTimeSegmentSeparatorReg);
+
+        if (cursorIsRightBeforeSeparator) {
+            newFrom++;
+            newTo++;
+        }
     }
 
     return {

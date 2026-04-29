@@ -19,11 +19,16 @@ import {
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
 import type {MaskitoTimeSegments} from '../../types';
-import {createTimeMaskExpression, enrichTimeSegmentsWithZeroes} from '../../utils/time';
+import {
+    createTimeMaskExpression,
+    enrichTimeSegmentsWithZeroes,
+    resolveSeparators,
+} from '../../utils/time';
 import type {MaskitoTimeParams} from './time-params';
 
 export function maskitoTimeOptionsGenerator({
     mode,
+    separators = [],
     timeSegmentMaxValues = {},
     timeSegmentMinValues = {},
     step = 0,
@@ -41,7 +46,11 @@ export function maskitoTimeOptionsGenerator({
         ...(hasMeridiem ? {hours: 1} : {}),
         ...timeSegmentMinValues,
     };
-    const maskExpression = [...prefix, ...createTimeMaskExpression(mode)];
+    const resolvedSeparators = resolveSeparators(mode, separators);
+    const maskExpression = [
+        ...prefix,
+        ...createTimeMaskExpression({mode, separators: resolvedSeparators}),
+    ];
 
     return {
         mask: postfix
@@ -64,6 +73,7 @@ export function maskitoTimeOptionsGenerator({
                 enrichTimeSegmentsWithZeroes(elementState, {
                     mode,
                     timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+                    separators: resolvedSeparators,
                 }),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
