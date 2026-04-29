@@ -1,1 +1,1 @@
-export const TIME_FIXED_CHARACTERS = [':', '.'];
+export const TIME_FIXED_CHARACTERS: readonly string[] = [':', '.'];
