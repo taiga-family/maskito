@@ -98,7 +98,7 @@
         "@angular-devkit/core": "19.2.22",
         "@angular-devkit/schematics": "19.2.22",
         "@angular/build": "19.2.22",
-        "@angular/cli": "19.2.22",
+        "@angular/cli": "19.2.24",
         "@angular/compiler-cli": "19.2.20",
         "@angular/core": "19.2.20",
         "@angular/platform-browser-dynamic": "19.2.20",
