@@ -34,6 +34,7 @@ export function maskitoStringifyDateTime(
                 validatedDate.getDate(),
             ),
         );
+
     const timeString = maskitoStringifyTime(extractedTime, {mode: timeMode});
 
     return `${dateString}${dateTimeSeparator}${timeString}`;

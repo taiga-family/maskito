@@ -21,7 +21,6 @@ export function maskitoParseTime(
     const msInSecond = maxValues.milliseconds + 1;
     const msInMinute = (maxValues.seconds + 1) * msInSecond;
     const msInHour = (maxValues.minutes + 1) * msInMinute;
-
     const parsedTime = padEndTimeSegments(parseTimeString(maskedTime, mode));
     let hours = Number(parsedTime.hours ?? '');
 

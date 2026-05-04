@@ -2,6 +2,7 @@ import {CHAR_HYPHEN} from '../../../constants';
 import {toNumberParts} from './number-parts';
 
 const LOCALE: Intl.Locale[] = [];
+
 const DEFAULT = {
     minusSign: CHAR_HYPHEN,
     minusPseudoSigns: [],
@@ -54,7 +55,6 @@ export function stringifyNumberWithoutExp(value: bigint | number): string {
     const digits = `${integerPart}${decimalPart}`;
     const shift = Math.abs(Number(exponent));
     const totalZeros = shift - integerPart.length;
-
     let result: string;
 
     if (totalZeros >= 0) {

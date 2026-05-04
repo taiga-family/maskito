@@ -9,9 +9,11 @@ export function splitDateTimeString(
         NON_DIGIT_PLACEHOLDER_RE,
         '',
     ).length;
+
     const [date = ''] =
         new RegExp(String.raw`(\d[^\d]*){0,${dateDigitsCount - 1}}\d?`).exec(dateTime) ||
         [];
+
     const [dateTimeSeparator = ''] =
         LEADING_NON_DIGIT_RE.exec(dateTime.slice(date.length)) || [];
 

@@ -15,7 +15,6 @@ export const POSSIBLE_DATE_RANGE_SEPARATOR = [
 ];
 
 export const MIN_DAY = 1;
-
 export const MONTHS_IN_YEAR = 12;
 
 export const MonthNumber = {

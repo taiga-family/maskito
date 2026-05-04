@@ -14,6 +14,7 @@ describe('FirstDateEndSeparatorPreprocessor', () => {
             dateSeparator: '.',
             pseudoFirstDateEndSeparators: POSSIBLE_DATE_RANGE_SEPARATOR,
         });
+
         const preprocess = (value: string): string =>
             preprocessorFn(
                 {elementState: {value, selection: EMPTY_SELECTION}, data: ''},

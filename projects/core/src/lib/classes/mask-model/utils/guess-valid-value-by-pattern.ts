@@ -19,6 +19,7 @@ export function guessValidValueByPattern(
                 char,
                 initialElementState,
             );
+
             const newValidatedChars = `${validatedCharacters}${leadingCharacters}`;
             const charConstraint = mask[newValidatedChars.length] || '';
 

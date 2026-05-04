@@ -105,6 +105,7 @@ describe('MaskitoDirective — initEffect', () => {
             resolveCall: (index: number) => void;
         } {
             const resolvers: Array<() => void> = [];
+
             const predicate: MaskitoElementPredicate = async (el) =>
                 new Promise<HTMLInputElement>((resolve) => {
                     resolvers.push(() => resolve(el as HTMLInputElement));

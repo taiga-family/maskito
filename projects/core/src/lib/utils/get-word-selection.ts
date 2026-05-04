@@ -16,9 +16,11 @@ export function getWordSelection(
 
     if (isForward) {
         const valueAfterSelectionStart = value.slice(from);
+
         const [leadingSpaces] = valueAfterSelectionStart.match(LEADING_SPACES_REG) || [
             '',
         ];
+
         const nearestWordEndIndex = valueAfterSelectionStart
             .trimStart()
             .search(SPACE_REG);
@@ -33,6 +35,7 @@ export function getWordSelection(
 
     const valueBeforeSelectionEnd = value.slice(0, to);
     const [trailingSpaces] = valueBeforeSelectionEnd.match(TRAILING_SPACES_REG) || [''];
+
     const selectedWordLength = valueBeforeSelectionEnd
         .trimEnd()
         .split('')

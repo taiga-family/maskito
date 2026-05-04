@@ -11,6 +11,7 @@ export function maskitoChangeEventPlugin(): MaskitoPlugin {
         const valueListener = (): void => {
             value = element.value;
         };
+
         const blurListener = (): void => {
             if (element.value !== value) {
                 element.dispatchEvent(new Event('change', {bubbles: true}));

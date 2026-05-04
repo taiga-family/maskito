@@ -22,16 +22,20 @@ export function createFirstDateEndSeparatorPreprocessor({
         const {value, selection} = elementState;
         const [from, to] = selection;
         const firstCompleteDate = getFirstCompleteDate(value, dateModeTemplate);
+
         const pseudoSeparators = pseudoFirstDateEndSeparators.filter(
             (x) => !firstDateEndSeparator.includes(x) && x !== dateSeparator,
         );
+
         const pseudoSeparatorsRE = new RegExp(`[${pseudoSeparators.join('')}]`, 'gi');
+
         const newValue =
             firstCompleteDate && value.length > firstCompleteDate.length
                 ? `${firstCompleteDate}${value
                       .slice(firstCompleteDate.length)
                       .replace(/^\D*/, firstDateEndSeparator)}`
                 : value;
+
         const caretShift = newValue.length - value.length;
 
         return {

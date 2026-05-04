@@ -31,6 +31,7 @@ export function createPseudoCharactersPreprocessor({
     return ({elementState, data}) => {
         const {value, selection} = elementState;
         const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
+
         const onlyNumber = fromNumberParts(numberParts, params).replace(
             pseudoCharactersRegExp,
             validCharacter,

@@ -10,6 +10,7 @@ describe('maskitoChangeEventPlugin', () => {
         decimalSeparator: '.',
         maximumFractionDigits: 2,
     });
+
     const maskitoOptions: MaskitoOptions = {
         ...numberMask,
         plugins: [...numberMask.plugins, maskitoChangeEventPlugin()],

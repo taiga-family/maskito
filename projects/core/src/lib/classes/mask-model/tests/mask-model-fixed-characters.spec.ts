@@ -43,6 +43,7 @@ describe('MaskModel | Fixed characters', () => {
                 initialValue.length,
                 initialValue.length,
             ];
+
             const maskModel = new MaskModel(
                 {
                     selection,
@@ -168,10 +169,12 @@ describe('MaskModel | Fixed characters', () => {
     describe('Dynamic mask expression + trailing fixed character', () => {
         const postfix = 'left';
         const timeMask: ReadonlyArray<RegExp | string> = [/\d/, /\d/, ':', /\d/, /\d/];
+
         const timeWithPostfixMask: Required<MaskitoOptions> = {
             ...MASKITO_DEFAULT_OPTIONS,
             mask: ({value}) => {
                 let digitsCount = Math.min(value.replaceAll(/\D/g, '').length, 4);
+
                 const afterLastDigit =
                     timeMask.findIndex((x) => typeof x !== 'string' && !--digitsCount) +
                     1;
@@ -266,6 +269,7 @@ describe('MaskModel | Fixed characters', () => {
         };
 
         const selection = [2, 2] as const;
+
         const maskModel = new MaskModel(
             {
                 selection,
@@ -286,6 +290,7 @@ describe('MaskModel | Fixed characters', () => {
         };
 
         const selection = [2, 2] as const;
+
         const maskModel = new MaskModel(
             {
                 selection,

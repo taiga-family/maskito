@@ -6,7 +6,6 @@ import type {ComponentType} from 'react';
 import {AwesomeInput} from './awesomeInput';
 
 const options = maskitoDate({mode: 'dd/mm/yyyy'});
-
 const elementPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('input.real-input')!;
 
 export const App: ComponentType = () => {

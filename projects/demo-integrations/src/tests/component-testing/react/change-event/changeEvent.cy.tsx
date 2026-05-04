@@ -49,6 +49,7 @@ describe('React synthetic "onChange" event', () => {
         beforeEach(() => {
             const capitalize = (x: string): string => `${x.charAt(0).toUpperCase()}${x.slice(1)}`;
             const handler = cy.spy().as('handler');
+
             const options: MaskitoOptions = {
                 mask: /^[a-z]+$/i,
                 postprocessors: [({value, selection}) => ({value: value.replaceAll('t', 'T'), selection})],
@@ -57,6 +58,7 @@ describe('React synthetic "onChange" event', () => {
             function App(): JSX.Element {
                 const maskRef = useMaskito({options});
                 const [value, setValue] = useState('');
+
                 const onChange = useCallback(
                     ({target: {value}}: ChangeEvent<HTMLInputElement>) => {
                         handler(value);
@@ -108,6 +110,7 @@ describe('React synthetic "onChange" event', () => {
     describe('controlled input with noop state handler', () => {
         beforeEach(() => {
             const handler = cy.spy().as('handler');
+
             const options: MaskitoOptions = {
                 mask: /^[a-z]+$/i,
                 postprocessors: [({value, selection}) => ({value: value.toUpperCase(), selection})],

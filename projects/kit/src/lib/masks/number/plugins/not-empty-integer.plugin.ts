@@ -36,10 +36,12 @@ export function createNotEmptyIntegerPlugin(
                 element.value,
                 params,
             );
+
             const onlyNumber = fromNumberParts(numberParts, params).replace(
                 new RegExp(String.raw`^(\D+)?${escapeRegExp(decimalSeparator)}`),
                 `$10${decimalSeparator}`,
             );
+
             const newValue = fromNumberParts(
                 {
                     ...toNumberParts(onlyNumber, params),

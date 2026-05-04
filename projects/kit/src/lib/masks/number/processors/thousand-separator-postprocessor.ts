@@ -33,9 +33,11 @@ export function createThousandSeparatorPostprocessor(
     }
 
     const isSeparatorWhitespace = SPACE_REG.test(thousandSeparator);
+
     const isSeparator = isSeparatorWhitespace
         ? (char: string): boolean => SPACE_REG.test(char)
         : (char: string): boolean => char === thousandSeparator;
+
     const stripSeparators = isSeparatorWhitespace
         ? (str: string): string => str.replaceAll(SPACE_GLOBAL_REG, '')
         : (str: string): string => str.replaceAll(thousandSeparator, '');
@@ -46,13 +48,16 @@ export function createThousandSeparatorPostprocessor(
 
         const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
             toNumberParts(value, params);
+
         const rawLength =
             `${minus}${integerPart}${decimalSeparator ? `${decimalSeparator}${decimalPart}` : ''}`
                 .length;
+
         const normalizedLength = fromNumberParts(
             {minus, integerPart, decimalSeparator, decimalPart},
             params,
         ).length;
+
         const deletedChars = normalizedLength - rawLength;
 
         if (deletedChars > 0 && initialFrom && initialFrom <= deletedChars) {
@@ -64,7 +69,6 @@ export function createThousandSeparatorPostprocessor(
         }
 
         const integerStart = prefix.length + minus.length;
-
         const groups = thousandSeparatorPattern(stripSeparators(integerPart));
         const digitAt: number[] = [];
         let pos = 0;

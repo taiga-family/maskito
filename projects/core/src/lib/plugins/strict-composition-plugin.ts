@@ -12,10 +12,12 @@ export function maskitoStrictCompositionPlugin(): MaskitoPlugin {
                 element.selectionStart ?? 0,
                 element.selectionEnd ?? 0,
             ] as const;
+
             const elementState: ElementState = {
                 selection,
                 value: element.value,
             };
+
             const validatedState = maskitoTransform(elementState, maskitoOptions);
 
             if (!areElementStatesEqual(elementState, validatedState)) {

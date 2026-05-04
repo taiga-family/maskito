@@ -115,6 +115,7 @@ describe('maskitoDateRange with locale', () => {
                 mode: 'mm/dd/yyyy',
                 dateSeparator: '.',
             });
+
             const result = maskitoTransform('10212005', options);
 
             expect(result).toBe('10.21.2005');

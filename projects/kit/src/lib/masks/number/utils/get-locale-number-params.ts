@@ -11,8 +11,10 @@ export function getLocaleNumberParams(
         minimumFractionDigits: 1,
         useGrouping: true,
     }).formatToParts(1234.5);
+
     const thousandSeparator =
         separatorParts.find((part) => part.type === 'group')?.value ?? '';
+
     const decimalSeparator =
         separatorParts.find((part) => part.type === 'decimal')?.value ?? '.';
 

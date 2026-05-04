@@ -15,6 +15,7 @@ export function maskitoStringifyNumber(
     }
 
     const params = withNumberDefaults(optionalParams);
+
     const value = stringifyNumberWithoutExp(
         clamp(number, params.min, params.max),
     ).replace('.', params.decimalSeparator);

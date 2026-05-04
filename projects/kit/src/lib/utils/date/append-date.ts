@@ -12,11 +12,9 @@ export function appendDate(
     const initialYear = date.getFullYear();
     const initialMonth = date.getMonth();
     const initialDate = date.getDate();
-
     const totalMonths = (initialYear + year) * MONTHS_IN_YEAR + initialMonth + month;
     let years = Math.floor(totalMonths / MONTHS_IN_YEAR);
     let months = totalMonths % MONTHS_IN_YEAR;
-
     const monthDaysCount = getMonthDaysCount(months, isLeapYear(years));
     const currentMonthDaysCount = getMonthDaysCount(initialMonth, isLeapYear(years));
     let days = day;

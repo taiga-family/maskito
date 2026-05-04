@@ -31,16 +31,19 @@ export function maskitoTimeOptionsGenerator({
     postfix = '',
 }: MaskitoTimeParams): Required<MaskitoOptions> {
     const hasMeridiem = mode.includes('AA');
+
     const enrichedTimeSegmentMaxValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
         ...(hasMeridiem ? {hours: 12} : {}),
         ...timeSegmentMaxValues,
     };
+
     const enrichedTimeSegmentMinValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
         ...(hasMeridiem ? {hours: 1} : {}),
         ...timeSegmentMinValues,
     };
+
     const maskExpression = [...prefix, ...createTimeMaskExpression(mode)];
 
     return {
@@ -104,6 +107,7 @@ function cutExpression(
             value.replaceAll(/\D/g, '').length,
             expression.filter((x) => typeof x !== 'string').length,
         ) || 1;
+
     const afterLastDigit =
         expression.findIndex((x) => typeof x !== 'string' && !--digitsCount) + 1;
 

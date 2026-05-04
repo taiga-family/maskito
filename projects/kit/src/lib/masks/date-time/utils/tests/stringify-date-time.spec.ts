@@ -31,6 +31,7 @@ describe('maskitoStringifyDateTime', () => {
 
     it('should clamp date to min boundary', () => {
         const minDate = new Date('2025-04-12T00:00:00.000');
+
         const result = maskitoStringifyDateTime(date, {
             dateMode,
             timeMode,
@@ -43,6 +44,7 @@ describe('maskitoStringifyDateTime', () => {
 
     it('should clamp date to max boundary', () => {
         const maxDate = new Date('2025-04-10T23:59:59.999');
+
         const result = maskitoStringifyDateTime(date, {
             dateMode,
             timeMode,
@@ -55,6 +57,7 @@ describe('maskitoStringifyDateTime', () => {
 
     it('should handle edge cases for leap years', () => {
         const leapYearDate = new Date('2024-02-29T12:00:00.000');
+
         const result = maskitoStringifyDateTime(leapYearDate, {
             dateMode,
             timeMode,
@@ -66,6 +69,7 @@ describe('maskitoStringifyDateTime', () => {
 
     it('should handle edge cases for time boundaries', () => {
         const midnight = new Date('2025-04-11T00:00:00.000');
+
         const resultMidnight = maskitoStringifyDateTime(midnight, {
             dateMode,
             timeMode,
@@ -75,6 +79,7 @@ describe('maskitoStringifyDateTime', () => {
         expect(resultMidnight).toBe('11/04/2025, 00:00:00');
 
         const endOfDay = new Date('2025-04-11T23:59:59.999');
+
         const resultEndOfDay = maskitoStringifyDateTime(endOfDay, {
             dateMode,
             timeMode,

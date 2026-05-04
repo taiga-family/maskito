@@ -7,6 +7,7 @@ export function maskitoSelectionChangeHandler(
         const document = element.ownerDocument;
         let isPointerDown = 0;
         const onPointerDown = (): number => isPointerDown++;
+
         const onPointerUp = (): void => {
             isPointerDown = Math.max(--isPointerDown, 0);
         };

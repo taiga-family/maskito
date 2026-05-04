@@ -9,6 +9,7 @@ const maskitoOptions: MaskitoOptions = {
             element.style.animation = '0.3s 1';
 
             let reject = -1;
+
             const listener = (): void => {
                 reject += 1;
                 element.style.animationName = `reject-${reject % 2}`;

@@ -8,6 +8,7 @@ describe('getPhoneTemplate', () => {
     describe('International format', () => {
         it('generates template for value with "+" prefix', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '+12125552365',
@@ -20,6 +21,7 @@ describe('getPhoneTemplate', () => {
 
         it('generates same template for value without "+" prefix (pasted number)', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '12125552365',
@@ -32,6 +34,7 @@ describe('getPhoneTemplate', () => {
 
         it('returns empty template for empty value', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '',
@@ -43,6 +46,7 @@ describe('getPhoneTemplate', () => {
 
         it('returns single "x" for value with only "+"', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '+',
@@ -54,6 +58,7 @@ describe('getPhoneTemplate', () => {
 
         it('handles formatted value with spaces', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '+1 212 555 2365',
@@ -65,6 +70,7 @@ describe('getPhoneTemplate', () => {
 
         it('handles value with only formatting characters (no digits)', () => {
             const formatter = new AsYouType(undefined, metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '( ) -',
@@ -77,6 +83,7 @@ describe('getPhoneTemplate', () => {
         describe('pasting numbers without "+" prefix produces correct template', () => {
             it('using US number: 12125552365', () => {
                 const formatter = new AsYouType(undefined, metadata);
+
                 const templateWithPlus = getPhoneTemplate({
                     formatter,
                     value: '+12125552365',
@@ -98,6 +105,7 @@ describe('getPhoneTemplate', () => {
 
             it('using RU number: 79202800155', () => {
                 const formatter = new AsYouType(undefined, metadata);
+
                 const templateWithPlus = getPhoneTemplate({
                     formatter,
                     value: '+79202800155',
@@ -119,6 +127,7 @@ describe('getPhoneTemplate', () => {
 
             it('using BY number: 375447488269', () => {
                 const formatter = new AsYouType(undefined, metadata);
+
                 const templateWithPlus = getPhoneTemplate({
                     formatter,
                     value: '+375447488269',
@@ -142,6 +151,7 @@ describe('getPhoneTemplate', () => {
         describe('custom separator', () => {
             it('uses space as separator', () => {
                 const formatter = new AsYouType(undefined, metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '+12125552365',
@@ -153,6 +163,7 @@ describe('getPhoneTemplate', () => {
 
             it('uses dot as separator', () => {
                 const formatter = new AsYouType(undefined, metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '+12125552365',
@@ -167,6 +178,7 @@ describe('getPhoneTemplate', () => {
     describe('National format', () => {
         it('generates US national template', () => {
             const formatter = new AsYouType('US', metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '2125552365',
@@ -181,6 +193,7 @@ describe('getPhoneTemplate', () => {
 
         it('generates RU national template', () => {
             const formatter = new AsYouType('RU', metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '9202800155',
@@ -195,6 +208,7 @@ describe('getPhoneTemplate', () => {
 
         it('returns empty template for empty value', () => {
             const formatter = new AsYouType('US', metadata);
+
             const template = getPhoneTemplate({
                 formatter,
                 value: '',
@@ -210,6 +224,7 @@ describe('getPhoneTemplate', () => {
         describe('incomplete US numbers with leading country code', () => {
             it('1212555 => x (xxx) xxx (no hyphen after parenthesis)', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '1212555',
@@ -225,6 +240,7 @@ describe('getPhoneTemplate', () => {
 
             it('12125553 => x (xxx) xxx-x (hyphen only before last group)', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '12125553',
@@ -239,6 +255,7 @@ describe('getPhoneTemplate', () => {
 
             it('1212 => x (xxx) (incomplete area code)', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '1212',
@@ -253,6 +270,7 @@ describe('getPhoneTemplate', () => {
 
             it('12125 => x (xxx) x', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '12125',
@@ -269,6 +287,7 @@ describe('getPhoneTemplate', () => {
         describe('incomplete US numbers with custom separator', () => {
             it('1212555 with space separator => x (xxx) xxx', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '1212555',
@@ -283,6 +302,7 @@ describe('getPhoneTemplate', () => {
 
             it('12125553 with space separator => x (xxx) xxx x', () => {
                 const formatter = new AsYouType('US', metadata);
+
                 const template = getPhoneTemplate({
                     formatter,
                     value: '12125553',

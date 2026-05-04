@@ -12,7 +12,6 @@ const options: MaskitoOptions = maskitoNumber({maximumFractionDigits: 2});
 export const App: ComponentType = () => {
     const maskitoRef = useMaskito({options});
     const {register, watch} = useForm();
-
     const value = watch('controlName');
 
     console.info('[controlName]: ', value);

@@ -320,6 +320,7 @@ describe('Time | modes with meridiem', () => {
                             initialValue,
                             initialCaretIndex,
                         );
+
                         const toggledValueWithCaretLabel = withCaretLabel(
                             toggledValue,
                             initialCaretIndex,
@@ -363,6 +364,7 @@ describe('Time | modes with meridiem', () => {
                             initialValue,
                             initialCaretIndex,
                         );
+
                         const toggledValueWithCaretLabel = withCaretLabel(
                             toggledValue,
                             initialCaretIndex,

@@ -306,6 +306,7 @@ describe('toNumberParts', () => {
 
     describe('postfix starts with point | [postfix]=".000 km" & [maximumFractionDigits]="0"', () => {
         const postfix = '.000 km';
+
         const params = {
             ...DEFAULT_PARAMS,
             maximumFractionDigits: 0,

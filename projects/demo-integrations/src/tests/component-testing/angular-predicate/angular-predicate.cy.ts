@@ -63,6 +63,7 @@ describe('@maskito/angular | Predicate', () => {
 
             const invalidPredicate: MaskitoElementPredicate = async (element) =>
                 delay(1_000).then(() => element.querySelectorAll('input')[0]!);
+
             const validPredicate: MaskitoElementPredicate = async (element) =>
                 delay(1_000).then(() => element.querySelectorAll('input')[1]!);
 

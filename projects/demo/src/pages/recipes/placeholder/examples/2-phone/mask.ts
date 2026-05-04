@@ -11,6 +11,7 @@ import {
  * @see https://symbl.cc/en/2000
  */
 const PLACEHOLDER = '+  (   ) ___-____';
+
 const {
     /**
      * Use this utility to remove placeholder characters

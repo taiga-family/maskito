@@ -29,21 +29,27 @@ export function generateMaskExpression({
         min < 0 && [minusSign, ...minusPseudoSigns].includes(prefix)
             ? ''
             : computeAllOptionalCharsRegExp(prefix);
+
     const digit = String.raw`\d`;
+
     const optionalMinus =
         min < 0 ? `[${minusSign}${minusPseudoSigns.map((x) => `\\${x}`).join('')}]?` : '';
+
     const integerPart = thousandSeparator
         ? `[${digit}${escapeRegExp(thousandSeparator).replaceAll(/\s/g, String.raw`\s`)}]*`
         : `[${digit}]*`;
+
     const precisionPart = Number.isFinite(maximumFractionDigits)
         ? maximumFractionDigits
         : '';
+
     const decimalPart =
         maximumFractionDigits > 0
             ? `([${escapeRegExp(decimalSeparator)}${decimalPseudoSeparators
                   .map(escapeRegExp)
                   .join('')}]${digit}{0,${precisionPart}})?`
             : '';
+
     const computedPostfix = computeAllOptionalCharsRegExp(postfix);
     const beginning = `(${optionalMinus}${computedPrefix}|${computedPrefix}${optionalMinus})`;
 

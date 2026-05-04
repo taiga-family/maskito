@@ -25,6 +25,7 @@ export function toNumberParts(
     >,
 ): NumberParts {
     const {extractedPrefix, cleanValue, extractedPostfix} = extractAffixes(value, params);
+
     const {
         decimalSeparator,
         minusSign,
@@ -32,10 +33,13 @@ export function toNumberParts(
         decimalPseudoSeparators,
         maximumFractionDigits,
     } = params;
+
     const [integerWithMinus = '', decimalPart = ''] = decimalSeparator
         ? cleanValue.split(decimalSeparator)
         : [cleanValue];
+
     const minuses = [minusSign, ...minusPseudoSigns].map((x) => `\\${x}`).join('');
+
     const [, minus = '', integerPart = ''] =
         new RegExp(`^([${minuses}])?(.*)`).exec(integerWithMinus) || [];
 
@@ -70,6 +74,7 @@ export function fromNumberParts(
     >,
 ): string {
     const separator = decimalPart ? params.decimalSeparator : decimalSeparator;
+
     const beginning =
         params.negativePattern === 'minusFirst'
             ? `${minus}${prefix}`

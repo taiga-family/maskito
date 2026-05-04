@@ -9,6 +9,7 @@ describe('createValidDatePreprocessor', () => {
             dateSeparator: '.',
             rangeSeparator: ' – ',
         });
+
         const EMPTY_INPUT = {value: '', selection: [0, 0] as [number, number]};
 
         const check = (insertedCharacters: string, expectedValue: string): void => {
@@ -43,6 +44,7 @@ describe('createValidDatePreprocessor', () => {
 
     it('ignores range separator', () => {
         const rangeSeparator = ' – ';
+
         const processor = createValidDatePreprocessor({
             rangeSeparator,
             dateModeTemplate: 'dd.mm.yyyy',
@@ -53,6 +55,7 @@ describe('createValidDatePreprocessor', () => {
             value: '06.02.2023',
             selection: ['06.02.2023'.length, '06.02.2023'.length] as const,
         };
+
         const {elementState, data} = processor(
             {elementState: initialState, data: rangeSeparator},
             'insert',

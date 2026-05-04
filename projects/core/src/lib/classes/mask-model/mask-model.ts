@@ -32,6 +32,7 @@ export class MaskModel implements ElementState {
     public addCharacters(newCharacters: string): void {
         const {value, selection, maskOptions} = this;
         const initialElementState = {value, selection} as const;
+
         const {
             selection: [from, to],
         } = applyOverwriteMode(
@@ -39,17 +40,21 @@ export class MaskModel implements ElementState {
             newCharacters,
             maskOptions.overwriteMode,
         );
+
         const maskExpression = this.getMaskExpression({
             value: `${value.slice(0, from)}${newCharacters}${value.slice(to)}`,
             selection: [from + newCharacters.length, from + newCharacters.length],
         });
+
         const [unmaskedFrom, unmaskedTo] = applyOverwriteMode(
             this.unmaskInitialState,
             newCharacters,
             maskOptions.overwriteMode,
         ).selection;
+
         const newUnmaskedLeadingValuePart = `${this.unmaskInitialState.value.slice(0, unmaskedFrom)}${newCharacters}`;
         const newCaretIndex = newUnmaskedLeadingValuePart.length;
+
         const maskedElementState = calibrateValueByMask(
             {
                 value: `${newUnmaskedLeadingValuePart}${this.unmaskInitialState.value.slice(unmaskedTo)}`,
@@ -58,7 +63,9 @@ export class MaskModel implements ElementState {
             maskExpression,
             initialElementState,
         );
+
         const prevLeadingPart = value.slice(0, from);
+
         const newLeadingPartState = calibrateValueByMask(
             {
                 value: newUnmaskedLeadingValuePart,
@@ -93,10 +100,12 @@ export class MaskModel implements ElementState {
         }
 
         const {value} = this;
+
         const maskExpression = this.getMaskExpression({
             value: `${value.slice(0, from)}${value.slice(to)}`,
             selection: [from, from],
         });
+
         const initialElementState = {value, selection: [from, to]} as const;
         const [unmaskedFrom, unmaskedTo] = this.unmaskInitialState.selection;
         const newUnmaskedValue = `${this.unmaskInitialState.value.slice(0, unmaskedFrom)}${this.unmaskInitialState.value.slice(unmaskedTo)}`;

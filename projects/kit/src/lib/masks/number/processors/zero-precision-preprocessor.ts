@@ -36,10 +36,12 @@ export function createZeroPrecisionPreprocessor(
         const {value, selection} = elementState;
         const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
         const [from, to] = selection;
+
         const onlyNumber = fromNumberParts(numberParts, params).replace(
             decimalPartRegExp,
             '',
         );
+
         const newValue = fromNumberParts(
             {...toNumberParts(onlyNumber, params), prefix, postfix},
             params,

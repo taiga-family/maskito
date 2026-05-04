@@ -16,6 +16,7 @@ describe('Maskito Vue package', () => {
         ],
         plugins: [maskitoInitialCalibrationPlugin()],
     };
+
     const component = {
         template: '<input v-model="value" v-maskito="options" />',
         directives: {maskito},

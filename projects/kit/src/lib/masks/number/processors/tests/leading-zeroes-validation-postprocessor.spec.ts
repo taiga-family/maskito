@@ -14,6 +14,7 @@ const DEFAULT_PARAMS = {
 
 describe('createLeadingZeroesValidationPostprocessor', () => {
     const DUMMY_INITIAL_STATE = {value: '', selection: [0, 0]} as const;
+
     const params: Parameters<typeof createLeadingZeroesValidationPostprocessor>[0] = {
         ...DEFAULT_PARAMS,
         decimalSeparator: ',',
@@ -21,6 +22,7 @@ describe('createLeadingZeroesValidationPostprocessor', () => {
         minusSign: '−',
         maximumFractionDigits: 0,
     };
+
     let processor: MaskitoPostprocessor;
 
     const process = (

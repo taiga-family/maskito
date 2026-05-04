@@ -6,7 +6,6 @@ import {
 } from '@maskito/kit';
 
 const mode: MaskitoTimeMode = 'HH:MM AA';
-
 const timeOptions = maskitoTimeOptionsGenerator({mode});
 
 export default {

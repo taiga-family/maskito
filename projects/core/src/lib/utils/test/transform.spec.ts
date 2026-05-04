@@ -32,6 +32,7 @@ describe('maskitoTransform', () => {
             },
         ],
     };
+
     const usPhoneOptions: MaskitoOptions = {
         mask: [
             '+',

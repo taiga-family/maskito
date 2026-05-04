@@ -9,6 +9,7 @@ export function maskitoParseDate(
 ): Date | null {
     const localeParams =
         'locale' in params && params.locale ? getLocaleDateParams(params.locale) : null;
+
     const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
     const digitsPattern = mode.replaceAll(/[^dmy]/g, '');
     const digits = value.replaceAll(/\D+/g, '');

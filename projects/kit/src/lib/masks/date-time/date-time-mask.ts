@@ -38,14 +38,17 @@ export function maskitoDateTimeOptionsGenerator({
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
     const hasMeridiem = timeMode.includes('AA');
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
+
     const timeSegmentMaxValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
         ...(hasMeridiem ? {hours: 12} : {}),
     };
+
     const timeSegmentMinValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
         ...(hasMeridiem ? {hours: 1} : {}),
     };
+
     const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
     return {

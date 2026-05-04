@@ -42,6 +42,7 @@ export function createValidDateTimePreprocessor({
             newPossibleValue,
             dateModeTemplate,
         );
+
         let validatedValue = '';
         const hasDateTimeSeparator = newPossibleValue.includes(dateTimeSeparator);
 

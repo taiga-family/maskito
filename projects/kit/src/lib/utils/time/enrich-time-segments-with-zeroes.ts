@@ -27,6 +27,7 @@ export function enrichTimeSegmentsWithZeroes(
 ): {value: string; selection: readonly [number, number]} {
     const [from, to] = selection;
     const parsedTime = parseTimeString(value, mode);
+
     const possibleTimeSegments = Object.entries(parsedTime) as Array<
         [keyof MaskitoTimeSegments, string]
     >;
