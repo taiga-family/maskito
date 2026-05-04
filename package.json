@@ -114,7 +114,7 @@
         "@tinkoff/eslint-config": "5.2.0",
         "@tinkoff/eslint-config-react": "5.2.0",
         "@types/highlight.js": "10.1.0",
-        "@types/node": "24.10.11",
+        "@types/node": "24.12.2",
         "http-server": "14.1.1",
         "husky": "9.1.7",
         "ng-packagr": "19.2.2",
