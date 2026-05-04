@@ -35,6 +35,7 @@ const fastValidPredicate: MaskitoElementPredicate = async (host) =>
 export const App: ComponentType = () => {
     const [useCorrectPredicate, setUseCorrectPredicate] = useState(false);
     const inputRef2sec = useMaskito({options, elementPredicate: longCorrectPredicate});
+
     const inputRefRaceCondition = useMaskito({
         options,
         elementPredicate: useCorrectPredicate ? fastValidPredicate : longInvalidPredicate,

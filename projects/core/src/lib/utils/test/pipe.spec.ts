@@ -16,16 +16,19 @@ describe('maskitoPipe', () => {
                 value: `${elementState.value}0`,
             },
         });
+
         const add1ToValue: MaskitoPreprocessor = ({elementState}) => ({
             elementState: {
                 ...elementState,
                 value: `${elementState.value}1`,
             },
         });
+
         const add5ToData: MaskitoPreprocessor = ({elementState, data}) => ({
             elementState,
             data: `${data}5`,
         });
+
         const add3ToData: MaskitoPreprocessor = ({elementState, data}) => ({
             elementState,
             data: `${data}3`,
@@ -95,6 +98,7 @@ describe('maskitoPipe', () => {
             value: '',
             selection: [0, 0],
         };
+
         const postprocessorData: Parameters<MaskitoPostprocessor>[0] = {
             value: '0',
             selection: [5, 5],
@@ -104,14 +108,17 @@ describe('maskitoPipe', () => {
             selection,
             value: `${value}3`,
         });
+
         const add5: MaskitoPostprocessor = ({value, selection}) => ({
             selection,
             value: `${value}5`,
         });
+
         const doubleCaretIndex: MaskitoPostprocessor = ({value, selection}) => ({
             value,
             selection: [selection[0] * 2, selection[1] * 2],
         });
+
         const shiftCaretIndexBy5: MaskitoPostprocessor = ({value, selection}) => ({
             value,
             selection: [selection[0] + 5, selection[1] + 5],

@@ -20,6 +20,7 @@ export function createMinMaxPostprocessor(
                 ...params,
                 bigint: !maximumFractionDigits && !value.includes(decimalSeparator),
             }) ?? Number.NaN;
+
         const limitedValue =
             /**
              * We cannot limit lower bound if user enters positive number.

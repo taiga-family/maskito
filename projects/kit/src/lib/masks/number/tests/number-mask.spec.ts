@@ -674,6 +674,7 @@ describe('Number (maskitoTransform)', () => {
         it('no-op pattern (single group): 1234567 => 1234567', () => {
             const noGroupingPattern = (digits: string): readonly string[] =>
                 digits ? [digits] : [];
+
             const options = maskitoNumber({
                 thousandSeparator: ',',
                 thousandSeparatorPattern: noGroupingPattern,

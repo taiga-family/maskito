@@ -23,10 +23,12 @@ export function maskitoParseNumber(
     {bigint = false, ...optionalParams}: MaskitoNumberParams & {bigint?: boolean} = {},
 ): bigint | number | null {
     const params = withNumberDefaults(optionalParams);
+
     const {minus, integerPart, decimalSeparator, ...numberParts} = toNumberParts(
         maskedNumber,
         params,
     );
+
     const unmaskedNumber = fromNumberParts(
         {
             ...numberParts,

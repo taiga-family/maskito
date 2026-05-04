@@ -21,9 +21,11 @@ export function createNonRemovableCharsDeletionPreprocessor({
         const {value, selection} = elementState;
         const [from, to] = selection;
         const selectedCharacters = value.slice(from, to);
+
         const nonRemovableSeparators = minimumFractionDigits
             ? [decimalSeparator, thousandSeparator]
             : [thousandSeparator];
+
         const areNonRemovableZeroesSelected =
             Boolean(minimumFractionDigits) &&
             from > value.indexOf(decimalSeparator) &&

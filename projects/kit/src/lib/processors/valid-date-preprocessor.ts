@@ -36,6 +36,7 @@ export function createValidDatePreprocessor({
         const [from, rawTo] = selection;
         let to = rawTo + data.length;
         const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
+
         const dateStrings = parseDateRangeString(
             newPossibleValue,
             dateModeTemplate,
@@ -43,6 +44,7 @@ export function createValidDatePreprocessor({
         );
 
         let validatedValue = '';
+
         const hasRangeSeparator =
             Boolean(rangeSeparator) && newPossibleValue.includes(rangeSeparator);
 

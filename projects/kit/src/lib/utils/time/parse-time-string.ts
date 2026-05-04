@@ -15,7 +15,6 @@ export function parseTimeString(
     timeMode: MaskitoTimeMode,
 ): Partial<MaskitoTimeSegments> {
     const onlyDigits = timeString.replaceAll(/\D+/g, '');
-
     let offset = 0;
 
     return Object.fromEntries(

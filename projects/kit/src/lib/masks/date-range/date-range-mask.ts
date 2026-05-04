@@ -23,10 +23,13 @@ export function maskitoDateRange(
     const localeParams = locale ? getLocaleDateParams(locale) : null;
     const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
     const dateSeparator = params.dateSeparator ?? localeParams?.separator ?? '.';
+
     const rangeSeparator =
         params.rangeSeparator ??
         `${CHAR_NO_BREAK_SPACE}${CHAR_EN_DASH}${CHAR_NO_BREAK_SPACE}`;
+
     const dateModeTemplate = mode.split('/').join(dateSeparator);
+
     const dateMask = Array.from(dateModeTemplate).map((char) =>
         dateSeparator.includes(char) ? char : /\d/,
     );

@@ -31,6 +31,7 @@ export function maskitoPhoneNonStrictOptionsGenerator({
                 value,
                 separator,
             });
+
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({

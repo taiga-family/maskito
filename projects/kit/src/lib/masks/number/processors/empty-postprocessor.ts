@@ -24,8 +24,10 @@ export function emptyPostprocessor(
 ): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [caretIndex] = selection;
+
         const {prefix, minus, integerPart, decimalSeparator, decimalPart, postfix} =
             toNumberParts(value, params);
+
         const aloneDecimalSeparator = !integerPart && !decimalPart && decimalSeparator;
 
         if (

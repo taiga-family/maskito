@@ -70,6 +70,7 @@ export function createMeridiemPostprocessor(
         }
 
         const fullMeridiem = `${CHAR_NO_BREAK_SPACE}${value.includes('P') ? 'P' : 'A'}M`;
+
         const newValue = value.replace(ANY_MERIDIEM_CHARACTER_RE, (x) =>
             x === CHAR_NO_BREAK_SPACE ? x : fullMeridiem,
         );

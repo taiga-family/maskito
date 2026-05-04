@@ -4,6 +4,7 @@ export function getLocaleDateParams(
     locale: string,
 ): Pick<Required<MaskitoDateParams>, 'mode' | 'separator'> {
     const referenceDate = new Date(1970, 0, 2);
+
     const parts = new Intl.DateTimeFormat(locale, {
         year: 'numeric',
         month: '2-digit',
@@ -12,6 +13,7 @@ export function getLocaleDateParams(
 
     const separator = parts.find((part) => part.type === 'literal')?.value ?? '.';
     const segmentLabel = {day: 'dd', month: 'mm', year: 'yyyy'} as const;
+
     const mode = parts
         .filter(
             (part): part is Intl.DateTimeFormatPart & {type: 'day' | 'month' | 'year'} =>

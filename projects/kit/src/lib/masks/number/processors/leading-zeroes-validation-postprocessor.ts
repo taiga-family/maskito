@@ -26,6 +26,7 @@ export function createLeadingZeroesValidationPostprocessor(
     >,
 ): MaskitoPostprocessor {
     const {thousandSeparator} = params;
+
     const trimLeadingZeroes = (value: string): string => {
         const escapedThousandSeparator = escapeRegExp(thousandSeparator);
 

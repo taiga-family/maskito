@@ -12,6 +12,7 @@ const EMPTY_STATE: ElementState = {
 describe('MaskModel | Dynamic mask', () => {
     describe('switching on the fly works', () => {
         const SHORT: MaskitoMask = Array.from<RegExp>({length: 10}).fill(/\d/);
+
         const MEDIUM: MaskitoMask = [
             /\d/,
             /\d/,
@@ -33,7 +34,9 @@ describe('MaskModel | Dynamic mask', () => {
             /\d/,
             /\d/,
         ];
+
         const LONG: MaskitoMask = Array.from<RegExp>({length: 20}).fill(/\d/);
+
         const maskitoOptions: Required<MaskitoOptions> = {
             ...MASKITO_DEFAULT_OPTIONS,
             mask: ({value}) => {
@@ -89,6 +92,7 @@ describe('MaskModel | Dynamic mask', () => {
 
         it('enable long mask if number of digits is >16 (by adding new character to the previous mask)', () => {
             const initialValue = '0123 4567 8912 3456';
+
             const maskModel = new MaskModel(
                 {
                     value: initialValue,

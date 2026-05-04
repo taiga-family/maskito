@@ -16,7 +16,6 @@ import {EventListener} from '../utils';
 export function createBrokenDefaultPlugin(): MaskitoPlugin {
     return (element) => {
         const eventListener = new EventListener(element);
-
         let isVirtualAndroidKeyboard = false;
         let beforeinputEvent: TypedInputEvent;
         let value = element.value;

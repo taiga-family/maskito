@@ -2,6 +2,7 @@ import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
 import {maskitoCaretGuard, maskitoEventHandler, maskitoNumber} from '@maskito/kit';
 
 export const postfix = '%';
+
 const {plugins, ...numberOptions} = maskitoNumber({
     postfix,
     min: 0,

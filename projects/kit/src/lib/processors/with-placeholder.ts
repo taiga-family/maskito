@@ -14,6 +14,7 @@ export function maskitoWithPlaceholder(
 } {
     let lastClearValue = '';
     let action: Parameters<MaskitoPreprocessor>[1] = 'validation';
+
     const removePlaceholder = (value: string): string => {
         for (let i = value.length - 1; i >= lastClearValue.length; i--) {
             if (value[i] !== placeholder[i]) {
@@ -23,8 +24,8 @@ export function maskitoWithPlaceholder(
 
         return value.slice(0, lastClearValue.length);
     };
-    const plugins = [maskitoCaretGuard((value) => [0, removePlaceholder(value).length])];
 
+    const plugins = [maskitoCaretGuard((value) => [0, removePlaceholder(value).length])];
     let focused = false;
 
     if (focusedOnly) {

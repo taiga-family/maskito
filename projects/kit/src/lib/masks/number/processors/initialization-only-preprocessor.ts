@@ -27,6 +27,7 @@ export function createInitializationOnlyPreprocessor(
     >,
 ): MaskitoPreprocessor {
     let isInitializationPhase = true;
+
     const cleanNumberMask = generateMaskExpression({
         ...params,
         prefix: '',
@@ -47,6 +48,7 @@ export function createInitializationOnlyPreprocessor(
         const [from, to] = selection;
         const {prefix, postfix, ...numberParts} = toNumberParts(value, params);
         const onlyNumber = fromNumberParts(numberParts, params);
+
         const cleanState = maskitoTransform(
             {
                 selection: [

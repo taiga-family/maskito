@@ -12,7 +12,6 @@ export function createZeroPlaceholdersPreprocessor(postfix = ''): MaskitoPreproc
         }
 
         const [from, to] = selection;
-
         const zeroes = value.slice(from, to).replaceAll(/\d/g, '0');
         const newValue = `${value.slice(0, from)}${zeroes}${value.slice(to)}`;
 

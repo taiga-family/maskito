@@ -29,6 +29,7 @@ import {debounceTime, map, startWith} from 'rxjs';
                         const exampleElements = Array.from(
                             host.querySelectorAll('tui-doc-example'),
                         );
+
                         const codeElements = Array.from(
                             host.querySelectorAll('tui-doc-code'),
                         );

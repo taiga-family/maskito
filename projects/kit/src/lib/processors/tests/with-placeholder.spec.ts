@@ -6,6 +6,7 @@ describe('maskitoWithPlaceholder("dd/mm/yyyy")', () => {
     const {preprocessors, postprocessors} = maskitoWithPlaceholder('dd/mm/yyyy');
     const preprocessor = maskitoPipe(preprocessors);
     const postprocessor = maskitoPipe(postprocessors);
+
     const EMPTY_ELEMENT_STATE = {
         value: '',
         selection: [0, 0] as const,

@@ -40,6 +40,7 @@ export function createDoubleSpacePlugin(): MaskitoPlugin {
 
         eventListener.listen('beforeinput', (event) => {
             const {value, selectionStart, selectionEnd} = element;
+
             const rejectedSpace =
                 prevEvent?.inputType === 'insertText' &&
                 prevEvent.data === SPACE &&

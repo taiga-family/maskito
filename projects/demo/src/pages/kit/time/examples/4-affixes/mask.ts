@@ -7,6 +7,7 @@ import {
 } from '@maskito/kit';
 
 export const postfix = ' left';
+
 const {plugins, ...timeOptions} = maskitoTimeOptionsGenerator({
     postfix,
     mode: 'MM:SS',

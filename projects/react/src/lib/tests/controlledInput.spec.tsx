@@ -9,6 +9,7 @@ describe('Maskito with React controlled input', () => {
 
     const setValue = async (user: ReturnType<typeof userEvent.setup>, v: string): Promise<void> =>
         user.type(testElement.getByRole('textbox'), v);
+
     const getValue = (): string => (testElement.getByRole('textbox') as HTMLInputElement).value;
 
     function TestComponent({
@@ -85,6 +86,7 @@ describe('Maskito with React controlled input', () => {
             function App(): JSX.Element {
                 const inputRef = useMaskito({options});
                 const [value, setValue] = useState('');
+
                 const onInputHandler = useCallback(
                     ({value}: HTMLInputElement) => setValue(value.toUpperCase()),
                     [setValue],

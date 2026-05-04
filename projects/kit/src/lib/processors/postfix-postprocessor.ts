@@ -6,6 +6,7 @@ export function maskitoPostfixPostprocessorGenerator(
     postfix: string,
 ): MaskitoPostprocessor {
     const completedPostfixRE = new RegExp(`${escapeRegExp(postfix)}$`);
+
     const incompletePostfixRE = new RegExp(
         postfix &&
             `(${postfix
@@ -33,8 +34,10 @@ export function maskitoPostfixPostprocessorGenerator(
                   completedPostfixRE,
                   '',
               );
+
               const postfixWasModified =
                   initialElementState.selection[1] > initialValueBeforePostfix.length;
+
               const alreadyExistedValueBeforePostfix = findCommonBeginningSubstr(
                   initialValueBeforePostfix,
                   value,
@@ -46,6 +49,7 @@ export function maskitoPostfixPostprocessorGenerator(
                       .reverse()
                       .reduce((newValue, char, index) => {
                           const i = newValue.length - 1 - index;
+
                           const isInitiallyMirroredChar =
                               alreadyExistedValueBeforePostfix[i] === char &&
                               postfixWasModified;

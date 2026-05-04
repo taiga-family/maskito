@@ -15,6 +15,7 @@ export function maskitoPrefixPostprocessorGenerator(
               }
 
               const [from, to] = selection;
+
               const prefixedValue = Array.from(prefix).reduce(
                   (modifiedValue, char, i) =>
                       modifiedValue[i] === char
@@ -22,6 +23,7 @@ export function maskitoPrefixPostprocessorGenerator(
                           : `${modifiedValue.slice(0, i)}${char}${modifiedValue.slice(i)}`,
                   value,
               );
+
               const addedCharsCount = prefixedValue.length - value.length;
 
               return {

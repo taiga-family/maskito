@@ -36,6 +36,7 @@ export abstract class MaskHistory {
         }
 
         const isValueChanged = this.now.value !== state.value;
+
         const isSelectionChanged = this.now.selection.some(
             (item, index) => item !== state.selection[index],
         );

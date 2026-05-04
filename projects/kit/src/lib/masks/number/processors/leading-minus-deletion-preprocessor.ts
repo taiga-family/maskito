@@ -25,12 +25,15 @@ export function createLeadingMinusDeletionPreprocessor(
         const {value, selection} = elementState;
         const [from, to] = selection;
         const {prefix, minusSign, negativePattern} = params;
+
         const beginning =
             negativePattern === 'prefixFirst' ? prefix : `${minusSign}${prefix}`;
+
         const newValue = fromNumberParts(
             {...toNumberParts(value, params), minus: ''},
             params,
         );
+
         const diff = value.length - newValue.length;
 
         return {

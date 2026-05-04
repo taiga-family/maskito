@@ -81,6 +81,7 @@ describe('normalizeDatePreprocessor', () => {
             dateModeTemplate: 'dd.mm.yyyy',
             dateSeparator: '.',
         });
+
         const check = getCheckFunction(preprocessor);
 
         it('empty input => 6.2.2023, 12:00', () => {

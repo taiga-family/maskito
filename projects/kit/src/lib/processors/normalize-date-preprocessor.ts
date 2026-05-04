@@ -16,6 +16,7 @@ export function normalizeDatePreprocessor({
     return ({elementState, data}) => {
         const templateSegments = dateModeTemplate.split(dateSeparator);
         const includesTime = data.includes(dateTimeSeparator);
+
         const dateSegments = data
             .slice(0, includesTime ? data.indexOf(dateTimeSeparator) : Infinity)
             .split(/\D/)
@@ -28,6 +29,7 @@ export function normalizeDatePreprocessor({
         const dates = dateSegments.reduce<string[]>((dates, segment, index) => {
             const template = templateSegments[index % templateSegments.length] ?? '';
             const dateIndex = Math.trunc(index / templateSegments.length);
+
             const isLastDateSegment =
                 index % templateSegments.length === templateSegments.length - 1;
 

@@ -22,6 +22,7 @@ export function createMinMaxPlugin(params: Required<MaskitoNumberParams>): Maski
                         !maximumFractionDigits &&
                         !element.value.includes(decimalSeparator),
                 }) ?? Number.NaN;
+
             const clampedNumber = clamp(parsedNumber, min, max);
 
             if (!Number.isNaN(parsedNumber) && parsedNumber !== clampedNumber) {

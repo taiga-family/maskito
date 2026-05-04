@@ -22,7 +22,6 @@ export function maskitoPhoneStrictOptionsGenerator({
     const code = getCountryCallingCode(countryIsoCode, metadata);
     const formatter = new AsYouType(countryIsoCode, metadata);
     const prefix = isNational ? '' : `+${code} `;
-
     let currentTemplate = '';
     let currentPhoneLength = 0;
 
@@ -37,6 +36,7 @@ export function maskitoPhoneStrictOptionsGenerator({
                 metadata,
                 format,
             });
+
             const newPhoneLength = value.replaceAll(/\D/g, '').length;
 
             currentTemplate = selectTemplate({

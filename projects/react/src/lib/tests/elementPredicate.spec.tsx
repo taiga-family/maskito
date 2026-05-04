@@ -15,8 +15,8 @@ describe('@maskito/react | `elementPredicate` property', () => {
         mask: /^\d+$/,
         plugins: [maskitoInitialCalibrationPlugin()],
     };
-    let predicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
 
+    let predicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
     const correctPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('.real-input')!;
     const wrongPredicate: MaskitoElementPredicate = (host) => host.querySelector('input')!;
 
@@ -39,6 +39,7 @@ describe('@maskito/react | `elementPredicate` property', () => {
 
     const setValue = async (user: ReturnType<typeof userEvent.setup>, v: string): Promise<void> =>
         user.type(testElement.getByPlaceholderText('Enter number'), v);
+
     const getValue = (): string => (testElement.getByPlaceholderText('Enter number') as HTMLInputElement).value;
 
     afterEach(() => {

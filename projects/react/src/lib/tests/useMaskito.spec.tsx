@@ -43,7 +43,6 @@ describe('Maskito React package', () => {
 
     let testElement: RenderResult;
     let user: UserEvent;
-
     const type = async (v: string): Promise<void> => user.type(testElement.getByRole('textbox'), v);
     const getValue = (): string => (testElement.getByRole('textbox') as HTMLInputElement).value;
 

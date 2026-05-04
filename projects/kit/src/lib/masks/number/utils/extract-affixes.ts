@@ -29,10 +29,13 @@ export function extractAffixes(
     const decimalSeparators = [...decimalPseudoSeparators, decimalSeparator]
         .map((x) => `\\${x}`)
         .join('');
+
     const minuses = [...minusPseudoSigns, minusSign].map((x) => `\\${x}`).join('');
+
     const prefixRegExp =
         prefix &&
         new RegExp(`^([${minuses}])?(${prefix.split('').map(escapeRegExp).join('?')}?)`);
+
     const postfixRegExp =
         postfix && new RegExp(`${postfix.split('').map(escapeRegExp).join('?')}?$`);
 
@@ -46,10 +49,13 @@ export function extractAffixes(
     const leadingDecimalSeparatorRE = new RegExp(
         decimalSeparator && maximumFractionDigits > 0 ? `^[${decimalSeparators}]` : '',
     );
+
     const leadingDigitsRE = new RegExp(value.endsWith(postfix) ? '' : String.raw`^\d+`);
+
     const trailingDecimalSeparatorRE = new RegExp(
         decimalSeparator && maximumFractionDigits > 0 ? `[${decimalSeparators}]$` : '',
     );
+
     const trailingDigitsRE = new RegExp(value.startsWith(prefix) ? '' : String.raw`\d+$`);
 
     return {

@@ -19,19 +19,22 @@ export function validateDateString({
     selection: [number, number];
 }): {validatedDateString: string; updatedSelection: [number, number]} {
     const parsedDate = parseDateString(dateString, dateModeTemplate);
+
     const dateSegments = Object.entries(parsedDate) as Array<
         [keyof MaskitoDateSegments, string]
     >;
+
     const segmentsOrder = getDateSegmentsOrder(dateModeTemplate);
     const validatedDateSegments: Partial<MaskitoDateSegments> = {};
 
     for (let i = 0; i < dateSegments.length; i++) {
         const [segmentName, segmentValue] = dateSegments[i]!;
+
         const validatedDate = toDateString(validatedDateSegments, {
             dateMode: dateModeTemplate,
         });
-        const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
 
+        const maxSegmentValue = DATE_SEGMENTS_MAX_VALUES[segmentName];
         const fantomSeparator = validatedDate.length && dateSeparator.length;
 
         const lastSegmentDigitIndex =
@@ -39,6 +42,7 @@ export function validateDateString({
             validatedDate.length +
             fantomSeparator +
             getDateSegmentValueLength(dateModeTemplate)[segmentName];
+
         const isLastSegmentDigitAdded =
             lastSegmentDigitIndex >= from && lastSegmentDigitIndex === to;
 
@@ -69,6 +73,7 @@ export function validateDateString({
     const validatedDateString = toDateString(validatedDateSegments, {
         dateMode: dateModeTemplate,
     });
+
     const addedDateSeparators = validatedDateString.length - dateString.length;
 
     return {

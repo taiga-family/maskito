@@ -257,6 +257,7 @@ export class Maskito extends MaskHistory {
             value: this.elementState.value,
             selection,
         };
+
         const {elementState} = this.preprocessor(
             {
                 elementState: initialState,
@@ -264,6 +265,7 @@ export class Maskito extends MaskHistory {
             },
             isForward ? 'deleteForward' : 'deleteBackward',
         );
+
         const maskModel = new MaskModel(elementState, this.options);
 
         maskModel.deleteCharacters();
@@ -287,6 +289,7 @@ export class Maskito extends MaskHistory {
     private handleInsert(event: TypedInputEvent, data: string): void {
         const {options, maxLength, elementState: initialElementState} = this;
         const [from, to] = initialElementState.selection;
+
         const {elementState, data: insertedText = data} = this.preprocessor(
             {
                 data,
@@ -294,6 +297,7 @@ export class Maskito extends MaskHistory {
             },
             'insert',
         );
+
         const maskModel = new MaskModel(elementState, options);
 
         try {
