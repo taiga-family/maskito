@@ -7,6 +7,6 @@
         "@vitejs/plugin-react": "4.7.0",
         "cypress": "14.5.4",
         "cypress-real-events": "1.15.0",
-        "vite": "6.4.1"
+        "vite": "6.4.2"
     }
 }
