@@ -1,8 +1,9 @@
-import { TuiPassword, TuiTooltip } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import { TuiHint, TuiIcon, TuiInput } from '@taiga-ui/core';
+import {TuiHint, TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiPassword, TuiTooltip} from '@taiga-ui/kit';
+
 import mask from './mask';
 
 @Component({
@@ -11,20 +12,22 @@ import mask from './mask';
         FormsModule,
         MaskitoDirective,
         TuiHint,
-        TuiIcon, TuiPassword, TuiInput, TuiTooltip],
+        TuiIcon,
+        TuiInput,
+        TuiPassword,
+        TuiTooltip,
+    ],
     template: `
-        <tui-textfield
-            [style.max-width.rem]="20"
-            
-            
-        ><input
-                tuiInput [(ngModel)]="value" placeholder="Enter password"
+        <tui-textfield [style.max-width.rem]="20">
+            <input
+                tuiInput
+                [(ngModel)]="value"
+                placeholder="Enter password"
                 type="password"
                 [maskito]="maskitoOptions"
             />
-<tui-icon tuiTooltip="Only 3 digits are allowed" />
-<tui-icon tuiPassword />
-
+            <tui-icon tuiTooltip="Only 3 digits are allowed" />
+            <tui-icon tuiPassword />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

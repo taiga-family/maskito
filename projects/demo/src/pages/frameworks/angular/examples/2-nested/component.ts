@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import { TuiLabel, TuiCheckbox, TuiInput } from '@taiga-ui/core';
+import {TuiCheckbox, TuiInput, TuiLabel} from '@taiga-ui/core';
 
 @Component({
     selector: 'nested-doc-example-2',

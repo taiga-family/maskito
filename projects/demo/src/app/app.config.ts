@@ -1,4 +1,3 @@
-import { provideTaiga } from "@taiga-ui/core";
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
 import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
@@ -17,6 +16,7 @@ import {
     tuiDocExampleOptionsProvider,
     type TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
+import {provideTaiga} from '@taiga-ui/core';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 

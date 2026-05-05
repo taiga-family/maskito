@@ -1,4 +1,3 @@
-import { TuiTooltip } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {DocExamplePrimaryTab} from '@demo/constants';
@@ -13,7 +12,9 @@ import {
 } from '@maskito/kit';
 import {CHAR_MINUS} from '@maskito/kit/src/lib/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import { TuiLink, TuiNotification, TuiInput, TuiIcon } from '@taiga-ui/core';
+import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiTooltip} from '@taiga-ui/kit';
+
 import {NumberMaskDocExample1} from './examples/1-high-precision/component';
 import {NumberMaskDocExample2} from './examples/2-separators/component';
 import {NumberMaskDocExample3} from './examples/3-postfix/component';
@@ -47,11 +48,11 @@ type GeneratorParams = Omit<
         NumberMaskDocExample9,
         ReactiveFormsModule,
         TuiAddonDoc,
+        TuiIcon,
         TuiInput,
         TuiLink,
         TuiNotification,
-        TuiIcon,
-        TuiTooltip
+        TuiTooltip,
     ],
     templateUrl: './number-mask-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

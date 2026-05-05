@@ -1,8 +1,9 @@
-import { TuiInput } from "@taiga-ui/core";
-import { TuiFlagPipe } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
+import {TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+
 import mask from './mask';
 
 @Component({

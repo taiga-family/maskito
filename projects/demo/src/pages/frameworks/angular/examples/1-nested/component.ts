@@ -1,8 +1,8 @@
-import { TuiInput } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
+import {TuiInput} from '@taiga-ui/core';
 
 @Component({
     selector: 'nested-doc-example-1',
