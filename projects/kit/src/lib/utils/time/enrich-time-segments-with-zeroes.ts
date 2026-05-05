@@ -1,14 +1,12 @@
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES, TIME_FIXED_CHARACTERS} from '../../constants';
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../types';
+import type {MaskitoTimeParams} from '@maskito/kit';
+
+import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../constants';
+import type {MaskitoTimeSegments} from '../../types';
 import {escapeRegExp} from '../escape-reg-exp';
 import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
 import {padStartTimeSegments} from './pad-start-time-segments';
 import {parseTimeString} from './parse-time-string';
 import {toTimeString} from './to-time-string';
-
-const TRAILING_TIME_SEGMENT_SEPARATOR_REG = new RegExp(
-    `[${TIME_FIXED_CHARACTERS.map(escapeRegExp).join('')}]$`,
-);
 
 /**
  * Pads invalid time segment with zero to make it valid.
@@ -20,9 +18,9 @@ export function enrichTimeSegmentsWithZeroes(
     {
         mode,
         timeSegmentMaxValues = DEFAULT_TIME_SEGMENT_MAX_VALUES,
-    }: {
-        mode: MaskitoTimeMode;
-        timeSegmentMaxValues?: MaskitoTimeSegments<number>;
+        separators = [],
+    }: Pick<MaskitoTimeParams, 'mode' | 'separators'> & {
+        readonly timeSegmentMaxValues?: MaskitoTimeSegments<number>;
     },
 ): {value: string; selection: readonly [number, number]} {
     const [from, to] = selection;
@@ -51,28 +49,47 @@ export function enrichTimeSegmentsWithZeroes(
 
     const [leadingNonDigitCharacters = ''] = value.match(/^\D+(?=\d)/g) || []; // prefix
     const [trailingNonDigitCharacters = ''] = value.match(/\D+$/g) || []; // trailing segment separators / meridiem characters / postfix
-    const validatedTimeString = `${leadingNonDigitCharacters}${toTimeString(validatedTimeSegments)}${trailingNonDigitCharacters}`;
+
+    const time = toTimeString(validatedTimeSegments, {mode, separators});
+    const validatedTime = `${leadingNonDigitCharacters}${time}${trailingNonDigitCharacters}`;
+
+    const innerPart = validatedTime.slice(
+        leadingNonDigitCharacters.length,
+        validatedTime.length - trailingNonDigitCharacters.length,
+    );
+
+    const uniqueSeparatorChars = [
+        ...new Set(Array.from(innerPart).filter((char) => !/\d/.test(char))),
+    ].map(escapeRegExp);
 
     const addedTimeSeparators = Math.max(
-        validatedTimeString.length - value.length - paddedZeroes,
+        validatedTime.length - value.length - paddedZeroes,
         0,
     );
 
     let newFrom = from + paddedZeroes + addedTimeSeparators;
     let newTo = to + paddedZeroes + addedTimeSeparators;
 
-    if (
-        newFrom === newTo &&
-        paddedZeroes &&
-        // if next character after cursor is time segment separator
-        validatedTimeString.slice(0, newTo + 1).match(TRAILING_TIME_SEGMENT_SEPARATOR_REG)
-    ) {
-        newFrom++;
-        newTo++;
+    const caretWasShiftedByZeroPadding =
+        newFrom === newTo && paddedZeroes > 0 && uniqueSeparatorChars.length > 0;
+
+    if (caretWasShiftedByZeroPadding) {
+        const trailingTimeSegmentSeparatorReg = new RegExp(
+            `[${uniqueSeparatorChars.join('')}]$`,
+        );
+
+        const cursorIsRightBeforeSeparator = validatedTime
+            .slice(0, newTo + 1)
+            .match(trailingTimeSegmentSeparatorReg);
+
+        if (cursorIsRightBeforeSeparator) {
+            newFrom++;
+            newTo++;
+        }
     }
 
     return {
-        value: validatedTimeString,
+        value: validatedTime,
         selection: [newFrom, newTo],
     };
 }

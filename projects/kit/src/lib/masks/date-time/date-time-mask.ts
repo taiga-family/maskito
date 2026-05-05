@@ -58,7 +58,10 @@ export function maskitoDateTimeOptionsGenerator({
                 dateSeparator.includes(char) ? char : /\d/,
             ),
             ...dateTimeSeparator.split(''),
-            ...createTimeMaskExpression(timeMode),
+            ...createTimeMaskExpression({
+                mode: timeMode,
+                separators: [],
+            }),
         ],
         overwriteMode: 'replace',
         preprocessors: [
