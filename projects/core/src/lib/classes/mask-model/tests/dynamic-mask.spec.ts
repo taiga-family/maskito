@@ -46,11 +46,7 @@ describe('MaskModel | Dynamic mask', () => {
                     return SHORT;
                 }
 
-                if (digitsCount <= 16) {
-                    return MEDIUM;
-                }
-
-                return LONG;
+                return digitsCount <= 16 ? MEDIUM : LONG;
             },
         };
 

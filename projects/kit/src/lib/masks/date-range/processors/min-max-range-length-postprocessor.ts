@@ -28,49 +28,53 @@ export function createMinMaxRangeLengthPostprocessor({
     minLength?: Partial<MaskitoDateSegments<number>>;
     maxLength?: Partial<MaskitoDateSegments<number>>;
 }): MaskitoPostprocessor {
-    if (isEmpty(minLength) && isEmpty(maxLength)) {
-        return identity;
-    }
+    return isEmpty(minLength) && isEmpty(maxLength)
+        ? identity
+        : ({value, selection}) => {
+              const dateStrings = parseDateRangeString(
+                  value,
+                  dateModeTemplate,
+                  rangeSeparator,
+              );
 
-    return ({value, selection}) => {
-        const dateStrings = parseDateRangeString(value, dateModeTemplate, rangeSeparator);
+              if (
+                  dateStrings.length !== 2 ||
+                  dateStrings.some(
+                      (date) => !isDateStringComplete(date, dateModeTemplate),
+                  )
+              ) {
+                  return {value, selection};
+              }
 
-        if (
-            dateStrings.length !== 2 ||
-            dateStrings.some((date) => !isDateStringComplete(date, dateModeTemplate))
-        ) {
-            return {value, selection};
-        }
+              const [fromDate, toDate] = dateStrings.map((dateString) =>
+                  segmentsToDate(parseDateString(dateString, dateModeTemplate)),
+              );
 
-        const [fromDate, toDate] = dateStrings.map((dateString) =>
-            segmentsToDate(parseDateString(dateString, dateModeTemplate)),
-        );
+              if (!fromDate || !toDate) {
+                  return {value, selection};
+              }
 
-        if (!fromDate || !toDate) {
-            return {value, selection};
-        }
+              const minDistantToDate = appendDate(fromDate, minLength);
 
-        const minDistantToDate = appendDate(fromDate, minLength);
+              const maxDistantToDate = isEmpty(maxLength)
+                  ? max
+                  : appendDate(fromDate, maxLength);
 
-        const maxDistantToDate = isEmpty(maxLength)
-            ? max
-            : appendDate(fromDate, maxLength);
+              const minLengthClampedToDate = clamp(toDate, minDistantToDate, max);
 
-        const minLengthClampedToDate = clamp(toDate, minDistantToDate, max);
+              const minMaxLengthClampedToDate =
+                  minLengthClampedToDate > maxDistantToDate
+                      ? maxDistantToDate
+                      : minLengthClampedToDate;
 
-        const minMaxLengthClampedToDate =
-            minLengthClampedToDate > maxDistantToDate
-                ? maxDistantToDate
-                : minLengthClampedToDate;
-
-        return {
-            selection,
-            value:
-                dateStrings[0] +
-                rangeSeparator +
-                toDateString(dateToSegments(minMaxLengthClampedToDate), {
-                    dateMode: dateModeTemplate,
-                }),
-        };
-    };
+              return {
+                  selection,
+                  value:
+                      dateStrings[0] +
+                      rangeSeparator +
+                      toDateString(dateToSegments(minMaxLengthClampedToDate), {
+                          dateMode: dateModeTemplate,
+                      }),
+              };
+          };
 }

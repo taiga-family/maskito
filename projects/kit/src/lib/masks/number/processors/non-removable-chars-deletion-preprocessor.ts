@@ -31,23 +31,19 @@ export function createNonRemovableCharsDeletionPreprocessor({
             from > value.indexOf(decimalSeparator) &&
             Boolean(selectedCharacters.match(/^0+$/g));
 
-        if (
-            (actionType !== 'deleteBackward' && actionType !== 'deleteForward') ||
+        return (actionType !== 'deleteBackward' && actionType !== 'deleteForward') ||
             (!nonRemovableSeparators.includes(selectedCharacters) &&
                 !areNonRemovableZeroesSelected)
-        ) {
-            return {
-                elementState,
-                data,
-            };
-        }
-
-        return {
-            elementState: {
-                value,
-                selection: actionType === 'deleteForward' ? [to, to] : [from, from],
-            },
-            data,
-        };
+            ? {
+                  elementState,
+                  data,
+              }
+            : {
+                  elementState: {
+                      value,
+                      selection: actionType === 'deleteForward' ? [to, to] : [from, from],
+                  },
+                  data,
+              };
     };
 }

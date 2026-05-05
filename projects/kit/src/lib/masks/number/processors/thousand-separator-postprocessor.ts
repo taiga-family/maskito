@@ -101,11 +101,9 @@ export function createThousandSeparatorPostprocessor(
             const digitCount = stripSeparators(integerPart.slice(0, offset)).length;
             const prevWasSep = isSeparator(integerPart.charAt(offset - 1));
 
-            if (prevWasSep) {
-                return integerStart + (digitAt[digitCount] ?? formatted.length);
-            }
-
-            return integerStart + (digitAt[digitCount - 1] ?? -1) + 1;
+            return prevWasSep
+                ? integerStart + (digitAt[digitCount] ?? formatted.length)
+                : integerStart + (digitAt[digitCount - 1] ?? -1) + 1;
         };
 
         return {

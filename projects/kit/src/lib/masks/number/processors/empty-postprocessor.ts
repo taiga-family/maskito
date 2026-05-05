@@ -30,18 +30,14 @@ export function emptyPostprocessor(
 
         const aloneDecimalSeparator = !integerPart && !decimalPart && decimalSeparator;
 
-        if (
-            (!integerPart &&
-                !Number(decimalPart) &&
-                caretIndex === `${minus}${prefix}`.length) ||
+        return (!integerPart &&
+            !Number(decimalPart) &&
+            caretIndex === `${minus}${prefix}`.length) ||
             aloneDecimalSeparator
-        ) {
-            return {
-                selection,
-                value: fromNumberParts({prefix, minus, postfix}, params),
-            };
-        }
-
-        return {value, selection};
+            ? {
+                  selection,
+                  value: fromNumberParts({prefix, minus, postfix}, params),
+              }
+            : {value, selection};
     };
 }

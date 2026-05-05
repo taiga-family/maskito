@@ -19,18 +19,16 @@ export function createZeroPlaceholdersPreprocessor(postfix = ''): MaskitoPreproc
             return {elementState};
         }
 
-        if (actionType === 'validation' || (actionType === 'insert' && from === to)) {
-            return {elementState: {selection, value: newValue}};
-        }
-
-        return {
-            elementState: {
-                selection:
-                    actionType === 'deleteBackward' || actionType === 'insert'
-                        ? [from, from]
-                        : [to, to],
-                value: newValue,
-            },
-        };
+        return actionType === 'validation' || (actionType === 'insert' && from === to)
+            ? {elementState: {selection, value: newValue}}
+            : {
+                  elementState: {
+                      selection:
+                          actionType === 'deleteBackward' || actionType === 'insert'
+                              ? [from, from]
+                              : [to, to],
+                      value: newValue,
+                  },
+              };
     };
 }

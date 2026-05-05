@@ -25,26 +25,24 @@ export function createDecimalZeroPaddingPostprocessor(
 ): MaskitoPostprocessor {
     const {minimumFractionDigits} = params;
 
-    if (!minimumFractionDigits) {
-        return identity;
-    }
+    return minimumFractionDigits
+        ? ({value, selection}) => {
+              if (Number.isNaN(maskitoParseNumber(value, params))) {
+                  return {value, selection};
+              }
 
-    return ({value, selection}) => {
-        if (Number.isNaN(maskitoParseNumber(value, params))) {
-            return {value, selection};
-        }
+              const {decimalPart, ...numberParts} = toNumberParts(value, params);
 
-        const {decimalPart, ...numberParts} = toNumberParts(value, params);
-
-        return {
-            value: fromNumberParts(
-                {
-                    ...numberParts,
-                    decimalPart: decimalPart.padEnd(minimumFractionDigits, '0'),
-                },
-                params,
-            ),
-            selection,
-        };
-    };
+              return {
+                  value: fromNumberParts(
+                      {
+                          ...numberParts,
+                          decimalPart: decimalPart.padEnd(minimumFractionDigits, '0'),
+                      },
+                      params,
+                  ),
+                  selection,
+              };
+          }
+        : identity;
 }
