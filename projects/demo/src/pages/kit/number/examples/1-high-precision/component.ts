@@ -1,27 +1,21 @@
+import { TuiInput } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
     selector: 'number-mask-doc-example-1',
-    imports: [FormsModule, MaskitoDirective, TuiInputModule],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            [style.max-width.rem]="30"
-            [(ngModel)]="value"
-        >
-            <strong>&pi;</strong>
-            -value
-            <input
+        <tui-textfield [style.max-width.rem]="30">
+        <label tuiLabel><strong>&pi;</strong> -value</label>
+        <input
                 inputmode="decimal"
                 placeholder="3,141..."
-                tuiTextfieldLegacy
-                [maskito]="maskitoOptions"
-            />
-        </tui-input>
+                tuiInput
+                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

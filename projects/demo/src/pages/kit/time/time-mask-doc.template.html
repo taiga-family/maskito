@@ -7,7 +7,7 @@
         <code>maskitoTimeOptionsGenerator</code>
         to create a mask for time input.
 
-        <tui-notification
+        <div tuiNotification
             size="m"
             class="tui-space_top-4"
         >
@@ -27,7 +27,7 @@
 
                 <tui-doc-code [code]="maskitoParseStringifyTimeDemo" />
             </div>
-        </tui-notification>
+        </div>
 
         <tui-doc-example
             id="mode"
@@ -139,39 +139,35 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-input
-                    tuiTextfieldCustomContent="@tui.clock"
-                    class="input-time"
-                    [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="prefix || postfix ? '' : mode.toLowerCase()"
-                >
-                    Enter time
-                    <input
+                <tui-textfield class="input-time" [filler]="prefix || postfix ? '' : mode.toLowerCase()">
+                <label tuiLabel>Enter time</label>
+                <input
                         inputmode="numeric"
-                        tuiTextfieldLegacy
-                        [maskito]="maskitoOptions"
-                    />
-                </tui-input>
+                        tuiInput
+                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+
+                <tui-icon icon="@tui.clock" />
+                </tui-textfield>
             </ng-template>
         </tui-doc-demo>
-        <tui-doc-documentation>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="mode"
-                documentationPropertyType="MaskitoTimeMode"
-                [documentationPropertyValues]="modeOptions"
-                [(documentationPropertyValue)]="mode"
-                (documentationPropertyValueChange)="updateOptions()"
+        <table tuiDocAPI>
+            <tr
+                name="[mode]"
+                tuiDocAPIItem
+                type="MaskitoTimeMode"
+                [items]="modeOptions"
+                [(value)]="mode"
+                (valueChange)="updateOptions()"
             >
                 Time format mode
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="timeSegmentMinValues"
-                documentationPropertyType="MaskitoTimeSegments<number>"
-                [documentationPropertyValues]="timeSegmentMinValuesOptions"
-                [(documentationPropertyValue)]="timeSegmentMinValues"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[timeSegmentMinValues]"
+                tuiDocAPIItem
+                type="MaskitoTimeSegments<number>"
+                [items]="timeSegmentMinValuesOptions"
+                [(value)]="timeSegmentMinValues"
+                (valueChange)="updateOptions()"
             >
                 Minimum value for each time segment
 
@@ -185,14 +181,14 @@
                     <code>mode</code>
                     without / with meridiem period
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="timeSegmentMaxValues"
-                documentationPropertyType="MaskitoTimeSegments<number>"
-                [documentationPropertyValues]="timeSegmentMaxValuesOptions"
-                [(documentationPropertyValue)]="timeSegmentMaxValues"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[timeSegmentMaxValues]"
+                tuiDocAPIItem
+                type="MaskitoTimeSegments<number>"
+                [items]="timeSegmentMaxValuesOptions"
+                [(value)]="timeSegmentMaxValues"
+                (valueChange)="updateOptions()"
             >
                 Maximum value for each time segment
 
@@ -206,13 +202,13 @@
                     <code>mode</code>
                     without / with meridiem period
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="step"
-                documentationPropertyType="number"
-                [(documentationPropertyValue)]="step"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[step]"
+                tuiDocAPIItem
+                type="number"
+                [(value)]="step"
+                (valueChange)="updateOptions()"
             >
                 The value by which the keyboard arrows increment/decrement time segments
 
@@ -221,14 +217,14 @@
                     <code>0</code>
                     (disable stepping)
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="prefix"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="prefix"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[prefix]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="prefix"
+                (valueChange)="updateOptions()"
             >
                 Uneditable text
                 <strong>before</strong>
@@ -238,14 +234,14 @@
                     <strong>Default:</strong>
                     empty string (no prefix).
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="postfix"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="postfix"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[postfix]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="postfix"
+                (valueChange)="updateOptions()"
             >
                 Uneditable text
                 <strong>after</strong>
@@ -255,7 +251,7 @@
                     <strong>Default:</strong>
                     empty string (no postfix).
                 </p>
-            </ng-template>
-        </tui-doc-documentation>
+            </tr>
+        </table>
     </ng-template>
 </tui-doc-page>

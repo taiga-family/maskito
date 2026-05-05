@@ -1,8 +1,7 @@
+import { TuiInput, TuiIcon } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
@@ -10,22 +9,19 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon
     ],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.credit-card"
-            [style.max-width.rem]="20"
-            [(ngModel)]="value"
-        >
-            Enter CVC code
-            <input
+        <tui-textfield [style.max-width.rem]="20">
+        <label tuiLabel>Enter CVC code</label>
+        <input
                 inputmode="numeric"
-                tuiTextfieldLegacy
-                [maskito]="maskitoOptions"
-            />
-        </tui-input>
+                tuiInput
+                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+
+        <tui-icon icon="@tui.credit-card" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,9 +1,8 @@
+import { TuiTooltip } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiHint} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
+import { TuiHint, TuiInput, TuiIcon } from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
@@ -12,22 +11,18 @@ import mask from './mask';
         FormsModule,
         MaskitoDirective,
         TuiHint,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon,
+        TuiTooltip
     ],
     template: `
-        <tui-input
-            tuiHintContent="Insert character somewhere in the middle"
-            [style.max-width.rem]="20"
-            [tuiTextfieldLabelOutside]="true"
-            [(ngModel)]="value"
-        >
-            <input
+        <tui-textfield [style.max-width.rem]="20">
+        <input
                 inputmode="decimal"
-                tuiTextfieldLegacy
-                [maskito]="maskitoOptions"
-            />
-        </tui-input>
+                tuiInput
+                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+<tui-icon tuiTooltip="Insert character somewhere in the middle" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

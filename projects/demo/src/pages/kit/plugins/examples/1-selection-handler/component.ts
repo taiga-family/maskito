@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiIcon, TuiTextfield} from '@taiga-ui/core';
+import { TuiIcon, TuiInput } from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'kit-plugins-doc-example-1',
-    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiTextfield],
+    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiInput],
     template: `
         <tui-textfield
             filler="HH:MM AA"
@@ -16,7 +16,7 @@ import mask from './mask';
             <label tuiLabel>Enter 12-hour time format</label>
 
             <input
-                tuiTextfield
+                tuiInput
                 [maskito]="maskitoOptions"
                 [(ngModel)]="value"
             />

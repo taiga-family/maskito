@@ -7,7 +7,7 @@
     <strong>Maskito</strong>
     team.
 
-    <tui-notification
+    <div tuiNotification
         size="m"
         class="tui-space_top-4"
     >
@@ -19,7 +19,7 @@
             documentation page about plugins
         </a>
         .
-    </tui-notification>
+    </div>
 
     <tui-doc-example
         id="selection-change-handler"
@@ -42,14 +42,14 @@
             </p>
         </ng-template>
         @if (!isMobile) {
-            <tui-notification
+            <div tuiNotification
                 appearance="warning"
                 size="m"
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="20"
             >
                 Use real mobile device to see how it works!
-            </tui-notification>
+            </div>
         }
 
         <kit-plugins-doc-example-1 />
