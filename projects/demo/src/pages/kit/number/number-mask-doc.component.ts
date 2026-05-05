@@ -37,7 +37,6 @@ type GeneratorParams = Omit<
     imports: [
         MaskitoDirective,
         NumberMaskDocExample1,
-        NumberMaskDocExample10,
         NumberMaskDocExample2,
         NumberMaskDocExample3,
         NumberMaskDocExample4,
@@ -46,6 +45,7 @@ type GeneratorParams = Omit<
         NumberMaskDocExample7,
         NumberMaskDocExample8,
         NumberMaskDocExample9,
+        NumberMaskDocExample10,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInputModule,
