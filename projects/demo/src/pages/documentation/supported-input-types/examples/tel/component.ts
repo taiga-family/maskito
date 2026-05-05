@@ -1,9 +1,10 @@
-import { PolymorpheusOutlet } from "@taiga-ui/polymorpheus";
-import { TuiInput, TuiIcon } from "@taiga-ui/core";
-import { TuiFlagPipe } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
+
 import mask from './mask';
 
 @Component({
@@ -11,23 +12,25 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        PolymorpheusOutlet,
         TuiFlagPipe,
-        TuiInput,
         TuiIcon,
-        PolymorpheusOutlet
+        TuiInput,
     ],
     template: `
         <tui-textfield [style.max-width.rem]="20">
-        <label tuiLabel>Enter phone number</label>
-        <input
+            <label tuiLabel>Enter phone number</label>
+            <input
                 tuiInput
                 type="tel"
-                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+                [maskito]="maskitoOptions"
+                [(ngModel)]="value"
+            />
 
-        <tui-icon
-            *polymorpheusOutlet="usFlag as src"
-            [icon]="src"
-        />
+            <tui-icon
+                *polymorpheusOutlet="usFlag as src"
+                [icon]="src"
+            />
         </tui-textfield>
 
         <ng-template #usFlag>

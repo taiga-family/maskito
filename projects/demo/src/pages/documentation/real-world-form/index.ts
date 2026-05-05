@@ -1,5 +1,3 @@
-import { PolymorpheusOutlet } from "@taiga-ui/polymorpheus";
-import { TuiFlagPipe, TuiTextarea } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
@@ -11,9 +9,11 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import { isSafari, WA_IS_IOS } from '@ng-web-apis/platform';
+import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
-import { TuiButton, TuiIcon, TuiInput } from '@taiga-ui/core';
+import {TuiButton, TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe, TuiTextarea} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 import metadata from 'libphonenumber-js/min/metadata';
 
 const MONEY_AMOUNT_MASK = maskitoNumber({
@@ -28,13 +28,13 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
     selector: 'real-world-form',
     imports: [
         MaskitoDirective,
+        PolymorpheusOutlet,
         ReactiveFormsModule,
         TuiButton,
         TuiFlagPipe,
         TuiIcon,
         TuiInput,
         TuiTextarea,
-        PolymorpheusOutlet
     ],
     templateUrl: './index.html',
     styleUrl: './index.less',

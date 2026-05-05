@@ -103,9 +103,11 @@
                 <tui-textfield [filler]="getPlaceholder(mode, dateSeparator, rangeSeparator)">
                 <label tuiLabel>Enter dates</label>
                 <input
-                        inputmode="numeric"
-                        tuiInput
-                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+inputmode="numeric"
+tuiInput
+[maskito]="maskitoOptions"
+[formControl]="apiPageControl"
+/>
 
                 <tui-icon icon="@tui.calendar" />
                 </tui-textfield>

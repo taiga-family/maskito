@@ -1,11 +1,12 @@
-import { PolymorpheusOutlet } from "@taiga-ui/polymorpheus";
-import { TuiInput, TuiIcon } from "@taiga-ui/core";
-import { TuiFlagPipe } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import { isSafari, WA_IS_IOS } from '@ng-web-apis/platform';
+import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
+
 import mask from './mask';
 
 @Component({
@@ -13,25 +14,27 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        PolymorpheusOutlet,
         TuiFlagPipe,
-        TuiInput,
         TuiIcon,
-        PolymorpheusOutlet
+        TuiInput,
     ],
     template: `
         <tui-textfield [style.max-width.rem]="30">
-        <label tuiLabel>National Format (US)</label>
-        <input
+            <label tuiLabel>National Format (US)</label>
+            <input
                 autocomplete="tel"
                 inputmode="tel"
                 tuiInput
                 [attr.pattern]="pattern"
-                [maskito]="mask" [(ngModel)]="value"/>
+                [maskito]="mask"
+                [(ngModel)]="value"
+            />
 
-        <tui-icon
-            *polymorpheusOutlet="flag as src"
-            [icon]="src"
-        />
+            <tui-icon
+                *polymorpheusOutlet="flag as src"
+                [icon]="src"
+            />
         </tui-textfield>
 
         <ng-template #flag>

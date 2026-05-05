@@ -4,7 +4,7 @@ import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiIcon, TuiLink, TuiNotification, TuiTitle} from '@taiga-ui/core';
 import {TuiTooltip} from '@taiga-ui/kit';
-import { TuiCardLarge, TuiHeader, TuiSurface } from '@taiga-ui/layout';
+import {TuiCardLarge, TuiHeader, TuiSurface} from '@taiga-ui/layout';
 
 @Component({
     selector: 'core-concepts-overview-doc-page',

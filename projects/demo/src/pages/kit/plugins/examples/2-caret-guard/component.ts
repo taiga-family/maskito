@@ -1,7 +1,8 @@
-import { TuiInput } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
+import {TuiInput} from '@taiga-ui/core';
+
 import mask from './mask';
 
 @Component({

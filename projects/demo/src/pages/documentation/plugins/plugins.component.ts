@@ -4,8 +4,8 @@ import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import { TuiLink, TuiTitle, TuiInput } from '@taiga-ui/core';
-import { TuiCardLarge, TuiHeader, TuiSurface } from '@taiga-ui/layout';
+import {TuiInput, TuiLink, TuiTitle} from '@taiga-ui/core';
+import {TuiCardLarge, TuiHeader, TuiSurface} from '@taiga-ui/layout';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
 import {PluginsDocExample2} from './examples/1-initial-calibration/component';
@@ -26,9 +26,9 @@ import documentationMask from './examples/pads-zero-plugin';
         TuiAddonDoc,
         TuiCardLarge,
         TuiHeader,
+        TuiInput,
         TuiLink,
         TuiSurface,
-        TuiInput,
         TuiTitle,
     ],
     templateUrl: './plugins.template.html',
