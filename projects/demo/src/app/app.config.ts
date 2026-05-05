@@ -73,14 +73,12 @@ export const APP_CONFIG: ApplicationConfig = {
                     return `${link}/${context.path}`;
                 }
 
-                if (context.package.toLowerCase() !== 'kit') {
-                    return null;
-                }
-
-                return `${link}/${context.package.toLowerCase()}/src/lib/masks/${`${context.header.slice(0, 1).toLowerCase()}${context.header.slice(1)}`.replaceAll(
-                    /[A-Z]/g,
-                    (m) => `-${m.toLowerCase()}`,
-                )}`;
+                return context.package.toLowerCase() === 'kit'
+                    ? `${link}/${context.package.toLowerCase()}/src/lib/masks/${`${context.header.slice(0, 1).toLowerCase()}${context.header.slice(1)}`.replaceAll(
+                          /[A-Z]/g,
+                          (m) => `-${m.toLowerCase()}`,
+                      )}`
+                    : null;
             },
         },
         {

@@ -22,20 +22,16 @@ export function createMeridiemPreprocessor(
         const newValue = value.toUpperCase();
         const newData = data.toUpperCase();
 
-        if (
-            newValue.match(ALL_MERIDIEM_CHARACTERS_RE) &&
+        return newValue.match(ALL_MERIDIEM_CHARACTERS_RE) &&
             newData.match(mainMeridiemCharRE)
-        ) {
-            return {
-                elementState: {
-                    value: newValue.replaceAll(ALL_MERIDIEM_CHARACTERS_RE, ''),
-                    selection,
-                },
-                data: `${newData}M`,
-            };
-        }
-
-        return {elementState: {selection, value: newValue}, data: newData};
+            ? {
+                  elementState: {
+                      value: newValue.replaceAll(ALL_MERIDIEM_CHARACTERS_RE, ''),
+                      selection,
+                  },
+                  data: `${newData}M`,
+              }
+            : {elementState: {selection, value: newValue}, data: newData};
     };
 }
 

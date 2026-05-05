@@ -25,34 +25,32 @@ export function createNotEmptyIntegerPlugin(
 ): MaskitoPlugin {
     const {decimalSeparator} = params;
 
-    if (!decimalSeparator) {
-        return noop;
-    }
+    return decimalSeparator
+        ? maskitoEventHandler(
+              'blur',
+              (element) => {
+                  const {prefix, postfix, ...numberParts} = toNumberParts(
+                      element.value,
+                      params,
+                  );
 
-    return maskitoEventHandler(
-        'blur',
-        (element) => {
-            const {prefix, postfix, ...numberParts} = toNumberParts(
-                element.value,
-                params,
-            );
+                  const onlyNumber = fromNumberParts(numberParts, params).replace(
+                      new RegExp(String.raw`^(\D+)?${escapeRegExp(decimalSeparator)}`),
+                      `$10${decimalSeparator}`,
+                  );
 
-            const onlyNumber = fromNumberParts(numberParts, params).replace(
-                new RegExp(String.raw`^(\D+)?${escapeRegExp(decimalSeparator)}`),
-                `$10${decimalSeparator}`,
-            );
+                  const newValue = fromNumberParts(
+                      {
+                          ...toNumberParts(onlyNumber, params),
+                          prefix,
+                          postfix,
+                      },
+                      params,
+                  );
 
-            const newValue = fromNumberParts(
-                {
-                    ...toNumberParts(onlyNumber, params),
-                    prefix,
-                    postfix,
-                },
-                params,
-            );
-
-            maskitoUpdateElement(element, newValue);
-        },
-        {capture: true},
-    );
+                  maskitoUpdateElement(element, newValue);
+              },
+              {capture: true},
+          )
+        : noop;
 }
