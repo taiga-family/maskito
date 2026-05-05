@@ -1,32 +1,29 @@
+import { TuiInput, TuiIcon } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component, type OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
 
 @Component({
     selector: 'phone-doc-example-4',
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon
     ],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.phone"
-            [style.max-width.rem]="30"
-            [(ngModel)]="value"
-        >
-            Lazy metadata
-            <input
+        <tui-textfield [style.max-width.rem]="30">
+        <label tuiLabel>Lazy metadata</label>
+        <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
-                [maskito]="mask"
-            />
-        </tui-input>
+                tuiInput
+                [maskito]="mask" [(ngModel)]="value"/>
+
+        <tui-icon icon="@tui.phone" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

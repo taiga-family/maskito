@@ -100,38 +100,35 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-input
-                    tuiTextfieldCustomContent="@tui.calendar"
-                    [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="getPlaceholder(mode, dateSeparator, rangeSeparator)"
-                >
-                    Enter dates
-                    <input
+                <tui-textfield [filler]="getPlaceholder(mode, dateSeparator, rangeSeparator)">
+                <label tuiLabel>Enter dates</label>
+                <input
                         inputmode="numeric"
-                        tuiTextfieldLegacy
-                        [maskito]="maskitoOptions"
-                    />
-                </tui-input>
+                        tuiInput
+                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+
+                <tui-icon icon="@tui.calendar" />
+                </tui-textfield>
             </ng-template>
         </tui-doc-demo>
-        <tui-doc-documentation>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="mode"
-                documentationPropertyType="MaskitoDateMode"
-                [documentationPropertyValues]="modeOptions"
-                [(documentationPropertyValue)]="mode"
-                (documentationPropertyValueChange)="updateOptions()"
+        <table tuiDocAPI>
+            <tr
+                name="[mode]"
+                tuiDocAPIItem
+                type="MaskitoDateMode"
+                [items]="modeOptions"
+                [(value)]="mode"
+                (valueChange)="updateOptions()"
             >
                 Date format mode
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="dateSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="dateSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[dateSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="dateSeparator"
+                (valueChange)="updateOptions()"
             >
                 Separator between date segments (days, months and years).
 
@@ -140,65 +137,65 @@
                     <code>.</code>
                     (dot).
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="rangeSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="rangeSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[rangeSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="rangeSeparator"
+                (valueChange)="updateOptions()"
             >
                 Separator between dates of the date range.
                 <p>
                     <strong>Default:</strong>
                     <code> – </code>
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="min"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="minStr"
-                (documentationPropertyValueChange)="updateDate()"
+            <tr
+                name="[min]"
+                tuiDocAPIItem
+                type="Date"
+                [items]="minMaxOptions"
+                [(value)]="minStr"
+                (valueChange)="updateDate()"
             >
                 Earliest date
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="max"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="maxStr"
-                (documentationPropertyValueChange)="updateDate()"
+            <tr
+                name="[max]"
+                tuiDocAPIItem
+                type="Date"
+                [items]="minMaxOptions"
+                [(value)]="maxStr"
+                (valueChange)="updateDate()"
             >
                 Latest date
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="minLength"
-                documentationPropertyType="MaskitoDateSegments<number>"
-                [documentationPropertyValues]="minLengthOptions"
-                [(documentationPropertyValue)]="minLength"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[minLength]"
+                tuiDocAPIItem
+                type="MaskitoDateSegments<number>"
+                [items]="minLengthOptions"
+                [(value)]="minLength"
+                (valueChange)="updateOptions()"
             >
                 Minimal length of the range
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="maxLength"
-                documentationPropertyType="MaskitoDateSegments<number>"
-                [documentationPropertyValues]="maxLengthOptions"
-                [(documentationPropertyValue)]="maxLength"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[maxLength]"
+                tuiDocAPIItem
+                type="MaskitoDateSegments<number>"
+                [items]="maxLengthOptions"
+                [(value)]="maxLength"
+                (valueChange)="updateOptions()"
             >
                 Maximal length of the range
-            </ng-template>
-        </tui-doc-documentation>
+            </tr>
+        </table>
     </ng-template>
 </tui-doc-page>

@@ -5,11 +5,10 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/phone';
-import {isSafari} from '@ng-web-apis/platform';
+import { isSafari, WA_IS_IOS } from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {CHAR_PLUS, TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {CHAR_PLUS, tuiInjectElement} from '@taiga-ui/cdk';
+import { TuiLink, TuiNotification, TuiInput, TuiIcon } from '@taiga-ui/core';
 import type {MetadataJson} from 'libphonenumber-js';
 import {
     type CountryCode,
@@ -49,17 +48,17 @@ type MetadataName = keyof typeof metadataSets;
         PhoneMaskDocExample6,
         ReactiveFormsModule,
         TuiAddonDoc,
-        TuiInputModule,
+        TuiInput,
         TuiLink,
         TuiNotification,
-        TuiTextfieldControllerModule,
+        TuiIcon
     ],
     templateUrl: './phone-doc.template.html',
     styleUrl: './phone-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PhoneDocComponent implements GeneratorOptions {
-    private readonly isApple = isSafari(tuiInjectElement()) || inject(TUI_IS_IOS);
+    private readonly isApple = isSafari(tuiInjectElement()) || inject(WA_IS_IOS);
     protected apiPageControl = new FormControl('');
 
     protected readonly basic: Record<string, TuiRawLoaderContent> = {

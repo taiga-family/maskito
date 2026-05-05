@@ -1,23 +1,24 @@
+import { TuiTextarea } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextareaModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
     selector: 'textarea-doc-example-1',
-    imports: [FormsModule, MaskitoDirective, TuiTextareaModule],
+    imports: [FormsModule, MaskitoDirective, TuiTextarea],
     template: `
-        <tui-textarea [(ngModel)]="value">
-            Enter address
-            <textarea
+        <!-- TODO: (Taiga UI migration) tui-textarea migration (see https://taiga-ui.dev/components/textarea):
+     - Legacy tui-textarea had a fixed height of 20 rows by default. New component auto-resizes between [min] (default: 1) and [max] (default: 3) rows. Set min and max explicitly if the previous layout needs to be preserved.
+-->
+        <tui-textfield>
+        <label tuiLabel>Enter address</label>
+        <textarea
                 autocomplete="street-address"
                 placeholder="Only latin letters and digits are allowed"
-                tuiTextfieldLegacy
-                [maskito]="mask"
-            ></textarea>
-        </tui-textarea>
+                tuiTextarea
+                [maskito]="mask" [(ngModel)]="value"></textarea>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

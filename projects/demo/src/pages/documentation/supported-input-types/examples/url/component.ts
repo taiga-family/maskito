@@ -1,8 +1,7 @@
+import { TuiInput, TuiIcon } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
@@ -10,23 +9,19 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon
     ],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.globe"
-            [style.max-width.rem]="20"
-            [tuiTextfieldLabelOutside]="true"
-            [(ngModel)]="value"
-        >
-            Enter url
-            <input
-                tuiTextfieldLegacy
+        <tui-textfield [style.max-width.rem]="20">
+        <label tuiLabel>Enter url</label>
+        <input
+                tuiInput
                 type="url"
-                [maskito]="maskitoOptions"
-            />
-        </tui-input>
+                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+
+        <tui-icon icon="@tui.globe" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

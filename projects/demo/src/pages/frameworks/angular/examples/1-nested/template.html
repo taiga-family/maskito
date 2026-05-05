@@ -1,6 +1,7 @@
-<tui-input
-    [maskito]="nameMask"
-    [(ngModel)]="value"
->
-    Name on the card
-</tui-input>
+<!-- TODO: (Taiga UI migration) tui-input migration (see https://taiga-ui.dev/components/input):
+     - "[maskito]" is an unrecognized attribute and was placed on <tui-textfield>. Move it to <input tuiInput> if it targets the native element.
+-->
+<tui-textfield [maskito]="nameMask">
+<label tuiLabel>Name on the card</label>
+<input tuiInput [(ngModel)]="value" />
+</tui-textfield>

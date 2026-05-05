@@ -154,11 +154,11 @@
                     <code>+1 212 343-3355</code>
                     .
                 </p>
-                <tui-notification size="m">
+                <div tuiNotification size="m">
                     National format only works with defined
                     <code>countryIsoCode</code>
                     property!
-                </tui-notification>
+                </div>
             </ng-template>
         </tui-doc-example>
     </ng-template>
@@ -166,30 +166,27 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-input
-                    tuiTextfieldCustomContent="@tui.phone"
-                    class="phone"
-                    [formControl]="apiPageControl"
-                >
-                    Enter phone
-                    <input
+                <tui-textfield class="phone">
+                <label tuiLabel>Enter phone</label>
+                <input
                         autocomplete="tel"
                         inputmode="tel"
-                        tuiTextfieldLegacy
+                        tuiInput
                         [attr.pattern]="pattern"
-                        [maskito]="maskitoOptions"
-                    />
-                </tui-input>
+                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+
+                <tui-icon icon="@tui.phone" />
+                </tui-textfield>
             </ng-template>
         </tui-doc-demo>
-        <tui-doc-documentation>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="metadata"
-                documentationPropertyType="MetadataJson"
-                [documentationPropertyValues]="metadataVariants"
-                [(documentationPropertyValue)]="selectedMetadata"
-                (documentationPropertyValueChange)="updateOptions()"
+        <table tuiDocAPI>
+            <tr
+                name="[metadata]"
+                tuiDocAPIItem
+                type="MetadataJson"
+                [items]="metadataVariants"
+                [(value)]="selectedMetadata"
+                (valueChange)="updateOptions()"
             >
                 List of phone number parsing and formatting rules for all countries.
 
@@ -204,23 +201,23 @@
                     <code>mobile</code>
                     metadata.
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="countryIsoCode"
-                documentationPropertyType="string"
-                [documentationPropertyValues]="countryCodeVariants"
-                [(documentationPropertyValue)]="countryIsoCode"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[countryIsoCode]"
+                tuiDocAPIItem
+                type="string"
+                [items]="countryCodeVariants"
+                [(value)]="countryIsoCode"
+                (valueChange)="updateOptions()"
             >
                 Country ISO-code
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="strict"
-                documentationPropertyType="boolean"
-                [(documentationPropertyValue)]="strict"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[strict]"
+                tuiDocAPIItem
+                type="boolean"
+                [(value)]="strict"
+                (valueChange)="updateOptions()"
             >
                 If true, it allows to enter only phone number of selected country (see countryIsoCode property). If
                 false, all country phone number is allowed.
@@ -228,28 +225,28 @@
                     <strong>Default:</strong>
                     <code>true</code>
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="separator"
-                documentationPropertyType="string"
-                [documentationPropertyValues]="separatorVariants"
-                [(documentationPropertyValue)]="separator"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[separator]"
+                tuiDocAPIItem
+                type="string"
+                [items]="separatorVariants"
+                [(value)]="separator"
+                (valueChange)="updateOptions()"
             >
                 Separator between groups of numbers in a phone number (excluding country code and area code).
                 <p>
                     <strong>Default:</strong>
                     <code>-</code>
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="format"
-                documentationPropertyType="'NATIONAL' | 'INTERNATIONAL'"
-                [documentationPropertyValues]="formatVariants"
-                [(documentationPropertyValue)]="format"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[format]"
+                tuiDocAPIItem
+                type="'NATIONAL' | 'INTERNATIONAL'"
+                [items]="formatVariants"
+                [(value)]="format"
+                (valueChange)="updateOptions()"
             >
                 Phone number format.
                 <code>'INTERNATIONAL'</code>
@@ -271,7 +268,7 @@
                     <strong>Default:</strong>
                     <code>'INTERNATIONAL'</code>
                 </p>
-            </ng-template>
-        </tui-doc-documentation>
+            </tr>
+        </table>
     </ng-template>
 </tui-doc-page>
