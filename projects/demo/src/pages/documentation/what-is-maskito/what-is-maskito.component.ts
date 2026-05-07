@@ -2,9 +2,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiSurface, TuiTitle} from '@taiga-ui/core';
+import {TuiLink, TuiTitle} from '@taiga-ui/core';
 import {TuiAvatar} from '@taiga-ui/kit';
-import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
+import {TuiCardLarge, TuiHeader, TuiSurface} from '@taiga-ui/layout';
 
 @Component({
     selector: 'what-is-maskito-doc-page',

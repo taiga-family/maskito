@@ -1,32 +1,26 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'phone-doc-example-1',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiInput],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.phone"
-            [style.max-width.rem]="30"
-            [(ngModel)]="value"
-        >
-            Basic
+        <tui-textfield [style.max-width.rem]="30">
+            <label tuiLabel>Basic</label>
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-        </tui-input>
+
+            <tui-icon icon="@tui.phone" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

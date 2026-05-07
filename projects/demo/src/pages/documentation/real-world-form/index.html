@@ -7,49 +7,48 @@
 >
     <h3 class="tui-form__header tui-form__header_margin-top_none">Real World Form</h3>
     <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-input
-            formControlName="name"
-            class="tui-form__multi-field"
-        >
-            Name
-            <input
-                autocomplete="name"
-                name="name"
-                placeholder="Only latin letters"
-                tuiTextfieldLegacy
-                [maskito]="nameMask"
-            />
-        </tui-input>
-        <tui-input
-            formControlName="surname"
-            class="tui-form__multi-field"
-        >
-            Surname
-            <input
-                autocomplete="family-name"
-                name="surname"
-                placeholder="Only CAPITAL latin letters"
-                tuiTextfieldLegacy
-                [maskito]="surnameMask"
-            />
-        </tui-input>
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Name</label>
+        <input
+autocomplete="name"
+name="name"
+placeholder="Only latin letters"
+tuiInput
+[maskito]="nameMask"
+formControlName="name"
+/>
+        </tui-textfield>
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Surname</label>
+        <input
+autocomplete="family-name"
+name="surname"
+placeholder="Only CAPITAL latin letters"
+tuiInput
+[maskito]="surnameMask"
+formControlName="surname"
+/>
+        </tui-textfield>
     </div>
 
     <div class="tui-form__row">
-        <tui-input
-            formControlName="phone"
-            [tuiTextfieldCustomContent]="countryIsoCode ? flag : '@tui.phone'"
-        >
-            Enter phone number
-            <input
-                autocomplete="tel"
-                inputmode="tel"
-                name="phone"
-                tuiTextfieldLegacy
-                [attr.pattern]="phonePattern"
-                [maskito]="phoneMask"
-            />
-        </tui-input>
+        <tui-textfield>
+        <label tuiLabel>Enter phone number</label>
+        <input
+autocomplete="tel"
+inputmode="tel"
+name="phone"
+tuiInput
+[attr.pattern]="phonePattern"
+[maskito]="phoneMask"
+formControlName="phone"
+/>
+
+        <tui-icon
+            *polymorpheusOutlet="countryIsoCode ? flag : '@tui.phone' as src"
+            [icon]="src"
+        />
+        </tui-textfield>
 
         <ng-template #flag>
             <img
@@ -62,36 +61,40 @@
     </div>
 
     <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-input
-            formControlName="password"
-            class="tui-form__multi-field"
-            [tuiTextfieldCustomContent]="showHideIcon"
-        >
-            Enter password
-            <input
-                autocomplete="new-password"
-                name="password"
-                placeholder="Only digits and one latin letter"
-                tuiTextfieldLegacy
-                [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'"
-            />
-        </tui-input>
-        <tui-input
-            formControlName="repeatedPassword"
-            class="tui-form__multi-field"
-            [tuiTextfieldCustomContent]="showHideIcon"
-        >
-            Repeat password
-            <input
-                autocomplete="new-password"
-                name="repeatPassword"
-                placeholder="Only digits and one latin letter"
-                tuiTextfieldLegacy
-                [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'"
-            />
-        </tui-input>
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Enter password</label>
+        <input
+autocomplete="new-password"
+name="password"
+placeholder="Only digits and one latin letter"
+tuiInput
+[maskito]="passwordMask"
+[type]="showPassword ? 'password' : 'text'"
+formControlName="password"
+/>
+
+        <tui-icon
+            *polymorpheusOutlet="showHideIcon as src"
+            [icon]="src"
+        />
+        </tui-textfield>
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Repeat password</label>
+        <input
+autocomplete="new-password"
+name="repeatPassword"
+placeholder="Only digits and one latin letter"
+tuiInput
+[maskito]="passwordMask"
+[type]="showPassword ? 'password' : 'text'"
+formControlName="repeatedPassword"
+/>
+
+        <tui-icon
+            *polymorpheusOutlet="showHideIcon as src"
+            [icon]="src"
+        />
+        </tui-textfield>
 
         <ng-template #showHideIcon>
             <tui-icon
@@ -103,52 +106,49 @@
     </div>
 
     <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-input
-            formControlName="transactionDate"
-            tuiTextfieldCustomContent="@tui.calendar"
-            class="tui-form__multi-field"
-        >
-            Transaction date
-            <input
-                inputmode="decimal"
-                name="transactionDate"
-                placeholder="dd.mm.yyyy"
-                tuiTextfieldLegacy
-                [maskito]="transactionDateMask"
-            />
-        </tui-input>
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Transaction date</label>
+        <input
+inputmode="decimal"
+name="transactionDate"
+placeholder="dd.mm.yyyy"
+tuiInput
+[maskito]="transactionDateMask"
+formControlName="transactionDate"
+/>
 
-        <tui-input
-            formControlName="transactionAmount"
-            class="tui-form__multi-field"
-        >
-            Transaction amount
-            <input
-                autocomplete="transaction-amount"
-                inputmode="decimal"
-                name="transactionAmount"
-                placeholder="Enter amount"
-                tuiTextfieldLegacy
-                [maskito]="transactionAmountMask"
-            />
-        </tui-input>
+        <tui-icon icon="@tui.calendar" />
+        </tui-textfield>
+
+        <tui-textfield class="tui-form__multi-field">
+        <label tuiLabel>Transaction amount</label>
+        <input
+autocomplete="transaction-amount"
+inputmode="decimal"
+name="transactionAmount"
+placeholder="Enter amount"
+tuiInput
+[maskito]="transactionAmountMask"
+formControlName="transactionAmount"
+/>
+        </tui-textfield>
     </div>
 
     <div class="tui-form__row">
-        <tui-textarea
-            formControlName="address"
-            [expandable]="true"
-        >
-            Enter address
-
-            <textarea
-                autocomplete="street-address"
-                name="address"
-                placeholder="Only latin letters, digits and some punctuation signs are allowed"
-                tuiTextfieldLegacy
-                [maskito]="addressMask"
-            ></textarea>
-        </tui-textarea>
+        <!-- TODO: (Taiga UI migration) tui-textarea migration (see https://taiga-ui.dev/components/textarea):
+     - [expandable] was removed. New component always auto-resizes between [min] (default: 1) and [max] (default: 3) rows.
+-->
+        <tui-textfield>
+        <label tuiLabel>Enter address</label>
+        <textarea
+autocomplete="street-address"
+name="address"
+placeholder="Only latin letters, digits and some punctuation signs are allowed"
+tuiTextarea
+[maskito]="addressMask"
+formControlName="address"
+></textarea>
+        </tui-textfield>
     </div>
 
     <div class="tui-form__buttons">

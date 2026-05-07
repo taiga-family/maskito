@@ -9,10 +9,11 @@
         in an React-way.
     </p>
 
-    <tui-notification
-        appearance="warning"
-        size="m"
-    >
+    <div
+tuiNotification
+appearance="warning"
+size="m"
+>
         <div>
             <strong>Prerequisites</strong>
             <p class="tui-space_bottom-0">
@@ -26,7 +27,7 @@
                 first.
             </p>
         </div>
-    </tui-notification>
+    </div>
 
     <section id="getting-started">
         <h2>Getting Started</h2>
@@ -72,10 +73,11 @@
             </a>
         </p>
 
-        <tui-notification
-            size="m"
-            class="tui-space_bottom-4"
-        >
+        <div
+tuiNotification
+size="m"
+class="tui-space_bottom-4"
+>
             React-specific
             <code>onChange</code>
             is supported by
@@ -83,7 +85,7 @@
             too but usage of
             <code>onInput</code>
             handler is a more robust solution!
-        </tui-notification>
+        </div>
 
         <tui-doc-code [code]="controlledInputDemo" />
     </section>
@@ -121,7 +123,7 @@
             some UI Kit library.
         </p>
 
-        <tui-notification size="m">
+        <div tuiNotification size="m">
             <div>
                 By default
                 <strong>Maskito</strong>
@@ -129,7 +131,7 @@
                 <code>host.querySelector('input,textarea')</code>
                 so that might be sufficient. Use custom predicate if you need custom logic.
             </div>
-        </tui-notification>
+        </div>
 
         <tui-doc-example
             [content]="elementPredicateExample"

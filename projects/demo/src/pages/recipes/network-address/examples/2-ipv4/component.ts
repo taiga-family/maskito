@@ -1,25 +1,23 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'network-address-doc-example-2',
-    imports: [FormsModule, MaskitoDirective, TuiInputModule],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            [style.max-width.rem]="25"
-            [(ngModel)]="value"
-        >
-            Enter IPv4 address
+        <tui-textfield [style.max-width.rem]="25">
+            <label tuiLabel>Enter IPv4 address</label>
             <input
                 inputmode="numeric"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
-        </tui-input>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

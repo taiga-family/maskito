@@ -53,10 +53,11 @@
         </section>
     </section>
 
-    <tui-notification
-        size="m"
-        class="tui-space_bottom-12"
-    >
+    <div
+tuiNotification
+size="m"
+class="tui-space_bottom-12"
+>
         <div>
             Before you learn more about processors, you should learn a single prerequisite — meaning of the term
             <a
@@ -67,7 +68,7 @@
             </a>
             .
         </div>
-    </tui-notification>
+    </div>
 
     <section class="tui-space_bottom-12">
         <h2>Preprocessors</h2>
@@ -142,11 +143,12 @@
 
         <p>Postprocessor returns an objects of the same interface as the first argument.</p>
 
-        <tui-notification
-            appearance="warning"
-            size="m"
-            class="tui-space_bottom-4"
-        >
+        <div
+tuiNotification
+appearance="warning"
+size="m"
+class="tui-space_bottom-4"
+>
             <div>
                 <p class="tui-space_top-0 tui-space_bottom-0">
                     <strong>With great power comes great responsibility!</strong>
@@ -157,12 +159,12 @@
                     postprocessor wisely and return a valid value!
                 </p>
             </div>
-        </tui-notification>
+        </div>
 
         <tui-doc-code [code]="postprocessorInActionDemo" />
     </section>
 
-    <tui-notification size="m">
+    <div tuiNotification size="m">
         <div>
             <strong>Stacking of multiple processors</strong>
 
@@ -180,7 +182,7 @@
                 implements only a single task.
             </p>
         </div>
-    </tui-notification>
+    </div>
 
     <next-steps />
 </tui-doc-page>

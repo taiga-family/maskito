@@ -45,11 +45,12 @@
 
                 <tui-doc-code [code]="regExpMaskExpDemo" />
 
-                <tui-notification
-                    appearance="warning"
-                    size="m"
-                    class="tui-space_top-3"
-                >
+                <div
+tuiNotification
+appearance="warning"
+size="m"
+class="tui-space_top-3"
+>
                     <div>
                         Make sure that mask expression works with any of intermediate states, not just the final value.
 
@@ -66,7 +67,7 @@
                             is the right solution for our example.
                         </p>
                     </div>
-                </tui-notification>
+                </div>
             </li>
             <li class="tui-list__item">
                 <strong>Pattern mask expression</strong>
@@ -79,17 +80,18 @@
                     and each regular expression is validator of character at the same index.
                 </p>
 
-                <tui-notification
-                    appearance="info"
-                    size="m"
-                >
+                <div
+tuiNotification
+appearance="info"
+size="m"
+>
                     <div>
                         <strong>Fixed character</strong>
                         — a predefined character at a certain position (the same as its index inside mask expression
                         array). It is automatically added when user forgets to type it. It cannot be erased or replaced
                         with another character.
                     </div>
-                </tui-notification>
+                </div>
 
                 <p>
                     For example, imagine that you have to create mask for a time-string with
@@ -130,11 +132,12 @@
                     input changes to generate a new version of mask expression.
                 </p>
 
-                <tui-notification
-                    appearance="info"
-                    size="m"
-                    class="tui-space_bottom-3"
-                >
+                <div
+tuiNotification
+appearance="info"
+size="m"
+class="tui-space_bottom-3"
+>
                     <div>
                         An
                         <a
@@ -145,15 +148,16 @@
                         </a>
                         object with raw value and current selection is passed as an argument to the function.
                     </div>
-                </tui-notification>
+                </div>
 
                 <tui-doc-code [code]="dynamicMaskExpDemo" />
 
-                <tui-notification
-                    appearance="warning"
-                    size="m"
-                    class="tui-space_top-6"
-                >
+                <div
+tuiNotification
+appearance="warning"
+size="m"
+class="tui-space_top-6"
+>
                     <div>
                         <div>
                             Be careful! It can be not performance-friendly to generate new mask expression on every
@@ -162,7 +166,7 @@
 
                         <p class="tui-space_bottom-0">Think about optimization and memoization of the such function.</p>
                     </div>
-                </tui-notification>
+                </div>
             </li>
         </ul>
     </section>

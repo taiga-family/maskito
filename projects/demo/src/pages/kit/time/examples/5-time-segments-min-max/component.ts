@@ -1,14 +1,14 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextfield} from '@taiga-ui/core';
+import {TuiInput} from '@taiga-ui/core';
 import {TuiSegmented} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
     selector: 'time-mask-doc-example-5',
-    imports: [FormsModule, MaskitoDirective, TuiSegmented, TuiTextfield],
+    imports: [FormsModule, MaskitoDirective, TuiInput, TuiSegmented],
     template: `
         <tui-textfield
             filler="HH:MM"
@@ -17,7 +17,7 @@ import mask from './mask';
         >
             <input
                 inputmode="decimal"
-                tuiTextfield
+                tuiInput
                 [maskito]="mask"
                 [(ngModel)]="value"
             />

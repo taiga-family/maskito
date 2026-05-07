@@ -1,32 +1,28 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'date-mask-doc-example-3',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiInput],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.calendar"
+        <tui-textfield
             [style.max-width.rem]="30"
-            [tuiTextfieldFiller]="filler"
-            [(ngModel)]="value"
+            [filler]="filler"
         >
-            Lithuanian locale (lt-LT)
+            <label tuiLabel>Lithuanian locale (lt-LT)</label>
             <input
                 inputmode="numeric"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-        </tui-input>
+
+            <tui-icon icon="@tui.calendar" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
