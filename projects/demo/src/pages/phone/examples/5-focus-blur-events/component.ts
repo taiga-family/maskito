@@ -1,9 +1,9 @@
+import { PolymorpheusOutlet } from "@taiga-ui/polymorpheus";
+import { TuiInput, TuiIcon } from "@taiga-ui/core";
+import { TuiFlagPipe } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
@@ -12,27 +12,22 @@ import mask from './mask';
         FormsModule,
         MaskitoDirective,
         TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon,
+        PolymorpheusOutlet
     ],
     template: `
-        <tui-input
-            #textfield
-            [style.max-width.rem]="30"
-            [tuiTextfieldCustomContent]="flag"
-            [(ngModel)]="value"
-        >
-            {{
-                textfield.focused ? 'Blur me to remove prefix' : 'Focus me to see prefix'
-            }}
-            <input
+        <!-- TODO: (Taiga UI migration) tui-input migration (see https://taiga-ui.dev/components/input):
+     - "#textfield" is an unrecognized attribute and was placed on <tui-textfield>. Move it to <input tuiInput> if it targets the native element.
+-->
+        <tui-textfield #textfield [style.max-width.rem]="30">
+        <label tuiLabel>{{ textfield.focused ? 'Blur me to remove prefix' : 'Focus me to see prefix' }}</label>
+        <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
-                [maskito]="mask"
-            />
-
-            <ng-template #flag>
+                tuiInput
+                [maskito]="mask" [(ngModel)]="value"/>
+<ng-template #flag>
                 <img
                     alt="Turkish flag"
                     width="28"
@@ -40,7 +35,11 @@ import mask from './mask';
                     [style.border-radius.%]="50"
                 />
             </ng-template>
-        </tui-input>
+        <tui-icon
+            *polymorpheusOutlet="flag as src"
+            [icon]="src"
+        />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -40,7 +40,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel="1.23"
-                    tuiTextfield
+                    tuiInput
                     [readOnly]="true"
                 />
             </tui-textfield>
@@ -55,7 +55,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel=".23"
-                    tuiTextfield
+                    tuiInput
                     [readOnly]="true"
                 />
             </tui-textfield>
@@ -83,7 +83,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel="1.23"
-                    tuiTextfield
+                    tuiInput
                     [maskito]="documentationMask"
                 />
             </tui-textfield>
@@ -97,7 +97,7 @@
                     routerLink="Built-in_core_plugins"
                     tuiCardLarge
                     tuiHeader
-                    tuiSurface="elevated"
+                    appearance="floating"
                 >
                     <h3 tuiTitle>
                         &#64;maskito/core
@@ -117,7 +117,7 @@
                 <a
                     tuiCardLarge
                     tuiHeader
-                    tuiSurface="elevated"
+                    appearance="floating"
                     [routerLink]="kitPluginsDocPage"
                 >
                     <h3 tuiTitle>

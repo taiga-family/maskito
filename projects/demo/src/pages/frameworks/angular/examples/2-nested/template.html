@@ -14,9 +14,7 @@
     Add card holder name
 </label>
 
-<tui-input
-    [disabled]="!show"
-    [(ngModel)]="value"
->
-    Name on the card
-</tui-input>
+<tui-textfield>
+<label tuiLabel>Name on the card</label>
+<input tuiInput [(ngModel)]="value" [disabled]="!show" />
+</tui-textfield>

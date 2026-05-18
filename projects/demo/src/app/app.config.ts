@@ -1,3 +1,4 @@
+import { provideTaiga } from "@taiga-ui/core";
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
 import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
@@ -16,7 +17,6 @@ import {
     tuiDocExampleOptionsProvider,
     type TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
-import {NG_EVENT_PLUGINS} from '@taiga-ui/event-plugins';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
@@ -42,7 +42,7 @@ export const APP_CONFIG: ApplicationConfig = {
                 anchorScrolling: 'enabled',
             }),
         ),
-        NG_EVENT_PLUGINS,
+        provideTaiga(),
         provideHttpClient(),
         {
             provide: LocationStrategy,

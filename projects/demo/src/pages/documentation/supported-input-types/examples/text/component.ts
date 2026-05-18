@@ -1,8 +1,7 @@
+import { TuiInput, TuiIcon } from "@taiga-ui/core";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
 import mask from './mask';
 
 @Component({
@@ -10,24 +9,20 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon
     ],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.clock"
-            [style.max-width.rem]="20"
-            [tuiTextfieldLabelOutside]="true"
-            [(ngModel)]="value"
-        >
-            Enter time
-            <input
+        <tui-textfield [style.max-width.rem]="20">
+        <label tuiLabel>Enter time</label>
+        <input
                 inputmode="decimal"
-                tuiTextfieldLegacy
+                tuiInput
                 type="text"
-                [maskito]="maskitoOptions"
-            />
-        </tui-input>
+                [maskito]="maskitoOptions" [(ngModel)]="value"/>
+
+        <tui-icon icon="@tui.clock" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

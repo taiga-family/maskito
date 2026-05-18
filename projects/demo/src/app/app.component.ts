@@ -1,9 +1,9 @@
+import { WaResizeObserverService } from "@ng-web-apis/resize-observer";
 import {ViewportScroller} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
-import {ResizeObserverService} from '@ng-web-apis/resize-observer';
 import {TUI_DOC_PAGE_LOADED, TuiDocMain} from '@taiga-ui/addon-doc';
 import {tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';
@@ -16,13 +16,13 @@ import {debounceTime, map, startWith} from 'rxjs';
     styleUrl: './app.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
-        ResizeObserverService,
+        WaResizeObserverService,
         {
             provide: TUI_DOC_PAGE_LOADED,
             useFactory: () => {
                 const host = tuiInjectElement();
 
-                return inject(ResizeObserverService).pipe(
+                return inject(WaResizeObserverService).pipe(
                     startWith(null),
                     debounceTime(0), // Synchronous scrollIntoView (after click) does not work https://stackoverflow.com/a/56971002
                     map(() => {

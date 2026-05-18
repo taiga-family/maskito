@@ -34,13 +34,13 @@
                 <code>thousandSeparator</code>
                 to get mask with locale specific representation of numbers.
             </ng-template>
-            <tui-notification
+            <div tuiNotification
                 size="m"
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="30"
             >
                 In Germany people use comma as decimal separator and dot for thousands
-            </tui-notification>
+            </div>
             <number-mask-doc-example-2 />
         </tui-doc-example>
 
@@ -168,13 +168,13 @@
                     (10 000) counting system: ¥1,2345,6789.
                 </p>
             </ng-template>
-            <tui-notification
+            <div tuiNotification
                 size="m"
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="30"
             >
                 Japanese numbering groups digits in sets of 4 from right: ¥1,2345,6789
-            </tui-notification>
+            </div>
             <number-mask-doc-example-8 />
         </tui-doc-example>
         <tui-doc-example
@@ -190,13 +190,13 @@
                 <code>thousandSeparatorPattern</code>
                 parameter.
             </ng-template>
-            <tui-notification
+            <div tuiNotification
                 size="m"
                 class="tui-space_bottom-4"
                 [style.max-width.rem]="30"
             >
                 Indian numbering system groups digits as 2+3 from right: 12,34,567
-            </tui-notification>
+            </div>
             <number-mask-doc-example-9 />
         </tui-doc-example>
 
@@ -230,26 +230,23 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-input
-                    tuiHintContent="Only digits (+ decimal separator) are allowed"
-                    [formControl]="apiPageControl"
-                >
-                    Enter a number
-                    <input
+                <tui-textfield>
+                <label tuiLabel>Enter a number</label>
+                <input
                         inputmode="decimal"
-                        tuiTextfieldLegacy
-                        [maskito]="maskitoOptions"
-                    />
-                </tui-input>
+                        tuiInput
+                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+<tui-icon tuiTooltip="Only digits (+ decimal separator) are allowed" />
+                </tui-textfield>
             </ng-template>
         </tui-doc-demo>
-        <tui-doc-documentation>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="decimalSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="decimalSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+        <table tuiDocAPI>
+            <tr
+                name="[decimalSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="decimalSeparator"
+                (valueChange)="updateOptions()"
             >
                 Symbol for separating fraction.
 
@@ -257,15 +254,15 @@
                     <strong>Default:</strong>
                     point.
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="decimalPseudoSeparators"
-                documentationPropertyType="string[]"
-                [documentationPropertyValues]="decimalPseudoSeparatorsOptions"
-                [(documentationPropertyValue)]="decimalPseudoSeparators"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[decimalPseudoSeparators]"
+                tuiDocAPIItem
+                type="string[]"
+                [items]="decimalPseudoSeparatorsOptions"
+                [(value)]="decimalPseudoSeparators"
+                (valueChange)="updateOptions()"
             >
                 Symbols to be replaced with
                 <code>decimalSeparator</code>
@@ -276,14 +273,14 @@
                     <code>['.', 'ю', 'б']</code>
                     .
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="thousandSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="thousandSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[thousandSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="thousandSeparator"
+                (valueChange)="updateOptions()"
             >
                 Symbol for separating thousands.
 
@@ -291,14 +288,14 @@
                     <strong>Default:</strong>
                     non-breaking space.
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="thousandSeparatorPattern"
-                documentationPropertyType="(digits: string) => readonly string[]"
-                [(documentationPropertyValue)]="thousandSeparatorPattern"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[thousandSeparatorPattern]"
+                tuiDocAPIItem
+                type="(digits: string) => readonly string[]"
+                [(value)]="thousandSeparatorPattern"
+                (valueChange)="updateOptions()"
             >
                 A function that defines how integer digits are split into groups. Receives raw integer digits as a
                 string; returns them as an ordered array of groups (left-to-right).
@@ -309,14 +306,14 @@
                     <code>thousandSeparator</code>
                     .
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="minimumFractionDigits"
-                documentationPropertyType="number"
-                [(documentationPropertyValue)]="minimumFractionDigits"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[minimumFractionDigits]"
+                tuiDocAPIItem
+                type="number"
+                [(value)]="minimumFractionDigits"
+                (valueChange)="updateOptions()"
             >
                 <p>The minimum number of fraction digits to use.</p>
 
@@ -330,15 +327,15 @@
                     <code>0</code>
                     .
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="maximumFractionDigits"
-                documentationPropertyType="number"
-                [documentationPropertyValues]="maximumFractionDigitsOptions"
-                [(documentationPropertyValue)]="maximumFractionDigits"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[maximumFractionDigits]"
+                tuiDocAPIItem
+                type="number"
+                [items]="maximumFractionDigitsOptions"
+                [(value)]="maximumFractionDigits"
+                (valueChange)="updateOptions()"
             >
                 <p>
                     The maximum number of digits after
@@ -357,15 +354,15 @@
                     <code>0</code>
                     (decimal part is forbidden).
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="min"
-                documentationPropertyType="number | bigint"
-                [documentationPropertyValues]="minOptions"
-                [(documentationPropertyValue)]="min"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[min]"
+                tuiDocAPIItem
+                type="number | bigint"
+                [items]="minOptions"
+                [(value)]="min"
+                (valueChange)="updateOptions()"
             >
                 The lowest permitted value.
 
@@ -374,14 +371,14 @@
                     <code>-Infinity</code>
                     .
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="max"
-                documentationPropertyType="number | bigint"
-                [documentationPropertyValues]="maxOptions"
-                [(documentationPropertyValue)]="max"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[max]"
+                tuiDocAPIItem
+                type="number | bigint"
+                [items]="maxOptions"
+                [(value)]="max"
+                (valueChange)="updateOptions()"
             >
                 The greatest permitted value.
 
@@ -390,13 +387,13 @@
                     <code>Infinity</code>
                     .
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="prefix"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="prefix"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[prefix]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="prefix"
+                (valueChange)="updateOptions()"
             >
                 A prefix symbol, like currency.
 
@@ -404,13 +401,13 @@
                     <strong>Default:</strong>
                     empty string (no prefix).
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="postfix"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="postfix"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[postfix]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="postfix"
+                (valueChange)="updateOptions()"
             >
                 A postfix symbol, like currency.
 
@@ -418,13 +415,13 @@
                     <strong>Default:</strong>
                     empty string (no postfix).
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="minusSign"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="minusSign"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[minusSign]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="minusSign"
+                (valueChange)="updateOptions()"
             >
                 A minus symbol.
 
@@ -439,14 +436,14 @@
                         <code>\u2212</code>
                     </a>
                 </p>
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="negativePattern"
-                documentationPropertyType="'minusFirst' | 'prefixFirst'"
-                [documentationPropertyValues]="negativePatternOptions"
-                [(documentationPropertyValue)]="negativePattern"
-                (documentationPropertyValueChange)="updateOptions()"
+            </tr>
+            <tr
+                name="[negativePattern]"
+                tuiDocAPIItem
+                type="'minusFirst' | 'prefixFirst'"
+                [items]="negativePatternOptions"
+                [(value)]="negativePattern"
+                (valueChange)="updateOptions()"
             >
                 Order of prefix and minus sign
 
@@ -454,8 +451,8 @@
                     <strong>Default:</strong>
                     <code>'prefixFirst'</code>
                 </p>
-            </ng-template>
-        </tui-doc-documentation>
+            </tr>
+        </table>
     </ng-template>
 
     <ng-template pageTab="Helpers">
@@ -499,7 +496,7 @@
                 </li>
             </ul>
 
-            <tui-notification
+            <div tuiNotification
                 appearance="warning"
                 size="m"
                 class="tui-space_top-4"
@@ -508,7 +505,7 @@
                 ones to ensure correct parsing and avoid unexpected results!
 
                 <tui-doc-code [code]="parseNumberInvalidUsageDemo" />
-            </tui-notification>
+            </div>
         </section>
 
         <section class="tui-space_top-10">

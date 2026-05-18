@@ -27,7 +27,7 @@
                                 appearance="icon"
                                 tuiLink
                                 tuiTheme="dark"
-                                [pseudo]="true"
+                                [style.text-decoration-line]="'underline'"
                                 [routerLink]="supportedInputTypesDocPage"
                             >
                                 See a full list of supported types
@@ -57,7 +57,7 @@
         [code]="maskitoPublicApiDemo"
     />
 
-    <tui-notification
+    <div tuiNotification
         appearance="warning"
         size="m"
     >
@@ -70,7 +70,7 @@
                 removes all created event listeners. Call it to clean everything up when the work is finished.
             </p>
         </div>
-    </tui-notification>
+    </div>
 
     <section>
         <p>
@@ -82,7 +82,7 @@
             <a
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
+                appearance="floating"
                 [routerLink]="maskExpressionDocPage"
             >
                 <h1 tuiTitle>
@@ -97,7 +97,7 @@
             <a
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
+                appearance="floating"
                 [routerLink]="processorsDocPage"
             >
                 <h1 tuiTitle>
@@ -109,7 +109,7 @@
             <a
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
+                appearance="floating"
                 [routerLink]="pluginsDocPage"
             >
                 <h1 tuiTitle>
@@ -123,7 +123,7 @@
             <a
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
+                appearance="floating"
                 [routerLink]="overwriteModeDocPage"
             >
                 <h1 tuiTitle>
@@ -140,7 +140,7 @@
             <a
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
+                appearance="floating"
                 [routerLink]="transformerDocPage"
             >
                 <h1 tuiTitle>

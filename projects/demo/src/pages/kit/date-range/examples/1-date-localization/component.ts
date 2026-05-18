@@ -1,9 +1,8 @@
+import { TuiTooltip } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiHint} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
+import { TuiHint, TuiInput, TuiIcon } from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
@@ -12,24 +11,21 @@ import mask from './mask';
         FormsModule,
         MaskitoDirective,
         TuiHint,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiIcon,
+        TuiTooltip
     ],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.calendar"
-            [style.max-width.rem]="30"
-            [tuiHintContent]="hint"
-            [tuiTextfieldFiller]="filler"
-            [(ngModel)]="value"
-        >
-            US format
-            <input
+        <tui-textfield [style.max-width.rem]="30" [filler]="filler">
+        <label tuiLabel>US format</label>
+        <input
                 inputmode="decimal"
-                tuiTextfieldLegacy
-                [maskito]="mask"
-            />
-        </tui-input>
+                tuiInput
+                [maskito]="mask" [(ngModel)]="value"/>
+<tui-icon [tuiTooltip]="hint" />
+
+        <tui-icon icon="@tui.calendar" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

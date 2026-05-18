@@ -63,9 +63,10 @@
                     "entry": "{projectRoot}/src/server.ts"
                 },
                 "styles": [
-                    "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-                    "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-                    "node_modules/@taiga-ui/styles/taiga-ui-global.less",
+                    "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
+                    "node_modules/@taiga-ui/styles/taiga-ui-fonts.less",
+// TODO: (Taiga UI migration) Global styles will be removed in next major release. Include their source code in your project if you still require them: https://github.com/taiga-family/taiga-ui/blob/main/projects/legacy/styles/taiga-ui-global.less
+                    "node_modules/@taiga-ui/legacy/styles/taiga-ui-global.less",
                     "{projectRoot}/src/styles.less"
                 ],
                 "tsConfig": "{projectRoot}/tsconfig.app.json"
@@ -109,7 +110,7 @@
                         "@taiga-ui/kit",
                         "@taiga-ui/layout",
                         "@taiga-ui/legacy",
-                        "@taiga-ui/styles"
+                        "@taiga-ui/legacy/styles"
                     ]
                 }
             }

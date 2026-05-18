@@ -5,9 +5,7 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoDate, type MaskitoDateMode, type MaskitoDateParams} from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
-
+import { TuiLink, TuiNotification, TuiInput, TuiIcon } from '@taiga-ui/core';
 import {DateMaskDocExample1} from './examples/1-localization/component';
 import {DateMaskDocExample2} from './examples/2-min-max/component';
 import {DateMaskDocExample3} from './examples/3-locale-date/component';
@@ -21,10 +19,10 @@ import {DateMaskDocExample3} from './examples/3-locale-date/component';
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
-        TuiInputModule,
+        TuiInput,
         TuiLink,
         TuiNotification,
-        TuiTextfieldControllerModule,
+        TuiIcon
     ],
     templateUrl: './date-mask-doc.template.html',
     styleUrl: './date-mask-doc.style.less',

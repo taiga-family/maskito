@@ -1,3 +1,5 @@
+import { PolymorpheusOutlet } from "@taiga-ui/polymorpheus";
+import { TuiFlagPipe, TuiTextarea } from "@taiga-ui/kit";
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
@@ -9,14 +11,9 @@ import {
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {isSafari} from '@ng-web-apis/platform';
-import {TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiButton, TuiFlagPipe, TuiIcon} from '@taiga-ui/core';
-import {
-    TuiInputModule,
-    TuiTextareaModule,
-    TuiTextfieldControllerModule,
-} from '@taiga-ui/legacy';
+import { isSafari, WA_IS_IOS } from '@ng-web-apis/platform';
+import {tuiInjectElement} from '@taiga-ui/cdk';
+import { TuiButton, TuiIcon, TuiInput } from '@taiga-ui/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
 const MONEY_AMOUNT_MASK = maskitoNumber({
@@ -35,9 +32,9 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
         TuiButton,
         TuiFlagPipe,
         TuiIcon,
-        TuiInputModule,
-        TuiTextareaModule,
-        TuiTextfieldControllerModule,
+        TuiInput,
+        TuiTextarea,
+        PolymorpheusOutlet
     ],
     templateUrl: './index.html',
     styleUrl: './index.less',
@@ -49,7 +46,7 @@ export default class RealWorldForm {
      * TODO: delete after bumping Safari support to 18+
      */
     protected readonly phonePattern =
-        isSafari(tuiInjectElement()) || inject(TUI_IS_IOS) ? '+[0-9-]{1,20}' : '';
+        isSafari(tuiInjectElement()) || inject(WA_IS_IOS) ? '+[0-9-]{1,20}' : '';
 
     protected readonly form = new FormGroup({
         name: new FormControl(''),
