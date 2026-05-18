@@ -9,15 +9,12 @@ import mask from './mask';
     selector: 'overwrite-mode-dynamic-doc-example-3',
     imports: [FormsModule, MaskitoDirective, TuiTextarea],
     template: `
-        <!-- TODO: (Taiga UI migration) tui-textarea migration (see https://taiga-ui.dev/components/textarea):
-     - [expandable] was removed. New component always auto-resizes between [min] (default: 1) and [max] (default: 3) rows.
-     - Unrecognized attribute "[style.max-width.rem]="20"" was placed on <tui-textfield>. Move it to <textarea tuiTextarea> if it targets the native element.
--->
         <tui-textfield [style.max-width.rem]="20">
             <textarea
                 tuiTextarea
                 [maskito]="maskitoOptions"
                 [ngModel]="initialValue"
+                [min]="6"
             ></textarea>
         </tui-textfield>
     `,
