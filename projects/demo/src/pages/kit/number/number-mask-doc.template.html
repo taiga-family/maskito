@@ -34,11 +34,12 @@
                 <code>thousandSeparator</code>
                 to get mask with locale specific representation of numbers.
             </ng-template>
-            <div tuiNotification
-                size="m"
-                class="tui-space_bottom-4"
-                [style.max-width.rem]="30"
-            >
+            <div
+tuiNotification
+size="m"
+class="tui-space_bottom-4"
+[style.max-width.rem]="30"
+>
                 In Germany people use comma as decimal separator and dot for thousands
             </div>
             <number-mask-doc-example-2 />
@@ -168,11 +169,12 @@
                     (10 000) counting system: ¥1,2345,6789.
                 </p>
             </ng-template>
-            <div tuiNotification
-                size="m"
-                class="tui-space_bottom-4"
-                [style.max-width.rem]="30"
-            >
+            <div
+tuiNotification
+size="m"
+class="tui-space_bottom-4"
+[style.max-width.rem]="30"
+>
                 Japanese numbering groups digits in sets of 4 from right: ¥1,2345,6789
             </div>
             <number-mask-doc-example-8 />
@@ -190,11 +192,12 @@
                 <code>thousandSeparatorPattern</code>
                 parameter.
             </ng-template>
-            <div tuiNotification
-                size="m"
-                class="tui-space_bottom-4"
-                [style.max-width.rem]="30"
-            >
+            <div
+tuiNotification
+size="m"
+class="tui-space_bottom-4"
+[style.max-width.rem]="30"
+>
                 Indian numbering system groups digits as 2+3 from right: 12,34,567
             </div>
             <number-mask-doc-example-9 />
@@ -233,9 +236,11 @@
                 <tui-textfield>
                 <label tuiLabel>Enter a number</label>
                 <input
-                        inputmode="decimal"
-                        tuiInput
-                        [maskito]="maskitoOptions" [formControl]="apiPageControl"/>
+inputmode="decimal"
+tuiInput
+[maskito]="maskitoOptions"
+[formControl]="apiPageControl"
+/>
 <tui-icon tuiTooltip="Only digits (+ decimal separator) are allowed" />
                 </tui-textfield>
             </ng-template>
@@ -496,11 +501,12 @@
                 </li>
             </ul>
 
-            <div tuiNotification
-                appearance="warning"
-                size="m"
-                class="tui-space_top-4"
-            >
+            <div
+tuiNotification
+appearance="warning"
+size="m"
+class="tui-space_top-4"
+>
                 Always pass the second argument to the utility if your number format parameters differ from the default
                 ones to ensure correct parsing and avoid unexpected results!
 

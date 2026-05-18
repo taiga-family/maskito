@@ -1,9 +1,9 @@
-import { WaResizeObserverService } from "@ng-web-apis/resize-observer";
 import {ViewportScroller} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
+import {WaResizeObserverService} from '@ng-web-apis/resize-observer';
 import {TUI_DOC_PAGE_LOADED, TuiDocMain} from '@taiga-ui/addon-doc';
 import {tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiLink} from '@taiga-ui/core';

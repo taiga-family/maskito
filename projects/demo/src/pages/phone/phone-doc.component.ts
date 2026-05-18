@@ -5,10 +5,10 @@ import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
 import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/phone';
-import { isSafari, WA_IS_IOS } from '@ng-web-apis/platform';
+import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS, tuiInjectElement} from '@taiga-ui/cdk';
-import { TuiLink, TuiNotification, TuiInput, TuiIcon } from '@taiga-ui/core';
+import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import type {MetadataJson} from 'libphonenumber-js';
 import {
     type CountryCode,
@@ -48,10 +48,10 @@ type MetadataName = keyof typeof metadataSets;
         PhoneMaskDocExample6,
         ReactiveFormsModule,
         TuiAddonDoc,
+        TuiIcon,
         TuiInput,
         TuiLink,
         TuiNotification,
-        TuiIcon
     ],
     templateUrl: './phone-doc.template.html',
     styleUrl: './phone-doc.style.less',

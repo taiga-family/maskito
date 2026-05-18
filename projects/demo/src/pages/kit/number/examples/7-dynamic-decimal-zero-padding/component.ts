@@ -7,28 +7,25 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
-import { TuiLabel, TuiInput } from '@taiga-ui/core';
-import { tuiPure } from '@taiga-ui/legacy';
+import {TuiInput, TuiLabel} from '@taiga-ui/core';
+import {tuiPure} from '@taiga-ui/legacy';
 
 import {getMaskitoOptions} from './mask';
 
 @Component({
     selector: 'number-mask-doc-example-7',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInput,
-        TuiLabel
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiInput, TuiLabel],
     template: `
         <label tuiLabel>
             Enable decimal zero padding by typing dot
             <tui-textfield [style.max-width.rem]="30">
-            <input
+                <input
                     inputmode="decimal"
                     tuiInput
                     [maskito]="getMaskOptions(decimalZeroPadding)"
-                    (beforeinput.capture)="handleBeforeInput($event)" [(ngModel)]="value"/>
+                    (beforeinput.capture)="handleBeforeInput($event)"
+                    [(ngModel)]="value"
+                />
             </tui-textfield>
         </label>
     `,

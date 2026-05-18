@@ -10,20 +10,24 @@
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Name</label>
         <input
-                autocomplete="name"
-                name="name"
-                placeholder="Only latin letters"
-                tuiInput
-                [maskito]="nameMask" formControlName="name"/>
+autocomplete="name"
+name="name"
+placeholder="Only latin letters"
+tuiInput
+[maskito]="nameMask"
+formControlName="name"
+/>
         </tui-textfield>
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Surname</label>
         <input
-                autocomplete="family-name"
-                name="surname"
-                placeholder="Only CAPITAL latin letters"
-                tuiInput
-                [maskito]="surnameMask" formControlName="surname"/>
+autocomplete="family-name"
+name="surname"
+placeholder="Only CAPITAL latin letters"
+tuiInput
+[maskito]="surnameMask"
+formControlName="surname"
+/>
         </tui-textfield>
     </div>
 
@@ -31,12 +35,14 @@
         <tui-textfield>
         <label tuiLabel>Enter phone number</label>
         <input
-                autocomplete="tel"
-                inputmode="tel"
-                name="phone"
-                tuiInput
-                [attr.pattern]="phonePattern"
-                [maskito]="phoneMask" formControlName="phone"/>
+autocomplete="tel"
+inputmode="tel"
+name="phone"
+tuiInput
+[attr.pattern]="phonePattern"
+[maskito]="phoneMask"
+formControlName="phone"
+/>
 
         <tui-icon
             *polymorpheusOutlet="countryIsoCode ? flag : '@tui.phone' as src"
@@ -58,12 +64,14 @@
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Enter password</label>
         <input
-                autocomplete="new-password"
-                name="password"
-                placeholder="Only digits and one latin letter"
-                tuiInput
-                [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'" formControlName="password"/>
+autocomplete="new-password"
+name="password"
+placeholder="Only digits and one latin letter"
+tuiInput
+[maskito]="passwordMask"
+[type]="showPassword ? 'password' : 'text'"
+formControlName="password"
+/>
 
         <tui-icon
             *polymorpheusOutlet="showHideIcon as src"
@@ -73,12 +81,14 @@
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Repeat password</label>
         <input
-                autocomplete="new-password"
-                name="repeatPassword"
-                placeholder="Only digits and one latin letter"
-                tuiInput
-                [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'" formControlName="repeatedPassword"/>
+autocomplete="new-password"
+name="repeatPassword"
+placeholder="Only digits and one latin letter"
+tuiInput
+[maskito]="passwordMask"
+[type]="showPassword ? 'password' : 'text'"
+formControlName="repeatedPassword"
+/>
 
         <tui-icon
             *polymorpheusOutlet="showHideIcon as src"
@@ -99,11 +109,13 @@
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Transaction date</label>
         <input
-                inputmode="decimal"
-                name="transactionDate"
-                placeholder="dd.mm.yyyy"
-                tuiInput
-                [maskito]="transactionDateMask" formControlName="transactionDate"/>
+inputmode="decimal"
+name="transactionDate"
+placeholder="dd.mm.yyyy"
+tuiInput
+[maskito]="transactionDateMask"
+formControlName="transactionDate"
+/>
 
         <tui-icon icon="@tui.calendar" />
         </tui-textfield>
@@ -111,12 +123,14 @@
         <tui-textfield class="tui-form__multi-field">
         <label tuiLabel>Transaction amount</label>
         <input
-                autocomplete="transaction-amount"
-                inputmode="decimal"
-                name="transactionAmount"
-                placeholder="Enter amount"
-                tuiInput
-                [maskito]="transactionAmountMask" formControlName="transactionAmount"/>
+autocomplete="transaction-amount"
+inputmode="decimal"
+name="transactionAmount"
+placeholder="Enter amount"
+tuiInput
+[maskito]="transactionAmountMask"
+formControlName="transactionAmount"
+/>
         </tui-textfield>
     </div>
 
@@ -127,11 +141,13 @@
         <tui-textfield>
         <label tuiLabel>Enter address</label>
         <textarea
-                autocomplete="street-address"
-                name="address"
-                placeholder="Only latin letters, digits and some punctuation signs are allowed"
-                tuiTextarea
-                [maskito]="addressMask" formControlName="address"></textarea>
+autocomplete="street-address"
+name="address"
+placeholder="Only latin letters, digits and some punctuation signs are allowed"
+tuiTextarea
+[maskito]="addressMask"
+formControlName="address"
+></textarea>
         </tui-textfield>
     </div>
 

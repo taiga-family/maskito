@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiValidationError} from '@taiga-ui/cdk';
-import { TuiError, TuiInput, TuiIcon } from '@taiga-ui/core';
+import {TuiError, TuiIcon, TuiInput} from '@taiga-ui/core';
 import {type CountryCode, isValidPhoneNumber} from 'libphonenumber-js/max';
 
 import mask from './mask';
@@ -29,24 +29,23 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
         MaskitoDirective,
         ReactiveFormsModule,
         TuiError,
+        TuiIcon,
         TuiInput,
-        TuiIcon
     ],
     template: `
         <tui-textfield [style.max-width.rem]="30">
-        <label tuiLabel>Basic</label>
-        <input
+            <label tuiLabel>Basic</label>
+            <input
                 autocomplete="tel"
                 inputmode="tel"
                 tuiInput
-                [maskito]="mask" [formControl]="control"/>
+                [maskito]="mask"
+                [formControl]="control"
+            />
 
-        <tui-icon icon="@tui.phone" />
+            <tui-icon icon="@tui.phone" />
         </tui-textfield>
-        <tui-error
-            
-            [formControl]="control"
-        />
+        <tui-error [formControl]="control" />
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

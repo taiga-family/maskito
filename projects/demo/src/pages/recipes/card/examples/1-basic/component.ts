@@ -3,7 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoDate} from '@maskito/kit';
-import { TuiGroup, TuiInput } from '@taiga-ui/core';
+import {TuiGroup, TuiInput} from '@taiga-ui/core';
 
 @Component({
     selector: 'card-doc-example-1',
