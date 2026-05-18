@@ -192,7 +192,7 @@
             </button>
         </tui-tabs-with-more>
 
-        @switch (tabs.activeItemIndex) {
+        @switch (tabs.activeItemIndex()) {
             @case (0) {
                 <tui-doc-code [code]="reactHookFormExample['index.tsx']!" />
             }

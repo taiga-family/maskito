@@ -231,9 +231,7 @@ describe('Number | Zero integer part', () => {
                     .blur()
                     .should('have.value', '0,23');
 
-                cy.get('@input')
-                    .parents('tui-input')
-                    .should('have.ngControlValue', '0,23');
+                cy.get('@input').should('have.ngControlValue', '0,23');
             });
 
             it('Negative number & decimal separator is dot', () => {
@@ -246,9 +244,7 @@ describe('Number | Zero integer part', () => {
                     .blur()
                     .should('have.value', '−0.23');
 
-                cy.get('@input')
-                    .parents('tui-input')
-                    .should('have.ngControlValue', '−0.23');
+                cy.get('@input').should('have.ngControlValue', '−0.23');
             });
         });
 
@@ -263,9 +259,7 @@ describe('Number | Zero integer part', () => {
                     .blur()
                     .should('have.value', '$0.23');
 
-                cy.get('@input')
-                    .parents('tui-input')
-                    .should('have.ngControlValue', '$0.23');
+                cy.get('@input').should('have.ngControlValue', '$0.23');
             });
 
             it('Negative number & decimal separator is comma', () => {
@@ -278,9 +272,7 @@ describe('Number | Zero integer part', () => {
                     .blur()
                     .should('have.value', '>−0,23');
 
-                cy.get('@input')
-                    .parents('tui-input')
-                    .should('have.ngControlValue', '>−0,23');
+                cy.get('@input').should('have.ngControlValue', '>−0,23');
             });
         });
     });

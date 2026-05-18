@@ -1,4 +1,3 @@
-import {AsyncPipe} from '@angular/common';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {
     type AbstractControl,
@@ -24,14 +23,7 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
 
 @Component({
     selector: 'phone-doc-example-2',
-    imports: [
-        AsyncPipe,
-        MaskitoDirective,
-        ReactiveFormsModule,
-        TuiError,
-        TuiIcon,
-        TuiInput,
-    ],
+    imports: [MaskitoDirective, ReactiveFormsModule, TuiError, TuiIcon, TuiInput],
     template: `
         <tui-textfield [style.max-width.rem]="30">
             <label tuiLabel>Basic</label>

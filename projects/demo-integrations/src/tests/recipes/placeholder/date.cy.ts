@@ -13,7 +13,7 @@ describe('Placeholder | Date', () => {
             .should('have.prop', 'selectionEnd', 0)
             .as('input');
 
-        cy.get('#date tui-input').as('inputWrapper');
+        cy.get('#date tui-textfield').as('inputWrapper');
     });
 
     describe('basic typing (1 character per keydown)', () => {

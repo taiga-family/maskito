@@ -18,16 +18,13 @@ import mask from './mask';
         TuiInput,
     ],
     template: `
-        <!-- TODO: (Taiga UI migration) tui-input migration (see https://taiga-ui.dev/components/input):
-     - "#textfield" is an unrecognized attribute and was placed on <tui-textfield>. Move it to <input tuiInput> if it targets the native element.
--->
         <tui-textfield
             #textfield
             [style.max-width.rem]="30"
         >
             <label tuiLabel>
                 {{
-                    textfield.focused
+                    textfield.focused()
                         ? 'Blur me to remove prefix'
                         : 'Focus me to see prefix'
                 }}

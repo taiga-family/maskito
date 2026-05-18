@@ -6,7 +6,7 @@ describe('Angular FormControl and native input have the same values', () => {
 
         cy.get('#demo-content button').should('contain', 'Form value').click();
 
-        cy.get('#demo-content tui-input').as('inputWrapper');
+        cy.get('#demo-content tui-textfield').as('inputWrapper');
         cy.get('#demo-content input').should('be.visible').first().focus().as('input');
     });
 
