@@ -2,10 +2,11 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {maskitoGetCountryFromNumber} from '@maskito/phone';
-import {isSafari} from '@ng-web-apis/platform';
-import {TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
+import {tuiInjectElement} from '@taiga-ui/cdk';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import mask from './mask';
@@ -15,25 +16,28 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        PolymorpheusOutlet,
         TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiIcon,
+        TuiInput,
     ],
     template: `
-        <tui-input
-            [style.max-width.rem]="30"
-            [tuiTextfieldCustomContent]="countryIsoCode ? flag : '@tui.phone'"
-            [(ngModel)]="value"
-        >
-            Non-strict
+        <tui-textfield [style.max-width.rem]="30">
+            <label tuiLabel>Non-strict</label>
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [attr.pattern]="pattern"
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-        </tui-input>
+
+            <tui-icon
+                *polymorpheusOutlet="countryIsoCode ? flag : '@tui.phone' as src"
+                [icon]="src"
+            />
+        </tui-textfield>
 
         <ng-template #flag>
             <img
@@ -52,7 +56,7 @@ export class PhoneMaskDocExample3 {
      * TODO: delete after bumping Safari support to 18+
      */
     protected readonly pattern =
-        isSafari(tuiInjectElement()) || inject(TUI_IS_IOS) ? '+[0-9-]{1,20}' : '';
+        isSafari(tuiInjectElement()) || inject(WA_IS_IOS) ? '+[0-9-]{1,20}' : '';
 
     protected value = '';
     protected readonly mask = mask;

@@ -27,8 +27,8 @@
                                 appearance="icon"
                                 tuiLink
                                 tuiTheme="dark"
-                                [pseudo]="true"
                                 [routerLink]="supportedInputTypesDocPage"
+                                [style.text-decoration-line]="'underline'"
                             >
                                 See a full list of supported types
                             </a>
@@ -57,9 +57,10 @@
         [code]="maskitoPublicApiDemo"
     />
 
-    <tui-notification
+    <div
         appearance="warning"
         size="m"
+        tuiNotification
     >
         <div>
             <strong>Avoid wasting computation power or memory resources!</strong>
@@ -70,7 +71,7 @@
                 removes all created event listeners. Call it to clean everything up when the work is finished.
             </p>
         </div>
-    </tui-notification>
+    </div>
 
     <section>
         <p>
@@ -80,9 +81,9 @@
 
         <div class="cards">
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="maskExpressionDocPage"
             >
                 <h1 tuiTitle>
@@ -95,9 +96,9 @@
             </a>
 
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="processorsDocPage"
             >
                 <h1 tuiTitle>
@@ -107,9 +108,9 @@
             </a>
 
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="pluginsDocPage"
             >
                 <h1 tuiTitle>
@@ -121,9 +122,9 @@
             </a>
 
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="overwriteModeDocPage"
             >
                 <h1 tuiTitle>
@@ -138,9 +139,9 @@
             </a>
 
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="transformerDocPage"
             >
                 <h1 tuiTitle>

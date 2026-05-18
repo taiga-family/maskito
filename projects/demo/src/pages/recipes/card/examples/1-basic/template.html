@@ -4,43 +4,37 @@
     class="wrapper"
     [formGroup]="form"
 >
-    <tui-input
-        formControlName="cardNumber"
-        class="number"
-    >
-        Card number
+    <tui-textfield class="number">
+        <label tuiLabel>Card number</label>
         <input
             autocomplete="cc-number"
+            formControlName="cardNumber"
             inputmode="numeric"
             placeholder="0000 0000 0000 0000"
-            tuiTextfieldLegacy
+            tuiInput
             [maskito]="cardMask"
         />
-    </tui-input>
-    <tui-input
-        formControlName="expire"
-        class="expired"
-    >
-        EXP
+    </tui-textfield>
+    <tui-textfield class="expired">
+        <label tuiLabel>EXP</label>
         <input
             autocomplete="cc-exp"
+            formControlName="expire"
             inputmode="numeric"
             placeholder="mm/yy"
-            tuiTextfieldLegacy
+            tuiInput
             [maskito]="expiredMask"
         />
-    </tui-input>
-    <tui-input
-        formControlName="cvv"
-        class="cvv"
-    >
-        CVV
+    </tui-textfield>
+    <tui-textfield class="cvv">
+        <label tuiLabel>CVV</label>
         <input
             autocomplete="cc-csc"
+            formControlName="cvv"
             inputmode="numeric"
             placeholder="000"
-            tuiTextfieldLegacy
+            tuiInput
             [maskito]="cvvMask"
         />
-    </tui-input>
+    </tui-textfield>
 </form>

@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
+import {WA_IS_MOBILE} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TUI_IS_MOBILE} from '@taiga-ui/cdk';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {KitPluginsDocExample1} from './examples/1-selection-handler/component';
@@ -27,7 +27,7 @@ import {KitPluginsDocExample4} from './examples/4-reject/component';
 })
 export default class KitPluginsDocComponent {
     protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
-    protected readonly isMobile = inject(TUI_IS_MOBILE);
+    protected readonly isMobile = inject(WA_IS_MOBILE);
 
     protected readonly selectionChangeHandlerExample: Record<
         string,
