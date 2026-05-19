@@ -44,20 +44,17 @@
                 [maskito]="phoneMask"
             />
 
-            <tui-icon
-                *polymorpheusOutlet="countryIsoCode ? flag : '@tui.phone' as src"
-                [icon]="src"
-            />
+            @if (countryIsoCode) {
+                <img
+                    width="28"
+                    [attr.alt]="countryIsoCode"
+                    [src]="countryIsoCode | tuiFlag"
+                    [style.border-radius.%]="50"
+                />
+            } @else {
+                <tui-icon icon="@tui.phone" />
+            }
         </tui-textfield>
-
-        <ng-template #flag>
-            <img
-                width="28"
-                [attr.alt]="countryIsoCode"
-                [src]="countryIsoCode | tuiFlag"
-                [style.border-radius.%]="50"
-            />
-        </ng-template>
     </div>
 
     <div class="tui-form__row tui-form__row_multi-fields">
@@ -69,14 +66,11 @@
                 name="password"
                 placeholder="Only digits and one latin letter"
                 tuiInput
+                type="password"
                 [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'"
             />
 
-            <tui-icon
-                *polymorpheusOutlet="showHideIcon as src"
-                [icon]="src"
-            />
+            <tui-icon tuiPassword />
         </tui-textfield>
         <tui-textfield class="tui-form__multi-field">
             <label tuiLabel>Repeat password</label>
@@ -86,23 +80,12 @@
                 name="repeatPassword"
                 placeholder="Only digits and one latin letter"
                 tuiInput
+                type="password"
                 [maskito]="passwordMask"
-                [type]="showPassword ? 'password' : 'text'"
             />
 
-            <tui-icon
-                *polymorpheusOutlet="showHideIcon as src"
-                [icon]="src"
-            />
+            <tui-icon tuiPassword />
         </tui-textfield>
-
-        <ng-template #showHideIcon>
-            <tui-icon
-                class="password-icon"
-                [icon]="showPassword ? '@tui.eye' : '@tui.eye-off'"
-                (click)="showPassword = !showPassword"
-            />
-        </ng-template>
     </div>
 
     <div class="tui-form__row tui-form__row_multi-fields">
