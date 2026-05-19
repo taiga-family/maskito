@@ -21,6 +21,6 @@ export class YourComponent {
   };
 
   readonly predicate: MaskitoElementPredicate = (element) =>
-    element.querySelector<HTMLInputElement>('input[id="my-input"]');
+    element.querySelector<HTMLInputElement>('input[id="my-input"]')!;
 }
 ```
