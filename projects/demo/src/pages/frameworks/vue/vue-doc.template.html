@@ -2,92 +2,97 @@
     header="Vue"
     path="vue"
 >
-    <p class="tui-space_top-0">
-        <code>&#64;maskito/vue</code>
-        is a light-weighted library to use
-        <strong>Maskito</strong>
-        in as a Vue directive.
-    </p>
-
-    <div
-        appearance="warning"
-        size="m"
-        tuiNotification
-        class="tui-space_top-6"
-    >
-        <div>
-            <strong>Prerequisites</strong>
-            <p class="tui-space_bottom-0">
-                To get the most out of this guide, you should review the topic
-                <a
-                    tuiLink
-                    [routerLink]="coreConceptsOverviewDocPage"
-                >
-                    "Core Concepts"
-                </a>
-                first.
-            </p>
-        </div>
-    </div>
-
-    <section class="tui-space_top-12">
-        <h2>Getting Started</h2>
-
-        <p>Install libraries</p>
-
-        <tui-doc-code code="npm install &#64;maskito/{core,vue}" />
-
-        <p>
-            and use
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            <code>&#64;maskito/vue</code>
+            is a light-weighted library to use
             <strong>Maskito</strong>
-        </p>
-
-        <tui-doc-code [code]="useMaskitoBasicUsage" />
-    </section>
-
-    <tui-doc-example
-        id="example"
-        heading="Above code example in practice"
-    >
-        @defer {
-            <vue-example-1 />
-        } @placeholder {
-            <input value="123_456" />
-        }
-    </tui-doc-example>
-
-    <section class="tui-space_top-12">
-        <h2>Query nested input element</h2>
-
-        <p>
-            Pass a predicate to
-            <strong>elementPredicate</strong>
-            to find input element for you, if you do not have a direct access to it. For example, you use component from
-            some UI Kit library.
+            in as a Vue directive.
         </p>
 
         <div
+            appearance="warning"
             size="m"
             tuiNotification
-            class="tui-space_bottom-4"
         >
             <div>
-                By default
-                <strong>Maskito</strong>
-                will try to find input/textarea by querying its host:
-                <code>host.querySelector('input,textarea')</code>
-                so that might be sufficient. Use custom predicate if you need custom logic.
+                <strong>Prerequisites</strong>
+                <p class="tui-space_bottom-0">
+                    To get the most out of this guide, you should review the topic
+                    <a
+                        tuiLink
+                        [routerLink]="coreConceptsOverviewDocPage"
+                    >
+                        "Core Concepts"
+                    </a>
+                    first.
+                </p>
             </div>
         </div>
 
-        <tui-doc-code [code]="queryNestedInputDemo" />
-    </section>
+        <tui-doc-example
+            heading="Getting Started"
+            class="tui-space_top-6"
+            [content]="{'main.ts': useMaskitoBasicUsage}"
+            [description]="gettingStartedDescription"
+            [preview]="false"
+        >
+            <ng-template #gettingStartedDescription>
+                <p>Install libraries</p>
 
-    <section class="tui-space_top-12">
-        <h2>Best practices & Anti-Patterns</h2>
+                <tui-doc-code code="npm install &#64;maskito/{core,vue}" />
 
-        <p>Avoid inlining options object, otherwise Maskito will be recreated on every update:</p>
+                <p>
+                    and use
+                    <strong>Maskito</strong>
+                </p>
+            </ng-template>
+        </tui-doc-example>
 
-        <tui-doc-code [code]="bestBadPractice" />
-    </section>
+        <p>See the result of above code example in action:</p>
+
+        <tui-doc-example class="no-tabs">
+            @defer {
+                <vue-example-1 />
+            } @placeholder {
+                <input value="123_456" />
+            }
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Query nested input element"
+            [content]="{'main.ts': queryNestedInputDemo}"
+            [description]="queryNestedDescription"
+            [preview]="false"
+        >
+            <ng-template #queryNestedDescription>
+                <p>
+                    Pass a predicate to
+                    <strong>elementPredicate</strong>
+                    to find input element for you, if you do not have a direct access to it. For example, you use
+                    component from some UI Kit library.
+                </p>
+
+                <div
+                    size="m"
+                    tuiNotification
+                >
+                    <div>
+                        By default
+                        <strong>Maskito</strong>
+                        will try to find input/textarea by querying its host:
+                        <code>host.querySelector('input,textarea')</code>
+                        so that might be sufficient. Use custom predicate if you need custom logic.
+                    </div>
+                </div>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            description="Avoid inlining options object, otherwise Maskito will be recreated on every update"
+            heading="Best practices & Anti-Patterns"
+            [content]="{'app.vue': bestBadPractice}"
+            [preview]="false"
+        />
+    </ng-template>
 </tui-doc-page>
