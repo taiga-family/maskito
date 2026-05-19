@@ -1,32 +1,25 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'input-type-url-example',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiInput],
     template: `
-        <tui-input
-            tuiTextfieldCustomContent="@tui.globe"
-            [style.max-width.rem]="20"
-            [tuiTextfieldLabelOutside]="true"
-            [(ngModel)]="value"
-        >
-            Enter url
+        <tui-textfield [style.max-width.rem]="20">
+            <label tuiLabel>Enter url</label>
             <input
-                tuiTextfieldLegacy
+                tuiInput
                 type="url"
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
-        </tui-input>
+
+            <tui-icon icon="@tui.globe" />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

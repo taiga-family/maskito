@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 
 import mask from './mask';
 
@@ -11,27 +12,30 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        PolymorpheusOutlet,
         TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiIcon,
+        TuiInput,
     ],
     template: `
-        <tui-input
+        <tui-textfield
             #textfield
             [style.max-width.rem]="30"
-            [tuiTextfieldCustomContent]="flag"
-            [(ngModel)]="value"
         >
-            {{
-                textfield.focused ? 'Blur me to remove prefix' : 'Focus me to see prefix'
-            }}
+            <label tuiLabel>
+                {{
+                    textfield.focused()
+                        ? 'Blur me to remove prefix'
+                        : 'Focus me to see prefix'
+                }}
+            </label>
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-
             <ng-template #flag>
                 <img
                     alt="Turkish flag"
@@ -40,7 +44,11 @@ import mask from './mask';
                     [style.border-radius.%]="50"
                 />
             </ng-template>
-        </tui-input>
+            <tui-icon
+                *polymorpheusOutlet="flag as src"
+                [icon]="src"
+            />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

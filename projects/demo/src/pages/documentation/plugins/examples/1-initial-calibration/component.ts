@@ -1,25 +1,22 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'plugins-initial-calibration-doc-example-2',
-    imports: [FormsModule, MaskitoDirective, TuiInputModule],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            [style.max-width.rem]="20"
-            [(ngModel)]="value"
-        >
-            Enter number
-
+        <tui-textfield [style.max-width.rem]="20">
+            <label tuiLabel>Enter number</label>
             <input
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
-        </tui-input>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

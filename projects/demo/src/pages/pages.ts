@@ -3,56 +3,56 @@ import type {TuiDocRoutePages} from '@taiga-ui/addon-doc';
 
 export const DEMO_PAGES: TuiDocRoutePages = [
     {
-        section: 'Getting started',
+        section: 'Getting Started',
         title: 'What is Maskito?',
         route: DemoPath.WhatIsMaskito,
         keywords: 'getting, started, what, is, maskito',
     },
     {
-        section: 'Getting started',
+        section: 'Getting Started',
         title: 'Maskito libraries',
         route: DemoPath.MaskitoLibraries,
         keywords: 'install, package, packages, maskito, npm, setup, explore, ecosystem',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Overview',
         route: DemoPath.CoreConceptsOverview,
         keywords: 'core, concepts, overview',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Mask expression',
         route: DemoPath.MaskExpression,
         keywords: 'core, concepts, mask, expression, reg, exp, fixed',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Element state',
         route: DemoPath.ElementState,
         keywords: 'core, concepts, element, state',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Processors',
         route: DemoPath.Processors,
         keywords:
             'core, concepts, preprocessor, postprocessor, processor, element, state, elementState',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Plugins',
         route: DemoPath.Plugins,
         keywords: 'core, concepts, extension, event, focus, blur',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Overwrite mode',
         route: DemoPath.OverwriteMode,
         keywords: 'core, concepts, overwrite, mode, shift, replace',
     },
     {
-        section: 'Core concepts',
+        section: 'Core Concepts',
         title: 'Transformer',
         route: DemoPath.Transformer,
         keywords: 'core, concepts, programmatic, patch, set, update, value',

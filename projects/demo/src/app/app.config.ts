@@ -10,13 +10,14 @@ import {
     TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
     TUI_DOC_LOGO,
     TUI_DOC_PAGES,
+    TUI_DOC_PAGES_ICONS,
     TUI_DOC_SOURCE_CODE,
     TUI_DOC_TITLE,
     TUI_DOC_TYPE_REFERENCE_HANDLER,
     tuiDocExampleOptionsProvider,
     type TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
-import {NG_EVENT_PLUGINS} from '@taiga-ui/event-plugins';
+import {provideTaiga} from '@taiga-ui/core';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
@@ -42,7 +43,7 @@ export const APP_CONFIG: ApplicationConfig = {
                 anchorScrolling: 'enabled',
             }),
         ),
-        NG_EVENT_PLUGINS,
+        provideTaiga(),
         provideHttpClient(),
         {
             provide: LocationStrategy,
@@ -141,6 +142,18 @@ export const APP_CONFIG: ApplicationConfig = {
                     default:
                         return null;
                 }
+            },
+        },
+        {
+            provide: TUI_DOC_PAGES_ICONS,
+            useValue: {
+                'Getting Started': '@tui.rocket',
+                'Core Concepts': '@tui.blocks',
+                Frameworks: '@tui.atom',
+                Kit: '@tui.wrench',
+                Addons: '@tui.circle-fading-plus',
+                Recipes: '@tui.cooking-pot',
+                Other: '@tui.file-plus-corner',
             },
         },
     ],

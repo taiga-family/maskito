@@ -79,20 +79,6 @@
             "**/node_modules/**"
         ]
     },
-    "overrides": {
-        "@taiga-ui/addon-commerce": {
-            "@maskito/angular": ">=4.0.0",
-            "@maskito/core": ">=4.0.0",
-            "@maskito/kit": ">=4.0.0",
-            "@maskito/phone": ">=4.0.0"
-        },
-        "@taiga-ui/kit": {
-            "@maskito/angular": ">=4.0.0",
-            "@maskito/core": ">=4.0.0",
-            "@maskito/kit": ">=4.0.0",
-            "@maskito/phone": ">=4.0.0"
-        }
-    },
     "devDependencies": {
         "@angular-devkit/build-angular": "19.2.25",
         "@angular-devkit/core": "19.2.25",
@@ -102,14 +88,14 @@
         "@angular/compiler-cli": "19.2.21",
         "@angular/core": "19.2.21",
         "@angular/platform-browser-dynamic": "19.2.21",
-        "@nx/angular": "22.7.0-beta.16",
-        "@nx/eslint": "22.7.0-beta.16",
-        "@nx/jest": "22.7.0-beta.16",
-        "@nx/js": "22.7.0-beta.16",
-        "@nx/module-federation": "22.7.0-beta.16",
-        "@nx/react": "22.7.0-beta.16",
-        "@nx/rollup": "22.7.0-beta.16",
-        "@nx/workspace": "22.7.0-beta.16",
+        "@nx/angular": "22.7.0",
+        "@nx/eslint": "22.7.0",
+        "@nx/jest": "22.7.0",
+        "@nx/js": "22.7.0",
+        "@nx/module-federation": "22.7.0",
+        "@nx/react": "22.7.0",
+        "@nx/rollup": "22.7.0",
+        "@nx/workspace": "22.7.0",
         "@taiga-ui/configs": "0.526.0",
         "@tinkoff/eslint-config": "5.2.1",
         "@tinkoff/eslint-config-react": "5.2.1",
@@ -118,7 +104,7 @@
         "http-server": "14.1.1",
         "husky": "9.1.7",
         "ng-packagr": "19.2.2",
-        "nx": "22.7.0-beta.16",
+        "nx": "22.7.0",
         "postcss-preset-env": "10.6.1",
         "ts-node": "10.9.2",
         "tsutils": "3.21.0",

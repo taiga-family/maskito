@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextfield} from '@taiga-ui/core';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'kit-plugins-doc-example-2',
-    imports: [FormsModule, MaskitoDirective, TuiTextfield],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
         <tui-textfield
             [style.max-width.rem]="20"
@@ -15,7 +15,7 @@ import mask from './mask';
         >
             <input
                 inputmode="numeric"
-                tuiTextfield
+                tuiInput
                 [maskito]="maskitoOptions"
                 [(ngModel)]="value"
             />

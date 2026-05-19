@@ -1,31 +1,26 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'time-mask-doc-example-4',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            tuiTextfieldIcon="@tui.timer"
+        <tui-textfield
+            iconEnd="@tui.timer"
             [style.max-width.rem]="20"
-            [(ngModel)]="value"
         >
-            Timer (minutes)
+            <label tuiLabel>Timer (minutes)</label>
             <input
                 inputmode="numeric"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
-        </tui-input>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

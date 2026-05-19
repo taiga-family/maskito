@@ -53,8 +53,9 @@
         </section>
     </section>
 
-    <tui-notification
+    <div
         size="m"
+        tuiNotification
         class="tui-space_bottom-12"
     >
         <div>
@@ -67,7 +68,7 @@
             </a>
             .
         </div>
-    </tui-notification>
+    </div>
 
     <section class="tui-space_bottom-12">
         <h2>Preprocessors</h2>
@@ -142,9 +143,10 @@
 
         <p>Postprocessor returns an objects of the same interface as the first argument.</p>
 
-        <tui-notification
+        <div
             appearance="warning"
             size="m"
+            tuiNotification
             class="tui-space_bottom-4"
         >
             <div>
@@ -157,12 +159,15 @@
                     postprocessor wisely and return a valid value!
                 </p>
             </div>
-        </tui-notification>
+        </div>
 
         <tui-doc-code [code]="postprocessorInActionDemo" />
     </section>
 
-    <tui-notification size="m">
+    <div
+        size="m"
+        tuiNotification
+    >
         <div>
             <strong>Stacking of multiple processors</strong>
 
@@ -180,7 +185,7 @@
                 implements only a single task.
             </p>
         </div>
-    </tui-notification>
+    </div>
 
     <next-steps />
 </tui-doc-page>

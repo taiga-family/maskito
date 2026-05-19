@@ -1,6 +1,6 @@
 <!--
     Maskito can be applied on this component, given the predicate
-    can properly target native input inside tui-input below
+    can properly target native input inside tui-textfield below
 -->
 <label
     tuiLabel
@@ -14,9 +14,11 @@
     Add card holder name
 </label>
 
-<tui-input
-    [disabled]="!show"
-    [(ngModel)]="value"
->
-    Name on the card
-</tui-input>
+<tui-textfield>
+    <label tuiLabel>Name on the card</label>
+    <input
+        tuiInput
+        [disabled]="!show"
+        [(ngModel)]="value"
+    />
+</tui-textfield>

@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
+import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 
 import mask from './mask';
 
@@ -11,23 +12,20 @@ import mask from './mask';
     imports: [
         FormsModule,
         MaskitoDirective,
+        PolymorpheusOutlet,
         TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
+        TuiIcon,
+        TuiInput,
     ],
     template: `
-        <tui-input
-            [style.max-width.rem]="20"
-            [tuiTextfieldCustomContent]="usFlag"
-            [(ngModel)]="value"
-        >
-            Enter a phone number
+        <tui-textfield [style.max-width.rem]="20">
+            <label tuiLabel>Enter a phone number</label>
             <input
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
-
             <ng-template #usFlag>
                 <img
                     alt="Flag of the United States"
@@ -36,7 +34,11 @@ import mask from './mask';
                     [style.border-radius.%]="50"
                 />
             </ng-template>
-        </tui-input>
+            <tui-icon
+                *polymorpheusOutlet="usFlag as src"
+                [icon]="src"
+            />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,31 +1,18 @@
-@import '@taiga-ui/core/styles/taiga-ui-local.less';
+@import '@taiga-ui/styles/utils.less';
 
 :host {
-    display: flex;
-    align-items: center;
-
     @media @tui-mobile {
         font-size: 0;
     }
 }
 
-.logo-link {
+.t-link {
     display: flex;
-}
-
-.logo-name {
-    display: flex;
+    gap: 0.5rem;
     color: var(--tui-text-primary);
+    text-decoration: none;
 }
 
-.logo {
-    margin-inline-end: 0.625rem;
-}
-
-.by {
-    margin-inline-start: 0.875rem;
-
-    @media @tui-mobile {
-        display: none;
-    }
+.t-logo {
+    inline-size: 1.5rem;
 }

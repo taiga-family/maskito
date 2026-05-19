@@ -1,27 +1,23 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'plugins-change-event-doc-example-4',
-    imports: [FormsModule, MaskitoDirective, TuiInputModule],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            [maskito]="maskitoOptions"
-            [style.max-width.rem]="20"
-            [(ngModel)]="value"
-        >
-            Enter number
-
+        <tui-textfield [style.max-width.rem]="20">
+            <label tuiLabel>Enter number</label>
             <input
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
                 (change)="log($event)"
+                [(ngModel)]="value"
             />
-        </tui-input>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

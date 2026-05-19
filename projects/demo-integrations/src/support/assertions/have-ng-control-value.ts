@@ -6,7 +6,7 @@
  *
  * @note WARNING! This assertion uses `window.ng` which works only if application was build with `"optimization": false`
  * @example
- * cy.get('tui-input').should('have.ngControlValue', '123')
+ * cy.get('tui-textfield input').should('have.ngControlValue', '123')
  * */
 export const haveNgControlValueAssertion: Chai.ChaiPlugin = (_chai) => {
     chai.Assertion.addMethod('ngControlValue', function (expectedValue: string) {
