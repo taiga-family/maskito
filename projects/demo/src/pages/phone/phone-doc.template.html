@@ -169,7 +169,10 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-textfield class="phone">
+                <tui-textfield
+                    iconEnd="@tui.phone"
+                    class="phone"
+                >
                     <label tuiLabel>Enter phone</label>
                     <input
                         autocomplete="tel"
@@ -179,8 +182,6 @@
                         [formControl]="apiPageControl"
                         [maskito]="maskitoOptions"
                     />
-
-                    <tui-icon icon="@tui.phone" />
                 </tui-textfield>
             </ng-template>
         </tui-doc-demo>

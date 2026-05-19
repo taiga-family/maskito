@@ -8,7 +8,7 @@ import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/ph
 import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS, tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import type {MetadataJson} from 'libphonenumber-js';
 import {
     type CountryCode,
@@ -48,7 +48,6 @@ type MetadataName = keyof typeof metadataSets;
         PhoneMaskDocExample6,
         ReactiveFormsModule,
         TuiAddonDoc,
-        TuiIcon,
         TuiInput,
         TuiLink,
         TuiNotification,

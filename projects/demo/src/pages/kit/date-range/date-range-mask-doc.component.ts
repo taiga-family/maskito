@@ -10,7 +10,7 @@ import {
     type MaskitoDateSegments,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiIcon, TuiInput, TuiLink} from '@taiga-ui/core';
+import {TuiInput, TuiLink} from '@taiga-ui/core';
 import {tuiPure} from '@taiga-ui/legacy';
 
 import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
@@ -30,7 +30,6 @@ import {DateRangeMaskDocExample5} from './examples/5-locale-date-range/component
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
-        TuiIcon,
         TuiInput,
         TuiLink,
     ],

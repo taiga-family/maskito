@@ -11,7 +11,7 @@ import {
     type MaskitoTimeSegments,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-am-pm/component';
@@ -31,7 +31,6 @@ import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component'
         TimeMaskDocExample4,
         TimeMaskDocExample5,
         TuiAddonDoc,
-        TuiIcon,
         TuiInput,
         TuiLink,
         TuiNotification,
