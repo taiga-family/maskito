@@ -6,21 +6,13 @@ import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiIcon, TuiInput} from '@taiga-ui/core';
 import {TuiFlagPipe} from '@taiga-ui/kit';
-import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import mask from './mask';
 
 @Component({
     selector: 'phone-doc-example-3',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        PolymorpheusOutlet,
-        TuiFlagPipe,
-        TuiIcon,
-        TuiInput,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiIcon, TuiInput],
     template: `
         <tui-textfield [style.max-width.rem]="30">
             <label tuiLabel>Non-strict</label>
@@ -33,20 +25,17 @@ import mask from './mask';
                 [(ngModel)]="value"
             />
 
-            <tui-icon
-                *polymorpheusOutlet="countryIsoCode ? flag : '@tui.phone' as src"
-                [icon]="src"
-            />
+            @if (countryIsoCode) {
+                <img
+                    width="28"
+                    [attr.alt]="countryIsoCode"
+                    [src]="countryIsoCode | tuiFlag"
+                    [style.border-radius.%]="50"
+                />
+            } @else {
+                <tui-icon icon="@tui.phone" />
+            }
         </tui-textfield>
-
-        <ng-template #flag>
-            <img
-                width="28"
-                [attr.alt]="countryIsoCode"
-                [src]="countryIsoCode | tuiFlag"
-                [style.border-radius.%]="50"
-            />
-        </ng-template>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -12,8 +12,7 @@ import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskit
 import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiButton, TuiIcon, TuiInput} from '@taiga-ui/core';
-import {TuiFlagPipe, TuiTextarea} from '@taiga-ui/kit';
-import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
+import {TuiFlagPipe, TuiPassword, TuiTextarea} from '@taiga-ui/kit';
 import metadata from 'libphonenumber-js/min/metadata';
 
 const MONEY_AMOUNT_MASK = maskitoNumber({
@@ -28,12 +27,12 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
     selector: 'real-world-form',
     imports: [
         MaskitoDirective,
-        PolymorpheusOutlet,
         ReactiveFormsModule,
         TuiButton,
         TuiFlagPipe,
         TuiIcon,
         TuiInput,
+        TuiPassword,
         TuiTextarea,
     ],
     templateUrl: './index.html',
@@ -86,7 +85,6 @@ export default class RealWorldForm {
     };
 
     protected readonly addressMask: MaskitoOptions = {mask: /^[a-z1-9\s.,/]+$/i};
-    protected showPassword = false;
 
     protected get countryIsoCode(): string {
         return maskitoGetCountryFromNumber(this.form.value.phone ?? '', metadata) ?? '';

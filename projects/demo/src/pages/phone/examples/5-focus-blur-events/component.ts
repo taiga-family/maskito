@@ -1,26 +1,19 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiInput} from '@taiga-ui/core';
 import {TuiFlagPipe} from '@taiga-ui/kit';
-import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 
 import mask from './mask';
 
 @Component({
     selector: 'phone-doc-example-5',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        PolymorpheusOutlet,
-        TuiFlagPipe,
-        TuiIcon,
-        TuiInput,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
         <tui-textfield
             #textfield
             [style.max-width.rem]="30"
+            [tuiTextfieldCleaner]="false"
         >
             <label tuiLabel>
                 {{
@@ -36,17 +29,12 @@ import mask from './mask';
                 [maskito]="mask"
                 [(ngModel)]="value"
             />
-            <ng-template #flag>
-                <img
-                    alt="Turkish flag"
-                    width="28"
-                    [src]="'TR' | tuiFlag"
-                    [style.border-radius.%]="50"
-                />
-            </ng-template>
-            <tui-icon
-                *polymorpheusOutlet="flag as src"
-                [icon]="src"
+
+            <img
+                alt="Turkish flag"
+                width="28"
+                [src]="'TR' | tuiFlag"
+                [style.border-radius.%]="50"
             />
         </tui-textfield>
     `,
