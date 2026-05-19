@@ -133,7 +133,10 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-textfield [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)">
+                <tui-textfield
+                    iconEnd="@tui.calendar"
+                    [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
+                >
                     <label tuiLabel>Enter date and time</label>
                     <input
                         inputmode="numeric"
@@ -141,8 +144,6 @@
                         [formControl]="apiPageControl"
                         [maskito]="maskitoOptions"
                     />
-
-                    <tui-icon icon="@tui.calendar" />
                 </tui-textfield>
             </ng-template>
         </tui-doc-demo>

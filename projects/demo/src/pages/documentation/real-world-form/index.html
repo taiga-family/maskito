@@ -106,7 +106,10 @@
     </div>
 
     <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-textfield class="tui-form__multi-field">
+        <tui-textfield
+            iconEnd="@tui.calendar"
+            class="tui-form__multi-field"
+        >
             <label tuiLabel>Transaction date</label>
             <input
                 formControlName="transactionDate"
@@ -116,8 +119,6 @@
                 tuiInput
                 [maskito]="transactionDateMask"
             />
-
-            <tui-icon icon="@tui.calendar" />
         </tui-textfield>
 
         <tui-textfield class="tui-form__multi-field">

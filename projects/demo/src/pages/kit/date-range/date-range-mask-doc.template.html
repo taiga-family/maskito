@@ -100,7 +100,10 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-textfield [filler]="getPlaceholder(mode, dateSeparator, rangeSeparator)">
+                <tui-textfield
+                    iconEnd="@tui.calendar"
+                    [filler]="getPlaceholder(mode, dateSeparator, rangeSeparator)"
+                >
                     <label tuiLabel>Enter dates</label>
                     <input
                         inputmode="numeric"
@@ -108,8 +111,6 @@
                         [formControl]="apiPageControl"
                         [maskito]="maskitoOptions"
                     />
-
-                    <tui-icon icon="@tui.calendar" />
                 </tui-textfield>
             </ng-template>
         </tui-doc-demo>

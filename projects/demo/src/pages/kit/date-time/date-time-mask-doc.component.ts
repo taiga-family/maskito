@@ -10,7 +10,7 @@ import {
     type MaskitoTimeMode,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import {tuiPure} from '@taiga-ui/legacy';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
@@ -30,7 +30,6 @@ import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
-        TuiIcon,
         TuiInput,
         TuiLink,
         TuiNotification,

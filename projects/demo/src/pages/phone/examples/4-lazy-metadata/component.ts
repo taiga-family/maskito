@@ -3,13 +3,16 @@ import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
 import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
-import {TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiInput} from '@taiga-ui/core';
 
 @Component({
     selector: 'phone-doc-example-4',
-    imports: [FormsModule, MaskitoDirective, TuiIcon, TuiInput],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-textfield [style.max-width.rem]="30">
+        <tui-textfield
+            iconEnd="@tui.phone"
+            [style.max-width.rem]="30"
+        >
             <label tuiLabel>Lazy metadata</label>
             <input
                 autocomplete="tel"
@@ -18,8 +21,6 @@ import {TuiIcon, TuiInput} from '@taiga-ui/core';
                 [maskito]="mask"
                 [(ngModel)]="value"
             />
-
-            <tui-icon icon="@tui.phone" />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

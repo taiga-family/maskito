@@ -141,6 +141,7 @@
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
                 <tui-textfield
+                    iconEnd="@tui.clock"
                     class="input-time"
                     [filler]="prefix || postfix ? '' : mode.toLowerCase()"
                 >
@@ -151,8 +152,6 @@
                         [formControl]="apiPageControl"
                         [maskito]="maskitoOptions"
                     />
-
-                    <tui-icon icon="@tui.clock" />
                 </tui-textfield>
             </ng-template>
         </tui-doc-demo>

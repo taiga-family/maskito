@@ -11,6 +11,7 @@ import mask from './mask';
     imports: [FormsModule, MaskitoDirective, TuiHint, TuiIcon, TuiInput, TuiTooltip],
     template: `
         <tui-textfield
+            iconEnd="@tui.calendar"
             [style.max-width.rem]="30"
             [filler]="filler"
         >
@@ -22,8 +23,6 @@ import mask from './mask';
                 [(ngModel)]="value"
             />
             <tui-icon [tuiTooltip]="hint" />
-
-            <tui-icon icon="@tui.calendar" />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
