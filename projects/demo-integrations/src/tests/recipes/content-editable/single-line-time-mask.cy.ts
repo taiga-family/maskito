@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('ContentEditable | With Time mask', () => {
     beforeEach(() => {
         cy.visit(DemoPath.ContentEditable);
-        cy.get('#time [contenteditable]')
+        cy.get('[id="compatible-with-@maskito/kit"] [contenteditable]')
             .should('be.visible')
             .first()
             .clear()
