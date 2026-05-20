@@ -2,215 +2,206 @@
     header="React"
     path="react"
 >
-    <p class="tui-space_top-0">
-        <code>&#64;maskito/react</code>
-        is a light-weighted library to use
-        <strong>Maskito</strong>
-        in an React-way.
-    </p>
-
-    <div
-        appearance="warning"
-        size="m"
-        tuiNotification
-    >
-        <div>
-            <strong>Prerequisites</strong>
-            <p class="tui-space_bottom-0">
-                To get the most out of this guide, you should review the topic
-                <a
-                    tuiLink
-                    [routerLink]="coreConceptsOverviewDocPage"
-                >
-                    "Core Concepts"
-                </a>
-                first.
-            </p>
-        </div>
-    </div>
-
-    <section id="getting-started">
-        <h2>Getting Started</h2>
-
-        <p>Install libraries</p>
-
-        <tui-doc-code code="npm install &#64;maskito/{core,react}" />
-
-        <p>
-            and use
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            <code>&#64;maskito/react</code>
+            is a light-weighted library to use
             <strong>Maskito</strong>
+            in an React-way.
         </p>
 
-        <tui-doc-code [code]="useMaskitoBasicUsage" />
+        <div
+            appearance="warning"
+            size="m"
+            tuiNotification
+        >
+            <div>
+                <strong>Prerequisites</strong>
+                <p class="tui-space_bottom-0">
+                    To get the most out of this guide, you should review the topic
+                    <a
+                        tuiLink
+                        [routerLink]="coreConceptsOverviewDocPage"
+                    >
+                        "Core Concepts"
+                    </a>
+                    first.
+                </p>
+            </div>
+        </div>
+
+        <tui-doc-example
+            heading="Getting Started"
+            class="tui-space_top-6"
+            [content]="{'app.tsx': useMaskitoBasicUsage}"
+            [description]="gettingStartedDescription"
+            [preview]="false"
+        >
+            <ng-template #gettingStartedDescription>
+                <p>Install libraries</p>
+
+                <tui-doc-code code="npm install &#64;maskito/{core,react}" />
+
+                <p>
+                    and use
+                    <strong>Maskito</strong>
+                </p>
+            </ng-template>
+        </tui-doc-example>
 
         <p>See the result of above code example in action:</p>
 
         <tui-doc-example class="no-tabs">
             <react-example-1 />
         </tui-doc-example>
-    </section>
-
-    <section id="controlled-input">
-        <h2>Controlled masked input</h2>
-
-        <p>
-            <strong>Maskito</strong>
-            core is developed as framework-agnostic library. It does not depend on any JS-framework's peculiarities. It
-            uses only native browser API. That is why we
-            <u>strongly recommends</u>
-            use native
-            <code>onInput</code>
-            instead of React-specific
-            <code>onChange</code>
-            event handler. Do not worry, both events works similarly! Read more about it in the
-            <a
-                href="https://react.dev/reference/react-dom/components/input#props"
-                rel="noreferrer"
-                target="_blank"
-                tuiLink
-            >
-                official React documentation.
-            </a>
-        </p>
-
-        <div
-            size="m"
-            tuiNotification
-            class="tui-space_bottom-4"
-        >
-            React-specific
-            <code>onChange</code>
-            is supported by
-            <strong>Maskito</strong>
-            too but usage of
-            <code>onInput</code>
-            handler is a more robust solution!
-        </div>
-
-        <tui-doc-code [code]="controlledInputDemo" />
-    </section>
-
-    <section id="merge-refs">
-        <h2>Merge Maskito ref with the third-party ref</h2>
-
-        <p>Do you need to use multiple hooks that return refs which both should be attached to the masked textfield?</p>
-
-        <p>
-            <strong>
-                Use
-                <a
-                    href="https://react.dev/reference/react-dom/components/common#ref-callback"
-                    rel="noreferrer"
-                    target="_blank"
-                    tuiLink
-                >
-                    ref callback
-                </a>
-                !
-            </strong>
-        </p>
-
-        <tui-doc-code [code]="mergeRefDemo" />
-    </section>
-
-    <section id="element-predicate">
-        <h2>Query nested input element</h2>
-
-        <p>
-            Pass a predicate to
-            <code>elementPredicate</code>
-            to find input element for you, if you do not have a direct access to it. For example, you use component from
-            some UI Kit library.
-        </p>
-
-        <div
-            size="m"
-            tuiNotification
-        >
-            <div>
-                By default
-                <strong>Maskito</strong>
-                will try to find input/textarea by querying its host:
-                <code>host.querySelector('input,textarea')</code>
-                so that might be sufficient. Use custom predicate if you need custom logic.
-            </div>
-        </div>
 
         <tui-doc-example
-            [content]="elementPredicateExample"
-            [style.padding-block-start.px]="0"
+            heading="Controlled masked input"
+            [content]="{'app.tsx': controlledInputDemo}"
+            [description]="reactSpecificOnChangeDescription"
+            [preview]="false"
         >
+            <ng-template #reactSpecificOnChangeDescription>
+                <p>
+                    <strong>Maskito</strong>
+                    core is developed as framework-agnostic library. It does not depend on any JS-framework's
+                    peculiarities. It uses only native browser API. That is why we
+                    <u>strongly recommends</u>
+                    use native
+                    <code>onInput</code>
+                    instead of React-specific
+                    <code>onChange</code>
+                    event handler. Do not worry, both events works similarly! Read more about it in the
+                    <a
+                        href="https://react.dev/reference/react-dom/components/input#props"
+                        rel="noreferrer"
+                        target="_blank"
+                        tuiLink
+                    >
+                        official React documentation.
+                    </a>
+                </p>
+
+                <div
+                    size="m"
+                    tuiNotification
+                    class="tui-space_bottom-4"
+                >
+                    React-specific
+                    <code>onChange</code>
+                    is supported by
+                    <strong>Maskito</strong>
+                    too but usage of
+                    <code>onInput</code>
+                    handler is a more robust solution!
+                </div>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Merge Maskito ref with the third-party ref"
+            [content]="{'app.tsx': mergeRefDemo}"
+            [description]="mergeRefDescription"
+            [preview]="false"
+        >
+            <ng-template #mergeRefDescription>
+                <p>
+                    Do you need to use multiple hooks that return refs which both should be attached to the masked
+                    textfield?
+                </p>
+
+                <p>
+                    <strong>
+                        Use
+                        <a
+                            href="https://react.dev/reference/react-dom/components/common#ref-callback"
+                            rel="noreferrer"
+                            target="_blank"
+                            tuiLink
+                        >
+                            ref callback
+                        </a>
+                        !
+                    </strong>
+                </p>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Query nested input element"
+            [content]="elementPredicateExample"
+            [description]="queryNestedDescription"
+        >
+            <ng-template #queryNestedDescription>
+                <p>
+                    Pass a predicate to
+                    <code>elementPredicate</code>
+                    to find input element for you, if you do not have a direct access to it. For example, you use
+                    component from some UI Kit library.
+                </p>
+
+                <div
+                    size="m"
+                    tuiNotification
+                >
+                    <div>
+                        By default
+                        <strong>Maskito</strong>
+                        will try to find input/textarea by querying its host:
+                        <code>host.querySelector('input,textarea')</code>
+                        so that might be sufficient. Use custom predicate if you need custom logic.
+                    </div>
+                </div>
+            </ng-template>
+
             <react-example-2 />
         </tui-doc-example>
-    </section>
 
-    <section id="form-library-integration">
-        <h2>Integration with third-party library for forms</h2>
-
-        <p>
-            There is not silver bullet how to integrate
-            <strong>Maskito</strong>
-            with
-            <u>any</u>
-            library for form-building. Explore all examples above – the provided knowledge about element predicate,
-            ref merging and
-            <code>OnInput</code>
-            event will help you a lot to achieve it.
-        </p>
-
-        <p>
-            This example demonstrates how to use
-            <strong>Maskito</strong>
-            with popular library
-            <a
-                href="https://react-hook-form.com"
-                target="_blank"
-                tuiLink
-            >
-                react-hook-form
-            </a>
-            .
-        </p>
-
-        <tui-tabs-with-more
-            #tabs
-            class="tabs"
+        <tui-doc-example
+            heading="Integration with third-party library for forms"
+            [content]="reactHookFormExample"
+            [description]="thirdPartyLibraryDescription"
+            [preview]="false"
         >
-            <button
-                *tuiItem
-                tuiTab
-                type="button"
-            >
-                <tui-doc-tab src="assets/icons/react.svg">index.ts</tui-doc-tab>
-            </button>
-            <button
-                *tuiItem
-                tuiTab
-                type="button"
-            >
-                <tui-doc-tab src="assets/icons/typescript.svg">with-maskito-register.ts</tui-doc-tab>
-            </button>
-        </tui-tabs-with-more>
+            <ng-template #thirdPartyLibraryDescription>
+                <p>
+                    There is not silver bullet how to integrate
+                    <strong>Maskito</strong>
+                    with
+                    <u>any</u>
+                    library for form-building. Explore all examples above – the provided knowledge about
+                    element predicate, ref merging and
+                    <code>OnInput</code>
+                    event will help you a lot to achieve it.
+                </p>
 
-        @switch (tabs.activeItemIndex()) {
-            @case (0) {
-                <tui-doc-code [code]="reactHookFormExample['index.tsx']!" />
-            }
-            @case (1) {
-                <tui-doc-code [code]="reactHookFormExample['with-maskito-register.ts']!" />
-            }
-        }
-    </section>
+                <p>
+                    This example demonstrates how to use
+                    <strong>Maskito</strong>
+                    with popular library
+                    <a
+                        href="https://react-hook-form.com"
+                        target="_blank"
+                        tuiLink
+                    >
+                        react-hook-form
+                    </a>
+                    .
+                </p>
+            </ng-template>
+        </tui-doc-example>
 
-    <section>
-        <h2>Best practices & Anti-Patterns</h2>
-
-        <p>
-            Pass named variables to avoid unnecessary hook runs with
-            <strong>Maskito</strong>
-            recreation:
-        </p>
-
-        <tui-doc-code [code]="bestBadPractice" />
-    </section>
+        <tui-doc-example
+            heading="Best practices & Anti-Patterns"
+            [content]="{'index.tsx': bestBadPractice}"
+            [description]="bestBadPracticeDescription"
+            [preview]="false"
+        >
+            <ng-template #bestBadPracticeDescription>
+                Pass named variables to avoid unnecessary hook runs with
+                <strong>Maskito</strong>
+                recreation
+            </ng-template>
+        </tui-doc-example>
+    </ng-template>
 </tui-doc-page>

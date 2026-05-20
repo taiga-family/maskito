@@ -29,8 +29,8 @@
             </div>
         </div>
 
-        <section class="tui-space_top-12">
-            <h2>Write less code</h2>
+        <section>
+            <h3>Write less code</h3>
 
             <ul class="tui-list">
                 <li class="tui-list__item">
@@ -46,47 +46,43 @@
             </ul>
         </section>
 
-        <section class="tui-space_top-12">
-            <h2>Basic directive approach</h2>
-
-            <p>Use it when you have direct access to native input element.</p>
-
-            <tui-doc-code
-                filename="your.component.ts"
-                [code]="basicDirectiveApproach"
-            />
-        </section>
-
-        <section class="tui-space_top-12">
-            <h2>Nested input element</h2>
-
-            <p>
-                Pass a predicate to
-                <strong>maskito</strong>
-                to find input element for you, if you do not have a direct access to it.
-            </p>
-
-            <div
-                size="m"
-                tuiNotification
-            >
-                <div>
-                    By default
-                    <strong>maskito</strong>
-                    will try to find input/textarea by querying its host:
-                    <code>host.querySelector('input,textarea')</code>
-                    so that might be sufficient. Use custom predicate if you need custom logic.
-                </div>
-            </div>
-
-            <tui-doc-code
-                filename="your.component.ts"
-                [code]="customInputExample"
-            />
-        </section>
+        <tui-doc-example
+            description="Use it when you have direct access to native input element."
+            heading="Basic directive approach"
+            class="tui-space_top-6"
+            [content]="{'your.component.ts': basicDirectiveApproach}"
+            [preview]="false"
+        />
 
         <tui-doc-example
-            id="custom-input"
+            heading="Nested input element"
+            [content]="{'your.component.ts': customInputExample}"
+            [description]="predicateDescription"
+            [preview]="false"
+        >
+            <ng-template #predicateDescription>
+                <p>
+                    Pass a predicate to
+                    <strong>Maskito</strong>
+                    to find input element for you, if you do not have a direct access to it.
+                </p>
+
+                <div
+                    size="m"
+                    tuiNotification
+                >
+                    <div>
+                        By default
+                        <strong>maskito</strong>
+                        will try to find input/textarea by querying its host:
+                        <code>host.querySelector('input,textarea')</code>
+                        so that might be sufficient. Use custom predicate if you need custom logic.
+                    </div>
+                </div>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
             description="See querying nested input in action"
             heading="Custom input"
             [content]="nestedInputExample"
@@ -127,7 +123,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="programmatically"
             heading="Set value programmatically"
             [content]="programmaticallyExample"
             [description]="programmaticallyDescription"
@@ -141,7 +136,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="pattern"
             description="Alternative way to apply mask on native input"
             heading="Pattern"
             [content]="patternDirectiveExample"
@@ -150,7 +144,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="pipe"
             description="Format arbitrary value with the same options"
             heading="Pipe"
             [content]="pipeExample"
@@ -159,7 +152,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="unmask"
             heading="Custom unmask handler"
             [content]="customUnmaskHandlerExample"
             [description]="customUnmaskHandlerDescription"

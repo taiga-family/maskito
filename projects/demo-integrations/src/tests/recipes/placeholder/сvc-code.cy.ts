@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('Placeholder | CVC code', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Placeholder);
-        cy.get('#cvc input')
+        cy.get('#card--verification--code input')
             .should('be.visible')
             .first()
             .focus()

@@ -4,7 +4,7 @@ describe('ContentEditable | Multi-line support', () => {
     describe('Deletion', () => {
         beforeEach(() => {
             cy.visit(DemoPath.ContentEditable);
-            cy.get('#multi-line [contenteditable]')
+            cy.get('#multi-line-support [contenteditable]')
                 .should('be.visible')
                 .first()
                 .focus()
@@ -36,7 +36,7 @@ describe('ContentEditable | Multi-line support', () => {
     describe('Rejects invalid symbols on EVERY line', () => {
         beforeEach(() => {
             cy.visit(DemoPath.ContentEditable);
-            cy.get('#multi-line [contenteditable]')
+            cy.get('#multi-line-support [contenteditable]')
                 .should('be.visible')
                 .first()
                 .focus()

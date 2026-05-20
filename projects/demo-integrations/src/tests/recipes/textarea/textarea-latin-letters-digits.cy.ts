@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('Textarea (mask latin letters + digits)', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Textarea);
-        cy.get('#latin textarea[autocomplete="street-address"]')
+        cy.get('#latin-letters-and-digits textarea[autocomplete="street-address"]')
             .should('be.visible')
             .should('have.value', '')
             .focus()

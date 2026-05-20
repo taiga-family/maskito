@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('Network Address | IPv4', () => {
     beforeEach(() => {
         cy.visit(DemoPath.NetworkAddress);
-        cy.get('#ipv4 input')
+        cy.get('#i-pv4 input')
             .should('be.visible')
             .first()
             .should('have.value', '')
