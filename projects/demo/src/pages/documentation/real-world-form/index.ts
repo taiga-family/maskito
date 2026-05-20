@@ -11,8 +11,9 @@ import {
 import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
 import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiButton, TuiIcon, TuiInput} from '@taiga-ui/core';
+import {TuiButton, TuiIcon, TuiInput, TuiTitle} from '@taiga-ui/core';
 import {TuiFlagPipe, TuiPassword, TuiTextarea} from '@taiga-ui/kit';
+import {TuiForm, TuiHeader} from '@taiga-ui/layout';
 import metadata from 'libphonenumber-js/min/metadata';
 
 const MONEY_AMOUNT_MASK = maskitoNumber({
@@ -30,10 +31,13 @@ const ONLY_LATIN_LETTERS_RE = /^[a-z]+$/i;
         ReactiveFormsModule,
         TuiButton,
         TuiFlagPipe,
+        TuiForm,
+        TuiHeader,
         TuiIcon,
         TuiInput,
         TuiPassword,
         TuiTextarea,
+        TuiTitle,
     ],
     templateUrl: './index.html',
     styleUrl: './index.less',
