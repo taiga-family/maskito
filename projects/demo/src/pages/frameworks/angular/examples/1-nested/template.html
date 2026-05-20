@@ -1,6 +1,7 @@
-<tui-input
-    [maskito]="nameMask"
-    [(ngModel)]="value"
->
-    Name on the card
-</tui-input>
+<tui-textfield [maskito]="nameMask">
+    <label tuiLabel>Name on the card</label>
+    <input
+        tuiInput
+        [(ngModel)]="value"
+    />
+</tui-textfield>

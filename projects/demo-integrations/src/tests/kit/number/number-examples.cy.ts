@@ -50,7 +50,7 @@ describe('Documentation page "Number"', () => {
 
     describe('Example "Thousand separator pattern uses Intl.NumberFormat" (Indian, via Intl)', () => {
         beforeEach(() => {
-            cy.get('#thousand-separator-pattern-intl input')
+            cy.get('[id="thousand-separator-pattern-uses--intl.-number-format"] input')
                 .should('be.visible')
                 .first()
                 .focus()

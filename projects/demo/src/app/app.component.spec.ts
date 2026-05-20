@@ -20,8 +20,8 @@ describe('Ensure unit tests work for demo application', () => {
 
         fixture.detectChanges();
 
-        expect(fixture.nativeElement.textContent).toContain('Getting started');
-        expect(fixture.nativeElement.textContent).toContain('Core concepts');
+        expect(fixture.nativeElement.textContent).toContain('Getting Started');
+        expect(fixture.nativeElement.textContent).toContain('Core Concepts');
     });
 
     it('router works', async () => {

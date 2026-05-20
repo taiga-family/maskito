@@ -1,32 +1,27 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
 
 import mask from './mask';
 
 @Component({
     selector: 'time-mask-doc-example-6',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
-        <tui-input
-            tuiTextfieldFiller="HH h MM min SS,MS"
-            tuiTextfieldIcon="@tui.clock"
+        <tui-textfield
+            filler="HH h MM min SS,MS"
+            iconEnd="@tui.clock"
             [style.max-width.rem]="20"
-            [(ngModel)]="value"
         >
-            fr-CA locale
+            <label tuiLabel>fr-CA locale</label>
             <input
                 inputmode="numeric"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-        </tui-input>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

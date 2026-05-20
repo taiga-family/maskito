@@ -3,7 +3,7 @@ import {DemoPath} from '@demo/constants';
 describe('@maskito/vue | Basic', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Vue);
-        cy.get('#example input').should('be.visible').clear().as('input');
+        cy.get('#vue input').should('be.visible').clear().as('input');
     });
 
     it('rejects invalid characters', () => {

@@ -10,6 +10,7 @@ import {VueExample1} from './examples/vue-1/component';
     selector: 'vue-doc-page',
     imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification, VueExample1],
     templateUrl: './vue-doc.template.html',
+    styleUrl: './vue-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class VueDocPageComponent {

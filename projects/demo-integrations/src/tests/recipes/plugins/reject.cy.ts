@@ -6,7 +6,7 @@ describe('Plugins | Reject', () => {
 
     beforeEach(() => {
         cy.visit(DemoPath.KitPlugins);
-        cy.get('#reject input')
+        cy.get('#visualize-rejected-characters input')
             .should('be.visible')
             .first()
             .should('have.value', '')

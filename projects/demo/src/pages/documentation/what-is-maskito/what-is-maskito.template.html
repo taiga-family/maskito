@@ -90,9 +90,9 @@
 
         <div class="cards">
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="maskitoLibrariesDocPage"
             >
                 <h1 tuiTitle>
@@ -105,18 +105,18 @@
                 </h1>
 
                 <aside tuiAccessories>
-                    <tui-avatar
+                    <span
                         appearance="secondary"
                         size="l"
-                        src="@tui.layout-grid"
-                    />
+                        tuiAvatar="@tui.layout-grid"
+                    ></span>
                 </aside>
             </a>
 
             <a
+                appearance="floating"
                 tuiCardLarge
                 tuiHeader
-                tuiSurface="elevated"
                 [routerLink]="coreConceptsOverviewDocPage"
             >
                 <h1 tuiTitle>
@@ -127,11 +127,11 @@
                 </h1>
 
                 <aside tuiAccessories>
-                    <tui-avatar
+                    <span
                         appearance="secondary"
                         size="l"
-                        src="@tui.settings"
-                    />
+                        tuiAvatar="@tui.settings"
+                    ></span>
                 </aside>
             </a>
         </div>

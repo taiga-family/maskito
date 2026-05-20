@@ -40,7 +40,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel="1.23"
-                    tuiTextfield
+                    tuiInput
                     [readOnly]="true"
                 />
             </tui-textfield>
@@ -55,7 +55,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel=".23"
-                    tuiTextfield
+                    tuiInput
                     [readOnly]="true"
                 />
             </tui-textfield>
@@ -83,7 +83,7 @@
                 <label tuiLabel>Enter number</label>
                 <input
                     ngModel="1.23"
-                    tuiTextfield
+                    tuiInput
                     [maskito]="documentationMask"
                 />
             </tui-textfield>
@@ -94,10 +94,10 @@
 
             <div class="cards">
                 <a
+                    appearance="floating"
                     routerLink="Built-in_core_plugins"
                     tuiCardLarge
                     tuiHeader
-                    tuiSurface="elevated"
                 >
                     <h3 tuiTitle>
                         &#64;maskito/core
@@ -115,9 +115,9 @@
                 </a>
 
                 <a
+                    appearance="floating"
                     tuiCardLarge
                     tuiHeader
-                    tuiSurface="elevated"
                     [routerLink]="kitPluginsDocPage"
                 >
                     <h3 tuiTitle>
@@ -145,7 +145,6 @@
 
     <ng-template pageTab="Built-in core plugins">
         <tui-doc-example
-            id="initial-calibration"
             heading="For initial calibration"
             [content]="initialCalibrationExample"
             [description]="initialCalibrationDescription"
@@ -170,7 +169,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="strict-composition"
             heading="For composition event"
             [content]="strictCompositionExample"
             [description]="strictCompositionDescription"
@@ -207,7 +205,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="change-event"
             heading="For change event"
             [content]="changeEventExample"
             [description]="changeEventDescription"

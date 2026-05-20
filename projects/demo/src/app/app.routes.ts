@@ -5,7 +5,7 @@ import {tuiProvideRoutePageTab} from '@taiga-ui/addon-doc';
 /* eslint-disable @typescript-eslint/promise-function-async */
 
 export const ROUTES: Routes = [
-    // Getting started
+    // Getting Started
     {
         path: '',
         loadComponent: () =>
@@ -24,12 +24,12 @@ export const ROUTES: Routes = [
             import('../pages/documentation/maskito-libraries/maskito-libraries.component'),
         title: 'Maskito libraries',
     },
-    // Core concepts
+    // Core Concepts
     {
         path: DemoPath.CoreConceptsOverview,
         loadComponent: () =>
             import('../pages/documentation/core-concepts-overview/core-concepts-overview.component'),
-        title: 'Core concepts',
+        title: 'Core Concepts',
     },
     {
         path: DemoPath.MaskExpression,

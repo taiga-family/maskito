@@ -45,9 +45,10 @@
 
                 <tui-doc-code [code]="regExpMaskExpDemo" />
 
-                <tui-notification
+                <div
                     appearance="warning"
                     size="m"
+                    tuiNotification
                     class="tui-space_top-3"
                 >
                     <div>
@@ -66,7 +67,7 @@
                             is the right solution for our example.
                         </p>
                     </div>
-                </tui-notification>
+                </div>
             </li>
             <li class="tui-list__item">
                 <strong>Pattern mask expression</strong>
@@ -79,9 +80,10 @@
                     and each regular expression is validator of character at the same index.
                 </p>
 
-                <tui-notification
+                <div
                     appearance="info"
                     size="m"
+                    tuiNotification
                 >
                     <div>
                         <strong>Fixed character</strong>
@@ -89,7 +91,7 @@
                         array). It is automatically added when user forgets to type it. It cannot be erased or replaced
                         with another character.
                     </div>
-                </tui-notification>
+                </div>
 
                 <p>
                     For example, imagine that you have to create mask for a time-string with
@@ -130,9 +132,10 @@
                     input changes to generate a new version of mask expression.
                 </p>
 
-                <tui-notification
+                <div
                     appearance="info"
                     size="m"
+                    tuiNotification
                     class="tui-space_bottom-3"
                 >
                     <div>
@@ -145,13 +148,14 @@
                         </a>
                         object with raw value and current selection is passed as an argument to the function.
                     </div>
-                </tui-notification>
+                </div>
 
                 <tui-doc-code [code]="dynamicMaskExpDemo" />
 
-                <tui-notification
+                <div
                     appearance="warning"
                     size="m"
+                    tuiNotification
                     class="tui-space_top-6"
                 >
                     <div>
@@ -162,7 +166,7 @@
 
                         <p class="tui-space_bottom-0">Think about optimization and memoization of the such function.</p>
                     </div>
-                </tui-notification>
+                </div>
             </li>
         </ul>
     </section>

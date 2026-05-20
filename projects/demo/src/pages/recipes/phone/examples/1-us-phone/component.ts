@@ -1,42 +1,31 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
     selector: 'phone-doc-example-1',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
-        <tui-input
-            [style.max-width.rem]="20"
-            [tuiTextfieldCustomContent]="usFlag"
-            [(ngModel)]="value"
-        >
-            Enter a phone number
+        <tui-textfield [style.max-width.rem]="20">
+            <label tuiLabel>Enter a phone number</label>
             <input
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [maskito]="maskitoOptions"
+                [(ngModel)]="value"
             />
 
-            <ng-template #usFlag>
-                <img
-                    alt="Flag of the United States"
-                    width="28"
-                    [src]="'US' | tuiFlag"
-                    [style.border-radius.%]="50"
-                />
-            </ng-template>
-        </tui-input>
+            <img
+                alt="Flag of the United States"
+                width="28"
+                [src]="'US' | tuiFlag"
+                [style.border-radius.%]="50"
+            />
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -4,7 +4,7 @@ describe('Angular | Custom unmask handler', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Angular);
 
-        cy.get('#unmask [automation-id="tui-doc-example"]').as('example');
+        cy.get('#custom-unmask-handler [automation-id="tui-doc-example"]').as('example');
         cy.get('@example').find('input').as('input');
         cy.get('@example').find('code').as('controlValue');
         cy.get('@example').find('button').as('patch');

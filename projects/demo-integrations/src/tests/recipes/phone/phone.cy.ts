@@ -6,7 +6,7 @@ import {repeatKey} from '../../utils';
 describe('Phone', () => {
     beforeEach(() => {
         cy.visit(DemoPath.Phone);
-        cy.get('#kz input')
+        cy.get('#kazakhstan input')
             .should('be.visible')
             .first()
             .should('have.value', '')

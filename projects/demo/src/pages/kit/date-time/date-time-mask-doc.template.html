@@ -7,8 +7,9 @@
         <code>maskitoDateTimeOptionsGenerator</code>
         to create a mask to input both date and time.
 
-        <tui-notification
+        <div
             size="m"
+            tuiNotification
             class="tui-space_top-4"
         >
             <div>
@@ -27,10 +28,9 @@
 
                 <tui-doc-code [code]="maskitoParseStringifyDateTimeDemo" />
             </div>
-        </tui-notification>
+        </div>
 
         <tui-doc-example
-            id="localization"
             heading="Localization"
             [content]="dateTimeLocalizationExample"
             [description]="localizationDescription"
@@ -48,7 +48,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="date-time-separator"
             heading="Custom separator between date and time"
             [content]="dateTimeSeparatorExample"
             [description]="dateTimeSeparatorDescription"
@@ -62,7 +61,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="min-max"
             heading="Min and max"
             [content]="dateTimeMinMaxExample"
             [description]="minMaxDescription"
@@ -87,7 +85,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="time-step"
             heading="Time segments stepping via arrows"
             [content]="dateTimeTimeStepExample"
             [description]="timeStepDescription"
@@ -113,7 +110,6 @@
         </tui-doc-example>
 
         <tui-doc-example
-            id="am-pm"
             heading="AM / PM"
             [content]="amPmExample"
             [description]="amPmDescription"
@@ -132,49 +128,49 @@
     <ng-template pageTab>
         <tui-doc-demo [control]="apiPageControl">
             <ng-template>
-                <tui-input
-                    tuiTextfieldCustomContent="@tui.calendar"
-                    [formControl]="apiPageControl"
-                    [tuiTextfieldFiller]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
+                <tui-textfield
+                    iconEnd="@tui.calendar"
+                    [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
                 >
-                    Enter date and time
+                    <label tuiLabel>Enter date and time</label>
                     <input
                         inputmode="numeric"
-                        tuiTextfieldLegacy
+                        tuiInput
+                        [formControl]="apiPageControl"
                         [maskito]="maskitoOptions"
                     />
-                </tui-input>
+                </tui-textfield>
             </ng-template>
         </tui-doc-demo>
-        <tui-doc-documentation>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="dateMode"
-                documentationPropertyType="MaskitoDateMode"
-                [documentationPropertyValues]="dateModeOptions"
-                [(documentationPropertyValue)]="dateMode"
-                (documentationPropertyValueChange)="updateOptions()"
+        <table tuiDocAPI>
+            <tr
+                name="[dateMode]"
+                tuiDocAPIItem
+                type="MaskitoDateMode"
+                [items]="dateModeOptions"
+                [(value)]="dateMode"
+                (valueChange)="updateOptions()"
             >
                 Date format mode
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="timeMode"
-                documentationPropertyType="MaskitoTimeMode"
-                [documentationPropertyValues]="timeModeOptions"
-                [(documentationPropertyValue)]="timeMode"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[timeMode]"
+                tuiDocAPIItem
+                type="MaskitoTimeMode"
+                [items]="timeModeOptions"
+                [(value)]="timeMode"
+                (valueChange)="updateOptions()"
             >
                 Time format mode
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="dateSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="dateSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[dateSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="dateSeparator"
+                (valueChange)="updateOptions()"
             >
                 Date separator
 
@@ -183,14 +179,14 @@
                     <code>.</code>
                     (dot).
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="dateTimeSeparator"
-                documentationPropertyType="string"
-                [(documentationPropertyValue)]="dateTimeSeparator"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[dateTimeSeparator]"
+                tuiDocAPIItem
+                type="string"
+                [(value)]="dateTimeSeparator"
+                (valueChange)="updateOptions()"
             >
                 Separator between date and time
 
@@ -199,14 +195,14 @@
                     <code>,&nbsp;</code>
                     (comma and space)
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="timeStep"
-                documentationPropertyType="number"
-                [(documentationPropertyValue)]="timeStep"
-                (documentationPropertyValueChange)="updateOptions()"
+            <tr
+                name="[timeStep]"
+                tuiDocAPIItem
+                type="number"
+                [(value)]="timeStep"
+                (valueChange)="updateOptions()"
             >
                 The value by which the keyboard arrows increment/decrement time segments
 
@@ -215,28 +211,28 @@
                     <code>0</code>
                     (disable stepping)
                 </p>
-            </ng-template>
+            </tr>
 
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="min"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="minStr"
-                (documentationPropertyValueChange)="updateDate()"
+            <tr
+                name="[min]"
+                tuiDocAPIItem
+                type="Date"
+                [items]="minMaxOptions"
+                [(value)]="minStr"
+                (valueChange)="updateDate()"
             >
                 Earliest date
-            </ng-template>
-            <ng-template
-                documentationPropertyMode="input"
-                documentationPropertyName="max"
-                documentationPropertyType="Date"
-                [documentationPropertyValues]="minMaxOptions"
-                [(documentationPropertyValue)]="maxStr"
-                (documentationPropertyValueChange)="updateDate()"
+            </tr>
+            <tr
+                name="[max]"
+                tuiDocAPIItem
+                type="Date"
+                [items]="minMaxOptions"
+                [(value)]="maxStr"
+                (valueChange)="updateDate()"
             >
                 Latest date
-            </ng-template>
-        </tui-doc-documentation>
+            </tr>
+        </table>
     </ng-template>
 </tui-doc-page>

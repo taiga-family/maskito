@@ -1,89 +1,89 @@
 <tui-doc-page header="Overwrite mode">
-    <p class="tui-space_top-0">
-        <strong>Overwrite mode</strong>
-        regulates behaviour of the mask when user inserts a new character somewhere in the middle of text field,
-        overwriting the character at the current index.
-    </p>
-
-    <section>
-        <p>
-            <code>overwriteMode</code>
-            can be of a following type:
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            <strong>Overwrite mode</strong>
+            regulates behaviour of the mask when user inserts a new character somewhere in the middle of text field,
+            overwriting the character at the current index.
         </p>
 
-        <ul class="tui-list">
-            <li class="tui-list__item">
-                <code>shift</code>
-                (default)
-            </li>
+        <section>
+            <p>
+                <code>overwriteMode</code>
+                can be of a following type:
+            </p>
 
-            <li class="tui-list__item">
-                <code>replace</code>
-            </li>
+            <ul class="tui-list">
+                <li class="tui-list__item">
+                    <code>shift</code>
+                    (default)
+                </li>
 
-            <li class="tui-list__item">
-                function that receives element state as an argument and returns
+                <li class="tui-list__item">
+                    <code>replace</code>
+                </li>
+
+                <li class="tui-list__item">
+                    function that receives element state as an argument and returns
+                    <code>shift</code>
+                    or
+                    <code>replace</code>
+                </li>
+            </ul>
+        </section>
+
+        <tui-doc-example
+            heading="Shift mode"
+            [content]="shiftExample"
+            [description]="shiftModeDescription"
+        >
+            <ng-template #shiftModeDescription>
+                The classic mode that everyone is used to. Inserting a new character in the middle of the text field
+                value
+                <strong>shifts</strong>
+                all following characters to the right.
+            </ng-template>
+            <overwrite-mode-shift-doc-example-1 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Replace mode"
+            [content]="replaceExample"
+            [description]="replaceModeDescription"
+        >
+            <ng-template #replaceModeDescription>
+                All new inserted characters
+                <strong>replace</strong>
+                the old characters at the same position. No character shifts. The length of the value remains the same
+                after inserting new character somewhere in middle of the text field.
+            </ng-template>
+            <overwrite-mode-replace-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Dynamically detected mode"
+            [content]="dynamicExample"
+            [description]="dynamicModeDescription"
+        >
+            <ng-template #dynamicModeDescription>
+                Parameter
+                <code>overwriteMode</code>
+                also accepts function that will called before each insertion of new characters. This function has one
+                argument — current element state (read more about it in the
+                <a
+                    tuiLink
+                    [routerLink]="elementStateDocPage"
+                >
+                    "Element state"
+                </a>
+                section). And this function should return one of two possible values:
                 <code>shift</code>
                 or
                 <code>replace</code>
-            </li>
-        </ul>
-    </section>
+                .
+            </ng-template>
+            <overwrite-mode-dynamic-doc-example-3 />
+        </tui-doc-example>
 
-    <tui-doc-example
-        id="shift"
-        heading="Shift mode"
-        [content]="shiftExample"
-        [description]="shiftModeDescription"
-    >
-        <ng-template #shiftModeDescription>
-            The classic mode that everyone is used to. Inserting a new character in the middle of the text field value
-            <strong>shifts</strong>
-            all following characters to the right.
-        </ng-template>
-        <overwrite-mode-shift-doc-example-1 />
-    </tui-doc-example>
-
-    <tui-doc-example
-        id="replace"
-        heading="Replace mode"
-        [content]="replaceExample"
-        [description]="replaceModeDescription"
-    >
-        <ng-template #replaceModeDescription>
-            All new inserted characters
-            <strong>replace</strong>
-            the old characters at the same position. No character shifts. The length of the value remains the same after
-            inserting new character somewhere in middle of the text field.
-        </ng-template>
-        <overwrite-mode-replace-doc-example-2 />
-    </tui-doc-example>
-
-    <tui-doc-example
-        id="dynamic"
-        heading="Dynamically detected mode"
-        [content]="dynamicExample"
-        [description]="dynamicModeDescription"
-    >
-        <ng-template #dynamicModeDescription>
-            Parameter
-            <code>overwriteMode</code>
-            also accepts function that will called before each insertion of new characters. This function has one
-            argument — current element state (read more about it in the
-            <a
-                tuiLink
-                [routerLink]="elementStateDocPage"
-            >
-                "Element state"
-            </a>
-            section). And this function should return one of two possible values:
-            <code>shift</code>
-            or
-            <code>replace</code>
-            .
-        </ng-template>
-        <overwrite-mode-dynamic-doc-example-3 />
-    </tui-doc-example>
-
-    <next-steps />
+        <next-steps />
+    </ng-template>
 </tui-doc-page>

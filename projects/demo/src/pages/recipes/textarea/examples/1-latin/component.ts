@@ -1,23 +1,25 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {TuiTextareaModule} from '@taiga-ui/legacy';
+import {TuiTextarea} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
     selector: 'textarea-doc-example-1',
-    imports: [FormsModule, MaskitoDirective, TuiTextareaModule],
+    imports: [FormsModule, MaskitoDirective, TuiTextarea],
     template: `
-        <tui-textarea [(ngModel)]="value">
-            Enter address
+        <tui-textfield>
+            <label tuiLabel>Enter address</label>
             <textarea
                 autocomplete="street-address"
                 placeholder="Only latin letters and digits are allowed"
-                tuiTextfieldLegacy
+                tuiTextarea
+                [min]="3"
                 [maskito]="mask"
+                [(ngModel)]="value"
             ></textarea>
-        </tui-textarea>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

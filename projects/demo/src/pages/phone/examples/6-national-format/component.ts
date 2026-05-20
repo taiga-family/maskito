@@ -1,46 +1,35 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {isSafari} from '@ng-web-apis/platform';
-import {TUI_IS_IOS, tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiFlagPipe} from '@taiga-ui/core';
-import {TuiInputModule, TuiTextfieldControllerModule} from '@taiga-ui/legacy';
+import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
+import {tuiInjectElement} from '@taiga-ui/cdk';
+import {TuiInput} from '@taiga-ui/core';
+import {TuiFlagPipe} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
     selector: 'phone-doc-example-6',
-    imports: [
-        FormsModule,
-        MaskitoDirective,
-        TuiFlagPipe,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-    ],
+    imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
-        <tui-input
-            [style.max-width.rem]="30"
-            [tuiTextfieldCustomContent]="flag"
-            [(ngModel)]="value"
-        >
-            National Format (US)
+        <tui-textfield [style.max-width.rem]="30">
+            <label tuiLabel>National Format (US)</label>
             <input
                 autocomplete="tel"
                 inputmode="tel"
-                tuiTextfieldLegacy
+                tuiInput
                 [attr.pattern]="pattern"
                 [maskito]="mask"
+                [(ngModel)]="value"
             />
-        </tui-input>
 
-        <ng-template #flag>
             <img
                 alt="US"
                 width="28"
                 [src]="'US' | tuiFlag"
                 [style.border-radius.%]="50"
             />
-        </ng-template>
+        </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -54,5 +43,5 @@ export class PhoneMaskDocExample6 {
      * TODO: delete after bumping Safari support to 18+
      */
     protected readonly pattern =
-        isSafari(tuiInjectElement()) || inject(TUI_IS_IOS) ? '[0-9()-]{1,20}' : '';
+        isSafari(tuiInjectElement()) || inject(WA_IS_IOS) ? '[0-9()-]{1,20}' : '';
 }
