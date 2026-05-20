@@ -1,13 +1,16 @@
 <form
     #formElement
     autocomplete="on"
-    class="tui-form"
+    tuiForm
     [formGroup]="form"
     (ngSubmit)="log(form.value); formElement.submit()"
 >
-    <h3 class="tui-form__header tui-form__header_margin-top_none">Real World Form</h3>
-    <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-textfield class="tui-form__multi-field">
+    <header tuiHeader>
+        <h3 tuiTitle>Real World Form</h3>
+    </header>
+
+    <fieldset>
+        <tui-textfield>
             <label tuiLabel>Name</label>
             <input
                 autocomplete="name"
@@ -18,7 +21,7 @@
                 [maskito]="nameMask"
             />
         </tui-textfield>
-        <tui-textfield class="tui-form__multi-field">
+        <tui-textfield>
             <label tuiLabel>Surname</label>
             <input
                 autocomplete="family-name"
@@ -29,36 +32,34 @@
                 [maskito]="surnameMask"
             />
         </tui-textfield>
-    </div>
+    </fieldset>
 
-    <div class="tui-form__row">
-        <tui-textfield>
-            <label tuiLabel>Enter phone number</label>
-            <input
-                autocomplete="tel"
-                formControlName="phone"
-                inputmode="tel"
-                name="phone"
-                tuiInput
-                [attr.pattern]="phonePattern"
-                [maskito]="phoneMask"
+    <tui-textfield>
+        <label tuiLabel>Enter phone number</label>
+        <input
+            autocomplete="tel"
+            formControlName="phone"
+            inputmode="tel"
+            name="phone"
+            tuiInput
+            [attr.pattern]="phonePattern"
+            [maskito]="phoneMask"
+        />
+
+        @if (countryIsoCode) {
+            <img
+                width="28"
+                [attr.alt]="countryIsoCode"
+                [src]="countryIsoCode | tuiFlag"
+                [style.border-radius.%]="50"
             />
+        } @else {
+            <tui-icon icon="@tui.phone" />
+        }
+    </tui-textfield>
 
-            @if (countryIsoCode) {
-                <img
-                    width="28"
-                    [attr.alt]="countryIsoCode"
-                    [src]="countryIsoCode | tuiFlag"
-                    [style.border-radius.%]="50"
-                />
-            } @else {
-                <tui-icon icon="@tui.phone" />
-            }
-        </tui-textfield>
-    </div>
-
-    <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-textfield class="tui-form__multi-field">
+    <fieldset>
+        <tui-textfield>
             <label tuiLabel>Enter password</label>
             <input
                 autocomplete="new-password"
@@ -72,7 +73,7 @@
 
             <tui-icon tuiPassword />
         </tui-textfield>
-        <tui-textfield class="tui-form__multi-field">
+        <tui-textfield>
             <label tuiLabel>Repeat password</label>
             <input
                 autocomplete="new-password"
@@ -86,13 +87,10 @@
 
             <tui-icon tuiPassword />
         </tui-textfield>
-    </div>
+    </fieldset>
 
-    <div class="tui-form__row tui-form__row_multi-fields">
-        <tui-textfield
-            iconEnd="@tui.calendar"
-            class="tui-form__multi-field"
-        >
+    <fieldset>
+        <tui-textfield iconEnd="@tui.calendar">
             <label tuiLabel>Transaction date</label>
             <input
                 formControlName="transactionDate"
@@ -104,7 +102,7 @@
             />
         </tui-textfield>
 
-        <tui-textfield class="tui-form__multi-field">
+        <tui-textfield>
             <label tuiLabel>Transaction amount</label>
             <input
                 autocomplete="transaction-amount"
@@ -116,42 +114,36 @@
                 [maskito]="transactionAmountMask"
             />
         </tui-textfield>
-    </div>
+    </fieldset>
 
-    <div class="tui-form__row">
-        <tui-textfield>
-            <label tuiLabel>Enter address</label>
-            <textarea
-                autocomplete="street-address"
-                formControlName="address"
-                name="address"
-                placeholder="Only latin letters, digits and some punctuation signs are allowed"
-                tuiTextarea
-                [maskito]="addressMask"
-                [min]="3"
-            ></textarea>
-        </tui-textfield>
-    </div>
+    <tui-textfield>
+        <label tuiLabel>Enter address</label>
+        <textarea
+            autocomplete="street-address"
+            formControlName="address"
+            name="address"
+            placeholder="Only latin letters, digits and some punctuation signs are allowed"
+            tuiTextarea
+            [maskito]="addressMask"
+            [min]="3"
+        ></textarea>
+    </tui-textfield>
 
-    <div class="tui-form__buttons">
+    <footer>
         <button
-            size="l"
             tuiButton
             type="submit"
-            class="tui-form__button"
         >
             Submit
         </button>
 
         <button
             appearance="flat"
-            size="l"
             tuiButton
             type="button"
-            class="tui-form__button"
             (click)="form.reset()"
         >
             Clear all
         </button>
-    </div>
+    </footer>
 </form>
