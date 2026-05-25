@@ -197,13 +197,22 @@ describe('maskitoStringifyTime', () => {
             ).toBe('14.30.45,678');
         });
 
-        it('short array repeats last separator for remaining positions', () => {
+        it('short array falls back to canonical separators from mode for remaining positions', () => {
             expect(
                 maskitoStringifyTime(14 * 60 * 60 * 1000 + 30 * 60 * 1000 + 45 * 1000, {
                     mode: 'HH:MM:SS',
                     separators: ['.'],
                 }),
-            ).toBe('14.30.45');
+            ).toBe('14.30:45');
+        });
+
+        it('short array falls back to canonical separators from mode for HH:MM:SS.MSS', () => {
+            expect(
+                maskitoStringifyTime(
+                    14 * 60 * 60 * 1000 + 30 * 60 * 1000 + 45 * 1000 + 678,
+                    {mode: 'HH:MM:SS.MSS', separators: ['.']},
+                ),
+            ).toBe('14.30:45.678');
         });
 
         it('dot separator for MM:SS mode', () => {

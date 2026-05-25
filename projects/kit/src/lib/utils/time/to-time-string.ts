@@ -9,11 +9,7 @@ export function toTimeString(
 
     const modeTemplate = mode
         .replace(' AA', '')
-        .replaceAll(
-            /[:.]/g,
-            (char) =>
-                separators[separatorIndex++] ?? separators[separators.length - 1] ?? char,
-        );
+        .replaceAll(/[:.]/g, (char) => separators[separatorIndex++] ?? char);
 
     return modeTemplate
         .replaceAll(/H+/g, segments.hours ?? '')

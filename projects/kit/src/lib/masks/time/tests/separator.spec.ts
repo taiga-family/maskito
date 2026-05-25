@@ -111,13 +111,22 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
         expect(maskitoTransform('14304567', options)).toBe('14.30.45,67');
     });
 
-    it('short array repeats last separator for remaining positions', () => {
+    it('short array falls back to canonical separators from mode for remaining positions', () => {
         const options = maskitoTimeOptionsGenerator({
             mode: 'HH:MM:SS',
             separators: ['.'],
         });
 
-        expect(maskitoTransform('143045', options)).toBe('14.30.45');
+        expect(maskitoTransform('143045', options)).toBe('14.30:45');
+    });
+
+    it('short array falls back to canonical separators from mode for HH:MM:SS.MSS', () => {
+        const options = maskitoTimeOptionsGenerator({
+            mode: 'HH:MM:SS.MSS',
+            separators: ['.'],
+        });
+
+        expect(maskitoTransform('143045678', options)).toBe('14.30:45.678');
     });
 
     it('per-position separators for MM:SS.MSS', () => {

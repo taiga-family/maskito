@@ -102,13 +102,22 @@ describe('toTimeString', () => {
             ).toBe('18 h 05 min 05,766');
         });
 
-        it('single separator repeats for all positions', () => {
+        it('short array falls back to canonical separators from mode for remaining positions', () => {
             expect(
                 toTimeString(
                     {hours: '14', minutes: '30', seconds: '45'},
                     {mode: 'HH:MM:SS', separators: ['.']},
                 ),
-            ).toBe('14.30.45');
+            ).toBe('14.30:45');
+        });
+
+        it('short array falls back to canonical separators from mode for HH:MM:SS.MSS', () => {
+            expect(
+                toTimeString(
+                    {hours: '14', minutes: '30', seconds: '45', milliseconds: '678'},
+                    {mode: 'HH:MM:SS.MSS', separators: ['.']},
+                ),
+            ).toBe('14.30:45.678');
         });
     });
 
