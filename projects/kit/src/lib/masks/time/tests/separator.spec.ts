@@ -76,10 +76,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('default colon separator is unchanged', () => {
-        const options = maskitoTimeOptionsGenerator({
-            mode: 'HH:MM',
-            separators: [':'],
-        });
+        const options = maskitoTimeOptionsGenerator({mode: 'HH:MM'});
 
         expect(maskitoTransform('1430', options)).toBe('14:30');
     });

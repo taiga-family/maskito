@@ -62,7 +62,7 @@ describe('Time with [separators] property', () => {
                 .should('have.prop', 'selectionEnd', '14.3'.length);
         });
 
-        it('Backspace erases digit, not separator', () => {
+        it('Backspace erases digit with preceding separator', () => {
             cy.get('@input')
                 .type('1430')
                 .should('have.value', '14.30')
