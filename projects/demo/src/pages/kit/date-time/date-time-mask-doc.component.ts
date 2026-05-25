@@ -102,7 +102,6 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
 
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];
-
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
     public dateTimeSeparator = ', ';
