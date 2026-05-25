@@ -88,6 +88,7 @@ export function maskitoDateTimeOptionsGenerator({
                 dateTimeSeparator,
                 timeMode,
                 timeSegmentMaxValues,
+                timeSeparators: separators,
             }),
         ],
         postprocessors: [
