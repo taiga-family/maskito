@@ -1,5 +1,4 @@
-import type {MaskitoTimeParams} from '@maskito/kit';
-
+import type {MaskitoTimeParams} from '../../masks/time/time-params';
 import type {MaskitoTimeSegments} from '../../types';
 
 export function toTimeString(

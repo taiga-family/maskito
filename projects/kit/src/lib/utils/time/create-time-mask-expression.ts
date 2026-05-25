@@ -1,6 +1,5 @@
-import {type MaskitoTimeParams} from '@maskito/kit';
-
 import {CHAR_NO_BREAK_SPACE, TIME_FIXED_CHARACTERS} from '../../constants';
+import type {MaskitoTimeParams} from '../../masks/time/time-params';
 
 export function createTimeMaskExpression({
     mode,

@@ -1,6 +1,8 @@
 import {describe, expect, it} from '@jest/globals';
 import {maskitoStringifyTime, type MaskitoTimeMode} from '@maskito/kit';
 
+import {CHAR_NO_BREAK_SPACE} from '../../../../constants';
+
 describe('maskitoStringifyTime', () => {
     const testCases = new Map<MaskitoTimeMode, Array<{ms: number; text: string}>>([
         [
@@ -15,12 +17,12 @@ describe('maskitoStringifyTime', () => {
         [
             'HH:MM:SS.MSS AA',
             [
-                {ms: 0, text: '12:00:00.000\u00A0AM'},
-                {ms: 3600000, text: '01:00:00.000\u00A0AM'},
-                {ms: 43199999, text: '11:59:59.999\u00A0AM'},
-                {ms: 43200000, text: '12:00:00.000\u00A0PM'},
-                {ms: 46800000, text: '01:00:00.000\u00A0PM'},
-                {ms: 86399999, text: '11:59:59.999\u00A0PM'},
+                {ms: 0, text: `12:00:00.000${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 3600000, text: `01:00:00.000${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43199999, text: `11:59:59.999${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43200000, text: `12:00:00.000${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 46800000, text: `01:00:00.000${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 86399999, text: `11:59:59.999${CHAR_NO_BREAK_SPACE}PM`},
             ],
         ],
         [
@@ -36,12 +38,12 @@ describe('maskitoStringifyTime', () => {
         [
             'HH:MM:SS AA',
             [
-                {ms: 0, text: '12:00:00\u00A0AM'},
-                {ms: 3600000, text: '01:00:00\u00A0AM'},
-                {ms: 43199000, text: '11:59:59\u00A0AM'},
-                {ms: 43200000, text: '12:00:00\u00A0PM'},
-                {ms: 46800000, text: '01:00:00\u00A0PM'},
-                {ms: 86399000, text: '11:59:59\u00A0PM'},
+                {ms: 0, text: `12:00:00${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 3600000, text: `01:00:00${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43199000, text: `11:59:59${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43200000, text: `12:00:00${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 46800000, text: `01:00:00${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 86399000, text: `11:59:59${CHAR_NO_BREAK_SPACE}PM`},
             ],
         ],
         [
@@ -56,12 +58,12 @@ describe('maskitoStringifyTime', () => {
         [
             'HH:MM AA',
             [
-                {ms: 0, text: '12:00\u00A0AM'},
-                {ms: 3600000, text: '01:00\u00A0AM'},
-                {ms: 43140000, text: '11:59\u00A0AM'},
-                {ms: 43200000, text: '12:00\u00A0PM'},
-                {ms: 46800000, text: '01:00\u00A0PM'},
-                {ms: 86340000, text: '11:59\u00A0PM'},
+                {ms: 0, text: `12:00${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 3600000, text: `01:00${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43140000, text: `11:59${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43200000, text: `12:00${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 46800000, text: `01:00${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 86340000, text: `11:59${CHAR_NO_BREAK_SPACE}PM`},
             ],
         ],
         [
@@ -76,12 +78,12 @@ describe('maskitoStringifyTime', () => {
         [
             'HH AA',
             [
-                {ms: 0, text: '12\u00A0AM'},
-                {ms: 3600000, text: '01\u00A0AM'},
-                {ms: 39600000, text: '11\u00A0AM'},
-                {ms: 43200000, text: '12\u00A0PM'},
-                {ms: 46800000, text: '01\u00A0PM'},
-                {ms: 82800000, text: '11\u00A0PM'},
+                {ms: 0, text: `12${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 3600000, text: `01${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 39600000, text: `11${CHAR_NO_BREAK_SPACE}AM`},
+                {ms: 43200000, text: `12${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 46800000, text: `01${CHAR_NO_BREAK_SPACE}PM`},
+                {ms: 82800000, text: `11${CHAR_NO_BREAK_SPACE}PM`},
             ],
         ],
         [

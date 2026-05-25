@@ -1,6 +1,5 @@
-import type {MaskitoTimeParams} from '@maskito/kit';
-
 import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../constants';
+import type {MaskitoTimeParams} from '../../masks/time/time-params';
 import type {MaskitoTimeSegments} from '../../types';
 import {escapeRegExp} from '../escape-reg-exp';
 import {padWithZeroesUntilValid} from '../pad-with-zeroes-until-valid';
