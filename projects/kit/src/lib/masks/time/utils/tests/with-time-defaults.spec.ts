@@ -42,4 +42,37 @@ describe('withTimeDefaults', () => {
             expect(withTimeDefaults({mode: 'HH AA'}).separators).toEqual([]);
         });
     });
+
+    describe('dayPeriod resolution', () => {
+        it("defaults to ['', ''] for 24-hour mode without explicit dayPeriod", () => {
+            expect(withTimeDefaults({mode: 'HH:MM'}).dayPeriod).toEqual(['', '']);
+        });
+
+        it("defaults to ['AM', 'PM'] for deprecated 'AA' mode (backward compat)", () => {
+            expect(withTimeDefaults({mode: 'HH:MM AA'}).dayPeriod).toEqual(['AM', 'PM']);
+            expect(
+                withTimeDefaults({mode: 'HH:MM AA', dayPeriod: ['', '']}).dayPeriod,
+            ).toEqual(['AM', 'PM']);
+        });
+
+        it('treats explicit dayPeriod as 12-hour for time-segment bounds', () => {
+            const result = withTimeDefaults({
+                mode: 'HH:MM',
+                dayPeriod: ['AM', 'PM'],
+            });
+
+            expect(result.timeSegmentMinValues.hours).toBe(1);
+            expect(result.timeSegmentMaxValues.hours).toBe(12);
+        });
+
+        it("treats empty dayPeriod ['', ''] as 24-hour for time-segment bounds", () => {
+            const result = withTimeDefaults({
+                mode: 'HH:MM',
+                dayPeriod: ['', ''],
+            });
+
+            expect(result.timeSegmentMinValues.hours).toBe(0);
+            expect(result.timeSegmentMaxValues.hours).toBe(23);
+        });
+    });
 });

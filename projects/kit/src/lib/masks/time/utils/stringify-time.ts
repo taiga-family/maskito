@@ -1,5 +1,5 @@
 import {CHAR_NO_BREAK_SPACE} from '../../../constants';
-import {padStartTimeSegments, toTimeString} from '../../../utils/time';
+import {hasDayPeriod, padStartTimeSegments, toTimeString} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-params';
 import {withTimeDefaults} from './with-time-defaults';
 
@@ -13,8 +13,8 @@ export function maskitoStringifyTime(
     milliseconds: number,
     params: MaskitoTimeParams,
 ): string {
-    const {mode, separators, timeSegmentMaxValues} = withTimeDefaults(params);
-    const hasMeridiem = mode.includes('AA');
+    const {mode, separators, dayPeriod, timeSegmentMaxValues} = withTimeDefaults(params);
+    const hasMeridiem = hasDayPeriod(dayPeriod);
     const msInSecond = timeSegmentMaxValues.milliseconds + 1;
     const msInMinute = (timeSegmentMaxValues.seconds + 1) * msInSecond;
     const msInHour = (timeSegmentMaxValues.minutes + 1) * msInMinute;
@@ -40,6 +40,6 @@ export function maskitoStringifyTime(
     const time = toTimeString(result, {mode, separators});
 
     return hasMeridiem
-        ? `${time}${CHAR_NO_BREAK_SPACE}${hours >= 12 ? 'PM' : 'AM'}`
+        ? `${time}${CHAR_NO_BREAK_SPACE}${dayPeriod[hours >= 12 ? 1 : 0]}`
         : time;
 }

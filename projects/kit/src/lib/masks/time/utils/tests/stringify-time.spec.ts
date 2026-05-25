@@ -140,6 +140,53 @@ describe('maskitoStringifyTime', () => {
         });
     });
 
+    describe('with explicit `dayPeriod`', () => {
+        it("['AM', 'PM'] with HH:MM mode", () => {
+            expect(
+                maskitoStringifyTime(13 * HOUR + 30 * MINUTE, {
+                    mode: 'HH:MM',
+                    dayPeriod: ['AM', 'PM'],
+                }),
+            ).toBe(`01:30${CHAR_NO_BREAK_SPACE}PM`);
+        });
+
+        it("['am', 'pm'] lowercase markers (hi-IN)", () => {
+            expect(
+                maskitoStringifyTime(9 * HOUR + 15 * MINUTE, {
+                    mode: 'HH:MM',
+                    dayPeriod: ['am', 'pm'],
+                }),
+            ).toBe(`09:15${CHAR_NO_BREAK_SPACE}am`);
+        });
+
+        it("['ص', 'م'] Arabic markers", () => {
+            expect(
+                maskitoStringifyTime(15 * HOUR, {
+                    mode: 'HH:MM',
+                    dayPeriod: ['ص', 'م'],
+                }),
+            ).toBe(`03:00${CHAR_NO_BREAK_SPACE}م`);
+        });
+
+        it("['上午', '下午'] Chinese markers", () => {
+            expect(
+                maskitoStringifyTime(2 * HOUR + 5 * MINUTE, {
+                    mode: 'HH:MM',
+                    dayPeriod: ['上午', '下午'],
+                }),
+            ).toBe(`02:05${CHAR_NO_BREAK_SPACE}上午`);
+        });
+
+        it("empty dayPeriod ['', ''] keeps 24-hour format", () => {
+            expect(
+                maskitoStringifyTime(14 * HOUR + 30 * MINUTE, {
+                    mode: 'HH:MM',
+                    dayPeriod: ['', ''],
+                }),
+            ).toBe('14:30');
+        });
+    });
+
     describe('with custom separators', () => {
         it('uses dot separator from params', () => {
             expect(

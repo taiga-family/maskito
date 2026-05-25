@@ -5,7 +5,10 @@ import {
     maskitoTimeOptionsGenerator,
 } from '@maskito/kit';
 
-const timeOptions = maskitoTimeOptionsGenerator({mode: 'HH:MM AA'});
+const timeOptions = maskitoTimeOptionsGenerator({
+    mode: 'HH:MM',
+    dayPeriod: ['AM', 'PM'],
+});
 
 export default {
     ...timeOptions,

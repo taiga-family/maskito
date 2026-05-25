@@ -58,11 +58,19 @@
             [description]="amPmDescription"
         >
             <ng-template #amPmDescription>
-                Any
-                <code>mode</code>
-                ending with
-                <code>AA</code>
-                is 12-hour time format with meridiem part.
+                Pass
+                <code>dayPeriod</code>
+                as a tuple of two locale-specific markers (e.g.
+                <code>['AM', 'PM']</code>
+                ,
+                <code>['上午', '下午']</code>
+                ) to switch the mask to a 12-hour time format with a meridiem suffix.
+
+                <p>
+                    Pass
+                    <code>['', '']</code>
+                    (default) to keep the 24-hour format.
+                </p>
             </ng-template>
             <time-mask-doc-example-2 />
         </tui-doc-example>
@@ -175,6 +183,23 @@
                 (valueChange)="updateOptions()"
             >
                 Time format mode
+            </tr>
+            <tr
+                name="[dayPeriod]"
+                tuiDocAPIItem
+                type="readonly [string, string]"
+                [items]="dayPeriodOptions"
+                [(value)]="dayPeriod"
+                (valueChange)="updateOptions()"
+            >
+                Tuple of two locale-specific day-period markers (AM-marker first, PM-marker second). When both are
+                non-empty, the mask switches to 12-hour format and appends the selected marker to the time.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['', '']</code>
+                    (24-hour format)
+                </p>
             </tr>
             <tr
                 name="[separators]"

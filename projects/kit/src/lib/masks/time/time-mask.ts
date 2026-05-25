@@ -14,7 +14,11 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
-import {createTimeMaskExpression, enrichTimeSegmentsWithZeroes} from '../../utils/time';
+import {
+    createTimeMaskExpression,
+    enrichTimeSegmentsWithZeroes,
+    hasDayPeriod,
+} from '../../utils/time';
 import type {MaskitoTimeParams} from './time-params';
 import {withTimeDefaults} from './utils/with-time-defaults';
 
@@ -24,6 +28,7 @@ export function maskitoTimeOptionsGenerator(
     const {
         mode,
         separators,
+        dayPeriod,
         prefix,
         postfix,
         timeSegmentMinValues,
@@ -31,7 +36,10 @@ export function maskitoTimeOptionsGenerator(
         step,
     } = withTimeDefaults(params);
 
-    const maskExpression = [...prefix, ...createTimeMaskExpression({mode, separators})];
+    const maskExpression = [
+        ...prefix,
+        ...createTimeMaskExpression({mode, separators, dayPeriod}),
+    ];
 
     return {
         mask: postfix
@@ -41,7 +49,7 @@ export function maskitoTimeOptionsGenerator(
             createFullWidthToHalfWidthPreprocessor(),
             createColonConvertPreprocessor(),
             createZeroPlaceholdersPreprocessor(postfix),
-            createMeridiemPreprocessor(mode),
+            createMeridiemPreprocessor(dayPeriod),
             createInvalidTimeSegmentInsertionPreprocessor({
                 timeMode: mode,
                 timeSegmentMinValues,
@@ -49,7 +57,7 @@ export function maskitoTimeOptionsGenerator(
             }),
         ],
         postprocessors: [
-            createMeridiemPostprocessor(mode),
+            createMeridiemPostprocessor(dayPeriod),
             (elementState) =>
                 enrichTimeSegmentsWithZeroes(elementState, {
                     mode,
@@ -66,7 +74,12 @@ export function maskitoTimeOptionsGenerator(
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
             }),
-            createMeridiemSteppingPlugin(mode.indexOf('AA')),
+            createMeridiemSteppingPlugin({
+                dayPeriod,
+                meridiemStartIndex: hasDayPeriod(dayPeriod)
+                    ? maskExpression.length - dayPeriod[0].length
+                    : -1,
+            }),
         ],
         overwriteMode: 'replace',
     };

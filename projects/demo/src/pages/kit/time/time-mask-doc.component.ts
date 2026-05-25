@@ -102,6 +102,14 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
         'MM:SS',
     ] as const satisfies readonly MaskitoTimeMode[];
 
+    protected readonly dayPeriodOptions = [
+        ['', ''],
+        ['AM', 'PM'],
+        ['am', 'pm'],
+        ['ص', 'م'],
+        ['上午', '下午'],
+    ] as const satisfies ReadonlyArray<MaskitoTimeParams['dayPeriod']>;
+
     protected readonly timeSegmentMaxValuesOptions = [
         {},
         {hours: 23, minutes: 59, seconds: 59, milliseconds: 999},
@@ -129,6 +137,10 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     public prefix = '';
     public postfix = '';
     public step = 0;
+
+    public dayPeriod: NonNullable<MaskitoTimeParams['dayPeriod']> =
+        this.dayPeriodOptions[0];
+
     public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 
     protected updateOptions(): void {

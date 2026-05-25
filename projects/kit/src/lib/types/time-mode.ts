@@ -1,8 +1,8 @@
 export type MaskitoTimeMode =
-    | 'HH AA'
-    | 'HH:MM AA'
-    | 'HH:MM:SS AA'
-    | 'HH:MM:SS.MSS AA'
+    | 'HH AA' // TODO(v6): delete in favor of `dayPeriod` property
+    | 'HH:MM AA' // TODO(v6): delete in favor of `dayPeriod` property
+    | 'HH:MM:SS AA' // TODO(v6): delete in favor of `dayPeriod` property
+    | 'HH:MM:SS.MSS AA' // TODO(v6): delete in favor of `dayPeriod` property
     | 'HH:MM:SS.MSS'
     | 'HH:MM:SS'
     | 'HH:MM'
