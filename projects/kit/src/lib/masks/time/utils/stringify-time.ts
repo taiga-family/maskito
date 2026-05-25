@@ -1,6 +1,6 @@
-import {DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
+import {CHAR_NO_BREAK_SPACE, DEFAULT_TIME_SEGMENT_MAX_VALUES} from '../../../constants';
 import type {MaskitoTimeSegments} from '../../../types';
-import {padStartTimeSegments} from '../../../utils/time';
+import {padStartTimeSegments, toTimeString} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-params';
 
 /**
@@ -11,7 +11,7 @@ import type {MaskitoTimeParams} from '../time-params';
  */
 export function maskitoStringifyTime(
     milliseconds: number,
-    {mode, timeSegmentMaxValues = {}}: MaskitoTimeParams,
+    {mode, separators = [], timeSegmentMaxValues = {}}: MaskitoTimeParams,
 ): string {
     const maxValues: MaskitoTimeSegments<number> = {
         ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
@@ -41,10 +41,9 @@ export function maskitoStringifyTime(
         milliseconds,
     });
 
-    return mode
-        .replaceAll(/H+/g, result.hours)
-        .replaceAll('MSS', result.milliseconds)
-        .replaceAll(/M+/g, result.minutes)
-        .replaceAll(/S+/g, result.seconds)
-        .replace('AA', hours >= 12 ? 'PM' : 'AM');
+    const time = toTimeString(result, {mode, separators});
+
+    return hasMeridiem
+        ? `${time}${CHAR_NO_BREAK_SPACE}${hours >= 12 ? 'PM' : 'AM'}`
+        : time;
 }

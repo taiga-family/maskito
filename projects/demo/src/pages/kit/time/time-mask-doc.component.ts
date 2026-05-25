@@ -18,6 +18,7 @@ import {TimeMaskDocExample2} from './examples/2-am-pm/component';
 import {TimeMaskDocExample3} from './examples/3-step/component';
 import {TimeMaskDocExample4} from './examples/4-affixes/component';
 import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
+import {TimeMaskDocExample6} from './examples/6-separator/component';
 
 @Component({
     selector: 'time-mask-doc',
@@ -30,6 +31,7 @@ import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component'
         TimeMaskDocExample3,
         TimeMaskDocExample4,
         TimeMaskDocExample5,
+        TimeMaskDocExample6,
         TuiAddonDoc,
         TuiInput,
         TuiLink,
@@ -77,6 +79,13 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
         ),
     };
 
+    protected readonly separatorExample6: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-separator/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
     protected apiPageControl = new FormControl('');
 
     protected readonly modeOptions = [
@@ -105,7 +114,16 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
         {hours: 1},
     ] as const satisfies ReadonlyArray<Partial<MaskitoTimeSegments<number>>>;
 
+    protected readonly separatorOptions = [
+        [],
+        ['.'],
+        ['h'],
+        ['/'],
+        [':', ':', ','],
+    ] as const satisfies ReadonlyArray<readonly string[]>;
+
     public mode: MaskitoTimeMode = this.modeOptions[0];
+    public separators: readonly string[] = [];
     public timeSegmentMinValues = this.timeSegmentMinValuesOptions[0];
     public timeSegmentMaxValues = this.timeSegmentMaxValuesOptions[0];
     public prefix = '';

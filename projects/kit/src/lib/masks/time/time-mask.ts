@@ -24,6 +24,7 @@ import type {MaskitoTimeParams} from './time-params';
 
 export function maskitoTimeOptionsGenerator({
     mode,
+    separators = [],
     timeSegmentMaxValues = {},
     timeSegmentMinValues = {},
     step = 0,
@@ -44,7 +45,7 @@ export function maskitoTimeOptionsGenerator({
         ...timeSegmentMinValues,
     };
 
-    const maskExpression = [...prefix, ...createTimeMaskExpression(mode)];
+    const maskExpression = [...prefix, ...createTimeMaskExpression({mode, separators})];
 
     return {
         mask: postfix
@@ -67,6 +68,7 @@ export function maskitoTimeOptionsGenerator({
                 enrichTimeSegmentsWithZeroes(elementState, {
                     mode,
                     timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+                    separators,
                 }),
             maskitoPrefixPostprocessorGenerator(prefix),
             maskitoPostfixPostprocessorGenerator(postfix),
