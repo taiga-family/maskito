@@ -34,7 +34,7 @@ export function maskitoDateTimeOptionsGenerator({
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
-    const {timeSegmentMaxValues, timeSegmentMinValues} = withTimeDefaults({
+    const {timeSegmentMaxValues, timeSegmentMinValues, separators} = withTimeDefaults({
         mode: timeMode,
     });
 
@@ -49,7 +49,7 @@ export function maskitoDateTimeOptionsGenerator({
             ...dateTimeSeparator.split(''),
             ...createTimeMaskExpression({
                 mode: timeMode,
-                separators: [],
+                separators,
             }),
         ],
         overwriteMode: 'replace',

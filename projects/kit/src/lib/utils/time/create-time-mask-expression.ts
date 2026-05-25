@@ -12,7 +12,7 @@ export function createTimeMaskExpression({
     return Array.from(mode.replace(' AA', ''))
         .flatMap<RegExp | string>((char) =>
             TIME_FIXED_CHARACTERS.includes(char)
-                ? Array.from(separators[separatorIndex++] ?? char)
+                ? Array.from(separators[separatorIndex++]!)
                 : [/\d/],
         )
         .concat(mode.includes('AA') ? [CHAR_NO_BREAK_SPACE, /[AP]/i, /M/i] : []);

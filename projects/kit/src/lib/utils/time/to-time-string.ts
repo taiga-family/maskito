@@ -3,13 +3,13 @@ import type {MaskitoTimeSegments} from '../../types';
 
 export function toTimeString(
     segments: Partial<MaskitoTimeSegments>,
-    {mode, separators = []}: Pick<MaskitoTimeParams, 'mode' | 'separators'>,
+    {mode, separators}: Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'>,
 ): string {
     let separatorIndex = 0;
 
     const modeTemplate = mode
         .replace(' AA', '')
-        .replaceAll(/[:.]/g, (char) => separators[separatorIndex++] ?? char);
+        .replaceAll(/[:.]/g, () => separators[separatorIndex++]!);
 
     return modeTemplate
         .replaceAll(/H+/g, segments.hours ?? '')
