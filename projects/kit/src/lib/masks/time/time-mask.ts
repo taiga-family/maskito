@@ -1,10 +1,6 @@
 import type {MaskitoOptions} from '@maskito/core';
 
 import {
-    DEFAULT_TIME_SEGMENT_MAX_VALUES,
-    DEFAULT_TIME_SEGMENT_MIN_VALUES,
-} from '../../constants';
-import {
     createMeridiemSteppingPlugin,
     createTimeSegmentsSteppingPlugin,
 } from '../../plugins';
@@ -18,32 +14,22 @@ import {
     maskitoPostfixPostprocessorGenerator,
     maskitoPrefixPostprocessorGenerator,
 } from '../../processors';
-import type {MaskitoTimeSegments} from '../../types';
 import {createTimeMaskExpression, enrichTimeSegmentsWithZeroes} from '../../utils/time';
 import type {MaskitoTimeParams} from './time-params';
+import {withTimeDefaults} from './utils/with-time-defaults';
 
-export function maskitoTimeOptionsGenerator({
-    mode,
-    separators = [],
-    timeSegmentMaxValues = {},
-    timeSegmentMinValues = {},
-    step = 0,
-    prefix = '',
-    postfix = '',
-}: MaskitoTimeParams): Required<MaskitoOptions> {
-    const hasMeridiem = mode.includes('AA');
-
-    const enrichedTimeSegmentMaxValues: MaskitoTimeSegments<number> = {
-        ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
-        ...(hasMeridiem ? {hours: 12} : {}),
-        ...timeSegmentMaxValues,
-    };
-
-    const enrichedTimeSegmentMinValues: MaskitoTimeSegments<number> = {
-        ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
-        ...(hasMeridiem ? {hours: 1} : {}),
-        ...timeSegmentMinValues,
-    };
+export function maskitoTimeOptionsGenerator(
+    params: MaskitoTimeParams,
+): Required<MaskitoOptions> {
+    const {
+        mode,
+        separators,
+        prefix,
+        postfix,
+        timeSegmentMinValues,
+        timeSegmentMaxValues,
+        step,
+    } = withTimeDefaults(params);
 
     const maskExpression = [...prefix, ...createTimeMaskExpression({mode, separators})];
 
@@ -58,8 +44,8 @@ export function maskitoTimeOptionsGenerator({
             createMeridiemPreprocessor(mode),
             createInvalidTimeSegmentInsertionPreprocessor({
                 timeMode: mode,
-                timeSegmentMinValues: enrichedTimeSegmentMinValues,
-                timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+                timeSegmentMinValues,
+                timeSegmentMaxValues,
             }),
         ],
         postprocessors: [
@@ -67,7 +53,7 @@ export function maskitoTimeOptionsGenerator({
             (elementState) =>
                 enrichTimeSegmentsWithZeroes(elementState, {
                     mode,
-                    timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+                    timeSegmentMaxValues,
                     separators,
                 }),
             maskitoPrefixPostprocessorGenerator(prefix),
@@ -77,8 +63,8 @@ export function maskitoTimeOptionsGenerator({
             createTimeSegmentsSteppingPlugin({
                 fullMode: mode,
                 step,
-                timeSegmentMinValues: enrichedTimeSegmentMinValues,
-                timeSegmentMaxValues: enrichedTimeSegmentMaxValues,
+                timeSegmentMinValues,
+                timeSegmentMaxValues,
             }),
             createMeridiemSteppingPlugin(mode.indexOf('AA')),
         ],

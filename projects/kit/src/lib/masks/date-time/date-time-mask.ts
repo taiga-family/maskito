@@ -1,10 +1,6 @@
 import {MASKITO_DEFAULT_OPTIONS, type MaskitoOptions} from '@maskito/core';
 
 import {
-    DEFAULT_TIME_SEGMENT_MAX_VALUES,
-    DEFAULT_TIME_SEGMENT_MIN_VALUES,
-} from '../../constants';
-import {
     createMeridiemSteppingPlugin,
     createTimeSegmentsSteppingPlugin,
 } from '../../plugins';
@@ -19,8 +15,8 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import type {MaskitoTimeSegments} from '../../types';
 import {createTimeMaskExpression} from '../../utils/time';
+import {withTimeDefaults} from '../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
@@ -36,18 +32,11 @@ export function maskitoDateTimeOptionsGenerator({
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     timeStep = 0,
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
-    const hasMeridiem = timeMode.includes('AA');
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
-    const timeSegmentMaxValues: MaskitoTimeSegments<number> = {
-        ...DEFAULT_TIME_SEGMENT_MAX_VALUES,
-        ...(hasMeridiem ? {hours: 12} : {}),
-    };
-
-    const timeSegmentMinValues: MaskitoTimeSegments<number> = {
-        ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
-        ...(hasMeridiem ? {hours: 1} : {}),
-    };
+    const {timeSegmentMaxValues, timeSegmentMinValues} = withTimeDefaults({
+        mode: timeMode,
+    });
 
     const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
