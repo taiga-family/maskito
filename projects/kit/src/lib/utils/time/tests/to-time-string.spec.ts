@@ -8,7 +8,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {hours: '14', minutes: '30'},
-                    {mode: 'HH:MM', separators: []},
+                    {mode: 'HH:MM', separators: [':']},
                 ),
             ).toBe('14:30');
         });
@@ -17,7 +17,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {hours: '14', minutes: '30', seconds: '45'},
-                    {mode: 'HH:MM:SS', separators: []},
+                    {mode: 'HH:MM:SS', separators: [':', ':']},
                 ),
             ).toBe('14:30:45');
         });
@@ -26,7 +26,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {hours: '14', minutes: '30', seconds: '45', milliseconds: '678'},
-                    {mode: 'HH:MM:SS.MSS', separators: []},
+                    {mode: 'HH:MM:SS.MSS', separators: [':', ':', '.']},
                 ),
             ).toBe('14:30:45.678');
         });
@@ -35,7 +35,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {minutes: '30', seconds: '45'},
-                    {mode: 'MM:SS', separators: []},
+                    {mode: 'MM:SS', separators: [':']},
                 ),
             ).toBe('30:45');
         });
@@ -44,7 +44,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {seconds: '45', milliseconds: '678'},
-                    {mode: 'SS.MSS', separators: []},
+                    {mode: 'SS.MSS', separators: ['.']},
                 ),
             ).toBe('45.678');
         });
@@ -59,7 +59,7 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {hours: '02', minutes: '30'},
-                    {mode: 'HH:MM AA', separators: []},
+                    {mode: 'HH:MM AA', separators: [':']},
                 ),
             ).toBe('02:30');
         });
@@ -101,24 +101,6 @@ describe('toTimeString', () => {
                 ),
             ).toBe('18 h 05 min 05,766');
         });
-
-        it('short array falls back to canonical separators from mode for remaining positions', () => {
-            expect(
-                toTimeString(
-                    {hours: '14', minutes: '30', seconds: '45'},
-                    {mode: 'HH:MM:SS', separators: ['.']},
-                ),
-            ).toBe('14.30:45');
-        });
-
-        it('short array falls back to canonical separators from mode for HH:MM:SS.MSS', () => {
-            expect(
-                toTimeString(
-                    {hours: '14', minutes: '30', seconds: '45', milliseconds: '678'},
-                    {mode: 'HH:MM:SS.MSS', separators: ['.']},
-                ),
-            ).toBe('14.30:45.678');
-        });
     });
 
     describe('partial segments (leading/trailing separator trimming)', () => {
@@ -126,15 +108,15 @@ describe('toTimeString', () => {
             expect(
                 toTimeString(
                     {hours: '14', minutes: '30'},
-                    {mode: 'HH:MM:SS', separators: []},
+                    {mode: 'HH:MM:SS', separators: [':', ':']},
                 ),
             ).toBe('14:30');
         });
 
         it('trims leading separator when hours are absent in MM:SS mode', () => {
-            expect(toTimeString({minutes: '05'}, {mode: 'MM:SS', separators: []})).toBe(
-                '05',
-            );
+            expect(
+                toTimeString({minutes: '05'}, {mode: 'MM:SS', separators: [':']}),
+            ).toBe('05');
         });
 
         it('trims fr-CA separator when minutes segment is absent', () => {

@@ -16,9 +16,9 @@ export function enrichTimeSegmentsWithZeroes(
     {value, selection}: {value: string; selection: readonly [number, number]},
     {
         mode,
+        separators,
         timeSegmentMaxValues = DEFAULT_TIME_SEGMENT_MAX_VALUES,
-        separators = [],
-    }: Pick<MaskitoTimeParams, 'mode' | 'separators'> & {
+    }: Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'> & {
         readonly timeSegmentMaxValues?: MaskitoTimeSegments<number>;
     },
 ): {value: string; selection: readonly [number, number]} {

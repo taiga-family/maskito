@@ -11,12 +11,14 @@ export function createValidDateTimePreprocessor({
     dateTimeSeparator,
     timeMode,
     timeSegmentMaxValues,
+    timeSeparators,
 }: {
     dateModeTemplate: string;
     dateSeparator: string;
     dateTimeSeparator: string;
     timeMode: MaskitoTimeMode;
     timeSegmentMaxValues: MaskitoTimeSegments<number>;
+    timeSeparators: readonly string[];
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
@@ -64,7 +66,7 @@ export function createValidDateTimePreprocessor({
 
         const updatedTimeState = enrichTimeSegmentsWithZeroes(
             {value: timeString, selection: [from, to]},
-            {mode: timeMode, timeSegmentMaxValues},
+            {mode: timeMode, separators: timeSeparators, timeSegmentMaxValues},
         );
 
         to = updatedTimeState.selection[1];
