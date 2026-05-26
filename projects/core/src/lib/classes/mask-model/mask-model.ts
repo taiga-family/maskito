@@ -11,6 +11,7 @@ import {removeFixedMaskCharacters} from './utils/remove-fixed-mask-characters';
 
 export class MaskModel implements ElementState {
     private readonly unmaskInitialState: ElementState = {value: '', selection: [0, 0]};
+
     public value = '';
     public selection: SelectionRange = [0, 0];
 

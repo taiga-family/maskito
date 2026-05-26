@@ -109,6 +109,7 @@ export default class DateRangeMaskDocComponent implements Omit<
 
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];
+
     public mode: MaskitoDateMode = this.modeOptions[0];
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
