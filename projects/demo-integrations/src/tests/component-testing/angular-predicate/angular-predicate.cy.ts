@@ -148,7 +148,6 @@ describe('@maskito/angular | Predicate', () => {
             class TestComponent {
                 private readonly numberOptions = {mask: /^\d+$/};
                 private readonly engLettersOptions = {mask: /^[a-z]+$/i};
-
                 protected options = signal(this.numberOptions);
 
                 constructor() {

@@ -58,7 +58,6 @@ type MetadataName = keyof typeof metadataSets;
 })
 export default class PhoneDocComponent implements GeneratorOptions {
     private readonly isApple = isSafari(tuiInjectElement()) || inject(WA_IS_IOS);
-
     protected apiPageControl = new FormControl('');
 
     protected readonly basic: Record<string, TuiRawLoaderContent> = {
