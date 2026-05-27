@@ -5,7 +5,7 @@ import {withTimeDefaults} from './with-time-defaults';
 /**
  * Converts a formatted time string to milliseconds based on the given `options.mode`.
  *
- * @param maskedTime a formatted time string by {@link maskitoTimeOptionsGenerator} or {@link maskitoStringifyTime}
+ * @param maskedTime a formatted time string by {@link maskitoTime} or {@link maskitoStringifyTime}
  * @param params
  */
 export function maskitoParseTime(maskedTime: string, params: MaskitoTimeParams): number {

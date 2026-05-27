@@ -1,3 +1,3 @@
-import {maskitoTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoTime} from '@maskito/kit';
 
-export default maskitoTimeOptionsGenerator({mode: 'HH:MM:SS'});
+export default maskitoTime({mode: 'HH:MM:SS'});

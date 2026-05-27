@@ -1,12 +1,12 @@
 import {describe, expect, it} from '@jest/globals';
 import {maskitoTransform} from '@maskito/core';
-import {maskitoTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoTime} from '@maskito/kit';
 
 import {CHAR_NO_BREAK_SPACE} from '../../../constants';
 
-describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
+describe('maskitoTime with `dayPeriod`', () => {
     describe("['AM', 'PM']", () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             dayPeriod: ['AM', 'PM'],
         });
@@ -24,7 +24,7 @@ describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
         });
 
         it('preserves backward compatibility with deprecated AA mode', () => {
-            const legacyOptions = maskitoTimeOptionsGenerator({mode: 'HH:MM AA'});
+            const legacyOptions = maskitoTime({mode: 'HH:MM AA'});
 
             expect(maskitoTransform('0530P', legacyOptions)).toBe(
                 `05:30${CHAR_NO_BREAK_SPACE}PM`,
@@ -33,7 +33,7 @@ describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
     });
 
     describe("['am', 'pm'] (hi-IN style)", () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             dayPeriod: ['am', 'pm'],
         });
@@ -46,7 +46,7 @@ describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
     });
 
     describe("['ص', 'م'] Arabic", () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             dayPeriod: ['ص', 'م'],
         });
@@ -65,7 +65,7 @@ describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
     });
 
     describe("['上午', '下午'] Chinese", () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             dayPeriod: ['上午', '下午'],
         });
@@ -90,7 +90,7 @@ describe('maskitoTimeOptionsGenerator with `dayPeriod`', () => {
     });
 
     describe("['', ''] keeps 24-hour mode", () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             dayPeriod: ['', ''],
         });

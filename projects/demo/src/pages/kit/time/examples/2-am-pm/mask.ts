@@ -2,10 +2,10 @@ import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
 import {
     maskitoEventHandler,
     maskitoSelectionChangeHandler,
-    maskitoTimeOptionsGenerator,
+    maskitoTime,
 } from '@maskito/kit';
 
-const timeOptions = maskitoTimeOptionsGenerator({
+const timeOptions = maskitoTime({
     mode: 'HH:MM',
     dayPeriod: ['AM', 'PM'],
 });

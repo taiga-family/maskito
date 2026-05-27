@@ -1,10 +1,10 @@
 import {describe, expect, it} from '@jest/globals';
 import {maskitoTransform} from '@maskito/core';
-import {maskitoTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoTime} from '@maskito/kit';
 
-describe('maskitoTimeOptionsGenerator with custom separators', () => {
+describe('maskitoTime with custom separators', () => {
     it('dot separator formats HH:MM as HH.MM', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             separators: ['.'],
         });
@@ -13,7 +13,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('slash separator formats HH:MM as HH/MM', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             separators: ['/'],
         });
@@ -22,7 +22,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('h separator formats HH:MM as HHhMM', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             separators: ['h'],
         });
@@ -31,7 +31,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('multi-char " h " separator formats HH:MM as "HH h MM"', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             separators: [' h '],
         });
@@ -40,7 +40,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('fr-CA style: " h " and " min " for HH:MM:SS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS',
             separators: [' h ', ' min '],
         });
@@ -49,7 +49,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('fr-CA style with fractional seconds: " h ", " min ", "," for HH:MM:SS.MSS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS.MSS',
             separators: [' h ', ' min ', ','],
         });
@@ -58,7 +58,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('dot separator with HH:MM:SS (both positions)', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS',
             separators: ['.', '.'],
         });
@@ -67,7 +67,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('mixed separators per position for HH:MM:SS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS',
             separators: ['.', ':'],
         });
@@ -76,13 +76,13 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('default colon separator is unchanged', () => {
-        const options = maskitoTimeOptionsGenerator({mode: 'HH:MM'});
+        const options = maskitoTime({mode: 'HH:MM'});
 
         expect(maskitoTransform('1430', options)).toBe('14:30');
     });
 
     it('empty separator array uses canonical separators from mode', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS.MSS',
             separators: [],
         });
@@ -91,7 +91,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('comma as last separator for HH:MM:SS.MSS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS.MSS',
             separators: [':', ':', ','],
         });
@@ -100,7 +100,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('dot separator with comma for milliseconds', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS.MSS',
             separators: ['.', '.', ','],
         });
@@ -109,7 +109,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('short array falls back to canonical separators from mode for remaining positions', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS',
             separators: ['.'],
         });
@@ -118,7 +118,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('short array falls back to canonical separators from mode for HH:MM:SS.MSS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM:SS.MSS',
             separators: ['.'],
         });
@@ -127,7 +127,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('per-position separators for MM:SS.MSS', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'MM:SS.MSS',
             separators: [':', ','],
         });
@@ -136,7 +136,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('dot separator for MM:SS mode', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'MM:SS',
             separators: ['.'],
         });
@@ -145,7 +145,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('comma separator for SS.MSS mode', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'SS.MSS',
             separators: [','],
         });
@@ -154,7 +154,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('dot and comma for MM:SS.MSS mode', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'MM:SS.MSS',
             separators: ['.', ','],
         });
@@ -163,7 +163,7 @@ describe('maskitoTimeOptionsGenerator with custom separators', () => {
     });
 
     it('empty string separator removes visual separator for HH:MM', () => {
-        const options = maskitoTimeOptionsGenerator({
+        const options = maskitoTime({
             mode: 'HH:MM',
             separators: [''],
         });

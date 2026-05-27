@@ -5,8 +5,8 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {
+    maskitoTime,
     type MaskitoTimeMode,
-    maskitoTimeOptionsGenerator,
     type MaskitoTimeParams,
     type MaskitoTimeSegments,
 } from '@maskito/kit';
@@ -142,13 +142,13 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     public dayPeriod: NonNullable<MaskitoTimeParams['dayPeriod']> =
         this.dayPeriodOptions[0];
 
-    public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
+    public maskitoOptions: MaskitoOptions = maskitoTime(this);
 
     protected get filler(): string {
         return `${this.mode.toLowerCase()} ${this.dayPeriod.every(Boolean) ? 'aa' : ''}`;
     }
 
     protected updateOptions(): void {
-        this.maskitoOptions = maskitoTimeOptionsGenerator(this);
+        this.maskitoOptions = maskitoTime(this);
     }
 }
