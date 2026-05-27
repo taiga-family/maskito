@@ -9,6 +9,7 @@ export interface MaskitoTimeParams extends IntlPart<
     readonly [string, string]
 > {
     readonly mode: MaskitoTimeMode;
+    readonly locale?: string;
     readonly separators?: readonly string[];
     readonly timeSegmentMaxValues?: Partial<MaskitoTimeSegments<number>>;
     readonly timeSegmentMinValues?: Partial<MaskitoTimeSegments<number>>;

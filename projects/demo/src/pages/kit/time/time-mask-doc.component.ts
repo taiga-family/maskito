@@ -137,6 +137,7 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     public prefix = '';
     public postfix = '';
     public step = 0;
+    public locale = '';
 
     public dayPeriod: NonNullable<MaskitoTimeParams['dayPeriod']> =
         this.dayPeriodOptions[0];

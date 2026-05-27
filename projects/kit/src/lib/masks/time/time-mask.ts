@@ -22,9 +22,7 @@ import {
 import type {MaskitoTimeParams} from './time-params';
 import {withTimeDefaults} from './utils/with-time-defaults';
 
-export function maskitoTimeOptionsGenerator(
-    params: MaskitoTimeParams,
-): Required<MaskitoOptions> {
+export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions> {
     const {
         mode,
         separators,
@@ -84,6 +82,13 @@ export function maskitoTimeOptionsGenerator(
         overwriteMode: 'replace',
     };
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoTime} instead.
+     */
+    maskitoTime as maskitoTimeOptionsGenerator,
+};
 
 /**
  * Without cutting, the mask expression removes postfix on the last digit deletion
