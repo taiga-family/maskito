@@ -144,6 +144,10 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
 
     public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
 
+    protected get filler(): string {
+        return `${this.mode.toLowerCase()} ${this.dayPeriod.every(Boolean) ? 'aa' : ''}`;
+    }
+
     protected updateOptions(): void {
         this.maskitoOptions = maskitoTimeOptionsGenerator(this);
     }
