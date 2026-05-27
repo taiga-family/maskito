@@ -53,7 +53,7 @@
         </tui-doc-example>
 
         <tui-doc-example
-            heading="AM / PM"
+            heading="Meridiem"
             [content]="amPmExample2"
             [description]="amPmDescription"
         >
@@ -73,6 +73,43 @@
                 </p>
             </ng-template>
             <time-mask-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Separators"
+            [content]="separatorExample6"
+            [description]="separatorDescription"
+        >
+            <ng-template #separatorDescription>
+                Use
+                <code>separators</code>
+                property to customize the character between time segments. Default is
+                <code>[':', ':', '.']</code>
+                .
+            </ng-template>
+            <time-mask-doc-example-6 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Locale"
+            [content]="localeExample7"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use a BCP 47
+                <code>locale</code>
+                parameter of
+                <code>maskitoDate</code>
+                to automatically derive
+                <code>dayPeriod</code>
+                and
+                <code>separators</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <time-mask-doc-example-7 />
         </tui-doc-example>
 
         <tui-doc-example
@@ -137,43 +174,6 @@
                 </p>
             </ng-template>
             <time-mask-doc-example-5 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Custom separator"
-            [content]="separatorExample6"
-            [description]="separatorDescription"
-        >
-            <ng-template #separatorDescription>
-                Use
-                <code>separators</code>
-                property to customize the character between time segments. Default is
-                <code>[':', ':', '.']</code>
-                .
-            </ng-template>
-            <time-mask-doc-example-6 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Locale"
-            [content]="localeExample7"
-            [description]="localeDescription"
-        >
-            <ng-template #localeDescription>
-                Use a BCP 47
-                <code>locale</code>
-                parameter of
-                <code>maskitoDate</code>
-                to automatically derive
-                <code>dayPeriod</code>
-                and
-                <code>separator</code>
-                from
-                <code>Intl.DateTimeFormat</code>
-                for the given locale.
-            </ng-template>
-
-            <time-mask-doc-example-7 />
         </tui-doc-example>
     </ng-template>
 
