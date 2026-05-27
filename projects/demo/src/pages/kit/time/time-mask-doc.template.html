@@ -32,29 +32,27 @@
 
         <tui-doc-example
             heading="Mode"
-            [content]="modeExample1"
+            [content]="modeExample"
             [description]="modeDescription"
         >
             <ng-template #modeDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Use
-                    <code>mode</code>
-                    property to set time format. See the full list of available mode on
-                    <a
-                        routerLink="/{{ pages.Time }}/API"
-                        tuiLink
-                    >
-                        API page
-                    </a>
-                    of the documentation.
-                </p>
+                Use
+                <code>mode</code>
+                property to set time format. See the full list of available mode on
+                <a
+                    routerLink="/{{ pages.Time }}/API"
+                    tuiLink
+                >
+                    API page
+                </a>
+                of the documentation.
             </ng-template>
             <time-mask-doc-example-1 />
         </tui-doc-example>
 
         <tui-doc-example
             heading="Meridiem"
-            [content]="amPmExample2"
+            [content]="amPmExample"
             [description]="amPmDescription"
         >
             <ng-template #amPmDescription>
@@ -77,7 +75,7 @@
 
         <tui-doc-example
             heading="Separators"
-            [content]="separatorExample6"
+            [content]="separatorsExample"
             [description]="separatorDescription"
         >
             <ng-template #separatorDescription>
@@ -87,12 +85,12 @@
                 <code>[':', ':', '.']</code>
                 .
             </ng-template>
-            <time-mask-doc-example-6 />
+            <time-mask-doc-example-3 />
         </tui-doc-example>
 
         <tui-doc-example
             heading="Locale"
-            [content]="localeExample7"
+            [content]="localeExample"
             [description]="localeDescription"
         >
             <ng-template #localeDescription>
@@ -109,37 +107,35 @@
                 for the given locale.
             </ng-template>
 
-            <time-mask-doc-example-7 />
+            <time-mask-doc-example-4 />
         </tui-doc-example>
 
         <tui-doc-example
             heading="Arrows stepping"
-            [content]="stepExample3"
+            [content]="stepExample"
             [description]="stepDescription"
         >
             <ng-template #stepDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Property
-                    <code>step</code>
-                    allows you to increment/decrement time segments by pressing
-                    <code>ArrowUp</code>
-                    /
-                    <code>ArrowDown</code>
-                    .
-                </p>
+                Property
+                <code>step</code>
+                allows you to increment/decrement time segments by pressing
+                <code>ArrowUp</code>
+                /
+                <code>ArrowDown</code>
+                .
 
-                <p class="tui-space_top-0">
+                <p>
                     Use
                     <code>step === 0</code>
                     (default value) to disable this feature.
                 </p>
             </ng-template>
-            <time-mask-doc-example-3 />
+            <time-mask-doc-example-5 />
         </tui-doc-example>
 
         <tui-doc-example
             heading="Affixes"
-            [content]="affixesExample4"
+            [content]="affixesExample"
             [description]="affixesDescription"
         >
             <ng-template #affixesDescription>
@@ -149,31 +145,29 @@
                 <code>postfix</code>
                 parameters to set non-removable text before / after the time.
             </ng-template>
-            <time-mask-doc-example-4 />
+            <time-mask-doc-example-6 />
         </tui-doc-example>
 
         <tui-doc-example
             heading="Min / max value for every time segment"
-            [content]="timeSegmentsMinMaxExample5"
+            [content]="timeSegmentsMinMaxExample"
             [description]="timeSegmentMinMaxDescription"
         >
             <ng-template #timeSegmentMinMaxDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Property
-                    <code>timeSegmentMinValues</code>
-                    /
-                    <code>timeSegmentMaxValues</code>
-                    allows you to set min/max value for every time segment.
-                </p>
+                Property
+                <code>timeSegmentMinValues</code>
+                /
+                <code>timeSegmentMaxValues</code>
+                allows you to set min/max value for every time segment.
 
-                <p class="tui-space_top-0">
+                <p>
                     <strong>Time segments</strong>
                     are units of the time which form time string. For example,
                     <code>HH:MM</code>
                     consists of two time segments: hours and minutes.
                 </p>
             </ng-template>
-            <time-mask-doc-example-5 />
+            <time-mask-doc-example-7 />
         </tui-doc-example>
     </ng-template>
 

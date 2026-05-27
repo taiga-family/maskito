@@ -15,11 +15,11 @@ import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-am-pm/component';
-import {TimeMaskDocExample3} from './examples/3-step/component';
-import {TimeMaskDocExample4} from './examples/4-affixes/component';
-import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
-import {TimeMaskDocExample6} from './examples/6-separator/component';
-import {TimeMaskDocExample7} from './examples/7-locale/component';
+import {TimeMaskDocExample3} from './examples/3-separators/component';
+import {TimeMaskDocExample4} from './examples/4-locale/component';
+import {TimeMaskDocExample5} from './examples/5-step/component';
+import {TimeMaskDocExample6} from './examples/6-affixes/component';
+import {TimeMaskDocExample7} from './examples/7-time-segments-min-max/component';
 
 @Component({
     selector: 'time-mask-doc',
@@ -49,49 +49,49 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     protected readonly maskitoParseStringifyTimeDemo =
         import('./examples/maskito-parse-stringify-time-demo.md');
 
-    protected readonly modeExample1: Record<string, TuiRawLoaderContent> = {
+    protected readonly modeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly amPmExample2: Record<string, TuiRawLoaderContent> = {
+    protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-am-pm/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly stepExample3: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw', {
+    protected readonly separatorsExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-separators/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-locale/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly affixesExample4: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-affixes/mask.ts?raw',
-            {with: {loader: 'text'}}
-        ),
-    };
-
-    protected readonly timeSegmentsMinMaxExample5: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-time-segments-min-max/mask.ts?raw',
-            {with: {loader: 'text'}}
-        ),
-    };
-
-    protected readonly separatorExample6: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-separator/mask.ts?raw',
-            {with: {loader: 'text'}}
-        ),
-    };
-
-    protected readonly localeExample7: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/7-locale/mask.ts?raw', {
+    protected readonly stepExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-step/mask.ts?raw', {
             with: {loader: 'text'},
         }),
+    };
+
+    protected readonly affixesExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/6-affixes/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly timeSegmentsMinMaxExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/7-time-segments-min-max/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 
     protected apiPageControl = new FormControl('');

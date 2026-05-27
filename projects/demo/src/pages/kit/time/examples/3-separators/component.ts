@@ -7,7 +7,7 @@ import {TuiFlagPipe} from '@taiga-ui/kit';
 import mask from './mask';
 
 @Component({
-    selector: 'time-mask-doc-example-6',
+    selector: 'time-mask-doc-example-3',
     imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
         <tui-textfield
@@ -33,7 +33,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample6 {
+export class TimeMaskDocExample3 {
     protected readonly mask = mask;
     protected value = '18 h 05 min 05,766';
 }
