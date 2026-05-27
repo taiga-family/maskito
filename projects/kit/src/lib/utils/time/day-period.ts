@@ -5,7 +5,7 @@ import {escapeRegExp} from '../escape-reg-exp';
 export function hasDayPeriod(
     dayPeriod: Required<MaskitoTimeParams>['dayPeriod'],
 ): boolean {
-    return !!dayPeriod.filter(Boolean).length;
+    return dayPeriod.every(Boolean);
 }
 
 export function createDayPeriodMatchers(
