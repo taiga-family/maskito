@@ -153,6 +153,28 @@
             </ng-template>
             <time-mask-doc-example-6 />
         </tui-doc-example>
+
+        <tui-doc-example
+            heading="Locale"
+            [content]="localeExample7"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use a BCP 47
+                <code>locale</code>
+                parameter of
+                <code>maskitoDate</code>
+                to automatically derive
+                <code>dayPeriod</code>
+                and
+                <code>separator</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <time-mask-doc-example-7 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>

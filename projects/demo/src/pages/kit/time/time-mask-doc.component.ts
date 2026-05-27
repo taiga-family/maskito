@@ -19,6 +19,7 @@ import {TimeMaskDocExample3} from './examples/3-step/component';
 import {TimeMaskDocExample4} from './examples/4-affixes/component';
 import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
 import {TimeMaskDocExample6} from './examples/6-separator/component';
+import {TimeMaskDocExample7} from './examples/7-locale/component';
 
 @Component({
     selector: 'time-mask-doc',
@@ -32,6 +33,7 @@ import {TimeMaskDocExample6} from './examples/6-separator/component';
         TimeMaskDocExample4,
         TimeMaskDocExample5,
         TimeMaskDocExample6,
+        TimeMaskDocExample7,
         TuiAddonDoc,
         TuiInput,
         TuiLink,
@@ -84,6 +86,12 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
             './examples/6-separator/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
+    };
+
+    protected readonly localeExample7: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/7-locale/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
     };
 
     protected apiPageControl = new FormControl('');

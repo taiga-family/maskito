@@ -7,15 +7,15 @@ import {TuiFlagPipe} from '@taiga-ui/kit';
 import mask from './mask';
 
 @Component({
-    selector: 'time-mask-doc-example-6',
+    selector: 'time-mask-doc-example-7',
     imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
         <tui-textfield
-            filler="HH h MM min SS,MS"
             iconStart="@tui.clock"
             [style.max-width.rem]="20"
+            [tuiTextfieldCleaner]="false"
         >
-            <label tuiLabel>fr-CA locale</label>
+            <label tuiLabel>Greek locale</label>
             <input
                 inputmode="numeric"
                 tuiInput
@@ -25,15 +25,15 @@ import mask from './mask';
 
             <img
                 width="28"
-                [attr.alt]="'Canada flag'"
-                [src]="'CA' | tuiFlag"
+                [attr.alt]="'Greek flag'"
+                [src]="'GR' | tuiFlag"
                 [style.border-radius.%]="50"
             />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample6 {
+export class TimeMaskDocExample7 {
     protected readonly mask = mask;
-    protected value = '18 h 05 min 05,766';
+    protected value = '12:34 π.μ.';
 }
