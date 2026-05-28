@@ -13,7 +13,7 @@ describe('getLocaleTimeParams', () => {
         });
 
         it('ko-KR: [AM, PM] (meridiem leading)', () => {
-            expect(getLocaleTimeParams('ko-KR').dayPeriod).toEqual(['AM', 'PM']);
+            expect(getLocaleTimeParams('ko-KR').dayPeriod).toEqual(['오전', '오후']);
         });
 
         it('ar-EG: Arabic letters', () => {
