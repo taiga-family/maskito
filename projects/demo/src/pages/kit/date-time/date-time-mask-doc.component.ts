@@ -8,6 +8,7 @@ import {
     maskitoDateTimeOptionsGenerator,
     type MaskitoDateTimeParams,
     type MaskitoTimeMode,
+    type MaskitoTimeParams,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
@@ -126,8 +127,9 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
         timeMode: MaskitoTimeMode,
         separator: string,
         dateTimeSeparator: string,
+        dayPeriod: Required<MaskitoTimeParams>['dayPeriod'],
     ): string {
-        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode}`;
+        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode} ${'A'.repeat(dayPeriod[0].length)}`;
     }
 
     protected updateOptions(): void {
