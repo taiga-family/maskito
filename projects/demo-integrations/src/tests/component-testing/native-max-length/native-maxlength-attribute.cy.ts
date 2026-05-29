@@ -190,6 +190,7 @@ describe('Native attribute maxlength works', () => {
             })
             class Sandbox {
                 private readonly el = inject(ElementRef).nativeElement;
+
                 protected readonly mask = inputYearMask;
 
                 protected clear(): void {
