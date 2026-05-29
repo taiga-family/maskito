@@ -9,14 +9,10 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import type {MaskitoDateParams} from './date-params';
-import {getLocaleDateParams} from './utils/get-locale-date-params';
+import {withDateDefaults} from './utils/with-date-defaults';
 
-export function maskitoDate(
-    {locale = '', ...params}: MaskitoDateParams = {mode: 'dd/mm/yyyy'},
-): Required<MaskitoOptions> {
-    const localeParams = locale ? getLocaleDateParams(locale) : null;
-    const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
-    const dateSeparator = params.separator ?? localeParams?.separator ?? '.';
+export function maskitoDate(params: MaskitoDateParams): Required<MaskitoOptions> {
+    const {mode, min, max, separator: dateSeparator} = withDateDefaults(params);
     const dateModeTemplate = mode.split('/').join(dateSeparator);
 
     return {
@@ -45,7 +41,8 @@ export function maskitoDate(
                 uniteFn: ([dateString = '']) => dateString,
             }),
             createMinMaxDatePostprocessor({
-                ...params,
+                min,
+                max,
                 dateModeTemplate,
                 dateSeparator,
             }),

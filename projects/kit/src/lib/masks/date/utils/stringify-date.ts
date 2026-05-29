@@ -1,20 +1,11 @@
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
-import type {MaskitoDateMode} from '../../../types';
 import {clamp, toDateString} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
 import {toDateSegments} from './to-date-segments';
+import {withDateDefaults} from './with-date-defaults';
 
-export function maskitoStringifyDate(
-    date: Date,
-    {
-        mode,
-        separator = '.',
-        min = DEFAULT_MIN_DATE,
-        max = DEFAULT_MAX_DATE,
-    }: Extract<MaskitoDateParams, {mode: MaskitoDateMode}>,
-): string {
-    const validatedDate = clamp(date, min, max);
-    const {year, ...segments} = toDateSegments(validatedDate);
+export function maskitoStringifyDate(date: Date, params: MaskitoDateParams): string {
+    const {mode, separator, min, max} = withDateDefaults(params);
+    const {year, ...segments} = toDateSegments(clamp(date, min, max));
 
     return toDateString(
         {...segments, year: year.padStart(mode.match(/y/g)?.length ?? 0, '0')},
