@@ -12,7 +12,7 @@ describe('getLocaleTimeParams', () => {
             expect(getLocaleTimeParams('hi-IN').dayPeriod).toEqual(['am', 'pm']);
         });
 
-        it('ko-KR: [AM, PM] (meridiem leading)', () => {
+        it('ko-KR: [오전, 오후] (meridiem leading)', () => {
             expect(getLocaleTimeParams('ko-KR').dayPeriod).toEqual(['오전', '오후']);
         });
 
