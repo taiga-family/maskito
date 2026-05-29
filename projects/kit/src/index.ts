@@ -26,6 +26,7 @@ export {
 export {
     maskitoParseTime,
     maskitoStringifyTime,
+    maskitoTime,
     maskitoTimeOptionsGenerator,
     type MaskitoTimeParams,
 } from './lib/masks/time';

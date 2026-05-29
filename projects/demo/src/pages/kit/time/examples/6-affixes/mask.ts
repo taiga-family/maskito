@@ -3,12 +3,12 @@ import {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
     maskitoRemoveOnBlurPlugin,
-    maskitoTimeOptionsGenerator,
+    maskitoTime,
 } from '@maskito/kit';
 
 export const postfix = ' left';
 
-const {plugins, ...timeOptions} = maskitoTimeOptionsGenerator({
+const {plugins, ...timeOptions} = maskitoTime({
     postfix,
     mode: 'MM:SS',
 });

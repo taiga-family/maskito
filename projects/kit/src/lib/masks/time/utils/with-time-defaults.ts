@@ -3,19 +3,28 @@ import {
     DEFAULT_TIME_SEGMENT_MIN_VALUES,
     TIME_FIXED_CHARACTERS,
 } from '../../../constants';
+import {hasDayPeriod} from '../../../utils/time';
 import {type MaskitoTimeParams} from '../time-params';
+import {getLocaleTimeParams} from './get-locale-time-params';
 
 export function withTimeDefaults({
     mode,
     separators,
     timeSegmentMaxValues = {},
     timeSegmentMinValues = {},
+    locale = '',
     ...params
 }: MaskitoTimeParams): Required<MaskitoTimeParams> & {
     timeSegmentMaxValues: Required<MaskitoTimeParams['timeSegmentMaxValues']>;
     timeSegmentMinValues: Required<MaskitoTimeParams['timeSegmentMinValues']>;
 } {
-    const hasMeridiem = mode.includes('AA');
+    const localeParams = locale ? getLocaleTimeParams(locale) : null;
+
+    const dayPeriod = mode.includes('AA') // TODO(v6): drop backward-compat for `'... AA'` modes and require explicit `dayPeriod` for 12-hour format
+        ? (['AM', 'PM'] as const)
+        : (params.dayPeriod ?? localeParams?.dayPeriod ?? ['', '']);
+
+    const hasMeridiem = hasDayPeriod(dayPeriod);
 
     const defaultSeparators = Array.from(mode.replace(' AA', '')).filter((char) =>
         TIME_FIXED_CHARACTERS.includes(char),
@@ -23,11 +32,15 @@ export function withTimeDefaults({
 
     return {
         mode,
+        locale,
         step: 0,
         prefix: '',
         postfix: '',
         ...params,
-        separators: defaultSeparators.map((fallback, i) => separators?.[i] ?? fallback),
+        dayPeriod,
+        separators: defaultSeparators.map(
+            (fallback, i) => separators?.[i] ?? localeParams?.separators[i] ?? fallback,
+        ),
         timeSegmentMinValues: {
             ...DEFAULT_TIME_SEGMENT_MIN_VALUES,
             ...(hasMeridiem ? {hours: 1} : {}),

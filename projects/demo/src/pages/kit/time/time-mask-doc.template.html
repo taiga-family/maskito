@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoTimeOptionsGenerator</code>
+        <code>maskitoTime</code>
         to create a mask for time input.
 
         <div
@@ -32,108 +32,50 @@
 
         <tui-doc-example
             heading="Mode"
-            [content]="modeExample1"
+            [content]="modeExample"
             [description]="modeDescription"
         >
             <ng-template #modeDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Use
-                    <code>mode</code>
-                    property to set time format. See the full list of available mode on
-                    <a
-                        routerLink="/{{ pages.Time }}/API"
-                        tuiLink
-                    >
-                        API page
-                    </a>
-                    of the documentation.
-                </p>
+                Use
+                <code>mode</code>
+                property to set time format. See the full list of available mode on
+                <a
+                    routerLink="/{{ pages.Time }}/API"
+                    tuiLink
+                >
+                    API page
+                </a>
+                of the documentation.
             </ng-template>
             <time-mask-doc-example-1 />
         </tui-doc-example>
 
         <tui-doc-example
-            heading="AM / PM"
-            [content]="amPmExample2"
+            heading="Meridiem"
+            [content]="amPmExample"
             [description]="amPmDescription"
         >
             <ng-template #amPmDescription>
-                Any
-                <code>mode</code>
-                ending with
-                <code>AA</code>
-                is 12-hour time format with meridiem part.
+                Pass
+                <code>dayPeriod</code>
+                as a tuple of two locale-specific markers (e.g.
+                <code>['AM', 'PM']</code>
+                ,
+                <code>['上午', '下午']</code>
+                ) to switch the mask to a 12-hour time format with a meridiem suffix.
+
+                <p>
+                    Pass
+                    <code>['', '']</code>
+                    (default) to keep the 24-hour format.
+                </p>
             </ng-template>
             <time-mask-doc-example-2 />
         </tui-doc-example>
 
         <tui-doc-example
-            heading="Arrows stepping"
-            [content]="stepExample3"
-            [description]="stepDescription"
-        >
-            <ng-template #stepDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Property
-                    <code>step</code>
-                    allows you to increment/decrement time segments by pressing
-                    <code>ArrowUp</code>
-                    /
-                    <code>ArrowDown</code>
-                    .
-                </p>
-
-                <p class="tui-space_top-0">
-                    Use
-                    <code>step === 0</code>
-                    (default value) to disable this feature.
-                </p>
-            </ng-template>
-            <time-mask-doc-example-3 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Affixes"
-            [content]="affixesExample4"
-            [description]="affixesDescription"
-        >
-            <ng-template #affixesDescription>
-                Use
-                <code>prefix</code>
-                /
-                <code>postfix</code>
-                parameters to set non-removable text before / after the time.
-            </ng-template>
-            <time-mask-doc-example-4 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Min / max value for every time segment"
-            [content]="timeSegmentsMinMaxExample5"
-            [description]="timeSegmentMinMaxDescription"
-        >
-            <ng-template #timeSegmentMinMaxDescription>
-                <p class="tui-space_top-0 tui-space_bottom-1">
-                    Property
-                    <code>timeSegmentMinValues</code>
-                    /
-                    <code>timeSegmentMaxValues</code>
-                    allows you to set min/max value for every time segment.
-                </p>
-
-                <p class="tui-space_top-0">
-                    <strong>Time segments</strong>
-                    are units of the time which form time string. For example,
-                    <code>HH:MM</code>
-                    consists of two time segments: hours and minutes.
-                </p>
-            </ng-template>
-            <time-mask-doc-example-5 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Custom separator"
-            [content]="separatorExample6"
+            heading="Separators"
+            [content]="separatorsExample"
             [description]="separatorDescription"
         >
             <ng-template #separatorDescription>
@@ -143,7 +85,89 @@
                 <code>[':', ':', '.']</code>
                 .
             </ng-template>
+            <time-mask-doc-example-3 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Locale"
+            [content]="localeExample"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use a BCP 47
+                <code>locale</code>
+                parameter of
+                <code>maskitoDate</code>
+                to automatically derive
+                <code>dayPeriod</code>
+                and
+                <code>separators</code>
+                from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale.
+            </ng-template>
+
+            <time-mask-doc-example-4 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Arrows stepping"
+            [content]="stepExample"
+            [description]="stepDescription"
+        >
+            <ng-template #stepDescription>
+                Property
+                <code>step</code>
+                allows you to increment/decrement time segments by pressing
+                <code>ArrowUp</code>
+                /
+                <code>ArrowDown</code>
+                .
+
+                <p>
+                    Use
+                    <code>step === 0</code>
+                    (default value) to disable this feature.
+                </p>
+            </ng-template>
+            <time-mask-doc-example-5 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Affixes"
+            [content]="affixesExample"
+            [description]="affixesDescription"
+        >
+            <ng-template #affixesDescription>
+                Use
+                <code>prefix</code>
+                /
+                <code>postfix</code>
+                parameters to set non-removable text before / after the time.
+            </ng-template>
             <time-mask-doc-example-6 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Min / max value for every time segment"
+            [content]="timeSegmentsMinMaxExample"
+            [description]="timeSegmentMinMaxDescription"
+        >
+            <ng-template #timeSegmentMinMaxDescription>
+                Property
+                <code>timeSegmentMinValues</code>
+                /
+                <code>timeSegmentMaxValues</code>
+                allows you to set min/max value for every time segment.
+
+                <p>
+                    <strong>Time segments</strong>
+                    are units of the time which form time string. For example,
+                    <code>HH:MM</code>
+                    consists of two time segments: hours and minutes.
+                </p>
+            </ng-template>
+            <time-mask-doc-example-7 />
         </tui-doc-example>
     </ng-template>
 
@@ -153,7 +177,7 @@
                 <tui-textfield
                     iconEnd="@tui.clock"
                     class="input-time"
-                    [filler]="prefix || postfix ? '' : mode.toLowerCase()"
+                    [filler]="prefix || postfix ? '' : filler"
                 >
                     <label tuiLabel>Enter time</label>
                     <input
@@ -175,6 +199,23 @@
                 (valueChange)="updateOptions()"
             >
                 Time format mode
+            </tr>
+            <tr
+                name="[dayPeriod]"
+                tuiDocAPIItem
+                type="readonly [string, string]"
+                [items]="dayPeriodOptions"
+                [(value)]="dayPeriod"
+                (valueChange)="updateOptions()"
+            >
+                Tuple of two locale-specific day-period markers (AM-marker first, PM-marker second). When both are
+                non-empty, the mask switches to 12-hour format and appends the selected marker to the time.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['', '']</code>
+                    (24-hour format)
+                </p>
             </tr>
             <tr
                 name="[separators]"
@@ -213,9 +254,7 @@
                     <code>&#123;hours: 0&#125;</code>
                      / 
                     <code>&#123;hours: 1&#125;</code>
-                    for
-                    <code>mode</code>
-                    without / with meridiem period
+                    for time format without / with meridiem period
                 </p>
             </tr>
             <tr
@@ -234,9 +273,7 @@
                     <code>&#123;hours: 24&#125;</code>
                      / 
                     <code>&#123;hours: 12&#125;</code>
-                    for
-                    <code>mode</code>
-                    without / with meridiem period
+                    for time format without / with meridiem period
                 </p>
             </tr>
             <tr

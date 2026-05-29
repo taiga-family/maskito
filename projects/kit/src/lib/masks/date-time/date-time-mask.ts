@@ -15,7 +15,7 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import {createTimeMaskExpression} from '../../utils/time';
+import {createTimeMaskExpression, hasDayPeriod} from '../../utils/time';
 import {withTimeDefaults} from '../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
@@ -31,27 +31,30 @@ export function maskitoDateTimeOptionsGenerator({
     max,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     timeStep = 0,
+    ...params
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
     const dateModeTemplate = dateMode.split('/').join(dateSeparator);
 
-    const {timeSegmentMaxValues, timeSegmentMinValues, separators} = withTimeDefaults({
-        mode: timeMode,
-    });
+    const {timeSegmentMaxValues, timeSegmentMinValues, separators, dayPeriod} =
+        withTimeDefaults({...params, mode: timeMode});
 
     const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
 
+    const mask = [
+        ...Array.from(dateModeTemplate).map((char) =>
+            dateSeparator.includes(char) ? char : /\d/,
+        ),
+        ...dateTimeSeparator.split(''),
+        ...createTimeMaskExpression({
+            mode: timeMode,
+            separators,
+            dayPeriod,
+        }),
+    ];
+
     return {
         ...MASKITO_DEFAULT_OPTIONS,
-        mask: [
-            ...Array.from(dateModeTemplate).map((char) =>
-                dateSeparator.includes(char) ? char : /\d/,
-            ),
-            ...dateTimeSeparator.split(''),
-            ...createTimeMaskExpression({
-                mode: timeMode,
-                separators,
-            }),
-        ],
+        mask,
         overwriteMode: 'replace',
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
@@ -63,7 +66,7 @@ export function maskitoDateTimeOptionsGenerator({
                 pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
             createZeroPlaceholdersPreprocessor(),
-            createMeridiemPreprocessor(timeMode),
+            createMeridiemPreprocessor(dayPeriod),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSeparator,
@@ -92,7 +95,7 @@ export function maskitoDateTimeOptionsGenerator({
             }),
         ],
         postprocessors: [
-            createMeridiemPostprocessor(timeMode),
+            createMeridiemPostprocessor(dayPeriod),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSeparator,
@@ -123,7 +126,12 @@ export function maskitoDateTimeOptionsGenerator({
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
             }),
-            createMeridiemSteppingPlugin(fullMode.indexOf('AA')),
+            createMeridiemSteppingPlugin({
+                dayPeriod,
+                meridiemStartIndex: hasDayPeriod(dayPeriod)
+                    ? mask.length - dayPeriod[0].length
+                    : -1,
+            }),
         ],
     };
 }

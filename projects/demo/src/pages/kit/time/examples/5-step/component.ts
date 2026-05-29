@@ -6,25 +6,25 @@ import {TuiInput} from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
-    selector: 'time-mask-doc-example-4',
+    selector: 'time-mask-doc-example-5',
     imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
         <tui-textfield
-            iconEnd="@tui.timer"
+            filler="hh:mm:ss"
+            iconEnd="@tui.clock"
             [style.max-width.rem]="20"
         >
-            <label tuiLabel>Timer (minutes)</label>
             <input
-                inputmode="numeric"
+                inputmode="decimal"
                 tuiInput
-                [maskito]="maskitoOptions"
+                [maskito]="mask"
                 [(ngModel)]="value"
             />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample4 {
-    protected value = '05:00 left';
-    protected readonly maskitoOptions = mask;
+export class TimeMaskDocExample5 {
+    protected value = '11:59:59';
+    protected readonly mask = mask;
 }

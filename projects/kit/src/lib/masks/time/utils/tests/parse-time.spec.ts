@@ -1,5 +1,11 @@
 import {describe, expect, it} from '@jest/globals';
-import {maskitoParseTime, type MaskitoTimeMode} from '@maskito/kit';
+import {
+    maskitoParseTime,
+    type MaskitoTimeMode,
+    type MaskitoTimeParams,
+} from '@maskito/kit';
+
+import {CHAR_NO_BREAK_SPACE} from '../../../../constants';
 
 describe('maskitoParseTime', () => {
     const testCases = new Map<MaskitoTimeMode, Array<{text: string; ms: number}>>([
@@ -263,6 +269,61 @@ describe('maskitoParseTime', () => {
                 it(`'${text}' => ${ms}ms`, () => {
                     expect(maskitoParseTime(text, {mode})).toBe(ms);
                 });
+            });
+        });
+    });
+
+    describe('with explicit `dayPeriod`', () => {
+        const HOUR = 60 * 60 * 1000;
+        const MINUTE = 60 * 1000;
+
+        const dayPeriodCases: Array<{
+            label: string;
+            params: MaskitoTimeParams;
+            text: string;
+            ms: number;
+        }> = [
+            {
+                label: "['AM', 'PM'] with HH:MM",
+                params: {mode: 'HH:MM', dayPeriod: ['AM', 'PM']},
+                text: `12:00${CHAR_NO_BREAK_SPACE}AM`,
+                ms: 0,
+            },
+            {
+                label: "['AM', 'PM'] with HH:MM (PM)",
+                params: {mode: 'HH:MM', dayPeriod: ['AM', 'PM']},
+                text: `01:00${CHAR_NO_BREAK_SPACE}PM`,
+                ms: 13 * HOUR,
+            },
+            {
+                label: "['am', 'pm'] lowercase (hi-IN) with HH:MM",
+                params: {mode: 'HH:MM', dayPeriod: ['am', 'pm']},
+                text: `11:59${CHAR_NO_BREAK_SPACE}pm`,
+                ms: 23 * HOUR + 59 * MINUTE,
+            },
+            {
+                label: "['ص', 'م'] Arabic with HH:MM (AM)",
+                params: {mode: 'HH:MM', dayPeriod: ['ص', 'م']},
+                text: `09:30${CHAR_NO_BREAK_SPACE}ص`,
+                ms: 9 * HOUR + 30 * MINUTE,
+            },
+            {
+                label: "['ص', 'م'] Arabic with HH:MM (PM)",
+                params: {mode: 'HH:MM', dayPeriod: ['ص', 'م']},
+                text: `09:30${CHAR_NO_BREAK_SPACE}م`,
+                ms: 21 * HOUR + 30 * MINUTE,
+            },
+            {
+                label: "['上午', '下午'] Chinese with HH:MM (PM)",
+                params: {mode: 'HH:MM', dayPeriod: ['上午', '下午']},
+                text: `03:00${CHAR_NO_BREAK_SPACE}下午`,
+                ms: 15 * HOUR,
+            },
+        ];
+
+        dayPeriodCases.forEach(({label, params, text, ms}) => {
+            it(`${label}: '${text}' => ${ms}ms`, () => {
+                expect(maskitoParseTime(text, params)).toBe(ms);
             });
         });
     });

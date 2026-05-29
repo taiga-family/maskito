@@ -1,7 +1,7 @@
 import {type MaskitoOptions, maskitoUpdateElement} from '@maskito/core';
-import {maskitoEventHandler, maskitoTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoEventHandler, maskitoTime} from '@maskito/kit';
 
-const timeOptions = maskitoTimeOptionsGenerator({
+const timeOptions = maskitoTime({
     mode: 'HH:MM:SS',
     step: 1,
 });

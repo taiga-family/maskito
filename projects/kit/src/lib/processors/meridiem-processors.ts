@@ -1,51 +1,48 @@
 import type {MaskitoPostprocessor, MaskitoPreprocessor} from '@maskito/core';
 
-import {
-    ALL_MERIDIEM_CHARACTERS_RE,
-    ANY_MERIDIEM_CHARACTER_RE,
-    CHAR_NO_BREAK_SPACE,
-} from '../constants';
-import type {MaskitoTimeMode} from '../types';
+import {CHAR_NO_BREAK_SPACE} from '../constants';
 import {identity} from '../utils';
+import {createDayPeriodMatchers, hasDayPeriod} from '../utils/time';
 
 export function createMeridiemPreprocessor(
-    timeMode: MaskitoTimeMode,
+    dayPeriod: readonly [string, string],
 ): MaskitoPreprocessor {
-    if (!timeMode.includes('AA')) {
+    if (!hasDayPeriod(dayPeriod)) {
         return identity;
     }
 
-    const mainMeridiemCharRE = /^[AP]$/gi;
+    const {fullDayPeriodRE, initialCharRE} = createDayPeriodMatchers(dayPeriod);
+    const [am, pm] = dayPeriod;
 
     return ({elementState, data}) => {
-        const {value, selection} = elementState;
-        const newValue = value.toUpperCase();
-        const newData = data.toUpperCase();
+        const {selection, value} = elementState;
 
-        return newValue.match(ALL_MERIDIEM_CHARACTERS_RE) &&
-            newData.match(mainMeridiemCharRE)
+        return value.match(fullDayPeriodRE) && data.match(initialCharRE)
             ? {
                   elementState: {
-                      value: newValue.replaceAll(ALL_MERIDIEM_CHARACTERS_RE, ''),
+                      value: value.replaceAll(fullDayPeriodRE, ''),
                       selection,
                   },
-                  data: `${newData}M`,
+                  data: pickMeridiem(data, am, pm),
               }
-            : {elementState: {selection, value: newValue}, data: newData};
+            : {elementState, data};
     };
 }
 
 export function createMeridiemPostprocessor(
-    timeMode: MaskitoTimeMode,
+    dayPeriod: readonly [string, string],
 ): MaskitoPostprocessor {
-    if (!timeMode.includes('AA')) {
+    if (!hasDayPeriod(dayPeriod)) {
         return identity;
     }
 
+    const {anyDayPeriodCharRE, fullDayPeriodRE} = createDayPeriodMatchers(dayPeriod);
+    const [am, pm] = dayPeriod;
+
     return ({value, selection}, initialElementState) => {
         if (
-            !value.match(ANY_MERIDIEM_CHARACTER_RE) ||
-            value.match(ALL_MERIDIEM_CHARACTERS_RE)
+            !value.match(anyDayPeriodCharRE) ||
+            dayPeriod.some((x) => value.includes(x))
         ) {
             return {value, selection};
         }
@@ -53,8 +50,8 @@ export function createMeridiemPostprocessor(
         const [from, to] = selection;
 
         // any meridiem character was deleted
-        if (initialElementState.value.match(ALL_MERIDIEM_CHARACTERS_RE)) {
-            const newValue = value.replace(ANY_MERIDIEM_CHARACTER_RE, '');
+        if (initialElementState.value.match(fullDayPeriodRE)) {
+            const newValue = value.replace(anyDayPeriodCharRE, '');
 
             return {
                 value: newValue,
@@ -65,9 +62,9 @@ export function createMeridiemPostprocessor(
             };
         }
 
-        const fullMeridiem = `${CHAR_NO_BREAK_SPACE}${value.includes('P') ? 'P' : 'A'}M`;
+        const fullMeridiem = `${CHAR_NO_BREAK_SPACE}${pickMeridiem(value, am, pm)}`;
 
-        const newValue = value.replace(ANY_MERIDIEM_CHARACTER_RE, (x) =>
+        const newValue = value.replace(anyDayPeriodCharRE, (x) =>
             x === CHAR_NO_BREAK_SPACE ? x : fullMeridiem,
         );
 
@@ -79,4 +76,21 @@ export function createMeridiemPostprocessor(
                     : selection,
         };
     };
+}
+
+function pickMeridiem(value: string, am: string, pm: string): string {
+    const valueLc = value.toLowerCase();
+
+    for (let i = 0; i < Math.min(am.length, pm.length); i++) {
+        const amCharLc = am[i]!.toLowerCase();
+        const pmCharLc = pm[i]!.toLowerCase();
+
+        if (amCharLc === pmCharLc) {
+            continue;
+        }
+
+        return valueLc.includes(pmCharLc) ? pm : am;
+    }
+
+    return am;
 }

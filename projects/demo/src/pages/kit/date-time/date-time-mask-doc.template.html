@@ -110,16 +110,24 @@
         </tui-doc-example>
 
         <tui-doc-example
-            heading="AM / PM"
+            heading="Meridiem"
             [content]="amPmExample"
             [description]="amPmDescription"
         >
             <ng-template #amPmDescription>
-                Any
-                <code>timeMode</code>
-                ending with
-                <code>AA</code>
-                is 12-hour time format with meridiem part.
+                Pass
+                <code>dayPeriod</code>
+                as a tuple of two locale-specific markers (e.g.
+                <code>['AM', 'PM']</code>
+                ,
+                <code>['上午', '下午']</code>
+                ) to switch the mask to a 12-hour time format with a meridiem suffix.
+
+                <p>
+                    Pass
+                    <code>['', '']</code>
+                    (default) to keep the 24-hour format.
+                </p>
             </ng-template>
             <date-time-mask-doc-example-5 />
         </tui-doc-example>
@@ -130,7 +138,7 @@
             <ng-template>
                 <tui-textfield
                     iconEnd="@tui.calendar"
-                    [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator)"
+                    [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator, dayPeriod)"
                 >
                     <label tuiLabel>Enter date and time</label>
                     <input
@@ -163,6 +171,25 @@
                 (valueChange)="updateOptions()"
             >
                 Time format mode
+            </tr>
+
+            <tr
+                name="[dayPeriod]"
+                tuiDocAPIItem
+                type="readonly [string, string]"
+                [items]="dayPeriodOptions"
+                [(value)]="dayPeriod"
+                (valueChange)="updateOptions()"
+            >
+                Tuple of two locale-specific day-period markers (AM-marker first, PM-marker second). When both are
+                non-empty, the time portion of the mask switches to 12-hour format and appends the selected marker. Pass
+                <code>['', '']</code>
+                for 24-hour format.
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>['', '']</code>
+                </p>
             </tr>
 
             <tr

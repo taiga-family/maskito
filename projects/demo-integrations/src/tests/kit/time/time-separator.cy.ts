@@ -4,11 +4,7 @@ describe('Time with [separators] property', () => {
     describe('Documentation example (fr-CA locale)', () => {
         beforeEach(() => {
             cy.visit(`/${DemoPath.Time}`);
-            cy.get('#custom-separator input')
-                .should('be.visible')
-                .first()
-                .focus()
-                .as('input');
+            cy.get('#separators input').should('be.visible').first().focus().as('input');
         });
 
         it('displays pre-filled fr-CA value correctly', () => {

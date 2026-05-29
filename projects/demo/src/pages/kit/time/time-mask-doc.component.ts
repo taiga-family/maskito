@@ -5,8 +5,8 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {
+    maskitoTime,
     type MaskitoTimeMode,
-    maskitoTimeOptionsGenerator,
     type MaskitoTimeParams,
     type MaskitoTimeSegments,
 } from '@maskito/kit';
@@ -15,10 +15,11 @@ import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 
 import {TimeMaskDocExample1} from './examples/1-modes/component';
 import {TimeMaskDocExample2} from './examples/2-am-pm/component';
-import {TimeMaskDocExample3} from './examples/3-step/component';
-import {TimeMaskDocExample4} from './examples/4-affixes/component';
-import {TimeMaskDocExample5} from './examples/5-time-segments-min-max/component';
-import {TimeMaskDocExample6} from './examples/6-separator/component';
+import {TimeMaskDocExample3} from './examples/3-separators/component';
+import {TimeMaskDocExample4} from './examples/4-locale/component';
+import {TimeMaskDocExample5} from './examples/5-step/component';
+import {TimeMaskDocExample6} from './examples/6-affixes/component';
+import {TimeMaskDocExample7} from './examples/7-time-segments-min-max/component';
 
 @Component({
     selector: 'time-mask-doc',
@@ -32,6 +33,7 @@ import {TimeMaskDocExample6} from './examples/6-separator/component';
         TimeMaskDocExample4,
         TimeMaskDocExample5,
         TimeMaskDocExample6,
+        TimeMaskDocExample7,
         TuiAddonDoc,
         TuiInput,
         TuiLink,
@@ -47,41 +49,47 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     protected readonly maskitoParseStringifyTimeDemo =
         import('./examples/maskito-parse-stringify-time-demo.md');
 
-    protected readonly modeExample1: Record<string, TuiRawLoaderContent> = {
+    protected readonly modeExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/1-modes/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly amPmExample2: Record<string, TuiRawLoaderContent> = {
+    protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-am-pm/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly stepExample3: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-step/mask.ts?raw', {
+    protected readonly separatorsExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/3-separators/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
+    protected readonly localeExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-locale/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };
 
-    protected readonly affixesExample4: Record<string, TuiRawLoaderContent> = {
+    protected readonly stepExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-step/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+    };
+
+    protected readonly affixesExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-affixes/mask.ts?raw',
+            './examples/6-affixes/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
 
-    protected readonly timeSegmentsMinMaxExample5: Record<string, TuiRawLoaderContent> = {
+    protected readonly timeSegmentsMinMaxExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/5-time-segments-min-max/mask.ts?raw',
-            {with: {loader: 'text'}}
-        ),
-    };
-
-    protected readonly separatorExample6: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-separator/mask.ts?raw',
+            './examples/7-time-segments-min-max/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
@@ -101,6 +109,14 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
         'SS.MSS',
         'MM:SS',
     ] as const satisfies readonly MaskitoTimeMode[];
+
+    protected readonly dayPeriodOptions = [
+        ['', ''],
+        ['AM', 'PM'],
+        ['am', 'pm'],
+        ['ص', 'م'],
+        ['上午', '下午'],
+    ] as const satisfies ReadonlyArray<MaskitoTimeParams['dayPeriod']>;
 
     protected readonly timeSegmentMaxValuesOptions = [
         {},
@@ -129,9 +145,18 @@ export default class TimeMaskDocComponent implements Required<MaskitoTimeParams>
     public prefix = '';
     public postfix = '';
     public step = 0;
-    public maskitoOptions: MaskitoOptions = maskitoTimeOptionsGenerator(this);
+    public locale = '';
+
+    public dayPeriod: NonNullable<MaskitoTimeParams['dayPeriod']> =
+        this.dayPeriodOptions[0];
+
+    public maskitoOptions: MaskitoOptions = maskitoTime(this);
+
+    protected get filler(): string {
+        return `${this.mode.toLowerCase()} ${'a'.repeat(this.dayPeriod[0].length)}`;
+    }
 
     protected updateOptions(): void {
-        this.maskitoOptions = maskitoTimeOptionsGenerator(this);
+        this.maskitoOptions = maskitoTime(this);
     }
 }

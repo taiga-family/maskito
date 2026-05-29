@@ -2,35 +2,38 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiInput} from '@taiga-ui/core';
-import {TuiSegmented} from '@taiga-ui/kit';
+import {TuiFlagPipe} from '@taiga-ui/kit';
 
 import mask from './mask';
 
 @Component({
-    selector: 'time-mask-doc-example-5',
-    imports: [FormsModule, MaskitoDirective, TuiInput, TuiSegmented],
+    selector: 'time-mask-doc-example-3',
+    imports: [FormsModule, MaskitoDirective, TuiFlagPipe, TuiInput],
     template: `
         <tui-textfield
-            filler="HH:MM"
+            filler="HH h MM min SS,MS"
+            iconStart="@tui.clock"
             [style.max-width.rem]="20"
-            [tuiTextfieldCleaner]="false"
         >
+            <label tuiLabel>fr-CA locale</label>
             <input
-                inputmode="decimal"
+                inputmode="numeric"
                 tuiInput
                 [maskito]="mask"
                 [(ngModel)]="value"
             />
 
-            <tui-segmented>
-                <button type="button">AM</button>
-                <button type="button">PM</button>
-            </tui-segmented>
+            <img
+                width="28"
+                [attr.alt]="'Canada flag'"
+                [src]="'CA' | tuiFlag"
+                [style.border-radius.%]="50"
+            />
         </tui-textfield>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample5 {
-    protected value = '03:30';
+export class TimeMaskDocExample3 {
     protected readonly mask = mask;
+    protected value = '18 h 05 min 05,766';
 }

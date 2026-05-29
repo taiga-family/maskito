@@ -8,11 +8,12 @@ import {
 
 const dateTimeSeparator = ', ';
 const dateMode: MaskitoDateMode = 'dd/mm/yyyy';
-const timeMode: MaskitoTimeMode = 'HH:MM AA';
+const timeMode: MaskitoTimeMode = 'HH:MM';
 
 const dateTimeOptions = maskitoDateTimeOptionsGenerator({
     dateMode,
     timeMode,
+    dayPeriod: ['AM', 'PM'],
     dateTimeSeparator,
     dateSeparator: '/',
 });

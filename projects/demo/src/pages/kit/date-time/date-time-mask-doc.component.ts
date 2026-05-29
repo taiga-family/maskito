@@ -8,6 +8,7 @@ import {
     maskitoDateTimeOptionsGenerator,
     type MaskitoDateTimeParams,
     type MaskitoTimeMode,
+    type MaskitoTimeParams,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
@@ -93,6 +94,14 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
         'HH:MM:SS.MSS AA',
     ] as const satisfies readonly MaskitoTimeMode[];
 
+    protected readonly dayPeriodOptions = [
+        ['', ''],
+        ['AM', 'PM'],
+        ['am', 'pm'],
+        ['ص', 'م'],
+        ['上午', '下午'],
+    ] as const satisfies ReadonlyArray<NonNullable<MaskitoDateTimeParams['dayPeriod']>>;
+
     protected readonly minMaxOptions = [
         '0001-01-01T00:00:00',
         '9999-12-31T23:59:59',
@@ -104,6 +113,7 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
     protected maxStr: string = this.minMaxOptions[1];
     public dateMode: MaskitoDateMode = this.dateModeOptions[0];
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
+    public dayPeriod = this.dayPeriodOptions[0];
     public dateTimeSeparator = ', ';
     public dateSeparator = '.';
     public min = new Date(this.minStr);
@@ -117,8 +127,9 @@ export default class DateTimeMaskDocComponent implements Required<MaskitoDateTim
         timeMode: MaskitoTimeMode,
         separator: string,
         dateTimeSeparator: string,
+        dayPeriod: Required<MaskitoTimeParams>['dayPeriod'],
     ): string {
-        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode}`;
+        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode} ${'A'.repeat(dayPeriod[0].length)}`;
     }
 
     protected updateOptions(): void {

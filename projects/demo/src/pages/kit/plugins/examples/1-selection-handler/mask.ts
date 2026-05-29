@@ -1,12 +1,16 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {
     maskitoSelectionChangeHandler,
+    maskitoTime,
     type MaskitoTimeMode,
-    maskitoTimeOptionsGenerator,
 } from '@maskito/kit';
 
-const mode: MaskitoTimeMode = 'HH:MM AA';
-const timeOptions = maskitoTimeOptionsGenerator({mode});
+const mode: MaskitoTimeMode = 'HH:MM';
+
+const timeOptions = maskitoTime({
+    mode,
+    dayPeriod: ['AM', 'PM'],
+});
 
 export default {
     ...timeOptions,
@@ -14,7 +18,7 @@ export default {
         ...timeOptions.plugins,
         maskitoSelectionChangeHandler((element) => {
             element.inputMode =
-                element.selectionStart! >= mode.indexOf(' AA') ? 'text' : 'numeric';
+                element.selectionStart! >= mode.length ? 'text' : 'numeric';
         }),
     ],
 } satisfies MaskitoOptions;
