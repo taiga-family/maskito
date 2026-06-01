@@ -1,16 +1,9 @@
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import {clamp, parseDateString, segmentsToDate} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
-import {getLocaleDateParams} from './get-locale-date-params';
+import {withDateDefaults} from './with-date-defaults';
 
-export function maskitoParseDate(
-    value: string,
-    {min = DEFAULT_MIN_DATE, max = DEFAULT_MAX_DATE, ...params}: MaskitoDateParams,
-): Date | null {
-    const localeParams =
-        'locale' in params && params.locale ? getLocaleDateParams(params.locale) : null;
-
-    const mode = params.mode ?? localeParams?.mode ?? 'dd/mm/yyyy';
+export function maskitoParseDate(value: string, params: MaskitoDateParams): Date | null {
+    const {mode, min, max} = withDateDefaults(params);
     const digitsPattern = mode.replaceAll(/[^dmy]/g, '');
     const digits = value.replaceAll(/\D+/g, '');
 

@@ -1,6 +1,5 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../constants';
 import {
     clamp,
     dateToSegments,
@@ -16,16 +15,16 @@ const LEAP_YEAR = '1972';
 
 export function createMinMaxDatePostprocessor({
     dateModeTemplate,
-    min = DEFAULT_MIN_DATE,
-    max = DEFAULT_MAX_DATE,
+    min,
+    max,
+    dateSeparator,
     rangeSeparator = '',
-    dateSeparator = '.',
 }: {
     dateModeTemplate: string;
-    min?: Date;
-    max?: Date;
+    min: Date;
+    max: Date;
     rangeSeparator?: string;
-    dateSeparator?: string;
+    dateSeparator: string;
 }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const endsWithRangeSeparator = rangeSeparator && value.endsWith(rangeSeparator);
