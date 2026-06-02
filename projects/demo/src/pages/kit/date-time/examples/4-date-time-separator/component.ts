@@ -14,7 +14,7 @@ import mask from './mask';
             [style.max-width.rem]="30"
             [filler]="filler"
         >
-            <label tuiLabel>Time Stepping</label>
+            <label tuiLabel>Custom date and time separator</label>
             <input
                 inputmode="decimal"
                 tuiInput
@@ -26,7 +26,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocExample4 {
-    protected value = '09.01.2018, 15:30';
-    protected readonly filler = 'dd.mm.yyyy, hh:mm';
+    protected value = '05.02.2004; 10:10';
+    protected readonly filler = 'dd.mm.yyyy; hh:mm';
     protected readonly mask = mask;
 }

@@ -15,11 +15,11 @@ import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import {tuiPure} from '@taiga-ui/legacy';
 
 import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
-import {DateTimeMaskDocExample2} from './examples/2-date-time-separator/component';
-import {DateTimeMaskDocExample3} from './examples/3-min-max/component';
-import {DateTimeMaskDocExample4} from './examples/4-time-step/component';
-import {DateTimeMaskDocExample5} from './examples/5-am-pm/component';
-import {DateTimeMaskDocExample6} from './examples/6-locale-date-time/component';
+import {DateTimeMaskDocExample2} from './examples/2-am-pm/component';
+import {DateTimeMaskDocExample3} from './examples/3-locale/component';
+import {DateTimeMaskDocExample4} from './examples/4-date-time-separator/component';
+import {DateTimeMaskDocExample5} from './examples/5-min-max/component';
+import {DateTimeMaskDocExample6} from './examples/6-time-step/component';
 
 @Component({
     selector: 'date-time-mask-doc',
@@ -55,36 +55,35 @@ export default class DateTimeMaskDocComponent implements Omit<
             ),
         };
 
+    protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/2-am-pm/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+    };
+
+    protected readonly localeExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-locale/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+    };
+
     protected readonly dateTimeSeparatorExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/2-date-time-separator/mask.ts?raw',
+            './examples/4-date-time-separator/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
 
     protected readonly dateTimeMinMaxExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/3-min-max/mask.ts?raw',
+            './examples/5-min-max/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };
 
     protected readonly dateTimeTimeStepExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/4-time-step/mask.ts?raw',
-            {with: {loader: 'text'}}
-        ),
-    };
-
-    protected readonly amPmExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/5-am-pm/mask.ts?raw', {
-            with: {loader: 'text'},
-        }),
-    };
-
-    protected readonly localeExample: Record<string, TuiRawLoaderContent> = {
-        [DocExamplePrimaryTab.MaskitoOptions]: import(
-            './examples/6-locale-date-time/mask.ts?raw',
+            './examples/6-time-step/mask.ts?raw',
             {with: {loader: 'text'}}
         ),
     };

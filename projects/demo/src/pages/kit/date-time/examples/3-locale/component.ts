@@ -6,7 +6,7 @@ import {TuiInput} from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
-    selector: 'date-time-mask-doc-example-5',
+    selector: 'date-time-mask-doc-example-3',
     imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
         <tui-textfield
@@ -14,8 +14,9 @@ import mask from './mask';
             [style.max-width.rem]="30"
             [filler]="filler"
         >
-            <label tuiLabel>With 12-hour time format</label>
+            <label tuiLabel>With en-US locale</label>
             <input
+                inputmode="numeric"
                 tuiInput
                 [maskito]="mask"
                 [(ngModel)]="value"
@@ -24,8 +25,8 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateTimeMaskDocExample5 {
-    protected value = '20/09/2020, 03:30 PM';
-    protected readonly filler = 'mm/dd/yyyy, hh:mm aa';
+export class DateTimeMaskDocExample3 {
+    protected value = '12/31/2024, 06:30 PM';
+    protected readonly filler = 'mm/dd/yyyy, --:-- AA';
     protected readonly mask = mask;
 }
