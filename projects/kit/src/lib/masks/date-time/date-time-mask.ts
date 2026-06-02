@@ -40,7 +40,7 @@ export function maskitoDateTime({
 
     const timeParams = withTimeDefaults({...params, locale, mode: timeMode});
     const dateModeTemplate = dateParams.mode.split('/').join(dateParams.separator);
-    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
+    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeParams.mode}`;
 
     const mask = [
         ...Array.from(dateModeTemplate).map((char) =>
@@ -107,8 +107,8 @@ export function maskitoDateTime({
             }),
             createMinMaxDateTimePostprocessor({
                 ...dateParams,
+                ...timeParams,
                 dateModeTemplate,
-                timeMode,
                 dateTimeSeparator,
             }),
         ],
