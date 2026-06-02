@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoDateTimeOptionsGenerator</code>
+        <code>maskitoDateTime</code>
         to create a mask to input both date and time.
 
         <div
@@ -45,6 +45,29 @@
                 parameters to get a mask with a locale specific representation of dates.
             </ng-template>
             <date-time-mask-doc-example-1 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Locale"
+            [content]="localeExample"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use
+                <code>locale</code>
+                parameter to automatically derive
+                <code>dateMode</code>
+                ,
+                <code>dateSeparator</code>
+                and
+                <code>dayPeriod</code>
+                (12/24-hour format) from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale. Any explicitly passed parameter still takes precedence over the locale-derived
+                one.
+            </ng-template>
+
+            <date-time-mask-doc-example-6 />
         </tui-doc-example>
 
         <tui-doc-example

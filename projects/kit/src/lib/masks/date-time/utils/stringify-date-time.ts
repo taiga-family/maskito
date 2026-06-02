@@ -1,29 +1,30 @@
-import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import {clamp} from '../../../utils';
-import {maskitoStringifyDate} from '../../date/utils';
+import {maskitoStringifyDate, withDateDefaults} from '../../date/utils';
 import {maskitoStringifyTime} from '../../time';
+import {withTimeDefaults} from '../../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from '../constants';
 import type {MaskitoDateTimeParams} from '../date-time-params';
 
 export function maskitoStringifyDateTime(
     date: Date,
     {
+        locale,
         dateMode,
-        timeMode,
+        timeMode = 'HH:MM',
+        dateSeparator,
         dateTimeSeparator = DATE_TIME_SEPARATOR,
-        dateSeparator = '.',
-        min = DEFAULT_MIN_DATE,
-        max = DEFAULT_MAX_DATE,
+        ...params
     }: MaskitoDateTimeParams,
 ): string {
-    const validatedDate = clamp(date, min, max);
+    const dateParams = withDateDefaults(
+        locale
+            ? {...params, locale, mode: dateMode, separator: dateSeparator}
+            : {...params, mode: dateMode!, separator: dateSeparator},
+    );
 
-    const dateString = maskitoStringifyDate(validatedDate, {
-        mode: dateMode,
-        separator: dateSeparator,
-        min,
-        max,
-    });
+    const timeParams = withTimeDefaults({...params, locale, mode: timeMode});
+    const validatedDate = clamp(date, dateParams.min, dateParams.max);
+    const dateString = maskitoStringifyDate(validatedDate, dateParams);
 
     const extractedTime =
         Number(validatedDate) -
@@ -35,7 +36,7 @@ export function maskitoStringifyDateTime(
             ),
         );
 
-    const timeString = maskitoStringifyTime(extractedTime, {mode: timeMode});
+    const timeString = maskitoStringifyTime(extractedTime, timeParams);
 
     return `${dateString}${dateTimeSeparator}${timeString}`;
 }

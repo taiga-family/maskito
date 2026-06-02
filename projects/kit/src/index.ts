@@ -11,6 +11,7 @@ export {
     type MaskitoDateRangeParams,
 } from './lib/masks/date-range';
 export {
+    maskitoDateTime,
     maskitoDateTimeOptionsGenerator,
     type MaskitoDateTimeParams,
     maskitoParseDateTime,
