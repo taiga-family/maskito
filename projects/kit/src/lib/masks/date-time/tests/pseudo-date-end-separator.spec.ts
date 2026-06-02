@@ -4,7 +4,7 @@ import {
     type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
-import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoDateTime} from '@maskito/kit';
 
 import {DATE_TIME_SEPARATOR} from '../constants';
 
@@ -12,7 +12,7 @@ describe('DateTime (maskitoTransform) | Pseudo date end separators', () => {
     let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
     beforeEach(() => {
-        options = maskitoDateTimeOptionsGenerator({
+        options = maskitoDateTime({
             dateMode: 'dd/mm/yyyy',
             timeMode: 'HH:MM:SS.MSS',
             dateSeparator: '.',

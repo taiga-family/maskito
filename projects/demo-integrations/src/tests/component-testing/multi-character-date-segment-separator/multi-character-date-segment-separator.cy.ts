@@ -1,8 +1,4 @@
-import {
-    maskitoDate,
-    maskitoDateRange,
-    maskitoDateTimeOptionsGenerator,
-} from '@maskito/kit';
+import {maskitoDate, maskitoDateRange, maskitoDateTime} from '@maskito/kit';
 
 import {TestInput} from '../utils';
 
@@ -37,7 +33,7 @@ describe('Multi character date segment separator', () => {
         },
         {
             title: 'DateTime',
-            maskitoOptions: maskitoDateTimeOptionsGenerator({
+            maskitoOptions: maskitoDateTime({
                 dateMode: 'dd/mm/yyyy',
                 timeMode: 'HH:MM',
                 dateSeparator: multiCharacterSeparator,

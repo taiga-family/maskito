@@ -1,7 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {
     type MaskitoDateMode,
-    maskitoDateTimeOptionsGenerator,
+    maskitoDateTime,
     maskitoSelectionChangeHandler,
     type MaskitoTimeMode,
 } from '@maskito/kit';
@@ -10,7 +10,7 @@ const dateTimeSeparator = ', ';
 const dateMode: MaskitoDateMode = 'dd/mm/yyyy';
 const timeMode: MaskitoTimeMode = 'HH:MM';
 
-const dateTimeOptions = maskitoDateTimeOptionsGenerator({
+const dateTimeOptions = maskitoDateTime({
     dateMode,
     timeMode,
     dayPeriod: ['AM', 'PM'],

@@ -4,14 +4,14 @@ import {
     type MaskitoOptions,
     maskitoTransform,
 } from '@maskito/core';
-import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoDateTime} from '@maskito/kit';
 
 describe('DateTime (maskitoTransform) | Date segments zero padding', () => {
     describe('[dateMode]="dd/mm/yyyy" & [timeMode]="HH:MM:SS.MSS"', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoDateTimeOptionsGenerator({
+            options = maskitoDateTime({
                 dateMode: 'dd/mm/yyyy',
                 timeMode: 'HH:MM:SS.MSS',
                 dateSeparator: '/',

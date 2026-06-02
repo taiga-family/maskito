@@ -1,6 +1,6 @@
-import {maskitoDateTimeOptionsGenerator} from '@maskito/kit';
+import {maskitoDateTime} from '@maskito/kit';
 
-export default maskitoDateTimeOptionsGenerator({
+export default maskitoDateTime({
     dateMode: 'dd/mm/yyyy',
     timeMode: 'HH:MM',
     timeStep: 1,
