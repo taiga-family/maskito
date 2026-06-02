@@ -29,6 +29,7 @@ export function maskitoDateTime({
     dateMode,
     dateSeparator,
     timeMode = 'HH:MM',
+    timeStep,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     ...params
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
@@ -38,7 +39,13 @@ export function maskitoDateTime({
             : {...params, mode: dateMode!, separator: dateSeparator},
     );
 
-    const timeParams = withTimeDefaults({...params, locale, mode: timeMode});
+    const timeParams = withTimeDefaults({
+        ...params,
+        locale,
+        mode: timeMode,
+        step: timeStep,
+    });
+
     const dateModeTemplate = dateParams.mode.split('/').join(dateParams.separator);
     const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeParams.mode}`;
 
