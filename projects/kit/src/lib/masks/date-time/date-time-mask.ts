@@ -27,7 +27,6 @@ import {splitDateTimeString} from './utils';
 export function maskitoDateTime({
     locale,
     dateMode,
-    dateSeparator,
     timeMode = 'HH:MM',
     timeStep,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
@@ -35,8 +34,8 @@ export function maskitoDateTime({
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
     const dateParams = withDateDefaults(
         locale
-            ? {...params, locale, mode: dateMode, separator: dateSeparator}
-            : {...params, mode: dateMode!, separator: dateSeparator},
+            ? {...params, locale, mode: dateMode, separator: params.dateSeparator}
+            : {...params, mode: dateMode!, separator: params.dateSeparator},
     );
 
     const timeParams = withTimeDefaults({
@@ -46,12 +45,13 @@ export function maskitoDateTime({
         step: timeStep,
     });
 
-    const dateModeTemplate = dateParams.mode.split('/').join(dateParams.separator);
+    const dateSeparator = dateParams.separator;
+    const dateModeTemplate = dateParams.mode.split('/').join(dateSeparator);
     const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeParams.mode}`;
 
     const mask = [
         ...Array.from(dateModeTemplate).map((char) =>
-            dateParams.separator.includes(char) ? char : /\d/,
+            dateSeparator.includes(char) ? char : /\d/,
         ),
         ...dateTimeSeparator.split(''),
         ...createTimeMaskExpression(timeParams),
@@ -66,7 +66,7 @@ export function maskitoDateTime({
             createColonConvertPreprocessor(),
             createFirstDateEndSeparatorPreprocessor({
                 dateModeTemplate,
-                dateSeparator: dateParams.separator,
+                dateSeparator,
                 firstDateEndSeparator: dateTimeSeparator,
                 pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
@@ -74,7 +74,7 @@ export function maskitoDateTime({
             createMeridiemPreprocessor(timeParams.dayPeriod),
             normalizeDatePreprocessor({
                 dateModeTemplate,
-                dateSeparator: dateParams.separator,
+                dateSeparator,
                 dateTimeSeparator,
             }),
             createInvalidTimeSegmentInsertionPreprocessor({
@@ -91,7 +91,7 @@ export function maskitoDateTime({
             createValidDateTimePreprocessor({
                 ...timeParams,
                 dateModeTemplate,
-                dateSeparator: dateParams.separator,
+                dateSeparator,
                 dateTimeSeparator,
             }),
         ],
@@ -99,7 +99,7 @@ export function maskitoDateTime({
             createMeridiemPostprocessor(timeParams.dayPeriod),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
-                dateSeparator: dateParams.separator,
+                dateSeparator,
                 splitFn: (value) => {
                     const [dateString, timeString] = splitDateTimeString(
                         value,

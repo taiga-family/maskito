@@ -10,10 +10,10 @@ describe('DateTime | locale', () => {
     describe('derives date order, separator & 24-hour time from locale', () => {
         const testCases = [
             // locale | typed digits | formatted value
-            ['de-DE', '050220040341', '05.02.2004, 03:41'],
-            ['en-GB', '050220040341', '05/02/2004, 03:41'],
-            ['lt-LT', '202405021830', '2024-05-02, 18:30'],
-            ['ja-JP', '202405021830', '2024/05/02, 18:30'],
+            ['de-DE', '2'.repeat(12), '22.02.2222, 22:22'],
+            ['en-GB', '2'.repeat(12), '22/02/2222, 22:22'],
+            ['lt-LT', '2'.repeat(12), '2222-02-22, 22:22'],
+            ['ja-JP', '2'.repeat(12), '2222/02/22, 22:22'],
         ] as const;
 
         testCases.forEach(([locale, typedDigits, formattedValue]) => {
@@ -69,7 +69,6 @@ describe('DateTime | locale', () => {
     });
 
     describe('parse & stringify respect the locale day-period (12-hour format)', () => {
-        // en-US prefixes the meridiem with a non-breaking space (U+00A0)
         const enUsValue = '05/10/2025, 06:30 PM';
 
         it('maskitoParseDateTime reads the meridiem (PM => 18:30)', () => {
