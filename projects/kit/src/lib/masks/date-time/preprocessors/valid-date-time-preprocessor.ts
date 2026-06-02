@@ -1,24 +1,23 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '../../../types';
+import type {MaskitoTimeSegments} from '../../../types';
 import {validateDateString} from '../../../utils';
 import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
+import {type MaskitoTimeParams} from '../../time/time-params';
 import {splitDateTimeString} from '../utils';
 
 export function createValidDateTimePreprocessor({
     dateModeTemplate,
     dateSeparator,
     dateTimeSeparator,
-    timeMode,
+    mode: timeMode,
     timeSegmentMaxValues,
-    timeSeparators,
-}: {
+    separators,
+}: Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'> & {
     dateModeTemplate: string;
     dateSeparator: string;
     dateTimeSeparator: string;
-    timeMode: MaskitoTimeMode;
     timeSegmentMaxValues: MaskitoTimeSegments<number>;
-    timeSeparators: readonly string[];
 }): MaskitoPreprocessor {
     return ({elementState, data}) => {
         const {value, selection} = elementState;
@@ -66,7 +65,7 @@ export function createValidDateTimePreprocessor({
 
         const updatedTimeState = enrichTimeSegmentsWithZeroes(
             {value: timeString, selection: [from, to]},
-            {mode: timeMode, separators: timeSeparators, timeSegmentMaxValues},
+            {mode: timeMode, separators, timeSegmentMaxValues},
         );
 
         to = updatedTimeState.selection[1];

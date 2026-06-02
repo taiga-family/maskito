@@ -72,7 +72,6 @@ export function maskitoDateTime({
             }),
             createInvalidTimeSegmentInsertionPreprocessor({
                 ...timeParams,
-                timeMode,
                 parseValue: (x) => {
                     const [dateString, timeString] = splitDateTimeString(
                         x,
@@ -87,8 +86,6 @@ export function maskitoDateTime({
                 dateModeTemplate,
                 dateSeparator: dateParams.separator,
                 dateTimeSeparator,
-                timeMode,
-                timeSeparators: timeParams.separators,
             }),
         ],
         postprocessors: [

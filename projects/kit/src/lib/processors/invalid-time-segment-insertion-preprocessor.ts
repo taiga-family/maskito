@@ -1,12 +1,8 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
+import {type MaskitoTimeParams} from 'dist/kit';
 
-import {
-    DEFAULT_TIME_SEGMENT_MAX_VALUES,
-    DEFAULT_TIME_SEGMENT_MIN_VALUES,
-    TIME_FIXED_CHARACTERS,
-    TIME_SEGMENT_VALUE_LENGTHS,
-} from '../constants';
-import type {MaskitoTimeMode, MaskitoTimeSegments} from '../types';
+import {TIME_FIXED_CHARACTERS, TIME_SEGMENT_VALUE_LENGTHS} from '../constants';
+import type {MaskitoTimeSegments} from '../types';
 import {clamp, escapeRegExp} from '../utils';
 import {parseTimeString} from '../utils/time';
 
@@ -16,14 +12,14 @@ import {parseTimeString} from '../utils/time';
  * @example 2|0:00 => Type 9 => 2|0:00
  */
 export function createInvalidTimeSegmentInsertionPreprocessor({
-    timeMode,
-    timeSegmentMinValues = DEFAULT_TIME_SEGMENT_MIN_VALUES,
-    timeSegmentMaxValues = DEFAULT_TIME_SEGMENT_MAX_VALUES,
+    mode,
+    timeSegmentMinValues,
+    timeSegmentMaxValues,
     parseValue = (x) => ({timeString: x}),
-}: {
-    timeMode: MaskitoTimeMode;
-    timeSegmentMinValues?: MaskitoTimeSegments<number>;
-    timeSegmentMaxValues?: MaskitoTimeSegments<number>;
+}: Pick<
+    Required<MaskitoTimeParams>,
+    'mode' | 'timeSegmentMaxValues' | 'timeSegmentMinValues'
+> & {
     parseValue?: (value: string) => {timeString: string; restValue?: string};
 }): MaskitoPreprocessor {
     const invalidCharsRegExp = new RegExp(
@@ -42,14 +38,14 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
         const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
         const {timeString, restValue = ''} = parseValue(newPossibleValue);
 
-        const timeSegments = Object.entries(
-            parseTimeString(timeString, timeMode),
-        ) as Array<[keyof MaskitoTimeSegments, string]>;
+        const timeSegments = Object.entries(parseTimeString(timeString, mode)) as Array<
+            [keyof MaskitoTimeSegments, string]
+        >;
 
         let offset = restValue.length;
 
         for (const [segmentName, stringifiedSegmentValue] of timeSegments) {
-            const minSegmentValue = timeSegmentMinValues[segmentName];
+            const minSegmentValue = timeSegmentMinValues[segmentName]!;
             const maxSegmentValue = timeSegmentMaxValues[segmentName];
             const segmentValue = Number(stringifiedSegmentValue);
 
