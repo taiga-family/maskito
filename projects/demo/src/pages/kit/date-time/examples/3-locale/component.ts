@@ -14,9 +14,9 @@ import mask from './mask';
             [style.max-width.rem]="30"
             [filler]="filler"
         >
-            <label tuiLabel>Min-max</label>
+            <label tuiLabel>With en-US locale</label>
             <input
-                inputmode="decimal"
+                inputmode="numeric"
                 tuiInput
                 [maskito]="mask"
                 [(ngModel)]="value"
@@ -26,7 +26,7 @@ import mask from './mask';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimeMaskDocExample3 {
-    protected value = '09-01-2018, 15:30';
-    protected readonly filler = 'dd-mm-yyyy, hh:mm';
+    protected value = '12/31/2024, 06:30 PM';
+    protected readonly filler = 'mm/dd/yyyy, --:-- AA';
     protected readonly mask = mask;
 }

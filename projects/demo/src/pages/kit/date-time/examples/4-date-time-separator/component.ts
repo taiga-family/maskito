@@ -6,7 +6,7 @@ import {TuiInput} from '@taiga-ui/core';
 import mask from './mask';
 
 @Component({
-    selector: 'date-time-mask-doc-example-2',
+    selector: 'date-time-mask-doc-example-4',
     imports: [FormsModule, MaskitoDirective, TuiInput],
     template: `
         <tui-textfield
@@ -25,7 +25,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateTimeMaskDocExample2 {
+export class DateTimeMaskDocExample4 {
     protected value = '05.02.2004; 10:10';
     protected readonly filler = 'dd.mm.yyyy; hh:mm';
     protected readonly mask = mask;

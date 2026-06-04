@@ -4,7 +4,7 @@
 >
     <ng-template pageTab>
         Use
-        <code>maskitoDateTimeOptionsGenerator</code>
+        <code>maskitoDateTime</code>
         to create a mask to input both date and time.
 
         <div
@@ -48,6 +48,52 @@
         </tui-doc-example>
 
         <tui-doc-example
+            heading="Meridiem"
+            [content]="amPmExample"
+            [description]="amPmDescription"
+        >
+            <ng-template #amPmDescription>
+                Pass
+                <code>dayPeriod</code>
+                as a tuple of two locale-specific markers (e.g.
+                <code>['AM', 'PM']</code>
+                ,
+                <code>['上午', '下午']</code>
+                ) to switch the mask to a 12-hour time format with a meridiem suffix.
+
+                <p>
+                    Pass
+                    <code>['', '']</code>
+                    (default) to keep the 24-hour format.
+                </p>
+            </ng-template>
+            <date-time-mask-doc-example-2 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Locale"
+            [content]="localeExample"
+            [description]="localeDescription"
+        >
+            <ng-template #localeDescription>
+                Use
+                <code>locale</code>
+                parameter to automatically derive
+                <code>dateMode</code>
+                ,
+                <code>dateSeparator</code>
+                and
+                <code>dayPeriod</code>
+                (12/24-hour format) from
+                <code>Intl.DateTimeFormat</code>
+                for the given locale. Any explicitly passed parameter still takes precedence over the locale-derived
+                one.
+            </ng-template>
+
+            <date-time-mask-doc-example-3 />
+        </tui-doc-example>
+
+        <tui-doc-example
             heading="Custom separator between date and time"
             [content]="dateTimeSeparatorExample"
             [description]="dateTimeSeparatorDescription"
@@ -57,7 +103,7 @@
                 <code>dateTimeSeparator</code>
                 parameter to configure separator between date and time strings.
             </ng-template>
-            <date-time-mask-doc-example-2 />
+            <date-time-mask-doc-example-4 />
         </tui-doc-example>
 
         <tui-doc-example
@@ -81,7 +127,7 @@
                 </a>
                 .
             </ng-template>
-            <date-time-mask-doc-example-3 />
+            <date-time-mask-doc-example-5 />
         </tui-doc-example>
 
         <tui-doc-example
@@ -106,30 +152,7 @@
                     (default value) to disable this feature.
                 </p>
             </ng-template>
-            <date-time-mask-doc-example-4 />
-        </tui-doc-example>
-
-        <tui-doc-example
-            heading="Meridiem"
-            [content]="amPmExample"
-            [description]="amPmDescription"
-        >
-            <ng-template #amPmDescription>
-                Pass
-                <code>dayPeriod</code>
-                as a tuple of two locale-specific markers (e.g.
-                <code>['AM', 'PM']</code>
-                ,
-                <code>['上午', '下午']</code>
-                ) to switch the mask to a 12-hour time format with a meridiem suffix.
-
-                <p>
-                    Pass
-                    <code>['', '']</code>
-                    (default) to keep the 24-hour format.
-                </p>
-            </ng-template>
-            <date-time-mask-doc-example-5 />
+            <date-time-mask-doc-example-6 />
         </tui-doc-example>
     </ng-template>
 

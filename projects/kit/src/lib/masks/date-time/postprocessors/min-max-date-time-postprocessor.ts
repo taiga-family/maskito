@@ -1,7 +1,6 @@
 import type {MaskitoPostprocessor} from '@maskito/core';
 
 import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
-import type {MaskitoTimeMode} from '../../../types';
 import {
     clamp,
     dateToSegments,
@@ -12,21 +11,20 @@ import {
 } from '../../../utils';
 import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
+import {type MaskitoTimeParams} from '../../time';
+import {type MaskitoDateTimeParams} from '../date-time-params';
 import {isDateTimeStringComplete, splitDateTimeString} from '../utils';
 
 export function createMinMaxDateTimePostprocessor({
     dateModeTemplate,
-    timeMode,
+    mode: timeMode,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     dateTimeSeparator,
-}: {
-    dateModeTemplate: string;
-    timeMode: MaskitoTimeMode;
-    min?: Date;
-    max?: Date;
-    dateTimeSeparator: string;
-}): MaskitoPostprocessor {
+}: Pick<Required<MaskitoDateTimeParams>, 'dateTimeSeparator' | 'max' | 'min'> &
+    Pick<Required<MaskitoTimeParams>, 'mode'> & {
+        dateModeTemplate: string;
+    }): MaskitoPostprocessor {
     return ({value, selection}) => {
         const [dateString, timeString] = splitDateTimeString(value, dateModeTemplate);
         const parsedDate = parseDateString(dateString, dateModeTemplate);

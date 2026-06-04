@@ -2,7 +2,7 @@ import {beforeEach, describe, expect, it} from '@jest/globals';
 import {MASKITO_DEFAULT_OPTIONS, maskitoTransform} from '@maskito/core';
 
 import type {MaskitoTimeMode} from '../../../types';
-import {maskitoDateTimeOptionsGenerator} from '../date-time-mask';
+import {maskitoDateTime} from '../date-time-mask';
 
 describe('DateTime | dateTimeSeparator', () => {
     const dateTimeSeparators = [':', ';_', '_-_', '_at_'];
@@ -34,7 +34,7 @@ describe('DateTime | dateTimeSeparator', () => {
         describe(`correctly applies "${dateTimeSeparator}" as dateTimeSeparator`, () => {
             testCases.forEach(({typedDigits, formattedValue, timeMode}) => {
                 beforeEach(() => {
-                    options = maskitoDateTimeOptionsGenerator({
+                    options = maskitoDateTime({
                         dateMode: 'dd/mm/yyyy',
                         timeMode,
                         dateTimeSeparator,

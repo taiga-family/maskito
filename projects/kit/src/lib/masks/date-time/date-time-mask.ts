@@ -16,6 +16,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import {createTimeMaskExpression, hasDayPeriod} from '../../utils/time';
+import {withDateDefaults} from '../date/utils/with-date-defaults';
 import {withTimeDefaults} from '../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
@@ -23,33 +24,37 @@ import {createMinMaxDateTimePostprocessor} from './postprocessors';
 import {createValidDateTimePreprocessor} from './preprocessors';
 import {splitDateTimeString} from './utils';
 
-export function maskitoDateTimeOptionsGenerator({
+export function maskitoDateTime({
+    locale,
     dateMode,
-    timeMode,
-    dateSeparator = '.',
-    min,
-    max,
+    timeMode = 'HH:MM',
+    timeStep,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
-    timeStep = 0,
     ...params
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
-    const dateModeTemplate = dateMode.split('/').join(dateSeparator);
+    const dateParams = withDateDefaults(
+        locale
+            ? {...params, locale, mode: dateMode, separator: params.dateSeparator}
+            : {...params, mode: dateMode!, separator: params.dateSeparator},
+    );
 
-    const {timeSegmentMaxValues, timeSegmentMinValues, separators, dayPeriod} =
-        withTimeDefaults({...params, mode: timeMode});
+    const timeParams = withTimeDefaults({
+        ...params,
+        locale,
+        mode: timeMode,
+        step: timeStep,
+    });
 
-    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeMode}`;
+    const dateSeparator = dateParams.separator;
+    const dateModeTemplate = dateParams.mode.split('/').join(dateSeparator);
+    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeParams.mode}`;
 
     const mask = [
         ...Array.from(dateModeTemplate).map((char) =>
             dateSeparator.includes(char) ? char : /\d/,
         ),
         ...dateTimeSeparator.split(''),
-        ...createTimeMaskExpression({
-            mode: timeMode,
-            separators,
-            dayPeriod,
-        }),
+        ...createTimeMaskExpression(timeParams),
     ];
 
     return {
@@ -66,16 +71,14 @@ export function maskitoDateTimeOptionsGenerator({
                 pseudoFirstDateEndSeparators: dateTimeSeparator.split(''),
             }),
             createZeroPlaceholdersPreprocessor(),
-            createMeridiemPreprocessor(dayPeriod),
+            createMeridiemPreprocessor(timeParams.dayPeriod),
             normalizeDatePreprocessor({
                 dateModeTemplate,
                 dateSeparator,
                 dateTimeSeparator,
             }),
             createInvalidTimeSegmentInsertionPreprocessor({
-                timeMode,
-                timeSegmentMinValues,
-                timeSegmentMaxValues,
+                ...timeParams,
                 parseValue: (x) => {
                     const [dateString, timeString] = splitDateTimeString(
                         x,
@@ -86,16 +89,14 @@ export function maskitoDateTimeOptionsGenerator({
                 },
             }),
             createValidDateTimePreprocessor({
+                ...timeParams,
                 dateModeTemplate,
                 dateSeparator,
                 dateTimeSeparator,
-                timeMode,
-                timeSegmentMaxValues,
-                timeSeparators: separators,
             }),
         ],
         postprocessors: [
-            createMeridiemPostprocessor(dayPeriod),
+            createMeridiemPostprocessor(timeParams.dayPeriod),
             createDateSegmentsZeroPaddingPostprocessor({
                 dateModeTemplate,
                 dateSeparator,
@@ -112,26 +113,27 @@ export function maskitoDateTimeOptionsGenerator({
                     (initialValue.includes(dateTimeSeparator) ? dateTimeSeparator : ''),
             }),
             createMinMaxDateTimePostprocessor({
-                min,
-                max,
+                ...dateParams,
+                ...timeParams,
                 dateModeTemplate,
-                timeMode,
                 dateTimeSeparator,
             }),
         ],
         plugins: [
-            createTimeSegmentsSteppingPlugin({
-                step: timeStep,
-                fullMode,
-                timeSegmentMinValues,
-                timeSegmentMaxValues,
-            }),
+            createTimeSegmentsSteppingPlugin({...timeParams, fullMode}),
             createMeridiemSteppingPlugin({
-                dayPeriod,
-                meridiemStartIndex: hasDayPeriod(dayPeriod)
-                    ? mask.length - dayPeriod[0].length
+                ...timeParams,
+                meridiemStartIndex: hasDayPeriod(timeParams.dayPeriod)
+                    ? mask.length - timeParams.dayPeriod[0].length
                     : -1,
             }),
         ],
     };
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoDateTime} instead.
+     */
+    maskitoDateTime as maskitoDateTimeOptionsGenerator,
+};

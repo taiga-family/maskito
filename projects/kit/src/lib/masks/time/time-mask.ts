@@ -49,7 +49,7 @@ export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions>
             createZeroPlaceholdersPreprocessor(postfix),
             createMeridiemPreprocessor(dayPeriod),
             createInvalidTimeSegmentInsertionPreprocessor({
-                timeMode: mode,
+                mode,
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
             }),
