@@ -1,3 +1,29 @@
+### [5.3.0](https://github.com/taiga-family/maskito/compare/v5.2.2...v5.3.0) (2026-06-04)
+
+### 🚀 Features
+
+- **kit**: add `maskitoDateTime` with new `locale` parameter
+  ([#2750](https://github.com/taiga-family/maskito/pull/2750))
+  [(9688aff)](https://github.com/taiga-family/maskito/commit/9688affa5eebd45ef7e67e77ae750793f9516831)
+- **kit**: add `maskitoTime` with new `locale` & `dayPeriod` parameters
+  ([#2741](https://github.com/taiga-family/maskito/pull/2741))
+  [(21281da)](https://github.com/taiga-family/maskito/commit/21281dadbc3b3d67ba3d22368e9dd0cfeadd437b)
+- **kit**: `Time` supports customization of separators ([#2675](https://github.com/taiga-family/maskito/pull/2675))
+  [(6f88fa0)](https://github.com/taiga-family/maskito/commit/6f88fa06d7b7a84c2e1bae7468309c7d43e3f4c8)
+- **kit**: add `maskitoDateRange` with new `locale` parameter
+  ([#2673](https://github.com/taiga-family/maskito/pull/2673))
+  [(4ed064b)](https://github.com/taiga-family/maskito/commit/4ed064bac37cda471499f858fa02bbad60bf3cea)
+- **kit**: add `maskitoDate` with new `locale` parameter ([#2666](https://github.com/taiga-family/maskito/pull/2666))
+  [(714edac)](https://github.com/taiga-family/maskito/commit/714edac5b42b518937ecf42ebb7d31c140ed8e83)
+- **kit**: add `maskitoNumber` with new `locale` parameter ([#2665](https://github.com/taiga-family/maskito/pull/2665))
+  [(d78b72b)](https://github.com/taiga-family/maskito/commit/d78b72bec4852abeddd485d37fa88a2ab1130bcf)
+
+### 🐞 Bug Fixes
+
+- **kit**: `maskitoParseTime` should pad incomplete time segments with leading zeros
+  ([#2726](https://github.com/taiga-family/maskito/pull/2726))
+  [(e0b77d2)](https://github.com/taiga-family/maskito/commit/e0b77d2835f2798ee226f879db7b08270ac84c7b)
+
 ### [5.2.2](https://github.com/taiga-family/maskito/compare/v5.2.1...v5.2.2) (2026-03-31)
 
 ### 🐞 Bug Fixes
