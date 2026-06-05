@@ -47,7 +47,7 @@
         }
     ],
     "devDependencies": {
-        "libphonenumber-js": "1.13.2"
+        "libphonenumber-js": "1.13.3"
     },
     "peerDependencies": {
         "@maskito/core": "^5.3.0",
