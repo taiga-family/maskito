@@ -12,7 +12,7 @@ const engLettersOptions: MaskitoOptions = {mask: /^[a-z]+$/i};
 
 const elementPredicate: MaskitoElementPredicate = async (element) =>
     new Promise((resolve) => {
-        setTimeout(() => resolve(element.querySelector('.real-input') as HTMLInputElement), PREDICATE_RESOLVING_TIME);
+        setTimeout(() => resolve(element.querySelector<HTMLInputElement>('.real-input')!), PREDICATE_RESOLVING_TIME);
     });
 
 export const App: ComponentType = () => {

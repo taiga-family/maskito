@@ -23,12 +23,9 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            '@typescript-eslint/no-unused-private-class-members': 'off',
-            '@typescript-eslint/prefer-function-type': 'off',
-            '@typescript-eslint/no-restricted-types': 'off',
-            '@typescript-eslint/non-nullable-type-assertion-style': 'off',
             '@angular-eslint/template/alt-text': 'off',
             '@angular-eslint/prefer-signals': 'off',
+            '@typescript-eslint/prefer-function-type': 'off',
             '@typescript-eslint/no-redundant-type-constituents': 'off',
             'no-irregular-whitespace': 'off',
             'de-morgan/no-negated-disjunction': 'off',
