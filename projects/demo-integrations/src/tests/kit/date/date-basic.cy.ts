@@ -216,6 +216,34 @@ describe('Date', () => {
                     .should('have.prop', 'selectionStart', '05.'.length)
                     .should('have.prop', 'selectionEnd', '05.'.length);
             });
+
+            describe('cursor right before separator', () => {
+                it('05|.02.2026 => Type "1" => 05.1|2.2026', () => {
+                    cy.get('@input')
+                        .type('05022026')
+                        .should('have.value', '05.02.2026')
+                        .type('{leftArrow}'.repeat('.02.2026'.length))
+                        .should('have.prop', 'selectionStart', '05'.length)
+                        .should('have.prop', 'selectionEnd', '05'.length)
+                        .type('1')
+                        .should('have.value', '05.12.2026')
+                        .should('have.prop', 'selectionStart', '05.1'.length)
+                        .should('have.prop', 'selectionEnd', '05.1'.length);
+                });
+
+                it('05.12|.2026 => Type "5" => 05.12.5|026', () => {
+                    cy.get('@input')
+                        .type('05122026')
+                        .should('have.value', '05.12.2026')
+                        .type('{leftArrow}'.repeat('.2026'.length))
+                        .should('have.prop', 'selectionStart', '05.12'.length)
+                        .should('have.prop', 'selectionEnd', '05.12'.length)
+                        .type('5')
+                        .should('have.value', '05.12.5026')
+                        .should('have.prop', 'selectionStart', '05.12.5'.length)
+                        .should('have.prop', 'selectionEnd', '05.12.5'.length);
+                });
+            });
         });
 
         describe('Fixed values', () => {

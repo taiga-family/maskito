@@ -223,6 +223,47 @@ describe('DateTime | Basic', () => {
                 .should('have.prop', 'selectionStart', '12.12.2010, 09:'.length)
                 .should('have.prop', 'selectionEnd', '12.12.2010, 09:'.length);
         });
+
+        describe('cursor right before separator', () => {
+            it('05|.02.2026, 10:25 => Type "1" => 05.1|2.2026, 10:25', () => {
+                cy.get('@input')
+                    .type('050220261025')
+                    .should('have.value', '05.02.2026, 10:25')
+                    .type('{leftArrow}'.repeat('.02.2026, 10:25'.length))
+                    .should('have.prop', 'selectionStart', '05'.length)
+                    .should('have.prop', 'selectionEnd', '05'.length)
+                    .type('1')
+                    .should('have.value', '05.12.2026, 10:25')
+                    .should('have.prop', 'selectionStart', '05.1'.length)
+                    .should('have.prop', 'selectionEnd', '05.1'.length);
+            });
+
+            it('05.12.2026|, 10:25 => Type "5" => 05.12.2026, 05:|25', () => {
+                cy.get('@input')
+                    .type('051220261025')
+                    .should('have.value', '05.12.2026, 10:25')
+                    .type('{leftArrow}'.repeat(', 10:25'.length))
+                    .should('have.prop', 'selectionStart', '05.12.2026'.length)
+                    .should('have.prop', 'selectionEnd', '05.12.2026'.length)
+                    .type('5')
+                    .should('have.value', '05.12.2026, 05:25')
+                    .should('have.prop', 'selectionStart', '05.12.2026, 05:'.length)
+                    .should('have.prop', 'selectionEnd', '05.12.2026, 05:'.length);
+            });
+
+            it('05.12.2026, 10|:25 => Type "5" => 05.12.2026, 10:5|5', () => {
+                cy.get('@input')
+                    .type('051220261025')
+                    .should('have.value', '05.12.2026, 10:25')
+                    .type('{leftArrow}'.repeat(':25'.length))
+                    .should('have.prop', 'selectionStart', '05.12.2026, 10'.length)
+                    .should('have.prop', 'selectionEnd', '05.12.2026, 10'.length)
+                    .type('5')
+                    .should('have.value', '05.12.2026, 10:55')
+                    .should('have.prop', 'selectionStart', '05.12.2026, 10:5'.length)
+                    .should('have.prop', 'selectionEnd', '05.12.2026, 10:5'.length);
+            });
+        });
     });
 
     describe('Text selection', () => {
