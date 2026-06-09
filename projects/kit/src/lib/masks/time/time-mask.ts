@@ -71,6 +71,7 @@ export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions>
                 step,
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
+                dayPeriod,
             }),
             createMeridiemSteppingPlugin({
                 dayPeriod,

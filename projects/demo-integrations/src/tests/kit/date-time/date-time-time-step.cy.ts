@@ -147,6 +147,7 @@ describe('DateTime | timeStep', () => {
             });
         });
     });
+
     describe('yy/mm;HH:MM AA', () => {
         describe('timeStep = 1, initial state = 22/12;', () => {
             beforeEach(() => {
@@ -182,7 +183,149 @@ describe('DateTime | timeStep', () => {
                     .type('{downArrow}'.repeat(4))
                     .should('have.a.prop', 'selectionStart', '22.12;'.length)
                     .should('have.a.prop', 'selectionEnd', '22.12;'.length)
-                    .should('have.value', '22.12;10:34 PM');
+                    .should('have.value', '22.12;10:34 AM');
+            });
+
+            describe('meridiem toggling when hour crosses 12-hour boundary', () => {
+                const PREFIX = '22.12;';
+
+                [
+                    // 11 ↑ 12 toggles the day period (12 AM = midnight, 12 PM = noon)
+                    {
+                        typed: '1100p',
+                        time: '11:00 PM',
+                        hourCaret: 0,
+                        newTime: '12:00 AM',
+                    },
+                    {
+                        typed: '1100p',
+                        time: '11:00 PM',
+                        hourCaret: 1,
+                        newTime: '12:00 AM',
+                    },
+                    {
+                        typed: '1100p',
+                        time: '11:00 PM',
+                        hourCaret: 2,
+                        newTime: '12:00 AM',
+                    },
+                    {
+                        typed: '1100a',
+                        time: '11:00 AM',
+                        hourCaret: 0,
+                        newTime: '12:00 PM',
+                    },
+                    {
+                        typed: '1100a',
+                        time: '11:00 AM',
+                        hourCaret: 1,
+                        newTime: '12:00 PM',
+                    },
+                    {
+                        typed: '1100a',
+                        time: '11:00 AM',
+                        hourCaret: 2,
+                        newTime: '12:00 PM',
+                    },
+
+                    // 12 ↑ 01 stays within the same day period
+                    {
+                        typed: '1200a',
+                        time: '12:00 AM',
+                        hourCaret: 0,
+                        newTime: '01:00 AM',
+                    },
+                    {
+                        typed: '1200p',
+                        time: '12:00 PM',
+                        hourCaret: 0,
+                        newTime: '01:00 PM',
+                    },
+                ].forEach(({typed, time, hourCaret, newTime}) => {
+                    const value = `${PREFIX}${time}`;
+                    const newValue = `${PREFIX}${newTime}`;
+                    const caretIndex = PREFIX.length + hourCaret;
+
+                    it(`${value} (caret ${caretIndex}) --- ↑ --- ${newValue}`, () => {
+                        cy.get('@input')
+                            .type(typed)
+                            .should('have.value', value)
+                            .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                            .type('{upArrow}')
+                            .should('have.value', newValue)
+                            .should('have.a.prop', 'selectionStart', caretIndex)
+                            .should('have.a.prop', 'selectionEnd', caretIndex);
+                    });
+                });
+
+                [
+                    // 12 ↓ 11 toggles the day period
+                    {
+                        typed: '1200a',
+                        time: '12:00 AM',
+                        hourCaret: 0,
+                        newTime: '11:00 PM',
+                    },
+                    {
+                        typed: '1200a',
+                        time: '12:00 AM',
+                        hourCaret: 1,
+                        newTime: '11:00 PM',
+                    },
+                    {
+                        typed: '1200a',
+                        time: '12:00 AM',
+                        hourCaret: 2,
+                        newTime: '11:00 PM',
+                    },
+                    {
+                        typed: '1200p',
+                        time: '12:00 PM',
+                        hourCaret: 0,
+                        newTime: '11:00 AM',
+                    },
+                    {
+                        typed: '1200p',
+                        time: '12:00 PM',
+                        hourCaret: 1,
+                        newTime: '11:00 AM',
+                    },
+                    {
+                        typed: '1200p',
+                        time: '12:00 PM',
+                        hourCaret: 2,
+                        newTime: '11:00 AM',
+                    },
+
+                    // 01 ↓ 12 stays within the same day period
+                    {
+                        typed: '0100a',
+                        time: '01:00 AM',
+                        hourCaret: 0,
+                        newTime: '12:00 AM',
+                    },
+                    {
+                        typed: '0100p',
+                        time: '01:00 PM',
+                        hourCaret: 0,
+                        newTime: '12:00 PM',
+                    },
+                ].forEach(({typed, time, hourCaret, newTime}) => {
+                    const value = `${PREFIX}${time}`;
+                    const newValue = `${PREFIX}${newTime}`;
+                    const caretIndex = PREFIX.length + hourCaret;
+
+                    it(`${value} (caret ${caretIndex}) --- ↓ --- ${newValue}`, () => {
+                        cy.get('@input')
+                            .type(typed)
+                            .should('have.value', value)
+                            .type(`{moveToStart}${'{rightArrow}'.repeat(caretIndex)}`)
+                            .type('{downArrow}')
+                            .should('have.value', newValue)
+                            .should('have.a.prop', 'selectionStart', caretIndex)
+                            .should('have.a.prop', 'selectionEnd', caretIndex);
+                    });
+                });
             });
 
             it('increments and decrements minutes in AM/PM mode correctly', () => {
