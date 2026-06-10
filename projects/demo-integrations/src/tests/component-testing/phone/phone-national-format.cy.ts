@@ -1,4 +1,4 @@
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import {TestInput} from '../utils';
@@ -9,7 +9,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'US',
                             metadata,
                             format: 'NATIONAL',
@@ -43,7 +43,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'US',
                             metadata,
                             format: 'NATIONAL',
@@ -95,7 +95,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'RU',
                             metadata,
                             format: 'NATIONAL',
@@ -129,7 +129,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'RU',
                             metadata,
                             format: 'NATIONAL',
@@ -181,7 +181,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'ES',
                             metadata,
                             format: 'NATIONAL',
@@ -215,7 +215,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'ES',
                             metadata,
                             format: 'NATIONAL',
@@ -267,7 +267,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'FR',
                             metadata,
                             format: 'NATIONAL',
@@ -301,7 +301,7 @@ describe('Phone | National format', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'FR',
                             metadata,
                             format: 'NATIONAL',
@@ -352,7 +352,7 @@ describe('Phone | National format', () => {
         beforeEach(() => {
             cy.mount(TestInput, {
                 componentProperties: {
-                    maskitoOptions: maskitoPhoneOptionsGenerator({
+                    maskitoOptions: maskitoPhone({
                         countryIsoCode: 'US',
                         metadata,
                         format: 'NATIONAL',

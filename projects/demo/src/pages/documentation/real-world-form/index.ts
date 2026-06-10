@@ -8,7 +8,7 @@ import {
     maskitoNumber,
     maskitoRemoveOnBlurPlugin,
 } from '@maskito/kit';
-import {maskitoGetCountryFromNumber, maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoGetCountryFromNumber, maskitoPhone} from '@maskito/phone';
 import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {tuiInjectElement} from '@taiga-ui/cdk';
 import {TuiButton, TuiIcon, TuiInput, TuiTitle} from '@taiga-ui/core';
@@ -71,7 +71,7 @@ export default class RealWorldForm {
         ],
     };
 
-    protected readonly phoneMask = maskitoPhoneOptionsGenerator({
+    protected readonly phoneMask = maskitoPhone({
         metadata,
         strict: false,
     });

@@ -1,7 +1,7 @@
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import metadata from 'libphonenumber-js/metadata.min.json';
 
-export default maskitoPhoneOptionsGenerator({
+export default maskitoPhone({
     metadata,
     countryIsoCode: 'US',
 });

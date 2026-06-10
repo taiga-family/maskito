@@ -1,4 +1,4 @@
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import metadata from 'libphonenumber-js/min/metadata';
 
 /**
@@ -6,7 +6,7 @@ import metadata from 'libphonenumber-js/min/metadata';
  * Displays phone numbers in national format: (XXX) XXX-XXXX
  * without the country code prefix.
  */
-export default maskitoPhoneOptionsGenerator({
+export default maskitoPhone({
     countryIsoCode: 'US',
     metadata,
     format: 'NATIONAL',
