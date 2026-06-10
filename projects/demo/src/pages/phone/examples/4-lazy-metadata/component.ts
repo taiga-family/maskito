@@ -30,7 +30,7 @@ export class PhoneMaskDocExample4 implements OnInit {
     protected mask = MASKITO_DEFAULT_OPTIONS;
 
     public ngOnInit(): void {
-        import('libphonenumber-js/min/metadata').then(({default: metadata}) => () => {
+        import('libphonenumber-js/min/metadata').then(({default: metadata}) => {
             this.mask = maskitoPhone({countryIsoCode: 'RU', metadata});
         });
     }
