@@ -38,7 +38,7 @@ export default [
             '@typescript-eslint/consistent-type-exports': 'off',
             '@typescript-eslint/method-signature-style': 'off',
             '@typescript-eslint/strict-void-return': 'off',
-            '@angular-eslint/prefer-output-emitter-ref': 'off'
+            '@angular-eslint/prefer-output-emitter-ref': 'off',
         },
     },
 ];
