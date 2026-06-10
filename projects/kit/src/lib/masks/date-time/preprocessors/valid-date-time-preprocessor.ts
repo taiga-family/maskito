@@ -2,6 +2,7 @@ import type {MaskitoPreprocessor} from '@maskito/core';
 
 import type {MaskitoTimeSegments} from '../../../types';
 import {validateDateString} from '../../../utils';
+import {skipNonDigitCharacters} from '../../../utils/skip-non-digit-characters';
 import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
 import {type MaskitoTimeParams} from '../../time/time-params';
 import {splitDateTimeString} from '../utils';
@@ -35,7 +36,7 @@ export function createValidDateTimePreprocessor({
             return {elementState, data};
         }
 
-        const [from, rawTo] = selection;
+        const [from, rawTo] = skipNonDigitCharacters(value, selection);
         let to = rawTo + data.length;
         const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
 
@@ -78,7 +79,7 @@ export function createValidDateTimePreprocessor({
 
         return {
             elementState: {
-                selection,
+                selection: [from, rawTo],
                 value: `${validatedValue.slice(0, from)}${newData
                     .split(dateSeparator)
                     .map((segment) => '0'.repeat(segment.length))

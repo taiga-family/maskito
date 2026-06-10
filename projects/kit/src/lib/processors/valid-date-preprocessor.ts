@@ -1,6 +1,7 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
 import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
+import {skipNonDigitCharacters} from '../utils/skip-non-digit-characters';
 
 export function createValidDatePreprocessor({
     dateModeTemplate,
@@ -33,7 +34,7 @@ export function createValidDatePreprocessor({
             '',
         );
 
-        const [from, rawTo] = selection;
+        const [from, rawTo] = skipNonDigitCharacters(value, selection);
         let to = rawTo + data.length;
         const newPossibleValue = `${value.slice(0, from)}${newCharacters}${value.slice(to)}`;
 
@@ -73,7 +74,7 @@ export function createValidDatePreprocessor({
 
         return {
             elementState: {
-                selection,
+                selection: [from, rawTo],
                 value: `${validatedValue.slice(0, from)}${newData
                     .split(dateSeparator)
                     .map((segment) => '0'.repeat(segment.length))
