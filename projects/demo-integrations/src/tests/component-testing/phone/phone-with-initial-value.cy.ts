@@ -1,5 +1,5 @@
 import type {MaskitoOptions} from '@maskito/core';
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import metadata from 'libphonenumber-js/min/metadata';
 
 import {TestInput} from '../utils';
@@ -8,7 +8,7 @@ describe('Phone | With initial value', () => {
     describe('Strict mode (Kazakhstan)', () => {
         // Create fresh options for each test to ensure clean closure state
         function createMaskitoOptions(): MaskitoOptions {
-            return maskitoPhoneOptionsGenerator({
+            return maskitoPhone({
                 countryIsoCode: 'KZ',
                 metadata,
                 strict: true,
@@ -131,7 +131,7 @@ describe('Phone | With initial value', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'US',
                             metadata,
                             strict: true,
@@ -205,7 +205,7 @@ describe('Phone | With initial value', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'FR',
                             metadata,
                             strict: true,
@@ -279,7 +279,7 @@ describe('Phone | With initial value', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'US',
                             metadata,
                             strict: false,
@@ -338,7 +338,7 @@ describe('Phone | With initial value', () => {
             beforeEach(() => {
                 cy.mount(TestInput, {
                     componentProperties: {
-                        maskitoOptions: maskitoPhoneOptionsGenerator({
+                        maskitoOptions: maskitoPhone({
                             countryIsoCode: 'FR',
                             metadata,
                             strict: false,

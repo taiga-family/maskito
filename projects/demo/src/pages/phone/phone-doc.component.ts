@@ -4,7 +4,7 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
-import {maskitoPhoneOptionsGenerator, type MaskitoPhoneParams} from '@maskito/phone';
+import {maskitoPhone, type MaskitoPhoneParams} from '@maskito/phone';
 import {isSafari, WA_IS_IOS} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {CHAR_PLUS, tuiInjectElement} from '@taiga-ui/cdk';
@@ -32,7 +32,7 @@ const metadataSets = {
     mobile: mobileMetadata,
 } as const satisfies Record<string, MetadataJson>;
 
-type GeneratorOptions = Required<Parameters<typeof maskitoPhoneOptionsGenerator>[0]>;
+type GeneratorOptions = Required<Parameters<typeof maskitoPhone>[0]>;
 
 type MetadataName = keyof typeof metadataSets;
 
@@ -149,7 +149,7 @@ export default class PhoneDocComponent implements GeneratorOptions {
     }
 
     private computeOptions(): Required<MaskitoOptions> {
-        const options = maskitoPhoneOptionsGenerator(this);
+        const options = maskitoPhone(this);
         const code = getCountryCallingCode(this.countryIsoCode, this.metadata);
         const prefix = `${CHAR_PLUS}${code} `;
 

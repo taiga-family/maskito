@@ -6,14 +6,14 @@ import {
 } from '@maskito/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
-import {maskitoPhoneOptionsGenerator} from '../phone-mask';
+import {maskitoPhone} from '../phone-mask';
 
 describe('Phone (maskitoTransform)', () => {
     describe('RU number', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoPhoneOptionsGenerator({
+            options = maskitoPhone({
                 countryIsoCode: 'RU',
                 metadata,
             });
@@ -42,7 +42,7 @@ describe('Phone (maskitoTransform)', () => {
         let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
         beforeEach(() => {
-            options = maskitoPhoneOptionsGenerator({
+            options = maskitoPhone({
                 metadata,
                 strict: false,
                 countryIsoCode: 'RU',
@@ -69,7 +69,7 @@ describe('Phone (maskitoTransform)', () => {
             let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
             beforeEach(() => {
-                options = maskitoPhoneOptionsGenerator({
+                options = maskitoPhone({
                     countryIsoCode: 'US',
                     metadata,
                     format: 'NATIONAL',
@@ -103,7 +103,7 @@ describe('Phone (maskitoTransform)', () => {
             let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
             beforeEach(() => {
-                options = maskitoPhoneOptionsGenerator({
+                options = maskitoPhone({
                     countryIsoCode: 'RU',
                     metadata,
                     format: 'NATIONAL',
@@ -134,7 +134,7 @@ describe('Phone (maskitoTransform)', () => {
             let options: MaskitoOptions = MASKITO_DEFAULT_OPTIONS;
 
             beforeEach(() => {
-                options = maskitoPhoneOptionsGenerator({
+                options = maskitoPhone({
                     countryIsoCode: 'US',
                     metadata,
                     format: 'NATIONAL',

@@ -18,7 +18,7 @@ export interface MaskitoPhoneParams {
     format?: Extract<NumberFormat, 'INTERNATIONAL' | 'NATIONAL'>;
 }
 
-export function maskitoPhoneOptionsGenerator({
+export function maskitoPhone({
     countryIsoCode,
     metadata,
     strict = true,
@@ -38,3 +38,10 @@ export function maskitoPhoneOptionsGenerator({
               separator,
           });
 }
+
+export {
+    /**
+     * @deprecated Use {@link maskitoPhone} instead.
+     */
+    maskitoPhone as maskitoPhoneOptionsGenerator,
+};

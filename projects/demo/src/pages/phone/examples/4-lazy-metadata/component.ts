@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, type OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_OPTIONS} from '@maskito/core';
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import {TuiInput} from '@taiga-ui/core';
 
 @Component({
@@ -31,7 +31,7 @@ export class PhoneMaskDocExample4 implements OnInit {
 
     public ngOnInit(): void {
         import('libphonenumber-js/min/metadata').then(({default: metadata}) => () => {
-            this.mask = maskitoPhoneOptionsGenerator({countryIsoCode: 'RU', metadata});
+            this.mask = maskitoPhone({countryIsoCode: 'RU', metadata});
         });
     }
 }

@@ -1,6 +1,6 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {maskitoAddOnFocusPlugin, maskitoRemoveOnBlurPlugin} from '@maskito/kit';
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import {getCountryCallingCode} from 'libphonenumber-js/core';
 import metadata from 'libphonenumber-js/min/metadata';
 
@@ -8,7 +8,7 @@ const countryIsoCode = 'TR';
 const code = getCountryCallingCode(countryIsoCode, metadata);
 const prefix = `+${code} `;
 
-const phoneOptions = maskitoPhoneOptionsGenerator({
+const phoneOptions = maskitoPhone({
     metadata,
     countryIsoCode,
     strict: true,
