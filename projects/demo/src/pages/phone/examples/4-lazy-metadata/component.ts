@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, resource} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MaskitoDirective} from '@maskito/angular';
-import {maskitoPhoneOptionsGenerator} from '@maskito/phone';
+import {maskitoPhone} from '@maskito/phone';
 import {TuiInput} from '@taiga-ui/core';
 
 @Component({
@@ -30,7 +30,7 @@ export class PhoneMaskDocExample4 {
     protected readonly mask = resource({
         loader: async () =>
             import('libphonenumber-js/min/metadata').then(({default: metadata}) =>
-                maskitoPhoneOptionsGenerator({
+                maskitoPhone({
                     countryIsoCode: 'RU',
                     metadata,
                 }),
