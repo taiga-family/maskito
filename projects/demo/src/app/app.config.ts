@@ -4,17 +4,19 @@ import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideRouter, withInMemoryScrolling} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
+import {WA_IS_MOBILE} from '@ng-web-apis/platform';
 import {
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
     TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
+    TUI_DOC_EXAMPLE_OPTIONS,
     TUI_DOC_LOGO,
     TUI_DOC_PAGES,
     TUI_DOC_PAGES_ICONS,
     TUI_DOC_SOURCE_CODE,
     TUI_DOC_TITLE,
     TUI_DOC_TYPE_REFERENCE_HANDLER,
-    tuiDocExampleOptionsProvider,
+    type TuiDocExampleOptions,
     type TuiDocSourceCodePathOptions,
 } from '@taiga-ui/addon-doc';
 import {provideTaiga} from '@taiga-ui/core';
@@ -59,7 +61,7 @@ export const APP_CONFIG: ApplicationConfig = {
         },
         {
             provide: TUI_DOC_DEFAULT_TABS,
-            useValue: ['Description and examples', 'API'],
+            useValue: ['Examples', 'API'],
         },
         {
             provide: TUI_DOC_PAGES,
@@ -90,22 +92,31 @@ export const APP_CONFIG: ApplicationConfig = {
             provide: TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
             useValue: addDefaultTabsProcessor,
         },
-        tuiDocExampleOptionsProvider({
-            codeEditorVisibilityHandler: (files) => {
-                const fileNames = Object.keys(files);
+        {
+            provide: TUI_DOC_EXAMPLE_OPTIONS,
+            useFactory: (): TuiDocExampleOptions => {
+                const mobile = inject(WA_IS_MOBILE);
 
-                return (
-                    fileNames.includes(DocExamplePrimaryTab.MaskitoOptions) &&
-                    fileNames.includes(DocExamplePrimaryTab.JavaScript)
-                );
+                return {
+                    codeEditorVisibilityHandler: (files) => {
+                        const fileNames = Object.keys(files);
+
+                        return (
+                            !mobile &&
+                            fileNames.includes(DocExamplePrimaryTab.MaskitoOptions) &&
+                            fileNames.includes(DocExamplePrimaryTab.JavaScript)
+                        );
+                    },
+                    tabTitles: new Map<string, PolymorpheusContent>([
+                        [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
+                        [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
+                        [DocExamplePrimaryTab.React, REACT_LOGO],
+                        [DocExamplePrimaryTab.Vue, VUE_LOGO],
+                    ]),
+                    fullsize: true,
+                };
             },
-            tabTitles: new Map<string, PolymorpheusContent>([
-                [DocExamplePrimaryTab.Angular, ANGULAR_LOGO],
-                [DocExamplePrimaryTab.JavaScript, JAVASCRIPT_LOGO],
-                [DocExamplePrimaryTab.React, REACT_LOGO],
-                [DocExamplePrimaryTab.Vue, VUE_LOGO],
-            ]),
-        }),
+        },
         {
             provide: HIGHLIGHT_OPTIONS,
             useFactory: () => {

@@ -14,7 +14,7 @@ import mask from './mask';
                 tuiTextarea
                 [maskito]="maskitoOptions"
                 [ngModel]="initialValue"
-                [min]="6"
+                [max]="7"
             ></textarea>
         </tui-textfield>
     `,
