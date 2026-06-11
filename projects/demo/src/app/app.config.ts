@@ -1,4 +1,9 @@
-import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {
+    isPlatformBrowser,
+    LocationStrategy,
+    PathLocationStrategy,
+    ViewportScroller,
+} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
 import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
 import {provideClientHydration} from '@angular/platform-browser';
@@ -35,6 +40,7 @@ import {
 import {VUE_LOGO} from './modules/example-primary-tabs-icons/vue-logo.component';
 import {LOGO_CONTENT} from './modules/logo/logo.component';
 import {addDefaultTabsProcessor} from './utils';
+import {TuiViewportScroller} from './utils/viewport-scroller.service';
 
 export const APP_CONFIG: ApplicationConfig = {
     providers: [
@@ -49,6 +55,10 @@ export const APP_CONFIG: ApplicationConfig = {
         ),
         provideTaiga(),
         provideHttpClient(),
+        {
+            provide: ViewportScroller,
+            useClass: TuiViewportScroller,
+        },
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy,
