@@ -1,8 +1,8 @@
 import type {MaskitoOptions} from '@maskito/core';
 import type {CountryCode, MetadataJson, NumberFormat} from 'libphonenumber-js/core';
 
-import {maskitoPhoneNonStrictOptionsGenerator} from './phone-mask-non-strict';
-import {maskitoPhoneStrictOptionsGenerator} from './phone-mask-strict';
+import {maskitoPhoneNonStrict} from './phone-mask-non-strict';
+import {maskitoPhoneStrict} from './phone-mask-strict';
 
 export interface MaskitoPhoneParams {
     countryIsoCode?: CountryCode;
@@ -26,13 +26,13 @@ export function maskitoPhone({
     format = 'INTERNATIONAL',
 }: MaskitoPhoneParams): Required<MaskitoOptions> {
     return strict && countryIsoCode
-        ? maskitoPhoneStrictOptionsGenerator({
+        ? maskitoPhoneStrict({
               countryIsoCode,
               metadata,
               separator,
               format,
           })
-        : maskitoPhoneNonStrictOptionsGenerator({
+        : maskitoPhoneNonStrict({
               defaultIsoCode: countryIsoCode,
               metadata,
               separator,
