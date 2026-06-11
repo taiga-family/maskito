@@ -1,6 +1,7 @@
 import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
 import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
+import {provideClientHydration} from '@angular/platform-browser';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideRouter, withInMemoryScrolling} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
@@ -37,6 +38,7 @@ import {addDefaultTabsProcessor} from './utils';
 
 export const APP_CONFIG: ApplicationConfig = {
     providers: [
+        ngDevMode ? [] : provideClientHydration(),
         provideAnimations(),
         provideRouter(
             ROUTES,
