@@ -8,7 +8,7 @@
             target="_blank"
             title="Maskito source code on GitHub"
             tuiLink
-            class="link"
+            class="action"
         ></a>
 
         <a
@@ -19,7 +19,7 @@
             target="_blank"
             title="Get help on Telegram"
             tuiLink
-            class="link"
+            class="action"
         ></a>
 
         <a
@@ -27,8 +27,20 @@
             iconStart="assets/icons/stackblitz.svg"
             title="Maskito StackBlitz Starter"
             tuiLink
-            class="link"
+            class="action"
             [routerLink]="stackblitzStarterPath"
         ></a>
+
+        <button
+            appearance="icon"
+            size="xs"
+            tuiIconButton
+            type="button"
+            class="action"
+            [iconStart]="darkMode() ? '@tui.sun' : '@tui.moon'"
+            (click)="darkMode.set(!darkMode())"
+        >
+            Switch between dark and light mode
+        </button>
     </ng-container>
 </tui-doc-main>

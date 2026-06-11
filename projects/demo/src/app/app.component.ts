@@ -6,12 +6,12 @@ import {DemoPath} from '@demo/constants';
 import {WaResizeObserverService} from '@ng-web-apis/resize-observer';
 import {TUI_DOC_PAGE_LOADED, TuiDocMain} from '@taiga-ui/addon-doc';
 import {tuiInjectElement} from '@taiga-ui/cdk';
-import {TuiLink} from '@taiga-ui/core';
+import {TUI_DARK_MODE, TuiButton, TuiLink} from '@taiga-ui/core';
 import {debounceTime, map, startWith} from 'rxjs';
 
 @Component({
     selector: 'app',
-    imports: [RouterLink, TuiDocMain, TuiLink],
+    imports: [RouterLink, TuiButton, TuiDocMain, TuiLink],
     templateUrl: './app.component.html',
     styleUrl: './app.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,6 +47,7 @@ import {debounceTime, map, startWith} from 'rxjs';
     ],
 })
 export class App {
+    protected readonly darkMode = inject(TUI_DARK_MODE);
     protected readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
 
     constructor() {
