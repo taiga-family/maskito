@@ -91,6 +91,14 @@ describe('Time', () => {
                         .should('have.a.prop', 'selectionStart', 2)
                         .should('have.a.prop', 'selectionEnd', 2);
                 });
+
+                it('does not append AM/PM when mode has no day-period (HH:MM, hour 11 -> 12)', () => {
+                    cy.get('@input')
+                        .type('11')
+                        .type('{leftArrow}'.repeat(2))
+                        .type('{upArrow}')
+                        .should('have.value', '12');
+                });
             });
 
             describe('step = 0', () => {
@@ -134,11 +142,26 @@ describe('Time', () => {
                 describe('time segment digits stepping', () => {
                     [
                         {value: '12:34 AM', caretIndex: 0, newValue: '01:34 AM'},
-                        {value: '12:34 AM', caretIndex: '1'.length, newValue: '01:34 AM'},
+                        {
+                            value: '12:34 AM',
+                            caretIndex: '1'.length,
+                            newValue: '01:34 AM',
+                        },
                         {
                             value: '12:34 AM',
                             caretIndex: '12'.length,
                             newValue: '01:34 AM',
+                        },
+                        {value: '12:34 PM', caretIndex: 0, newValue: '01:34 PM'},
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '1'.length,
+                            newValue: '01:34 PM',
+                        },
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '12'.length,
+                            newValue: '01:34 PM',
                         },
                         {
                             value: '12:34 AM',
@@ -168,12 +191,38 @@ describe('Time', () => {
                     });
 
                     [
-                        {value: '12:34 PM', caretIndex: 0, newValue: '11:34 PM'},
-                        {value: '12:34 PM', caretIndex: '1'.length, newValue: '11:34 PM'},
+                        {value: '12:34 PM', caretIndex: 0, newValue: '11:34 AM'},
+                        {
+                            value: '12:34 PM',
+                            caretIndex: '1'.length,
+                            newValue: '11:34 AM',
+                        },
                         {
                             value: '12:34 PM',
                             caretIndex: '12'.length,
-                            newValue: '11:34 PM',
+                            newValue: '11:34 AM',
+                        },
+                        {value: '01:34 AM', caretIndex: 0, newValue: '12:34 AM'},
+                        {
+                            value: '01:34 AM',
+                            caretIndex: '0'.length,
+                            newValue: '12:34 AM',
+                        },
+                        {
+                            value: '01:34 AM',
+                            caretIndex: '01'.length,
+                            newValue: '12:34 AM',
+                        },
+                        {value: '01:34 PM', caretIndex: 0, newValue: '12:34 PM'},
+                        {
+                            value: '01:34 PM',
+                            caretIndex: '0'.length,
+                            newValue: '12:34 PM',
+                        },
+                        {
+                            value: '01:34 PM',
+                            caretIndex: '01'.length,
+                            newValue: '12:34 PM',
                         },
                         {
                             value: '12:34 PM',
@@ -199,6 +248,38 @@ describe('Time', () => {
                                 .should('have.value', newValue)
                                 .should('have.a.prop', 'selectionStart', caretIndex)
                                 .should('have.a.prop', 'selectionEnd', caretIndex);
+                        });
+                    });
+                });
+
+                describe('hour stepping across 11/12 boundary toggles meridiem', () => {
+                    [
+                        {value: '11:00 AM', newValue: '12:00 PM'},
+                        {value: '11:00 PM', newValue: '12:00 AM'},
+                    ].forEach(({value, newValue}) => {
+                        it(`${withCaretLabel(value, '1'.length)} --- ↑ --- ${withCaretLabel(newValue, '1'.length)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat('1'.length)}`)
+                                .type('{upArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', '1'.length)
+                                .should('have.a.prop', 'selectionEnd', '1'.length);
+                        });
+                    });
+
+                    [
+                        {value: '12:00 AM', newValue: '11:00 PM'},
+                        {value: '12:00 PM', newValue: '11:00 AM'},
+                    ].forEach(({value, newValue}) => {
+                        it(`${withCaretLabel(value, '1'.length)} --- ↓ --- ${withCaretLabel(newValue, '1'.length)}`, () => {
+                            cy.get('@textfield')
+                                .type(value)
+                                .type(`{moveToStart}${'{rightArrow}'.repeat('1'.length)}`)
+                                .type('{downArrow}')
+                                .should('have.value', newValue)
+                                .should('have.a.prop', 'selectionStart', '1'.length)
+                                .should('have.a.prop', 'selectionEnd', '1'.length);
                         });
                     });
                 });
@@ -258,6 +339,75 @@ describe('Time', () => {
                                 .should('have.a.prop', 'selectionStart', caretIndex)
                                 .should('have.a.prop', 'selectionEnd', caretIndex);
                         });
+                    });
+                });
+            });
+
+            describe('step = 3 (wraps 11/12 boundary in one jump)', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM%20AA&step=3`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('textfield');
+                });
+
+                [
+                    {value: '10:00 AM', newValue: '01:00 PM'},
+                    {value: '10:00 PM', newValue: '01:00 AM'},
+                ].forEach(({value, newValue}) => {
+                    it(`${withCaretLabel(value, '1'.length)} --- ↑ --- ${withCaretLabel(newValue, '1'.length)}`, () => {
+                        cy.get('@textfield')
+                            .type(value)
+                            .type(`{moveToStart}${'{rightArrow}'.repeat('1'.length)}`)
+                            .type('{upArrow}')
+                            .should('have.value', newValue)
+                            .should('have.a.prop', 'selectionStart', '1'.length)
+                            .should('have.a.prop', 'selectionEnd', '1'.length);
+                    });
+                });
+
+                [
+                    {value: '01:00 PM', newValue: '10:00 AM'},
+                    {value: '01:00 AM', newValue: '10:00 PM'},
+                ].forEach(({value, newValue}) => {
+                    it(`${withCaretLabel(value, '1'.length)} --- ↓ --- ${withCaretLabel(newValue, '1'.length)}`, () => {
+                        cy.get('@textfield')
+                            .type(value)
+                            .type(`{moveToStart}${'{rightArrow}'.repeat('1'.length)}`)
+                            .type('{downArrow}')
+                            .should('have.value', newValue)
+                            .should('have.a.prop', 'selectionStart', '1'.length)
+                            .should('have.a.prop', 'selectionEnd', '1'.length);
+                    });
+                });
+            });
+
+            describe('step = 12 (full half-day always flips meridiem)', () => {
+                beforeEach(() => {
+                    cy.visit(`/${DemoPath.Time}/API?mode=HH:MM%20AA&step=12`);
+                    cy.get('#demo-content input')
+                        .should('be.visible')
+                        .first()
+                        .focus()
+                        .clear()
+                        .as('textfield');
+                });
+
+                [
+                    {value: '01:30 AM', newValue: '01:30 PM'},
+                    {value: '12:30 AM', newValue: '12:30 PM'},
+                ].forEach(({value, newValue}) => {
+                    it(`${withCaretLabel(value, '1'.length)} --- ↑ --- ${withCaretLabel(newValue, '1'.length)}`, () => {
+                        cy.get('@textfield')
+                            .type(value)
+                            .type(`{moveToStart}${'{rightArrow}'.repeat('1'.length)}`)
+                            .type('{upArrow}')
+                            .should('have.value', newValue)
+                            .should('have.a.prop', 'selectionStart', '1'.length)
+                            .should('have.a.prop', 'selectionEnd', '1'.length);
                     });
                 });
             });
