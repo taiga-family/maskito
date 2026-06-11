@@ -1,13 +1,12 @@
-import {ViewportScroller} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {WaResizeObserverService} from '@ng-web-apis/resize-observer';
 import {TUI_DOC_PAGE_LOADED, TuiDocMain} from '@taiga-ui/addon-doc';
-import {tuiInjectElement} from '@taiga-ui/cdk';
+import {tuiInjectElement, tuiZoneOptimized} from '@taiga-ui/cdk';
 import {TUI_DARK_MODE, TuiButton, TuiLink} from '@taiga-ui/core';
-import {debounceTime, map, startWith} from 'rxjs';
+import {distinctUntilChanged, map, shareReplay, startWith} from 'rxjs';
 
 @Component({
     selector: 'app',
@@ -23,9 +22,10 @@ import {debounceTime, map, startWith} from 'rxjs';
                 const host = tuiInjectElement();
 
                 return inject(WaResizeObserverService).pipe(
-                    startWith(null),
-                    debounceTime(0), // Synchronous scrollIntoView (after click) does not work https://stackoverflow.com/a/56971002
-                    map(() => {
+                    map(([entry]) => entry?.contentRect.height ?? 0),
+                    distinctUntilChanged(),
+                    startWith(0),
+                    map((hostHeight) => {
                         const exampleElements = Array.from(
                             host.querySelectorAll('tui-doc-example'),
                         );
@@ -35,11 +35,15 @@ import {debounceTime, map, startWith} from 'rxjs';
                         );
 
                         return (
+                            Boolean(hostHeight) &&
                             exampleElements.every((el) =>
-                                el.querySelector('.t-example'),
-                            ) && codeElements.every((el) => el.querySelector('.t-code'))
+                                el.querySelector('.t-demo')?.matches(':not(:empty)'),
+                            ) &&
+                            codeElements.every((el) => el.querySelector('.t-code'))
                         );
                     }),
+                    shareReplay(1),
+                    tuiZoneOptimized(),
                     takeUntilDestroyed(),
                 );
             },
@@ -49,8 +53,4 @@ import {debounceTime, map, startWith} from 'rxjs';
 export class App {
     protected readonly darkMode = inject(TUI_DARK_MODE);
     protected readonly stackblitzStarterPath = `/${DemoPath.Stackblitz}`;
-
-    constructor() {
-        inject(ViewportScroller).setOffset([0, 64]);
-    }
 }
