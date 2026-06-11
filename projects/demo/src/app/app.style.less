@@ -6,6 +6,12 @@
     color: var(--tui-text-primary);
 }
 
-.link {
-    margin-inline-start: 1rem;
+.action {
+    &[tuiLink] {
+        margin-inline-start: 1rem;
+    }
+
+    &[tuiIconButton] {
+        margin-inline-start: 0.75rem;
+    }
 }
