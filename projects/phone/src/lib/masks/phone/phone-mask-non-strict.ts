@@ -9,7 +9,7 @@ import {
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
-export function maskitoPhoneNonStrictOptionsGenerator({
+export function maskitoPhoneNonStrict({
     defaultIsoCode,
     metadata,
     separator = '-',
