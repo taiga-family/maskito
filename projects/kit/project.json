@@ -29,6 +29,7 @@
                 "main": "{projectRoot}/src/index.ts",
                 "outputPath": "dist/{projectName}",
                 "project": "{projectRoot}/package.json",
+                "rollupConfig": "rollup.config.ts",
                 "tsConfig": "tsconfig.build.json",
                 "useLegacyTypescriptPlugin": false
             },
