@@ -26,6 +26,7 @@ export const DemoPath = {
     Postfix: 'recipes/postfix',
     Placeholder: 'recipes/placeholder',
     NetworkAddress: 'recipes/network-address',
+    RTL: 'recipes/rtl',
     BrowserSupport: 'browser-support',
     SupportedInputTypes: 'supported-input-types',
     RealWorldForm: 'real-world-form',

@@ -1,0 +1,14 @@
+<tui-textfield
+    dir="rtl"
+    iconEnd="@tui.calendar"
+    [style.max-width.rem]="20"
+>
+    <label tuiLabel>Enter date</label>
+
+    <input
+        inputmode="numeric"
+        tuiInput
+        [maskito]="maskitoOptions"
+        [(ngModel)]="value"
+    />
+</tui-textfield>

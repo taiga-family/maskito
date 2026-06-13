@@ -1,0 +1,59 @@
+<tui-doc-page
+    header="RTL"
+    package="Recipes"
+>
+    <ng-template pageTab>
+        <p>These examples show how masked inputs behave in right-to-left contexts.</p>
+
+        <p>
+            Date and phone masks often mix digits, separators, placeholders, and text. In native
+            <code>dir="rtl"</code>
+            inputs, browsers may visually reorder such values according to bidirectional text rules.
+        </p>
+
+        <p>The actual input value can still be correct, even if the displayed text looks unexpected.</p>
+
+        <p>The examples below show native RTL behavior and possible workarounds.</p>
+
+        <p>
+            Unicode direction marks are used here as an experimental workaround. They can improve the visual order, but
+            may temporarily appear in the raw input value while editing.
+        </p>
+
+        <tui-doc-example
+            heading="Date with placeholder"
+            [content]="datePlaceholderExample1"
+            [description]="dateDescription"
+        >
+            <rtl-doc-example-1 />
+
+            <ng-template #dateDescription>
+                <p>
+                    A date placeholder like
+                    <code>12/mm/yyyy</code>
+                    contains numbers, slashes, and Latin letters. In
+                    <code>dir="rtl"</code>
+                    inputs, browsers may display this mixed-direction text in an unexpected order.
+                </p>
+
+                <p>This example shows the issue and a possible workaround.</p>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Phone with placeholder"
+            [content]="phonePlaceholderExample2"
+            [description]="phoneDescription"
+        >
+            <rtl-doc-example-2 />
+
+            <ng-template #phoneDescription>
+                <p>Phone masks can have the same problem because they mix digits, separators, and placeholder text.</p>
+
+                <p>
+                    This example shows how a phone placeholder behaves in RTL and how the visual order can be improved.
+                </p>
+            </ng-template>
+        </tui-doc-example>
+    </ng-template>
+</tui-doc-page>
