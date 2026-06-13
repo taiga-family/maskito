@@ -1,0 +1,27 @@
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
+import {maskitoNumber} from '@maskito/kit';
+
+import {MaskitoAutoTransformDirective} from './auto-transform.directive';
+import {CustomInputComponent} from './custom-input.component';
+
+@Component({
+    selector: 'cva-auto-transform-doc-example-7',
+    imports: [
+        CustomInputComponent,
+        MaskitoAutoTransformDirective,
+        MaskitoDirective,
+        ReactiveFormsModule,
+    ],
+    templateUrl: './template.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class CvaAutoTransformDocExample7 {
+    protected readonly control = new FormControl('');
+    protected readonly maskito = maskitoNumber({maximumFractionDigits: 2});
+
+    protected setValue(): void {
+        this.control.setValue('12345.6789');
+    }
+}

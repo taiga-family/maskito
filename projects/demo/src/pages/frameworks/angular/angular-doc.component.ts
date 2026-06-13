@@ -11,10 +11,12 @@ import {ProgrammaticallyDocExample3} from './examples/3-programmatically/compone
 import {PipeDocExample4} from './examples/4-pipe/component';
 import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
 import {PatternDocExample6} from './examples/6-pattern/component';
+import {CvaAutoTransformDocExample7} from './examples/7-cva-auto-transform/component';
 
 @Component({
     selector: 'angular-doc-page',
     imports: [
+        CvaAutoTransformDocExample7,
         MaskitoDirective,
         NestedDocExample1,
         NestedDocExample2,
@@ -77,5 +79,20 @@ export default class AngularDocPageComponent {
             with: {loader: 'text'},
         }),
         HTML: import('./examples/6-pattern/template.html'),
+    };
+
+    protected readonly cvaAutoTransformExample: Record<string, TuiRawLoaderContent> = {
+        TypeScript: import('./examples/7-cva-auto-transform/component.ts?raw', {
+            with: {loader: 'text'},
+        }),
+        HTML: import('./examples/7-cva-auto-transform/template.html'),
+        'auto-transform.directive.ts': import(
+            './examples/7-cva-auto-transform/auto-transform.directive.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+        'custom-input.component.ts': import(
+            './examples/7-cva-auto-transform/custom-input.component.ts?raw',
+            {with: {loader: 'text'}}
+        ),
     };
 }
