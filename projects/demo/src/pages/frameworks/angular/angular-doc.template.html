@@ -176,6 +176,27 @@
             </ng-template>
             <custom-unmask-handler-doc-example-5 />
         </tui-doc-example>
+
+        <tui-doc-example
+            heading="Custom CVA auto-transform"
+            [content]="cvaAutoTransformExample"
+            [description]="cvaAutoTransformDescription"
+        >
+            <ng-template #cvaAutoTransformDescription>
+                <p>
+                    Native inputs are formatted automatically when value is set programmatically through Angular forms.
+                    Custom
+                    <code>ControlValueAccessor</code>
+                    can require manual patching of
+                    <code>writeValue</code>
+                    to transform incoming values with
+                    <code>maskitoTransform</code>
+                    before rendering.
+                </p>
+            </ng-template>
+
+            <cva-auto-transform-doc-example-7 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab="Setup">
