@@ -164,6 +164,11 @@ export const ROUTES: Routes = [
             import('../pages/recipes/network-address/network-address-doc.component'),
         title: 'Network address',
     },
+    {
+        path: DemoPath.RTL,
+        loadComponent: () => import('../pages/recipes/rtl/rtl-doc.component'),
+        title: 'RTL',
+    },
     // Other
     {
         path: DemoPath.BrowserSupport,

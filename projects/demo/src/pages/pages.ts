@@ -167,6 +167,12 @@ export const DEMO_PAGES: TuiDocRoutePages = [
         keywords: 'ipv6, ipv4, ip, mac, address, network, recipe',
     },
     {
+        section: 'Recipes',
+        title: 'RTL',
+        route: DemoPath.RTL,
+        keywords: 'RTL',
+    },
+    {
         section: 'Other',
         title: 'Browser support',
         route: DemoPath.BrowserSupport,
