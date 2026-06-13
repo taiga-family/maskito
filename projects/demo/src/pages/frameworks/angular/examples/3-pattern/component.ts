@@ -3,12 +3,12 @@ import {FormsModule} from '@angular/forms';
 import {MaskitoPattern} from '@maskito/angular';
 
 @Component({
-    selector: 'pattern-doc-example-6',
+    selector: 'pattern-doc-example-3',
     imports: [FormsModule, MaskitoPattern],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatternDocExample6 {
+export class PatternDocExample3 {
     protected name = '';
     protected cvc = '';
     protected regExp = /^[a-z\s]+$/i;
