@@ -57,7 +57,8 @@
             "{workspaceRoot}/karma.*.js",
             "{workspaceRoot}/tsconfig.*.json",
             "{workspaceRoot}/tsconfig.json",
-            "{workspaceRoot}/babel.config.json"
+            "{workspaceRoot}/babel.config.json",
+            "{workspaceRoot}/rollup.config.ts"
         ],
         "production": [
             "default",
