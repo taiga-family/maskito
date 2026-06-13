@@ -25,8 +25,6 @@ export default [
         rules: {
             '@angular-eslint/template/alt-text': 'off',
             '@angular-eslint/prefer-signals': 'off',
-            '@typescript-eslint/prefer-function-type': 'off',
-            '@typescript-eslint/no-redundant-type-constituents': 'off',
             'no-irregular-whitespace': 'off',
             'de-morgan/no-negated-disjunction': 'off',
             '@angular-eslint/template/no-interpolation-in-attributes': 'off',

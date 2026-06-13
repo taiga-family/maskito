@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents -- because ts-ignore */
 import type {RefCallback} from 'react';
 // @ts-ignore
 import type {UseFormRegisterReturn} from 'react-hook-form';
