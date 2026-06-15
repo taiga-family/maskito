@@ -1,64 +1,51 @@
 {
-    "tui": {
-        "enabled": false
-    },
-    "workspaceLayout": {
-        "libsDir": "projects",
-        "appsDir": "projects"
-    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "analytics": false,
+    "defaultBase": "origin/main",
     "defaultProject": "demo",
     "generators": {
-        "@nx/js:library": {
-            "buildable": true,
-            "publishable": true,
-            "strict": true,
-            "linter": "none",
-            "unitTestRunner": "jest",
-            "config": "project"
-        },
-        "@nx/angular:library": {
-            "linter": "none",
-            "unitTestRunner": "jest",
-            "buildable": true,
-            "publishable": true,
-            "compilationMode": "partial",
-            "strict": true,
-            "skipModule": true,
-            "standaloneConfig": true
-        },
         "@nx/angular:application": {
-            "style": "less",
             "linter": "none",
+            "style": "less",
             "unitTestRunner": "jest"
         },
         "@nx/angular:component": {
             "style": "less"
+        },
+        "@nx/angular:library": {
+            "buildable": true,
+            "compilationMode": "partial",
+            "linter": "none",
+            "publishable": true,
+            "skipModule": true,
+            "standaloneConfig": true,
+            "strict": true,
+            "unitTestRunner": "jest"
+        },
+        "@nx/js:library": {
+            "buildable": true,
+            "config": "project",
+            "linter": "none",
+            "publishable": true,
+            "strict": true,
+            "unitTestRunner": "jest"
         },
         "@nx/react": {
             "application": {
                 "babel": true
             },
             "library": {
+                "bundler": "rollup",
                 "linter": "eslint",
                 "publishable": true,
-                "bundler": "rollup",
-                "style": "none",
                 "strict": true,
+                "style": "none",
                 "unitTestRunner": "jest"
             }
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
-        "sharedGlobals": [
-            "{workspaceRoot}/angular.json",
-            "{workspaceRoot}/nx.json",
-            "{workspaceRoot}/karma.*.js",
-            "{workspaceRoot}/tsconfig.*.json",
-            "{workspaceRoot}/tsconfig.json",
-            "{workspaceRoot}/babel.config.json"
-        ],
         "production": [
             "default",
             "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -67,28 +54,38 @@
             "!{projectRoot}/src/test-setup.[jt]s",
             "!{projectRoot}/**/*.cy.[jt]s?(x)",
             "!{projectRoot}/cypress.config.[jt]s"
+        ],
+        "sharedGlobals": [
+            "{workspaceRoot}/angular.json",
+            "{workspaceRoot}/nx.json",
+            "{workspaceRoot}/karma.*.js",
+            "{workspaceRoot}/tsconfig.*.json",
+            "{workspaceRoot}/tsconfig.json",
+            "{workspaceRoot}/babel.config.json"
         ]
     },
+    "parallel": 3,
     "targetDefaults": {
-        "build": {
-            "inputs": ["production", "^production"],
-            "cache": true
-        },
-        "lint": {
-            "cache": true
-        },
         "@nx/jest:jest": {
-            "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
             "cache": true,
-            "options": {
-                "passWithNoTests": true
-            },
             "configurations": {
                 "ci": {
                     "ci": true,
                     "codeCoverage": true
                 }
+            },
+            "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+            ],
+            "options": {
+                "passWithNoTests": true
             }
+        },
+        "build": {
+            "cache": true,
+            "inputs": ["production", "^production"]
         },
         "component-test": {
             "cache": true,
@@ -97,10 +94,17 @@
         "ct-react": {
             "cache": true,
             "inputs": ["default", "^production"]
+        },
+        "lint": {
+            "cache": true
         }
     },
-    "parallel": 3,
+    "tui": {
+        "enabled": false
+    },
     "useInferencePlugins": false,
-    "defaultBase": "origin/main",
-    "analytics": false
+    "workspaceLayout": {
+        "appsDir": "projects",
+        "libsDir": "projects"
+    }
 }
