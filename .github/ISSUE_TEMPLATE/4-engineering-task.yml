@@ -1,7 +1,6 @@
 name: '🗂 - Engineering Task'
 title: '🗂 - '
 description: Define or track an engineering task
-labels: ['state: needs triage']
 
 body:
   - type: textarea
