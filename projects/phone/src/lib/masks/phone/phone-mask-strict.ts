@@ -12,7 +12,7 @@ import {
 } from './processors';
 import {generatePhoneMask, getPhoneTemplate, selectTemplate} from './utils';
 
-export function maskitoPhoneStrictOptionsGenerator({
+export function maskitoPhoneStrict({
     countryIsoCode,
     metadata,
     separator = '-',
