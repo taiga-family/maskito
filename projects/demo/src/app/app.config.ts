@@ -1,4 +1,9 @@
-import {isPlatformBrowser, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {
+    isPlatformBrowser,
+    LocationStrategy,
+    PathLocationStrategy,
+    ViewportScroller,
+} from '@angular/common';
 import {provideHttpClient} from '@angular/common/http';
 import {type ApplicationConfig, inject, PLATFORM_ID} from '@angular/core';
 import {provideClientHydration} from '@angular/platform-browser';
@@ -19,6 +24,7 @@ import {
     TUI_DOC_TYPE_REFERENCE_HANDLER,
     type TuiDocExampleOptions,
     type TuiDocSourceCodePathOptions,
+    TuiViewportScroller,
 } from '@taiga-ui/addon-doc';
 import {provideTaiga} from '@taiga-ui/core';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
@@ -49,6 +55,10 @@ export const APP_CONFIG: ApplicationConfig = {
         ),
         provideTaiga(),
         provideHttpClient(),
+        {
+            provide: ViewportScroller,
+            useClass: TuiViewportScroller,
+        },
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy,
