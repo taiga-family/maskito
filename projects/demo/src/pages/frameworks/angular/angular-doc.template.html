@@ -123,24 +123,11 @@
         </tui-doc-example>
 
         <tui-doc-example
-            heading="Set value programmatically"
-            [content]="programmaticallyExample"
-            [description]="programmaticallyDescription"
-        >
-            <ng-template #programmaticallyDescription>
-                When directly on native input/textarea tag,
-                <code>MaskitoDirective</code>
-                formats value set programmatically with Angular forms.
-            </ng-template>
-            <programmatically-doc-example-3 />
-        </tui-doc-example>
-
-        <tui-doc-example
             description="Alternative way to apply mask on native input"
             heading="Pattern"
             [content]="patternDirectiveExample"
         >
-            <pattern-doc-example-6 />
+            <pattern-doc-example-3 />
         </tui-doc-example>
 
         <tui-doc-example
@@ -175,6 +162,38 @@
                 (default one or any custom one from a third-party UI Kit) can be monkey-patched to achieve this goal.
             </ng-template>
             <custom-unmask-handler-doc-example-5 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Set value programmatically"
+            [content]="programmaticallyExample"
+            [description]="programmaticallyDescription"
+        >
+            <ng-template #programmaticallyDescription>
+                When directly on native input/textarea tag,
+                <code>MaskitoDirective</code>
+                formats value set programmatically with Angular forms.
+            </ng-template>
+            <programmatically-doc-example-6 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Custom CVA auto-transform"
+            [content]="cvaAutoTransformExample"
+            [description]="cvaAutoTransformDescription"
+        >
+            <ng-template #cvaAutoTransformDescription>
+                <p>
+                    Custom
+                    <code>ControlValueAccessor</code>
+                    can require manual patching of
+                    <code>writeValue</code>
+                    to transform incoming values with
+                    <code>maskitoTransform</code>
+                    before rendering.
+                </p>
+            </ng-template>
+            <cva-auto-transform-doc-example-7 />
         </tui-doc-example>
     </ng-template>
 

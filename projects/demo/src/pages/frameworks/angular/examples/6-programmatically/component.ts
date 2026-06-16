@@ -4,12 +4,12 @@ import {MaskitoDirective} from '@maskito/angular';
 import {maskitoNumber} from '@maskito/kit';
 
 @Component({
-    selector: 'programmatically-doc-example-3',
+    selector: 'programmatically-doc-example-6',
     imports: [MaskitoDirective, ReactiveFormsModule],
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProgrammaticallyDocExample3 {
+export class ProgrammaticallyDocExample6 {
     protected readonly control = new FormControl('');
     protected readonly maskito = maskitoNumber({maximumFractionDigits: 2});
 
