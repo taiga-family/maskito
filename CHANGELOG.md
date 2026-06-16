@@ -1,3 +1,14 @@
+## [5.3.1](https://github.com/taiga-family/maskito/compare/v5.3.0...v5.3.1) (2026-06-16)
+
+### 🐞 Bug Fixes
+
+- **kit**: `Time` with meridiem should toggle AM/PM on stepping
+  ([#2766](https://github.com/taiga-family/maskito/pull/2766))
+  [(d2e85b9)](https://github.com/taiga-family/maskito/commit/d2e85b9d66cb3dfcd6dd9f0046dea8d23b912968)
+- **kit**: prevent deletion of trailing character on inserting digit before a separator in `Date`/ `DateTime`
+  ([#2767](https://github.com/taiga-family/maskito/pull/2767))
+  [(85ed1a3)](https://github.com/taiga-family/maskito/commit/85ed1a3afd99304de137b884c4e5c9d544166a6b)
+
 ### [5.3.0](https://github.com/taiga-family/maskito/compare/v5.2.2...v5.3.0) (2026-06-04)
 
 ### 🚀 Features
