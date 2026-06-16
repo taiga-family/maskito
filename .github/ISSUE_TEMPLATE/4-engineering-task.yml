@@ -1,6 +1,7 @@
 name: '🗂 - Engineering Task'
 title: '🗂 - '
 description: Define or track an engineering task
+type: Task
 
 body:
   - type: textarea
