@@ -80,11 +80,11 @@
         ]
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "19.2.26",
-        "@angular-devkit/core": "19.2.26",
-        "@angular-devkit/schematics": "19.2.26",
-        "@angular/build": "19.2.26",
-        "@angular/cli": "19.2.26",
+        "@angular-devkit/build-angular": "19.2.27",
+        "@angular-devkit/core": "19.2.27",
+        "@angular-devkit/schematics": "19.2.27",
+        "@angular/build": "19.2.27",
+        "@angular/cli": "19.2.27",
         "@angular/compiler-cli": "19.2.24",
         "@angular/core": "19.2.24",
         "@angular/platform-browser-dynamic": "19.2.24",
