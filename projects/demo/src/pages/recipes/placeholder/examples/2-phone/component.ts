@@ -29,7 +29,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceholderDocExample2 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

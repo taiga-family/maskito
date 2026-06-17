@@ -5,17 +5,17 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
-import {OverwriteModeDocExample3} from './examples/dynamic/component';
-import {OverwriteModeDocExample2} from './examples/replace/component';
-import {OverwriteModeDocExample1} from './examples/shift/component';
+import Example3 from './examples/dynamic/component';
+import Example2 from './examples/replace/component';
+import Example1 from './examples/shift/component';
 
 @Component({
     selector: 'overwrite-mode-doc-page',
     imports: [
         NextStepsComponent,
-        OverwriteModeDocExample1,
-        OverwriteModeDocExample2,
-        OverwriteModeDocExample3,
+        Example1,
+        Example2,
+        Example3,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

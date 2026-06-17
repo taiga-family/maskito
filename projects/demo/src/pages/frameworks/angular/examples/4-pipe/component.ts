@@ -8,7 +8,7 @@ import {maskitoNumber} from '@maskito/kit';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PipeDocExample4 {
+export default class Example {
     protected value = 12345.67;
     protected readonly options = maskitoNumber({maximumFractionDigits: 2});
 }

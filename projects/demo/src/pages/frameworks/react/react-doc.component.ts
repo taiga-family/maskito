@@ -5,14 +5,14 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiTabs} from '@taiga-ui/kit';
 
-import {ReactExample1} from './examples/1-use-maskito-basic-usage/example.component';
-import {ReactExample2} from './examples/2-element-predicate/example.component';
+import Example1 from './examples/1-use-maskito-basic-usage/example.component';
+import Example2 from './examples/2-element-predicate/example.component';
 
 @Component({
     selector: 'react-doc-page',
     imports: [
-        ReactExample1,
-        ReactExample2,
+        Example1,
+        Example2,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

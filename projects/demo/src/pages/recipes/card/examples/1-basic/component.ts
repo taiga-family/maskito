@@ -12,7 +12,7 @@ import {TuiGroup, TuiInput} from '@taiga-ui/core';
     styleUrl: './style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardDocExample1 {
+export default class Example {
     protected readonly cardMask: MaskitoOptions = {
         mask: [
             ...Array.from<RegExp>({length: 4}).fill(/\d/),

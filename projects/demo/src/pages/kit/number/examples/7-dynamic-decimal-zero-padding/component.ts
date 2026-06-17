@@ -31,7 +31,7 @@ import {getMaskitoOptions} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample7 {
+export default class Example {
     protected value = '42';
     protected decimalZeroPadding = this.value.includes('.');
 

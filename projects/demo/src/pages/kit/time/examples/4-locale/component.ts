@@ -33,7 +33,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample4 {
+export default class Example {
     protected readonly mask = mask;
     protected value = '12:34 π.μ.';
 }

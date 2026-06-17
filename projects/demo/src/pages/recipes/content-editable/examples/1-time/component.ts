@@ -20,7 +20,7 @@ import mask from './mask';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentEditableDocExample1 {
+export default class Example {
     protected initialValue = '12:00';
     protected readonly mask = mask;
 }

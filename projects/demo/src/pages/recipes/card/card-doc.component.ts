@@ -4,11 +4,11 @@ import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
-import {CardDocExample1} from './examples/1-basic/component';
+import Example1 from './examples/1-basic/component';
 
 @Component({
     selector: 'card-doc',
-    imports: [CardDocExample1, RouterLink, TuiAddonDoc, TuiLink],
+    imports: [Example1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './card-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

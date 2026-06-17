@@ -22,7 +22,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OverwriteModeDocExample1 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '0000';
 }

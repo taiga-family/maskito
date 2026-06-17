@@ -19,7 +19,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample5 {
+export default class Example {
     protected value = '-42';
     protected readonly options = mask;
 }

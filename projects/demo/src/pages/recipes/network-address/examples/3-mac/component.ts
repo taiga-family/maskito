@@ -20,7 +20,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NetworkAddressDocExample3 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

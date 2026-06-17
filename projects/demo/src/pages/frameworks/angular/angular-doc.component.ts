@@ -5,29 +5,29 @@ import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {NestedDocExample1} from './examples/1-nested/component';
-import {NestedDocExample2} from './examples/2-nested/component';
-import {PatternDocExample3} from './examples/3-pattern/component';
-import {PipeDocExample4} from './examples/4-pipe/component';
-import {UnmaskDocExample5} from './examples/5-custom-unmask-handler';
-import {ProgrammaticallyDocExample6} from './examples/6-programmatically/component';
-import {CvaAutoTransformDocExample7} from './examples/7-cva-auto-transform';
+import Example7 from './examples/7-cva-auto-transform';
+import Example6 from './examples/6-programmatically/component';
+import Example5 from './examples/5-custom-unmask-handler';
+import Example4 from './examples/4-pipe/component';
+import Example3 from './examples/3-pattern/component';
+import Example2 from './examples/2-nested/component';
+import Example1 from './examples/1-nested/component';
 
 @Component({
     selector: 'angular-doc-page',
     imports: [
-        CvaAutoTransformDocExample7,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
+        Example6,
+        Example7,
         MaskitoDirective,
-        NestedDocExample1,
-        NestedDocExample2,
-        PatternDocExample3,
-        PipeDocExample4,
-        ProgrammaticallyDocExample6,
         RouterLink,
         TuiAddonDoc,
         TuiLink,
         TuiNotification,
-        UnmaskDocExample5,
     ],
     templateUrl: './angular-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,

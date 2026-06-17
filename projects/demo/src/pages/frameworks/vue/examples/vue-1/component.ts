@@ -7,7 +7,7 @@ import {maskito} from '@maskito/vue';
     template: '<div id="vue"></div>',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VueExample1 {
+export default class Example {
     protected readonly csrOnly = afterNextRender(async () =>
         import('vue').then(({createApp}) => {
             createApp({

@@ -22,7 +22,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample10 {
+export default class Example {
     protected maskitoOptions = mask;
     protected value = '';
 }

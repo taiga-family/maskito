@@ -22,7 +22,7 @@ import mask from './mask';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KitPluginsDocExample4 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

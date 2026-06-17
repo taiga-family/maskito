@@ -19,12 +19,12 @@ import maxMetadata from 'libphonenumber-js/max/metadata';
 import minMetadata from 'libphonenumber-js/min/metadata';
 import mobileMetadata from 'libphonenumber-js/mobile/metadata';
 
-import {PhoneMaskDocExample1} from './examples/1-basic/component';
-import {PhoneMaskDocExample2} from './examples/2-validation/component';
-import {PhoneMaskDocExample3} from './examples/3-non-strict/component';
-import {PhoneMaskDocExample4} from './examples/4-lazy-metadata/component';
-import {PhoneMaskDocExample5} from './examples/5-focus-blur-events/component';
-import {PhoneMaskDocExample6} from './examples/6-national-format/component';
+import Example1 from './examples/1-basic/component';
+import Example2 from './examples/2-validation/component';
+import Example3 from './examples/3-non-strict/component';
+import Example4 from './examples/4-lazy-metadata/component';
+import Example5 from './examples/5-focus-blur-events/component';
+import Example6 from './examples/6-national-format/component';
 
 const metadataSets = {
     min: minMetadata,
@@ -40,12 +40,12 @@ type MetadataName = keyof typeof metadataSets;
     selector: 'phone-doc',
     imports: [
         MaskitoDirective,
-        PhoneMaskDocExample1,
-        PhoneMaskDocExample2,
-        PhoneMaskDocExample3,
-        PhoneMaskDocExample4,
-        PhoneMaskDocExample5,
-        PhoneMaskDocExample6,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
+        Example6,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInput,

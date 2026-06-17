@@ -15,16 +15,16 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiIcon, TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import {TuiTooltip} from '@taiga-ui/kit';
 
-import {NumberMaskDocExample1} from './examples/1-high-precision/component';
-import {NumberMaskDocExample2} from './examples/2-separators/component';
-import {NumberMaskDocExample3} from './examples/3-postfix/component';
-import {NumberMaskDocExample4} from './examples/4-decimal-zero-padding/component';
-import {NumberMaskDocExample5} from './examples/5-custom-minus-sign/components';
-import {NumberMaskDocExample6} from './examples/6-minus-before-prefix/components';
-import {NumberMaskDocExample7} from './examples/7-dynamic-decimal-zero-padding/component';
-import {NumberMaskDocExample8} from './examples/8-thousand-separator-pattern/component';
-import {NumberMaskDocExample9} from './examples/9-thousand-separator-pattern-intl/component';
-import {NumberMaskDocExample10} from './examples/10-locale-number/component';
+import Example1 from './examples/1-high-precision/component';
+import Example2 from './examples/2-separators/component';
+import Example3 from './examples/3-postfix/component';
+import Example4 from './examples/4-decimal-zero-padding/component';
+import Example5 from './examples/5-custom-minus-sign/components';
+import Example6 from './examples/6-minus-before-prefix/components';
+import Example7 from './examples/7-dynamic-decimal-zero-padding/component';
+import Example8 from './examples/8-thousand-separator-pattern/component';
+import Example9 from './examples/9-thousand-separator-pattern-intl/component';
+import Example10 from './examples/10-locale-number/component';
 
 type GeneratorParams = Omit<
     Required<MaskitoNumberParams>,
@@ -36,16 +36,16 @@ type GeneratorParams = Omit<
     selector: 'number-mask-doc',
     imports: [
         MaskitoDirective,
-        NumberMaskDocExample1,
-        NumberMaskDocExample2,
-        NumberMaskDocExample3,
-        NumberMaskDocExample4,
-        NumberMaskDocExample5,
-        NumberMaskDocExample6,
-        NumberMaskDocExample7,
-        NumberMaskDocExample8,
-        NumberMaskDocExample9,
-        NumberMaskDocExample10,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
+        Example6,
+        Example7,
+        Example8,
+        Example9,
+        Example10,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiIcon,

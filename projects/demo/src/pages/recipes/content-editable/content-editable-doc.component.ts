@@ -4,14 +4,14 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {ContentEditableDocExample1} from './examples/1-time/component';
-import {ContentEditableDocExample2} from './examples/2-multi-line/component';
+import Example1 from './examples/1-time/component';
+import Example2 from './examples/2-multi-line/component';
 
 @Component({
     selector: 'content-editable-doc',
     imports: [
-        ContentEditableDocExample1,
-        ContentEditableDocExample2,
+        Example1,
+        Example2,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

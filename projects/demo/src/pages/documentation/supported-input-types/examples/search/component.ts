@@ -24,7 +24,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputSearchDocExample {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

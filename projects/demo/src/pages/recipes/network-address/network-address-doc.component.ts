@@ -2,16 +2,16 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 
-import {NetworkAddressDocExample1} from './examples/1-ipv6/component';
-import {NetworkAddressDocExample2} from './examples/2-ipv4/component';
-import {NetworkAddressDocExample3} from './examples/3-mac/component';
+import Example1 from './examples/1-ipv6/component';
+import Example2 from './examples/2-ipv4/component';
+import Example3 from './examples/3-mac/component';
 
 @Component({
     selector: 'network-address-doc',
     imports: [
-        NetworkAddressDocExample1,
-        NetworkAddressDocExample2,
-        NetworkAddressDocExample3,
+        Example1,
+        Example2,
+        Example3,
         TuiAddonDoc,
     ],
     templateUrl: './network-address-doc.template.html',

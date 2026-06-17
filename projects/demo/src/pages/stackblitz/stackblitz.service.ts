@@ -9,7 +9,7 @@ import {
 } from '@taiga-ui/addon-doc';
 import {PolymorpheusComponent} from '@taiga-ui/polymorpheus';
 
-import {StackblitzEditButtonComponent} from './components/stackblitz-edit-button/stackblitz-edit-button.component';
+import {StackblitzEditButton} from './components/stackblitz-edit-button/stackblitz-edit-button';
 
 @Injectable()
 export class StackblitzService implements TuiCodeEditor {
@@ -24,7 +24,7 @@ export class StackblitzService implements TuiCodeEditor {
     };
 
     public readonly name = 'Stackblitz';
-    public readonly content = new PolymorpheusComponent(StackblitzEditButtonComponent);
+    public readonly content = new PolymorpheusComponent(StackblitzEditButton);
 
     public async edit(
         component: string,

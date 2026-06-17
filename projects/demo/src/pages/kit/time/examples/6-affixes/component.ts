@@ -24,7 +24,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample6 {
+export default class Example {
     protected value = '05:00 left';
     protected readonly maskitoOptions = mask;
 }

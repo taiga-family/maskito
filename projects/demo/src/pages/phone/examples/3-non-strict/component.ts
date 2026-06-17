@@ -39,7 +39,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample3 {
+export default class Example {
     /**
      * https://github.com/taiga-family/maskito/pull/2165
      * TODO: delete after bumping Safari support to 18+

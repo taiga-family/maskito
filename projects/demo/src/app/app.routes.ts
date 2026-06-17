@@ -185,7 +185,7 @@ export const ROUTES: Routes = [
     {
         path: DemoPath.Stackblitz,
         loadComponent: () =>
-            import('../pages/stackblitz').then((m) => m.StackblitzStarterComponent),
+            import('../pages/stackblitz').then((m) => m.StackblitzStarter),
         title: 'Stackblitz Starter',
     },
 ]

@@ -5,18 +5,18 @@ import {WA_IS_MOBILE} from '@ng-web-apis/platform';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {KitPluginsDocExample1} from './examples/1-selection-handler/component';
-import {KitPluginsDocExample2} from './examples/2-caret-guard/component';
-import {KitPluginsDocExample3} from './examples/3-event-handlers/component';
-import {KitPluginsDocExample4} from './examples/4-reject/component';
+import Example1 from './examples/1-selection-handler/component';
+import Example2 from './examples/2-caret-guard/component';
+import Example3 from './examples/3-event-handlers/component';
+import Example4 from './examples/4-reject/component';
 
 @Component({
     selector: 'kit-plugins-doc',
     imports: [
-        KitPluginsDocExample1,
-        KitPluginsDocExample2,
-        KitPluginsDocExample3,
-        KitPluginsDocExample4,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

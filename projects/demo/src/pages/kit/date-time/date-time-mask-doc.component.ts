@@ -14,22 +14,22 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import {tuiPure} from '@taiga-ui/legacy';
 
-import {DateTimeMaskDocExample1} from './examples/1-date-time-localization/component';
-import {DateTimeMaskDocExample2} from './examples/2-am-pm/component';
-import {DateTimeMaskDocExample3} from './examples/3-locale/component';
-import {DateTimeMaskDocExample4} from './examples/4-date-time-separator/component';
-import {DateTimeMaskDocExample5} from './examples/5-min-max/component';
-import {DateTimeMaskDocExample6} from './examples/6-time-step/component';
+import Example1 from './examples/1-date-time-localization/component';
+import Example2 from './examples/2-am-pm/component';
+import Example3 from './examples/3-locale/component';
+import Example4 from './examples/4-date-time-separator/component';
+import Example5 from './examples/5-min-max/component';
+import Example6 from './examples/6-time-step/component';
 
 @Component({
     selector: 'date-time-mask-doc',
     imports: [
-        DateTimeMaskDocExample1,
-        DateTimeMaskDocExample2,
-        DateTimeMaskDocExample3,
-        DateTimeMaskDocExample4,
-        DateTimeMaskDocExample5,
-        DateTimeMaskDocExample6,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
+        Example6,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,

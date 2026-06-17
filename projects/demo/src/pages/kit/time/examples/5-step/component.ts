@@ -24,7 +24,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimeMaskDocExample5 {
+export default class Example {
     protected value = '11:59:59';
     protected readonly mask = mask;
 }

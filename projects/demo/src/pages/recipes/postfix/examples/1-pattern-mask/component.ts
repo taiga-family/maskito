@@ -21,7 +21,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PostfixDocExample1 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

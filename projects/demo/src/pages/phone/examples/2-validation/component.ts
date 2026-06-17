@@ -42,7 +42,7 @@ function phoneValidator(countryCode: CountryCode): ValidatorFn {
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample2 {
+export default class Example {
     protected readonly control = new FormControl('+36 20 123-3122', phoneValidator('HU'));
     protected readonly mask = mask;
 }

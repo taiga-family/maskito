@@ -20,7 +20,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PluginsDocExample2 {
+export default class Example {
     protected maskitoOptions = mask;
     protected value = '12345';
 }

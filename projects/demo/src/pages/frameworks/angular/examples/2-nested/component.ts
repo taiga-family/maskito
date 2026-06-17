@@ -8,7 +8,7 @@ import {TuiCheckbox, TuiInput, TuiLabel} from '@taiga-ui/core';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NestedDocExample2 {
+export default class Example {
     protected show = false;
     protected value = '';
 }

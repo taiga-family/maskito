@@ -12,7 +12,7 @@ import mask from './mask';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneKZDocExample2 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected readonly control = new FormControl('');
 }

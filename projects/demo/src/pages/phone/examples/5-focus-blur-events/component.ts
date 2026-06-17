@@ -40,7 +40,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample5 {
+export default class Example {
     protected value = '';
     protected readonly mask = mask;
 }

@@ -12,7 +12,7 @@ import {CustomInput} from './custom-input';
     templateUrl: './index.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CvaAutoTransformDocExample7 {
+export default class Example {
     protected readonly control = new FormControl('');
     protected readonly maskito = maskitoNumber({maximumFractionDigits: 2});
 

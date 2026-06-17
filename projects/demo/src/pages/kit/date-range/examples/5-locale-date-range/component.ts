@@ -25,7 +25,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateRangeMaskDocExample5 {
+export default class Example {
     protected value = '2005-10-21 – 2023-02-06';
     protected readonly filler = 'yyyy-mm-dd – yyyy-mm-dd';
     protected readonly mask = mask;
