@@ -8,12 +8,7 @@ import Example3 from './examples/3-mac/component';
 
 @Component({
     selector: 'network-address-doc',
-    imports: [
-        Example1,
-        Example2,
-        Example3,
-        TuiAddonDoc,
-    ],
+    imports: [Example1, Example2, Example3, TuiAddonDoc],
     templateUrl: './network-address-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

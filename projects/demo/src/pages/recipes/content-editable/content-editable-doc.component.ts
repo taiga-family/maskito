@@ -9,14 +9,7 @@ import Example2 from './examples/2-multi-line/component';
 
 @Component({
     selector: 'content-editable-doc',
-    imports: [
-        Example1,
-        Example2,
-        RouterLink,
-        TuiAddonDoc,
-        TuiLink,
-        TuiNotification,
-    ],
+    imports: [Example1, Example2, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './content-editable-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

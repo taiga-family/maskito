@@ -10,14 +10,7 @@ import Example3 from './examples/3-date/component';
 
 @Component({
     selector: 'placeholder-doc',
-    imports: [
-        Example1,
-        Example2,
-        Example3,
-        RouterLink,
-        TuiAddonDoc,
-        TuiLink,
-    ],
+    imports: [Example1, Example2, Example3, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './placeholder-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

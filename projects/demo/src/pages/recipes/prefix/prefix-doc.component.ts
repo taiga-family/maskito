@@ -9,14 +9,7 @@ import Example2 from './examples/2-postprocessor/component';
 
 @Component({
     selector: 'prefix-doc',
-    imports: [
-        Example1,
-        Example2,
-        RouterLink,
-        TuiAddonDoc,
-        TuiLink,
-        TuiNotification,
-    ],
+    imports: [Example1, Example2, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './prefix-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
