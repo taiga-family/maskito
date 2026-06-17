@@ -24,9 +24,6 @@ import Example7 from './examples/7-time-segments-min-max/component';
 @Component({
     selector: 'time-mask-doc',
     imports: [
-        MaskitoDirective,
-        ReactiveFormsModule,
-        RouterLink,
         Example1,
         Example2,
         Example3,
@@ -34,6 +31,9 @@ import Example7 from './examples/7-time-segments-min-max/component';
         Example5,
         Example6,
         Example7,
+        MaskitoDirective,
+        ReactiveFormsModule,
+        RouterLink,
         TuiAddonDoc,
         TuiInput,
         TuiLink,

@@ -8,7 +8,7 @@ import Example1 from './examples/1-latin/component';
 
 @Component({
     selector: 'textarea-doc',
-    imports: [RouterLink, Example1, TuiAddonDoc, TuiLink],
+    imports: [Example1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './textarea-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

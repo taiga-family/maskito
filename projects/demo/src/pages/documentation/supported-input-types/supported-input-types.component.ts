@@ -3,11 +3,11 @@ import {DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import Example5 from './examples/url/component';
-import Example4 from './examples/text/component';
-import Example3 from './examples/tel/component';
-import Example2 from './examples/search/component';
 import Example1 from './examples/password/component';
+import Example2 from './examples/search/component';
+import Example3 from './examples/tel/component';
+import Example4 from './examples/text/component';
+import Example5 from './examples/url/component';
 
 @Component({
     selector: 'supported-input-types-doc-page',

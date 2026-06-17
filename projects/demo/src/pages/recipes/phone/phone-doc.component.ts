@@ -9,7 +9,7 @@ import Example2 from './examples/2-kz-phone/component';
 
 @Component({
     selector: 'phone-doc',
-    imports: [Example2, Example1, RouterLink, TuiAddonDoc, TuiLink],
+    imports: [Example1, Example2, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './phone-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -12,10 +12,10 @@ import Example1 from './examples/shift/component';
 @Component({
     selector: 'overwrite-mode-doc-page',
     imports: [
-        NextStepsComponent,
         Example1,
         Example2,
         Example3,
+        NextStepsComponent,
         RouterLink,
         TuiAddonDoc,
         TuiLink,

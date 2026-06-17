@@ -35,7 +35,6 @@ type GeneratorParams = Omit<
 @Component({
     selector: 'number-mask-doc',
     imports: [
-        MaskitoDirective,
         Example1,
         Example2,
         Example3,
@@ -46,6 +45,7 @@ type GeneratorParams = Omit<
         Example8,
         Example9,
         Example10,
+        MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiIcon,

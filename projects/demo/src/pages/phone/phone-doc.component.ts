@@ -39,13 +39,13 @@ type MetadataName = keyof typeof metadataSets;
 @Component({
     selector: 'phone-doc',
     imports: [
-        MaskitoDirective,
         Example1,
         Example2,
         Example3,
         Example4,
         Example5,
         Example6,
+        MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
         TuiInput,

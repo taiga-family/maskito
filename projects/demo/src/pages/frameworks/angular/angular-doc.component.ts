@@ -5,13 +5,13 @@ import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import Example7 from './examples/7-cva-auto-transform';
-import Example6 from './examples/6-programmatically/component';
-import Example5 from './examples/5-custom-unmask-handler';
-import Example4 from './examples/4-pipe/component';
-import Example3 from './examples/3-pattern/component';
-import Example2 from './examples/2-nested/component';
 import Example1 from './examples/1-nested/component';
+import Example2 from './examples/2-nested/component';
+import Example3 from './examples/3-pattern/component';
+import Example4 from './examples/4-pipe/component';
+import Example5 from './examples/5-custom-unmask-handler';
+import Example6 from './examples/6-programmatically/component';
+import Example7 from './examples/7-cva-auto-transform';
 
 @Component({
     selector: 'angular-doc-page',

@@ -8,7 +8,7 @@ import Example1 from './examples/vue-1/component';
 
 @Component({
     selector: 'vue-doc-page',
-    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification, Example1],
+    imports: [Example1, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './vue-doc.template.html',
     styleUrl: './vue-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
