@@ -21,7 +21,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample4 {
+export default class Example {
     protected value = '$100.00';
     protected maskitoOptions = mask;
 }

@@ -25,7 +25,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KitPluginsDocExample3 {
+export default class Example {
     protected value = '';
     protected maskitoOptions = mask;
 }

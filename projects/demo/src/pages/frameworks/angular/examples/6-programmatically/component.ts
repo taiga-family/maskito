@@ -9,7 +9,7 @@ import {maskitoNumber} from '@maskito/kit';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProgrammaticallyDocExample6 {
+export default class Example {
     protected readonly control = new FormControl('');
     protected readonly maskito = maskitoNumber({maximumFractionDigits: 2});
 

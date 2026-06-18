@@ -32,7 +32,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputPasswordDocExample {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '';
 }

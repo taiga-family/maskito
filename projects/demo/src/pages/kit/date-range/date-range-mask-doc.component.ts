@@ -13,20 +13,20 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink} from '@taiga-ui/core';
 import {tuiPure} from '@taiga-ui/legacy';
 
-import {DateRangeMaskDocExample1} from './examples/1-date-localization/component';
-import {DateRangeMaskDocExample2} from './examples/2-min-max/component';
-import {DateRangeMaskDocExample3} from './examples/3-min-max-length/component';
-import {DateRangeMaskDocExample4} from './examples/4-range-separator/component';
-import {DateRangeMaskDocExample5} from './examples/5-locale-date-range/component';
+import Example1 from './examples/1-date-localization/component';
+import Example2 from './examples/2-min-max/component';
+import Example3 from './examples/3-min-max-length/component';
+import Example4 from './examples/4-range-separator/component';
+import Example5 from './examples/5-locale-date-range/component';
 
 @Component({
     selector: 'date-range-mask-doc',
     imports: [
-        DateRangeMaskDocExample1,
-        DateRangeMaskDocExample2,
-        DateRangeMaskDocExample3,
-        DateRangeMaskDocExample4,
-        DateRangeMaskDocExample5,
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,

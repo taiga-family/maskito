@@ -29,7 +29,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneUSDocExample1 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = '+1 (212) 555-2368';
 }

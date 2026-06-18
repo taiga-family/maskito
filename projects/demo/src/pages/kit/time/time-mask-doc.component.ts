@@ -13,27 +13,27 @@ import {
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {TimeMaskDocExample1} from './examples/1-modes/component';
-import {TimeMaskDocExample2} from './examples/2-am-pm/component';
-import {TimeMaskDocExample3} from './examples/3-separators/component';
-import {TimeMaskDocExample4} from './examples/4-locale/component';
-import {TimeMaskDocExample5} from './examples/5-step/component';
-import {TimeMaskDocExample6} from './examples/6-affixes/component';
-import {TimeMaskDocExample7} from './examples/7-time-segments-min-max/component';
+import Example1 from './examples/1-modes/component';
+import Example2 from './examples/2-am-pm/component';
+import Example3 from './examples/3-separators/component';
+import Example4 from './examples/4-locale/component';
+import Example5 from './examples/5-step/component';
+import Example6 from './examples/6-affixes/component';
+import Example7 from './examples/7-time-segments-min-max/component';
 
 @Component({
     selector: 'time-mask-doc',
     imports: [
+        Example1,
+        Example2,
+        Example3,
+        Example4,
+        Example5,
+        Example6,
+        Example7,
         MaskitoDirective,
         ReactiveFormsModule,
         RouterLink,
-        TimeMaskDocExample1,
-        TimeMaskDocExample2,
-        TimeMaskDocExample3,
-        TimeMaskDocExample4,
-        TimeMaskDocExample5,
-        TimeMaskDocExample6,
-        TimeMaskDocExample7,
         TuiAddonDoc,
         TuiInput,
         TuiLink,

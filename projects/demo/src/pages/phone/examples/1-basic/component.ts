@@ -25,7 +25,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample1 {
+export default class Example {
     protected value = '+7 771 931-1111';
     protected readonly mask = mask;
 }

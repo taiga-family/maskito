@@ -4,11 +4,11 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
-import {TextareaDocExample1} from './examples/1-latin/component';
+import Example1 from './examples/1-latin/component';
 
 @Component({
     selector: 'textarea-doc',
-    imports: [RouterLink, TextareaDocExample1, TuiAddonDoc, TuiLink],
+    imports: [Example1, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './textarea-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

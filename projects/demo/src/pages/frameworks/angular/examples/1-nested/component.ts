@@ -10,7 +10,7 @@ import {TuiInput} from '@taiga-ui/core';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NestedDocExample1 {
+export default class Example {
     protected value = '';
 
     public readonly nameMask: MaskitoOptions = {

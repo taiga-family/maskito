@@ -22,11 +22,11 @@ import {StackblitzService} from '../../stackblitz.service';
             [overlay]="true"
         />
     `,
-    styleUrl: './stackblitz-starter.style.less',
+    styleUrl: './stackblitz-starter.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [StackblitzService],
 })
-export class StackblitzStarterComponent implements OnInit {
+export class StackblitzStarter implements OnInit {
     private readonly platformId = inject(PLATFORM_ID);
     private readonly stackblitz = inject(StackblitzService);
 

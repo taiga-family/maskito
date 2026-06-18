@@ -22,7 +22,7 @@ const NUMBER_PARAMS: MaskitoNumberParams = {
     templateUrl: './index.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UnmaskDocExample5 {
+export default class Example {
     /**
      * Pay attention, this variable (form control value) always contains only NUMBER-type values.
      * Despite it, textfield's value is always prettified formatted STRING.

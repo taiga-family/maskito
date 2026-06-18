@@ -27,7 +27,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateRangeMaskDocExample1 {
+export default class Example {
     private readonly usDateFormatter = new Intl.DateTimeFormat('en-US', {
         month: 'long',
         day: 'numeric',

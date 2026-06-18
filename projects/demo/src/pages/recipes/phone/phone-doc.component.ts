@@ -4,12 +4,12 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
-import {PhoneUSDocExample1} from './examples/1-us-phone/component';
-import {PhoneKZDocExample2} from './examples/2-kz-phone/component';
+import Example1 from './examples/1-us-phone/component';
+import Example2 from './examples/2-kz-phone/component';
 
 @Component({
     selector: 'phone-doc',
-    imports: [PhoneKZDocExample2, PhoneUSDocExample1, RouterLink, TuiAddonDoc, TuiLink],
+    imports: [Example1, Example2, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './phone-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -24,7 +24,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceholderDocExample1 {
+export default class Example {
     protected readonly maskitoOptions = mask;
     protected value = 'xxx';
 }

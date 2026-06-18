@@ -7,16 +7,16 @@ import {maskitoDate, type MaskitoDateMode, type MaskitoDateParams} from '@maskit
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {DateMaskDocExample1} from './examples/1-localization/component';
-import {DateMaskDocExample2} from './examples/2-min-max/component';
-import {DateMaskDocExample3} from './examples/3-locale-date/component';
+import Example1 from './examples/1-localization/component';
+import Example2 from './examples/2-min-max/component';
+import Example3 from './examples/3-locale-date/component';
 
 @Component({
     selector: 'date-mask-doc',
     imports: [
-        DateMaskDocExample1,
-        DateMaskDocExample2,
-        DateMaskDocExample3,
+        Example1,
+        Example2,
+        Example3,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,

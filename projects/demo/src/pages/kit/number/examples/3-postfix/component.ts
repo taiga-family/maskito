@@ -20,7 +20,7 @@ import mask, {postfix} from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NumberMaskDocExample3 {
+export default class Example {
     protected value = `97${postfix}`;
     protected readonly maskitoOptions = mask;
 }

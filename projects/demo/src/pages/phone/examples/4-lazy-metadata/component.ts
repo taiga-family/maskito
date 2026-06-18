@@ -24,7 +24,7 @@ import {TuiInput} from '@taiga-ui/core';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhoneMaskDocExample4 {
+export default class Example {
     protected value = '+7 920 123-4567';
 
     protected readonly mask = resource({

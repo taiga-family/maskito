@@ -4,20 +4,13 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink} from '@taiga-ui/core';
 
-import {PlaceholderDocExample1} from './examples/1-cvc-code/component';
-import {PlaceholderDocExample2} from './examples/2-phone/component';
-import {PlaceholderDocExample3} from './examples/3-date/component';
+import Example1 from './examples/1-cvc-code/component';
+import Example2 from './examples/2-phone/component';
+import Example3 from './examples/3-date/component';
 
 @Component({
     selector: 'placeholder-doc',
-    imports: [
-        PlaceholderDocExample1,
-        PlaceholderDocExample2,
-        PlaceholderDocExample3,
-        RouterLink,
-        TuiAddonDoc,
-        TuiLink,
-    ],
+    imports: [Example1, Example2, Example3, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './placeholder-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

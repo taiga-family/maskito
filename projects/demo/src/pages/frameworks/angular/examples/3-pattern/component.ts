@@ -8,7 +8,7 @@ import {MaskitoPattern} from '@maskito/angular';
     templateUrl: './template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PatternDocExample3 {
+export default class Example {
     protected name = '';
     protected cvc = '';
     protected regExp = /^[a-z\s]+$/i;

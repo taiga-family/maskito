@@ -12,7 +12,7 @@ import {App} from '.';
         'comment-for-devtools': 'Everything inside this tag is really rendered by `react-dom` library',
     },
 })
-export class ReactExample2 {
+export default class Example {
     constructor() {
         if (isPlatformBrowser(inject(PLATFORM_ID))) {
             createRoot(inject(ElementRef).nativeElement).render(<App />);

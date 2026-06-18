@@ -23,7 +23,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KitPluginsDocExample2 {
+export default class Example {
     protected value = '$100 per day';
     protected maskitoOptions = mask;
 }

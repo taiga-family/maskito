@@ -8,20 +8,20 @@ import {TuiInput, TuiLink, TuiTitle} from '@taiga-ui/core';
 import {TuiCardLarge, TuiHeader, TuiSurface} from '@taiga-ui/layout';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
-import {PluginsDocExample2} from './examples/1-initial-calibration/component';
-import {PluginsDocExample3} from './examples/2-strict-composition/component';
-import {PluginsDocExample4} from './examples/3-change-event/component';
+import Example1 from './examples/1-initial-calibration/component';
+import Example2 from './examples/2-strict-composition/component';
+import Example3 from './examples/3-change-event/component';
 import documentationMask from './examples/pads-zero-plugin';
 
 @Component({
     selector: 'plugins-mode-doc-page',
     imports: [
+        Example1,
+        Example2,
+        Example3,
         FormsModule,
         MaskitoDirective,
         NextStepsComponent,
-        PluginsDocExample2,
-        PluginsDocExample3,
-        PluginsDocExample4,
         RouterLink,
         TuiAddonDoc,
         TuiCardLarge,

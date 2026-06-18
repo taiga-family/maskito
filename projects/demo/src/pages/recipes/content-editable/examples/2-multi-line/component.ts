@@ -26,7 +26,7 @@ import mask from './mask';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentEditableDocExample2 {
+export default class Example {
     protected readonly mask = mask;
 
     protected initialText = `Hello, world!

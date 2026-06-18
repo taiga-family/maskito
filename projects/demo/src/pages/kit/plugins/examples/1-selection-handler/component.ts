@@ -25,7 +25,7 @@ import mask from './mask';
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KitPluginsDocExample1 {
+export default class Example {
     protected value = '05:00 PM';
     protected maskitoOptions = mask;
 }

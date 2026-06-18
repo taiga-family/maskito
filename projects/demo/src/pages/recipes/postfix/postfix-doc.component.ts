@@ -4,19 +4,12 @@ import {DemoPath, DocExamplePrimaryTab} from '@demo/constants';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {PostfixDocExample1} from './examples/1-pattern-mask/component';
-import {PostfixDocExample2} from './examples/2-postprocessor/component';
+import Example1 from './examples/1-pattern-mask/component';
+import Example2 from './examples/2-postprocessor/component';
 
 @Component({
     selector: 'postfix-doc',
-    imports: [
-        PostfixDocExample1,
-        PostfixDocExample2,
-        RouterLink,
-        TuiAddonDoc,
-        TuiLink,
-        TuiNotification,
-    ],
+    imports: [Example1, Example2, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './postfix-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

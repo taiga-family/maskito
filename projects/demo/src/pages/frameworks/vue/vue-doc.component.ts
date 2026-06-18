@@ -4,11 +4,11 @@ import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification} from '@taiga-ui/core';
 
-import {VueExample1} from './examples/vue-1/component';
+import Example1 from './examples/vue-1/component';
 
 @Component({
     selector: 'vue-doc-page',
-    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiNotification, VueExample1],
+    imports: [Example1, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
     templateUrl: './vue-doc.template.html',
     styleUrl: './vue-doc.style.less',
     changeDetection: ChangeDetectionStrategy.OnPush,
