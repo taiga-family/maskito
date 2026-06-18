@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
 import {MaskitoDirective} from '@maskito/angular';
 import {MASKITO_DEFAULT_ELEMENT_PREDICATE, type MaskitoOptions} from '@maskito/core';
 
@@ -13,11 +7,11 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE, type MaskitoOptions} from '@maskito/c
     imports: [MaskitoDirective],
     template: `
         <input
-            [attr.maxlength]="maxLength"
-            [attr.type]="type"
-            [attr.value]="initialValue"
-            [maskito]="maskitoOptions"
-            [maskitoElement]="maskitoElementPredicate"
+            [attr.maxlength]="maxLength()"
+            [attr.type]="type()"
+            [attr.value]="initialValue()"
+            [maskito]="maskitoOptions()"
+            [maskitoElement]="maskitoElementPredicate()"
             (beforeinput)="beforeinput.emit($event)"
             (change)="change.emit($event)"
             (input)="input.emit($event)"
@@ -26,27 +20,12 @@ import {MASKITO_DEFAULT_ELEMENT_PREDICATE, type MaskitoOptions} from '@maskito/c
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestInput {
-    @Input()
-    public initialValue = '';
-
-    @Input()
-    public maskitoOptions: MaskitoOptions | null = null;
-
-    @Input()
-    public maskitoElementPredicate = MASKITO_DEFAULT_ELEMENT_PREDICATE;
-
-    @Output()
-    public readonly beforeinput = new EventEmitter();
-
-    @Output()
-    public readonly input = new EventEmitter();
-
-    @Output()
-    public readonly change = new EventEmitter();
-
-    @Input()
-    public maxLength = Infinity;
-
-    @Input()
-    public type: HTMLInputElement['type'] = 'text';
+    public readonly initialValue = input<string>('');
+    public readonly maskitoOptions = input<MaskitoOptions | null>(null);
+    public readonly maskitoElementPredicate = input(MASKITO_DEFAULT_ELEMENT_PREDICATE);
+    public readonly beforeinput = output<Event>();
+    public readonly input = output<Event>();
+    public readonly change = output<Event>();
+    public readonly maxLength = input(Infinity);
+    public readonly type = input<HTMLInputElement['type']>('text');
 }

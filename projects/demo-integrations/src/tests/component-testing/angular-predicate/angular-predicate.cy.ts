@@ -83,7 +83,7 @@ describe('@maskito/angular | Predicate', () => {
             })
             class ComplexTextfield {
                 protected maskitoOptions = maskitoNumber();
-                protected elementPredicate = signal(invalidPredicate);
+                protected readonly elementPredicate = signal(invalidPredicate);
 
                 constructor() {
                     setTimeout(() => this.elementPredicate.set(validPredicate), 500);
@@ -149,7 +149,7 @@ describe('@maskito/angular | Predicate', () => {
                 private readonly numberOptions = {mask: /^\d+$/};
                 private readonly engLettersOptions = {mask: /^[a-z]+$/i};
 
-                protected options = signal(this.numberOptions);
+                protected readonly options = signal(this.numberOptions);
 
                 constructor() {
                     setTimeout(() => {

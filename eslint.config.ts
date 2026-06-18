@@ -23,8 +23,6 @@ export default [
     {
         files: ['**/*'],
         rules: {
-            '@angular-eslint/template/alt-text': 'off',
-            '@angular-eslint/prefer-signals': 'off',
             'no-irregular-whitespace': 'off',
             'de-morgan/no-negated-disjunction': 'off',
             '@angular-eslint/template/no-interpolation-in-attributes': 'off',
@@ -36,7 +34,6 @@ export default [
             '@typescript-eslint/consistent-type-exports': 'off',
             '@typescript-eslint/method-signature-style': 'off',
             '@typescript-eslint/strict-void-return': 'off',
-            '@angular-eslint/prefer-output-emitter-ref': 'off',
         },
     },
 ];
