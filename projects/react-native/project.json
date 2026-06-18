@@ -1,0 +1,64 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "name": "react-native",
+    "projectType": "library",
+    "sourceRoot": "projects/react-native/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "dependsOn": [
+                {
+                    "dependencies": true,
+                    "params": "forward",
+                    "target": "build"
+                }
+            ],
+            "executor": "@nx/rollup:rollup",
+            "options": {
+                "assets": [
+                    {
+                        "glob": "README.md",
+                        "input": "{projectRoot}",
+                        "output": "."
+                    }
+                ],
+                "compiler": "tsc",
+                "external": "all",
+                "format": ["esm", "cjs"],
+                "main": "{projectRoot}/src/index.ts",
+                "outputPath": "dist/{projectName}",
+                "project": "{projectRoot}/package.json",
+                "rollupConfig": "rollup.config.ts",
+                "tsConfig": "tsconfig.build.json",
+                "useLegacyTypescriptPlugin": false
+            },
+            "outputs": ["{options.outputPath}"]
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "options": {
+                "lintFilePatterns": ["{projectRoot}/**/*.{ts,tsx,js,jsx}"]
+            },
+            "outputs": ["{options.outputFile}"]
+        },
+        "publish": {
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "build"
+                }
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npm publish ./dist/{projectName} --ignore-scripts"
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "options": {
+                "jestConfig": "{projectRoot}/jest.config.ts"
+            },
+            "outputs": ["{workspaceRoot}/coverage/{projectName}"]
+        }
+    }
+}

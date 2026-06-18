@@ -47,7 +47,7 @@
                 ],
                 "baseHref": "/",
                 "browser": "{projectRoot}/src/main.ts",
-                "externalDependencies": ["react-hook-form"],
+                "externalDependencies": ["react-hook-form", "react-native"],
                 "index": "{projectRoot}/src/index.html",
                 "loader": {
                     ".css": "text",

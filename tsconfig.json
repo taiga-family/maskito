@@ -11,7 +11,8 @@
             "@maskito/kit": ["projects/kit/src/index.ts"],
             "@maskito/phone": ["projects/phone/src/index.ts"],
             "@maskito/react": ["projects/react/src/index.ts"],
-            "@maskito/vue": ["projects/vue/src/index.ts"]
+            "@maskito/vue": ["projects/vue/src/index.ts"],
+            "@maskito/react-native": ["projects/react-native/src/index.ts"]
         },
         "typeRoots": ["node_modules/@types"]
     },
