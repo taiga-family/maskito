@@ -21,7 +21,7 @@ jobs:
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -45,7 +45,7 @@ jobs:
       - uses: taiga-family/actions/setup-cypress@2446a1d329acc075f7264292facddf0b0c992b53 # v2.1.0
 
       - name: Download demo build from cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -71,7 +71,7 @@ jobs:
       - uses: taiga-family/actions/setup-cypress@2446a1d329acc075f7264292facddf0b0c992b53 # v2.1.0
 
       - name: Download demo build from cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
@@ -95,7 +95,7 @@ jobs:
       - uses: taiga-family/actions/setup-cypress@2446a1d329acc075f7264292facddf0b0c992b53 # v2.1.0
 
       - name: Download demo build from cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
         with:
           path: dist/demo
           key: ${{ env.CACHE_DIST_KEY }}
