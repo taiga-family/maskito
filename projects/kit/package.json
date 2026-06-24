@@ -44,6 +44,7 @@
             "name": "Georgiy Lunin"
         }
     ],
+    "sideEffects": false,
     "peerDependencies": {
         "@maskito/core": "^5.3.1"
     }
