@@ -43,5 +43,6 @@
             "email": "nextzeddicus@gmail.com",
             "name": "Georgiy Lunin"
         }
-    ]
+    ],
+    "sideEffects": false
 }

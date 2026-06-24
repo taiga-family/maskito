@@ -46,6 +46,7 @@
             "name": "Georgiy Lunin"
         }
     ],
+    "sideEffects": false,
     "devDependencies": {
         "libphonenumber-js": "1.13.6"
     },

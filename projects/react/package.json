@@ -43,6 +43,7 @@
             "name": "Georgiy Lunin"
         }
     ],
+    "sideEffects": false,
     "devDependencies": {
         "@testing-library/react": "16.3.2",
         "@testing-library/user-event": "14.6.1",
