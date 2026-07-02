@@ -65,7 +65,7 @@ export function useMaskito({
         [mask, value, userOnChange, onChangeText],
     );
 
-    // Release the one-shot controlled selection after it has been applied it, so the
+    // Release the one-shot controlled selection after it has been applied, so the
     // TextInput goes back to uncontrolled-selection and the user can move the caret.
     useEffect(() => {
         if (selection) {
