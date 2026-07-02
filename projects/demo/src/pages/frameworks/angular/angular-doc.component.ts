@@ -3,7 +3,7 @@ import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {MaskitoDirective} from '@maskito/angular';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiLink, TuiNotification, TuiTitle} from '@taiga-ui/core';
 
 import Example1 from './examples/1-nested/component';
 import Example2 from './examples/2-nested/component';
@@ -28,6 +28,7 @@ import Example7 from './examples/7-cva-auto-transform';
         TuiAddonDoc,
         TuiLink,
         TuiNotification,
+        TuiTitle,
     ],
     templateUrl: './angular-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
