@@ -71,6 +71,12 @@ export const DEMO_PAGES: TuiDocRoutePages = [
     },
     {
         section: 'Frameworks',
+        title: 'React Native',
+        route: DemoPath.ReactNative,
+        keywords: 'react, native, mobile, ios, android, framework, addon',
+    },
+    {
+        section: 'Frameworks',
         title: 'Vue',
         route: DemoPath.Vue,
         keywords: 'vue, framework, addon',

@@ -48,14 +48,15 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 Maskito is a part of [Taiga UI](https://github.com/taiga-family/taiga-ui) libraries family which is backed and used by a
 large enterprise. This means you can rely on timely support and continuous development.
 
-| **Package**                                                    | **Downloads**                                                                                     |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [@maskito/core](https://npmjs.com/package/@maskito/core)       | [![](https://img.shields.io/npm/dw/@maskito/core)](https://npmjs.com/package/@maskito/core)       |
-| [@maskito/kit](https://npmjs.com/package/@maskito/kit)         | [![](https://img.shields.io/npm/dw/@maskito/kit)](https://npmjs.com/package/@maskito/kit)         |
-| [@maskito/react](https://npmjs.com/package/@maskito/react)     | [![](https://img.shields.io/npm/dw/@maskito/react)](https://npmjs.com/package/@maskito/react)     |
-| [@maskito/angular](https://npmjs.com/package/@maskito/angular) | [![](https://img.shields.io/npm/dw/@maskito/angular)](https://npmjs.com/package/@maskito/angular) |
-| [@maskito/vue](https://npmjs.com/package/@maskito/vue)         | [![](https://img.shields.io/npm/dw/@maskito/vue)](https://npmjs.com/package/@maskito/vue)         |
-| [@maskito/phone](https://npmjs.com/package/@maskito/phone)     | [![](https://img.shields.io/npm/dw/@maskito/phone)](https://npmjs.com/package/@maskito/phone)     |
+| **Package**                                                              | **Downloads**                                                                                               |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| [@maskito/core](https://npmjs.com/package/@maskito/core)                 | [![](https://img.shields.io/npm/dw/@maskito/core)](https://npmjs.com/package/@maskito/core)                 |
+| [@maskito/kit](https://npmjs.com/package/@maskito/kit)                   | [![](https://img.shields.io/npm/dw/@maskito/kit)](https://npmjs.com/package/@maskito/kit)                   |
+| [@maskito/phone](https://npmjs.com/package/@maskito/phone)               | [![](https://img.shields.io/npm/dw/@maskito/phone)](https://npmjs.com/package/@maskito/phone)               |
+| [@maskito/react](https://npmjs.com/package/@maskito/react)               | [![](https://img.shields.io/npm/dw/@maskito/react)](https://npmjs.com/package/@maskito/react)               |
+| [@maskito/react-native](https://npmjs.com/package/@maskito/react-native) | [![](https://img.shields.io/npm/dw/@maskito/react-native)](https://npmjs.com/package/@maskito/react-native) |
+| [@maskito/angular](https://npmjs.com/package/@maskito/angular)           | [![](https://img.shields.io/npm/dw/@maskito/angular)](https://npmjs.com/package/@maskito/angular)           |
+| [@maskito/vue](https://npmjs.com/package/@maskito/vue)                   | [![](https://img.shields.io/npm/dw/@maskito/vue)](https://npmjs.com/package/@maskito/vue)                   |
 
 ## License
 

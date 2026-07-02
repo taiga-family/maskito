@@ -1,0 +1,47 @@
+{
+    "name": "@maskito/react-native",
+    "version": "5.3.1",
+    "description": "The React Native specific Maskito's library",
+    "keywords": [
+        "input",
+        "mask",
+        "inputmask",
+        "input-mask",
+        "text-mask",
+        "format",
+        "input-format",
+        "input-formatting",
+        "javascript",
+        "typescript",
+        "react",
+        "react-native"
+    ],
+    "homepage": "https://maskito.dev",
+    "bugs": "https://github.com/taiga-family/maskito/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/taiga-family/maskito.git"
+    },
+    "license": "Apache-2.0",
+    "author": {
+        "email": "nikita.s.barsukov@gmail.com",
+        "name": "Nikita Barsukov",
+        "url": "https://github.com/nsbarsukov"
+    },
+    "contributors": [
+        {
+            "email": "nikita.s.barsukov@gmail.com",
+            "name": "Nikita Barsukov"
+        }
+    ],
+    "devDependencies": {
+        "@react-native/babel-preset": "0.86.0",
+        "@react-native/jest-preset": "0.86.0",
+        "@testing-library/react-native": "14.0.1"
+    },
+    "peerDependencies": {
+        "@maskito/core": "^5.3.1",
+        "react": ">=16.8",
+        "react-native": ">=0.85.0"
+    }
+}

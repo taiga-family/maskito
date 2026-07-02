@@ -78,6 +78,12 @@ export const ROUTES: Routes = [
         title: 'React',
     },
     {
+        path: DemoPath.ReactNative,
+        loadComponent: () =>
+            import('../pages/frameworks/react-native/react-native-doc.component'),
+        title: 'React Native',
+    },
+    {
         path: DemoPath.Vue,
         loadComponent: () => import('../pages/frameworks/vue/vue-doc.component'),
         title: 'Vue',

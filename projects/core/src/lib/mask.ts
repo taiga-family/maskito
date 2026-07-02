@@ -32,7 +32,6 @@ export class Maskito extends MaskHistory {
         ...this.maskitoOptions,
     };
 
-    private upcomingElementState: ElementState | null = null;
     private readonly preprocessor = maskitoPipe(this.options.preprocessors);
     private readonly postprocessor = maskitoPipe(this.options.postprocessors);
 
@@ -40,8 +39,10 @@ export class Maskito extends MaskHistory {
         .concat(BUILT_IN_PLUGINS)
         .map((plugin) => plugin(this.element, this.options));
 
+    public upcomingElementState: ElementState | null = null;
+
     constructor(
-        private readonly element: MaskitoElement,
+        public readonly element: MaskitoElement,
         private readonly maskitoOptions: MaskitoOptions,
     ) {
         super();
@@ -70,28 +71,24 @@ export class Maskito extends MaskHistory {
                 case 'deleteByCut':
                 case 'deleteContentBackward':
                 case 'deleteContentForward':
-                    return this.handleDelete({
+                    return this.delete(
+                        getNotEmptySelection(this.elementState, isForward),
                         event,
-                        isForward,
-                        selection: getNotEmptySelection(this.elementState, isForward),
-                    });
+                    );
                 case 'deleteHardLineBackward':
                 case 'deleteHardLineForward':
                 case 'deleteSoftLineBackward':
                 case 'deleteSoftLineForward':
-                    return this.handleDelete({
+                    return this.delete(
+                        getLineSelection(this.elementState, isForward),
                         event,
-                        isForward,
-                        selection: getLineSelection(this.elementState, isForward),
-                        force: true,
-                    });
+                    );
                 case 'deleteWordBackward':
                 case 'deleteWordForward':
-                    return this.handleDelete({
+                    return this.delete(
+                        getWordSelection(this.elementState, isForward),
                         event,
-                        isForward,
-                        selection: getWordSelection(this.elementState, isForward),
-                    });
+                    );
                 case 'historyRedo':
                     event.preventDefault();
 
@@ -126,12 +123,12 @@ export class Maskito extends MaskHistory {
                 case 'insertFromPaste':
                 case 'insertText':
                 default:
-                    return this.handleInsert(
-                        event,
+                    return this.insert(
                         event.data ??
                             // `event.data` for `contentEditable` is always `null` for paste/drop events
                             event.dataTransfer?.getData('text/plain') ??
                             '',
+                        event,
                     );
             }
         });
@@ -169,6 +166,92 @@ export class Maskito extends MaskHistory {
     public destroy(): void {
         this.eventListener.destroy();
         this.teardowns.forEach((teardown) => teardown?.());
+    }
+
+    public delete(selection: SelectionRange, event?: TypedInputEvent): void {
+        const isForward = event?.inputType.includes('Forward');
+
+        const initialState: ElementState = {
+            value: this.elementState.value,
+            selection,
+        };
+
+        const {elementState} = this.preprocessor(
+            {
+                elementState: initialState,
+                data: '',
+            },
+            isForward ? 'deleteForward' : 'deleteBackward',
+        );
+
+        const maskModel = new MaskModel(elementState, this.options);
+
+        maskModel.deleteCharacters();
+
+        const newElementState = this.postprocessor(maskModel, initialState);
+
+        if (
+            areElementValuesEqual(initialState, elementState, maskModel, newElementState)
+        ) {
+            const [from, to] = elementState.selection;
+
+            event?.preventDefault();
+
+            // User presses Backspace/Delete for the fixed value
+            return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
+        }
+
+        this.upcomingElementState = newElementState;
+    }
+
+    public insert(data: string, event?: TypedInputEvent): void {
+        const {options, maxLength, elementState: initialElementState} = this;
+        const [from, to] = initialElementState.selection;
+
+        const {elementState, data: insertedText = data} = this.preprocessor(
+            {
+                data,
+                elementState: initialElementState,
+            },
+            'insert',
+        );
+
+        const maskModel = new MaskModel(elementState, options);
+
+        try {
+            maskModel.addCharacters(insertedText);
+        } catch {
+            return event?.preventDefault();
+        }
+
+        this.upcomingElementState = this.clampState(
+            this.postprocessor(maskModel, initialElementState),
+        );
+
+        /**
+         * When textfield value length is already equal to attribute `maxlength`,
+         * pressing any key (even with valid value) does not emit `input` event
+         * (except to the case when user replaces some characters by selection).
+         */
+        const noInputEventDispatch =
+            initialElementState.value.length >= maxLength && from === to;
+
+        if (noInputEventDispatch) {
+            if (
+                options.overwriteMode === 'replace' &&
+                !areElementStatesEqual(this.upcomingElementState, initialElementState)
+            ) {
+                this.dispatchInputEvent({inputType: 'insertText', data});
+            } else {
+                /**
+                 * This `beforeinput` event will not be followed by `input` event –
+                 * clear computed state to avoid any possible side effect
+                 * for new possible `input` event without preceding `beforeinput` event
+                 * (e.g. browser autofill, `document.execCommand('delete')` etc.)
+                 */
+                this.upcomingElementState = null;
+            }
+        }
     }
 
     protected updateElementState(
@@ -243,102 +326,9 @@ export class Maskito extends MaskHistory {
         );
     }
 
-    private handleDelete({
-        event,
-        selection,
-        isForward,
-    }: {
-        event: TypedInputEvent;
-        selection: SelectionRange;
-        isForward: boolean;
-        force?: boolean;
-    }): void {
-        const initialState: ElementState = {
-            value: this.elementState.value,
-            selection,
-        };
-
-        const {elementState} = this.preprocessor(
-            {
-                elementState: initialState,
-                data: '',
-            },
-            isForward ? 'deleteForward' : 'deleteBackward',
-        );
-
-        const maskModel = new MaskModel(elementState, this.options);
-
-        maskModel.deleteCharacters();
-
-        const newElementState = this.postprocessor(maskModel, initialState);
-
-        if (
-            areElementValuesEqual(initialState, elementState, maskModel, newElementState)
-        ) {
-            const [from, to] = elementState.selection;
-
-            event.preventDefault();
-
-            // User presses Backspace/Delete for the fixed value
-            return this.updateSelectionRange(isForward ? [to, to] : [from, from]);
-        }
-
-        this.upcomingElementState = newElementState;
-    }
-
-    private handleInsert(event: TypedInputEvent, data: string): void {
-        const {options, maxLength, elementState: initialElementState} = this;
-        const [from, to] = initialElementState.selection;
-
-        const {elementState, data: insertedText = data} = this.preprocessor(
-            {
-                data,
-                elementState: initialElementState,
-            },
-            'insert',
-        );
-
-        const maskModel = new MaskModel(elementState, options);
-
-        try {
-            maskModel.addCharacters(insertedText);
-        } catch {
-            return event.preventDefault();
-        }
-
-        this.upcomingElementState = this.clampState(
-            this.postprocessor(maskModel, initialElementState),
-        );
-
-        /**
-         * When textfield value length is already equal to attribute `maxlength`,
-         * pressing any key (even with valid value) does not emit `input` event
-         * (except to the case when user replaces some characters by selection).
-         */
-        const noInputEventDispatch =
-            initialElementState.value.length >= maxLength && from === to;
-
-        if (noInputEventDispatch) {
-            if (
-                options.overwriteMode === 'replace' &&
-                !areElementStatesEqual(this.upcomingElementState, initialElementState)
-            ) {
-                this.dispatchInputEvent({inputType: 'insertText', data});
-            } else {
-                /**
-                 * This `beforeinput` event will not be followed by `input` event –
-                 * clear computed state to avoid any possible side effect
-                 * for new possible `input` event without preceding `beforeinput` event
-                 * (e.g. browser autofill, `document.execCommand('delete')` etc.)
-                 */
-                this.upcomingElementState = null;
-            }
-        }
-    }
-
     private handleEnter(event: TypedInputEvent): void {
         if (this.isTextArea || this.element.isContentEditable) {
-            this.handleInsert(event, '\n');
+            this.insert('\n', event);
         }
     }
 
