@@ -2,12 +2,12 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiLink, TuiNotification, TuiTitle} from '@taiga-ui/core';
 import {TuiList} from '@taiga-ui/layout';
 
 @Component({
     selector: 'react-native-doc-page',
-    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiList, TuiNotification],
+    imports: [RouterLink, TuiAddonDoc, TuiLink, TuiList, TuiNotification, TuiTitle],
     templateUrl: './react-native-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
