@@ -98,7 +98,7 @@
             "defaultConfiguration": "development",
             "executor": "@nx/angular:dev-server",
             "options": {
-                "port": 3333,
+                "port": 3000,
                 "prebundle": {
                     "exclude": [
                         "@taiga-ui/addon-doc",
@@ -140,7 +140,7 @@
             "executor": "@nx/web:file-server",
             "options": {
                 "buildTarget": "{projectName}:build",
-                "port": 3333,
+                "port": 3000,
                 "spa": true,
                 "staticFilePath": "dist/{projectName}/browser"
             }
