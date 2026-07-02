@@ -149,16 +149,13 @@
             tuiNotification
             class="tui-space_bottom-4"
         >
-            <div>
-                <p class="tui-space_top-0 tui-space_bottom-0">
-                    <strong>With great power comes great responsibility!</strong>
-                </p>
-
-                <p class="tui-space_bottom-0">
+            <span tuiTitle>
+                With great power comes great responsibility!
+                <span tuiSubtitle>
                     Postprocessor is the final step before input's value update which gives a lot of flexibility. Use
                     postprocessor wisely and return a valid value!
-                </p>
-            </div>
+                </span>
+            </span>
         </div>
 
         <tui-doc-code [code]="postprocessorInActionDemo" />
@@ -168,10 +165,9 @@
         size="m"
         tuiNotification
     >
-        <div>
-            <strong>Stacking of multiple processors</strong>
-
-            <p>
+        <span tuiTitle>
+            Stacking of multiple processors
+            <span tuiSubtitle>
                 The
                 <strong>Maskito</strong>
                 team likes code decomposition and promotes it! Don't put all complex logic inside a single processor.
@@ -183,8 +179,8 @@
                 <strong>array</strong>
                 of same type processors. Break your code into the several independent processors so that each processor
                 implements only a single task.
-            </p>
-        </div>
+            </span>
+        </span>
     </div>
 
     <next-steps />
