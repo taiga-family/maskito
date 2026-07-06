@@ -2,13 +2,20 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {DemoPath} from '@demo/constants';
 import {TuiAddonDoc} from '@taiga-ui/addon-doc';
-import {TuiLink, TuiNotification} from '@taiga-ui/core';
+import {TuiLink, TuiNotification, TuiTitle} from '@taiga-ui/core';
 
 import {NextStepsComponent} from '../next-steps/next-steps.component';
 
 @Component({
     selector: 'processors-doc-page',
-    imports: [NextStepsComponent, RouterLink, TuiAddonDoc, TuiLink, TuiNotification],
+    imports: [
+        NextStepsComponent,
+        RouterLink,
+        TuiAddonDoc,
+        TuiLink,
+        TuiNotification,
+        TuiTitle,
+    ],
     templateUrl: './processors.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
