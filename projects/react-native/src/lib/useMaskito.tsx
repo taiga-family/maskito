@@ -81,7 +81,8 @@ function reconstructEdit(
     {value, selection}: {value: string; selection: Required<TextInputProps>['selection']},
 ): {selectionStart: number; selectionEnd: number; data: string} {
     if (!previous && value) {
-        // required for browser autofill, which wrongly reports the caret as `[0, 0]`
+        // required for Android browser autofill, which wrongly reports the caret as `[0, 0]`
+        // https://github.com/react/react-native/issues/57458
         return {selectionStart: 0, selectionEnd: 0, data: value};
     }
 
