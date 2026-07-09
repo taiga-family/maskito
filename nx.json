@@ -30,18 +30,19 @@
             "strict": true,
             "unitTestRunner": "jest"
         },
-        "@nx/react": {
-            "application": {
-                "babel": true
-            },
-            "library": {
-                "bundler": "rollup",
-                "linter": "eslint",
-                "publishable": true,
-                "strict": true,
-                "style": "none",
-                "unitTestRunner": "jest"
-            }
+        "@nx/react-native:library": {
+            "linter": "eslint",
+            "publishable": true,
+            "strict": true,
+            "unitTestRunner": "jest"
+        },
+        "@nx/react:library": {
+            "bundler": "rollup",
+            "linter": "eslint",
+            "publishable": true,
+            "strict": true,
+            "style": "none",
+            "unitTestRunner": "jest"
         }
     },
     "namedInputs": {
@@ -83,6 +84,22 @@
             "options": {
                 "passWithNoTests": true
             }
+        },
+        "@nx/rollup:rollup": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": [
+                "production",
+                "^production",
+                {
+                    "fields": [
+                        "extends",
+                        "files",
+                        "include"
+                    ],
+                    "json": "{workspaceRoot}/tsconfig.json"
+                }
+            ]
         },
         "build": {
             "cache": true,

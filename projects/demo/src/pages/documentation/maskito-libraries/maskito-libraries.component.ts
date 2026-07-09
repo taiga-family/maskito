@@ -17,5 +17,6 @@ export default class MaskitoLibrariesDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
     protected readonly angularDocPage = `/${DemoPath.Angular}`;
     protected readonly reactDocPage = `/${DemoPath.React}`;
+    protected readonly reactNativeDocPage = `/${DemoPath.ReactNative}`;
     protected readonly vueDocPage = `/${DemoPath.Vue}`;
 }

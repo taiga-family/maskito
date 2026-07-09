@@ -10,6 +10,7 @@ export const DemoPath = {
     Transformer: 'core-concepts/transformer',
     Angular: 'frameworks/angular',
     React: 'frameworks/react',
+    ReactNative: 'frameworks/react-native',
     Vue: 'frameworks/vue',
     Number: 'kit/number',
     Time: 'kit/time',

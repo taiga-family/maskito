@@ -1,0 +1,191 @@
+<tui-doc-page
+    header="React Native"
+    path="react-native"
+>
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            <code>&#64;maskito/react-native</code>
+            is a lightweight library that brings
+            <strong>Maskito</strong>
+            to React Native applications.
+        </p>
+
+        <div
+            appearance="warning"
+            size="m"
+            tuiNotification
+        >
+            <span tuiTitle>
+                Prerequisites
+                <span tuiSubtitle>
+                    To get the most out of this guide, you should review the topic
+                    <a
+                        tuiLink
+                        [routerLink]="coreConceptsOverviewDocPage"
+                    >
+                        "Core Concepts"
+                    </a>
+                    first
+                </span>
+            </span>
+        </div>
+
+        <tui-doc-example
+            heading="Getting Started"
+            [content]="{'app.tsx': useMaskitoBasicUsage}"
+            [description]="gettingStartedDescription"
+            [preview]="false"
+        >
+            <ng-template #gettingStartedDescription>
+                <p>Install the packages</p>
+
+                <tui-doc-code code="npm install &#64;maskito/{core,react-native}" />
+
+                <p>
+                    and use
+                    <strong>Maskito</strong>
+                </p>
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Compatible with built-in masks"
+            [content]="{'app.tsx': kitCompatible}"
+            [description]="kitCompatibleDescription"
+            [preview]="false"
+        >
+            <ng-template #kitCompatibleDescription>
+                Feel free to combine
+                <code>&#64;maskito/react-native</code>
+                with built-in masks from
+                <code>&#64;maskito/kit</code>
+                and
+                <code>&#64;maskito/phone</code>
+                — they work out of the box.
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Controlled input"
+            [content]="{'app.tsx': controlledInput}"
+            [description]="controlledInputDescription"
+            [preview]="false"
+        >
+            <ng-template #controlledInputDescription>
+                Pass
+                <a
+                    href="https://reactnative.dev/docs/next/textinput#onchange"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    <code>onChange</code>
+                </a>
+                /
+                <a
+                    href="https://reactnative.dev/docs/next/textinput#onchangetext"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    <code>onChangeText</code>
+                </a>
+                to
+                <code>useMaskito</code>
+                to implement the
+                <a
+                    href="https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    controlled input
+                </a>
+                pattern.
+            </ng-template>
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Limitations"
+            [content]="{'app.tsx': poorPluginSupport}"
+            [description]="limitationDescription"
+            [preview]="false"
+        >
+            <ng-template #limitationDescription>
+                React Native does not expose an environment API as rich as the one available to web-based applications.
+                Because of these differences,
+                <code>&#64;maskito/react-native</code>
+                has a few known limitations that Maskito cannot work around:
+                <ul tuiList>
+                    <li>
+                        <strong style="display: inline-block">
+                            React Native
+                            <code>>=0.85.0</code>
+                            is required.
+                        </strong>
+                        This release
+                        <a
+                            href="https://github.com/facebook/react-native/commit/162627af7c53e27433f39f82c4630baff0695bf1"
+                            rel="noreferrer"
+                            target="_blank"
+                            tuiLink
+                        >
+                            introduced
+                        </a>
+                        selection data in the TextInput
+                        <code>onChange</code>
+                        event. This is a major milestone for Maskito: it unlocks (partial) support for React Native.
+                        Without it, caret management would be either too limited or achievable only at the cost of
+                        significantly worse code quality.
+                    </li>
+                    <li>
+                        <strong>Value flickering.</strong>
+                        When the user types an invalid character and the field value stays unchanged, a brief flicker
+                        can appear before the input re-renders. The React Native team
+                        <a
+                            href="https://reactnative.dev/docs/next/textinput#value"
+                            rel="noreferrer"
+                            target="_blank"
+                            tuiLink
+                        >
+                            mentions
+                        </a>
+                        this in their documentation as a known issue. See also the GitHub bug reports
+                        <a
+                            href="https://github.com/facebook/react-native/issues/34437"
+                            rel="noreferrer"
+                            target="_blank"
+                            tuiLink
+                        >
+                            #34437
+                        </a>
+                        and
+                        <a
+                            href="https://github.com/facebook/react-native/issues/38155"
+                            rel="noreferrer"
+                            target="_blank"
+                            tuiLink
+                        >
+                            #38155
+                        </a>
+                        .
+                    </li>
+                    <li>
+                        <strong style="display: inline-block">
+                            Poor
+                            <a
+                                tuiLink
+                                [routerLink]="pluginsDocPage"
+                            >
+                                Plugin
+                            </a>
+                            support.
+                        </strong>
+                        Most built-in plugins were written under the assumption that they run in a browser or Node.js
+                        environment. We strongly discourage using them in React Native applications.
+                    </li>
+                </ul>
+            </ng-template>
+        </tui-doc-example>
+    </ng-template>
+</tui-doc-page>
