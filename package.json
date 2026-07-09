@@ -79,6 +79,9 @@
             "**/node_modules/**"
         ]
     },
+    "overrides": {
+        "react-native": "0.87.0-rc.0"
+    },
     "devDependencies": {
         "@angular-devkit/build-angular": "19.2.27",
         "@angular-devkit/core": "19.2.27",

@@ -108,19 +108,11 @@ function getSelection({
     nativeEvent,
     target,
 }: Pick<TextInputProps, 'selection'> & TextInputChangeEvent): Required<TextInputProps>['selection'] {
-    if ('selection' in nativeEvent) {
-        /**
-         * `selection` is part of `TextInput.onChange` event for all native platforms since react-native >= 0.85.0
-         * This utility is required to typecast poor typings only.
-         * https://github.com/react/react-native/commit/162627af7c53e27433f39f82c4630baff0695bf1
-         * https://github.com/react/react-native/commit/c1f5445f4a59d0035389725e47da58eb3d2c267c
-         *
-         * TODO: delete typecast after merging this PR https://github.com/react/react-native/pull/57249
-         */
-        return nativeEvent.selection as NonNullable<TextInputProps['selection']>;
-    }
+    const fallback = isWeb(target)
+        ? {start: target.selectionStart ?? 0, end: target.selectionEnd ?? 0}
+        : {start: 0, end: 0};
 
-    return isWeb(target) ? {start: target.selectionStart ?? 0, end: target.selectionEnd ?? 0} : {start: 0, end: 0};
+    return nativeEvent.selection || fallback;
 }
 
 function isWeb(element: HTMLInputElement | ReactNativeElement): element is HTMLInputElement {
