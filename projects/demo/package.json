@@ -17,7 +17,7 @@
         "@maskito/kit": "*",
         "@ng-web-apis/common": "5.3.0",
         "@ng-web-apis/universal": "5.3.0",
-        "@stackblitz/sdk": "1.11.0",
+        "@stackblitz/sdk": "1.11.1",
         "@taiga-ui/addon-doc": "5.12.0",
         "@taiga-ui/addon-mobile": "5.12.0",
         "@taiga-ui/cdk": "5.12.0",
