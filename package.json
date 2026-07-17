@@ -123,7 +123,7 @@
         "nx": "22.7.5",
         "postcss-preset-env": "10.6.1",
         "prettier": "3.8.3",
-        "ts-jest": "^29.4.0",
+        "ts-jest": "29.4.11",
         "ts-node": "10.9.2",
         "tslib": "2.8.1",
         "tsutils": "3.21.0",
