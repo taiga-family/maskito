@@ -9,7 +9,5 @@ export interface MaskitoOptions {
     readonly postprocessors?: readonly MaskitoPostprocessor[];
     readonly plugins?: readonly MaskitoPlugin[];
     readonly overwriteMode?:
-        | 'replace'
-        | 'shift'
-        | ((elementState: ElementState) => 'replace' | 'shift');
+        'replace' | 'shift' | ((elementState: ElementState) => 'replace' | 'shift');
 }
