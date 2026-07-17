@@ -9,8 +9,7 @@ export function paste<T extends Cypress.PrevSubjectMap['element']>(
     data: string,
 ): ReturnType<Cypress.CommandFn<'paste'>> {
     const element = Cypress.dom.unwrap($subject)[0] as
-        | HTMLInputElement
-        | HTMLTextAreaElement;
+        HTMLInputElement | HTMLTextAreaElement;
 
     const {value, selectionStart, selectionEnd} = element;
 
