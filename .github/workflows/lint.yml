@@ -5,7 +5,7 @@ jobs:
   commitlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: taiga-family/actions/setup-node@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
       - run: echo "$(git log -1 --pretty=format:"%s")" | npx commitlint --verbose
         if: github.event_name == 'pull_request'
@@ -13,7 +13,7 @@ jobs:
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
       - uses: taiga-family/actions/setup-node@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
       - run: npm run typecheck
@@ -21,7 +21,7 @@ jobs:
   cspell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
       - uses: taiga-family/actions/setup-node@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
       - run: npm run cspell -- --no-progress
@@ -29,7 +29,7 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
@@ -42,7 +42,7 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
@@ -55,7 +55,7 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
