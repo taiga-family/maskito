@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-      - uses: taiga-family/actions/setup-variables@916a39693b6360c08dcdd5e91d1d8fef9d40fb64 # v2.6.0
-      - uses: taiga-family/actions/setup-node@916a39693b6360c08dcdd5e91d1d8fef9d40fb64 # v2.6.0
-      - uses: taiga-family/actions/release-it@916a39693b6360c08dcdd5e91d1d8fef9d40fb64 # v2.6.0
+      - uses: taiga-family/actions/setup-variables@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
+      - uses: taiga-family/actions/setup-node@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
+      - uses: taiga-family/actions/release-it@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
         id: release-it
         with:
           ref: ${{ github.ref }}
@@ -28,12 +28,12 @@ jobs:
           npmToken: ${{ secrets.NPM_TOKEN }}
           githubToken: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
-      - uses: taiga-family/actions/read-package-json@916a39693b6360c08dcdd5e91d1d8fef9d40fb64 # v2.6.0
+      - uses: taiga-family/actions/read-package-json@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
         id: info
 
       - name: Announce to Telegram
         if: steps.release-it.outputs.released == 'true'
-        uses: taiga-family/actions/messenger-telegram-announce@916a39693b6360c08dcdd5e91d1d8fef9d40fb64 # v2.6.0
+        uses: taiga-family/actions/messenger-telegram-announce@5b954545ec33833478961976b2ce4fd3c6b89149 # v2.7.0
         with:
           chatId: ${{ secrets.TAIGA_TELEGRAM_CHAT_ID }}
           topicId: ${{ secrets.TAIGA_TELEGRAM_CHAT_THREAD_ID }}
