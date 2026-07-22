@@ -112,7 +112,7 @@
         "@tinkoff/eslint-config-react": "5.2.2",
         "@types/highlight.js": "10.1.0",
         "@types/jest": "29.5.14",
-        "@types/node": "24.13.2",
+        "@types/node": "24.13.3",
         "babel-jest": "29.7.0",
         "http-server": "14.1.1",
         "husky": "9.1.7",
