@@ -107,7 +107,7 @@
         "@swc-node/register": "1.11.1",
         "@swc/core": "1.15.43",
         "@swc/helpers": "0.5.23",
-        "@taiga-ui/configs": "0.545.0",
+        "@taiga-ui/configs": "0.553.0",
         "@tinkoff/eslint-config": "5.2.2",
         "@tinkoff/eslint-config-react": "5.2.2",
         "@types/highlight.js": "10.1.0",
