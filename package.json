@@ -122,7 +122,7 @@
         "ng-packagr": "19.2.2",
         "nx": "22.7.5",
         "postcss-preset-env": "10.6.1",
-        "prettier": "3.9.4",
+        "prettier": "3.9.5",
         "ts-jest": "29.4.11",
         "ts-node": "10.9.2",
         "tslib": "2.8.1",
