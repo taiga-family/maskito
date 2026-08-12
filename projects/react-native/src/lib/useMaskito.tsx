@@ -1,6 +1,6 @@
 import {Maskito, type MaskitoOptions, maskitoTransform} from '@maskito/core';
 import {useCallback, useEffect, useMemo, useState} from 'react';
-import type {ReactNativeElement, TextInputChangeEvent, TextInputProps} from 'react-native';
+import type {TextInputChangeEvent, TextInputProps} from 'react-native';
 
 import {createHeadlessElement} from './element';
 
@@ -115,6 +115,6 @@ function getSelection({
     return nativeEvent.selection || fallback;
 }
 
-function isWeb(element: HTMLInputElement | ReactNativeElement): element is HTMLInputElement {
-    return 'selectionStart' in element;
+function isWeb(element: HTMLInputElement | TextInputChangeEvent['target']): element is HTMLInputElement {
+    return typeof element === 'object' && 'selectionStart' in element;
 }
