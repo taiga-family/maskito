@@ -35,13 +35,13 @@
         }
     ],
     "devDependencies": {
-        "@react-native/babel-preset": "0.87.0-rc.1",
-        "@react-native/jest-preset": "0.87.0-rc.0",
+        "@react-native/babel-preset": "0.87.0",
+        "@react-native/jest-preset": "0.87.0",
         "@testing-library/react-native": "14.0.1"
     },
     "peerDependencies": {
         "@maskito/core": "^5.3.1",
         "react": ">=16.8",
-        "react-native": ">=0.85.0"
+        "react-native": ">=0.87.0"
     }
 }
