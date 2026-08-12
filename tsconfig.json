@@ -3,6 +3,7 @@
     "compilerOptions": {
         "baseUrl": "./",
         "jsx": "react-jsx",
+        "moduleResolution": "bundler",
         "outDir": "./dist/out-tsc",
         "paths": {
             "@demo/constants": ["projects/demo/src/app/constants/index.ts"],
