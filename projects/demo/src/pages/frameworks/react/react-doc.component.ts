@@ -5,8 +5,8 @@ import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiLink, TuiNotification, TuiTitle} from '@taiga-ui/core';
 import {TuiTabs} from '@taiga-ui/kit';
 
-import Example1 from './examples/1-use-maskito-basic-usage/example.component';
-import Example2 from './examples/2-element-predicate/example.component';
+import Example1 from './examples/1-use-maskito-basic-usage/Example.component';
+import Example2 from './examples/2-element-predicate/Example.component';
 
 @Component({
     selector: 'react-doc-page',
@@ -28,7 +28,7 @@ export default class ReactDocPageComponent {
     protected readonly coreConceptsOverviewDocPage = `/${DemoPath.CoreConceptsOverview}`;
 
     protected readonly useMaskitoBasicUsage = import(
-        './examples/1-use-maskito-basic-usage/useMaskitoBasicUsage.tsx?raw',
+        './examples/1-use-maskito-basic-usage/UseMaskitoBasicUsage.tsx?raw',
         {with: {loader: 'text'}}
     );
 
@@ -40,7 +40,7 @@ export default class ReactDocPageComponent {
             with: {loader: 'text'},
         }),
         'awesome-input.tsx': import(
-            './examples/2-element-predicate/awesomeInput.tsx?raw',
+            './examples/2-element-predicate/AwesomeInput.tsx?raw',
             {with: {loader: 'text'}}
         ),
     };

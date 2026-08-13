@@ -2,7 +2,7 @@ import type {MaskitoOptions} from '@maskito/core';
 import {render, screen, userEvent} from '@testing-library/react-native';
 import type {TestInstance} from 'test-renderer';
 
-import {MaskedInput} from './maskedInput';
+import {MaskedInput} from './MaskedInput';
 
 const cardMask: MaskitoOptions = {
     mask: [

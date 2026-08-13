@@ -4,7 +4,7 @@ import {render, type RenderResult, waitFor} from '@testing-library/react';
 import userEvent, {type UserEvent} from '@testing-library/user-event';
 import type {JSX} from 'react';
 
-import {useMaskito} from '../useMaskito';
+import {useMaskito} from '../UseMaskito';
 
 const options: MaskitoOptions = {
     mask: /^\d+(,\d{0,2})?$/,

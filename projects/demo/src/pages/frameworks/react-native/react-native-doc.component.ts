@@ -16,20 +16,20 @@ export default class ReactNativeDocPageComponent {
     protected readonly pluginsDocPage = `/${DemoPath.Plugins}`;
 
     protected readonly useMaskitoBasicUsage = import(
-        './examples/useMaskitoBasicUsage.tsx?raw',
+        './examples/UseMaskitoBasicUsage.tsx?raw',
         {with: {loader: 'text'}}
     );
 
-    protected readonly kitCompatible = import('./examples/kitCompatible.tsx?raw', {
+    protected readonly kitCompatible = import('./examples/KitCompatible.tsx?raw', {
         with: {loader: 'text'},
     });
 
-    protected readonly controlledInput = import('./examples/controlledInput.tsx?raw', {
+    protected readonly controlledInput = import('./examples/ControlledInput.tsx?raw', {
         with: {loader: 'text'},
     });
 
     protected readonly poorPluginSupport = import(
-        './examples/poorPluginSupport.tsx?raw',
+        './examples/PoorPluginSupport.tsx?raw',
         {with: {loader: 'text'}}
     );
 }

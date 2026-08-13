@@ -2,7 +2,7 @@ import {maskitoNumber} from '@maskito/kit';
 import {render, screen, userEvent} from '@testing-library/react-native';
 import type {TestInstance} from 'test-renderer';
 
-import {MaskedInput} from './maskedInput';
+import {MaskedInput} from './MaskedInput';
 
 const number = maskitoNumber({maximumFractionDigits: 2});
 

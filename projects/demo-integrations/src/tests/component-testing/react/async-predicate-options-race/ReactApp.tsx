@@ -2,7 +2,7 @@ import type {MaskitoElementPredicate, MaskitoOptions} from '@maskito/core';
 import {useMaskito} from '@maskito/react';
 import {type ComponentType, useEffect, useState} from 'react';
 
-import {AwesomeInput} from '../awesomeInput';
+import {AwesomeInput} from '../AwesomeInput';
 
 export const SWITCH_OPTIONS_TIME = 1_000;
 export const PREDICATE_RESOLVING_TIME = 2_000;

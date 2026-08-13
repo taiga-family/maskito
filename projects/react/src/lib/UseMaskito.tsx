@@ -7,8 +7,8 @@ import {
 } from '@maskito/core';
 import {type RefCallback, useCallback, useRef, useState} from 'react';
 
-import {adaptReactControlledElement} from './adaptControlledElement';
-import {useIsomorphicLayoutEffect} from './useIsomorphicLayoutEffect';
+import {adaptReactControlledElement} from './AdaptControlledElement';
+import {useIsomorphicLayoutEffect} from './UseIsomorphicLayoutEffect';
 
 function isThenable<T = unknown>(x: PromiseLike<T> | T): x is PromiseLike<T> {
     return x && typeof x === 'object' && 'then' in x;

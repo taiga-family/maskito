@@ -1,7 +1,7 @@
 import type {MaskitoOptions} from '@maskito/core';
 import {mount} from 'cypress/react';
 
-import {MaskedInput} from './maskedInput';
+import {MaskedInput} from './MaskedInput';
 
 const cardMask: MaskitoOptions = {
     mask: [

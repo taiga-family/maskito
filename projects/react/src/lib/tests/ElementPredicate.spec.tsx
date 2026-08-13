@@ -8,7 +8,7 @@ import {render, type RenderResult, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type {JSX} from 'react';
 
-import {useMaskito} from '../useMaskito';
+import {useMaskito} from '../UseMaskito';
 
 describe('@maskito/react | `elementPredicate` property', () => {
     const options: MaskitoOptions = {

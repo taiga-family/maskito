@@ -1,7 +1,7 @@
 import {maskitoTime} from '@maskito/kit';
 import {mount} from 'cypress/react';
 
-import {MaskedInput} from './maskedInput';
+import {MaskedInput} from './MaskedInput';
 
 const timeMask = maskitoTime({mode: 'HH:MM'});
 
