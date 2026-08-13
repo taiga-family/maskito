@@ -8,14 +8,12 @@
         "@angular/core": "19.2.25",
         "@angular/forms": "19.2.25",
         "@angular/platform-browser": "19.2.25",
-        "@angular/platform-browser-dynamic": "19.2.25",
         "@angular/platform-server": "19.2.25",
         "@angular/router": "19.2.25",
         "@angular/ssr": "19.2.27",
         "@maskito/angular": "*",
         "@maskito/core": "*",
         "@maskito/kit": "*",
-        "@ng-web-apis/common": "5.3.0",
         "@ng-web-apis/universal": "5.3.0",
         "@stackblitz/sdk": "1.11.1",
         "@taiga-ui/addon-doc": "5.17.0",
@@ -27,12 +25,9 @@
         "@taiga-ui/layout": "5.17.0",
         "@taiga-ui/legacy": "5.17.0",
         "@taiga-ui/styles": "5.17.0",
-        "@taiga-ui/testing": "5.17.0",
-        "browser-sync": "3.0.4",
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "rxjs": "7.8.2",
-        "tslib": "2.8.1",
         "vue": "3.5.40"
     }
 }
