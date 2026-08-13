@@ -1,4 +1,17 @@
-## [5.3.1](https://github.com/taiga-family/maskito/compare/v5.3.0...v5.3.1) (2026-06-16)
+### [5.4.0](https://github.com/taiga-family/maskito/compare/v5.4.0...v5.3.1) (2026-06-04)
+
+### 🚀 Features
+
+- new library `@maskito/react-native` ([#2804](https://github.com/taiga-family/maskito/pull/2804))
+  [(2fbc362)](https://github.com/taiga-family/maskito/commit/2fbc3625ef3d24e20879ca1e468800a2fe250f96)
+
+### 🐞 Bug Fixes
+
+- use `sideEffects: false` for all packages to optimize tree shaking
+  ([#2811](https://github.com/taiga-family/maskito/pull/2811))
+  [(a1d80eb)](https://github.com/taiga-family/maskito/commit/a1d80eb2a094ae716de50a43d14c33ba0c835780)
+
+### [5.3.1](https://github.com/taiga-family/maskito/compare/v5.3.0...v5.3.1) (2026-06-16)
 
 ### 🐞 Bug Fixes
 
@@ -85,7 +98,7 @@
 - **phone**: `Phone` preserves previously entered digits on new digits paste (#2481)
   [(f836f4f)](https://github.com/taiga-family/maskito/commit/f836f4f5ec94d865a2bcb44960161cfe25fe3a64)
 
-## [5.1.0](https://github.com/taiga-family/maskito/compare/v5.0.1...v5.1.0) (2026-01-22)
+### [5.1.0](https://github.com/taiga-family/maskito/compare/v5.0.1...v5.1.0) (2026-01-22)
 
 ### 🚀 Features
 
@@ -498,7 +511,7 @@
 
   Learn more: https://maskito.dev/core-concepts/plugins#change-event
 
-## [2.5.0](https://github.com/taiga-family/maskito/compare/v2.4.0...v2.5.0) (2024-06-24)
+### [2.5.0](https://github.com/taiga-family/maskito/compare/v2.4.0...v2.5.0) (2024-06-24)
 
 ### 🚀 Features
 
@@ -518,7 +531,7 @@
   ([#1307](https://github.com/taiga-family/maskito/issues/1307))
   ([87ae431](https://github.com/taiga-family/maskito/commit/87ae431ded798e3c31d6247f965a00c27ddad3f1))
 
-## [2.4.0](https://github.com/taiga-family/maskito/compare/v2.3.2...v2.4.0) (2024-06-03)
+### [2.4.0](https://github.com/taiga-family/maskito/compare/v2.3.2...v2.4.0) (2024-06-03)
 
 ### 🚀 Features
 
@@ -568,7 +581,7 @@
   ([#1209](https://github.com/taiga-family/maskito/issues/1209))
   ([ed06936](https://github.com/taiga-family/maskito/commit/ed06936c41297cbd2e8ed308558914e9ad6c2eda))
 
-## [2.3.0](https://github.com/taiga-family/maskito/compare/v2.2.0...v2.3.0) (2024-04-16)
+### [2.3.0](https://github.com/taiga-family/maskito/compare/v2.2.0...v2.3.0) (2024-04-16)
 
 ### 🚀 Features
 
@@ -584,7 +597,7 @@
   ([#1177](https://github.com/taiga-family/maskito/issues/1177))
   ([948a350](https://github.com/taiga-family/maskito/commit/948a35098da2233bc78793eb7e83b7c5136becbd))
 
-## [2.2.0](https://github.com/taiga-family/maskito/compare/v2.1.0...v2.2.0) (2024-03-07)
+### [2.2.0](https://github.com/taiga-family/maskito/compare/v2.1.0...v2.2.0) (2024-03-07)
 
 ### 🚀 Features
 
@@ -598,7 +611,7 @@
   ([#1117](https://github.com/taiga-family/maskito/issues/1117))
   ([8cbadcf](https://github.com/taiga-family/maskito/commit/8cbadcfdf9af283dc687b131361f7bb19a7f9b02))
 
-## [2.1.0](https://github.com/taiga-family/maskito/compare/v2.0.2...v2.1.0) (2024-03-04)
+### [2.1.0](https://github.com/taiga-family/maskito/compare/v2.0.2...v2.1.0) (2024-03-04)
 
 ### 🚀 Features
 
@@ -679,7 +692,7 @@
 - **kit:** `Placeholder` is not compatible with `maskitoEventHandler` + `focus`/`blur` events
   ([#928](https://github.com/taiga-family/maskito/pull/928))
 
-## [1.9.0](https://github.com/taiga-family/maskito/compare/v1.8.2...v1.9.0) (2023-11-23)
+### [1.9.0](https://github.com/taiga-family/maskito/compare/v1.8.2...v1.9.0) (2023-11-23)
 
 ### 🚀 Features
 
@@ -702,7 +715,7 @@
   ([#610](https://github.com/taiga-family/maskito/issues/610))
   ([e493198](https://github.com/taiga-family/maskito/commit/e4931987c2fad37894ea07f658f08e35152040df))
 
-## [1.8.0](https://github.com/taiga-family/maskito/compare/v1.7.0...v1.8.0) (2023-10-18)
+### [1.8.0](https://github.com/taiga-family/maskito/compare/v1.7.0...v1.8.0) (2023-10-18)
 
 ### 🚀 Features
 
@@ -715,7 +728,7 @@
   ([#586](https://github.com/taiga-family/maskito/issues/586))
   ([7241761](https://github.com/taiga-family/maskito/commit/72417614dd4974c22854dfacc2ee35044c080074))
 
-## [1.7.0](https://github.com/taiga-family/maskito/compare/v1.6.0...v1.7.0) (2023-09-15)
+### [1.7.0](https://github.com/taiga-family/maskito/compare/v1.6.0...v1.7.0) (2023-09-15)
 
 ### 🚀 Features
 
@@ -724,7 +737,7 @@ New `@maskito/phone` library ([#425](https://github.com/taiga-family/maskito/pul
 
 Learn more: https://maskito.dev/addons/phone
 
-## [1.6.0](https://github.com/taiga-family/maskito/compare/v1.5.1...v1.6.0) (2023-09-15)
+### [1.6.0](https://github.com/taiga-family/maskito/compare/v1.5.1...v1.6.0) (2023-09-15)
 
 ### 🚀 Features
 
@@ -746,7 +759,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#487](https://github.com/taiga-family/maskito/issues/487))
   ([fe7e9dc](https://github.com/taiga-family/maskito/commit/fe7e9dcb468bf3ab30978c947d8fa21cc0e51a75))
 
-## [1.5.0](https://github.com/taiga-family/maskito/compare/v1.4.0...v1.5.0) (2023-09-04)
+### [1.5.0](https://github.com/taiga-family/maskito/compare/v1.4.0...v1.5.0) (2023-09-04)
 
 ### 🚀 Features
 
@@ -765,7 +778,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#390](https://github.com/taiga-family/maskito/issues/390))
   ([2107adc](https://github.com/taiga-family/maskito/commit/2107adc445ed26ce1507c5e0c534b668d7ae5b12))
 
-## [1.4.0](https://github.com/taiga-family/maskito/compare/v1.3.0...v1.4.0) (2023-07-27)
+### [1.4.0](https://github.com/taiga-family/maskito/compare/v1.3.0...v1.4.0) (2023-07-27)
 
 ### 🚀 Features
 
@@ -775,7 +788,7 @@ Learn more: https://maskito.dev/addons/phone
 - **kit:** `Time` supports new mode `HH` ([#385](https://github.com/taiga-family/maskito/issues/385))
   ([3c7a3f6](https://github.com/taiga-family/maskito/commit/3c7a3f65a0013152473ba57af8da28012cb58f32))
 
-## [1.3.0](https://github.com/taiga-family/maskito/compare/v1.2.2...v1.3.0) (2023-07-24)
+### [1.3.0](https://github.com/taiga-family/maskito/compare/v1.2.2...v1.3.0) (2023-07-24)
 
 ### 🚀 Features
 
@@ -811,7 +824,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#366](https://github.com/taiga-family/maskito/issues/366))
   ([06afbcb](https://github.com/taiga-family/maskito/commit/06afbcb4a2c5c15e2ef9dc81db4309adf01aa8ef))
 
-## [1.2.0](https://github.com/taiga-family/maskito/compare/v1.1.1...v1.2.0) (2023-07-03)
+### [1.2.0](https://github.com/taiga-family/maskito/compare/v1.1.1...v1.2.0) (2023-07-03)
 
 ### 🚀 Features
 
@@ -838,7 +851,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#351](https://github.com/taiga-family/maskito/issues/351))
   ([4ccfdc8](https://github.com/taiga-family/maskito/commit/4ccfdc86ff08bcebfd18c04403aa9c9c83cbbd02))
 
-## [1.1.0](https://github.com/taiga-family/maskito/compare/v1.0.0...v1.1.0) (2023-06-23)
+### [1.1.0](https://github.com/taiga-family/maskito/compare/v1.0.0...v1.1.0) (2023-06-23)
 
 ### 🚀 Features
 
@@ -866,7 +879,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#338](https://github.com/taiga-family/maskito/issues/338))
   ([9fd3005](https://github.com/taiga-family/maskito/commit/9fd30055b3157072076f7a8567045fac05b6af9e))
 
-## [0.16.0](https://github.com/taiga-family/maskito/compare/v0.15.0...v0.16.0) (2023-06-20)
+### [0.16.0](https://github.com/taiga-family/maskito/compare/v0.15.0...v0.16.0) (2023-06-20)
 
 ### 🚀 Features
 
@@ -879,7 +892,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#339](https://github.com/taiga-family/maskito/issues/339))
   ([7f83a7f](https://github.com/taiga-family/maskito/commit/7f83a7f170906c1911eb4444da2d636c0338ed4a))
 
-## [0.15.0](https://github.com/taiga-family/maskito/compare/v0.14.0...v0.15.0) (2023-06-14)
+### [0.15.0](https://github.com/taiga-family/maskito/compare/v0.14.0...v0.15.0) (2023-06-14)
 
 ### 🚀 Features
 
@@ -896,7 +909,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#334](https://github.com/taiga-family/maskito/issues/334))
   ([9876d88](https://github.com/taiga-family/maskito/commit/9876d885f98f86d18db04d723460b468bca3837d))
 
-## [0.14.0](https://github.com/taiga-family/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
+### [0.14.0](https://github.com/taiga-family/maskito/compare/v0.13.0...v0.14.0) (2023-06-09)
 
 ### 🚀 Features
 
@@ -907,7 +920,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#328](https://github.com/taiga-family/maskito/issues/328))
   ([bd01967](https://github.com/taiga-family/maskito/commit/bd01967fba38be26a3c8f0d2f23c0ced12d3b1c2))
 
-## [0.13.0](https://github.com/taiga-family/maskito/compare/v0.12.1...v0.13.0) (2023-06-02)
+### [0.13.0](https://github.com/taiga-family/maskito/compare/v0.12.1...v0.13.0) (2023-06-02)
 
 ### 🚀 Features
 
@@ -928,7 +941,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#317](https://github.com/taiga-family/maskito/issues/317))
   ([3bcac7f](https://github.com/taiga-family/maskito/commit/3bcac7f6566043991a9211f04db744a5ec6f019f))
 
-## [0.12.0](https://github.com/taiga-family/maskito/compare/v0.11.1...v0.12.0) (2023-05-19)
+### [0.12.0](https://github.com/taiga-family/maskito/compare/v0.11.1...v0.12.0) (2023-05-19)
 
 ### 🚀 Features
 
@@ -951,14 +964,14 @@ Learn more: https://maskito.dev/addons/phone
   ([#289](https://github.com/taiga-family/maskito/issues/289))
   ([0c6d1b9](https://github.com/taiga-family/maskito/commit/0c6d1b9917d0c86a98c0d215c38a0e2076ff5680))
 
-## [0.11.0](https://github.com/taiga-family/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
+### [0.11.0](https://github.com/taiga-family/maskito/compare/v0.10.0...v0.11.0) (2023-05-02)
 
 ### 🚀 Features
 
 - **react:** new library `@maskito/react` ([#273](https://github.com/taiga-family/maskito/issues/273))
   ([4c2f755](https://github.com/taiga-family/maskito/commit/4c2f755bac9513689964af7fdb7f4deec56bfb52))
 
-## [0.10.0](https://github.com/taiga-family/maskito/compare/v0.9.0...v0.10.0) (2023-04-25)
+### [0.10.0](https://github.com/taiga-family/maskito/compare/v0.9.0...v0.10.0) (2023-04-25)
 
 ### 🚀 Features
 
@@ -982,7 +995,7 @@ Learn more: https://maskito.dev/addons/phone
 - **kit:** fix first zero in short-format date-mask ([#251](https://github.com/taiga-family/maskito/issues/251))
   ([08bdfd2](https://github.com/taiga-family/maskito/commit/08bdfd26727777c3a6fc870e433003be2b64cc0e))
 
-## [0.9.0](https://github.com/taiga-family/maskito/compare/v0.8.1...v0.9.0) (2023-03-31)
+### [0.9.0](https://github.com/taiga-family/maskito/compare/v0.8.1...v0.9.0) (2023-03-31)
 
 ### 🚀 Features
 
@@ -1003,7 +1016,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#227](https://github.com/taiga-family/maskito/issues/227))
   ([fa1c514](https://github.com/taiga-family/maskito/commit/fa1c514a5753e3bca20e8b0994e4bf9f1c0ab6a4))
 
-## [0.8.0](https://github.com/taiga-family/maskito/compare/v0.7.2...v0.8.0) (2023-03-23)
+### [0.8.0](https://github.com/taiga-family/maskito/compare/v0.7.2...v0.8.0) (2023-03-23)
 
 ### 🚀 Features
 
@@ -1039,7 +1052,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#211](https://github.com/taiga-family/maskito/issues/211))
   ([1b750d1](https://github.com/taiga-family/maskito/commit/1b750d135ebd53bfeda2ca734425de08a808b1af))
 
-## [0.7.0](https://github.com/taiga-family/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
+### [0.7.0](https://github.com/taiga-family/maskito/compare/v0.6.0...v0.7.0) (2023-03-20)
 
 ### 🚀 Features
 
@@ -1059,7 +1072,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#204](https://github.com/taiga-family/maskito/issues/204))
   ([6e9adf7](https://github.com/taiga-family/maskito/commit/6e9adf758aa585944ee08f2e2aff81a5664adefd))
 
-## [0.6.0](https://github.com/taiga-family/maskito/compare/v0.5.0...v0.6.0) (2023-03-15)
+### [0.6.0](https://github.com/taiga-family/maskito/compare/v0.5.0...v0.6.0) (2023-03-15)
 
 ### 🚀 Features
 
@@ -1081,7 +1094,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#195](https://github.com/taiga-family/maskito/issues/195))
   ([ba85c38](https://github.com/taiga-family/maskito/commit/ba85c38ec0c81a22ff758f4ba386d045ac49ffd5))
 
-## [0.5.0](https://github.com/taiga-family/maskito/compare/v0.4.0...v0.5.0) (2023-03-09)
+### [0.5.0](https://github.com/taiga-family/maskito/compare/v0.4.0...v0.5.0) (2023-03-09)
 
 ### 🚀 Features
 
@@ -1097,7 +1110,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#176](https://github.com/taiga-family/maskito/issues/176))
   ([cd52fad](https://github.com/taiga-family/maskito/commit/cd52fad80bc278f171dafa1709c54cba3f8fbc81))
 
-## [0.4.0](https://github.com/taiga-family/maskito/compare/v0.3.0...v0.4.0) (2023-03-02)
+### [0.4.0](https://github.com/taiga-family/maskito/compare/v0.3.0...v0.4.0) (2023-03-02)
 
 ### 🚀 Features
 
@@ -1110,7 +1123,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#168](https://github.com/taiga-family/maskito/issues/168))
   ([d043a82](https://github.com/taiga-family/maskito/commit/d043a82561cbed94b19d59d174fa6da7f08d49d4))
 
-## [0.3.0](https://github.com/taiga-family/maskito/compare/v0.2.0...v0.3.0) (2023-03-01)
+### [0.3.0](https://github.com/taiga-family/maskito/compare/v0.2.0...v0.3.0) (2023-03-01)
 
 ### 🚀 Features
 
@@ -1124,7 +1137,7 @@ Learn more: https://maskito.dev/addons/phone
   ([#157](https://github.com/taiga-family/maskito/issues/157))
   ([544e891](https://github.com/taiga-family/maskito/commit/544e8912d2752e0fc8f77757e935070b94823f65))
 
-## [0.2.0](https://github.com/taiga-family/maskito/compare/v0.1.1...v0.2.0) (2023-02-28)
+### [0.2.0](https://github.com/taiga-family/maskito/compare/v0.1.1...v0.2.0) (2023-02-28)
 
 ### 🚀 Features
 
