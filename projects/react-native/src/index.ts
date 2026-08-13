@@ -1,1 +1,1 @@
-export * from './lib/useMaskito';
+export * from './lib/UseMaskito';

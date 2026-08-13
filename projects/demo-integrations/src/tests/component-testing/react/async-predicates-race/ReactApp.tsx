@@ -3,7 +3,7 @@ import {maskitoTime} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import {type ComponentType, useEffect, useState} from 'react';
 
-import {AwesomeInput} from '../awesomeInput';
+import {AwesomeInput} from '../AwesomeInput';
 
 const timeOptions = maskitoTime({mode: 'HH:MM'});
 

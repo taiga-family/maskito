@@ -3,7 +3,7 @@ import {maskitoDate} from '@maskito/kit';
 import {useMaskito} from '@maskito/react';
 import type {ComponentType} from 'react';
 
-import {AwesomeInput} from './awesomeInput';
+import {AwesomeInput} from './AwesomeInput';
 
 const options = maskitoDate({mode: 'dd/mm/yyyy'});
 const elementPredicate: MaskitoElementPredicate = (host) => host.querySelector<HTMLInputElement>('input.real-input')!;

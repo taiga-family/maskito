@@ -1,7 +1,7 @@
 import {maskitoNumber} from '@maskito/kit';
 import {mount} from 'cypress/react';
 
-import {MaskedInput} from './maskedInput';
+import {MaskedInput} from './MaskedInput';
 
 const numberMask = maskitoNumber({maximumFractionDigits: 2});
 
