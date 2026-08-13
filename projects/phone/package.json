@@ -54,5 +54,8 @@
         "@maskito/core": "^5.3.1",
         "@maskito/kit": "^5.3.1",
         "libphonenumber-js": ">=1.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

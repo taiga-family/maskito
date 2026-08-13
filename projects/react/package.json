@@ -57,5 +57,8 @@
         "@maskito/core": "^5.3.1",
         "react": ">=16.8",
         "react-dom": ">=16.8"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
