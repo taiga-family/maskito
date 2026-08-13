@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@a4bf1550ffd2659e8cf5584ed793f489aebd4854 # v2.8.0
-      - uses: taiga-family/actions/setup-node@a4bf1550ffd2659e8cf5584ed793f489aebd4854 # v2.8.0
+      - uses: taiga-family/actions/setup-variables@399268333d80c132c3bf9939f33e4db8b7f11be5 # v2.11.0
+      - uses: taiga-family/actions/setup-node@399268333d80c132c3bf9939f33e4db8b7f11be5 # v2.11.0
       - run: npx nx run-many --target build --all --exclude=demo
       - run: npx nx run demo:build:typecheck
 
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7 # https://github.com/FirebaseExtended/action-hosting-deploy/issues/440
         if: env.IS_OWNER_MODE == 'true'
         with:
-          node-version: 24.18 # https://github.com/firebase/firebase-tools/issues/10726
+          node-version: 24.19 # https://github.com/firebase/firebase-tools/issues/10726
 
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
