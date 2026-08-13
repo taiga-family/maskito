@@ -1,0 +1,1 @@
+import{Sa as o}from"./chunk-IFGBO2MC.js";import{Hb as n,pa as r}from"./chunk-TD25X3N3.js";var m=(()=>{let t=class t{constructor(){this.staticPath=r(o)}transform(i){return i?`${this.staticPath}/flags/${i.toLowerCase()}.svg`:null}};t.\u0275fac=function(s){return new(s||t)},t.\u0275pipe=n({name:"tuiFlag",type:t,pure:!0});let e=t;return e})();export{m as a};
