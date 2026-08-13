@@ -101,7 +101,7 @@
         "@nx/workspace": "22.7.5",
         "@rollup/plugin-url": "8.0.2",
         "@svgr/rollup": "8.1.0",
-        "@swc-node/register": "1.11.1",
+        "@swc-node/register": "1.12.1",
         "@swc/core": "1.15.47",
         "@swc/helpers": "0.5.23",
         "@taiga-ui/configs": "0.555.0",
