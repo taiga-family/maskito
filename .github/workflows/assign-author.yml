@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@a4bf1550ffd2659e8cf5584ed793f489aebd4854 # v2.8.0
-      - uses: toshimaru/auto-author-assign@3e19bfc990cb1cf0589dce95e9f75289bb1e22de # v3.0.3
+      - uses: taiga-family/actions/setup-variables@399268333d80c132c3bf9939f33e4db8b7f11be5 # v2.11.0
+      - uses: toshimaru/auto-author-assign@a78a94b219445cece8ccf0d45fec60af449f212a # v3.1.0
         continue-on-error: true
 
 concurrency:
