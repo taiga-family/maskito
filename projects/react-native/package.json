@@ -1,6 +1,6 @@
 {
     "name": "@maskito/react-native",
-    "version": "5.3.1",
+    "version": "5.4.0",
     "description": "The React Native specific Maskito's library",
     "keywords": [
         "input",
@@ -40,7 +40,7 @@
         "@testing-library/react-native": "14.0.1"
     },
     "peerDependencies": {
-        "@maskito/core": "^5.3.1",
+        "@maskito/core": "^5.4.0",
         "react": ">=16.8",
         "react-native": ">=0.87.0"
     },
