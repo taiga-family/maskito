@@ -10,8 +10,8 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'chore(release)') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@399268333d80c132c3bf9939f33e4db8b7f11be5 # v2.11.0
-      - uses: taiga-family/actions/setup-node@399268333d80c132c3bf9939f33e4db8b7f11be5 # v2.11.0
+      - uses: taiga-family/actions/setup-variables@9b6ebca664f44d0fc34a50bec5f85becdf27d388 # v2.12.0
+      - uses: taiga-family/actions/setup-node@9b6ebca664f44d0fc34a50bec5f85becdf27d388 # v2.12.0
       - run: npx nx build-gh-pages
       - uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
         with:
