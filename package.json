@@ -96,7 +96,7 @@
         "@rollup/plugin-url": "8.0.2",
         "@svgr/rollup": "8.1.0",
         "@swc-node/register": "1.12.1",
-        "@swc/core": "1.15.47",
+        "@swc/core": "1.16.0",
         "@swc/helpers": "0.5.23",
         "@taiga-ui/configs": "0.556.0",
         "@types/jest": "29.5.14",
