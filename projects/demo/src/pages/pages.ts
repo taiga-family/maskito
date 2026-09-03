@@ -132,6 +132,12 @@ export const DEMO_PAGES: TuiDocRoutePages = [
     },
     {
         section: 'Recipes',
+        title: 'Email',
+        route: DemoPath.Email,
+        keywords: 'email, mail, mailto, address, mask, recipe',
+    },
+    {
+        section: 'Recipes',
         title: 'Phone',
         route: DemoPath.Phone,
         keywords: 'phone, mobile, tel, telephone, mask, recipe',

@@ -1,0 +1,58 @@
+<tui-doc-page
+    header="Email"
+    package="Recipes"
+>
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            Use a permissive mask to guide email input while leaving final email validation to your form or application.
+        </p>
+
+        <p
+            size="m"
+            tuiNotification
+        >
+            <span tuiTitle>
+                <span>
+                    Don't use
+                    <code>&lt;input type="email" /&gt;</code>
+                    with
+                    <strong>Maskito!</strong>
+                </span>
+                <span tuiSubtitle>
+                    See the only
+                    <a
+                        tuiLink
+                        [routerLink]="supportedInputTypesDocPage"
+                    >
+                        supported input types
+                    </a>
+                    .
+                    <code>inputmode="email"</code>
+                    and
+                    <code>autocomplete="email"</code>
+                    remain available.
+                </span>
+            </span>
+        </p>
+
+        <tui-doc-example
+            id="email"
+            heading="Email"
+            [content]="emailExample1"
+            [description]="emailDescription"
+        >
+            <ng-template #emailDescription>
+                The mask accepts intermediate states such as
+                <code>user&#64;</code>
+                , rejects whitespace and multiple
+                <code>&#64;</code>
+                symbols, and uses a
+                <strong>postprocessor</strong>
+                to remove the
+                <code>mailto:</code>
+                prefix. It intentionally does not validate a complete email address.
+            </ng-template>
+            <email-doc-example-1 />
+        </tui-doc-example>
+    </ng-template>
+</tui-doc-page>

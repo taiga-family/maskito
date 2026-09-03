@@ -20,6 +20,7 @@ export const DemoPath = {
     KitPlugins: 'kit/plugins',
     PhonePackage: 'addons/phone',
     Card: 'recipes/card',
+    Email: 'recipes/email',
     Phone: 'recipes/phone',
     Textarea: 'recipes/textarea',
     ContentEditable: 'recipes/content-editable',
