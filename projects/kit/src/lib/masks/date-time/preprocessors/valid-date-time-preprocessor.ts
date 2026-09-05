@@ -1,7 +1,7 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
 import type {MaskitoTimeSegments} from '../../../types';
-import {validateDateString} from '../../../utils';
+import {padIncompleteDateSegment, validateDateString} from '../../../utils';
 import {skipNonDigitCharacters} from '../../../utils/skip-non-digit-characters';
 import {enrichTimeSegmentsWithZeroes} from '../../../utils/time';
 import {type MaskitoTimeParams} from '../../time/time-params';
@@ -24,9 +24,32 @@ export function createValidDateTimePreprocessor({
         const {value, selection} = elementState;
 
         if (data === dateSeparator) {
+            if (selection[0] !== value.length) {
+                return {elementState, data: ''};
+            }
+
+            const [dateString] = splitDateTimeString(value, dateModeTemplate);
+            const paddedDateString = value.includes(dateTimeSeparator)
+                ? dateString
+                : padIncompleteDateSegment({
+                      dateString,
+                      dateModeTemplate,
+                      dateSeparator,
+                  });
+
+            const caretShift = paddedDateString.length - dateString.length;
+
             return {
-                elementState,
-                data: selection[0] === value.length ? data : '',
+                elementState: caretShift
+                    ? {
+                          value: `${value.slice(0, -dateString.length)}${paddedDateString}`,
+                          selection: [
+                              selection[0] + caretShift,
+                              selection[1] + caretShift,
+                          ],
+                      }
+                    : elementState,
+                data,
             };
         }
 
