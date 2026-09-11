@@ -15,6 +15,7 @@ import mask from './mask';
         >
             <label tuiLabel>Enter date</label>
             <input
+                dir="ltr"
                 inputmode="numeric"
                 tuiInput
                 [maskito]="maskitoOptions"
