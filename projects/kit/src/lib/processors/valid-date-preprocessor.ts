@@ -1,6 +1,11 @@
 import type {MaskitoPreprocessor} from '@maskito/core';
 
-import {escapeRegExp, parseDateRangeString, validateDateString} from '../utils';
+import {
+    escapeRegExp,
+    padIncompleteDateSegment,
+    parseDateRangeString,
+    validateDateString,
+} from '../utils';
 import {skipNonDigitCharacters} from '../utils/skip-non-digit-characters';
 
 export function createValidDatePreprocessor({
@@ -16,9 +21,36 @@ export function createValidDatePreprocessor({
         const {value, selection} = elementState;
 
         if (data === dateSeparator) {
+            if (selection[0] !== value.length) {
+                return {elementState, data: ''};
+            }
+
+            const dateStrings = parseDateRangeString(
+                value,
+                dateModeTemplate,
+                rangeSeparator,
+            );
+
+            const dateString = dateStrings[dateStrings.length - 1] ?? '';
+            const paddedDateString = padIncompleteDateSegment({
+                dateString,
+                dateModeTemplate,
+                dateSeparator,
+            });
+
+            const caretShift = paddedDateString.length - dateString.length;
+
             return {
-                elementState,
-                data: selection[0] === value.length ? data : '',
+                elementState: caretShift
+                    ? {
+                          value: `${value.slice(0, -dateString.length)}${paddedDateString}`,
+                          selection: [
+                              selection[0] + caretShift,
+                              selection[1] + caretShift,
+                          ],
+                      }
+                    : elementState,
+                data,
             };
         }
 

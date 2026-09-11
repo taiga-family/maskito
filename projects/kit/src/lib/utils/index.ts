@@ -6,6 +6,7 @@ export * from './date/date-to-segments';
 export * from './date/get-date-segments-order';
 export * from './date/get-first-complete-date';
 export * from './date/is-date-string-complete';
+export * from './date/pad-incomplete-date-segment';
 export * from './date/parse-date-range-string';
 export * from './date/parse-date-string';
 export * from './date/segments-to-date';

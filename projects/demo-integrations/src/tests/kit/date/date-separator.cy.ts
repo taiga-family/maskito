@@ -32,12 +32,12 @@ describe('Date', () => {
                     .should('have.prop', 'selectionEnd', '31/'.length);
             });
 
-            it('input separator "/" is not allowed', () => {
+            it('input "/" separator after incomplete segment', () => {
                 cy.get('@input')
                     .type('3/')
-                    .should('have.value', '3')
-                    .should('have.prop', 'selectionStart', '3'.length)
-                    .should('have.prop', 'selectionEnd', '3'.length);
+                    .should('have.value', '03/')
+                    .should('have.prop', 'selectionStart', '03/'.length)
+                    .should('have.prop', 'selectionEnd', '03/'.length);
             });
 
             it('Input separator "-" in separator mode "/" is not allowed', () => {
