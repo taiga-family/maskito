@@ -84,7 +84,7 @@ describe('Date', () => {
 
             it('"mm/yy" => 12.04', () => {
                 cy.get('@input')
-                    .type('1.2.')
+                    .type('12.')
                     .should('have.value', '12.')
                     .type('04')
                     .should('have.value', '12.04');
