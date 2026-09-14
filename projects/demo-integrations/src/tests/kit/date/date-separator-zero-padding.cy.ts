@@ -11,12 +11,66 @@ describe('Date | Date segment zero padding on separator insertion', () => {
                 .as('input');
         });
 
+        it('Type 1. => 01.|', () => {
+            cy.get('@input')
+                .type('1.')
+                .should('have.value', '01.')
+                .should('have.prop', 'selectionStart', '01.'.length)
+                .should('have.prop', 'selectionEnd', '01.'.length);
+        });
+
+        it('Type 1.. => 01.|', () => {
+            cy.get('@input')
+                .type('1..')
+                .should('have.value', '01.')
+                .should('have.prop', 'selectionStart', '01.'.length)
+                .should('have.prop', 'selectionEnd', '01.'.length);
+        });
+
         it('Type 1.1. => 01.01.|', () => {
             cy.get('@input')
                 .type('1.1.')
                 .should('have.value', '01.01.')
                 .should('have.prop', 'selectionStart', '01.01.'.length)
                 .should('have.prop', 'selectionEnd', '01.01.'.length);
+        });
+    });
+
+    describe('[mode]="mm/yy"', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?mode=mm%2Fyy&separator=.`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Type 1. => 01.|', () => {
+            cy.get('@input')
+                .type('1.')
+                .should('have.value', '01.')
+                .should('have.prop', 'selectionStart', '01.'.length)
+                .should('have.prop', 'selectionEnd', '01.'.length);
+        });
+    });
+
+    describe('[mode]="mm/yyyy"', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API?mode=mm%2Fyyyy&separator=.`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('Type 1. => 01.|', () => {
+            cy.get('@input')
+                .type('1.')
+                .should('have.value', '01.')
+                .should('have.prop', 'selectionStart', '01.'.length)
+                .should('have.prop', 'selectionEnd', '01.'.length);
         });
     });
 

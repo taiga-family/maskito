@@ -16,6 +16,22 @@ describe('DateRange | Date segment zero padding on separator insertion', () => {
             .as('input');
     });
 
+    it('Type 1. for the second date => 01.|', () => {
+        cy.get('@input')
+            .type('1.')
+            .should('have.value', `${FIRST_DATE}-01.`)
+            .should('have.prop', 'selectionStart', `${FIRST_DATE}-01.`.length)
+            .should('have.prop', 'selectionEnd', `${FIRST_DATE}-01.`.length);
+    });
+
+    it('Type 1.. for the second date => 01.|', () => {
+        cy.get('@input')
+            .type('1..')
+            .should('have.value', `${FIRST_DATE}-01.`)
+            .should('have.prop', 'selectionStart', `${FIRST_DATE}-01.`.length)
+            .should('have.prop', 'selectionEnd', `${FIRST_DATE}-01.`.length);
+    });
+
     it('Type 1.1. for the second date => 01.01.|', () => {
         cy.get('@input')
             .type('1.1.')
