@@ -1,0 +1,34 @@
+<tui-doc-page
+    header="URL"
+    package="Recipes"
+>
+    <ng-template pageTab>
+        <p class="tui-space_top-0">
+            Use a permissive mask to guide URL input while leaving final URL validation to your form or application.
+        </p>
+
+        <tui-doc-example
+            id="url"
+            heading="URL"
+            [content]="urlExample1"
+            [description]="urlDescription"
+        >
+            <ng-template #urlDescription>
+                By default, the mask accepts absolute URLs without whitespace, including
+                <code>http://</code>
+                ,
+                <code>https://</code>
+                , bare domains and subdomains. Set
+                <code>httpsOnly</code>
+                to require an
+                <code>https://</code>
+                prefix, or
+                <code>allowRelative</code>
+                to accept relative URLs such as
+                <code>/test/test</code>
+                . The recipe intentionally does not validate whether a domain or TLD exists. Keep final URL and IANA TLD validation outside of the mask.
+            </ng-template>
+            <url-doc-example-1 />
+        </tui-doc-example>
+    </ng-template>
+</tui-doc-page>

@@ -133,6 +133,11 @@ export const ROUTES: Routes = [
         title: 'Email',
     },
     {
+        path: DemoPath.Url,
+        loadComponent: () => import('../pages/recipes/url/url-doc.component'),
+        title: 'URL',
+    },
+    {
         path: DemoPath.Phone,
         loadComponent: () => import('../pages/recipes/phone/phone-doc.component'),
         title: 'Phone',

@@ -138,6 +138,12 @@ export const DEMO_PAGES: TuiDocRoutePages = [
     },
     {
         section: 'Recipes',
+        title: 'URL',
+        route: DemoPath.Url,
+        keywords: 'url, uri, http, https, link, relative, domain, mask, recipe',
+    },
+    {
+        section: 'Recipes',
         title: 'Phone',
         route: DemoPath.Phone,
         keywords: 'phone, mobile, tel, telephone, mask, recipe',

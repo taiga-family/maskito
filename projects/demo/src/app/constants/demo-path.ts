@@ -21,6 +21,7 @@ export const DemoPath = {
     PhonePackage: 'addons/phone',
     Card: 'recipes/card',
     Email: 'recipes/email',
+    Url: 'recipes/url',
     Phone: 'recipes/phone',
     Textarea: 'recipes/textarea',
     ContentEditable: 'recipes/content-editable',
