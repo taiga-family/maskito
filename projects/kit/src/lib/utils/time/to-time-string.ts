@@ -1,17 +1,12 @@
 import type {MaskitoTimeParams} from '../../masks/time/time-params';
 import type {MaskitoTimeSegments} from '../../types';
+import {createTimeModeTemplate} from './create-time-mode-template';
 
 export function toTimeString(
     segments: Partial<MaskitoTimeSegments>,
     {mode, separators}: Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'>,
 ): string {
-    let separatorIndex = 0;
-
-    const modeTemplate = mode
-        .replace(' AA', '')
-        .replaceAll(/[:.]/g, () => separators[separatorIndex++]!);
-
-    return modeTemplate
+    return createTimeModeTemplate({mode, separators})
         .replaceAll(/H+/g, segments.hours ?? '')
         .replaceAll('MSS', segments.milliseconds ?? '')
         .replaceAll(/M+/g, segments.minutes ?? '')

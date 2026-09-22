@@ -16,6 +16,7 @@ import {
 } from '../../processors';
 import {
     createTimeMaskExpression,
+    createTimeModeTemplate,
     enrichTimeSegmentsWithZeroes,
     hasDayPeriod,
 } from '../../utils/time';
@@ -50,6 +51,7 @@ export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions>
             createMeridiemPreprocessor(dayPeriod),
             createInvalidTimeSegmentInsertionPreprocessor({
                 mode,
+                separators,
                 timeSegmentMinValues,
                 timeSegmentMaxValues,
             }),
@@ -67,7 +69,7 @@ export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions>
         ],
         plugins: [
             createTimeSegmentsSteppingPlugin({
-                fullMode: mode,
+                fullMode: createTimeModeTemplate({mode, separators}),
                 step,
                 timeSegmentMinValues,
                 timeSegmentMaxValues,

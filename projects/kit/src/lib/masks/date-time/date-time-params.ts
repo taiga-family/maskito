@@ -6,6 +6,7 @@ interface BaseDateTimeParams
     dateSeparator?: MaskitoDateParams['separator'];
     timeMode?: MaskitoTimeParams['mode'];
     timeStep?: MaskitoTimeParams['step'];
+    timeSeparators?: MaskitoTimeParams['separators'];
     dateTimeSeparator?: string;
 }
 

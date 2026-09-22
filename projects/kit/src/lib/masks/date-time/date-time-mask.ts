@@ -15,7 +15,11 @@ import {
     createZeroPlaceholdersPreprocessor,
     normalizeDatePreprocessor,
 } from '../../processors';
-import {createTimeMaskExpression, hasDayPeriod} from '../../utils/time';
+import {
+    createTimeMaskExpression,
+    createTimeModeTemplate,
+    hasDayPeriod,
+} from '../../utils/time';
 import {withDateDefaults} from '../date/utils/with-date-defaults';
 import {withTimeDefaults} from '../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from './constants';
@@ -29,6 +33,7 @@ export function maskitoDateTime({
     dateMode,
     timeMode = 'HH:MM',
     timeStep,
+    timeSeparators,
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     ...params
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
@@ -43,11 +48,12 @@ export function maskitoDateTime({
         locale,
         mode: timeMode,
         step: timeStep,
+        separators: timeSeparators,
     });
 
     const dateSeparator = dateParams.separator;
     const dateModeTemplate = dateParams.mode.split('/').join(dateSeparator);
-    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${timeParams.mode}`;
+    const fullMode = `${dateModeTemplate}${dateTimeSeparator}${createTimeModeTemplate(timeParams)}`;
 
     const mask = [
         ...Array.from(dateModeTemplate).map((char) =>

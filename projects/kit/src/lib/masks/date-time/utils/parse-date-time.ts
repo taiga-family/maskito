@@ -12,6 +12,7 @@ export function maskitoParseDateTime(
         dateMode,
         timeMode = 'HH:MM',
         dateSeparator,
+        timeSeparators,
         dateTimeSeparator = DATE_TIME_SEPARATOR,
         ...params
     }: MaskitoDateTimeParams,
@@ -22,8 +23,15 @@ export function maskitoParseDateTime(
             : {...params, separator: dateSeparator, mode: dateMode!},
     );
 
-    const timeParams = withTimeDefaults({...params, locale, mode: timeMode});
-    const [dateSegment = '', timeSegment = ''] = value.split(dateTimeSeparator);
+    const timeParams = withTimeDefaults({
+        ...params,
+        locale,
+        mode: timeMode,
+        separators: timeSeparators,
+    });
+
+    const [dateSegment = '', ...timeSegments] = value.split(dateTimeSeparator);
+    const timeSegment = timeSegments.join(dateTimeSeparator);
     const digitsPattern = timeParams.mode.replaceAll(/[^HMS]/g, '');
     const digits = timeSegment.replaceAll(/\D+/g, '');
 

@@ -13,12 +13,13 @@ import {parseTimeString} from '../utils/time';
  */
 export function createInvalidTimeSegmentInsertionPreprocessor({
     mode,
+    separators,
     timeSegmentMinValues,
     timeSegmentMaxValues,
     parseValue = (x) => ({timeString: x}),
 }: Pick<
     Required<MaskitoTimeParams>,
-    'mode' | 'timeSegmentMaxValues' | 'timeSegmentMinValues'
+    'mode' | 'separators' | 'timeSegmentMaxValues' | 'timeSegmentMinValues'
 > & {
     parseValue?: (value: string) => {timeString: string; restValue?: string};
 }): MaskitoPreprocessor {
@@ -44,7 +45,10 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
 
         let offset = restValue.length;
 
-        for (const [segmentName, stringifiedSegmentValue] of timeSegments) {
+        for (const [
+            index,
+            [segmentName, stringifiedSegmentValue],
+        ] of timeSegments.entries()) {
             const minSegmentValue = timeSegmentMinValues[segmentName]!;
             const maxSegmentValue = timeSegmentMaxValues[segmentName];
             const segmentValue = Number(stringifiedSegmentValue);
@@ -60,10 +64,7 @@ export function createInvalidTimeSegmentInsertionPreprocessor({
                 return {elementState, data: ''}; // prevent insertion
             }
 
-            offset +=
-                stringifiedSegmentValue.length +
-                // any time segment separator
-                1;
+            offset += stringifiedSegmentValue.length + (separators[index]?.length ?? 0);
         }
 
         return {elementState, data};

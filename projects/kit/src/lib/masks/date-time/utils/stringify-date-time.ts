@@ -12,6 +12,7 @@ export function maskitoStringifyDateTime(
         dateMode,
         timeMode = 'HH:MM',
         dateSeparator,
+        timeSeparators,
         dateTimeSeparator = DATE_TIME_SEPARATOR,
         ...params
     }: MaskitoDateTimeParams,
@@ -22,7 +23,13 @@ export function maskitoStringifyDateTime(
             : {...params, mode: dateMode!, separator: dateSeparator},
     );
 
-    const timeParams = withTimeDefaults({...params, locale, mode: timeMode});
+    const timeParams = withTimeDefaults({
+        ...params,
+        locale,
+        mode: timeMode,
+        separators: timeSeparators,
+    });
+
     const validatedDate = clamp(date, dateParams.min, dateParams.max);
     const dateString = maskitoStringifyDate(validatedDate, dateParams);
 

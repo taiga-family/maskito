@@ -18,11 +18,12 @@ import {isDateTimeStringComplete, splitDateTimeString} from '../utils';
 export function createMinMaxDateTimePostprocessor({
     dateModeTemplate,
     mode: timeMode,
+    separators: timeSeparators,
     min = DEFAULT_MIN_DATE,
     max = DEFAULT_MAX_DATE,
     dateTimeSeparator,
 }: Pick<Required<MaskitoDateTimeParams>, 'dateTimeSeparator' | 'max' | 'min'> &
-    Pick<Required<MaskitoTimeParams>, 'mode'> & {
+    Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'> & {
         dateModeTemplate: string;
     }): MaskitoPostprocessor {
     return ({value, selection}) => {
@@ -34,6 +35,7 @@ export function createMinMaxDateTimePostprocessor({
             !isDateTimeStringComplete(value, {
                 dateMode: dateModeTemplate,
                 timeMode,
+                timeSeparators,
                 dateTimeSeparator,
             })
         ) {
@@ -50,7 +52,7 @@ export function createMinMaxDateTimePostprocessor({
                     day,
                     ...parsedTime,
                 },
-                {dateMode: dateModeTemplate, dateTimeSeparator, timeMode},
+                {dateMode: dateModeTemplate, dateTimeSeparator, timeMode, timeSeparators},
             );
 
             const tail = value.slice(fixedValue.length);
@@ -70,6 +72,7 @@ export function createMinMaxDateTimePostprocessor({
             dateMode: dateModeTemplate,
             dateTimeSeparator,
             timeMode,
+            timeSeparators,
         })}${trailingNonDigitCharacters}`;
 
         return {
