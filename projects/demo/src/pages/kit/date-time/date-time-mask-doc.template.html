@@ -82,6 +82,8 @@
                 <code>dateMode</code>
                 ,
                 <code>dateSeparator</code>
+                ,
+                <code>timeSeparators</code>
                 and
                 <code>dayPeriod</code>
                 (12/24-hour format) from
@@ -104,6 +106,21 @@
                 parameter to configure separator between date and time strings.
             </ng-template>
             <date-time-mask-doc-example-4 />
+        </tui-doc-example>
+
+        <tui-doc-example
+            heading="Time separators"
+            [content]="timeSeparatorsExample"
+            [description]="timeSeparatorsDescription"
+        >
+            <ng-template #timeSeparatorsDescription>
+                Use
+                <code>timeSeparators</code>
+                parameter to customize the characters between time segments. Default is
+                <code>[':', ':', '.']</code>
+                .
+            </ng-template>
+            <date-time-mask-doc-example-7 />
         </tui-doc-example>
 
         <tui-doc-example
@@ -161,7 +178,7 @@
             <ng-template>
                 <tui-textfield
                     iconEnd="@tui.calendar"
-                    [filler]="getPlaceholder(dateMode, timeMode, dateSeparator, dateTimeSeparator, dayPeriod)"
+                    [filler]="filler"
                 >
                     <label tuiLabel>Enter date and time</label>
                     <input
@@ -244,6 +261,29 @@
                     <strong>Default:</strong>
                     <code>,&nbsp;</code>
                     (comma and space)
+                </p>
+            </tr>
+
+            <tr
+                name="[timeSeparators]"
+                tuiDocAPIItem
+                type="ReadonlyArray<string>"
+                [items]="timeSeparatorOptions"
+                [(value)]="timeSeparators"
+                (valueChange)="updateOptions()"
+            >
+                Separators between time segments (left to right). If shorter than the number of positions in the
+                <code>timeMode</code>
+                , remaining positions use the canonical separators from the mode (
+                <code>':'</code>
+                or
+                <code>'.'</code>
+                ).
+
+                <p>
+                    <strong>Default:</strong>
+                    <code>[]</code>
+                    (uses canonical separators from mode)
                 </p>
             </tr>
 
