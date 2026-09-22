@@ -1,21 +1,28 @@
-import type {MaskitoTimeMode} from '../../../types';
-import {DATE_TIME_SEPARATOR} from '../constants';
+import {createTimeModeTemplate} from '../../../utils/time/create-time-mode-template';
+import type {MaskitoDateTimeParams} from '../date-time-params';
 
 export function isDateTimeStringComplete(
     dateTimeString: string,
     {
         dateMode,
         timeMode,
-        dateTimeSeparator = DATE_TIME_SEPARATOR,
-    }: {
+        timeSeparators,
+        dateTimeSeparator,
+    }: Pick<
+        Required<MaskitoDateTimeParams>,
+        'dateTimeSeparator' | 'timeMode' | 'timeSeparators'
+    > & {
         dateMode: string;
-        timeMode: MaskitoTimeMode;
-        dateTimeSeparator: string;
     },
 ): boolean {
+    const timeModeTemplate = createTimeModeTemplate({
+        mode: timeMode,
+        separators: timeSeparators,
+    });
+
     return (
         dateTimeString.length >=
-            dateMode.length + timeMode.length + dateTimeSeparator.length &&
+            dateMode.length + timeModeTemplate.length + dateTimeSeparator.length &&
         (dateTimeString.split(dateTimeSeparator)[0] ?? '')
             .split(/\D/)
             .every((segment) => !/^0+$/.exec(segment))

@@ -1,5 +1,10 @@
 import {DATE_TIME_SEPARATOR} from '../../masks/date-time/constants';
-import type {MaskitoDateSegments, MaskitoTimeSegments} from '../../types';
+import type {
+    MaskitoDateSegments,
+    MaskitoTimeMode,
+    MaskitoTimeSegments,
+} from '../../types';
+import {toTimeString} from '../time/to-time-string';
 
 export function toDateString(
     segments: Partial<MaskitoDateSegments>,
@@ -12,7 +17,8 @@ export function toDateString(
     options: {
         dateMode: string;
         dateTimeSeparator: string;
-        timeMode: string;
+        timeMode: MaskitoTimeMode;
+        timeSeparators?: readonly string[];
     },
 ): string;
 export function toDateString(
@@ -29,23 +35,26 @@ export function toDateString(
         dateMode,
         dateTimeSeparator = DATE_TIME_SEPARATOR,
         timeMode,
+        timeSeparators = [],
     }: {
         dateMode: string;
         dateTimeSeparator?: string;
-        timeMode?: string;
+        timeMode?: MaskitoTimeMode;
+        timeSeparators?: readonly string[];
     },
 ): string {
     const yearLength = dateMode.match(/y/g)?.length ?? 0;
-    const fullMode = `${dateMode}${timeMode ? `${dateTimeSeparator}${timeMode}` : ''}`;
-
-    return fullMode
+    const date = dateMode
         .replaceAll(/d+/g, day ?? '')
         .replaceAll(/m+/g, month ?? '')
-        .replaceAll(/y+/g, year?.slice(-yearLength) ?? '')
-        .replaceAll(/H+/g, hours ?? '')
-        .replaceAll('MSS', milliseconds ?? '')
-        .replaceAll(/M+/g, minutes ?? '')
-        .replaceAll(/S+/g, seconds ?? '')
-        .replaceAll(/^\D+/g, '')
-        .replaceAll(/\D+$/g, '');
+        .replaceAll(/y+/g, year?.slice(-yearLength) ?? '');
+
+    const time = timeMode
+        ? `${dateTimeSeparator}${toTimeString(
+              {hours, minutes, seconds, milliseconds},
+              {mode: timeMode, separators: timeSeparators},
+          )}`
+        : '';
+
+    return `${date}${time}`.replaceAll(/^\D+/g, '').replaceAll(/\D+$/g, '');
 }

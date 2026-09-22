@@ -8,11 +8,9 @@ import {
     maskitoDateTime,
     type MaskitoDateTimeParams,
     type MaskitoTimeMode,
-    type MaskitoTimeParams,
 } from '@maskito/kit';
 import {TuiAddonDoc, type TuiRawLoaderContent} from '@taiga-ui/addon-doc';
 import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
-import {tuiPure} from '@taiga-ui/legacy';
 
 import Example1 from './examples/1-date-time-localization/component';
 import Example2 from './examples/2-am-pm/component';
@@ -20,6 +18,7 @@ import Example3 from './examples/3-locale/component';
 import Example4 from './examples/4-date-time-separator/component';
 import Example5 from './examples/5-min-max/component';
 import Example6 from './examples/6-time-step/component';
+import Example7 from './examples/7-time-separators/component';
 
 @Component({
     selector: 'date-time-mask-doc',
@@ -30,6 +29,7 @@ import Example6 from './examples/6-time-step/component';
         Example4,
         Example5,
         Example6,
+        Example7,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -74,6 +74,13 @@ export default class DateTimeMaskDocComponent implements Omit<
         ),
     };
 
+    protected readonly timeSeparatorsExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import(
+            './examples/7-time-separators/mask.ts?raw',
+            {with: {loader: 'text'}}
+        ),
+    };
+
     protected readonly dateTimeMinMaxExample: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import(
             './examples/5-min-max/mask.ts?raw',
@@ -113,6 +120,16 @@ export default class DateTimeMaskDocComponent implements Omit<
         ['上午', '下午'],
     ] as const satisfies ReadonlyArray<NonNullable<MaskitoDateTimeParams['dayPeriod']>>;
 
+    protected readonly timeSeparatorOptions = [
+        [],
+        ['.'],
+        ['h'],
+        [' h ', ' min '],
+        [':', ':', ','],
+    ] as const satisfies ReadonlyArray<
+        NonNullable<MaskitoDateTimeParams['timeSeparators']>
+    >;
+
     protected readonly minMaxOptions = [
         '0001-01-01T00:00:00',
         '9999-12-31T23:59:59',
@@ -127,21 +144,23 @@ export default class DateTimeMaskDocComponent implements Omit<
     public timeMode: MaskitoTimeMode = this.timeModeOptions[0];
     public dayPeriod = this.dayPeriodOptions[0];
     public dateTimeSeparator = ', ';
+    public timeSeparators: NonNullable<MaskitoDateTimeParams['timeSeparators']> =
+        this.timeSeparatorOptions[0];
+
     public dateSeparator = '.';
     public min = new Date(this.minStr);
     public max = new Date(this.maxStr);
     public timeStep = 0;
     public maskitoOptions: MaskitoOptions = maskitoDateTime(this);
 
-    @tuiPure
-    protected getPlaceholder(
-        dateMode: MaskitoDateMode,
-        timeMode: MaskitoTimeMode,
-        separator: string,
-        dateTimeSeparator: string,
-        dayPeriod: Required<MaskitoTimeParams>['dayPeriod'],
-    ): string {
-        return `${dateMode.replaceAll('/', separator)}${dateTimeSeparator}${timeMode} ${'A'.repeat(dayPeriod[0].length)}`;
+    protected get filler(): string {
+        let separatorIndex = 0;
+        const timeTemplate = this.timeMode.replaceAll(
+            /[:.]/g,
+            (char) => this.timeSeparators[separatorIndex++] ?? char,
+        );
+
+        return `${this.dateMode.replaceAll('/', this.dateSeparator)}${this.dateTimeSeparator}${timeTemplate} ${'A'.repeat(this.dayPeriod[0].length)}`;
     }
 
     protected updateOptions(): void {
