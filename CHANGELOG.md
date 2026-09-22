@@ -1,3 +1,17 @@
+## [5.5.0](https://github.com/taiga-family/maskito/compare/v5.4.0...v5.5.0) (2026-09-22)
+
+### 🚀 Features
+
+- **kit**: `DateTime` supports new `timeSeparators` parameter
+  ([#2887](https://github.com/taiga-family/maskito/pull/2887))
+  [(249edb5)](https://github.com/taiga-family/maskito/commit/249edb5b0a6ec2d65a00f1fec2c87854b73ba98d)
+
+### 🐞 Bug Fixes
+
+- **kit**: date related masks pad incomplete date segments on separator insertion
+  ([#2873](https://github.com/taiga-family/maskito/pull/2873))
+  [(64f98d6)](https://github.com/taiga-family/maskito/commit/64f98d6004414477626aad47a2fbad8864ecaf22)
+
 ### [5.4.0](https://github.com/taiga-family/maskito/compare/v5.4.0...v5.3.1) (2026-06-04)
 
 ### 🚀 Features
