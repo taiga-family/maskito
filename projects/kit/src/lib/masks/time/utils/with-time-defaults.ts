@@ -7,7 +7,7 @@ import {hasDayPeriod} from '../../../utils/time';
 import {type MaskitoTimeParams} from '../time-params';
 import {getLocaleTimeParams} from './get-locale-time-params';
 
-export function withTimeDefaults({
+export function maskitoWithTimeDefaults({
     mode,
     separators,
     timeSegmentMaxValues = {},

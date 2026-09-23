@@ -20,8 +20,8 @@ import {
     createTimeModeTemplate,
     hasDayPeriod,
 } from '../../utils/time';
-import {withDateDefaults} from '../date/utils/with-date-defaults';
-import {withTimeDefaults} from '../time/utils/with-time-defaults';
+import {maskitoWithDateDefaults} from '../date/utils/with-date-defaults';
+import {maskitoWithTimeDefaults} from '../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from './constants';
 import type {MaskitoDateTimeParams} from './date-time-params';
 import {createMinMaxDateTimePostprocessor} from './postprocessors';
@@ -37,13 +37,13 @@ export function maskitoDateTime({
     dateTimeSeparator = DATE_TIME_SEPARATOR,
     ...params
 }: MaskitoDateTimeParams): Required<MaskitoOptions> {
-    const dateParams = withDateDefaults(
+    const dateParams = maskitoWithDateDefaults(
         locale
             ? {...params, locale, mode: dateMode, separator: params.dateSeparator}
             : {...params, mode: dateMode!, separator: params.dateSeparator},
     );
 
-    const timeParams = withTimeDefaults({
+    const timeParams = maskitoWithTimeDefaults({
         ...params,
         locale,
         mode: timeMode,

@@ -1,7 +1,7 @@
 import {CHAR_HYPHEN} from '../../../constants';
 import {type MaskitoNumberParams} from '../number-params';
 import {fromNumberParts, toNumberParts} from './number-parts';
-import {withNumberDefaults} from './with-number-defaults';
+import {maskitoWithNumberDefaults} from './with-number-defaults';
 
 export function maskitoParseNumber(
     maskedNumber: string,
@@ -22,7 +22,7 @@ export function maskitoParseNumber(
     maskedNumber: string,
     {bigint = false, ...optionalParams}: MaskitoNumberParams & {bigint?: boolean} = {},
 ): bigint | number | null {
-    const params = withNumberDefaults(optionalParams);
+    const params = maskitoWithNumberDefaults(optionalParams);
 
     const {minus, integerPart, decimalSeparator, ...numberParts} = toNumberParts(
         maskedNumber,

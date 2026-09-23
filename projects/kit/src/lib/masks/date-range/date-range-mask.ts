@@ -11,7 +11,7 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import {parseDateRangeString} from '../../utils';
-import {withDateDefaults} from '../date/utils/with-date-defaults';
+import {maskitoWithDateDefaults} from '../date/utils/with-date-defaults';
 import {POSSIBLE_DATE_RANGE_SEPARATOR} from './constants';
 import type {MaskitoDateRangeParams} from './date-range-params';
 import {createMinMaxRangeLengthPostprocessor} from './processors/min-max-range-length-postprocessor';
@@ -25,7 +25,7 @@ export function maskitoDateRange(
         separator: dateSeparator,
         min,
         max,
-    } = withDateDefaults({
+    } = maskitoWithDateDefaults({
         ...params,
         separator: params.dateSeparator,
     });

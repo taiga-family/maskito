@@ -4,6 +4,7 @@ export {
     type MaskitoDateParams,
     maskitoParseDate,
     maskitoStringifyDate,
+    maskitoWithDateDefaults,
 } from './lib/masks/date';
 export {
     maskitoDateRange,
@@ -23,6 +24,7 @@ export {
     type MaskitoNumberParams,
     maskitoParseNumber,
     maskitoStringifyNumber,
+    maskitoWithNumberDefaults,
 } from './lib/masks/number';
 export {
     maskitoParseTime,
@@ -30,6 +32,7 @@ export {
     maskitoTime,
     maskitoTimeOptionsGenerator,
     type MaskitoTimeParams,
+    maskitoWithTimeDefaults,
 } from './lib/masks/time';
 export {
     maskitoAddOnFocusPlugin,

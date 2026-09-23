@@ -1,7 +1,7 @@
 import {clamp} from '../../../utils';
-import {maskitoStringifyDate, withDateDefaults} from '../../date/utils';
+import {maskitoStringifyDate, maskitoWithDateDefaults} from '../../date/utils';
 import {maskitoStringifyTime} from '../../time';
-import {withTimeDefaults} from '../../time/utils/with-time-defaults';
+import {maskitoWithTimeDefaults} from '../../time/utils/with-time-defaults';
 import {DATE_TIME_SEPARATOR} from '../constants';
 import type {MaskitoDateTimeParams} from '../date-time-params';
 
@@ -17,13 +17,13 @@ export function maskitoStringifyDateTime(
         ...params
     }: MaskitoDateTimeParams,
 ): string {
-    const dateParams = withDateDefaults(
+    const dateParams = maskitoWithDateDefaults(
         locale
             ? {...params, locale, mode: dateMode, separator: dateSeparator}
             : {...params, mode: dateMode!, separator: dateSeparator},
     );
 
-    const timeParams = withTimeDefaults({
+    const timeParams = maskitoWithTimeDefaults({
         ...params,
         locale,
         mode: timeMode,

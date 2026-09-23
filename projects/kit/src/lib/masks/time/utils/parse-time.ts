@@ -1,6 +1,6 @@
 import {hasDayPeriod, padStartTimeSegments, parseTimeString} from '../../../utils/time';
 import type {MaskitoTimeParams} from '../time-params';
-import {withTimeDefaults} from './with-time-defaults';
+import {maskitoWithTimeDefaults} from './with-time-defaults';
 
 /**
  * Converts a formatted time string to milliseconds based on the given `options.mode`.
@@ -9,7 +9,7 @@ import {withTimeDefaults} from './with-time-defaults';
  * @param params
  */
 export function maskitoParseTime(maskedTime: string, params: MaskitoTimeParams): number {
-    const {mode, dayPeriod, timeSegmentMaxValues} = withTimeDefaults(params);
+    const {mode, dayPeriod, timeSegmentMaxValues} = maskitoWithTimeDefaults(params);
     const msInSecond = timeSegmentMaxValues.milliseconds + 1;
     const msInMinute = (timeSegmentMaxValues.seconds + 1) * msInSecond;
     const msInHour = (timeSegmentMaxValues.minutes + 1) * msInMinute;
