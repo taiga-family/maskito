@@ -12,6 +12,7 @@ import {provideRouter, withInMemoryScrolling} from '@angular/router';
 import {DocExamplePrimaryTab} from '@demo/constants';
 import {WA_IS_MOBILE} from '@ng-web-apis/platform';
 import {
+    TUI_DOC_ACTIONS,
     TUI_DOC_CODE_EDITOR,
     TUI_DOC_DEFAULT_TABS,
     TUI_DOC_EXAMPLE_CONTENT_PROCESSOR,
@@ -33,6 +34,7 @@ import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 import {DEMO_PAGES} from '../pages/pages';
 import {StackblitzService} from '../pages/stackblitz';
 import {ROUTES} from './app.routes';
+import {COPY_PAGE_CONTENT} from './modules/copy-page/copy-page.component';
 import {
     ANGULAR_LOGO,
     JAVASCRIPT_LOGO,
@@ -70,6 +72,10 @@ export const APP_CONFIG: ApplicationConfig = {
         {
             provide: TUI_DOC_LOGO,
             useValue: LOGO_CONTENT,
+        },
+        {
+            provide: TUI_DOC_ACTIONS,
+            useValue: COPY_PAGE_CONTENT,
         },
         {
             provide: TUI_DOC_DEFAULT_TABS,

@@ -23,6 +23,12 @@
                 }
             },
             "defaultConfiguration": "production",
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "generate-markdown-pages"
+                }
+            ],
             "executor": "@nx/angular:application",
             "options": {
                 "allowedCommonJsDependencies": [
@@ -43,6 +49,11 @@
                         "glob": "**/*",
                         "input": "node_modules/@taiga-ui/icons/src",
                         "output": "assets/taiga-ui/icons"
+                    },
+                    {
+                        "glob": "**/*.md",
+                        "input": "{projectRoot}/src/markdown-pages/",
+                        "output": "./"
                     }
                 ],
                 "baseHref": "/",
@@ -85,6 +96,13 @@
                 "parallel": false
             }
         },
+        "generate-markdown-pages": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "ts-node --project projects/demo/scripts/tsconfig.json ./projects/demo/scripts/markdown-pages/markdown-pages-generate.ts"
+            },
+            "outputs": ["{projectRoot}/src/markdown-pages"]
+        },
         "serve": {
             "configurations": {
                 "development": {
@@ -96,6 +114,12 @@
             },
             "continuous": true,
             "defaultConfiguration": "development",
+            "dependsOn": [
+                {
+                    "params": "ignore",
+                    "target": "generate-markdown-pages"
+                }
+            ],
             "executor": "@nx/angular:dev-server",
             "options": {
                 "port": 3000,

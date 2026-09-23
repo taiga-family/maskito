@@ -1,0 +1,13 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es2022",
+        "types": ["node"]
+    },
+    "include": ["**/*.ts"],
+    "ts-node": {
+        "transpileOnly": true
+    }
+}
