@@ -25,10 +25,10 @@ import {
     createZeroPrecisionPreprocessor,
     emptyPostprocessor,
 } from './processors';
-import {generateMaskExpression, withNumberDefaults} from './utils';
+import {generateMaskExpression, maskitoWithNumberDefaults} from './utils';
 
 export function maskitoNumber(options?: MaskitoNumberParams): Required<MaskitoOptions> {
-    const params = withNumberDefaults(options);
+    const params = maskitoWithNumberDefaults(options);
 
     return {
         mask: generateMaskExpression(params),

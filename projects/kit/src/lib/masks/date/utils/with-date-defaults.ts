@@ -2,7 +2,7 @@ import {DEFAULT_MAX_DATE, DEFAULT_MIN_DATE} from '../../../constants';
 import type {MaskitoDateParams} from '../date-params';
 import {getLocaleDateParams} from './get-locale-date-params';
 
-export function withDateDefaults({
+export function maskitoWithDateDefaults({
     locale = '',
     mode,
     separator,

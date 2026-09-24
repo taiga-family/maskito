@@ -4,7 +4,7 @@ import {clamp} from '../../../utils';
 import {maskitoNumber} from '../number-mask';
 import type {MaskitoNumberParams} from '../number-params';
 import {stringifyNumberWithoutExp} from './stringify-number-without-exp';
-import {withNumberDefaults} from './with-number-defaults';
+import {maskitoWithNumberDefaults} from './with-number-defaults';
 
 export function maskitoStringifyNumber(
     number: bigint | number | null,
@@ -14,7 +14,7 @@ export function maskitoStringifyNumber(
         return '';
     }
 
-    const params = withNumberDefaults(optionalParams);
+    const params = maskitoWithNumberDefaults(optionalParams);
 
     const value = stringifyNumberWithoutExp(
         clamp(number, params.min, params.max),

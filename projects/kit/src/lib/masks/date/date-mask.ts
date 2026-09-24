@@ -9,10 +9,10 @@ import {
     normalizeDatePreprocessor,
 } from '../../processors';
 import type {MaskitoDateParams} from './date-params';
-import {withDateDefaults} from './utils/with-date-defaults';
+import {maskitoWithDateDefaults} from './utils/with-date-defaults';
 
 export function maskitoDate(params: MaskitoDateParams): Required<MaskitoOptions> {
-    const {mode, min, max, separator: dateSeparator} = withDateDefaults(params);
+    const {mode, min, max, separator: dateSeparator} = maskitoWithDateDefaults(params);
     const dateModeTemplate = mode.split('/').join(dateSeparator);
 
     return {

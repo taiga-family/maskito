@@ -9,7 +9,7 @@ import {DEFAULT_THOUSAND_SEPARATOR_PATTERN} from './default-thousand-separator-p
 import {getLocaleNumberParams} from './get-locale-number-params';
 import {validateDecimalPseudoSeparators} from './validate-decimal-pseudo-separators';
 
-export function withNumberDefaults({
+export function maskitoWithNumberDefaults({
     locale = '',
     ...params
 }: MaskitoNumberParams = {}): Required<MaskitoNumberParams> {

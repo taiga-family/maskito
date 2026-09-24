@@ -1,9 +1,9 @@
 import {clamp, parseDateString, segmentsToDate} from '../../../utils';
 import type {MaskitoDateParams} from '../date-params';
-import {withDateDefaults} from './with-date-defaults';
+import {maskitoWithDateDefaults} from './with-date-defaults';
 
 export function maskitoParseDate(value: string, params: MaskitoDateParams): Date | null {
-    const {mode, min, max} = withDateDefaults(params);
+    const {mode, min, max} = maskitoWithDateDefaults(params);
     const digitsPattern = mode.replaceAll(/[^dmy]/g, '');
     const digits = value.replaceAll(/\D+/g, '');
 

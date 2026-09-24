@@ -21,7 +21,7 @@ import {
     hasDayPeriod,
 } from '../../utils/time';
 import type {MaskitoTimeParams} from './time-params';
-import {withTimeDefaults} from './utils/with-time-defaults';
+import {maskitoWithTimeDefaults} from './utils/with-time-defaults';
 
 export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions> {
     const {
@@ -33,7 +33,7 @@ export function maskitoTime(params: MaskitoTimeParams): Required<MaskitoOptions>
         timeSegmentMinValues,
         timeSegmentMaxValues,
         step,
-    } = withTimeDefaults(params);
+    } = maskitoWithTimeDefaults(params);
 
     const maskExpression = [
         ...prefix,
