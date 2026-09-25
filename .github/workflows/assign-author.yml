@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@b0e21e793cde96d90c7fa5adb97f1c59a2f6d85b # v2.17.0
+      - uses: taiga-family/actions/setup-variables@c3c5b1dafd967e96aadf1cd4d589bd57fab81d43 # v2.18.0
       - uses: toshimaru/auto-author-assign@a78a94b219445cece8ccf0d45fec60af449f212a # v3.1.0
         continue-on-error: true
 
