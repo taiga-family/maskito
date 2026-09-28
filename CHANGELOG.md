@@ -1,3 +1,17 @@
+## [5.6.0](https://github.com/taiga-family/maskito/compare/v5.5.0...v5.6.0) (2026-09-28)
+
+### 🚀 Features
+
+- **kit**: export `maskitoWith{Time,Date,Number}Defaults` utils to public API
+  ([#2896](https://github.com/taiga-family/maskito/pull/2896))
+  [(3cf18a4)](https://github.com/taiga-family/maskito/commit/3cf18a4d2db08dfa553c5c8f6575a08de1dc8e27)
+
+### 🐞 Bug Fixes
+
+- **core**: `BrokenDefaultPlugin` throws `TypeError` for `input` event without preceding `beforeinput`
+  ([#2904](https://github.com/taiga-family/maskito/pull/2904))
+  [(a31fb87)](https://github.com/taiga-family/maskito/commit/a31fb873e85695dc88f5492505cc70013ac48479)
+
 ## [5.5.0](https://github.com/taiga-family/maskito/compare/v5.4.0...v5.5.0) (2026-09-22)
 
 ### 🚀 Features
