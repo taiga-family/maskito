@@ -17,7 +17,7 @@ export function createBrokenDefaultPlugin(): MaskitoPlugin {
     return (element) => {
         const eventListener = new EventListener(element);
         let isVirtualAndroidKeyboard = false;
-        let beforeinputEvent: TypedInputEvent;
+        let beforeinputEvent: TypedInputEvent | null = null;
         let value = element.value;
 
         eventListener.listen('keydown', ({key}) => {
@@ -34,11 +34,12 @@ export function createBrokenDefaultPlugin(): MaskitoPlugin {
             (event) => {
                 if (
                     isVirtualAndroidKeyboard &&
-                    beforeinputEvent.defaultPrevented &&
+                    beforeinputEvent?.defaultPrevented &&
                     beforeinputEvent.inputType === 'deleteContentBackward' &&
                     event.inputType === 'deleteContentBackward'
                 ) {
                     element.value = value;
+                    beforeinputEvent = null;
                 }
             },
             {capture: true},
