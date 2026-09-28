@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@c3c5b1dafd967e96aadf1cd4d589bd57fab81d43 # v2.18.0
-      - uses: taiga-family/actions/setup-node@c3c5b1dafd967e96aadf1cd4d589bd57fab81d43 # v2.18.0
+      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
       - run: npx nx run-many --target build --all --exclude=demo
       - run: npx nx run demo:build:typecheck
 
