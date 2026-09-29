@@ -263,7 +263,7 @@ export class Maskito extends MaskHistory {
         this.updateValue(value);
         this.updateSelectionRange(selection);
 
-        if (eventInit && initialValue !== value) {
+        if (eventInit && initialValue !== this.element.value) {
             this.dispatchInputEvent(eventInit);
         }
     }
