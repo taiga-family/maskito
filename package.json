@@ -106,7 +106,7 @@
         "jest": "29.7.0",
         "ng-packagr": "19.2.2",
         "nx": "22.7.5",
-        "prettier": "3.9.6",
+        "prettier": "3.9.7",
         "ts-node": "10.9.2",
         "tslib": "2.8.1",
         "typescript": "5.8.3"
