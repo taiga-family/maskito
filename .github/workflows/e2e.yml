@@ -16,8 +16,8 @@ jobs:
         with:
           fetch-depth: 10
 
-      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-variables@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-node@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
       - run: npx tsc --project projects/demo-integrations/tsconfig.json
 
       - name: Mark demo-app directory for persist in cache
@@ -40,9 +40,9 @@ jobs:
     name: Kit / ${{ matrix.project }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-cypress@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-variables@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-node@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-cypress@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
@@ -66,9 +66,9 @@ jobs:
     name: Recipes
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-cypress@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-variables@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-node@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-cypress@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
@@ -90,9 +90,9 @@ jobs:
     name: Others
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-cypress@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-variables@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-node@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-cypress@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
 
       - name: Download demo build from cache
         uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
@@ -117,9 +117,9 @@ jobs:
     name: Component Testing
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-node@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
-      - uses: taiga-family/actions/setup-cypress@579faa6aea387db865710ec9b7dea3c322f2d118 # v2.19.0
+      - uses: taiga-family/actions/setup-variables@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-node@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
+      - uses: taiga-family/actions/setup-cypress@ad2e311a6700d8fc7efab79f8b8a2165888ff968 # v2.20.0
 
       - name: Run Cypress tests
         run:
