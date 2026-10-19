@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: echo "$(git log -1 --pretty=format:"%s")" | npx commitlint --verbose
         if: github.event_name == 'pull_request'
 
@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-variables@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: npm run typecheck
 
   cspell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: taiga-family/actions/setup-variables@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-variables@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: npm run cspell -- --no-progress
 
   prettier:
@@ -32,10 +32,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: taiga-family/actions/setup-variables@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-variables@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: npm run prettier ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --write' || '-- --check' }}
-      - uses: taiga-family/actions/auto-push@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/auto-push@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -45,10 +45,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: taiga-family/actions/setup-variables@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-variables@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: npm run stylelint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/actions/auto-push@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/auto-push@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
@@ -58,10 +58,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: taiga-family/actions/setup-variables@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
-      - uses: taiga-family/actions/setup-node@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/setup-variables@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
+      - uses: taiga-family/actions/setup-node@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
       - run: npm run lint ${{ env.SUPPORT_AUTO_PUSH == 'true' && '-- --fix' || '' }}
-      - uses: taiga-family/actions/auto-push@1daabf6d988679e27745db6cd38227d6daca3b37 # v2.21.0
+      - uses: taiga-family/actions/auto-push@9ef658ceb6608dab9d85124a80ab70087f9d62fa # v2.22.0
         with:
           token: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
