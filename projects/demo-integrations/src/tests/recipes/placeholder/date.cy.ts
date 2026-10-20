@@ -91,4 +91,49 @@ describe('Placeholder | Date', () => {
             .should('have.value', '31/1')
             .should('have.ngControlValue', '31/1');
     });
+
+    describe('RTL document direction', () => {
+        beforeEach(() => {
+            cy.get('@input').blur();
+            cy.document().then(({documentElement}) => {
+                documentElement.dir = 'rtl';
+            });
+            cy.get('html').should('have.attr', 'dir', 'rtl');
+            cy.get('@input')
+                .should('have.attr', 'dir', 'ltr')
+                .focus()
+                .should('have.value', 'dd/mm/yyyy')
+                .should('have.prop', 'selectionStart', 0)
+                .should('have.prop', 'selectionEnd', 0);
+        });
+
+        it('Keeps logical date order while typing', () => {
+            const steps = [
+                ['1', '1d/mm/yyyy', 1],
+                ['6', '16/mm/yyyy', '16'.length],
+                ['0', '16/0m/yyyy', '16/0'.length],
+                ['5', '16/05/yyyy', '16/05'.length],
+                ['2', '16/05/2yyy', '16/05/2'.length],
+                ['0', '16/05/20yy', '16/05/20'.length],
+                ['2', '16/05/202y', '16/05/202'.length],
+                ['3', '16/05/2023', '16/05/2023'.length],
+            ] as const;
+
+            steps.forEach(([typed, masked, caretIndex]) => {
+                cy.get('@input')
+                    .type(typed)
+                    .should('have.value', masked)
+                    .should('have.prop', 'selectionStart', caretIndex)
+                    .should('have.prop', 'selectionEnd', caretIndex);
+            });
+        });
+
+        it('Keeps caret after automatically padded date segments', () => {
+            cy.get('@input')
+                .type('39')
+                .should('have.value', '03/09/yyyy')
+                .should('have.prop', 'selectionStart', '03/09'.length)
+                .should('have.prop', 'selectionEnd', '03/09'.length);
+        });
+    });
 });
