@@ -37,6 +37,8 @@ export {
 export {
     maskitoAddOnFocusPlugin,
     maskitoCaretGuard,
+    maskitoDateSegmentNavigation,
+    type MaskitoDateSegmentNavigationParams,
     maskitoEventHandler,
     maskitoRejectEvent,
     maskitoRemoveOnBlurPlugin,
