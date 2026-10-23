@@ -1,6 +1,75 @@
 import {type MaskitoDateParams, maskitoParseDate} from '@maskito/kit';
 
 describe('maskitoParseDate', () => {
+    describe('calendar validation', () => {
+        it.each([
+            '31/02/2026',
+            '29/02/2026',
+            '31/04/2026',
+            '29/02/1900',
+            '29/02/2100',
+            '00/01/2026',
+            '32/01/2026',
+            '01/00/2026',
+            '01/13/2026',
+        ])('returns null for impossible date "%s" before clamping', (value) => {
+            expect(
+                maskitoParseDate(value, {
+                    mode: 'dd/mm/yyyy',
+                    min: new Date(2026, 0, 1),
+                    max: new Date(2026, 11, 31),
+                }),
+            ).toBeNull();
+        });
+
+        it.each(['0004', '0096', '2000', '2024'])(
+            'parses February 29 in leap year %s',
+            (year) => {
+                expect(
+                    maskitoParseDate(`29/02/${year}`, {mode: 'dd/mm/yyyy'})?.getTime(),
+                ).toBe(Date.parse(`${year}-02-29T00:00:00.000`));
+            },
+        );
+
+        it.each([
+            ['02/31/2026', {mode: 'mm/dd/yyyy'}],
+            ['2026/02/31', {mode: 'yyyy/mm/dd'}],
+            ['31--02--2026', {mode: 'dd/mm/yyyy', separator: '--'}],
+            ['02/31/2026', {locale: 'en-US'}],
+            ['31.02.2026', {locale: 'de-DE'}],
+            ['2026/02/31', {locale: 'ja-JP'}],
+            ['31/02', {mode: 'dd/mm'}],
+            ['02/31', {mode: 'mm/dd'}],
+            ['00/26', {mode: 'mm/yy'}],
+            ['13/2026', {mode: 'mm/yyyy'}],
+            ['2026/00', {mode: 'yyyy/mm'}],
+        ] satisfies Array<[string, MaskitoDateParams]>)(
+            'returns null for "%s" with %j',
+            (value, params) => {
+                expect(maskitoParseDate(value, params)).toBeNull();
+            },
+        );
+
+        it.each(['dd/mm', 'mm/dd'] as const)(
+            'allows February 29 without a year in %s mode',
+            (mode) => {
+                const value = mode === 'dd/mm' ? '29/02' : '02/29';
+
+                expect(maskitoParseDate(value, {mode})?.getTime()).toBe(
+                    Date.parse('0000-02-29T00:00:00.000'),
+                );
+            },
+        );
+
+        it('preserves the requested date while the month is edited', () => {
+            const params: MaskitoDateParams = {mode: 'yyyy/mm/dd', separator: '/'};
+
+            expect(maskitoParseDate('2026/01/31', params)).toEqual(new Date(2026, 0, 31));
+            expect(maskitoParseDate('2026/02/31', params)).toBeNull();
+            expect(maskitoParseDate('2026/02/21', params)).toEqual(new Date(2026, 1, 21));
+        });
+    });
+
     describe('mode = mm/dd/yyyy, separator = default', () => {
         let params: MaskitoDateParams;
 

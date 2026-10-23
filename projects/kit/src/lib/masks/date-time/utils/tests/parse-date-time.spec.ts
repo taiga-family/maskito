@@ -105,8 +105,21 @@ describe('maskitoParseDateTime', () => {
                 timeMode,
                 dateTimeSeparator,
             }),
-        ).toEqual(new Date(2019, 2, 1, 12, 0));
+        ).toBeNull();
     });
+
+    it.each(['31/02/2026', '31/04/2026', '01/13/2026'])(
+        'returns null for impossible date %s with a valid time',
+        (date) => {
+            expect(
+                maskitoParseDateTime(`${date}, 12:00`, {
+                    dateMode,
+                    timeMode,
+                    dateTimeSeparator,
+                }),
+            ).toBeNull();
+        },
+    );
 
     it('handles edge cases for time boundaries', () => {
         expect(
