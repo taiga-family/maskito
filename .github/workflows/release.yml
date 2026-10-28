@@ -16,6 +16,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: taiga-family/actions/setup-variables@81cb55a2c1685e45ea591772e6bc9fd1d6b83765 # v2.24.0
@@ -25,7 +28,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
           mode: ${{ github.event.inputs.mode }}
-          npmToken: ${{ secrets.NPM_TOKEN }}
+          npmTrustedPublishing: true
           githubToken: ${{ secrets.TAIGA_FAMILY_BOT_PAT }}
 
       - uses: taiga-family/actions/read-package-json@81cb55a2c1685e45ea591772e6bc9fd1d6b83765 # v2.24.0
