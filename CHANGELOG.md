@@ -1,3 +1,11 @@
+## [5.6.1](https://github.com/taiga-family/maskito/compare/v5.6.0...v5.6.1) (2026-10-28)
+
+### 🐞 Bug Fixes
+
+- **core**: avoid infinite `input` event loop if element ignores written value
+  ([#2909](https://github.com/taiga-family/maskito/pull/2909))
+  [(9b3bcdb)](https://github.com/taiga-family/maskito/commit/9b3bcdb2e1ddbb69c0688ca04bc6e0052a75d015)
+
 ## [5.6.0](https://github.com/taiga-family/maskito/compare/v5.5.0...v5.6.0) (2026-09-28)
 
 ### 🚀 Features
