@@ -49,8 +49,8 @@
         "@testing-library/user-event": "14.6.8",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
-        "react": "19.3.0",
-        "react-dom": "19.3.0"
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
     },
     "peerDependencies": {
         "@maskito/core": "^5.6.1",
