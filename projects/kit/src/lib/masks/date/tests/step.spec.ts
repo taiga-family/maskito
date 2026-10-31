@@ -154,12 +154,25 @@ describe('Date segment stepping', () => {
         expect(events).toBe(1);
     });
 
-    it.each(['altKey', 'ctrlKey', 'metaKey', 'isComposing'])('ignores %s', (property) => {
+    it.each(
+        ['altKey', 'ctrlKey', 'metaKey', 'shiftKey', 'isComposing'].flatMap((property) =>
+            ['ArrowUp', 'ArrowDown'].map((key): [string, string] => [property, key]),
+        ),
+    )('ignores %s with %s', (property, key) => {
         setup('15.06.2024');
-        input.dispatchEvent(
-            new KeyboardEvent('keydown', {key: 'ArrowUp', [property]: true}),
-        );
+        input.setSelectionRange(3, 5);
+
+        const event = new KeyboardEvent('keydown', {
+            key,
+            [property]: true,
+            bubbles: true,
+            cancelable: true,
+        });
+
+        input.dispatchEvent(event);
         expect(input.value).toBe('15.06.2024');
+        expect([input.selectionStart, input.selectionEnd]).toEqual([3, 5]);
+        expect(event.defaultPrevented).toBe(false);
     });
 
     it('does not intercept navigation keys or events after destroy', () => {

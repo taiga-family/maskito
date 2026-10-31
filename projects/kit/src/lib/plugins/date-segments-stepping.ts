@@ -30,6 +30,7 @@ export function createDateSegmentsSteppingPlugin({
                       event.altKey ||
                       event.ctrlKey ||
                       event.metaKey ||
+                      event.shiftKey ||
                       element.matches('[readonly], :disabled')
                   ) {
                       return;
