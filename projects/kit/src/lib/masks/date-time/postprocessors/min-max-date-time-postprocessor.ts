@@ -9,6 +9,7 @@ import {
     segmentsToDate,
     toDateString,
 } from '../../../utils';
+import {clampDayToLastDayOfMonth} from '../../../utils/date/clamp-day-to-last-day-of-month';
 import {raiseSegmentValueToMin} from '../../../utils/date/raise-segment-value-to-min';
 import {parseTimeString} from '../../../utils/time';
 import {type MaskitoTimeParams} from '../../time';
@@ -26,10 +27,20 @@ export function createMinMaxDateTimePostprocessor({
     Pick<Required<MaskitoTimeParams>, 'mode' | 'separators'> & {
         dateModeTemplate: string;
     }): MaskitoPostprocessor {
-    return ({value, selection}) => {
+    const modeYearWidth = dateModeTemplate.replaceAll(/[^y]/g, '').length;
+
+    return ({value, selection}, initialElementState) => {
         const [dateString, timeString] = splitDateTimeString(value, dateModeTemplate);
         const parsedDate = parseDateString(dateString, dateModeTemplate);
         const parsedTime = parseTimeString(timeString, timeMode);
+        const [previousDateString = ''] = splitDateTimeString(
+            initialElementState.value,
+            dateModeTemplate,
+        );
+
+        const previousParsedDate = previousDateString
+            ? parseDateString(previousDateString, dateModeTemplate)
+            : null;
 
         if (
             !isDateTimeStringComplete(value, {
@@ -39,6 +50,8 @@ export function createMinMaxDateTimePostprocessor({
                 dateTimeSeparator,
             })
         ) {
+            clampDayToLastDayOfMonth(parsedDate, previousParsedDate, modeYearWidth);
+
             const fixedDate = raiseSegmentValueToMin(parsedDate, dateModeTemplate);
 
             const {year, month, day} = isDateStringComplete(dateString, dateModeTemplate)
@@ -62,6 +75,8 @@ export function createMinMaxDateTimePostprocessor({
                 value: `${fixedValue}${tail}`,
             };
         }
+
+        clampDayToLastDayOfMonth(parsedDate, previousParsedDate, modeYearWidth);
 
         const date = segmentsToDate(parsedDate, parsedTime);
         const clampedDate = clamp(date, min, max);
