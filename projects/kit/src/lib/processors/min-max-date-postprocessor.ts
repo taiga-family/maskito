@@ -101,7 +101,9 @@ function clampDayToLastDayOfMonth(
     }
 
     const year =
-        parsedDate.year?.length === 2 ? `20${parsedDate.year}` : (parsedDate.year ?? '0');
+        parsedDate.year?.length === 2
+            ? `20${parsedDate.year}`
+            : (parsedDate.year ?? LEAP_YEAR);
 
     const lastDay = new Date(Number(year), Number(parsedDate.month), 0).getDate();
 
