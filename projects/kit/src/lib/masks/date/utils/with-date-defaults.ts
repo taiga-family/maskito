@@ -4,6 +4,7 @@ import {getLocaleDateParams} from './get-locale-date-params';
 
 export function maskitoWithDateDefaults({
     locale = '',
+    step = 0,
     mode,
     separator,
     min = DEFAULT_MIN_DATE,
@@ -13,6 +14,7 @@ export function maskitoWithDateDefaults({
 
     return {
         locale,
+        step,
         mode: mode ?? localeParams?.mode ?? 'dd/mm/yyyy',
         separator: separator ?? localeParams?.separator ?? '.',
         min,
