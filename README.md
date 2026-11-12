@@ -10,6 +10,7 @@
 <p align="center">
     <a href="https://maskito.dev">Documentation</a> •
     <a href="https://github.com/taiga-family/maskito/issues/new/choose">Submit an Issue</a> •
+    <a href="https://pineopticone.gumroad.com/l/mask?wanted=true">Order a custom mask</a> •
     <a href="https://t.me/taiga_ui/10600">Contact Us</a>
 </p>
 
