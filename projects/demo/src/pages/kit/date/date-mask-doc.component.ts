@@ -10,6 +10,7 @@ import {TuiInput, TuiLink, TuiNotification} from '@taiga-ui/core';
 import Example1 from './examples/1-localization/component';
 import Example2 from './examples/2-min-max/component';
 import Example3 from './examples/3-locale-date/component';
+import Example4 from './examples/4-step/component';
 
 @Component({
     selector: 'date-mask-doc',
@@ -17,6 +18,7 @@ import Example3 from './examples/3-locale-date/component';
         Example1,
         Example2,
         Example3,
+        Example4,
         MaskitoDirective,
         ReactiveFormsModule,
         TuiAddonDoc,
@@ -58,6 +60,14 @@ export default class DateMaskDocComponent implements Omit<
         ),
     };
 
+    protected readonly stepExample: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-step/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+    };
+
+    protected readonly stepOptions = [0, 1, 2, 5, 10];
+
     protected readonly modeOptions = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',
@@ -82,6 +92,7 @@ export default class DateMaskDocComponent implements Omit<
     protected minStr: string = this.minMaxOptions[0];
     protected maxStr: string = this.minMaxOptions[1];
 
+    public step = 0;
     public mode: MaskitoDateMode = this.modeOptions[0];
     public separator: string = this.separatorOptions[0];
     public min = new Date(this.minStr);
