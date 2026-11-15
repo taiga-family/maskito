@@ -345,4 +345,36 @@ describe('Date', () => {
                 .should('have.prop', 'selectionEnd', '2020/05'.length);
         });
     });
+
+    describe('Month change clamps day to the last day of month', () => {
+        beforeEach(() => {
+            cy.visit(`/${DemoPath.Date}/API`);
+            cy.get('#demo-content input')
+                .should('be.visible')
+                .first()
+                .focus()
+                .as('input');
+        });
+
+        it('31.01.2026 => change month to 02 => 28.02.2026', () => {
+            cy.get('@input')
+                .type('31012026')
+                .should('have.value', '31.01.2026')
+                .type('{moveToStart}{rightArrow}{rightArrow}{rightArrow}{rightArrow}')
+                .type('2')
+                .should('have.value', '28.02.2026');
+        });
+
+        it('31.01.202 => change month to 02 => 28.02.202 => complete year => 28.02.2026', () => {
+            cy.get('@input')
+                .type('3101202')
+                .should('have.value', '31.01.202')
+                .type('{moveToStart}{rightArrow}{rightArrow}{rightArrow}{rightArrow}')
+                .type('2')
+                .should('have.value', '28.02.202')
+                .type('{moveToEnd}')
+                .type('6')
+                .should('have.value', '28.02.2026');
+        });
+    });
 });
