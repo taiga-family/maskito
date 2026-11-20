@@ -96,22 +96,17 @@
         <tui-doc-example
             heading="Arrows stepping"
             [content]="stepExample"
+            [description]="stepDescription"
         >
-            <p>
+            <ng-template #stepDescription>
                 Set a positive integer
                 <code>step</code>
-                to increment or decrement the date segment under the caret with ArrowUp / ArrowDown. The default is
-                <code>0</code>
-                (disabled).
-            </p>
-            <p>
-                Days and months wrap within their segment. Years stop at the format's limits. Changing the month or year
-                clamps the day to a valid date, including leap years. The resulting date respects
-                <code>min</code>
-                and
-                <code>max</code>
+                to change the date segment under the caret with
+                <code>ArrowUp</code>
+                or
+                <code>ArrowDown</code>
                 .
-            </p>
+            </ng-template>
             <date-mask-doc-example-4 />
         </tui-doc-example>
     </ng-template>
@@ -194,13 +189,16 @@
                 name="[step]"
                 tuiDocAPIItem
                 type="number"
-                [items]="stepOptions"
                 [(value)]="step"
                 (valueChange)="updateOptions()"
             >
-                Positive integer step for ArrowUp / ArrowDown. Disabled by default (
-                <code>0</code>
-                ).
+                The value by which the keyboard arrows increment/decrement date segments
+
+                <p class="tui-space_bottom-0">
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (disable stepping)
+                </p>
             </tr>
         </table>
     </ng-template>

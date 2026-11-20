@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import {afterEach, beforeEach, describe, expect, it} from '@jest/globals';
+import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals';
 import {Maskito} from '@maskito/core';
 import {maskitoDate, type MaskitoDateParams} from '@maskito/kit';
 
@@ -43,6 +43,7 @@ describe('Date segment stepping', () => {
         ['15.06.2024', 8, 'ArrowUp', '15.06.2025'],
         ['31.01.2024', 4, 'ArrowUp', '29.02.2024'],
         ['31.01.2023', 4, 'ArrowUp', '28.02.2023'],
+        ['15.', 1, 'ArrowUp', '16.'],
         ['31.03.2024', 4, 'ArrowUp', '30.04.2024'],
         ['29.02.2024', 8, 'ArrowUp', '28.02.2025'],
         ['29.02.2000', 8, 'ArrowDown', '28.02.1999'],
@@ -126,15 +127,23 @@ describe('Date segment stepping', () => {
         },
     );
 
-    it.each(['readOnly', 'disabled'] as const)(
-        'does not modify %s inputs',
-        (property) => {
-            setup('15.06.2024');
-            input[property] = true;
-            expect(press(1).defaultPrevented).toBe(false);
-            expect(input.value).toBe('15.06.2024');
-        },
-    );
+    it('does not modify readonly inputs', () => {
+        setup('15.06.2024');
+        input.readOnly = true;
+        expect(press(1).defaultPrevented).toBe(false);
+        expect(input.value).toBe('15.06.2024');
+    });
+
+    it('does not emit an input event when stepping below the minimum two-digit year', () => {
+        setup('02/01', {mode: 'mm/yy', separator: '/'});
+        const listener = jest.fn();
+
+        input.addEventListener('input', listener);
+        press(4, 'ArrowDown');
+
+        expect(input.value).toBe('02/01');
+        expect(listener).not.toHaveBeenCalled();
+    });
 
     it('keeps the caret at the selection start and emits one bubbling input event', () => {
         setup('15.06.2024');

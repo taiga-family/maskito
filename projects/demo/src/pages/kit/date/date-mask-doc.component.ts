@@ -66,8 +66,6 @@ export default class DateMaskDocComponent implements Omit<
         }),
     };
 
-    protected readonly stepOptions = [0, 1, 2, 5, 10];
-
     protected readonly modeOptions = [
         'dd/mm/yyyy',
         'mm/dd/yyyy',

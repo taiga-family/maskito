@@ -1,7 +1,15 @@
 import {type MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 
 import type {MaskitoDateSegments} from '../types';
-import {getDateSegmentsOrder, noop} from '../utils';
+import {
+    clamp,
+    getDateSegmentsOrder,
+    mod,
+    noop,
+    parseDateString,
+    toDateString,
+} from '../utils';
+import {maskitoEventHandler} from './event-handler';
 
 export function createDateSegmentsSteppingPlugin({
     step,
@@ -10,6 +18,10 @@ export function createDateSegmentsSteppingPlugin({
     step: number;
     dateModeTemplate: string;
 }): MaskitoPlugin {
+    if (!Number.isSafeInteger(step) || step <= 0) {
+        return noop;
+    }
+
     const yearLength = dateModeTemplate.match(/y/g)?.length ?? 0;
     const segments = getDateSegmentsOrder(dateModeTemplate)
         .filter((name) => dateModeTemplate.includes(name[0]!))
@@ -19,88 +31,69 @@ export function createDateSegmentsSteppingPlugin({
             to: dateModeTemplate.lastIndexOf(name[0]!) + 1,
         }));
 
-    return !Number.isSafeInteger(step) || step <= 0
-        ? noop
-        : (element) => {
-              const listener = (event: KeyboardEvent): void => {
-                  if (
-                      (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') ||
-                      event.defaultPrevented ||
-                      event.isComposing ||
-                      event.altKey ||
-                      event.ctrlKey ||
-                      event.metaKey ||
-                      event.shiftKey ||
-                      element.matches('[readonly], :disabled')
-                  ) {
-                      return;
-                  }
+    return maskitoEventHandler('keydown', (element, _options, event) => {
+        if (
+            (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') ||
+            event.defaultPrevented ||
+            event.isComposing ||
+            event.altKey ||
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            element.matches('[readonly]')
+        ) {
+            return;
+        }
 
-                  const {value, selectionStart} = element;
-                  const from = selectionStart ?? 0;
-                  const activeSegment = segments.find(
-                      (segment) => segment.from <= from && from <= segment.to,
-                  );
+        const {value, selectionStart} = element;
+        const from = selectionStart ?? 0;
+        const activeSegment = segments.find(
+            (segment) => segment.from <= from && from <= segment.to,
+        );
 
-                  if (!activeSegment) {
-                      return;
-                  }
+        if (!activeSegment) {
+            return;
+        }
 
-                  event.preventDefault();
+        event.preventDefault();
 
-                  const values: Partial<MaskitoDateSegments> = {};
+        const values = parseDateString(value, dateModeTemplate);
+        const {name, from: start, to: end} = activeSegment;
+        const length = end - start;
+        const current = Number((values[name] ?? '').padEnd(length, '0'));
+        const delta = event.key === 'ArrowUp' ? step : -step;
+        const min = 1;
+        const max = {
+            day: getDaysInMonth(values, yearLength),
+            month: 12,
+            year: 10 ** length - 1,
+        }[name];
 
-                  for (const segment of segments) {
-                      values[segment.name] = value.slice(segment.from, segment.to);
-                  }
+        const initial = !values[name] && delta < 0 ? min : current;
+        const next =
+            name === 'year'
+                ? clamp(initial + delta, min, max)
+                : mod(initial + delta, min, max + 1);
 
-                  const {name, from: start, to: end} = activeSegment;
-                  const length = end - start;
-                  const current = Number((values[name] ?? '').padEnd(length, '0'));
-                  const delta = event.key === 'ArrowUp' ? step : -step;
-                  const min = name === 'year' && length === 2 ? 0 : 1;
-                  const max = {
-                      day: getDaysInMonth(values, yearLength),
-                      month: 12,
-                      year: 10 ** length - 1,
-                  }[name];
+        values[name] = String(next).padStart(length, '0');
 
-                  const range = max - min + 1;
-                  const initial = !values[name] && delta < 0 ? min : current;
-                  const next =
-                      name === 'year'
-                          ? Math.min(max, Math.max(min, initial + delta))
-                          : ((((initial + delta - min) % range) + range) % range) + min;
+        if (values.day) {
+            values.day = String(
+                Math.min(Number(values.day), getDaysInMonth(values, yearLength)),
+            ).padStart(2, '0');
+        }
 
-                  values[name] = String(next).padStart(length, '0');
+        const updatedValue = toDateString(values, {dateMode: dateModeTemplate});
+        const trailingSeparator = /\D+$/.exec(value)?.[0] ?? '';
+        const preserveSeparator = end <= value.length - trailingSeparator.length;
 
-                  if (values.day) {
-                      values.day = String(
-                          Math.min(
-                              Number(values.day),
-                              getDaysInMonth(values, yearLength),
-                          ),
-                      ).padStart(2, '0');
-                  }
-
-                  const updatedValue = [...segments]
-                      .reverse()
-                      .reduce(
-                          (result, segment) =>
-                              `${result.slice(0, segment.from)}${values[segment.name] ?? ''}${result.slice(segment.to)}`,
-                          value,
-                      );
-
-                  maskitoUpdateElement(element, {
-                      value: updatedValue,
-                      selection: [from, from],
-                  });
-              };
-
-              element.addEventListener('keydown', listener);
-
-              return () => element.removeEventListener('keydown', listener);
-          };
+        maskitoUpdateElement(element, {
+            value: preserveSeparator
+                ? `${updatedValue}${trailingSeparator}`
+                : updatedValue,
+            selection: [from, from],
+        });
+    });
 }
 
 function getDaysInMonth(
