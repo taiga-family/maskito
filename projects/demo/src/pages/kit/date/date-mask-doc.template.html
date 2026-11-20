@@ -93,6 +93,22 @@
 
             <date-mask-doc-example-2 />
         </tui-doc-example>
+        <tui-doc-example
+            heading="Arrows stepping"
+            [content]="stepExample"
+            [description]="stepDescription"
+        >
+            <ng-template #stepDescription>
+                Set a positive integer
+                <code>step</code>
+                to change the date segment under the caret with
+                <code>ArrowUp</code>
+                or
+                <code>ArrowDown</code>
+                .
+            </ng-template>
+            <date-mask-doc-example-4 />
+        </tui-doc-example>
     </ng-template>
 
     <ng-template pageTab>
@@ -167,6 +183,21 @@
                 <p class="tui-space_bottom-0">
                     <strong>Default:</strong>
                     <code>new Date('9999-12-31')</code>
+                </p>
+            </tr>
+            <tr
+                name="[step]"
+                tuiDocAPIItem
+                type="number"
+                [(value)]="step"
+                (valueChange)="updateOptions()"
+            >
+                The value by which the keyboard arrows increment/decrement date segments
+
+                <p class="tui-space_bottom-0">
+                    <strong>Default:</strong>
+                    <code>0</code>
+                    (disable stepping)
                 </p>
             </tr>
         </table>

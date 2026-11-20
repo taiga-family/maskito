@@ -2,6 +2,7 @@ import type {MaskitoDateMode} from '../../types';
 
 interface BaseDateParams {
     separator?: string;
+    step?: number;
     max?: Date;
     min?: Date;
 }

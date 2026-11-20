@@ -16,6 +16,7 @@ export * from './dummy';
 export * from './escape-reg-exp';
 export * from './find-common-beginning-substr';
 export * from './is-empty';
+export * from './mod';
 export * from './pad-with-zeroes-until-valid';
 export * from './to-half-width-colon';
 export * from './to-half-width-number';
