@@ -154,6 +154,15 @@ describe('maskitoParseDateTime', () => {
         ).toBe(Date.parse('0000-12-25T16:20:00.000'));
     });
 
+    it.each([
+        ['dd/mm', '29.02, 13:45'],
+        ['mm/dd', '02.29, 13:45'],
+    ] as const)('preserves February 29 and the time in %s date mode', (mode, value) => {
+        expect(maskitoParseDateTime(value, {dateMode: mode, timeMode})).toEqual(
+            new Date('0000-02-29T13:45:00.000'),
+        );
+    });
+
     it('handles invalid date-time separator', () => {
         expect(
             maskitoParseDateTime('31/12/2018-16:20', {

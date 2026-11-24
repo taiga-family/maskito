@@ -190,6 +190,15 @@ describe('maskitoParseDate', () => {
 
             expect(parsedDate?.getTime()).toBe(Date.parse('0000-12-25T00:00:00.000'));
         });
+
+        it.each([
+            ['dd/mm', '29.02'],
+            ['mm/dd', '02.29'],
+        ] as const)('should preserve February 29 in %s mode', (mode, value) => {
+            expect(maskitoParseDate(value, {mode})).toEqual(
+                new Date('0000-02-29T00:00:00.000'),
+            );
+        });
     });
 
     describe('locale parameter', () => {
