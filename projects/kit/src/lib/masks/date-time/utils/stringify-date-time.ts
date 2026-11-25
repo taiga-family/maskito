@@ -32,17 +32,8 @@ export function maskitoStringifyDateTime(
 
     const validatedDate = clamp(date, dateParams.min, dateParams.max);
     const dateString = maskitoStringifyDate(validatedDate, dateParams);
-
-    const extractedTime =
-        Number(validatedDate) -
-        Number(
-            new Date(
-                validatedDate.getFullYear(),
-                validatedDate.getMonth(),
-                validatedDate.getDate(),
-            ),
-        );
-
+    const midnight = new Date(validatedDate);
+    const extractedTime = Number(validatedDate) - midnight.setHours(0, 0, 0, 0);
     const timeString = maskitoStringifyTime(extractedTime, timeParams);
 
     return `${dateString}${dateTimeSeparator}${timeString}`;

@@ -1,5 +1,6 @@
 import type {MaskitoDateMode} from '../../../../types';
 import type {MaskitoDateParams} from '../../date-params';
+import {maskitoParseDate} from '../parse-date';
 import {maskitoStringifyDate} from '../stringify-date';
 
 describe('maskitoStringifyDate', () => {
@@ -173,6 +174,16 @@ describe('maskitoStringifyDate', () => {
                 });
             });
         });
+    });
+
+    it.each([
+        ['15.06', 'dd/mm'],
+        ['06.15', 'mm/dd'],
+    ] as const)('should round-trip %s in %s mode', (value, mode) => {
+        const params = {mode};
+        const date = maskitoParseDate(value, params);
+
+        expect(date && maskitoStringifyDate(date, params)).toBe(value);
     });
 
     describe('year contains leading zeroes', () => {
