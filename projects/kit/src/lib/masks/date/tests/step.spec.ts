@@ -73,6 +73,7 @@ describe('Date segment stepping', () => {
 
     it.each([
         ['mm/dd/yyyy', '/', '01/31/2024', 1, '02/29/2024'],
+        ['mm/dd/yyyy', '/', '01/1', 1, '02/1'],
         ['yyyy/mm/dd', '-', '2024-01-31', 6, '2024-02-29'],
         ['dd/mm', '.', '31.01', 4, '29.02'],
         ['mm/dd', '.', '01.31', 1, '02.29'],
@@ -112,10 +113,18 @@ describe('Date segment stepping', () => {
         ['10.06.2024', 1, 'ArrowDown', '10.06.2024'],
         ['15.06.2024', 4, 'ArrowUp', '15.06.2024'],
         ['10.06.2024', 8, 'ArrowDown', '10.06.2024'],
-    ])('respects min/max for %s', (value, position, key, expected) => {
+        ['14.06.2024', 4, 'ArrowUp', '15.06.2024'],
+    ])('steps %s at %s with %s within min/max', (value, position, key, expected) => {
         setup(value, {min: new Date(2024, 5, 10), max: new Date(2024, 5, 15)});
+        const listener = jest.fn(() => input.value);
+
+        input.addEventListener('input', listener);
         press(position, key);
+
         expect(input.value).toBe(expected);
+        expect(listener.mock.results.map(({value}) => value)).toEqual(
+            value === expected ? [] : [expected],
+        );
     });
 
     it.each([undefined, 0, -1, 0.5, Number.NaN, Infinity])(

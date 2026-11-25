@@ -13,11 +13,11 @@ describe('Date segment stepping', () => {
         cy.get('@input')
             .type('31012024')
             .should('have.value', '31.01.2024')
-            .type('{leftArrow}'.repeat(6))
+            .type('{leftArrow}'.repeat('1.2024'.length))
             .type('{upArrow}')
             .should('have.value', '29.02.2024')
-            .should('have.prop', 'selectionStart', 4)
-            .should('have.prop', 'selectionEnd', 4)
+            .should('have.prop', 'selectionStart', '29.0'.length)
+            .should('have.prop', 'selectionEnd', '29.0'.length)
             .type('{moveToEnd}{upArrow}')
             .should('have.value', '28.02.2025');
     });
@@ -26,7 +26,8 @@ describe('Date segment stepping', () => {
         openDemo(2);
 
         cy.get('@input')
-            .type('30012024{moveToStart}{upArrow}')
+            .type('30012024')
+            .type('{moveToStart}{upArrow}')
             .should('have.value', '01.01.2024')
             .type('{downArrow}')
             .should('have.value', '30.01.2024');
@@ -36,7 +37,10 @@ describe('Date segment stepping', () => {
         openDemo(0);
 
         cy.get('@input')
-            .type('15062024{upArrow}{downArrow}')
+            .type('15062024')
+            .type('{upArrow}')
+            .should('have.value', '15.06.2024')
+            .type('{downArrow}')
             .should('have.value', '15.06.2024');
     });
 

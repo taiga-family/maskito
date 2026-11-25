@@ -1,4 +1,4 @@
-import {type MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
+import {type MaskitoPlugin, maskitoTransform, maskitoUpdateElement} from '@maskito/core';
 
 import type {MaskitoDateSegments} from '../types';
 import {
@@ -31,7 +31,7 @@ export function createDateSegmentsSteppingPlugin({
             to: dateModeTemplate.lastIndexOf(name[0]!) + 1,
         }));
 
-    return maskitoEventHandler('keydown', (element, _options, event) => {
+    return maskitoEventHandler('keydown', (element, options, event) => {
         if (
             (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') ||
             event.defaultPrevented ||
@@ -77,22 +77,24 @@ export function createDateSegmentsSteppingPlugin({
 
         values[name] = String(next).padStart(length, '0');
 
-        if (values.day) {
-            values.day = String(
-                Math.min(Number(values.day), getDaysInMonth(values, yearLength)),
-            ).padStart(2, '0');
+        const maxDay = getDaysInMonth(values, yearLength);
+
+        if (values.day && Number(values.day) > maxDay) {
+            values.day = String(maxDay);
         }
 
         const updatedValue = toDateString(values, {dateMode: dateModeTemplate});
         const trailingSeparator = /\D+$/.exec(value)?.[0] ?? '';
         const preserveSeparator = end <= value.length - trailingSeparator.length;
 
-        maskitoUpdateElement(element, {
-            value: preserveSeparator
-                ? `${updatedValue}${trailingSeparator}`
-                : updatedValue,
-            selection: [from, from],
-        });
+        const nextValue = preserveSeparator
+            ? `${updatedValue}${trailingSeparator}`
+            : updatedValue;
+
+        maskitoUpdateElement(
+            element,
+            maskitoTransform({value: nextValue, selection: [from, from]}, options),
+        );
     });
 }
 
