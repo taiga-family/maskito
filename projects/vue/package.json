@@ -46,7 +46,7 @@
     "sideEffects": false,
     "devDependencies": {
         "@vue/test-utils": "2.5.1",
-        "vue": "3.5.44"
+        "vue": "3.5.45"
     },
     "peerDependencies": {
         "@maskito/core": "^5.6.1",
