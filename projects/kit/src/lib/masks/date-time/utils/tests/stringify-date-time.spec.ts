@@ -1,3 +1,4 @@
+import {maskitoParseDateTime} from '../parse-date-time';
 import {maskitoStringifyDateTime} from '../stringify-date-time';
 
 describe('maskitoStringifyDateTime', () => {
@@ -27,6 +28,16 @@ describe('maskitoStringifyDateTime', () => {
         });
 
         expect(result).toBe('11/04/2025 | 15:30:45');
+    });
+
+    it.each([
+        ['15.06, 13:45', 'dd/mm'],
+        ['06.15, 13:45', 'mm/dd'],
+    ] as const)('should round-trip %s in %s date mode', (value, mode) => {
+        const params = {dateMode: mode, timeMode: 'HH:MM'} as const;
+        const parsedDate = maskitoParseDateTime(value, params);
+
+        expect(parsedDate && maskitoStringifyDateTime(parsedDate, params)).toBe(value);
     });
 
     it('should clamp date to min boundary', () => {
