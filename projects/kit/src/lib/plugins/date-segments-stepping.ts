@@ -73,7 +73,7 @@ export function createDateSegmentsSteppingPlugin({
         const next =
             name === 'year'
                 ? clamp(initial + delta, min, max)
-                : mod(initial + delta, min, max + 1);
+                : mod(initial + (delta % (max - min + 1)), min, max + 1);
 
         values[name] = String(next).padStart(length, '0');
 

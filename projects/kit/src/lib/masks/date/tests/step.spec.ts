@@ -109,6 +109,20 @@ describe('Date segment stepping', () => {
     });
 
     it.each([
+        [1, 'ArrowUp', '25.02.2024'],
+        [1, 'ArrowDown', '05.02.2024'],
+        [4, 'ArrowUp', '15.09.2024'],
+        [4, 'ArrowDown', '15.07.2024'],
+    ])(
+        'wraps with the largest safe step at caret %s and %s',
+        (position, key, expected) => {
+            setup('15.02.2024', {step: Number.MAX_SAFE_INTEGER});
+            press(position, key);
+            expect(input.value).toBe(expected);
+        },
+    );
+
+    it.each([
         ['15.06.2024', 1, 'ArrowUp', '15.06.2024'],
         ['10.06.2024', 1, 'ArrowDown', '10.06.2024'],
         ['15.06.2024', 4, 'ArrowUp', '15.06.2024'],
