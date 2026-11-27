@@ -1,0 +1,36 @@
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {MaskitoDirective} from '@maskito/angular';
+import {TuiInput} from '@taiga-ui/core';
+
+import mask from './mask';
+
+@Component({
+    selector: 'placeholder-doc-example-4',
+    imports: [FormsModule, MaskitoDirective, TuiInput],
+    template: `
+        <tui-textfield
+            iconEnd="@tui.calendar"
+            [style.max-width.rem]="20"
+        >
+            <label tuiLabel>Enter date</label>
+            <input
+                inputmode="numeric"
+                tuiInput
+                placeholder="dd/mm/yyyy"
+                [maskito]="maskitoOptions"
+                [(ngModel)]="value"
+            />
+        </tui-textfield>
+    `,
+    styles: `
+        input::placeholder {
+            transition: display 999999s allow-discrete;
+        }
+    `,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export default class Example {
+    protected readonly maskitoOptions = mask;
+    protected value = '';
+}
