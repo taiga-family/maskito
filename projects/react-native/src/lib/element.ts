@@ -9,6 +9,7 @@ export function createHeadlessElement({
     const textfieldLike: Omit<MaskitoElement, keyof HTMLElement> = {
         maxLength,
         value,
+        placeholder: '',
         selectionStart: 0,
         selectionEnd: 0,
         setSelectionRange(from: number, to: number): void {

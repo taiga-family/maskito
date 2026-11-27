@@ -7,10 +7,11 @@ import {TuiLink} from '@taiga-ui/core';
 import Example1 from './examples/1-cvc-code/component';
 import Example2 from './examples/2-phone/component';
 import Example3 from './examples/3-date/component';
+import Example4 from './examples/4-filler/component';
 
 @Component({
     selector: 'placeholder-doc',
-    imports: [Example1, Example2, Example3, RouterLink, TuiAddonDoc, TuiLink],
+    imports: [Example1, Example2, Example3, Example4, RouterLink, TuiAddonDoc, TuiLink],
     templateUrl: './placeholder-doc.template.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,6 +36,12 @@ export default class PlaceholderDocComponent {
 
     protected readonly dateExample3: Record<string, TuiRawLoaderContent> = {
         [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/3-date/mask.ts?raw', {
+            with: {loader: 'text'},
+        }),
+    };
+
+    protected readonly fillerExample4: Record<string, TuiRawLoaderContent> = {
+        [DocExamplePrimaryTab.MaskitoOptions]: import('./examples/4-filler/mask.ts?raw', {
             with: {loader: 'text'},
         }),
     };

@@ -4,6 +4,7 @@ import {setContentEditableSelection} from './dom/set-content-editable-selection'
 
 class ContentEditableAdapter implements TextfieldLike {
     public maxLength = Infinity;
+    public placeholder = '';
 
     constructor(private readonly element: HTMLElement) {}
 

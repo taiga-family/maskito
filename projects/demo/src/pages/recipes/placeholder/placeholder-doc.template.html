@@ -93,5 +93,31 @@
             </ng-template>
             <placeholder-doc-example-3 />
         </tui-doc-example>
+
+        <tui-doc-example
+            heading="Filler"
+            [content]="fillerExample4"
+            [description]="fillerExampleDescription"
+        >
+            <ng-template #fillerExampleDescription>
+                Using
+                <code>transition: display 999999s allow-discrete</code>
+                CSS on
+                <code>input::placeholder</code>
+                and a custom Maskito plugin to keep placeholder in the input as you type.
+                <b>Note:</b>
+                this is currently
+                <a
+                    href="https://web-platform-dx.github.io/web-features-explorer/features/display-animation"
+                    rel="noreferrer"
+                    target="_blank"
+                    tuiLink
+                >
+                    broken in Firefox
+                </a>
+                .
+            </ng-template>
+            <placeholder-doc-example-4 />
+        </tui-doc-example>
     </ng-template>
 </tui-doc-page>

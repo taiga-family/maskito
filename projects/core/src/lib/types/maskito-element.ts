@@ -1,6 +1,7 @@
 export type TextfieldLike = Pick<
     HTMLInputElement,
     | 'maxLength'
+    | 'placeholder'
     | 'select'
     | 'selectionEnd'
     | 'selectionStart'
