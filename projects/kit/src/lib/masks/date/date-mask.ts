@@ -1,5 +1,6 @@
 import {MASKITO_DEFAULT_OPTIONS, type MaskitoOptions} from '@maskito/core';
 
+import {createDateSegmentsSteppingPlugin} from '../../plugins/date-segments-stepping';
 import {
     createDateSegmentsZeroPaddingPostprocessor,
     createFullWidthToHalfWidthPreprocessor,
@@ -12,7 +13,14 @@ import type {MaskitoDateParams} from './date-params';
 import {maskitoWithDateDefaults} from './utils/with-date-defaults';
 
 export function maskitoDate(params: MaskitoDateParams): Required<MaskitoOptions> {
-    const {mode, min, max, separator: dateSeparator} = maskitoWithDateDefaults(params);
+    const {
+        mode,
+        min,
+        max,
+        step,
+        separator: dateSeparator,
+    } = maskitoWithDateDefaults(params);
+
     const dateModeTemplate = mode.split('/').join(dateSeparator);
 
     return {
@@ -21,6 +29,7 @@ export function maskitoDate(params: MaskitoDateParams): Required<MaskitoOptions>
             dateSeparator.includes(char) ? char : /\d/,
         ),
         overwriteMode: 'replace',
+        plugins: [createDateSegmentsSteppingPlugin({step, dateModeTemplate})],
         preprocessors: [
             createFullWidthToHalfWidthPreprocessor(),
             createZeroPlaceholdersPreprocessor(),

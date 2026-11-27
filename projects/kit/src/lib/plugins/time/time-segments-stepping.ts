@@ -3,7 +3,7 @@ import {type MaskitoPlugin, maskitoUpdateElement} from '@maskito/core';
 import {CHAR_NO_BREAK_SPACE} from '../../constants';
 import {type MaskitoTimeParams} from '../../masks/time';
 import type {MaskitoTimeSegments} from '../../types';
-import {noop} from '../../utils';
+import {mod, noop} from '../../utils';
 import {createDayPeriodMatchers, hasDayPeriod} from '../../utils/time';
 
 type TimeSegment = keyof MaskitoTimeSegments<number>;
@@ -132,12 +132,6 @@ function updateSegmentValue({
         to - from,
         '0',
     )}${value.slice(to)}`;
-}
-
-function mod(value: number, min: number, max: number): number {
-    const range = max - min;
-
-    return ((((value - min) % range) + range) % range) + min;
 }
 
 function shouldToggleMeridiem({

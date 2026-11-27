@@ -8,6 +8,7 @@ describe('withDateDefaults', () => {
         it('fills mode, separator, min & max when only mode is provided', () => {
             expect(maskitoWithDateDefaults({mode: 'mm/dd/yyyy'})).toEqual({
                 locale: '',
+                step: 0,
                 mode: 'mm/dd/yyyy',
                 separator: '.',
                 min: DEFAULT_MIN_DATE,
@@ -88,7 +89,7 @@ describe('withDateDefaults', () => {
         it('returns all required keys', () => {
             expect(
                 Object.keys(maskitoWithDateDefaults({mode: 'dd/mm/yyyy'})).sort(),
-            ).toEqual(['locale', 'max', 'min', 'mode', 'separator']);
+            ).toEqual(['locale', 'max', 'min', 'mode', 'separator', 'step']);
         });
     });
 });
